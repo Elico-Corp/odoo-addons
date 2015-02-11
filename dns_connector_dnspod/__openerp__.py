@@ -30,7 +30,7 @@
 Allows to manage your DNSPod domain through Odoo.
 """,
  'images': [],
- 'icon': 'dns_connector_dnspod/static/description/dns1.jpg',
+# 'icon': 'dns_connector_dnspod/static/description/dns1.jpg',
  'demo': [],
  'data': [],
  'installable': True,
