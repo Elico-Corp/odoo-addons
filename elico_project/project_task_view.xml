@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record id="view_task_form2" model="ir.ui.view">
+            <field name="name">project.task.form</field>
+            <field name="model">project.task</field>
+            <field name="inherit_id" ref="project.view_task_form2"/>
+            <field name="arch" type="xml">
+                <field name="name" position="before">
+                    <field name="id"/>
+                </field>
+                <field name="project_id" position="before">
+                    <field name="type"/>
+                    <field name="wbs"/>
+                </field>
+                <field name="progress" position="after">
+                    <field name="planned_hours" widget="float_time" groups="project.group_time_work_estimation_tasks" on_change="onchange_planned(planned_hours, effective_hours)"/>
+                    <field name="priority" groups="base.group_user" widget="priority"/>
+                </field>
+                <!--Extend form. when adding a new line it should be on bottom of the list -->
+                <xpath expr="//tree" position="attributes">
+                      <attribute name="editable">bottom</attribute>  
+                </xpath> 
+                <!-- Remove the priority from the "Extra Info" page by replacing it with nothing -->
+                <xpath expr="//page[@string='Extra Info']/group[1]/field[@name='priority']" position="replace"/>
+                <!-- Remove the planned_hours from the first column by replacing it with nothing -->
+                <xpath expr="//group/field[@name='planned_hours']" position="replace"/>
+                <notebook position="before">
+                    <!-- Put the planning info in columns -->
+                    <table>
+                        <tr>
+                            <th><label for="week_1"/></th>
+                            <th><label for="week_2"/></th>
+                            <th><label for="week_3"/></th>
+                            <th><label for="week_4"/></th>
+                        </tr>
+                        <tr>
+                            <td><field name="week_1" nolabel="1"/></td>
+                            <td><field name="week_2" nolabel="1"/></td>
+                            <td><field name="week_3" nolabel="1"/></td>
+                            <td><field name="week_4" nolabel="1"/></td>
+                        </tr>
+                    </table>
+                </notebook>
+            </field>
+        </record>
+        <record id="view_task_tree2" model="ir.ui.view">
+            <field name="name">project.task.tree</field>
+            <field name="model">project.task</field>
+            <field name="inherit_id" ref="project.view_task_tree2"/>
+            <field name="arch" type="xml">
+                <field name="name" position="before">
+                    <field name="id"/>
+                    <field name="type"/>
+                    <field name="wbs"/>
+                </field>
+                <field name="remaining_hours" position="after">
+                    <field name="week_1" string="P1"/>
+                    <field name="week_2" string="P2"/>
+                    <field name="week_3" string="P3"/>
+                    <field name="week_4" string="P4"/>
+                </field>
+            </field>
+        </record>
+        <record id="view_task_search_form" model="ir.ui.view">
+            <field name="name">project.task.search.form</field>
+            <field name="model">project.task</field>
+            <field name="inherit_id" ref="project.view_task_search_form"/>
+            <field name="arch" type="xml">
+                <field name="name" position="before">
+                    <field name="id"/>
+                </field>
+                <field name="name" position="after">
+                    <field name="type"/>
+                    <field name="wbs"/>
+                </field>
+                <group expand="0" string="Group By">
+                    <filter string="Type" domain="[]" context="{'group_by':'type'}"/>
+                </group>
+            </field>
+        </record>
+        <record id="view_task_kanban" model="ir.ui.view">
+            <field name="name">project.task.view.task.kanban</field>
+            <field name="model">project.task</field>
+            <field name="inherit_id" ref="project.view_task_kanban"/>
+            <field name="arch" type="xml">
+                <field name="name" position="before">
+                    <div>
+                        <field name="id"/>
+                        <field name="type"/>
+                        <field name="wbs"/>
+                    </div>
+                </field>
+            </field>
+        </record>
+    </data>
+</openerp>
