@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="view_wizard_reset_planning" model="ir.ui.view">
+            <field name="name">Reset Planning</field>
+            <field name="model">wizard.reset.planning</field>
+            <field name="arch" type="xml">
+                <form string="Choose your date">
+                    <p class="oe_gray">
+                        Warning! Your will set all tasks week 1, 2, 3, and 4 to 0!
+                    </p>
+                    <footer>
+                        <button name="reset_planning" string="Reset Planning" type="object" class="oe_highlight"/>
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+        <record id="action_view_wizard_reset_planning" model="ir.actions.act_window">
+            <field name="name">Reset Planning</field>
+            <field name="res_model">wizard.reset.planning</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_wizard_reset_planning"/>
+            <field name="target">new</field>
+        </record>
+
+        <menuitem action="action_view_wizard_reset_planning" id="menu_action_wizard_view_reset_planning" parent="project.menu_project_management"/>
+
+    </data>
+</openerp>
