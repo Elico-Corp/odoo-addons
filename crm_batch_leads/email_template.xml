@@ -1,0 +1,7 @@
+<?xml version="1.0" ?>
+<openerp>
+	<data>
+        <menuitem string="Email Template" id="menu_email_templates_lead" parent="base.menu_base_config" action="email_template.action_email_template_tree_all"
+                  sequence="90"/>
+	</data>
+</openerp>
