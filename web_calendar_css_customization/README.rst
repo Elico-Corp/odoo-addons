@@ -3,5 +3,5 @@
    :alt: License: AGPL-3
 
 =================
-Webkit Logo
+Web Calendar CSS Customization
 =================
