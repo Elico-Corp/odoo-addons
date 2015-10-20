@@ -3,5 +3,5 @@
    :alt: License: AGPL-3
 
 =================
-Elico Webkit Logo
+Webkit Logo
 =================

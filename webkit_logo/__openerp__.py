@@ -21,8 +21,8 @@
 ##############################################################################
 
 {
-    'name': 'elico log webkit',
-    'version': '1.0',
+    'name': 'Webkit Logo',
+    'version': '0.1.1',
     'author': 'Elico Corp,Odoo Community Association (OCA)',
     'website': 'http://www.elico-corp.com',
     'summary': '',
