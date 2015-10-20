@@ -21,8 +21,8 @@
 ##############################################################################
 
 {
-    'name': 'Web Calendar CSS Customization',
-    'version': '0.1.2',
+    'name': 'Webkit Logo Header',
+    'version': '0.1.3',
     'author': 'Elico Corp,Odoo Community Association (OCA)',
     'website': 'http://www.elico-corp.com',
     'summary': '',
