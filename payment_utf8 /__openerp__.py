@@ -22,7 +22,7 @@
 
 {
     'name': 'payment_utf8',
-    'version': '1.0',
+    'version': '0.1.0',
     'author': 'Elico Corp,Odoo Community Association (OCA)',
     'website': 'http://www.elico-corp.com',
     'summary': '',
