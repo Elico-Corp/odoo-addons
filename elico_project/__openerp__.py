@@ -21,7 +21,7 @@
 ##############################################################################
 {
     'name': 'Elico Project',
-    'version': '0.1',
+    'version': '0.0.1',
     'category': '',
     'depends': [
         'project_timesheet',
