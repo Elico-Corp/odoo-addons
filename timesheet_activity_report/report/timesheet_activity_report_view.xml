@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="action_timesheet_activity_tree" model="ir.ui.view">
+            <field name="name">Timesheet Activities Tree</field>
+            <field name="model">timesheet.activity.report</field>
+            <field name="arch" type="xml">
+                <tree string="Timesheet Activities Tree">
+                    <field name="account_id"/>
+                    <field name="project_id"/>
+                    <field name="activity_id" string="ID" />
+                    <field name="activity_type"/>
+                    <field name="activity_name"/>
+                    <field name="stage_id"/>
+                    <field name="date"/>
+                    <field name="description"/>
+                    <field name="user_id"/>
+                    <field name="product_id"/>
+                    <field name="planned_hours"/>
+                    <field name="hours"/>
+                    <field name="remaining_hours"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_timesheet_activity_pivot" model="ir.ui.view">
+            <field name="name">Timesheet Activities Pivot Table</field>
+            <field name="model">timesheet.activity.report</field>
+            <field name="arch" type="xml">
+                <graph type="pivot">
+                    <field name="project_id" />
+                    <field name="product_id" />
+                    <field name="user_id" />
+                    <field name="hours" type="measure" />
+                </graph>
+            </field>
+        </record>
+
+        <record id="action_timesheet_activity_report" model="ir.actions.act_window">
+            <field name="name">Timesheet Completion Analysis</field>
+            <field name="res_model">timesheet.activity.report</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,graph</field>
+            <field name="context">{}</field>
+            <field name="domain">[]</field>
+        </record>
+
+        <record model="ir.ui.view" id="timesheet_activity_search">
+            <field name="name">Timesheet Completion Analysis Search</field>
+            <field name="model">timesheet.activity.report</field>
+            <field name="arch" type="xml">
+                <search string="Timesheet search">
+                    <field name="account_id" />
+                    <field name="project_id" />
+                    <field name="user_id" />
+                    <filter string="Current Month" domain="[('date','&gt;=', datetime.datetime.now().strftime('%%Y-%%m-01'))]" />
+                    <filter string="Previous Month" name="previous_month" domain="[('date','&gt;=',(context_today()-relativedelta(months=1)).strftime('%%Y-%%m-01')),('date','&lt;',time.strftime('%%Y-%%m-01'))]"/>
+                    <separator/>
+                    <group expand="0" string="Group By">
+                        <filter string="Analytic Account" domain="[]" context="{'group_by':'account_id'}"/>
+                        <filter string="Project" domain="[]" context="{'group_by':'project_id'}"/>
+                        <filter string="User" domain="[]" context="{'group_by':'user_id'}"/>
+                        </group>
+                </search>
+            </field>
+        </record>
+
+        <menuitem name="Timesheet Completion Analysis" id="menu_timesheet_activity_report_tree"
+            parent="hr.menu_hr_reporting" action="action_timesheet_activity_report" sequence="1"/>
+
+    </data>
+</openerp>
