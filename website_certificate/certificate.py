@@ -19,15 +19,23 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-{'name': 'Website Beian',
- 'version': '0.1',
- 'category': 'website',
- 'depends': ['website', 'base'],
- 'author': 'Elico Corp',
- 'license': 'AGPL-3',
- 'website': 'https://www.elico-corp.com',
- 'images': [],
- 'demo': [],
- 'data': ['beian_view.xml'],
- 'installable': True,
- 'application': False}
+from openerp import models, fields
+
+
+class CompanyFiling(models.Model):
+    _inherit = 'website'
+
+    certificate_url = fields.Char(string='ICP Certificate URL')
+    logo = fields.Binary(string='ICP Certificate Logo')
+    certificate_number = fields.Char(string='ICP Certificate Number')
+
+
+class CompanyFilingSetting(models.TransientModel):
+    _inherit = 'website.config.settings'
+
+    certificate_url = fields.Char(string='ICP Certificate URL',
+                                  related='website_id.certificate_url')
+    logo = fields.Binary(string='ICP Certificate Logo',
+                         related='website_id.logo')
+    certificate_number = fields.Char(string='ICP Certificate Number',
+                                     related='website_id.certificate_number')

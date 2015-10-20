@@ -1,10 +1,10 @@
 .. image:: https://img.shields.io/badge/licence-AGPL--3-blue.svg
     :alt: License
 
-Website Bei'An
+Website Certificate
 ==============
 
-This module aims to display company beian information at the bottom right of website.
+This module aims to display company certificate information at the bottom right of website.
 
 Installation
 ============
