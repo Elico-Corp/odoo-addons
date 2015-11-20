@@ -3,7 +3,7 @@
    :alt: License: AGPL-3
 
 ===================================
-Elico Batch Leads & Email Templates
+Batch Leads & Email Templates
 ===================================
 
 Security Rules for deleting CRM Leads/Opportunities and Projects Tasks

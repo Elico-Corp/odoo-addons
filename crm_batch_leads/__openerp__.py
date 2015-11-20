@@ -22,7 +22,7 @@
 ##############################################################################
 
 {
-    'name': 'Elico CRM & Projects ACL',
+    'name': 'CRM & Projects ACL',
     'version': '1.1',
     'category': 'Generic Modules/Others',
     'complexity': 'easy',
