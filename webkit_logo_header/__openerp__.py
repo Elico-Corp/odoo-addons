@@ -23,7 +23,7 @@
 {
     'name': 'Webkit Logo Header',
     'version': '0.1.3',
-    'author': 'Elico Corp,Odoo Community Association (OCA)',
+    'author': 'Odoo Community Association (OCA)',
     'website': 'http://www.elico-corp.com',
     'summary': '',
     'depends': ['base', 'report_webkit'],
