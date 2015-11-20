@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data>
+
+    <record id="action_sale_order_bom_report_xls" model="ir.actions.report.xml">
+      <field name="name">Sale Order Bom Report</field>
+      <field name="model">sale.order</field>
+      <field name="type">ir.actions.report.xml</field>
+      <field name="report_name">report.sale.order.bom.report.xls</field>
+      <field name="report_type">xls</field>
+      <field name="auto" eval="False"/>
+    </record>
+
+    <record model="ir.values" id="action_sale_order_bom_report_xls_values">
+      <field name="name">Sale Order Bom Report Xls</field>
+      <field name="key2">client_action_multi</field>
+      <field name="value" eval="'ir.actions.report.xml,' +str(ref('action_sale_order_bom_report_xls'))" />
+      <field name="model">sale.order</field>
+    </record> 
+    
+  </data>
+</openerp>
