@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="mrp_production_workcenter_tree_view_inherit2" model="ir.ui.view">
+            <field name="name">mrp.production.workcenter.line.tree2</field>
+            <field name="model">mrp.production</field>
+            <field name="inherit_id" ref="mrp_operations.mrp_production_form_inherit_view2"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='workcenter_lines']/tree/field[@name='state']" position="after">
+                    <button name="%(action_record)d" string="Quantity" type="action"
+                        attrs="{'invisible':['|',('state', 'in',('draft', 'done'))]}"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</openerp>
