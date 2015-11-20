@@ -1,2 +1,2 @@
-# odoo version 8.0
-# Modules from our Elico Corp R&D in version v8.0
+# odoo version 9.0
+# Modules from our Elico Corp R&D for Odoo version v9.0
