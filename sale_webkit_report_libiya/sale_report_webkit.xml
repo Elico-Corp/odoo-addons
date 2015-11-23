@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+        <data>
+<!-- LY Report-->
+
+<template id="report_sale_order_libiya_document">
+    <t t-call="report.external_layout">
+    <div class="page">
+        <div class="oe_structure"/>
+        <table class="dest_address" width="100%">
+        <tr>
+            <td width="30%">
+                <strong>Customer address:</strong>
+                    <div t-field="o.partner_id" 
+                        t-field-options='{"widget": "contact", "fields": ["address", "name", "phone", "fax","email","vat"], "no_marker": false}'/>
+                    <p t-if="o.partner_id.vat">VAT: <span t-field="o.partner_id.vat"/></p>
+            </td>
+        </tr>
+        </table>
+
+        <h2>
+                <span t-if="o.state not in ['draft','sent']">Order N° </span>
+                <span t-if="o.state in ['draft','sent']">Quotation N° </span>
+                <span t-field="o.name"/>
+            </h2>
+
+            <div class="row mt32 mb32" id="informations">
+                <div t-if="o.client_order_ref" class="col-xs-3">
+                    <strong>Invoice:</strong>
+                    <p t-field="o.client_order_ref"/>
+                </div>
+                <div t-if="o.user_id.name" class="col-xs-3">
+                    <strong>Salesperson:</strong>
+                    <p t-field="o.user_id.name"/>
+                </div>
+                <div t-if="o.payment_term" class="col-xs-3">
+                    <strong>Payment Term:</strong>
+                    <p t-field="o.payment_term"/>
+                </div>
+            </div>
+
+<!--banks-->
+            <p><b>Dear <span t-field="o.partner_id.name"/>,</b></p>
+            <p>Thank you for your order! Please find the details bellow.</p>
+            <p>"kindly arrange payment to our account number:"
+                <t t-foreach="o.company_id.bank_ids" t-as="bank">
+                    <p><span t-field="bank.acc_number"/>
+                    <span>at </span><span t-field="bank.bank_name"/>
+                    <span>SWIFT/IBNA: " </span><span t-field="bank.swift_ibna"/>"</p>
+                </t>
+            </p>
+
+<!--details-->
+    <!-- <t t-set="cur_groups" t-value="curr_group_value(o)"/>
+    <p t-esc="cur_groups.keys()"/> -->
+    <t t-foreach="curr_group_value(o).items()" t-as="cur_group">
+        <!-- <p t-esc="cur_group"/> -->
+        <t t-set="p_currency" t-value="cur_group[1]['purchase_currency_id']"/>
+        
+        <!-- lines in one currency-->
+        <table class="table-condensed" width="100%">
+            <thead>
+                <tr>
+                    <th>POS</th>
+                    <th>Product Name</th>
+                    <th>Spec</th>
+                    <th class="text-right">Qty. </th>
+                    <th class="text-right">Price (<span t-field="p_currency.name"/>)</th>
+                    <th class="text-right">Dis (%)</th>
+                    <th class="text-right">Total (<span t-field="p_currency.name"/>)</th>
+                </tr>
+            </thead>
+            <t t-foreach="cur_group[1]['lines']" t-as="line">
+                <tr>
+                    <td><t t-esc="line['id'] or ' '"/></td>
+                    <td><t t-esc="line['product_name'] or ' '"/></td>
+                    <td><t t-esc="line['name'] or ' '"/></td>
+                    <td class="text-right">
+                        <t t-esc="formatLang(line['product_uom_qty']) or ' '"/>
+                    </td>
+                    <td class="text-right">
+                        <t t-esc="formatLang(line['price_unit'], dp='Account')"/>
+                    </td>
+                    <td class="text-right">
+                        <t t-esc="formatLang(line['discount_per'], dp='Account')"/>
+                    </td>
+                    <td class="text-right">
+                        <t t-esc="formatLang(line['price_total'], dp='Account')"/>
+                    </td>
+                </tr>
+            </t>
+        </table>
+
+        <!-- subtotal in one currency-->
+        <div class="row">
+                <div class="col-xs-4 pull-right">
+                    <table class="table table-condensed">
+                        <tr class="border-black"> 
+                           <td><strong>Total Without Discount</strong></td>
+                            <td class="text-right">
+                                <span t-esc="cur_group[1]['price_total']"
+                                    t-esc-options='{"widget": "monetary", "display_currency": "p_currency"}'/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Discount</td>
+                            <td class="text-right">
+                                <span t-esc="cur_group[1]['discount']"
+                                    t-esc-options='{"widget": "monetary", "display_currency": "p_currency"}'/>
+                            </td>
+                        </tr>
+                        <tr class="border-black">
+                            <td><strong>Total</strong></td>
+                            <td class="text-right">
+                                <span t-esc="cur_group[1]['price_subtotal']"
+                                    t-esc-options='{"widget": "monetary", "display_currency": "p_currency"}'/>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+    </t>
+            <!-- <p t-des="curr_ids(o.order_line)"/> -->
+<!--subtotal-->
+        <!-- <div class="oe_clear"/> -->
+        <div class="row">
+        <t t-set="order_total" t-value="order_discount(o)"/>
+
+                <div class="col-xs-4 pull-right">
+                    <table class="table table-condensed">
+                        <tr class="border-black">
+                            <td><strong>Total Without Discount</strong></td>
+                            <td class="text-right">
+                                <span t-esc="order_total['price_total']"
+                                    t-field-options='{"widget": "monetary", "display_currency": "o.pricelist_id.currency_id"}'/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Taxes</td>
+                            <td class="text-right">
+                                <span t-field="o.amount_tax"
+                                    t-field-options='{"widget": "monetary", "display_currency": "o.pricelist_id.currency_id"}'/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Discount</td>
+                            <td class="text-right">
+                                <span t-esc="formatLang(order_total['discount'], dp='Account')"
+                                    t-field-options='{"widget": "monetary", "display_currency": "o.pricelist_id.currency_id"}'/>
+                            </td>
+                        </tr>
+                        <t t-foreach="order_total['other']" t-as="other_fee">
+                            <tr>
+                                <td><t t-esc="other_fee[0] or ' '"/></td>
+                                <td class="text-right">
+                                    <span t-esc="formatLang(other_fee[1], dp='Account')"
+                                        t-field-options='{"widget": "monetary", "display_currency": "o.pricelist_id.currency_id"}'/>
+                                </td>
+                            </tr>
+                        </t>
+                        <tr class="border-black">
+                            <td><strong>Total</strong></td>
+                            <td class="text-right">
+                                <span t-field="o.amount_total"
+                                    t-field-options='{"widget": "monetary", "display_currency": "o.pricelist_id.currency_id"}'/>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <p t-field="o.note" />
+            <p t-if="o.payment_term.note">
+                <strong>Payment Term:</strong>
+                <span t-field="o.payment_term.note"/>
+            </p>
+            <div class="oe_structure"/>
+    </div>
+    </t>
+</template>
+
+<template id="report_sale_order_libiya">
+    <t t-call="report.html_container">
+        <t t-foreach="doc_ids" t-as="doc_id">
+            <t t-raw="translate_doc(doc_id, doc_model, 'partner_id.lang', 'sale_webkit_report_libiya.report_sale_order_libiya_document')"/>
+        </t>
+    </t>
+</template>
+
+        <report 
+            id="report_sale_order_libiya_act"
+            string="Sale Order Libiya"
+            model="sale.order" 
+            report_type="qweb-pdf"
+            file="sale_webkit_report_libiya.report_sale_order_libiya" 
+            name="sale_webkit_report_libiya.report_sale_order_libiya" 
+        />
+    </data>
+</openerp>

@@ -1,0 +1,42 @@
+<openerp>
+    <data>
+
+        <!-- LY update price list-->
+        
+        <record id="view_product_pricelist_view" model="ir.ui.view">
+            <field name="name">product.pricelist.form.purchasecurrency</field>
+            <field name="model">product.pricelist</field>
+            <field name="inherit_id" ref="product.product_pricelist_view" />
+            <field name="arch" type="xml">
+                <field name="currency_id" position='after'>
+                    <field name="use_purchase_currency" attrs="{'invisible': [('type', '=', 'purchase')]}"/>
+                </field>
+            </field>
+        </record>
+        <!-- Inherit Product from -->
+        <record id="view_product_form_inherit1" model="ir.ui.view">
+            <field name="name">product.product.inherit1</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="product.product_normal_form_view" />
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='description']" position='before'>
+                    <group>
+                            <field name="purchase_currency_id" />
+                    </group>
+                </xpath>
+            </field>
+        </record>
+
+        <!-- Inherit res.partner.bank from-->
+        <!-- <record id="view_res_bank_form_inherit1" model="ir.ui.view">
+            <field name="name">res.bank.form.rib.inherit1</field>
+            <field name="model">res.partner.bank</field>
+            <field name="inherit_id" ref="base.view_partner_bank_form" />
+            <field name="arch" type="xml">
+                <xpath expr="//form[@string='Bank account']/group/group[@name='bank']/field[@name='bank_bic']" position='replace'>
+                    <field name="swift_ibna" />
+                </xpath>
+            </field>
+        </record> -->
+    </data>
+</openerp>
