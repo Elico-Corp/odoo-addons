@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <template id="report_picking_full">
+            <t t-call="report.html_container">
+                <t t-foreach="docs" t-as="o">
+     
+                        <div class="page">
+                            <div class="row">
+                                <div class="col-xs-8">
+                                    <h3>
+                                        <span>Delivery Order</span>
+                                    </h3>
+                                        <p style="font-size:12px !important;margin=2"><i>dated.</i>
+                                            <span t-field="o.date" t-field-options="{&quot;format&quot;: &quot;dd/MM/YYYY&quot;}"/>
+                                    </p>
+                                </div>
+                               <div name="company" class="col-xs-4">
+                                    <t t-if="o and 'company_id' in o">
+                                                <t t-set="company" t-value="o.company_id"/>
+                                            </t>
+                                            <t t-if="not o or not 'company_id' in o">
+                                                <t t-set="company" t-value="res_company"/>
+                                            </t>
+
+                                                   <img t-if="company.logo" t-att-src="'data:image/png;base64,%s' % company.logo" style="max-height: 45px;"/>
+                                </div>
+                            </div>
+
+                            <table style="width: 100%;font-size:14px !important">
+                                <tr>
+                                <td align="right" style="width: 17.5%; font-weight:bold;">Delivery Date:</td>
+                                <td style="width:47.5%; padding-left:10px"><strong><span t-field="o.min_date"/> (2 Hours Slot)</strong></td>
+
+                                <td align="right" style="width:12.5%;font-weight:bold;font-size:16px !important;">DO No.:</td>
+                                <td style="width:22.5%; padding-left:10px;"><strong><span t-field="o.name"/></strong></td>
+                                </tr>
+                                <tr>
+                                    <td align="right" style="font-weight:bold;">Customer:</td>
+                                    <td style="padding-left:10px"><strong><span t-field="o.partner_id.name"/></strong></td>
+                                    <td align="right" style="font-weight:bold;">SO No.:</td>
+                                    <td style="padding-left:10px;"><strong><span t-field="o.origin"/></strong></td>
+                                </tr>
+                                <tr>
+                                    <td align="right" style="font-weight:bold;">Email:</td>
+                                    <td style="padding-left:10px"><span t-field="o.partner_id.email"/></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td align="right" style="font-weight:bold;">Contact:</td>
+                                    <td style="padding-left:10px">
+                                        <t t-if="o.partner_id.mobile">
+                                            <span t-field="o.partner_id.mobile"></span>
+                                        </t>
+                                        <t t-if="not o.partner_id.mobile">    
+                                             <t t-if="o.partner_id.phone"><span t-field="o.partner_id.phone"></span></t>
+                                             <t t-if="not o.partner_id.phone">
+                                                 <t t-foreach="o.partner_id.child_ids" t-as="t">
+                                                       <t t-if="t_index==0">
+                                                      <span t-field="t.phone"></span></t>
+                                                 </t>
+                                             </t>
+                                        </t>
+                                    </td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td align="right" style="font-weight:bold;">Delivery To:</td>
+                                    <td style="padding-left:10px"><span t-field="o.partner_id.street"/> Singapore 
+                                    <span t-field="o.partner_id.zip"/></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                            </table>
+                            <br/>
+
+
+                            <div class="row" style="display:none">
+                                <div class="col-xs-6">
+                                    
+                                    <div t-if="o.partner_id" name="partner_header">
+    
+                                    </div>
+                                </div>
+                                
+                            </div>
+                            
+                            <table class="table table-condensed" style="display:none">
+                            <thead>
+                                <tr>
+                                    <th><strong>Order (Origin)</strong></th>
+                                    <th><strong>State</strong></th>
+                                    <th><strong>Commitment Date</strong></th>
+                                    <th name="td_sched_date_h"><strong>Scheduled Date</strong></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <span t-field="o.origin"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="o.state"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="o.date"/>
+                                    </td>
+                                    <td name="td_sched_date">
+                                        <span t-field="o.min_date"/>
+                                    </td>
+                                </tr>
+                            </tbody>
+                            </table>
+                            
+     
+
+
+                            <table class="table table-bordered" style="width:100%; font-size:12px !important;">
+                                <thead align="center">
+                                    <tr style="background-color: #e1e1e1">
+                                        
+                                        <th style="width: 12.5%" class="text-center">SKU</th>
+                                        <th style="width: 22.5%" class="text-center">Item</th>
+                                        <th style="width: 10%" class="text-center">Color</th>
+                                        <th style="width: 15%" class="text-center">Dimension</th>
+                                        <th style="width: 12.5%" class="text-center">Qty</th>
+                                        <th style="width: 10%" class="text-center">Location</th>
+                                        <th style="width: 12.5%" class="text-center">Remarks</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr t-foreach="o.pack_operation_ids" t-as="l">
+                                        
+                                        <td class="text-center"><span t-field="l.product_id.default_code"/></td>
+                                        <td class="text-center"><span t-field="l.product_id.product_tmpl_id"/></td>
+                                        <td class="text-center"><span t-field="l.product_id.color"/></td>
+                                        <td class="text-center"><span t-field="l.product_id.dimensions"/></td>
+                                        <td class="text-center"><span t-field="l.product_qty"/> </td>
+                                        <td class="text-center">
+                                            <span t-field="l.location_id"/>
+                                        </td>
+                                        <td></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            
+
+                            <div style="height:20px"/>
+                            <table style="width:100%; font-size:16px !important;">
+                                <tr style="height: 30px">
+                                    <td style="width: 50%;" class="text-left"><strong>Remarks</strong></td>
+                                    <td style="width: 15%;"></td>
+                                    <td style="width: 22.5%;"></td>
+                                    <td style="width: 12.5%;"></td>
+                                </tr>
+                                
+                                <tr style="height: 30px">
+                                    <td style="width: 50%; vertical-align: top; border: 2px solid #e1e1e1" class="text-left">
+                                        Warehouse's Note:<br/>
+                                        Release the items above.<strong>Collection by <span t-field="o.cus_selection"></span></strong>
+                                    </td>
+                                    <td style="width: 15%;"></td>
+                                    <td style="width: 22.5%;"></td>
+                                    <td style="width: 12.5%;"></td>
+                                    
+                                </tr>
+                                <tr style="height: 30px">
+                                    <td style="width: 50%; vertical-align: top; border: 2px solid #e1e1e1" class="text-left">
+                                        Driver's Note:<br/>
+                                        Please call customer <strong>1 hour </strong>before arrival.
+                                        <br/>
+                                        <br/>
+                                        <br/>
+                                    </td>
+                                    <td style="width: 15%;"></td>
+                                    <td style="width: 22.5%;"></td>
+                                    <td style="width: 12.5%;"></td>
+                                    
+                                </tr>
+                            </table>
+                            <div style="height:50px"/>
+
+                            <table style="width:100%; font-size:12px !important;">
+                                <tr style="height: 30px">
+                                    <td style="width: 35%;" class="text-center"><strong>______________________________________</strong></td>
+                                    <td style="width: 30%;"></td>
+                                    <td style="width: 35%;" class="text-center"><strong>______________________________________</strong></td>
+
+                                </tr>
+                                <tr style="height: 10px">
+                                    <td style="width: 35%;" class="text-center"><strong>Customer's Signature</strong></td>
+                                    <td style="width: 30%;"></td>
+                                    <td style="width: 35%;" class="text-center"><strong>Authorized Signature</strong></td>
+                                </tr>
+                                <tr style="height: 10px">
+                                    <td style="width: 35%;" class="text-center">Name:</td>
+                                    <td style="width: 30%;"></td>
+                                    <td style="width: 35%;" class="text-center">Name:</td>
+                                </tr>
+                                <tr style="height: 10px">
+                                    <td style="width: 35%;" class="text-center">Date:</td>
+                                    <td style="width: 30%;"></td>
+                                    <td style="width: 35%;"></td>
+                                </tr>
+                                <tr style="height: 10px">
+                                    <td colspan="2" style="width: 35%;">Received the above mentioned goods in good order and condition.</td>
+                                    
+                                    <td style="width: 35%;"></td>
+                                </tr>
+
+                            </table>
+
+                            <div style="height:20px"/>
+
+                            <div style="text-align:center; font-size:10px !important; color: #848484; height: 13px">
+                                <p style="margin:3">Castlery Pte Ltd</p>
+                                <p style="margin:3">GST Reg No: 201327477H</p>
+                                <p style="margin:3"><t t-if="company.email"><span t-field="company.phone"/>|<span t-field="company.email"/></t></p>
+                                <p style="margin:3">2 Alexandra Road, Delta House #01-03A, Singapore 159919</p>
+                            </div>
+                        </div>
+                    </t>
+                 
+             </t>
+        </template>
+    </data>
+</openerp>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+	<data>
+		<record id="company_form_detail_extend" model="ir.ui.view">
+			<field name="name">res.company.form.extend</field>
+			<field name="model">res.company</field>
+			<field name="inherit_id" ref="base.view_company_form" />
+			<field name="arch" type="xml" >
+				<data>
+					<xpath expr="//notebook" position="inside">
+						<page string="Report Detail">
+							<separator string="Delivery Detail" colspan="4"/>
+							<field name="delivery_detail" />
+							<separator string="Refund Detail" />
+							<field name="refund_detail" />
+							<separator string="Payment Detail" />
+							<field name="payment_detail" />
+							<separator string="While Stock Last" />
+							<field name="while_stock_last" />
+							<separator string="Others" />
+							<field name="other_detail" />
+						</page>
+						<page string="Invoice T&amp;C">
+							<field name="invoice_tc" widget="html"/>
+						</page>
+					</xpath>
+					<xpath expr="//page[@string='General Information']/group/group/field[@name='company_registry']" position="after">
+						<field name="limit_discount" />
+					</xpath>
+				</data>
+			</field>
+
+		</record>
+	</data>
+</openerp>
+

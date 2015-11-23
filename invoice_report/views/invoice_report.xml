@@ -1,0 +1,11 @@
+<!-- vim:fdn=3:
+-->
+<openerp>
+    <data>
+        <template id="assets_backend" name="invoice_report assets" inherit_id="web.assets_backend">
+            <xpath expr="." position="inside">
+                <link rel="stylesheet" href="/invoice_report/static/src/css/invoice.css"/>
+            </xpath>
+        </template>
+    </data>
+</openerp>
