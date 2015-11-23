@@ -29,8 +29,9 @@
  'website': 'https://www.elico-corp.com',
  'images': [],
  'demo': [],
- 'data': ['wizard/product_cost_import.xml',
-          'security/ir.model.access.csv',
-          'product_cost_view.xml'],
+ 'data':
+    ['wizard/product_cost_import.xml',
+     'security/ir.model.access.csv',
+     'product_cost_view.xml'],
  'installable': True,
  'application': False}
