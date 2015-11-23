@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- vim:fdl=1: -->
+<templates>
+    <t t-extend="PosTicket">
+        <t t-jquery="br:eq(4)" t-operation="after">
+            <br />
+            Name: <t t-esc="order.get_client_name()" /><br />
+        </t>
+
+        <t t-jquery="table:first colgroup col:first" t-operation="before">
+            <col width='10%' />
+        </t>
+
+        <t t-jquery="table:first tr:first" t-operation="before">
+            <t t-set="index" t-value="1"/>
+        </t>
+
+        <t t-jquery="table:first tr:first td:first" t-operation="before">
+            <td>
+                <t t-esc="index"/>
+                <t t-set="index" t-value="index + 1"/>
+            </td>
+        </t>
+
+        <t t-jquery="table:eq(1) tr:first" t-operation="before">
+            <tr>
+                <td>Balance:</td>
+                <td class="pos-right-align">
+                    <t t-esc="widget.format_currency(order.get_client_membership_balance_cached() - order.get_paid_membership_amount())"/>
+                </td>
+            </tr>
+
+            <tr>
+                <td>Quantity:</td>
+                <td class="pos-right-align">
+                    <t t-esc="order.getTotalQuantity()"/> Unit(s)
+                </td>
+            </tr>
+        </t>
+    </t>
+</templates>
