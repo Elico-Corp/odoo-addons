@@ -20,7 +20,7 @@
 #
 ##############################################################################
 {'name': 'Membership Management - Member Account Balance',
- 'version': '0.1',
+ 'version': '8.0.1.0.0',
  'category': '',
  'depends': ['account', 'membership', 'base_setup'],
  'author': 'Elico Corp',
