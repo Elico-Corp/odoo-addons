@@ -20,7 +20,7 @@
 #
 ##############################################################################
 
-from openerp import models, fields, api, _
+from openerp import api, fields, models, _
 from openerp.osv import fields as old_fields
 from openerp.exceptions import Warning
 
