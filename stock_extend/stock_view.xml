@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+         <record id="view_move_picking_tree_extend" model="ir.ui.view">
+            <field name="name">stock.move.tree.extend</field>
+            <field name="model">stock.move</field>
+            <field name="inherit_id" ref="stock.view_move_picking_tree" />
+            <field name="arch" type="xml">
+                <xpath expr="//button[@name='%(stock.move_scrap)d']" position="replace">
+                </xpath>
+                <xpath expr="//field[@name='location_dest_id']" position="before">
+                    <field name="restrict_lot_id" groups="stock.group_production_lot" readonly="1"/>
+                    <button name="%(action_report_move_barcode)d" string="打印条码" type="action" icon="gtk-print"/>
+                    <field name="supplier_seiral_no" groups="stock.group_production_lot"/>
+                    <field name="is_transfer"/>
+                    <field name="loc_rack" readonly="1"/>
+                </xpath>
+                <xpath expr="//field[@name='product_uos_qty']" position="after">
+                    <field name="uom_description"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_move_picking_form_extend" model="ir.ui.view">
+            <field name="name">stock.move.form.extend</field>
+            <field name="model">stock.move</field>
+            <field name="inherit_id" ref="stock.view_move_picking_form" />
+            <field name="arch" type="xml">
+                <xpath expr="//button[@name='%(stock.move_scrap)d']" position="replace">
+                </xpath>
+                <xpath expr="//field[@name='date_expected']" position="after">
+                    <field name="restrict_lot_id" domain="[('product_id','=', product_id)]" groups="stock.group_production_lot"/>
+                    <field name="supplier_seiral_no" groups="stock.group_production_lot"/>
+                </xpath>
+                <xpath expr="//field[@name='product_uom_qty']" position="after">
+                    <field name="uom_description" string="单位"/>
+                </xpath>
+                <xpath expr="//field[@name='name']" position="after">
+                    <field name="is_transfer"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_move_tree_extend" model="ir.ui.view">
+            <field name="name">view_move_tree.extend</field>
+            <field name="model">stock.move</field>
+            <field name="inherit_id" ref="stock.view_move_tree" />
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='name']" position="replace">
+                    <field name="name" invisible='1'/>
+                </xpath>
+                <xpath expr="//button[@name='%(stock.move_scrap)d']" position="replace">
+                </xpath>
+                <xpath expr="//field[@name='product_id']" position="after">
+                    <field name="restrict_lot_id" groups="stock.group_production_lot"/>
+                    <field name="supplier_seiral_no" groups="stock.group_production_lot"/>
+                    <field name="is_transfer"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_picking_type_form_extend" model="ir.ui.view">
+            <field name="name">stock.picking.type.form.extend</field>
+            <field name="model">stock.picking.type</field>
+            <field name="inherit_id" ref="stock.view_picking_type_form" />
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='return_picking_type_id']" position="after">
+                    <field name="scan_operation_type"/>
+                    <field name="auto_create_lot" groups="stock.group_production_lot"/>
+                    <field name="partial_delivey"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_picking_type_tree_extend" model="ir.ui.view">
+            <field name="name">stock.picking.type.tree.extend</field>
+            <field name="model">stock.picking.type</field>
+            <field name="inherit_id" ref="stock.view_picking_type_tree" />
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='warehouse_id']" position="after">
+                    <field name="default_location_src_id"/>
+                    <field name="default_location_dest_id"/>
+                    <field name="scan_operation_type"/>
+                    <field name="auto_create_lot" groups="stock.group_production_lot"/>
+                    <field name="partial_delivey"/>
+                </xpath>
+                <xpath expr="//field[@name='sequence_id']" position="replace">
+                </xpath>
+                <xpath expr="//field[@name='sequence']" position="after">
+                    <field name="sequence" string="顺序"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_production_lot_form_extend" model="ir.ui.view">
+            <field name="name">stock.production.lot.form.extend</field>
+            <field name="model">stock.production.lot</field>
+            <field name="inherit_id" ref="stock.view_production_lot_form" />
+            <field name="arch" type="xml">
+                <xpath expr="//group[@name='main_group']/group">
+                    <field name="supplier_seiral_no" groups="stock.group_production_lot"/>
+                    <field name="vlidity_from"/>
+                    <field name="vlidity_to"/>
+                    <field name="reinspec_way"/>
+                    <field name="production_date"/>
+                    <field name="reinspec_number"/>
+                    <field name="production_batch"/>
+                    <field name="structure_level"/>
+                    <field name="usage_mode"/>
+                    <field name="concession_or_replace_number"/>
+                    <field name="meterial_quality_status"/>
+                    <field name="meterial_plan_status"/>
+                    <field name="quality_info_number"/>
+                    <field name="special_requirement"/>
+                    <field name="material"/>
+                    <field name="design_quality"/>
+                    <field name="product_category"/>
+                </xpath>
+                
+            </field>
+        </record>
+
+        <record id="view_production_lot_tree_extend" model="ir.ui.view">
+            <field name="name">stock.production.lot.tree.extend</field>
+            <field name="model">stock.production.lot</field>
+            <field name="inherit_id" ref="stock.view_production_lot_tree" />
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='ref']" position="after">
+                    <field name="supplier_seiral_no" groups="stock.group_production_lot"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_stock_quant_form_extend" model="ir.ui.view">
+            <field name="name">stock.quant.form.extend</field>
+            <field name="model">stock.quant</field>
+            <field name="inherit_id" ref="stock.view_stock_quant_form" />
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='inventory_value']" position="after">
+                    <field name="supplier_seiral_no" groups="stock.group_production_lot"/>
+                    <field name="vlidity_from"/>
+                    <field name="vlidity_to"/>
+                    <field name="reinspec_way"/>
+                    <field name="production_date"/>
+                    <field name="reinspec_number"/>
+                    <field name="production_batch"/>
+                    <field name="structure_level"/>
+                    <field name="usage_mode"/>
+                    <field name="concession_or_replace_number"/>
+                    <field name="meterial_quality_status"/>
+                    <field name="meterial_plan_status"/>
+                    <field name="quality_info_number"/>
+                    <field name="special_requirement"/>
+                    <field name="material"/>
+                    <field name="design_quality"/>
+                    <field name="product_category"/>
+                </xpath>
+                <xpath expr="//field[@name='inventory_value']" position="replace">
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_stock_quant_tree_extend" model="ir.ui.view">
+            <field name="name">stock.quant.tree.extend</field>
+            <field name="model">stock.quant</field>
+            <field name="inherit_id" ref="stock.view_stock_quant_tree" />
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='lot_id']" position="after">
+                    <field name="supplier_seiral_no" groups="stock.group_production_lot"/>
+                    <field name="vlidity_from"/>
+                    <field name="vlidity_to"/>
+                    <field name="reinspec_way"/>
+                    <field name="production_date"/>
+                    <field name="reinspec_number"/>
+                    <field name="production_batch"/>
+                    <field name="structure_level"/>
+                    <field name="usage_mode"/>
+                    <!-- <field name="concession_or_replace_number"/>
+                    <field name="meterial_quality_status"/>
+                    <field name="meterial_plan_status"/>
+                    <field name="quality_info_number"/>
+                    <field name="special_requirement"/> -->
+                </xpath>
+                <xpath expr="//field[@name='inventory_value']" position="replace">
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_picking_form_extend" model="ir.ui.view">
+            <field name="name">stock.picking.extend</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.view_picking_form" />
+            <field name="arch" type="xml">
+                <xpath expr="//button[@name='do_partial_open_barcode']" position="replace">
+                    <button name="do_partial_open_barcode" groups="stock.group_stock_user" type="object" class="oe_stock_scan_button" attrs="{'invisible': [('state','not in',('assigned', 'partially_available'))]}"><img src="/stock/static/src/img/scan.png" class="oe_stock_scan_image oe_stock_scan_image_btn"/></button>
+                </xpath>
+                <xpath expr="//button[@name='open_barcode_interface']" position="replace">
+                </xpath>
+                <xpath expr="//field[@name='lot_id']" position="replace">
+                </xpath>
+                <xpath expr="//field[@name='location_id']" position="before">
+                    <field name="lot_id" domain="[('product_id','=?', product_id)]" context="{'product_id': product_id}" groups="stock.group_production_lot"/>
+                    <field name="supplier_seiral_no" groups="stock.group_production_lot"/>
+                </xpath>
+                <xpath expr="//page[@string='Operations']" position="attributes">
+                    <attribute name="attrs">{'invisible': [('pack_operation_ids','=',[])]}</attribute>
+                </xpath>
+                <xpath expr="//separator[@string='Stock Moves']" position="attributes">
+                    <attribute name="attrs">{'invisible':1}</attribute>
+                </xpath>
+                <xpath expr="//page[@string='Operations']/field[@name='pack_operation_ids']/tree/field[@name='lot_id']" position="after">
+                    <button name="%(action_report_pack_barcode)d" string="打印条码www" type="action" icon="gtk-print"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="product_template_tree_view_extend" model="ir.ui.view">
+            <field name="name">product.template.tree.extend</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_tree_view" />
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='name']" position="before">
+                    <field name="default_code" string = "产品定义码"/>
+                </xpath>
+            </field>
+        </record>
+        
+        <record id="product_template_only_form_view_extend" model="ir.ui.view">
+            <field name="name">product.template.form.extend</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_only_form_view" />
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='type']" position="after">
+                    <field name="uom_description"/>
+                    <field name="uom_type"/>
+                </xpath>
+
+                <xpath expr="//field[@name='list_price']" position="before">
+                    <field name="supply_method"/>
+                    <field name="type_specification"/>
+                    <field name="figure_number"/>
+                </xpath>
+                <xpath expr="//field[@name='default_code']" position="after">
+                    <field name="product_description"/>
+                    <field name="project_code"/>
+                    <field name="quality_grade"/>
+                    <field name="standard_number"/>
+                    <field name="remark"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="product.product_template_kanban_view" model="ir.ui.view">
+            <field name="name">Product.template.product.kanban</field>
+            <field name="model">product.template</field>
+            <field name="arch" type="xml">
+                <kanban>
+                    <field name="image_small"/>
+                    <field name="loc_rack"/>
+                    <field name="lst_price"/>
+                    <field name="is_product_variant"/>
+                    <field name="product_variant_count"/>
+                    <field name="product_variant_ids"/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_vignette oe_semantic_html_override">
+                                <a type="open"><img t-att-src="kanban_image('product.template', 'image_small', record.id.value)" class="oe_kanban_image"/></a>
+                                <div class="oe_kanban_details">
+                                    <h4>
+                                        <a type="open">
+                                             <span t-if="record.default_code.value">
+                                                 [<field name="default_code"/>]
+                                              </span>
+                                             <field name="name"/> 
+                                        </a>
+                                    </h4>
+                                    <a name="%(product.product_variant_action)d" type="action">
+                                        <t t-esc="record.product_variant_count.value"/> Variants
+                                    </a>
+                                    <div name="tags"/>
+                                    <ul>
+                                        <li>货架: <field name="loc_rack"></field></li>
+                                        <li style="display:none;">Price: <field name="lst_price"></field></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+        <record id="mrp_bom_form_view_extend" model="ir.ui.view">
+            <field name="name">mrp.bom.form.extend</field>
+            <field name="model">mrp.bom</field>
+            <field name="inherit_id" ref="mrp.mrp_bom_form_view" />
+            <field name="arch" type="xml">
+                <xpath expr="//page[@string='Components']" position="after">
+                    <page string="辅料">
+                        <field name="bom_line2_ids" widget="one2many_list">
+                            <tree string="f" editable="bottom">
+                                <field name="sequence" widget="handle"/>
+                                <field name="product_id" on_change="onchange_product_id(product_id, product_qty)"/>
+                                <field name="type"/>
+                                <field name="product_qty"/>
+                                <field name="product_uom" on_change="onchange_uom(product_id, product_uom)" groups="product.group_uom"/>
+                                <field name="product_rounding"/>
+                                <field name="product_efficiency"/>
+                                <field name="date_start"/>
+                                <field name="date_stop"/>
+                                <field name="attribute_value_ids" widget="many2many_tags" domain="[('product_ids.product_tmpl_id', '=', parent.product_tmpl_id)]"/>
+                            </tree>
+                        </field>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</openerp>

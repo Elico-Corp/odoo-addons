@@ -1,0 +1,116 @@
+<openerp>
+    <data>
+
+
+         <record id="action_select_product_to_print" model="ir.ui.view">
+            <field name="name">product.pre.print</field>
+            <field name="model">print.product.barcode</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="product select" version="7.0">
+                    <group colspan="4" col="4">
+                        <h3 class="oe_grey">选择产品和数量</h3><br/>                        
+                    </group>
+                    <group colspan="4" col="4">
+                        <field name="product_id" colspan="2"/>
+                        <field name="supplier_seiral_no" colspan="2"/>
+                        <field name="print_num" colspan="2"/> 
+                    </group>
+                    <footer>
+                        <button name="button_print_product_barcode" class="oe_highlight" string="确定" type="object"/>
+                        <button special="cancel" string="取消"/>
+                    </footer>
+                 </form>
+            </field>
+        </record>        
+
+
+        <record id="print_product_barcode_model_view" model="ir.actions.act_window">
+            <field name="name">产品条码打印</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">print.product.barcode.model</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record id="action_print_product_barcode_tree" model="ir.ui.view">
+            <field name="name">print product barcode model tree</field>
+            <field name="model">print.product.barcode.model</field>
+            <field name="arch" type="xml">
+                <tree string="打印产品条码" create="false">
+                    <field name="product_barcode"/>
+                    <field name="product_id"/>
+                    <field name="print_times"/>
+                    <field name="create_date"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_print_product_barcode_tree_view" model="ir.actions.act_window">
+            <field name="context">{}</field><!-- force empty -->
+            <field name="name">　print　product　barcode　tree</field>
+            <field name="res_model">print.product.barcode.model</field>
+            <field name="view_id" ref="action_print_product_barcode_tree"/>
+        </record>
+
+
+
+        <act_window name="产品打印选择"
+            res_model="print.product.barcode"
+            view_id="action_select_product_to_print"
+            view_mode="form"
+            target="new"
+            id="action_window_select_product_to_print"/>
+
+    
+        <menuitem id="print_product_barcode" name="产品条码预留向导" parent="stock.menu_traceability" sequence="20" action="action_window_select_product_to_print" groups="base.group_no_one"/>    
+
+        <menuitem id="print_product_barcode_model" name="产品条码预留记录" parent="stock.menu_traceability" sequence="20" action="print_product_barcode_model_view" groups="base.group_no_one"/>    
+
+
+        <report 
+            string="打印产品条码" 
+            id="report_print_product_barcode_ss" 
+            model="print.product.barcode.model" 
+            report_type="qweb-pdf" 
+            name="stock_extend.report_print_product_barcode_template" 
+            file="report_print_product_barcode—ss"
+        />
+ 
+        <record id="report_print_product_barcode_ss" model="ir.actions.report.xml">
+            <field name="paperformat_id" ref="barcode60x40"/>
+        </record>
+ 
+        <template id="report_print_product_barcode_template">
+            <t t-foreach="docs" t-as="o">
+                <t t-foreach="range(o.print_times)" t-as="l">
+                    <div class="page">
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td style="width:80px;"><span style="font-size:16;">产品名: </span></td>
+                                    <td style="width:320px;"><span t-field="o.product_id" style="font-size:16;word-break: break-all;"/></td>
+                                </tr>
+                                <tr style="margin-top:10px;">
+                                    <td style="width:80px;"><span style="font-size:16;">序列号: </span></td>
+                                    <td><span t-field="o.product_barcode.name" style="font-size:16;"/></td>
+                                </tr>
+                                <tr style="margin-top:10px;">
+                                    <td style="width:80px;"><span style="font-size:16;">厂商号: </span></td>
+                                    <td><span t-field="o.supplier_seiral_no" style="font-size:16;"/></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td><img t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('Code128', o.product_barcode.name, 510, 80)" style="width:510px;height:80px;margin-left:-110px;margin-top:10px;"/></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>  
+                    </t>
+                </t>
+        </template>
+
+    </data>
+</openerp>
