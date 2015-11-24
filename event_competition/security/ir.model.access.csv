@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_event_serial,event.serial,model_event_serial,event.group_event_user,1,0,0,0
+access_event_serial_manager,event.serial manager,model_event_serial,event.group_event_manager,1,1,1,1
+

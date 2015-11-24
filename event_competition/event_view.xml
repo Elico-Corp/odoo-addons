@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+
+        <!-- Serial -->
+
+        <record model="ir.actions.act_window" id="action_serial">
+            <field name="name">Serials</field>
+            <field name="res_model">event.serial</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{
+                    'search_default_draft':1,
+                }
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="view_event_search">
+            <field name="name">Serials Search</field>
+            <field name="model">event.serial</field>
+            <field name="arch" type="xml">
+                <search string="Serials">
+                    <field name="name" />
+                    <field name="event_id" string="Events" />
+                    <filter string="Done" name="done" domain="[('state','=', 'done')]"/>
+                    <filter string="Draft" name="draft" domain="[('state','=', 'draft')]"/>
+                    <separator/>
+                    <group expand="0" string="Group By">
+                        <filter string="Event" context="{'group_by':'event_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="view_event_form">
+            <field name="name">Serials Form</field>
+            <field name="model">event.serial</field>
+            <field name="arch" type="xml">
+                <form string="Serial Form">
+                    <header>
+                        <field name="state" widget="statusbar" />
+                    </header>
+                    <sheet>
+                        <div class="oe_title" style="width: 390px;">
+                            <label class="oe_edit_only" for="name" />
+                            <h1><field name="name" class="oe_inline"/></h1>
+                        </div>
+                        <group>
+                            <field name="event_id" />
+                            <field name="used_date" />
+                        </group>
+                    </sheet>                    
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="     ">
+            <field name="name">Serials Tree</field>
+            <field name="model">event.serial</field>
+            <field name="arch" type="xml">
+                <tree string="Serial Tree">
+                    <field name="name" />
+                    <field name="event_id" />
+                    <field name="state" />
+                    <field name="used_date" />
+                </tree>
+            </field>
+        </record>
+
+        <menuitem name="Serial" parent="event.event_main_menu" id="serial_menu" action="action_serial" sequence="70" />
+
+        <!-- Registration -->
+
+        <record id="view_event_registration_form" model="ir.ui.view">
+            <field name="name">Event registration form</field>
+            <field name="model">event.registration</field>
+            <field name="inherit_id" ref="event.view_event_registration_form" />
+            <field name="arch" type="xml" >
+                <xpath expr="//group[last()]" position="after">
+                    <field name="attachment" widget="image" />
+                </xpath>
+                <field name="partner_id" position="after">
+                    <field name="rate" widget="priority" />
+                    <field name="serial_id" />
+                </field>
+                <field name="name" position="after">
+                    <field name="guardian_name" />
+                </field>
+                <field name="user_id" position="after">
+                    <field name="address" />
+                    <field name="available" />
+                    <field name="terms" />
+                </field>
+            </field>
+        </record>
+
+        <record id="view_event_registration_tree" model="ir.ui.view">
+            <field name="name">Event Registration</field>
+            <field name="model">event.registration</field>
+            <field name="inherit_id" ref="event.view_event_registration_tree" />
+            <field name="arch" type="xml" >
+                <field name="create_date" position="after">
+                    <field name="rate" widget="priority" />
+                </field>
+            </field>
+        </record>
+
+        <record id="view_registration_search" model="ir.ui.view">
+            <field name="name">Event Registration</field>
+            <field name="model">event.registration</field>
+            <field name="inherit_id" ref="event.view_registration_search" />
+            <field name="arch" type="xml" >
+                <xpath expr="//group" position="inside">
+                    <filter string="Rate" context="{'group_by':'rate'}"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</openerp>
