@@ -20,7 +20,7 @@
 #
 ##############################################################################
 {'name': 'Website Sale Competition',
- 'version': '0.1',
+ 'version': '8.0.0.1',
  'category': '',
  'depends': ['website_sale'],
  'author': 'Elico Corp',
