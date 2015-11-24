@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <!-- removes company field -->
+        <record id="website_crm.contactus_form_company_name" model="ir.ui.view">
+            <field name="active" eval="False" />
+        </record>
+
+        <!-- removes google map -->
+        <record id="company_description" model="ir.ui.view">
+            <field name="name">Company Description</field>
+            <field name="inherit_id" ref="website.company_description" />
+            <field name="arch" type="xml" >
+                <a position="replace" />
+            </field>
+        </record>
+
+        <!-- removes placeholder -->
+        <record id="contactus_form" model="ir.ui.view">
+            <field name="name">Contact us phone placeholder</field>
+            <field name="inherit_id" ref="website_crm.contactus_form" />
+            <field name="arch" type="xml" >
+                <input name="phone" position="attributes">
+                    <attribute name="placeholder"></attribute>
+                </input>
+            </field>
+        </record>
+    </data>
+</openerp>
