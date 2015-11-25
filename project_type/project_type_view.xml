@@ -16,7 +16,7 @@
         res_model="task.type"
         view_mode="form,tree"/>
         <menuitem id="menu_type_task"
-            name="Types of Tasks"
+            name="Types"
             sequence="20"
             parent="project.menu_project_config"
             action="action_type_task"/>
