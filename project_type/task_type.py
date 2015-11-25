@@ -9,7 +9,7 @@ class TaskType(models.Model):
     _name = 'task.type'
 
     name = fields.Char('Name', required=True, translate=True, select=True)
-    parent_id = fields.Many2one('project.task', 'Parent Type', select=True)
+    parent_id = fields.Many2one('task.type', 'Parent Type', select=True)
 
 
 class ProjectTask(models.Model):
