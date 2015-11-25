@@ -15,4 +15,5 @@ class TaskType(models.Model):
 class ProjectTask(models.Model):
     _inherit = 'project.task'
 
-    task_type_id = fields.Many2one('task.type', 'Root Type for Tasks', readme=True)
+    task_type_id = fields.Many2one('task.type', 'Root Type for Tasks', 
+                                   required=True)
