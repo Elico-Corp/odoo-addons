@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="view_task_form2" model="ir.ui.view">
+            <field name="name">project_task_form_view_type</field>
+            <field name="model">project.task</field>
+            <field name="inherit_id" ref="project.view_task_form2"/>
+            <field name="arch" type="xml">
+                <field name="project_id" position="after">
+                    <field name="task_type_id"/>
+                </field>
+            </field>
+        </record>
+        <act_window id="action_type_task"
+        name="Types"
+        res_model="task.type"
+        view_mode="form,tree"/>
+        <menuitem id="menu_type_task"
+            name="Types of Tasks"
+            sequence="20"
+            parent="project.menu_project_config"
+            action="action_type_task"/>
+    </data>
+</openerp>
