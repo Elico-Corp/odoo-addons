@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record id="supplier_change_product_quantity" model="ir.ui.view">
+            <field name="name">change product quantity</field>
+            <field name="model">supplier.change.product.qty</field>
+            <field name="arch" type="xml">
+                <form string="Product Quantity" version="7.0">
+                    <group>
+                       <field name="new_quantity" />
+                       <field name="product_id" invisible="1"/>
+                    </group>
+                     <footer>
+                        <button name="change_product_qty" string="_Apply" type="object" class="oe_highlight"/>
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_view_change_supplier_product_quantity" model="ir.actions.act_window">
+            <field name="name">Update Product Quantity</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">supplier.change.product.qty</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="supplier_change_product_quantity"/>
+            <field name="target">new</field>
+        </record>
+    </data>
+</openerp>
