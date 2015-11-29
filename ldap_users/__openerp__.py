@@ -19,18 +19,20 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-{'name': 'Basic ldap user management through Odoo',
- 'version': '0.1',
- 'category': '',
- 'depends': ['auth_ldap'],
- 'author': 'Elico Corp,Odoo Community Association (OCA)',
- 'license': 'AGPL-3',
- 'website': 'https://www.elico-corp.com',
+{
+    'name': 'Basic ldap user management through Odoo',
+    'version': '8.0.1.0.0',
+    'depends': [
+        'auth_ldap'
+    ],
+    'author': 'Elico Corp,Odoo Community Association (OCA)',
+    'license': 'AGPL-3',
+    'website': 'https://www.elico-corp.com',
     'external_dependencies': {
-     'python': ['ldap']
- },
- 'images': [],
- 'demo': [],
- 'data': [],
- 'installable': True,
- 'application': False}
+        'python': [
+            'ldap',
+        ],
+    },
+    'installable': True,
+    'application': False
+}
