@@ -28,12 +28,11 @@
     'complexity': 'easy',
     'author': 'Elico Corp,Odoo Community Association (OCA)',
     'website': 'http://www.openerp.net.cn/',
-    'depends': ['crm', 'email_template'],
-    'web_depends': [],
-    'init_xml': [],
+    'depends': [
+        'crm',
+        'email_template',
+    ],
     'data': ['wizard/batch_lead_view.xml', 'email_template.xml'],
-    'demo_xml': [],
-    'test': [],
     'installable': True,
     'active': False,
 }
