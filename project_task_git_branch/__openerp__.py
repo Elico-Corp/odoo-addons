@@ -19,15 +19,19 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-{'name': 'project task git branch',
- 'version': '0.1',
- 'category': 'Category',
- 'depends': ["project"],
- 'author': 'Elico-Corp,Odoo Community Association (OCA)',
- 'license': 'AGPL-3',
- 'website': 'https://www.elico-corp.com',
- 'images': [],
- 'demo': [],
- 'data': ["project_view.xml"],
- 'installable': True,
- 'application': False}
+{
+    'name': 'project task git branch',
+    'version': '8.0.1.0.0',
+    'category': 'Category',
+    'depends': [
+        "project",
+    ],
+    'author': 'Elico-Corp,Odoo Community Association (OCA)',
+    'license': 'AGPL-3',
+    'website': 'https://www.elico-corp.com',
+    'data': [
+        "project_view.xml",
+    ],
+    'installable': True,
+    'application': False
+}
