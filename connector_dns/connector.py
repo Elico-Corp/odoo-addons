@@ -19,10 +19,10 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from openerp import models, fields
+from openerp import fields, models
+from openerp.addons.connector.checkpoint import checkpoint
 from openerp.addons.connector.connector import (Environment,
                                                 install_in_connector)
-from openerp.addons.connector.checkpoint import checkpoint
 
 install_in_connector()
 
