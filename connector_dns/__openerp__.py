@@ -19,15 +19,20 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-{'name': 'DNS connector',
- 'version': '0.1',
- 'category': 'Connector',
- 'depends': ['connector'],
- 'author': 'Elico Corp,Odoo Community Association (OCA)',
- 'license': 'AGPL-3',
- 'website': 'https://www.elico-corp.com',
- 'images': [],
- 'demo': [],
- 'data': ['dns_view.xml', 'dns_menu.xml'],
- 'installable': True,
- 'application': False}
+{
+    'name': 'DNS connector',
+    'version': '8.0.1.0.1',
+    'category': 'Connector',
+    'depends': [
+        'connector',
+    ],
+    'author': 'Elico Corp,Odoo Community Association (OCA)',
+    'license': 'AGPL-3',
+    'website': 'https://www.elico-corp.com',
+    'data': [
+        'dns_view.xml',
+        'dns_menu.xml',
+    ],
+    'installable': True,
+    'application': False
+}

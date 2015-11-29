@@ -21,6 +21,6 @@
 ##############################################################################
 from . import backend
 from . import connector
-from . import unit
-from . import tests
 from . import dns
+from . import tests
+from . import unit

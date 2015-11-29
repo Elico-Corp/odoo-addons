@@ -93,7 +93,7 @@ class DNSPodModelBinder(DNSPodBinder):
         # avoid to trigger the export when we modify the `dns_id`
         model = self.model.with_context(connector_no_export=True)
         binding = model.browse(binding_id)
-        now_fmt = datetime.now().strftime(DEFAULT_SERVER_DATETIME_FORMAT)
+        now_fmt = datetime.now().strftime(DEFAULT_SERVER_DATETIME_FORMAT)1111111111111111111111111111111111111111111
         if external_id:
             state = 'done'
         else:
