@@ -22,20 +22,18 @@
 
 {
     'name': 'Webkit Logo Header',
-    'version': '0.1.3',
+    'version': '8.0.1.0.3',
     'author': 'Odoo Community Association (OCA)',
     'website': 'http://www.elico-corp.com',
-    'summary': '',
-    'depends': ['base', 'report_webkit'],
-    'category': '',
+    "license": "AGPL-3",
+    'depends': [
+        'base', 'report_webkit',
+    ],
     'sequence': 10,
-    'demo': [],
     'data': [
         'data.xml',
     ],
-    'test': [],
     'installable': True,
     'application': False,
     'auto_install': False,
-    'css': [],
 }
