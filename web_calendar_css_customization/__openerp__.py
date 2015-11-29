@@ -24,12 +24,14 @@
     "version": "1.0",
     "author": "Elico Corp,Odoo Community Association (OCA)",
     "website": "http://www.elico-corp.com",
+    "license": "AGPL-3",
     "category": "Tools",
-    "depends": ["web"],
+    "depends": [
+        "web",
+    ],
     "css": [
         "static/src/css/elico.css",
     ],
-    "images": [],
     "auto_install": False,
     'web_preload': True,
 }
