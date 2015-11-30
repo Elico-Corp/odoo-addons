@@ -1,28 +1,12 @@
 # -*- coding: utf-8 -*-
-##############################################################################
-#
-#    OpenERP, Open Source Management Solution
-#    Copyright (C) 2010-2015 Elico Corp (<http://www.elico-corp.com>)
-#    Authors: Liu Lixia, Augustin Cisterne-Kaas
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as
-#    published by the Free Software Foundation, either version 3 of the
-#    License, or (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-##############################################################################
+# © 2015 Elico corp (www.elico-corp.com)
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from datetime import datetime
-from openerp.tools import DEFAULT_SERVER_DATETIME_FORMAT
+
 from openerp.addons.connector.connector import Binder
+from openerp.tools import DEFAULT_SERVER_DATETIME_FORMAT
+
 from ..backend import dns
 
 
@@ -93,7 +77,7 @@ class DNSPodModelBinder(DNSPodBinder):
         # avoid to trigger the export when we modify the `dns_id`
         model = self.model.with_context(connector_no_export=True)
         binding = model.browse(binding_id)
-        now_fmt = datetime.now().strftime(DEFAULT_SERVER_DATETIME_FORMAT)1111111111111111111111111111111111111111111
+        now_fmt = datetime.now().strftime(DEFAULT_SERVER_DATETIME_FORMAT)
         if external_id:
             state = 'done'
         else:
