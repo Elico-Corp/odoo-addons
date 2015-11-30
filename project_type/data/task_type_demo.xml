@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="project_type_demo_1" model="project.type">
+            <field name="name">DEV</field>
+            <field name="description">development task</field>
+        </record>
+        <record id="project_type_demo_2" model="project.type">
+            <field name="name">FS</field>
+            <field name="description">functional specification task</field>
+        </record>
+        <record id="project_type_demo_3" model="project.type">
+            <field name="name">PM</field>
+            <field name="description">project managment task</field>
+        </record>
+        <record id="project_type_demo_4" model="project.type">
+            <field name="name">QA</field>
+            <field name="description">quality control task</field>
+        </record>
+        <record id="project_type_demo_5" model="project.type">
+            <field name="name">SAL</field>
+            <field name="description">sales task</field>
+        </record>
+        <record id="project_type_demo_6" model="project.type">
+            <field name="name">TR</field>
+            <field name="description">training task</field>
+        </record>
+        <record id="project_type_demo_7" model="project.type">
+            <field name="name">TS</field>
+            <field name="description">technical specification task</field>
+        </record>
+    </data>
+</odoo>

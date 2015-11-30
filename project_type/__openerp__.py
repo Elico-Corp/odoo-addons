@@ -15,6 +15,7 @@
         "project",
     ],
     "data": [
-        "project_type_view.xml",
+        "views/project_type_view.xml",
+        "data/task_type_demo.xml",
     ],
 }
