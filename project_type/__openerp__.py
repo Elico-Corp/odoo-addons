@@ -4,7 +4,7 @@
 {
     "name": "Project Configurable Type",
     "summary": "Allow for Project specific type lists for Tasks",
-    "version": "9.0.1.0.0",
+    "version": "8.0.1.0.0",
     "category": "Project Management",
     "website": "www.elico-corp.com",
     "author": "Elico corp",
@@ -15,7 +15,8 @@
         "project",
     ],
     "data": [
-        "views/project_type_view.xml",
-        "data/task_type_demo.xml",
+        'security/ir.model.access.csv',
+        "views/task_category_view.xml",
+        "data/task_category_demo.xml",
     ],
 }
