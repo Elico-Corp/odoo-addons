@@ -3,7 +3,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 {
     "name": "Web/Css Customization",
-    "version": "1.0",
+    "version": "8.0.1.0.0",
     "author": "Elico Corp,Odoo Community Association (OCA)",
     "website": "http://www.elico-corp.com",
     "license": "AGPL-3",
