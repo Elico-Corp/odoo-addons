@@ -2,7 +2,7 @@
     :alt: License
 
 ==============
-Connector Dns
+Connector DNS
 ==============
 
 This module aims to allows to manage your DNS domain through Odoo.
@@ -15,12 +15,6 @@ To install this module, you need to:
 
  * have basic modules installed (connector)
 
-Configuration
-=============
-
-To configure this module, you need to:
-
- * No specific configuration needed.
 
 Usage
 =====

@@ -8,7 +8,7 @@
     'depends': [
         'connector',
     ],
-    'author': 'Elico Corp,Odoo Community Association (OCA)',
+    'author': 'Elico Corp',
     'license': 'AGPL-3',
     'website': 'https://www.elico-corp.com',
     'data': [
