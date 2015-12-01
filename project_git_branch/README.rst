@@ -6,6 +6,8 @@
 Project Git Branch
 ==================
 
+This modules extends the project object and add some information about the 
+Git branch where the code is located
 
 Installation
 ============
@@ -46,6 +48,8 @@ Contributors
 ------------
 
 * Chen Rong <chen.rong@elico-corp.com>
+* Augustin Cisterne-Kaas <augustin.cisterne-kaas@elico-corp.com>
+    
 
 Maintainer
 ----------
