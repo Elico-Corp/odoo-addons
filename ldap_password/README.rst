@@ -15,17 +15,6 @@ To install this module, you need to:
 
  * have basic modules installed (ldap)
 
-Configuration
-=============
-
-To configure this module, you need to:
-
- * No specific configuration needed.
-
-
-For further information, please visit:
-
- * https://www.odoo.com/forum/help-1
 
 Known issues / Roadmap
 ======================
@@ -44,7 +33,8 @@ Credits
 Contributors
 ------------
 
-* Augustin Cisterne-Kaas
+* Augustin Cisterne-Kaas <augustin.cisterne-kaas@elico-corp.com>
+    
 
 Maintainer
 ----------
