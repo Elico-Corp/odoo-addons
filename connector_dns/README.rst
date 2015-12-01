@@ -49,7 +49,8 @@ Contributors
 ------------
 
 * Liu Lixia <liu.lixia@elico-corp.com>
-* Augustin Cisterne-Kaas
+* Augustin Cisterne-Kaas <augustin.cisterne-kaas@elico-corp.com>
+    
 
 Maintainer
 ----------
