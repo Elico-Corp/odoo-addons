@@ -15,18 +15,6 @@ To install this module, you need to:
 
  * have basic modules installed (connector)
 
-
-Usage
-=====
-
-
-For further information, please visit:
-
- * https://www.odoo.com/forum/help-1
-
-Known issues / Roadmap
-======================
-
 Bug Tracker
 ===========
 
