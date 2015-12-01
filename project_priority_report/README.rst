@@ -48,14 +48,13 @@ Contributors
 Maintainer
 ----------
 
-.. image:: http://odoo-community.org/logo.png
-   :alt: Odoo Community Association
-   :target: http://odoo-community.org
+.. image:: https://www.elico-corp.com/logo.png
+:alt: Elico Corp
+:target: https://www.elico-corp.com
 
-This module is maintained by the OCA.
+This module is maintained by Elico Corporation.
 
-OCA, or the Odoo Community Association, is a nonprofit organization
-    whose mission is to support the collaborative development of Odoo features
-        and promote its widespread use.
+Elico Corporation offers consulting services to implement open source management software in SMEs, with a strong involvement in quality of service.
 
-To contribute to this module, please visit http://odoo-community.org.
+Our headquarters are located in Shanghai with branches in Hong Kong, ShenZhen and Singapore servicing customers from Greater China, Asia Pacific, Europe, Americas, etc...
+
