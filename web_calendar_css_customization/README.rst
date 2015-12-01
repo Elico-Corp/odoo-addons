@@ -15,13 +15,6 @@ To install this module, you need to:
 
  * have basic modules installed (web)
 
-Configuration
-=============
-
-To configure this module, you need to:
-
- * No specific configuration needed.
-
 
 For further information, please visit:
 
@@ -40,7 +33,6 @@ If you spotted it first, help us smashing it by providing a detailed and welcome
 
 Credits
 =======
-
 
 Contributors
 ------------

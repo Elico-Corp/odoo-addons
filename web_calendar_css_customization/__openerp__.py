@@ -4,7 +4,7 @@
 {
     "name": "Web/Css Customization",
     "version": "8.0.1.0.0",
-    "author": "Elico Corp,Odoo Community Association (OCA)",
+    "author": "Elico Corp",
     "website": "http://www.elico-corp.com",
     "license": "AGPL-3",
     "category": "Tools",
