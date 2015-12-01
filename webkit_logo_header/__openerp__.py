@@ -4,7 +4,7 @@
 {
     'name': 'Webkit Logo Header',
     'version': '8.0.1.0.4',
-    'author': 'Odoo Community Association (OCA)',
+    'author': 'Elico Corp',
     'website': 'http://www.elico-corp.com',
     "license": "AGPL-3",
     'depends': [
