@@ -19,15 +19,16 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from openerp import models, api
-from .backend import dnspod
-from .unit.export_synchronizer import DNSExporter
-from .unit.backend_adapter import DNSPodAdapter
-from openerp.addons.connector.unit.mapper import (
-    mapping, ExportMapper)
 import httplib
-import urllib
 import json
+import urllib
+
+from openerp import api, models
+from openerp.addons.connector.unit.mapper import ExportMapper, mapping
+
+from .backend import dnspod
+from .unit.backend_adapter import DNSPodAdapter
+from .unit.export_synchronizer import DNSExporter
 
 
 class DNSPodBackend(models.Model):
