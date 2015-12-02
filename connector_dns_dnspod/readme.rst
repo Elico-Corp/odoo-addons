@@ -2,18 +2,21 @@
    :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
    :alt: License: AGPL-3
 
-=====================
-Connector Dns Dnspod
-=====================
+===========================
+Connector DNS for dnspod.cn
+===========================
 
-This module aims to allows you to manage your DNSPod domain through Odoo.
+This module allows you to manage your DNSPod domain through Odoo.
+It uses the service from www.dnspod.cn and synchronizes (create/delete/update)
+all relevant information such as domain names and records.
+This module is based on the odoo-connector tehcnology.
 
 Installation
 ============
 
 To install this module, you need to:
 
- * have basic modules installed (connector_dns)
+ * have basic modules installed (odoo-connector framework)
 
 
 Usage
