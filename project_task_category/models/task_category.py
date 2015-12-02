@@ -5,20 +5,25 @@
 from openerp import fields, models
 
 
-class ProjectType(models.Model):
+class TaskCategory(models.Model):
     _name = 'task.category'
 
-    name = fields.Char('Name', translate=True, select=True)
+    name = fields.Char('Name', required=True, translate=True, select=True)
     description = fields.Char('Description', translate=True)
+    active = fields.Boolean('Active', default=True)
 
     _order = 'name'
+
+    _sql_constraints = [
+        ('name_uniq', 'unique (name)',
+         'Name already exists.'),
+    ]
 
 
 class ProjectTask(models.Model):
     _inherit = 'project.task'
 
-    task_type_id = fields.Many2one(
+    task_categ_id = fields.Many2one(
         'task.category',
-        'Type for Tasks',
-        required=True,
+        'Category',
     )
