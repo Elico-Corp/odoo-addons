@@ -1,36 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <openerp>
     <data>
-        <record id="view_website_config_settings_inherited" model="ir.ui.view">
+        <record id="view_website_config_settings" model="ir.ui.view">
             <field name="model">website.config.settings</field>
             <field name="name">website.config.settings.form.inherit</field>
             <field name="inherit_id" ref="website.view_website_config_settings"/>
             <field name="arch" type="xml">
                 <div name="social_googleplus" position="after">
-                    <label for="beian_number"/>
+                    <label for="certificate_number1"/>
                     <div class="oe_inline">
-                        <field name="beian_number" placeholder="沪ICP备12005091号"/>
+                        <field name="certificate_number1" placeholder="沪ICP备12005091号"/>
                     </div>
-                    <label for="beian_url"/>
+                    <label for="certificate_url1"/>
                     <div class="oe_inline">
-                        <field name="beian_url" placeholder="http://www.sgs.gov.cn/lz/licenseLink.do"/>
+                        <field name="certificate_url1" placeholder="http://www.sgs.gov.cn/lz/licenseLink.do"/>
                     </div>
-
-                    <label for="logo"/>
+                    <label for="certificate_logo1"/>
                     <div class="oe_inline">
-                        <field name="logo" widget="image" class="
+                        <field name="certificate_logo1" widget="image" class="
+                            oe_avatar oe_left"/>
+                    </div>
+                    <label for="certificate_number2"/>
+                    <div class="oe_inline">
+                        <field name="certificate_number2" placeholder="OCA沪ICP备12005091号"/>
+                    </div>
+                    <label for="certificate_url2"/>
+                    <div class="oe_inline">
+                        <field name="certificate_url2" placeholder="http://www.example.com/certificate"/>
+                    </div>
+                    <label for="certificate_logo2"/>
+                    <div class="oe_inline">
+                        <field name="certificate_logo2" widget="image" class="
                             oe_avatar oe_left"/>
                     </div>
                 </div>
             </field>
         </record>
-        <template id="beian" inherit_id="website.layout_footer_copyright" name="Company Beian">
+
+        <template id="certificate" inherit_id="website.layout_footer_copyright" name="Company Certificate">
             <xpath expr="//footer//div/span[@t-field='res_company.name']" position="after">
                 <span>-
-                    <a t-attf-href="#{website.beian_url}" target="_BLANK">
-                       <span t-field="website.logo" t-field-options='{"widget": "image", "style": "display: inline; vertical-align: baseline;"}'/>
+                    <a t-attf-href="#{website.certificate_url1}" target="_BLANK">
+                       <span t-field="website.certificate_logo1" t-field-options='{"widget": "image", "style": "display: inline; vertical-align: baseline;"}'/>
                     </a>
-                    <span t-field="website.beian_number"/>
+                    <span t-field="website.certificate_number1"/>
+                </span>
+                <span>-
+                    <a t-attf-href="#{website.certificate_url2}" target="_BLANK">
+                       <span t-field="website.certificate_logo2" t-field-options='{"widget": "image", "style": "display: inline; vertical-align: baseline;"}'/>
+                    </a>
+                    <span t-field="website.certificate_number2"/>
                 </span>
             </xpath>
         </template>
