@@ -27,14 +27,14 @@ This module allows to manage your DNS domains through Odoo and www.dnspod.com th
 To use this module, you can:
 
 1. Create backend link to DNSpod domain server
---------------
-.. image:: https://github.com/Rona111/odoo-1/blob/10172-move-all-incubator-modules-of-elico8-to-public-github-connector_dns_dnspod/connector_dns_dnspod/static/description/dnsbackend.png?raw=true
+-----------------------------------------------
+.. image:: https://github.com/Elico-Corp/odoo/tree/8.0/connector_dns_dnspod/static/description/dnsbackend.png?raw=true
 
 
 2. Create a backend for www.dnspod.com in Odoo to allow the synchronization between Odoo and DNS provider.
------------------
-.. image:: https://github.com/Rona111/odoo-1/blob/10172-move-all-incubator-modules-of-elico8-to-public-github-connector_dns_dnspod/connector_dns_dnspod/static/description/dns8.png?raw=true
-.. image:: https://github.com/Rona111/odoo-1/blob/10172-move-all-incubator-modules-of-elico8-to-public-github-connector_dns_dnspod/connector_dns_dnspod/static/description/dns11.png?raw=true
+----------------------------------------------------------------------------
+.. image:: https://github.com/Elico-Corp/odoo/tree/8.0/connector_dns_dnspod/static/description/dns8.png?raw=true
+.. image:: https://github.com/Elico-Corp/odoo/tree/8.0/connector_dns_dnspod/static/description/dns11.png?raw=true
 
 The next step is to create the DNS record you want to populate to the backend. 
 Please note that the connector is split in 2 modules: 
@@ -43,24 +43,24 @@ Please note that the connector is split in 2 modules:
 * DNSpod connector which allows specifically to connect to the www.dnspod.com API
 
 3. Use Odoo to create your DNS records
----------------
-.. image:: https://github.com/Rona111/odoo-1/blob/10172-move-all-incubator-modules-of-elico8-to-public-github-connector_dns_dnspod/connector_dns_dnspod/static/description/dns5.png?raw=true
+---------------------------------------------------------------------------------
+.. image:: https://github.com/Elico-Corp/odoo/tree/8.0/connector_dns_dnspod/static/description/dns5.png?raw=true
 
 Thanks to th odoo-connector technology, a job is enqueud with priority and will directly create the record in DNSPod
-------------
-.. image:: https://github.com/Rona111/odoo-1/blob/10172-move-all-incubator-modules-of-elico8-to-public-github-connector_dns_dnspod/connector_dns_dnspod/static/description/dns4.png?raw=true
+-------------------------------------------------------------------------------
+.. image:: hhttps://github.com/Elico-Corp/odoo/tree/8.0/connector_dns_dnspod/static/description/dns4.png?raw=true
 
 4. When you create a domain belongs to the backend,if the domain export to the dnspod.cn successfully,the state will change to done,else exception.
-----------------
-.. image:: https://github.com/Rona111/odoo-1/blob/10172-move-all-incubator-modules-of-elico8-to-public-github-connector_dns_dnspod/connector_dns_dnspod/static/description/dns7.png?raw=true
+-------------------------------------------------------------------------------
+.. image:: https://github.com/Elico-Corp/odoo/tree/8.0/connector_dns_dnspod/static/description/dns7.png?raw=true
 
 5. Record can be created only in the domain which state is done. 
-----------------
-.. image:: https://github.com/Rona111/odoo-1/blob/10172-move-all-incubator-modules-of-elico8-to-public-github-connector_dns_dnspod/connector_dns_dnspod/static/description/dns6.png?raw=true)
+------------------------------------------------------------------------------
+.. image:: https://github.com/Elico-Corp/odoo/tree/8.0/connector_dns_dnspod/static/description/dns6.png?raw=true)
 
 6. Now You can modify record directly the DNS and records through an editable tree view..
---------------------
-.. image:: https://github.com/Rona111/odoo-1/blob/10172-move-all-incubator-modules-of-elico8-to-public-github-connector_dns_dnspod/connector_dns_dnspod/static/description/dns9.png?raw=true
+-----------------------------------------------------------------------------
+.. image:: https://github.com/Elico-Corp/odoo/tree/8.0/connector_dns_dnspod/static/description/dns9.png?raw=true
 
 
 Bug Tracker
@@ -84,7 +84,6 @@ Contributors
 Maintainer
 ----------
 
-.. image:: https://github.com/Rona111/odoo-1/blob/10172-move-all-incubator-modules-of-elico8-to-public-github-connector_dns_dnspod/connector_dns_dnspod/static/description/dns10.png?raw=true
 .. image:: https://www.elico-corp.com/logo.png
 :alt: Elico Corp
 :target: https://www.elico-corp.com
