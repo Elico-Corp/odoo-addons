@@ -6,7 +6,7 @@
 Website Certificate
 ===================
 
-This module extends the functionality of website and allow you to display company certificate information at the bottom right of website.
+This module extends the functionality of website and allow you to display company multi certificate information at the bottom right of website.
 
 Installation
 ============
@@ -18,7 +18,7 @@ To install this module, you need to:
 Usage
 =====
 
-Configure the company bei'an information in website setting, then you can see the bei'an information display at the bottom right of website.
+Configure the company certificate information in website setting, then you can see the certificate information display at the bottom right of website.
 
 
 For further information, please visit:
@@ -37,6 +37,7 @@ Contributors
 ------------
 
 * Liu Lixia <liu.lixia@elico-corp.com>
+* Rona Lin <rona.lin@elico-corp.com>
 
 Maintainer
 ----------
