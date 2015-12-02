@@ -8,6 +8,7 @@ Task GIT Branch
 
 This module allows you to manage your git .
 
+
 Installation
 ============
 
@@ -15,21 +16,6 @@ To install this module, you need to:
 
  * have basic modules installed (project)
 
-Configuration
-=============
-
-To configure this module, you need to:
-
- * No specific configuration needed.
-
-
-
-For further information, please visit:
-
- * https://www.odoo.com/forum/help-1
-
-Known issues / Roadmap
-======================
 
 Bug Tracker
 ===========
@@ -47,6 +33,8 @@ Contributors
 ------------
 
 * Chen Rong <chen.rong@elico-corp.com>
+* Augustin Cisterne-Kaas <augustin.cisterne-kaas@elico-corp.com>
+
 
 Maintainer
 ----------
