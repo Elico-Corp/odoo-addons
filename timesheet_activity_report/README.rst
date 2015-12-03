@@ -6,7 +6,9 @@
 Timesheet Activity Report
 =========================
 
-This module extends the functionality of Project timesheet report.
+This module extends the functionality of project adding a timesheet report listed at timesheet completion analysis.
+You can use this report to communicate the timesheet analysis to the project members.
+
 
 Installation
 ============
