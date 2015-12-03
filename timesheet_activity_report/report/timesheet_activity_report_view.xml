@@ -22,7 +22,6 @@
                 </tree>
             </field>
         </record>
-
         <record id="action_timesheet_activity_pivot" model="ir.ui.view">
             <field name="name">Timesheet Activities Pivot Table</field>
             <field name="model">timesheet.activity.report</field>
@@ -35,7 +34,6 @@
                 </graph>
             </field>
         </record>
-
         <record id="action_timesheet_activity_report" model="ir.actions.act_window">
             <field name="name">Timesheet Completion Analysis</field>
             <field name="res_model">timesheet.activity.report</field>
@@ -44,7 +42,6 @@
             <field name="context">{}</field>
             <field name="domain">[]</field>
         </record>
-
         <record model="ir.ui.view" id="timesheet_activity_search">
             <field name="name">Timesheet Completion Analysis Search</field>
             <field name="model">timesheet.activity.report</field>
@@ -64,9 +61,7 @@
                 </search>
             </field>
         </record>
-
         <menuitem name="Timesheet Completion Analysis" id="menu_timesheet_activity_report_tree"
             parent="hr.menu_hr_reporting" action="action_timesheet_activity_report" sequence="1"/>
-
     </data>
 </openerp>
