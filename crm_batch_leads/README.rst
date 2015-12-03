@@ -6,11 +6,7 @@
 Batch Leads & Email Templates
 =============================
 
-Security Rules for deleting CRM Leads/Opportunities and Projects Tasks
-----------------------------------------------------------------------
-
-* Add menu for email template in sales
-* Add batch for leads
+* Adds wizard to batch process the CRM opportunities.
 
 Installation
 ============
