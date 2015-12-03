@@ -3,10 +3,10 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 {
     'name': 'CRM & Projects ACL',
-    'version': '8.0.1.0.1',
+    'version': '8.0.1.0.2',
     'category': 'Generic Modules/Others',
     'complexity': 'easy',
-    'author': 'Elico Corp,Odoo Community Association (OCA)',
+    'author': 'Elico Corp',
     'website': 'http://www.openerp.net.cn/',
     'depends': [
         'crm',

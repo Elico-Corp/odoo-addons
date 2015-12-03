@@ -2,14 +2,15 @@
    :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
    :alt: License: AGPL-3
 
-===================================
+=============================
 Batch Leads & Email Templates
-===================================
+=============================
 
 Security Rules for deleting CRM Leads/Opportunities and Projects Tasks
 ----------------------------------------------------------------------
-* 1.1 Add menu for email template in sales
-* 1.1 Add batch for leads
+
+* Add menu for email template in sales
+* Add batch for leads
 
 Installation
 ============
@@ -18,21 +19,6 @@ To install this module, you need to:
 
  * have basic modules installed (crm, email_template)
 
-Configuration
-=============
-
-To configure this module, you need to:
-
- * No specific configuration needed.
-
-
-
-For further information, please visit:
-
- * https://www.odoo.com/forum/help-1
-
-Known issues / Roadmap
-======================
 
 Bug Tracker
 ===========
@@ -40,7 +26,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/Elico-Corp/odoo/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us smashing it by providing a detailed and welcomed feedback
-`here <https://github.com/Elico-Corp/maier_odoo/issues/new?body=module:%20display_db_id%0Aversion:%20{8.0.1.0.0}%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`here <https://github.com/Elico-Corp/maier_odoo/issues/new?body=module:%20crm_batch_leads%0Aversion:%20{8.0}%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Credits
 =======
