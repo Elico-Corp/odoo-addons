@@ -6,8 +6,7 @@
 Tasks modification wizard
 =========================
 
-
-This module extends the functionality of project to support ... and allow you to ...
+This module extends the functionality of project and adds a wizard to mass editing basic information for the tasks".
 
 Installation
 ============

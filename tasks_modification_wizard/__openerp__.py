@@ -4,7 +4,7 @@
 
 {
     'name': 'Task Modification Wizard',
-    'version': '8.0.1.0.1',
+    'version': '8.0.1.0.2',
     'category': 'project',
     'depends': [
         'project'
