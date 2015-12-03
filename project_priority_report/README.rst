@@ -6,14 +6,15 @@
 Project Priority Report
 =======================
 
-This module extends the functionality of project report .
+This module extends the functionality of project adding a task report listed by priority.
+You can use this report to communicate the priorities to the project members.
 
 Installation
 ============
 
 To install this module, you need to:
 
- * have basic modules installed (hr_timesheet, project_timesheet', project_issue_sheet)
+ * have basic modules installed (project_timesheet', project_issue_sheet)
 
 
 Bug Tracker
@@ -31,7 +32,7 @@ Credits
 Contributors
 ------------
 
-* Akretion Sébastien BEAU <sebastien.beau@akretion.com>
+* Sébastien Maillard <sebastien.maillard@elico-corp.com>
     
 
 Maintainer
