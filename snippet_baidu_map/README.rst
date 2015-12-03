@@ -6,7 +6,7 @@
 Snippet Baidu Map
 =================
 
-This module extends the functionality of website to support Baidu Map.
+This module extends the functionality of website to remove the Google Map.
 
 Installation
 ============
