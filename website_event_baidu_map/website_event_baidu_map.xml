@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <openerp>
     <data>
-
         <template id="event_description_full_inherited" name="map" inherit_id="website_event.event_description_full">
             <xpath expr="//div[@class='panel-body']/a" position="replace">
                 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -25,6 +24,5 @@
                 </script>
             </xpath>
         </template>
-
     </data>
 </openerp>
