@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <!-- Inherited form view of crm lead -->
+        <record id="crm_lead_form_ext_" model="ir.ui.view">
+            <field name="name">crm.lead.form.ext</field>
+            <field name="model">crm.lead</field>
+            <field name="inherit_id" ref="crm.crm_case_form_view_leads"/>
+            <field name="arch" type="xml">
+                <field name="user_id" position="before">
+                    <field name="phone_type"/>
+                    <field name="when_to_call"/>
+                    <field name="property_id"/>
+                </field>
+            </field>
+        </record>
+
+            <!--Inherited Partner Form View-->
+        <record id="inherited_partner_form_view" model="ir.ui.view">
+            <field name="name">inherited.partner.form.view</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//page[@string='Internal Notes']" position="after">
+                    <page string="Favorite Property">
+                        <group>
+                            <field name="fav_assets_ids" nolabel="1"/>
+                        </group>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+
+        <!-- form view of homepage popup banner -->
+        <record id="homepage_popup_banner_id" model="ir.ui.view">
+            <field name="name">homepage.popup.banner</field>
+            <field name="model">website.setting</field>
+            <field name="arch" type="xml">
+                <form string="Homepage popup banner" version='7.0'>
+                    <sheet>
+                        <group>
+                            <field name="name" widget="image"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- tree view of homepage popup banner -->
+        <record id="homepage_popup_tree_id" model="ir.ui.view">
+            <field name="name">homepage.popup.banner.tree</field>
+            <field name="model">website.setting</field>
+            <field name="arch" type="xml">
+                <tree string="Homepage popup banner">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+            <!--action for homepage popup banner  -->
+        <record id="homepage_popup_banner_action" model="ir.actions.act_window">
+            <field name="name">Homepage Popup Banner</field>
+            <field name="res_model">website.setting</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!--menu for homepage popup banner-->
+        <menuitem name="Website Settings" id="menu_website_setting_sub" parent="property_management.menu_property_main" />
+        <menuitem name="Homepage Popup Banner" id="menu_homepage_popup_banner" parent="menu_website_setting_sub" action="homepage_popup_banner_action"/>
+
+    </data>
+</openerp>

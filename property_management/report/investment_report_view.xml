@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+
+    <record id="view_property_chart_report" model="ir.ui.view">
+         <field name="name">view.property.chart.report</field>
+         <field name="model">property.chart.report</field>
+         <field name="arch" type="xml">
+             <graph string="Investment Analysis" type="pivot" stacked="True">
+                     <field name="name" type="row"/>
+                     <field name="type_id" type="col"/>
+                     <field name="purchase_price" type="measure"/>
+             </graph>
+         </field>
+    </record>
+
+    <record id="view_property_chart_search" model="ir.ui.view">
+        <field name="name">view.property.chart.search</field>
+        <field name="model">property.chart.report</field>
+        <field name="arch" type="xml">
+            <search string="Investment Analysis">
+                <separator/>
+                <field name="name"/>
+                <field name="type_id"/>
+                <group expand="1" string="Group By">
+                    <filter string="Property" name="Property" context="{'group_by':'name'}"/>
+                    <separator/>
+                    <filter string="Purchase Month" context="{'group_by':'purchase_date:month'}"/>
+                    <separator/>
+                    <filter string="Property Type" name="Type" context="{'group_by':'type_id'}"/>
+                    <separator/>
+                    <filter string="ROI" name="ROI" context="{'group_by':'roi'}"/>
+                    <separator/>
+                    <filter string="Return Period" name="Return Period" context="{'group_by':'return_period'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_property_chart_report" model="ir.actions.act_window">
+        <field name="name">Investment Analysis</field>
+        <field name="res_model">property.chart.report</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">graph</field>
+        <field name="search_view_id" ref="view_property_chart_search"/>
+        <field name="view_id" ref="view_property_chart_report"/>
+    </record>
+
+    <menuitem action="action_property_chart_report" id="menu_report_property_chart" parent="property_management.menu_report_sub" sequence="10"/>
+
+</data>
+</openerp>

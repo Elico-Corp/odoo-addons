@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <!-- Inherited form view of crm lead -->
+        <record id="crm_lead_form_inherit_property" model="ir.ui.view">
+            <field name="name">crm.lead.form.inherit.property</field>
+            <field name="model">crm.lead</field>
+            <field name="inherit_id" ref="crm.crm_case_form_view_leads"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='user_id']" position="after">
+                    <field name = "demand" invisible="1"/>
+                    <field name="email_send" invisible="1"/>
+                </xpath>
+                <xpath expr="//page[@string='Extra Info']" position="after">
+                    <page string="Demand Info" attrs="{'invisible':[('demand','=',False)]}">
+                        <group>
+                            <group>
+                                <field name="min_bedroom" />
+                                <field name="min_bathroom" />
+                                <field name="min_price" />
+                                <field name="facing" />
+                                <field name="type_id"/>
+                            </group>
+                            <group>
+                                <field name="max_bedroom" />
+                                <field name="max_bathroom" />
+                                <field name="max_price" />
+                                <field name="furnished" />
+                            </group>
+                        </group>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+
+            <!-- Inherited form view of opportunity -->
+        <record id="crm_lead_form_opportunity_inherit" model="ir.ui.view">
+            <field name="name">crm.lead.form.opportunity.inherit</field>
+            <field name="model">crm.lead</field>
+            <field name="inherit_id" ref="crm.crm_case_form_view_oppor"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='partner_name']" position="after">
+                    <field name="is_rent"/>
+                    <field name="is_buy"/>
+                </xpath>
+            </field>
+        </record>
+
+        <!-- crm make contract view -->
+
+       <record id="view_crm_make_contract" model="ir.ui.view">
+          <field name="name">crm.make.contract.form</field>
+          <field name="model">crm.make.contract</field>
+          <field name="arch" type="xml">
+            <form string="Convert to Quotation" >
+                <group col="4">
+                    <field name="partner_id" required="1"/>
+                    <field name="date_start"/>
+                    <field name="date"/>
+                    <field name="close"/>
+                </group>
+                <footer>
+                    <button name="makecontract" string="_Create" type="object" class="oe_highlight"/>
+                    or
+                    <button string="Cancel" class="oe_link" special="cancel" />
+                </footer>
+            </form>
+          </field>
+       </record>
+
+       <!-- crm make contract  action -->
+
+       <record id="action_crm_make_contract" model="ir.actions.act_window">
+          <field name="name">Make Quotation</field>
+          <field name="type">ir.actions.act_window</field>
+          <field name="res_model">crm.make.contract</field>
+          <field name="view_type">form</field>
+          <field name="view_mode">form</field>
+          <field name="target">new</field>
+       </record>
+
+            <!-- Inherited form view of opportunity -->
+        <record id="crm_lead_form_opportunity_inherit_button" model="ir.ui.view">
+            <field name="name">crm.lead.form.opportunity.inherit.button</field>
+            <field name="model">crm.lead</field>
+            <field name="inherit_id" ref="sale_crm.crm_case_form_view_oppor"/>
+            <field name="arch" type="xml">
+                <xpath expr="//button[@string='Create Quotation']" position="replace">
+                    <button attrs="{'invisible': ['|',('is_rent', '=', True),('probability', '&lt;', 100)]}" string="Create Quotation" name="%(sale_crm.action_crm_make_sale)d" type="action"/>
+                </xpath>
+                <xpath expr="//button[@string='Convert to Quotation']" position="replace">
+                    <button attrs="{'invisible': ['|',('is_rent', '=', True),('probability', '=', 100)]}" string="Convert to Quotation" name="%(sale_crm.action_crm_make_sale)d" type="action" class="oe_highlight"/>
+                </xpath>
+                <xpath expr="//field[@name='stage_id']" position="before">
+                    <button attrs="{'invisible': [('is_buy', '=', True)]}" string="Create Contract" name="%(action_crm_make_contract)d" type="action" class="oe_highlight"/>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</openerp>

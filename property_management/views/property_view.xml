@@ -1,0 +1,1172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <menuitem name="Property Management" id="menu_property_main"/>
+        <menuitem name="Property" id="menu_property_sub" parent="menu_property_main" sequence="1" />
+
+        <menuitem name="Configuration" id="menu_configuration_main" parent="menu_property_main"/>
+        <menuitem name="Types" id="menu_types_main" parent="menu_configuration_main" sequence="3" />
+
+            <!-- Property & Maintenance Search View -->
+        <record id="property_maintenance_view_search" model="ir.ui.view">
+            <field name="name">property.maintenace.search</field>
+            <field name="model">property.maintenance</field>
+            <field name="arch" type="xml">
+                <search string="Maintenance &amp; Repairs">
+                    <filter string="Draft" name="draft" domain="[('state','=','draft')]"/>
+                    <filter string="Progress" name="progress" domain="[('state','=','progress')]"/>
+                    <filter string="Incomplete" name="incomplete" domain="[('state','=','incomplete')]"/>
+                    <filter string="Done" name="done" domain="[('state','=','done')]"/>
+                    <field name="property_id" />
+                    <group expand="1" string="Group By">
+                       <filter string="State" icon="terp-personal" domain="[]" context="{'group_by' : 'state'}" />
+                       <filter string="Cost Type" icon="terp-personal" domain="[]" context="{'group_by' : 'cost_type'}" />
+                       <filter string="Type" icon="terp-personal" domain="[]" context="{'group_by' : 'type'}" />
+                       <filter string="Assign To" icon="terp-personal" domain="[]" context="{'group_by' : 'assign_to'}" />
+                   </group>
+                </search>
+            </field>
+        </record>
+
+            <!-- Property & Maintenance Tree View -->
+        <record id="property_maintenance_view_tree" model="ir.ui.view">
+            <field name="name">property.maintenace.tree</field>
+            <field name="model">property.maintenance</field>
+            <field name="arch" type="xml">
+                <tree string="Maintenance &amp; Repairs" editable="bottom">
+                    <field name = "property_id"/>
+                    <field name="type" widget="selection" required="1"/>
+                    <field name="date"/>
+                    <field name="name"/>
+                    <field name="assign_to"/>
+                    <field name="account_code"/>
+                    <field name="cost" string="Cost"/>
+                    <field name="invc_check" invisible = "1"/>
+                    <field name="renters_fault" attrs="{'invisible': [('invc_check','!=',False)]}"/>
+                    <field name="state"/>
+                    <button name="create_invoice" string="Create Invoice" type="object"
+                                                class="oe_highlight" attrs="{'invisible': [('renters_fault','!=',True)]}" />
+                </tree>
+            </field>
+        </record>
+
+            <!-- Property & Maintenance Form View -->
+        <record id="property_maintenance_view_form" model="ir.ui.view">
+            <field name="name">property.maintenace.form</field>
+            <field name="model">property.maintenance</field>
+            <field name="arch" type="xml">
+                <form string="Maintenance &amp; Repairs">
+                    <header>
+                        <field name="state" widget="statusbar" statusbar_colors='blue' clickable="True"/>
+                    </header>
+                    <sheet>
+                        <group colspan="4" col='4'>
+                            <field name="type" widget="selection" required="1"/>
+                            <field name="date"/>
+                            <field name="last_record_update"/>
+                            <field name="name"/>
+                            <field name="assign_to"/>
+                            <field name="account_code"/>
+                            <field name="cost" string="Cost"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+            <!-- Property & Maintenance Graph View -->
+        <record id="property_maintenance_view_graph" model="ir.ui.view">
+            <field name="name">property.maintenance.graph</field>
+            <field name="model">property.maintenance</field>
+            <field name="src_model">property.maintenance</field>
+            <field name="arch" type="xml">
+                <graph string="Maintenance">
+                    <field name="type"/>
+                    <field name="cost" operator="+" />
+                </graph>
+            </field>
+        </record>
+
+            <!-- Action for Property & Maintenance Views -->
+        <record id="action_property_maintenance_view" model="ir.actions.act_window">
+            <field name="name">Property Maintenence</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">property.maintenance</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form,graph</field>
+        </record>
+
+        <menuitem
+                name="Property Maintenance"
+                id="menu_property_maintenance"
+                parent="menu_property_sub"
+                action="action_property_maintenance_view"
+                sequence="5"
+                />
+
+            <!--Cost Tree view-->
+        <record id="property_cost_view_tree" model="ir.ui.view">
+            <field name="name">cost.cost.tree</field>
+            <field name="model">cost.cost</field>
+            <field name="arch" type="xml">
+                <tree string="Cost Details" editable="bottom">
+                    <field name="name"/>
+                    <field name="date"/>
+                    <field name="amount" string="Amount"/>
+                </tree>
+            </field>
+        </record>
+
+                <!--Cost Form view-->
+        <record id="property_cost_view_form" model="ir.ui.view">
+            <field name="name">cost.cost.form</field>
+            <field name="model">cost.cost</field>
+            <field name="arch" type="xml">
+                <form string="Cost Details" version='7.0'>
+                    <sheet>
+                        <group colspan="4">
+                            <field name="name"/>
+                            <field name="date"/>
+                            <field name="amount" string="Amount"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+            <!--Room assets Tree View-->
+        <record id="room_assets_view_tree" model="ir.ui.view">
+            <field name="name">room.assets.tree</field>
+            <field name="model">room.assets</field>
+            <field name="arch" type="xml">
+                <tree string="Room Assets" editable="bottom">
+                    <field name="type"/>
+                    <field name="name"/>
+                    <field name="qty"/>
+                    <field name="date"/>
+                </tree>
+            </field>
+        </record>
+
+            <!--Room assets Form View-->
+        <record id="room_assets_view_form" model="ir.ui.view">
+            <field name="name">room.assets.form</field>
+            <field name="model">room.assets</field>
+            <field name="arch" type="xml">
+                <form string="Room Assets" version='7.0'>
+                    <sheet>
+                        <group colspan="4" col='4'>
+                            <field name="type"/>
+                            <field name="qty"/>
+                            <field name="name"/>
+                            <field name="date"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+                <!-- Tenant Form View -->
+        <record id="property_tenant_view_form" model="ir.ui.view">
+            <field name="name">tenant.partner.form</field>
+            <field name="model">tenant.partner</field>
+            <field name="arch" type="xml">
+                <form string="Tenant Details" version='7.0'>
+                    <sheet>
+                        <field name="image" widget='image' class="oe_left oe_avatar" options='{"preview_image": "image_medium", "size": [90, 90]}'/>
+                        <div class="oe_title oe_left">
+                            <h2>
+                                <field name="name" default_focus="1" placeholder="Name" />
+                            </h2>
+                            <h4>
+                                 <field name="initials" placeholder="Initials..." />
+                                 <field name="is_company"/>
+                             </h4>
+                        </div>
+                        <div class="oe_right oe_button_box" name="buttons">
+                            <button type="action" 
+                                class="oe_stat_button"
+                                id="invoice_button"
+                                icon="fa-pencil-square-o"
+                                name="%(account.action_invoice_refund_out_tree)d"
+                                context="{'search_default_partner_id': active_id,'default_partner_id': active_id}">
+                                <div><strong><field name="total_invoiced" widget="monetary"/></strong><br/>Invoiced</div>
+                            </button>
+                            <button class="oe_inline oe_stat_button" type="action" name="%(sale.act_res_partner_2_sale_order)d" 
+                                icon="fa-strikethrough">
+                                <field string="Sales" name="sale_order_count" widget="statinfo"/>
+                            </button>
+                            <button type="action" class="oe_stat_button" name="%(account.action_account_moves_all_tree)d" icon="fa-list">
+                                <field string="Journal Items" name="journal_item_count" widget="statinfo"/>
+                            </button>
+                            <button class="oe_inline oe_stat_button" type="action" name="%(account.action_open_partner_analytic_accounts)d" icon="fa-book">
+                                <field string="Contracts" name="contracts_count" widget="statinfo"/>
+                            </button>
+                        </div>
+                        <group>
+                            <group>
+                                <label for="street" string="Address"/>
+                                <div>
+                                    <field name="street" placeholder="Street..." />
+                                    <field name="street2" placeholder="Street2..."/>
+                                    <div class="address_format">
+                                        <field name="city" placeholder="City" style="width: 30%%"/>
+                                        <field name="state_id" class="oe_no_button" placeholder="State" style="width: 40%%" options='{"no_open": True}' />
+                                        <field name="zip" placeholder="ZIP" style="width: 30%%" />
+                                    </div>
+                                    <field name="country_id" placeholder="Country" class="oe_no_button" options='{"no_open": True, "no_create": True}'/>
+                                </div>
+                                <field name="occupation"/>
+                                <field name="title" options='{"no_open": True}'/>
+                            </group>
+                        
+                        <group>
+                            <field name="phone" placeholder="e.g. +32.81.81.37.00"/>
+                            <field name="mobile"/>
+                            <field name="fax"/>
+                            <field name="email" widget="email" required="1"/>
+                            
+                            <field name = "company_id" />
+                            <field name="doc_name" readonly="0" invisible="1"/>
+                            
+                            <field name="tenant" invisible="1"/>
+                            <field name="id_attachment" filename="doc_name"/>
+                        </group>
+                        
+                    </group>
+                        <notebook colspan="4">
+                            <page string="Tenancy Details">
+                                <group colspan="1">
+                                    <separator string="Tenant Details" colspan="4"/>
+                                    <field name="tenant_ids" nolabel="1"/> 
+                                    <separator string="Tenancy Details" colspan="4"/>
+                                    <field name="tenancy_ids" readonly="1" nolabel="1"/> 
+                                </group>
+                            </page>
+                            <page string="Contacts" attrs="{'invisible': [('is_company','=',False), ('child_ids', '=', [])]}" autofocus="autofocus">
+                                <field name="child_ids" mode="kanban" context="{'default_parent_id': active_id, 'default_street': street, 'default_street2': street2, 'default_city': city, 'default_state_id': state_id, 'default_zip': zip, 'default_country_id': country_id}">
+                                    <kanban>
+                                        <field name="color"/>
+                                        <field name="name"/>
+                                        <field name="title"/>
+                                        <field name="email"/>
+                                        <field name="parent_id"/>
+                                        <field name="is_company"/>
+                                        <field name="function"/>
+                                        <field name="phone"/>
+                                        <field name="street"/>
+                                        <field name="street2"/>
+                                        <field name="zip"/>
+                                        <field name="city"/>
+                                        <field name="country_id"/>
+                                        <field name="mobile"/>
+                                        <field name="fax"/>
+                                        <field name="state_id"/>
+                                        <field name="has_image"/>
+                                        <field name="is_company"/>
+                                        <templates>
+                                            <t t-name="kanban-box">
+                                                <t t-set="color" t-value="kanban_color(record.color.raw_value)"/>
+                                                <div t-att-class="color + (record.title.raw_value == 1 ? ' oe_kanban_color_alert' : '')" style="position: relative">
+                                                    <a t-if="! read_only_mode" type="delete" style="position: absolute; right: 0; padding: 4px; diplay: inline-block">X</a>
+                                                    <div class="oe_module_vignette">
+                                                    <a type="open">
+                                                        <t t-if="record.has_image.raw_value === true">
+                                                            <img t-att-src="kanban_image('res.partner', 'image_small', record.id.value)" class="oe_avatar oe_kanban_avatar_smallbox"/>
+                                                        </t>
+                                                        <t t-if="record.image and record.image.raw_value !== false">
+                                                            <img t-att-src="'data:image/png;base64,'+record.image.raw_value" class="oe_avatar oe_kanban_avatar_smallbox"/>
+                                                        </t>
+                                                        <t t-if="record.has_image.raw_value === false and (!record.image or record.image.raw_value === false)">
+                                                            <t t-if="record.is_company.raw_value === true">
+                                                                <img t-att-src='_s + "/base/static/src/img/company_image.png"' class="oe_kanban_image oe_kanban_avatar_smallbox"/>
+                                                            </t>
+                                                            <t t-if="record.is_company.raw_value === false">
+                                                                <img t-att-src='_s + "/base/static/src/img/avatar.png"' class="oe_kanban_image oe_kanban_avatar_smallbox"/>
+                                                            </t>
+                                                        </t>
+                                                    </a>
+                                                        <div class="oe_module_desc">
+                                                            <div class="oe_kanban_box_content oe_kanban_color_bglight oe_kanban_color_border">
+                                                                <table class="oe_kanban_table">
+                                                                    <tr>
+                                                                        <td class="oe_kanban_title1" align="left" valign="middle">
+                                                                            <h4><a type="open"><field name="name"/></a></h4>
+                                                                            <i><div t-if="record.function.raw_value">
+                                                                                <field name="function"/></div></i>
+                                                                            <div><a t-if="record.email.raw_value" title="Mail" t-att-href="'mailto:'+record.email.value">
+                                                                                <field name="email"/>
+                                                                            </a></div>
+                                                                            <div t-if="record.phone.raw_value">Phone: <field name="phone"/></div>
+                                                                            <div t-if="record.mobile.raw_value">Mobile: <field name="mobile"/></div>
+                                                                            <div t-if="record.fax.raw_value">Fax: <field name="fax"/></div>
+                                                                        </td>
+                                                                    </tr>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </t>
+                                        </templates>
+                                    </kanban>
+                                    <form string="Contact">
+                                        <sheet>
+                                            <field name="image" widget='image' class="oe_avatar oe_left" options='{"preview_image": "image_medium"}'/>
+                                            <div class="oe_title">
+                                                <label for="name" class="oe_edit_only"/>
+                                                <h1><field name="name" style="width: 70%%"/></h1>
+                                                <field name="category_id" widget="many2many_tags" placeholder="Tags..." style="width: 70%%"/>
+                                            </div>
+                                            <group>
+                                                <field name="function" placeholder="e.g. Sales Director"/>
+                                                <field name="email"/>
+                                                <field name="phone"/>
+                                                <field name="mobile"/>
+                                            </group>
+                                            <div>
+                                                <field name="use_parent_address"/><label for="use_parent_address"/>
+                                            </div>
+                                            <group>
+                                                <label for="type"/>
+                                                <div name="div_type">
+                                                    <field class="oe_inline" name="type"/>
+                                                </div>
+                                                <label for="street" string="Address" attrs="{'invisible': [('use_parent_address','=', True)]}"/>
+                                                <div attrs="{'invisible': [('use_parent_address','=', True)]}" name="div_address">
+                                                    <field name="street" placeholder="Street..."/>
+                                                    <field name="street2"/>
+                                                    <div class="address_format">
+                                                        <field name="city" placeholder="City" style="width: 40%%"/>
+                                                        <field name="state_id" class="oe_no_button" placeholder="State" style="width: 37%%" options='{"no_open": True}' on_change="onchange_state(state_id)"/>
+                                                        <field name="zip" placeholder="ZIP" style="width: 20%%"/>
+                                                    </div>
+                                                    <field name="country_id" placeholder="Country" class="oe_no_button" options='{"no_open": True, "no_create": True}'/>
+                                                </div>
+                                            </group>
+                                            <field name="supplier" invisible="True"/>
+                                            <field name="customer" invisible="True"/>
+                                        </sheet>
+                                    </form>
+                                </field>
+                            </page>
+                            <page name='sales_purchases' string="Sales &amp; Purchases">
+                                <group>
+                                    <group>
+                                        <field name="user_id" 
+                                            context="{'default_groups_ref': ['base.group_partner_manager']}"/>
+                                        <field name="company_id" groups="base.group_multi_company" options="{'no_create': True}"/>
+                                    </group>
+                                    <group>
+                                        <field name="customer"/>
+                                        <field name="supplier" string="Broker"/>
+                                        <field name="is_tenant"/>
+                                    </group>
+                                    <group>
+                                        <field name="ref"/>
+                                        <field name="lang"/>
+<!--                                        <field name="date"/-->
+                                    </group>
+                                    <group>
+                                        <field name="agent"/>
+                                        <field name="active"/>
+                                    </group>
+                                </group>
+                            </page>
+                            <page string="Accounting" col="4" name="accounting" groups="account.group_account_invoice">
+                                <group>
+                                    <group>
+                                        <field name="property_account_position" widget="selection"/>
+                                    </group>
+                                    <group>
+                                        <field name="last_reconciliation_date"/>
+                                    </group>
+                                    <group>
+                                        <field name="property_account_receivable" groups="account.group_account_invoice" />
+                                        <field name="property_payment_term" widget="selection"/>
+                                        <field name="credit"/>
+                                        <field name="credit_limit"/>
+                                    </group>
+                                    <group>
+                                        <field name="property_account_payable" groups="account.group_account_invoice"/>
+                                        <field name="property_supplier_payment_term" widget="selection"/>
+                                        <field name="debit"/>
+                                    </group>
+                                </group>
+                                <field name="bank_ids" context="{'default_partner_id': active_id, 'form_view_ref': 'base.view_partner_bank_form'}">
+                                    <tree string="Bank Details">
+                                        <field name="state" invisible="1"/>
+                                        <field name="sequence" invisible="1"/>
+                                        <field name="acc_number"/>
+                                        <field name="bank_name"/>
+                                        <field name="owner_name"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                        <separator string="Notes and Comments"/>
+                        <field name="note" nolabel="1" colspan="4" height="100"/>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+            <!-- Tenant Tree View -->
+        <record id="property_tenant_view_tree" model="ir.ui.view">
+            <field name="name">tenant.partner.tree</field>
+            <field name="model">tenant.partner</field>
+            <field name="arch" type="xml">
+                <tree string="Tenant Details">
+                    <field name="name"/>
+                    <field name="initials"/>
+                    <field name="occupation"/>
+                    <field name="note"/>
+                </tree>
+            </field>
+        </record>
+
+                    <!-- Tenant Search View  -->
+        <record model="ir.ui.view" id="property_tenant_view_search">
+            <field name="name">tenant.partner.search</field>
+            <field name="model">tenant.partner</field>
+            <field name="arch" type="xml">
+               
+                <search string="Search Tenant">
+                    <field name="name"/>
+                    <field name="initials"/>
+                    <field name="company_id"/>
+                    <newline/>
+                    <group expand="0" string="Group By..." colspan="4" col="10">
+                        <filter string="Tenant" icon="terp-personal" domain="[]" context="{'group_by':'name'}"/>
+                        <filter string="Tenant Initials" icon="terp-personal" domain="[]" context="{'group_by':'initials'}"/>
+                        <filter string="Tenant Company" icon="terp-personal" domain="[]" context="{'group_by':'company_id'}"/>
+                        <filter string="Country" context="{'group_by': 'country_id'}"/>
+                        <filter string="State" context="{'group_by': 'state_id'}"/>
+                    </group>
+                </search>
+
+            </field>
+        </record>
+
+        <!-- Partner Kanban View -->
+        <record model="ir.ui.view" id="tenant_partner_kanban_view">
+            <field name="name">tenant.partner.kanban</field>
+            <field name="model">tenant.partner</field>
+            <field name="arch" type="xml">
+                <kanban>
+                    <field name="color"/>
+                    <field name="display_name"/>
+                    <field name="title"/>
+                    <field name="email"/>
+                    <field name="parent_id"/>
+                    <field name="is_company"/>
+                    <field name="function"/>
+                    <field name="phone"/>
+                    <field name="street"/>
+                    <field name="street2"/>
+                    <field name="zip"/>
+                    <field name="city"/>
+                    <field name="country_id"/>
+                    <field name="mobile"/>
+                    <field name="state_id"/>
+                    <field name="category_id"/>
+                    <field name="has_image"/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_vignette oe_semantic_html_override">
+                                <a type="open">
+                                    <t t-if="record.has_image.raw_value === true">
+                                        <img t-att-src="kanban_image('tenant.partner', 'image_small', record.id.value)" class="oe_kanban_image"/>
+                                    </t>
+                                    <t t-if="record.has_image.raw_value === false">
+                                        <t t-if="record.is_company.raw_value === true">
+                                            <img t-att-src='_s + "/base/static/src/img/company_image.png"' class="oe_kanban_image"/>
+                                        </t>
+                                        <t t-if="record.is_company.raw_value === false">
+                                            <img t-att-src='_s + "/base/static/src/img/avatar.png"' class="oe_kanban_image"/>
+                                        </t>
+                                    </t>
+                                </a>
+                                <div class="oe_kanban_details">
+                                    <h4 class="oe_partner_heading"><a type="open"><field name="display_name"/></a></h4>
+                                    <div class="oe_kanban_partner_categories"/>
+                                    <div class="oe_kanban_partner_links"/>
+                                    <ul>
+                                        <li t-if="record.parent_id.raw_value and !record.function.raw_value"><field name="parent_id"/></li>
+                                        <li t-if="!record.parent_id.raw_value and record.function.raw_value"><field name="function"/></li>
+                                        <li t-if="record.parent_id.raw_value and record.function.raw_value"><field name="function"/> at <field name="parent_id"/></li>
+                                        <li t-if="record.city.raw_value and !record.country_id.raw_value"><field name="city"/></li>
+                                        <li t-if="!record.city.raw_value and record.country_id.raw_value"><field name="country_id"/></li>
+                                        <li t-if="record.city.raw_value and record.country_id.raw_value"><field name="city"/>, <field name="country_id"/></li>
+                                        <li t-if="record.email.raw_value"><a t-attf-href="mailto:#{record.email.raw_value}"><field name="email"/></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+            <!--Action For Tenant Views -->
+        <record id="action_tenant_detail_view" model="ir.actions.act_window">
+            <field name="name">Tenant Details</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">tenant.partner</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">kanban,tree,form</field>
+            <field name="context">{'tenant':True}</field>
+            <field name="domain">[('tenant','=',True)]</field>
+        </record>
+
+                    <!--Action For Tenant Kanban Views -->
+
+        <record id="action_tenant_detail_view_kanban" model="ir.actions.act_window.view">
+            <field eval="1" name="sequence"/>
+            <field name="view_mode">kanban</field>
+            <field name="view_id" ref="tenant_partner_kanban_view"/>
+            <field name="act_window_id" ref="action_tenant_detail_view"/>
+        </record>
+
+
+            <!--Action For Tenant Form Views -->
+        <record id="action_tenant_detail_view_form" model="ir.actions.act_window.view">
+            <field eval="3" name="sequence"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="property_tenant_view_form"/>
+            <field name="act_window_id" ref="action_tenant_detail_view"/>
+        </record>
+
+            <!--Action For Tenant Tree Views -->
+        <record id="action_tenant_detail_view_tree" model="ir.actions.act_window.view">
+            <field eval="2" name="sequence"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="property_tenant_view_tree"/>
+            <field name="act_window_id" ref="action_tenant_detail_view"/>
+        </record>
+
+        <menuitem
+                name="Tenant Details"
+                id="menu_tenant_detail"
+                parent="menu_property_sub"
+                action="action_tenant_detail_view"
+                sequence="2"
+                />
+
+                <!--Tenant Search View-->
+        <record id="tenant_detail_search_view" model="ir.ui.view">
+            <field name="name">tenant.partner.search</field>
+            <field name="model">tenant.partner</field>
+            <field name="arch" type="xml">
+                <search string="Search Tenant Partner">
+                    <group col='10' colspan='4'>
+                        <field name="occupation"/>
+                    </group>
+                    <newline/>
+                    <group expand="0" string="Group By..." colspan="4" col="10" groups="base.group_extended">
+                        <separator orientation="vertical"/>
+                        <filter string="Occupation" icon="terp-personal" help="Payment Term" context="{'group_by':'occupation'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+                    <!-- Rooms Form View -->
+        <record id="property_room_view_form" model="ir.ui.view">
+            <field name="name">property.room.form</field>
+            <field name="model">property.room</field>
+            <field name="arch" type="xml">
+                <form string="Rooms" version='7.0'>
+                    <sheet>
+                        <field name="image" widget="image" class="oe_left oe_avatar" options="{&quot;preview_image&quot;: &quot;image_medium&quot;, &quot;size&quot;: [90, 90]}"/>
+                        <div class="oe_title oe_left">
+                            <div class="oe_edit_only">
+                                <label for="name"/>
+                            </div>
+                            <h1>
+                                <field name="name" default_focus="1" placeholder="Name" required='1'/>
+                            </h1>
+                        </div>
+                        <group colspan="4" col='4'>
+                            <field name="length"/>
+                            <field name="type_id" widget="selection"/>
+                            <field name="width"/>
+                            <field name="attach"/>
+                            <field name="height"/>
+                        </group>
+                        <notebook colspan="4">
+                            <page string="Room Details" >
+                                <field name="assets_ids" colspan="4" nolabel="1"/>
+                                <newline/>
+                                <separator string="Notes" colspan="4"/>
+                                <field name="note" colspan="4" nolabel="1"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+            <!-- Rooms Tree View-->
+        <record id="property_room_view_tree" model="ir.ui.view">
+            <field name="name">property.room.tree</field>
+            <field name="model">property.room</field>
+            <field name="arch" type="xml">
+                <tree string="Rooms">
+                    <field name="name"/>
+                    <field name="type_id"/>
+                    <field name="length" string="Length (m)"/>
+                    <field name="width" string="Width (m)"/>
+                    <field name="height" string="Height (m)"/>
+                </tree>
+            </field>
+        </record>
+
+            <!--Tenancy rent schedule Search view-->
+        <record id="tenancy_rent_schedule_search" model="ir.ui.view">
+            <field name="name">tenancy.rent.schedule.search</field>
+            <field name="model">tenancy.rent.schedule</field>
+            <field name="arch" type="xml">
+                <search string="Search Tenant Rent">
+                    <filter icon="terp-go-month" string="This Month" domain="[('start_date','&lt;=',(datetime.date.today()+relativedelta(day=31)).strftime('%%Y-%%m-%%d')),('start_date','&gt;=',(datetime.date.today()-relativedelta(day=1)).strftime('%%Y-%%m-%%d'))]" help="Tenant Rent in this month"/>
+                    <filter icon="terp-dolar" string="Paid" domain="[('paid','=',True)]" help="Paid Tenant Rent"/>
+                    <filter icon="terp-dolar_ok!" string="Pending" domain="[('paid','=',False)]" help="Unpaid Tenant Rent"/>
+                    <field name="tenancy_id"/>
+                    <field name="cheque_detail"/>
+                    <field name="rel_tenant_id"/>
+                    <newline/>
+                    <group expand="0" string="Extended Filters..." colspan="4" col="10" groups="base.group_extended">
+                        <field name="start_date"/>
+                        <field name="amount"/>
+                    </group>
+                    <newline/>
+                    <group expand="0" string="Group by..." colspan="4" col="10" groups="base.group_extended">
+                        <filter icon="terp-personal" string="Tenancy" context="{'group_by':'tenancy_id'}"/>
+                        <filter icon="terp-personal" string="Tenant" context="{'group_by':'rel_tenant_id'}"/>
+                        <filter icon="terp-go-today" string="Date" context="{'group_by':'start_date'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+            <!--Tenancy rent schedule form view-->
+        <record id="tenancy_rent_form" model="ir.ui.view">
+            <field name="name">tenancy.rent.schedule.form</field>
+            <field name="model">tenancy.rent.schedule</field>
+            <field name="arch" type="xml">   
+                <form string="Rent Schedule" version='7.0'>
+                    <sheet>
+                        <group colspan='4' col='4'>
+                            <field name="cheque_detail"/>
+                            <field name="company_id"/>
+                            <field name="tenancy_id"/>
+                            <field name="rel_tenant_id"/>
+                            <field name="start_date"/>
+                            <field name="amount" string="Amount"/>
+                            <field name="move_check"/>
+                        </group>
+                        <newline/>
+                        <separator string="Notes" colspan="4"/>
+                        <field name="note" colspan="4" nolabel="1"/>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+            <!--Tenancy rent schedule Tree view-->
+        <record id="tenancy_rent_tree" model="ir.ui.view">
+            <field name="name">tenancy.rent.schedule.tree</field>
+            <field name="model">tenancy.rent.schedule</field>
+            <field name="arch" type="xml">
+                <tree string="Rent Schedule" editable="bottom">
+                    <field name="start_date"/>
+                    <field name="amount" string="Amount"/>
+                    <field name="cheque_detail"/>
+                    <field name="tenancy_id"/>
+                    <field name="move_check"/>
+                    <field name="rel_tenant_id"/>
+                    <field name="note"/>
+                </tree>
+            </field>
+        </record>
+
+            <!--Tenancy rent schedule Calendar view-->
+        <record id="tenancy_rent_calendar" model="ir.ui.view">
+            <field name="name">tenancy.rent.schedule.calendar</field>
+            <field name="model">tenancy.rent.schedule</field>
+            <field name="arch" type="xml">
+                <calendar string="Rent" color="tenancy_id" date_start="start_date">
+                    <field name="rel_tenant_id"/>
+                    <field name="amount"/>
+                </calendar>
+            </field>
+        </record>
+
+            <!-- Action for Tenancy rent schedule view-->
+        <record id="action_tenancy_rent" model="ir.actions.act_window">
+            <field name="name">Tenancy Rent Schedule</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">tenancy.rent.schedule</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">calendar,tree,form</field>
+        </record>
+
+            <!--Rent schedule menu-->
+        <menuitem name="Tenancy Rent Schedule" id="menu_tenancy_rent" 
+                parent="menu_property_sub" action="action_tenancy_rent" sequence="4"/>     
+
+            <!-- Configuration  Menu -->
+        <record model="ir.ui.view" id="property_type_view_search">
+            <field name="name">property.type.search</field>
+            <field name="model">property.type</field>
+            <field name="arch" type="xml">
+                <search string="Search Property">
+                    <field name="name"/>
+                </search>
+            </field>
+        </record>
+
+            <!--Property Tenancy Form View-->
+        <record id="property_type_form" model="ir.ui.view">
+            <field name="name">property.type.form</field>
+            <field name="model">property.type</field>
+            <field name="arch" type="xml">
+                <form string="Property Type" version='7.0'>
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+            <!--Property Tenancy Tree View-->
+        <record id="property_type_tree" model="ir.ui.view">
+            <field name="name">property.type.tree</field>
+            <field name="model">property.type</field>
+            <field name="arch" type="xml">
+                <tree string="Property Type">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+            <!-- Action for Property Tenancy Views -->
+        <record id="action_property_type_view" model="ir.actions.act_window">
+            <field name="name">Property Type</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">property.type</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem name="Property Type" id="menu_property_type"  parent="menu_types_main" action="action_property_type_view"/>
+
+                <!--Rent type Search View-->
+        <record model="ir.ui.view" id="rent_type_view_search">
+            <field name="name">rent.type.search</field>
+            <field name="model">rent.type</field>
+            <field name="arch" type="xml">
+                <search string="Search Property">
+                    <field name="name"/>
+                </search>
+            </field>
+        </record>
+
+            <!--Rent type Form View-->
+        <record id="rent_type_form" model="ir.ui.view">
+            <field name="name">rent.type.form</field>
+            <field name="model">rent.type</field>
+            <field name="arch" type="xml">
+                <form string="rent Type" version='7.0'>
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+            <!-- Rent type Tree View-->
+        <record id="rent_type_tree" model="ir.ui.view">
+            <field name="name">rent.type.tree</field>
+            <field name="model">rent.type</field>
+            <field name="arch" type="xml">
+                <tree string="rent Type">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+                <!--action for Rent type Views -->
+        <record id="action_rent_type_view" model="ir.actions.act_window">
+            <field name="name">Rent Type</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">rent.type</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem name="Rent Type" id="menu_rent_type"  parent="menu_types_main" action="action_rent_type_view"/>
+
+            <!-- room type search View -->
+        <record model="ir.ui.view" id="room_type_view_search">
+            <field name="name">room.type.search</field>
+            <field name="model">room.type</field>
+            <field name="arch" type="xml">
+                <search string="Search Property">
+                    <field name="name"/>
+                </search>
+            </field>
+        </record>
+
+            <!-- room type Form View -->
+        <record id="room_type_form" model="ir.ui.view">
+            <field name="name">room.type.form</field>
+            <field name="model">room.type</field>
+            <field name="arch" type="xml">
+                <form string="room Type" version='7.0'>
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- room type Tree View -->
+    <record id="room_type_tree" model="ir.ui.view">
+        <field name="name">room.type.tree</field>
+        <field name="model">room.type</field>
+        <field name="arch" type="xml">
+            <tree string="room Type">
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+            <!-- action for room type Views -->
+        <record id="action_room_type_view" model="ir.actions.act_window">
+            <field name="name">Room Type</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">room.type</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem name="Room Type" id="menu_room_type"  parent="menu_types_main" action="action_room_type_view"/>
+
+            <!-- utility type Search View -->
+        <record model="ir.ui.view" id="utility_type_view_search">
+            <field name="name">utility.type.search</field>
+            <field name="model">utility</field>
+            <field name="arch" type="xml">
+                <search string="Search Property">
+                    <field name="name"/>
+                </search>
+            </field>
+        </record>
+
+            <!-- utility type Form View -->
+        <record id="utility_form" model="ir.ui.view">
+            <field name="name">utility.form</field>
+            <field name="model">utility</field>
+            <field name="arch" type="xml">
+                <form string="room Type" version='7.0'>
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+                <!-- utility type Tree View -->
+        <record id="utility_tree" model="ir.ui.view">
+            <field name="name">utility.tree</field>
+            <field name="model">utility</field>
+            <field name="arch" type="xml">
+                <tree string="room Type">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+            <!-- action for utility type Views -->
+        <record id="action_utility_view" model="ir.actions.act_window">
+            <field name="name">Utility Type</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">utility</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem name="Utility Type" id="menu_utility" parent="menu_types_main" action="action_utility_view"/>
+
+            <!-- maintenance type Search View -->
+        <record model="ir.ui.view" id="maintenance_type_view_search">
+            <field name="name">maintenance.type.search</field>
+            <field name="model">maintenance.type</field>
+            <field name="arch" type="xml">
+                <search string="Search Property">
+                    <field name="name"/>
+                </search>
+            </field>
+        </record>
+
+            <!-- maintenance type Form View -->
+        <record id="maintenance_type_form" model="ir.ui.view">
+            <field name="name">maintenance.type.form</field>
+            <field name="model">maintenance.type</field>
+            <field name="arch" type="xml">
+                <form string="maintenance Type" version='7.0'>
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+            <!-- maintenance type Tree View -->
+        <record id="maintenance_type_tree" model="ir.ui.view">
+            <field name="name">maintenance.type.tree</field>
+            <field name="model">maintenance.type</field>
+            <field name="arch" type="xml">
+                <tree string="maintenance Type">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+            <!-- action for maintenance type Views -->
+        <record id="action_maintenance_type_view" model="ir.actions.act_window">
+            <field name="name">Maintenance Type</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">maintenance.type</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem name="Maintenance Type" id="menu_maintenance_type"    parent="menu_types_main" action="action_maintenance_type_view"/>         
+
+            <!-- Property Stage Search View -->
+        <record model="ir.ui.view" id="property_stage_view_search">
+            <field name="name">property.stage.search</field>
+            <field name="model">property.stage</field>
+            <field name="arch" type="xml">
+                <search string="Search Stage">
+                    <field name="name"/>
+                </search>
+            </field>
+        </record>
+
+        <!-- Property Stage Form View -->
+        <record id="property_stage_form" model="ir.ui.view">
+            <field name="name">property.stage.form</field>
+            <field name="model">property.stage</field>
+            <field name="arch" type="xml">
+                <form string="Property Stage" version='7.0'>
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Property Stage Tree View -->
+        <record id="property_stage_tree" model="ir.ui.view">
+            <field name="name">property.stage.tree</field>
+            <field name="model">property.stage</field>
+            <field name="arch" type="xml">
+                <tree string="Property Stage">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+            <!-- action of Property Stage Views -->
+        <record id="action_property_stage_view" model="ir.actions.act_window">
+            <field name="name">Property stage</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">property.stage</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem name="Property Stage" id="menu_property_stage" parent="menu_types_main" action="action_property_stage_view"/>
+
+            <!--Tenancy Property Tree View  -->
+        <record id="tenancy_property_view_tree" model="ir.ui.view">
+            <field name="name">tenancy.property.tree</field>
+            <field name="model">account.analytic.account</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Tenancy PropertyDetails" editable="bottom">
+                    <field name="tenant_id"/>
+<!--                    <field name="tenancy_property_ids"/-->
+                    <field name="property_id"/>
+                    <field name="deposit"/>
+                    <field name="date_start"/>
+                    <field name="date"/>
+                    <field name="recurring_rule_type"/>
+                </tree>
+            </field>
+        </record>
+
+
+            <!--Property Certificate Tree View  -->
+        <record id="property_certificate_view_tree" model="ir.ui.view">
+            <field name="name">property.certificate.tree</field>
+            <field name="model">property.safety.certificate</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Property Certificate Details" editable="bottom">
+                    <field name="name"/>
+                    <field name="expiry_date"/>
+                    <field name="property_id"/>
+                    <field name="contact_id"/>
+                </tree>
+            </field>
+        </record>
+
+            <!--Property attachment Tree View  -->
+        <record id="property_attachment_view_tree" model="ir.ui.view">
+            <field name="name">property.attachment.tree</field>
+            <field name="model">property.attachment</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Property Attachment Details">
+                    <field name="name"/>
+                    <field name="expiry_date"/>
+                    <field name="property_id"/>
+                </tree>
+            </field>
+        </record>
+
+            <!--View Occupancy graph View for property model -->
+        <record id="view_occupancy_graph" model="ir.ui.view">
+            <field name="name">view.occupancy.graph</field>
+            <field name="model">account.asset.asset</field>
+            <field name="arch" type="xml">
+                <graph string="Occupancy">
+                    <field name="purchase_date" type="row"/>
+                    <field name="parent_id" type="column"/>
+                    <field name="occupancy_rates" type="measure"/>
+                </graph>
+            </field>
+        </record>
+
+            <!--View financial graph View for property model -->
+        <record id="view_financial_graph" model="ir.ui.view">
+            <field name="name">view.financial.graph</field>
+            <field name="model">account.asset.asset</field>
+            <field name="arch" type="xml">
+            <graph string="Occupancy">
+            <field name="sale_date" type="row"/>
+            <field name="parent_id" type="column"/>
+            <field name="financial_performance" type="measure"/>
+            </graph>
+            </field>
+        </record>
+
+            <!--View Gfa graph View for property model -->
+        <record id="view_gfa_graph" model="ir.ui.view">
+            <field name="name">view.gfa.graph</field>
+            <field name="model">account.asset.asset</field>
+            <field name="arch" type="xml">
+                <graph string="GFA" type="pie">
+                    <field name="purchase_date" type="row"/>
+                    <field name="type_id" type="column"/>
+                    <field name="gfa_feet" type="measure"/>
+                </graph>
+            </field>
+        </record>
+
+            <!--View Gfa operational cost View for property model -->
+        <record id="view_operational_cost_graph" model="ir.ui.view">
+            <field name="name">view.operational.cost.graph</field>
+            <field name="model">account.asset.asset</field>
+            <field name="arch" type="xml">
+                <graph string="Operational Cost" type="pie">
+                <field name="parent_id"/>
+                <field name="operational_costs"/>
+                </graph>
+            </field>
+        </record>
+
+          
+
+        <!--Property Tenancy gantt View-->
+        <record id="view_tenancy_gantt" model="ir.ui.view">
+                <field name="name">tenancy.gantt</field>
+                <field name="model">account.analytic.account</field>
+                <field name="arch" type="xml">
+                   <gantt date_start="date_start" date_stop="date" string="Properties">
+                   </gantt>
+               </field>
+        </record>
+
+        <record id="property_tenancy_view_tree" model="ir.ui.view">
+                <field name="name">property.tenancy.tree</field>
+                <field name="model">account.analytic.account</field>
+                <field name="arch" type="xml">
+                    <tree string="Tenancy Details">
+                        <field name="tenant_id"/>
+                        <field name="date_start"/>
+                        <field name="date"/>
+                        <field name="rent" string="Total rent"/>
+                        <field name="deposit" string="Total deposit"/>
+                        <field name="recurring_rule_type"/>
+                    </tree>
+               </field>
+       </record>
+
+                   <!-- place type Form View -->
+        <record id="place_type_form" model="ir.ui.view">
+            <field name="name">place.type.form</field>
+            <field name="model">place.type</field>
+            <field name="arch" type="xml">
+                <form string="Place Type" version='7.0'>
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+            <!-- place type Tree View -->
+        <record id="place_type_tree" model="ir.ui.view">
+            <field name="name">place.type.tree</field>
+            <field name="model">place.type</field>
+            <field name="arch" type="xml">
+                <tree string="Place Type">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+            <!-- action for place type Views -->
+        <record id="action_place_type_view" model="ir.actions.act_window">
+            <field name="name">Place Type</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">place.type</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem name="Place Type" id="menu_place_type"    parent="menu_types_main" action="action_place_type_view"/>         
+
+    </data>
+</openerp>

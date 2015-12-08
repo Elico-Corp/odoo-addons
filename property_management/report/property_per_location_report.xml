@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<openerp> 
+    <data>
+        <template id="report_property_per_location1">
+            <t t-call="report.html_container">
+               <t t-foreach="docs" t-as="o">
+                    <t t-call="report.external_layout">
+                        <div class="page">
+                            <div class="oe_structure" />
+                            <div class="row">
+                                <span class="text-center"><h1>Property Per Location</h1></span>
+                            </div>
+
+                           <table class="table table-condensed">
+                                <tr>
+                                    <th>Property</th>
+                                    <th>Sub Property</th>
+                                    <th>State</th>
+                                    <th>City</th>
+                                    <th>Township</th>
+                                </tr>
+
+                                <tr t-foreach="property_location(data)" t-as="move_line">
+                                  <td><t t-esc="move_line['name']"/></td>
+                                  <td><t t-esc="move_line['child_ids']"/></td>
+                                  <td><t t-esc="move_line['state_id']"/></td>
+                                  <td><t t-esc="move_line['city']"/></td>
+                                  <td><t t-esc="move_line['township']"/></td>
+                                </tr>
+                           </table>
+
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+    </data>
+</openerp>

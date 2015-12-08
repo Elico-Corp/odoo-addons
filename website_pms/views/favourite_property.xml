@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <template id="website_pms.favourite_property" name="favourite_property">
+            <t t-call="website.layout">
+                <div id="fav_list_display_id" class="col-md-12 fav_list_display">
+                    <h2 style="text-align:center;color:#A52A2A;font-family:Georgia;">Favourite Property</h2>
+                    <t t-if='fav_property_rec'>
+                        <t t-foreach="fav_property_rec" t-as="f">
+                            <div class="col-md-12">
+                                <div class="row ">
+                                    <div class='col-md-3'>
+                                        <a t-att-href="keep('/selected_property?id=%s' % (f.id))">
+                                            <img itemprop="image" class="img img-responsive img_fix_size" t-att-src="website.image_url(f, 'image')" />
+                                        </a>
+                                        <t t-if="f.id in fav_assets_list">
+                                            <input type="checkbox" data-toggle="toggle" checked="checked" t-att-data='f.id' id="fav_img_btn" class="btn icon-btn fav_img"
+                                                data-on="Remove from favourites" data-off="Add to favourites" data-offstyle="success" data-onstyle="danger" data-style="ios"></input>
+                                        </t>
+                                        <t t-if="not f.id in fav_assets_list">
+                                            <input type="checkbox" data-toggle="toggle" t-att-data='f.id' id="fav_img_btn" class="btn icon-btn fav_img"
+                                                data-on="Remove from favourites" data-off="Add to favourites" data-offstyle="success" data-onstyle="danger" data-style="ios"></input>
+                                        </t>
+                                    </div>
+                                    <div class='col-md-3'>
+                                        <p>
+                                            <div>
+                                                <strong>
+                                                    <a t-att-href="keep('/selected_property?id=%s' % (f.id))">
+                                                        <t t-esc='f.name'/>
+                                                        <br/>
+                                                    </a>
+                                                    <t t-if='f.state == "normal" and f.ground_rent'>
+                                                        <span t-field='f.ground_rent' style="white-space: nowrap;" t-field-options='{
+                                                        "widget": "monetary",
+                                                        "display_currency": "user_id.partner_id.property_product_pricelist.currency_id"
+                                                        }'></span>
+                                                    </t>
+                                                    <t t-if='f.state == "close" and f.sale_price'>
+                                                        <span t-field='f.sale_price' style="white-space: nowrap;" t-field-options='{
+                                                        "widget": "monetary",
+                                                        "display_currency": "user_id.partner_id.property_product_pricelist.currency_id"
+                                                        }'></span>
+                                                    </t>
+                                                </strong>
+                                            </div>
+                                            <t t-esc='f.street' />
+                                            <t t-esc='f.street2' />
+                                            <t t-esc='f.township' />
+                                            <t t-esc='f.city' />
+                                            <br/>
+                                            <t t-esc='f.state_id.name' />
+                                            <t t-esc='f.country_id.name' />
+                                            <t t-esc='f.zip' />
+                                            <br/>
+                                            Added: 
+                                            <t t-esc='f.create_date'/>
+                                        </p>
+                                    </div>
+                                    <div class='col-md-3'>
+                                        <h5>
+                                            <strong>Property features:</strong>
+                                        </h5>
+                                        <t t-foreach="f.utility_ids" t-as="u">
+                                            <t t-esc='u.utility_id.name' />
+                                            <br/>
+                                        </t>
+                                        <div class= 'contact_agent_class'>
+                                            <input class='fav_property_detail' type='hidden'
+                                            t-att-value='f.id' />
+                                            <button type="button" t-att-id='f.id' class="btn btn-info btn-lg fav_contact_agent">
+                                                <i class="fa fa-phone"> Contact Agent</i>
+                                            </button>
+                                            <div class="fav_thank_you">
+                                                <div class= "text-danger" style="font-size:16px;">
+                                                    <b>Your message has been sent!</b>
+                                                    <br/>
+                                                    The estate agent should get back to you shortly.
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class='col-md-3'>
+                                        <strong>Near By Places:</strong>
+                                        <br/>
+                                        <t t-foreach="f.nearby_ids" t-as="n">
+                                            <i class="fa fa-angle-double-right" data-container="body" data-toggle="popover" data-placement="top" title="" data-content="Indicates whether or not this product get other prep before shipment" data-original-title="">
+                                                <t t-esc='n.name' />
+                                                <t t-esc='n.distance' />
+                                                <echo>M</echo>
+                                                <t t-esc='m' />
+                                            </i>
+                                            <br/>
+                                        </t>
+                                    </div>
+                                </div>
+                                <br/>
+                            </div>
+                        </t>
+                    </t>
+                </div>
+            </t>
+        </template>
+
+        <!-- Modal Template Call -->
+        <template id='contact_agent_modal_id'>
+            <!-- Model to display contact Agent -->
+            <div class="modal fade" tabindex="-1" role="dialog" id="myModal"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                    <form class="form_view lead_modal_form" name="lead_modal_form">
+                        <!-- Modal content -->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal"
+                                aria-hidden="true">&amp;times;</button>
+                                <h4 class="modal-title">Contact Information</h4>
+                            </div>
+                            <!-- Modal body -->
+                            <div class="" id="modal_info">
+                                <!-- Custom Form View -->
+                                <div class="col-md-12">
+                                    <!-- Custom Form View -->
+                                    <div class="row">
+                                        <div class="form-group">
+                                            <label class="control-label col-md-12" for="inputFirstName">Name:
+                                            </label>
+                                            <div class="col-md-6">
+                                                <input type="text" id="inputFirstName" placeholder="First name"
+                                                    name="firstname" value="" class="form-control" required="" />
+                                            </div>
+                                            <div class="col-md-6">
+                                                <input type="text" id="inputSurname" placeholder="Surname"
+                                                    name="surname" value="" required="" class="form-control" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label class="control-label" for="inputEmail">Email:</label>
+                                            <input type="email" id="inputEmail" placeholder="Email"
+                                                name="email" value="" required="" class="form-control" />
+                                            <span class="help-block" style="display: none;">Please provide an email
+                                                address.</span>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="control-label" for="inputTel">Telephone:</label>
+                                            <input type="text" id="inputTel" placeholder="Telephone number"
+                                                name="tel" value="" required="" class="form-control" />
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label class="control-label" for="inputTelType">Phone type:</label>
+                                            <select id="inputTelType" name="telType" class="form-control">
+                                                <option value="mob">Mobile</option>
+                                                <option value="work">Work</option>
+                                                <option value="home">Home</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="control-label" for="inputTelTime">When to call?</label>
+                                            <select id="inputTelTime" name="telTime" class="form-control">
+                                                <option value="anytime">Anytime</option>
+                                                <option value="morning">Morning</option>
+                                                <option value="afternoon">Afternoon</option>
+                                                <option value="evening">Evening</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="row asset">
+                                        <input type="hidden" value=" " name="asset" id="fav_asset_modal_id"></input>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-md-12">
+                                            <label class="control-label" for="inputMsg">Message for estate
+                                                agent:</label>
+                                            <textarea id="inputMsg" name="msg"
+                                                placeholder="Message for estate agent" rows="3" class="form-control">Hello,&#13;&#10;Please may I arrange a viewing for this property?&#13;&#10;Thanks!
+                                            </textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Modal footer -->
+                            <div class="modal-footer">
+                                <button type="close" class="btn btn-default"
+                                data-dismiss="modal">Close</button>
+                                <a class="btn btn-primary btn-lg" id="fav_send_agent_modal_id" data-dismiss="modal">
+                                    <i class="fa fa-envelope"></i> Send to estate agent
+                                </a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </template>
+
+        <!-- display my favourites menu -->
+        <template id="header_fav" inherit_id="website.layout" name="Header Property My favourite Link">
+            <xpath expr="//header//ul[@id='top_menu']/li" position="before">
+                <t t-set="fav_assets" t-value="website.get_fav_property()"/>
+                <li t-att-class="'' if fav_assets else 'hidden'">
+                    <a href="/page/website_pms.favourite_property">
+                        My Favourites 
+                        <sup id="no_of_property" t-attf-class="label label-success" t-esc="fav_assets or ''"/>
+                    </a>
+                </li>
+            </xpath>
+        </template>
+
+    </data>
+</openerp>

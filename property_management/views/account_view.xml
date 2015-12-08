@@ -1,0 +1,1019 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+
+          <!-- Property Form View  -->
+    <record model="ir.ui.view" id="account_asset.view_account_asset_asset_form">
+        <field name="name">account.asset.asset.form</field>
+        <field name="model">account.asset.asset</field>
+        <field name="arch" type="xml">
+            <form string="Asset">
+                        <header>
+                            <field name="state" widget="statusbar" statusbar_visible="draft,book,normal,close,sold,cancle" statusbar_colors='{"draft":"red", "normal":"blue", "close":"red","sold":"green","cancle":"black"}' select="1" clickable="True"/>
+                        </header>
+                        <sheet>
+                            <field name="image" widget='image' class="oe_left oe_avatar" />
+                                <div class="oe_title oe_left">
+                                    <h1>
+                                        <field name="name" default_focus="1" placeholder="Name"/>
+                                    </h1>
+                                    <b><field name="code" string="Code" placeholder="Code"/></b>
+                                </div>
+                                <div  class="oe_right oe_button_box">
+                                    <button name="open_url" string="Get Location" type="object" icon="fa-location-arrow" colspan="2" class="oe_inline oe_stat_button"/>
+                                    <button name="button_normal" string="Open" type="object" states='draft' icon="fa-folder-open" colspan="2" class="oe_inline oe_stat_button"/>
+                                    <button name="button_close" string="Sale" type="object" states='normal' icon="fa fa-tags" class="oe_inline oe_stat_button"/>
+                                    <button name="button_cancel" string="End of Cycle" type="object" states='normal,sold,close' icon="fa-undo" class="oe_inline oe_stat_button"/>
+                                    <button name="button_draft" string="Set to Availble" type="object" states='cancel' icon="fa-home" colspan="2" class="oe_inline oe_stat_button"/>
+                                    <button name="set_to_close" states="open" string="Set to Close" type="object" icon="fa fa-close" class="oe_inline oe_stat_button"/>
+                                    <button name="set_to_draft" states="open" string="Set to Draft" type="object" icon="fa-home" colspan="2" class="oe_inline oe_stat_button"/>
+                                    <button class="oe_inline oe_stat_button" name="open_entries"  type="object" icon="fa-pencil">
+                                        <field string="Entries" name="entry_count" widget="statinfo" />
+                                    </button>
+                                </div>
+                                <group>
+                                   <group>
+                                    <label for="street" string="Address"/>
+                                        <div>
+                                            <field name="street" placeholder="Street..." required="1"/>
+                                            <field name="street2" placeholder="Street2..."/>
+                                            <field name="township" placeholder="Township..." />
+                                            <div class="address_format">
+                                                <field name="city" placeholder="City" style="width: 35%%" required="1"/>
+                                                <field name="state_id" class="oe_no_button" placeholder="State" style="width: 40%%" options='{"no_open": True}'/>
+                                                <field name="zip" placeholder="ZIP" style="width: 25%%"/>
+                                            </div>
+                                            <field name="country_id" placeholder="Country" class="oe_no_button" options='{"no_open": True, "no_create": True}' required="1"/>
+                                        </div>
+                                        <field name="age_of_property"/>
+                                        <field name="no_of_towers" attrs="{'invisible':[('parent_id','!=',False)]}"/>
+                                        <field name="floor" attrs="{'invisible':[('parent_id','=',False)]}"/>
+                                        <field name="gfa_feet" on_change="sqft_to_meter(gfa_feet)"/>
+                                        <field name="gfa_meter"/>
+                                        <field name="active"/>
+                                        <field name="video_url"/>
+                                    </group>
+
+                                    <group>
+                                        <field name="parent_id" on_change="parent_property_onchange(parent_id)" placeholder="Parent"/>
+                                        <field name="type_id"/>
+                                        <field name="property_manager"/>
+                                        <field name="furnished"/>
+                                        <field name = "bedroom"/>
+                                        <field name = "bathroom"/>
+                                        <field name="facing"/>
+                                        <field name = "income_acc"/>
+                                        <field name="no_of_property" attrs="{'invisible':[('parent_id','=',False)]}"/>
+                                        <field name="category_id" on_change="onchange_category_id(category_id)"/>
+                                        <field name="company_id" string="Property Management Company"/>
+                                        <field name="ownership"/>
+                                        <field name="green_vision_title" attrs="{'invisible':[('ownership','!=','freehold')]}"/>
+                                        <field name="third_party_title" attrs="{'invisible':[('ownership','!=','freehold1')]}"/>
+                                        <field name="conditions" attrs="{'invisible':[('ownership','!=','leasehold'),('ownership','!=','bot')]}"/>
+                                        <field name="start_date" attrs="{'invisible':[('ownership','!=','leasehold'),('ownership','!=','bot')]}"/>
+                                        <field name="end_date" attrs="{'invisible':[('ownership','!=','leasehold'),('ownership','!=','bot')]}"/>
+                                        <field name="simulation" invisible="1"/>
+                                        <field name="revenue" invisible="1"/>
+<!--                                        <field name="parent_pro" invisible="1"/-->
+                                        <field name="mmaintenance_id" invisible="1"/>
+                                        <field name="sub_pro" invisible="1"/>
+                                    </group>
+                                </group>
+
+                                <notebook>
+                                    <page string="General">
+                                        <group>
+                                            <group>
+                                                <field name="purchase_value" widget="monetary" options="{'currency_field': 'currency_id'}" on_change="onchange_purchase_salvage_value(purchase_value, salvage_value)"/>
+                                                <field name="salvage_value" widget="monetary" options="{'currency_field': 'currency_id'}" on_change="onchange_purchase_salvage_value(purchase_value, salvage_value)"/>
+                                                <field name="value_residual" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                                                <field name="partner_id"/>
+                                            </group>
+                                            <group>
+                                                <field name="method"/>
+                                                <field name="method_progress_factor" attrs="{'invisible':[('method','=','linear')], 'required':[('method','=','degressive')]}"/>
+                                                <label for="method_time"/>
+                                                <div>
+                                                    <field name="method_time" on_change="onchange_method_time(method_time)" class="oe_inline"/>
+                                                    <button name="%(account_asset.action_asset_modify)d" states="open" string="Change Duration" type="action" icon="terp-stock_effects-object-colorize" class="oe_inline" colspan="1"/>
+                                                </div>
+                                                <field name="prorata" attrs="{'invisible': [('method_time','=','end')]}"/>
+                                                <field name="method_number" attrs="{'invisible':[('method_time','=','end')], 'required':[('method_time','=','number')]}"/>
+                                                <field name="method_period"/>
+                                                <field name="method_end" attrs="{'required': [('method_time','=','end')], 'invisible':[('method_time','=','number')]}"/>
+                                            </group>
+                                        </group>
+                                    </page>
+                                    <page string="Depreciation Board">
+                                        <field name="depreciation_line_ids" mode="tree">
+                                            <tree string="Depreciation Lines" colors="blue:(move_check == False);black:(move_check == True)">
+                                                <field name="depreciation_date"/>
+                                                <field name="sequence" invisible="1"/>
+                                                <field name="depreciated_value" readonly="1"/>
+                                                <field name="amount"/>
+                                                <field name="remaining_value" readonly="1"/>
+                                                <field name="move_check"/>
+                                                <field name="parent_state" invisible="1"/>
+                                                <button name="create_move" attrs="{'invisible':['|',('move_check','!=',False),('parent_state','!=','open')]}" icon="gtk-execute" string="Create Move" type="object"/>
+                                            </tree>
+                                            <form string="Depreciation Lines"> 
+                                                <group>
+                                                    <group>
+                                                        <field name="parent_state" invisible="1"/>
+                                                        <field name="name"/>
+                                                        <field name="amount"/>
+                                                        <field name="move_id"/>
+                                                        <field name="move_check"/>
+                                                        <field name="parent_state" invisible="1"/>
+                                                    </group>
+                                                    <group>
+                                                        <field name="sequence"/>
+                                                        <field name="depreciation_date"/>
+                                                        <field name="depreciated_value"/>
+                                                        <field name="remaining_value"/>
+                                                    </group>
+                                                </group>
+                                            </form>
+                                        </field>
+                                        <button type="object" name="compute_depreciation_board" string="Compute" icon="terp-stock_format-scientific" colspan="2" attrs="{'invisible':[('state','=','close')]}"/>
+                                    </page>
+                                    <page string="History">
+                                        <field name="account_move_line_ids" readonly="1"/>
+                                        <field name="history_ids" readonly="1"/>
+                                    </page>
+                                    <page string="Sub Properties" attrs="{'readonly':[('state','in',('sold','close'))]}">
+                                        <separator string="Sub Properties" colspan="4" />
+                                        <field name="child_ids" />
+    
+                                        <separator string="Room Details" colspan="4" />
+                                        <field name="room_ids" nolabel="1" colspan="4" />
+                                    </page>
+    
+                                    <page string="Occupancy" attrs="{'readonly':[('state','in',('sold','close'))]}">
+                                        <separator string="Occupancy &amp; Sales Income Simulation" colspan="4" />
+                                        <group colspan="4" col="4">
+                                            <field name="simulation_name"/>
+                                            <field name="simulation_date"/>
+                                            <field name="construction_cost"/>
+                                        </group>
+                                        
+                                        <separator string="Phases" colspan="4" />
+                                        <field name="property_phase_ids" nolabel="1" colspan="4" attrs="{'readonly':[('state','in',('sold','close'))]}">
+                                            <tree string="Property Phase">
+                                                <field name="start_date"/>
+                                                <field name="end_date"/>
+                                                <field name="lease_price"/>
+                                                <field name="occupancy_rate"/>
+                                                <field name="operational_budget"/>
+                                                <field name="company_income"/>
+                                                <field name="commercial_tax"/>
+                                            </tree>
+                                            <form string="Property Phase">
+                                                <group colspan="4">
+                                                    <field name="start_date"/>
+                                                    <field name="end_date"/>
+                                                    <field name="lease_price"/>
+                                                    <field name="occupancy_rate"/>
+                                                    <field name="operational_budget"/>
+                                                    <field name="company_income"/>
+                                                    <field name="commercial_tax"/>
+                                                </group>
+                                            </form>
+                                        </field>
+    
+                                        <separator string="Property Performance" colspan="4" />
+                                        <group colspan="4" col="4">
+                                            <field name="occupancy_rates"/>
+                                            <field name="sales_rates"/>
+                                            <field name="financial_performance"/>
+                                            <field name="roi"/>
+                                            <field name="ten_year_roi"/>
+                                            <field name="irr"/>
+                                            <field name="return_period"/>
+                                            <field name="operational_costs"/>
+                                        </group>
+                                    </page>
+    
+                                    <page string="Property Budget" attrs="{'readonly':[('state','in',('sold','close'))]}">
+                                        <separator string="Property Budget" colspan="4" />
+                                        <field name="crossovered_budget_line_property" colspan="4" nolabel="1" attrs="{'readonly':[('state','in',('sold','close'))]}">
+                                            <tree string="Budget Lines">
+                                                <field name="crossovered_budget_id"/>
+                                                <field name="analytic_account_id"/>
+                                                <field name="general_budget_id"/>
+                                                <field name="date_from"/>
+                                                <field name="date_to"/>
+                                                <field name="paid_date"/>
+                                                <field name="planned_amount" sum="Planned Amount"/>
+                                                <field name="practical_amount" sum="Practical Amount"/>
+                                                <field name="theoritical_amount" sum="Theoretical Amount"/>
+                                                <field name="percentage"/>
+                                            </tree>
+                                            <form string="Budget Lines">
+                                                <group>
+                                                    <group>
+                                                        <field name="crossovered_budget_id" required="1"/>
+                                                        <field name="analytic_account_id" />
+                                                        <field name="general_budget_id"/>
+                                                        <field name="planned_amount"/>
+                                                    </group>
+                                                    <group>
+                                                        <label for="date_from" string="Duration"/>
+                                                        <div>
+                                                            <field name="date_from" class="oe_inline"/> - 
+                                                            <field name="date_to" class="oe_inline"/>
+                                                        </div>
+                                                        <field name="paid_date"/>
+                                                        <field name="company_id" widget="selection"/>
+                                                    </group>
+                                                </group>
+                                            </form>
+                                        </field>
+                                    </page>
+    
+                                    <page string="Rents,Rates &amp; Insurance" attrs="{'readonly':[('state','in',('sold','close'))]}">
+                                        <group colspan="2">
+                                            <separator string="Property Rent" colspan="4"/>
+                                            <group colspan='4' col='4'>
+                                                <field name="rent_type_id" widget="selection" colspan="2"/>
+                                                <field name="ground_rent" string="Ground Rents"/>
+                                                <field name= "current_tenant" invisible="0"/>
+                                            </group>
+                                        </group>
+	                                    <separator string="Rental" colspan="4" />
+                                        <group colspan="4" col="4">
+                                            <field name="unit_price" on_change="unit_price_calc(unit_price,gfa_feet)"/>
+                                            <field name="currency_id"/>
+                                            <field name="total_price"/>
+                                        </group>
+                                        <group colspan="2" height="200" />
+                                        <group  colspan="2">
+
+                                            <separator string="Tenancy Property" colspan="4"/>
+                                            <field name="tenancy_property_ids" colspan="4" readonly="1" nolabel="1" height="200">
+                                                <form string="Tenancy Property">
+                                                    <group>
+                                                        <group colspan='4' col='4'>
+                                                            <field name="code"/>
+                                                            <field name="name"/>
+                                                            <field name="tenant_id" required = "1"/>
+                                                            <field name="rent" string="Rent"/>
+                                                            <field name="deposit" string="Deposit"/>
+                                                            <field name="brokerage_fee"/>
+                                                            <field name="recurring_rule_type"/>
+                                                            <field name="date_start"/>
+                                                            <field name="date"/>
+                                                            <field name="company_id"/>
+                                                           <field name="contract_type"/>
+                                                           <field name="doc_name" readonly="0" invisible="1"/>
+                                                           <field name="rel_contract_attachment" filename="doc_name"/>
+                                                           <field name="note"/>
+                                                        </group>
+                                                        <field name="utility_ids" nolabel="1" colspan="4">
+                                                            <tree string="Utility" editable="bottom">
+                                                                <field name="utility_id" widget="selection"/>
+                                                                <field name="contact_id"/>
+                                                                <field name="ref"/>
+                                                                <field name="reading"/>
+                                                                <field name="note"/>
+                                                            </tree>
+                                                            <form string="Utility">
+                                                                <group>
+                                                                    <field name="utility_id" widget="selection"/>
+                                                                    <field name="contact_id"/>
+                                                                    <field name="ref"/>
+                                                                    <field name="reading"/>
+                                                                    <newline/>
+                                                                    <separator string="Notes" colspan="4"/>
+                                                                    <field name="note" colspan="4" nolabel="1"/>
+                                                                </group>
+                                                            </form>
+                                                        </field>
+                                                    </group>
+                                                </form>
+                                                <tree string="Tenancy Property">
+                                                    <field name="code" string="Tenant Code"/>
+                                                    <field name="tenant_id" string="Tenant Name"/>
+                                                    <field name="rent" string="Rent"/>
+                                                    <field name="deposit" string="Deposit"/>
+                                                    <field name="brokerage_fee"/>
+                                                    <field name="recurring_rule_type" string="Payment Term"/>
+                                                    <field name="date_start"/>
+                                                    <field name="date" string="End Date"/>
+                                                    <field name="company_id"/>
+                                                    <field name="contract_type"/>
+                                                    <field name="doc_name" readonly="0" invisible="1"/>
+                                                    <field name="rel_contract_attachment" filename="doc_name"/>
+                                                    <field name="note"/>
+                                                </tree>
+                                            </field>
+                                        </group>
+                                        <group  colspan="2">
+                                            <separator string="Property Insurance" colspan="4"/>
+                                            <field name= "property_insurance_ids" colspan="4" nolabel="1" height="200">
+                                                <form string="Insurance">
+                                                    <group colspan='4' col='4'>
+                                                        <field name="name"/>
+                                                        <field name="policy_no"/>
+                                                        <field name="start_date"/>
+                                                        <field name="end_date"/>
+                                                        <field name="premium" string="Premium"/>
+                                                        <field name="payment_mode_type"/>
+                                                        <field name="company_id"/>
+                                                        <field name="contact" string="Insurance Comapny"/>
+                                                        <field name="doc_name" readonly="0" invisible="1"/>
+                                                        <field name="contract" filename="doc_name"/>
+                                                    </group>
+                                                </form>
+                                                <tree string="Insurance">
+                                                    <field name="name"/>
+                                                    <field name="policy_no"/>
+                                                    <field name="start_date"/>
+                                                    <field name="end_date"/>
+                                                    <field name="premium" string="Premium"/>
+                                                    <field name="payment_mode_type"/>
+                                                    <field name="company_id"/>
+                                                    <field name="contact" string="Insurance Comapny"/>
+                                                    <field name="doc_name" readonly="0" invisible="1"/>
+                                                    <field name="contract" filename="doc_name"/>
+                                                </tree>
+                                            </field>
+                                        </group>
+                                    </page>
+                                    <page string="Utility &amp; Safety Certificate" attrs="{'readonly':[('state','in',('sold','close'))]}">
+                                        <separator string="Utilities" colspan="4"/>
+                                        <field name="utility_ids" nolabel="1">
+                                            <tree string="Utility" editable="bottom">
+                                                <field name="utility_id" widget="selection"/>
+                                                <field name="contact_id"/>
+                                                <field name="ref"/>
+                                                <field name="issue_date"/>
+                                                <field name="expiry_date"/>
+                                                <field name="note"/>
+                                            </tree>
+                                            <form string="Utility">
+                                                <group>
+                                                    <field name="utility_id" widget="selection"/>
+                                                    <field name="contact_id"/>
+                                                    <field name="ref"/>
+                                                    <field name="issue_date"/>
+                                                    <field name="expiry_date"/>
+                                                    <field name="note"/>
+                                                </group>
+                                            </form>
+                                        </field>
+                                        <separator string="Safety Certificate" colspan="4"/>
+                                        <field name="safety_certificate_ids" nolabel="1">
+                                            <tree string="Safety Certificate" editable="bottom">
+                                                <field name="name"/>
+                                                <field name="contact_id" widget="selection"/>
+                                                <field name="ref"/>
+                                                <field name="expiry_date"/>
+                                                <field name="ew"/>
+                                                <field name="weeks"/>
+                                            </tree>
+                                            <form string="Safety Certificate">
+                                                <group colspan='4' col='4'>
+                                                    <field name="name"/>
+                                                    <field name="contact_id" widget="selection"/>
+                                                    <field name="ref"/>
+                                                    <field name="expiry_date"/>
+                                                    <field name="ew"/>
+                                                    <field name="weeks"/>
+                                                </group>
+                                            </form>
+                                        </field>
+                                    </page>
+                                    <page string="Maintenance &amp; Repairs" attrs="{'readonly':[('state','in',('sold','close'))]}">
+                                        <separator string="Maintenance &amp; Repairs" colspan="4"/>
+                                        <field name="maintenance_ids" nolabel="1">
+                                            <tree>
+                                                <field name="type" />
+                                                <field name="date" />
+                                                <field name="last_record_update" invisible = "1"/>
+                                                <field name="name" />
+                                                <field name="assign_to"/>
+                                                <field name="account_code"/>
+                                                <field name="cost"/>
+                                                <field name="invc_check" invisible = "1"/>
+                                                <field name="renters_fault" attrs="{'invisible': [('invc_check','!=',False)]}"/>
+                                                <field name="state"/>
+                                                <button name="open_invoice" string="Open Invoice" type="object"
+                                                  attrs="{'invisible': [('invc_check','!=',True)]}"/>
+                                            </tree>
+                                            <form string="Documents">
+                                                <button name="open_invoice" string="Open Invoice" type="object"
+                                                  attrs="{'invisible': [('invc_check','!=',True)]}"/>
+                                                <group colspan="4">
+                                                    <field name="type" />
+                                                    <field name="date" />
+                                                    <field name="last_record_update" invisible = "1"/>
+                                                    <field name="name" />
+                                                    <field name="assign_to"/>
+                                                    <field name="account_code"/>
+                                                    <field name="cost"/>
+                                                    <field name="invc_check" invisible = "1"/>
+                                                    <field name="renters_fault" attrs="{'invisible': [('invc_check','!=',False)]}"/>
+                                                    <field name="state"/>
+                                                </group>
+                                            </form>
+                                        </field>
+                                    </page>
+                                    <page string="Purchase And Sale Detail" attrs="{'readonly':[('state','in',('sold','close'))]}">
+                                        <separator string="Payment Details" colspan="4"/>
+                                        <group colspan="4" col='4' attrs="{'readonly':[('state','in',('sold','close'))]}">
+                                            <field name="sale_date"/>
+                                            <field name="sale_price" string="Sale price"/>
+                                            <field name="payment_term"/>
+                                            <field name="customer_id"/>
+                                            <field name="doc_name" readonly="0" invisible="1"/>
+                                        </group>
+                                        <newline/>
+                                        <field name="sale_instl_chck" invisible="1"/>
+                                        <button name="genrate_payment_enteries" string="Genrate Enteries" type="object" icon="fa-location-arrow" 
+                                            colspan="2" class="oe_inline oe_stat_button" attrs="{'invisible':[('sale_instl_chck','!=',False)]}"/>
+                                        <label string="   "/>
+                                        <button name="button_sold" string="Sale" type="object" states='close' icon="terp-accessories-archiver"/>
+                                        <newline/>
+    
+                                        <separator string="Sales Cost" colspan="4"/>
+                                        <field name="sale_cost_ids" nolabel="1" colspan="4" attrs="{'readonly':[('state','in',('sold','close'))]}">
+                                            <tree string="Sale Cost Details" editable="bottom">
+<!--                                                <field name="name" /-->
+                                                <field name="date"/>
+                                                <field name="currency_id"/>
+                                                <field name="amount"/>
+                                                <field name="payment_details"/>
+                                                <field name="move_check"/>
+                                                <field name="remaining_amount"/>
+                                                <field name ="rmn_amnt_per"/>
+                                                <button name="create_move" 
+                                                    attrs="{'invisible':[('move_check','!=',False)]}" icon="gtk-execute" 
+                                                    string="Create Move" type="object"/>
+                                            </tree>
+                                            <form string="Cost Details">
+                                                <group colspan="4">
+<!--                                                    <field name="name"/-->
+                                                    <field name="date" string="Date Sell"/>
+                                                    <field name="currency_id"/>
+                                                    <field name="amount" string="Income"/>
+                                                    <field name="payment_details"/>
+                                                    <field name="move_check"/>
+                                                    <field name="remaining_amount"/>
+                                                    <field name ="rmn_amnt_per"/>
+                                                </group>
+                                            </form>
+                                        </field>
+                                        <separator string="Purchase Details" colspan="4"/>
+                                        <group colspan="4" col="4">
+                                            <field name="purchase_date" required="1"/>
+                                            <field name="end_date"/>
+                                            <field name="purchase_price" string="Purchase Price"/>
+                                            <field name="multiple_owners"/>
+                                            <field name="total_owners" attrs="{'readonly':[('multiple_owners','=',False)]}"/>
+                                            <field name="recurring_rule_type"/>
+                                            <field name="pur_instl_chck" invisible="1"/>
+                                            <button name="create_purchase_installment" string="Genrate Installment" type="object" icon="fa-location-arrow" 
+                                                colspan="2" class="oe_inline oe_stat_button" attrs="{'invisible':[('pur_instl_chck','!=',False)]}"/>
+                                        </group>
+                                        <newline/>
+                                        <separator string="Purchase Cost" colspan="4"/>
+                                        <field name="purchase_cost_ids" nolabel="1" colspan="4">
+                                            <tree string="Purchase Cost Details" editable="bottom">
+                                                <field name="date"/>
+                                                <field name="currency_id"/>
+                                                <field name="amount" sum="Total Cost"/>
+                                                <field name="payment_details"/>
+                                                <field name="move_check"/>
+                                                <field name="remaining_amount"/>
+                                                <field name="rmn_amnt_per"/>
+                                                <field name="name" string="Notes"/>
+                                                <button name="create_move" attrs="{'invisible':[('move_check','!=',False)]}" icon="gtk-execute" string="Create Move" type="object"/>
+                                            </tree>
+                                            <form string="Cost Details">
+                                                <group colspan="4">
+                                                    <field name="name"/>
+                                                    <field name="date" string="Date Purchase"/>
+                                                    <field name="amount" string="Cost"/>
+                                                </group>
+                                            </form>
+                                        </field>
+                       
+                                    </page>
+                                    <page string="Photos">
+                                        <group>
+                                            <separator string="Photos" colspan="4" />
+                                            <field name="property_photo_ids" nolabel="1" colspan="4">
+                                                <tree string="Photos">
+                                                    <field name="photos_description" />
+                                                        <field name="doc_name" readonly="0" invisible="1"/>
+                                                        <field name="photos" filename="doc_name"/>
+                                                </tree>
+                                                <form string="Documents">
+                                                    <group colspan="4">
+                                                        <field name="photos_description" />
+                                                        <field name="doc_name" readonly="0" invisible="1"/>
+                                                        <field name="photos" filename="doc_name"/>
+                                                    </group>
+                                                </form>
+                                            </field>
+                                        </group>
+                                    </page>
+                                    <page string="Nearest Places">
+                                        <group>
+                                            <separator string="Nearest Property" colspan="4"/>
+                                            <field name="nearby_ids" nolabel="1">
+                                                    <tree editable="bottom">
+                                                        <field name="name" />
+                                                        <field name="distance" />
+                                                        <field name="type" />
+                                                    </tree>
+                                                    <form string="Documents">
+                                                        <group colspan="4">
+                                                            <field name="name" />
+                                                            <field name="distance" />
+                                                            <field name="type" />
+                                                        </group>
+                                                    </form>
+                                                </field>
+                                        </group>
+                                    </page>
+                                    <page string="Documents">
+                                        <field name="contract_attachment_ids" nolabel="1" colspan="4">
+                                            <tree string="Document">
+                                                <field name="name" />
+                                                <field name="expiry_date"/>
+                                                <field name="doc_name" readonly="0" invisible="1"/>
+                                                <field name="contract_attachment" filename="doc_name"/>
+                                            </tree>
+                                            <form string="Documents">
+                                                <group colspan="4">
+                                                    <field name="name" colspan="2"/>
+                                                    <field name="expiry_date"/>
+                                                    <newline />
+                                                    <field name="doc_name" readonly="0" invisible="1"/>
+                                                    <field name="contract_attachment" filename="doc_name"/>
+                                                </group>
+                                            </form>
+                                        </field>
+                                    </page>
+    
+                                </notebook>
+                                <newline/>
+                                <separator string="Notes" colspan="2"/>
+                            <field name="note" nolabel="1" colspan="2"/>
+                        </sheet>
+                    </form>
+            </field>
+        </record>
+
+                <!-- Property Tree View  -->
+        <record id="property_view_asset_tree" model="ir.ui.view">
+            <field name="name">property.view.asset.tree</field>
+            <field name="model">account.asset.asset</field>
+            <field name="arch" type="xml">
+                <tree string="Properties">
+                    <field name="name"/>
+                    <field name="parent_id"/>
+                    <field name="type_id"/>
+                    <field name="furnished"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+
+            <!-- Property Search View  -->
+        <record id="view_account_asset_search" model="ir.ui.view">
+            <field name="name">account.asset.asset.search</field>
+            <field name="model">account.asset.asset</field>
+            <field name="arch" type="xml">
+                <search string="Account Asset">
+                     <filter string="Active" name="active" domain="[('active','=',1)]"/>
+                    <filter string="On Lease" name="on_lease" domain="[('state','=','normal')]"/>
+                    <filter string="Sale" name="sale" domain="[('state','=','close')]"/>
+                    <filter string="Sold" name="sold" domain="[('state','=','sold')]"/>
+                    <filter string="Available" name="available" domain="[('state','=','draft')]"/>
+                    <filter string="Property" name="property" domain="[('parent_id','=',False)]"/>
+                    <field name="name"/>
+                    <field name="type_id"/>
+                    <field name="parent_id"/>
+                    <field name="furnished"/>
+                    <field name="ground_rent" string="Ground rent"/>
+                    
+                    <newline/>
+                    <group expand="0" string="Group By..." colspan="4" col="10">
+                        <filter string="Property Type" icon="terp-personal" domain="[]" context="{'group_by':'type_id'}"/>
+                        <filter string="Parent Property" icon="terp-personal" domain="[]" context="{'group_by':'parent_id'}"/>
+                        <filter string="Furnish Type" icon="terp-personal" domain="[]" context="{'group_by':'furnished'}"/>
+                        <filter string="State" name="grpstate" icon="terp-personal" domain="[]" context="{'group_by':'state'}"/>
+                    </group>
+                </search>
+        </field>
+    </record>
+
+            <!-- Property Kanban View  -->
+        <record model="ir.ui.view" id="property_asset_kanban_view">
+            <field name="name">Property Asset Kanban</field>
+            <field name="model">account.asset.asset</field>
+            <field name="arch" type="xml">
+                <kanban default_group_by="state">
+                    <field name="state"/>
+                    <field name="color"/>
+                    <field name="name"/>
+                    <field name="parent_id"/>
+                    <field name="type_id"/>
+                    <field name="furnished"/>
+                    <field name="has_image"/>
+                    <field name="country_id"/>
+                    <field name="state_id"/>
+                    <field name="city"/>
+                    <templates>
+                        <t t-name="kanban-box">
+	                        <div t-attf-class="oe_kanban_color_#{kanban_getcolor(record.color.raw_value)} oe_kanban_vignette oe_semantic_html_override oe_kanban_card oe_kanban_project oe_kanban_global_click">
+                                <table width="100%"> 
+                                    <tr>
+                                        <td width="35%">
+			                                <a type="open">
+			                                    <t t-if="record.has_image.raw_value === true">
+			                                        <img t-att-src="kanban_image('account.asset.asset', 'image', record.id.value)" class="oe_kanban_image"/>
+			                                    </t>
+			                                    <t t-if="record.has_image.raw_value === false">
+			                                        <img t-att-src='_s + "/base/static/src/img/company_image.png"' class="oe_kanban_image"/>
+			                                    </t>
+			                                </a>
+			                            </td>
+			                            <td width="55%">
+			                                <div class="oe_kanban_details">
+			                                    <h4 class="oe_partner_heading"><a type="open"><field name="name"/></a></h4>
+			                                    <div class="oe_kanban_partner_categories"/>
+			                                    <div class="oe_kanban_partner_links"/>
+			                                    <ul>
+			                                        <li t-if="record.type_id.raw_value "><field name="type_id"/></li>
+			                                        <li t-if="record.state_id.raw_value " style="margin-top:5px;"><field name="state_id"/></li>
+			                                        <li t-if="record.city.raw_value and record.country_id.raw_value"><field name="city"/>, <field name="country_id"/></li>
+			                                        <li t-if="record.furnished.raw_value" style="margin-top:10px;"><b>Furnishing : </b><field name="furnished"/></li>
+			                                    </ul>
+			                                </div>
+			                            </td>
+                                        <td width="10%">
+                                            <div class="oe_dropdown_toggle oe_dropdown_kanban" groups="base.group_user">
+                                                <span class="oe_e">í</span>
+                                                <ul class="oe_dropdown_menu">
+                                                    <t t-if="widget.view.is_action_enabled('edit')"><li><a type="edit">Edit</a></li></t>
+                                                    <t t-if="widget.view.is_action_enabled('delete')"><li><a type="delete">Delete</a></li></t>
+                                                    <li><ul class="oe_kanban_colorpicker" data-field="color"/></li>
+                                                </ul>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+	                        </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+                <!-- Property gantt View  -->
+        <record id="view_property_gantt" model="ir.ui.view">
+                <field name="name">property_gantt</field>
+                <field name="model">account.asset.asset</field>
+                <field name="arch" type="xml">
+                        <gantt date_start="purchase_date" date_stop="sale_date" string="Sale">
+                        </gantt>
+                </field>
+        </record>
+
+
+
+            <!--  Action for Property Views  -->
+        <record id="action_property_assets_view" model="ir.actions.act_window">
+            <field name="name">Property</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">account.asset.asset</field>
+            <field name="view_type">form</field>
+            <field name="search_view_id" ref="property_management.view_account_asset_search"/>
+            <field name="view_mode">kanban,tree,form,gantt</field>
+            <field name="context">{'search_default_grpstate':1}</field>
+        </record>
+
+        <menuitem
+                name="Property"
+                id="menu_property_assets"
+                parent="menu_property_sub"
+                action="action_property_assets_view" 
+                sequence = "1"
+                />
+
+            <!--account voucher form view-->
+        <record model="ir.ui.view" id="view_vendor_receipt_form_inherit">
+            <field name="name">account.voucher.receipt.form</field>
+            <field name="model">account.voucher</field>
+            <field name="inherit_id" ref="account_voucher.view_vendor_receipt_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="/form/sheet/notebook/page/field[@name='line_cr_ids']/tree/field[@name='account_id']" position="after">
+                    <field name="tenancy_rent_id"/>
+                    <field name="property_id" />
+                </xpath>
+            </field>
+        </record>
+
+            <!--account voucher line form view-->
+        <record model="ir.ui.view" id="view_voucher_line_form_inherit">
+            <field name="name">account.voucher.line.form</field>
+            <field name="model">account.voucher.line</field>
+            <field name="inherit_id" ref="account_voucher.view_voucher_line_form"/>
+            <field name="arch" type="xml">
+                <field name="account_id" position="after">
+                    <field name="tenancy_rent_id" domain="[('paid','=',False)]" on_change="onchange_tenant_rent(tenancy_rent_id)"/>
+                    <field name="property_id"/>
+                </field>
+            </field>
+        </record>
+
+            <!-- account voucher form view -->
+        <record model="ir.ui.view" id="view_voucher_form2_inherit">
+            <field name="name">account.voucher1.form</field>
+            <field name="model">account.voucher</field>
+            <field name="inherit_id" ref="account_voucher.view_voucher_form"/>
+            <field name="arch" type="xml">
+                <field name="reference" position="after">
+                    <field name="tenancy_id"/>
+                </field>
+                <field name="reconcile_id" position="after">
+                    <field name="property_id"/>
+                </field>
+            </field>
+        </record>
+
+            <!--Property Tenancy Tree View-->
+        <record id="property_analytic_view_tree" model="ir.ui.view">
+            <field name="name">property.analytic.view.tree</field>
+            <field name="model">account.analytic.account</field>
+            <field name="arch" type="xml">
+                <tree string="Tenancy Details">
+                    <field name="tenant_id"/>
+                    <field name="date_start"/>
+                    <field name="date"/>
+                    <field name="rent" string="Total rent"/>
+                    <field name="deposit" string="Total deposit"/>
+                    <field name="recurring_rule_type"/>
+                </tree>
+            </field>
+        </record>
+
+            <!--Property Tenancy Form View-->
+        <record id="property_analytic_view_form" model="ir.ui.view">
+            <field name="name">property.analytic.view.form</field>
+            <field name="model">account.analytic.account</field>
+            <field name="arch" type="xml">
+                <form string="Tenancy Details">
+                    <header>
+                        <field name="state" widget="statusbar" statusbar_visible="draft,open,close" statusbar_colors='{"draft":"red", "open":"blue", "close":"red"}' select="1"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_title">
+                        <label for="name" class="oe_edit_only"/>
+                            <h1>
+                                <field name="name" class="oe_inline"/>
+                            </h1>
+                            <div name="project"/>
+                            <field name="use_timesheets"/>
+                            <label for="use_timesheets"/>
+                        </div>
+                        <div class="oe_right oe_button_box">
+                             <button class="oe_inline oe_stat_button" type="action" name="%(hr_timesheet.act_analytic_cost_revenue)d" 
+                               icon="fa-usd"  string="Cost/Revenue" widget="statinfo"/>
+                            <field name="rent_entry_chck" invisible="1"/>
+                            <button name="create_rent_schedule" string=" Schedule Rent" type="object" icon="fa-plus" colspan="2" 
+                                    class="oe_inline oe_stat_button" attrs="{'invisible': [('rent_entry_chck','!=',False)]}"/>
+                            <button name="button_receive" string="Deposit Receive" type="object" icon="fa-money" attrs="{'invisible':[('deposit_received','=',True)]}" class="oe_inline oe_stat_button"/>
+                            <button name="button_return" string="Deposit Return" type="object" icon="fa-undo" attrs="{'invisible':['|',('deposit_return','=',True),('deposit_received','=',False)]}" class="oe_inline oe_stat_button"/>
+                            <button name="button_start" string="Start" type="object" states='draft' icon="fa-play" colspan="2" class="oe_inline oe_stat_button"/>
+                            <button name="button_set_to_draft" string="Draft" type="object" states='close' icon="fa-undo" colspan="2" class="oe_inline oe_stat_button"/>
+                            <button name="button_close" string="Close" type="object" states='open' icon="fa-times" colspan="2" class="oe_inline oe_stat_button"/>
+                        </div>
+                        <group colspan="2" attrs="{'readonly':[('state','=','close')]}">
+                            <separator string="Property" colspan="4"/>
+                            <group colspan='4' col='4'>
+<!--								<field name="property_id" required="1" context="{'active_model':'account.analytic.account'}"/-->
+                                <field name="property_id" domain="[('state','=','draft')]" required="1" attrs="{'readonly':[('state','!=','draft')]}"/>
+                                <field name="tenant_id" required = "1" attrs="{'readonly':[('state','!=','draft')]}"/>
+								<field name="manager_id"/>
+                                <field name="template_id" />
+                                <field name="code"/>
+                                <field name="company_id"/>
+                                <field name="rent" string="Rent"/>
+                                <field name="deposit"/>
+                                <field name="parent_id"/>
+                                <field name="early_warning" />
+                                <field name="is_property" invisible="1"/>
+                                <field name="ew_weeks"  attrs="{'invisible':[('early_warning','=',False)]}"/>
+                            </group>
+                            <group colspan="4" col="4" attrs="{'readonly':[('state','=','close')]}">
+                                <separator string="Tenancy Deposit" colspan="4"/>
+                                <field name="deposit_scheme_type" colspan="2"/>
+                                <field name="deposit_received"/>
+                                <field name="contact_id" colspan="2"/>
+                                <field name="deposit_return"/>
+                                <field name="recurring_rule_type" required="True"/>
+                                <field name="amount_fee_paid" string="Amount Of Fee Paid" />
+                                <field name="amount_return"/>
+                                <field name="total_deposit" string="Total deposit" invisible="1"/>
+                            </group>
+
+                        </group >
+                        <notebook>
+                            <page string="Rent Schedule">
+                                <separator string="Rent Schedule Info." colspan="4"/>
+                                <field name="rent_schedule_ids" nolabel="1" attrs="{'readonly':[('state','=','close')]}">
+                                    <tree string="Rent Schedule" editable="bottom">
+                                        <field name="start_date"/>
+                                        <field name="amount" string="Amount" />
+                                        <field name="cheque_detail"/>
+                                        <field name="move_check"/>
+                                        <field name="note"/>
+                                        <button name="create_move" attrs="{'invisible':[('move_check','!=',False)]}" icon="gtk-execute" string="Create Move" type="object"/>
+                                        <button name="open_account_move" attrs="{'invisible':[('move_check','=',False)]}" icon="gtk-go-forward" string="open move" type="object"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="History">
+                                <field name="account_move_line_ids" readonly="1"/>
+<!--                                <field name="history_ids" readonly="1"/-->
+                            </page>
+                            <page string="Contract Information" name="contract_page">
+                                <group string="Renewal" name="contract">
+                                    <p colspan="2" class="oe_grey oe_edit_only">
+                                        Once the end date of the contract is
+                                        passed or the maximum number of service
+                                        units (e.g. support contract) is
+                                        reached, the account manager is notified 
+                                        by email to renew the contract with the
+                                        customer.
+                                    </p>
+                                    <!--
+                                                                                                                                    <field name="date_start"/>
+                                    <label for="date" string="End Date"/>
+                                    <div name="duration">
+                                        <field name="date" class="oe_inline"/>
+                                    </div>
+                                                                                                                                    -->
+                                    <group colspan='4' col='4'>
+                                        <field name="date_start" colspan="2" required="True"/>
+                                        <field name="total_rent" string="Total rent"/>
+                                        <field name="date" colspan="2" required="True"/>
+<!--                                        <field name="total_deposit" string="Total deposit"/-->
+                                        <field name="contract_attachment" />
+                                    </group>
+                                </group>
+                                <separator string="Terms and Conditions" name="description"/>
+                                <field name="description"/>
+                            </page>
+                            <page string="Budget Lines" groups="account.group_account_user">
+                                <field name="crossovered_budget_line" widget="one2many_list" colspan="4" nolabel="1" mode="tree">
+                                    <tree string="Budget Lines" editable="top">
+                                        <field name="crossovered_budget_id"/>
+                                        <field name="general_budget_id"/>
+                                        <field name="date_from"/>
+                                        <field name="date_to"/>
+                                        <field name="paid_date"/>
+                                        <field name="planned_amount"/>
+                                        <field name="practical_amount" sum="Practical Amount"/>
+                                        <field name="theoritical_amount" sum="Theoritical Amount"/>
+                                        <field name="percentage"/>
+                                    </tree>
+                                    <form string="Budget Lines">
+                                        <field name="crossovered_budget_id"/>
+                                        <field name="general_budget_id"/>
+                                        <field name="date_from"/>
+                                        <field name="date_to"/>
+                                        <field name="paid_date"/>
+                                        <field name="planned_amount"/>
+                                    </form>
+                                </field>
+                            </page>
+                        </notebook>
+                        <separator string="Notes" colspan="4"/>
+                        <field name="duration_cover" nolabel="1" colspan="4"/>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+            <!--Property Tenancy Search View-->
+        <record id="property_analytic_search_view" model="ir.ui.view">
+            <field name="name">property.analytic.search.view</field>
+            <field name="model">account.analytic.account</field>
+            <field name="arch" type="xml">
+                <search string="Search Property Tenant">
+                    <group col='10' colspan='4'>
+                        <filter string="Early Warning" icon="terp-personal" help="Early Warning" domain="[('early_warning','=','1')]"/>
+                        <field name="tenant_id"/>
+                        <field name="recurring_rule_type"/>
+                        <field name="property_id"/>
+                    </group>
+                    <newline/>
+                    <group expand="0" string="Date" colspan="4" col="10" groups="base.group_extended">
+                        <field name="date_start" />
+                        <field name="date"/>
+                    </group>    
+                    <newline/>
+                    <group expand="0" string="Group By..." colspan="4" col="10" groups="base.group_extended">
+                    <filter string="Tenant" icon="terp-personal" help="Tenant Partners" context="{'group_by':'tenant_id'}"/>
+                    <separator orientation="vertical"/>
+                    <filter string="Payment Term" icon="terp-personal" help="Payment Term" context="{'group_by':'recurring_rule_type'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+            <!--Property Tenancy gantt View-->
+        <record id="view_analytic_gantt" model="ir.ui.view">
+            <field name="name">view.analytic.gantt</field>
+            <field name="model">account.analytic.account</field>
+            <field name="arch" type="xml">
+                <gantt date_start="date_start" date_stop="date" string="Properties" >
+                </gantt>
+            </field>
+        </record>
+
+            <!--Property analytic Action-->
+        <record model="ir.actions.act_window" id="action_property_analytic_view">
+            <field name="name">Tenancy</field>
+            <field name="res_model">account.analytic.account</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form,gantt</field>
+            <field name="domain">[('is_property','=','True')]</field>
+<!--            <field name="view_id" ref="calendar.view_calendar_event_calendar"/-->
+        </record>
+
+            <!--Property analytic Form-->
+        <record id="action_analytic_form_view" model="ir.actions.act_window.view">
+            <field eval="2" name="sequence"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="property_analytic_view_form"/>
+            <field name="act_window_id" ref="action_property_analytic_view"/>
+        </record>
+
+            <!--Property analytic Tree-->
+        <record id="action_analytic_tree_view" model="ir.actions.act_window.view">
+            <field eval="1" name="sequence"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="property_analytic_view_tree"/>
+            <field name="act_window_id" ref="action_property_analytic_view"/>
+        </record>
+
+            <!--Property analytic gantt-->
+        <record id="action_analytic_gantt_view" model="ir.actions.act_window.view">
+            <field eval="2" name="sequence"/>
+            <field name="view_mode">gantt</field>
+            <field name="view_id" ref="view_analytic_gantt"/>
+            <field name="act_window_id" ref="action_property_analytic_view"/>
+        </record>
+
+            <!--Property Tenancy Menu-->
+        <menuitem
+                name="Tenancy"
+                id="menu_tenancy"
+                parent="menu_property_sub"
+                action="action_property_analytic_view"
+                sequence="3"
+                />
+
+        <!--Property Hierarchy tree view-->
+        <record model="ir.actions.act_window" id="hotel_service_category_action123">
+            <field name="name">Asset Hierarchy</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">account.asset.asset</field>
+            <field name="domain">[('parent_id','=',False)]</field>
+            <field name="view_type">tree</field>
+            <field name="view_id" ref="account_asset.view_account_asset_asset_hierarchy_tree"/>
+        </record>
+
+        <!--Property Hierarchy tree view Menu-->
+        <menuitem name="Asset Hierarchy" 
+                  id="menu_hotel_service_category_action123" 
+                  action="hotel_service_category_action123"
+                  parent="menu_property_sub"/>
+
+
+            <!--account move form view-->
+        <record model="ir.ui.view" id="view_account_move_form_inherit">
+            <field name="name">account.move.form</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_move_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="/form/header/button[@name='button_cancel']" position="after">
+					<button name="%(report_account_move_property)d" states="posted" string="Print" type="action" class="oe_highlight"/>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</openerp>

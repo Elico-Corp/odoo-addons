@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <template id="assets_backend" name="Property Management" inherit_id="web.assets_backend">
+            <xpath expr="." position="inside">
+                <link rel="stylesheet" href="/property_management/static/src/css/property_management.css" />
+                <script type="text/javascript" src="/property_management/static/src/js/property_management.js"></script>
+                <script type="text/javascript" src="/property_management/static/lib/highstock.js"></script>
+                <script type="text/javascript" src="/property_management/static/lib/exporting.js"></script>
+            </xpath>
+        </template>
+
+    </data>
+</openerp>

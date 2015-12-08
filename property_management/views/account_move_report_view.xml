@@ -1,0 +1,138 @@
+<openerp> 
+<data>
+
+
+<!--Template for account move-->
+<template id="report_acc_move_prop">
+    <t t-call="report.html_container">
+        <t t-foreach="docs" t-as="o">
+            <t t-call="report.external_layout">
+                <div class="page">
+                    <div class="row">
+                        <h3>
+                            <span><center><u>Account Move Report</u></center></span>
+                        </h3>
+                    </div>
+                    <br />
+                    <table width="100%" >
+                           <tr>
+                                <td width="50%" style="text-align:left;font-size: 18px;"><strong>Name :</strong>
+                                <span style="font-size: 18px;" t-field="o.name"/></td>
+                                <td width="50%" style="text-align:right;font-size: 18px;"><strong>Date :</strong>
+                                <span style="font-size: 18px;" t-field="o.date"/></td>
+                            </tr>
+                            <tr>
+                                <td>&#160;</td>
+                                <td>&#160;</td>
+                            </tr>
+                           <tr>
+                                <td width="50%" style="text-align:left;font-size: 18px;"><strong>Journal  :</strong>
+                                <span style="font-size: 18px;" t-field="o.journal_id.name"/></td>
+                                <td width="50%" style="text-align:right;font-size: 18px;"><strong>Reference :</strong>
+                                <span style="font-size: 18px;" t-field="o.ref"/></td>
+                            </tr>
+                            <tr>
+                                <td>&#160;</td>
+                                <td>&#160;</td>
+                            </tr>
+                           <tr>
+                                <td width="50%" style="text-align:left;font-size: 18px;"><strong>Period :</strong>
+                                <span style="font-size: 18px;" t-field="o.period_id.name"/></td>
+                                <td width="50%" style="text-align:right;"/>
+                            </tr>
+                            <tr>
+                                <td>&#160;</td>
+                                <td>&#160;</td>
+                            </tr>
+                    </table>
+                    <br /><br />
+                    <p style="font-size: 18px;"> 
+                		Details of Journal Items.
+                    </p>
+                    <table class="table table-condensed">
+                        <thead>
+                            <tr>
+                                <th>Invoice </th>
+                                <th>Name </th>
+                                <th>Partner</th>
+                                <th>Account</th>
+                                <th>Due date</th>
+                                <th>Debit</th>
+                                <th>Credit </th>
+                                <th>Analytic Account </th>
+                                <th>Amount Currency </th>
+                                <th>Tax Account </th>
+                                <th>Tax/Base Amount </th>
+                                <th>Status </th>
+                                <th>Reconcile </th>
+                                <th>Partial Reconcile </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <t t-foreach="o.line_id" t-as="move">
+                                <tr>
+                                    <td ><t t-if="move.invoice">
+                                        <span t-field="move.invoice"/></t>
+                                    </td>
+                                    <td ><t t-if="move.name">
+                                        <span t-field="move.name"/></t>
+                                    </td>
+                                    <td ><t t-if="move.partner_id">
+                                        <span t-field="move.partner_id.name"/></t>
+                                    </td>
+                                    <td ><t t-if="move.account_id">
+                                        <span t-field="move.account_id.name"/></t>
+                                    </td>
+                                    <td ><t t-if="move.date_maturity">
+                                        <span t-field="move.date_maturity"/></t>
+                                    </td>
+                                    <td>
+                                        <span t-field="move.debit"/>
+                                    </td>
+                                    <td >
+                                        <span t-field="move.credit"/>
+                                    </td>
+                                    <td ><t t-if="move.analytic_account_id">
+                                        <span t-field="move.analytic_account_id.name"/></t>
+                                    </td>
+                                    <td ><t t-if="move.amount_currency">
+                                        <span t-field="move.amount_currency"/></t>
+                                    </td>
+                                    <td ><t t-if="move.tax_code_id">
+                                        <span t-field="move.tax_code_id.name"/></t>
+                                    </td>
+                                    <td>
+                                        <span t-field="move.tax_amount"/>
+                                    </td>
+                                    <td ><t t-if="move.state">
+                                        <span t-field="move.state"/></t>
+                                    </td>
+                                    <td ><t t-if="move.reconcile_id">
+                                        <span t-field="move.reconcile_id.name"/></t>
+                                    </td>
+                                    <td ><t t-if="move.reconcile_partial_id">
+                                        <span t-field="move.reconcile_partial_id.name"/></t>
+                                    </td>
+                                </tr>
+                            </t>
+                        </tbody>
+                    </table>
+                </div>
+            </t>
+        </t>
+    </t>
+</template>
+
+<!--Report for account move -->
+<report 
+    id="report_account_move_property"
+    string="Account Move"
+    model="account.move"
+    report_type="qweb-pdf"
+    file="property_management.report_acc_move_prop"
+    name="property_management.report_acc_move_prop"
+    menu="False" 
+/>
+
+</data>
+</openerp>

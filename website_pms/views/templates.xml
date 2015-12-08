@@ -1,0 +1,706 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <template id="web_layout" inherit_id="web.layout" name="web_layout">
+            <xpath expr="//head/link[@rel='shortcut icon']" position="replace">
+                <link rel="shortcut icon" href="/website_pms/static/src/img/favicon.ico" type="image/x-icon"/>
+            </xpath>
+        </template>
+        <template id="main_layout" inherit_id="website.layout" name="layout_main">
+            <xpath expr="//head/title" position="after">
+                <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=true&amp;libraries=places"></script>
+                <link rel="shortcut icon" href="/website_pms/static/src/img/favicon.ico" type="image/x-icon"/>
+            </xpath>
+        </template>
+
+        <template id="assets_frontend" inherit_id="website.assets_frontend"
+            name="Shop">
+            <xpath expr="." position="inside">
+                <!-- Common js and css plugin -->
+                <link rel="stylesheet" type="text/css" href="/website_pms/static/src/css/jquery.mCustomScrollbar.min.css" />
+                <!--  <script type="text/javascript" src="/web/static/lib/jquery/jquery.js" /> -->
+                <!-- Base js and css plugin -->
+                <link rel='stylesheet'
+                    href="/web/static/lib/jquery.ui/css/smoothness/jquery-ui-1.9.1.custom.css" />
+                <link rel='stylesheet'
+                    href="/web/static/lib/jquery.ui/css/smoothness/jquery-ui-1.9.1.custom.min.css" />
+                <t t-call="web.jqueryui_conflict">
+                    <script type="text/javascript"
+                        src="/web/static/lib/jquery.ui/js/jquery-ui-1.9.1.custom.js"></script>
+                </t>
+                <script type="text/javascript" src="/website_pms/static/src/js/homepage.js"></script>
+                <link rel="stylesheet" href="/website_pms/static/src/css/homepage.css" />
+                <script type="text/javascript" src="/website_pms/static/src/js/country_fetch.js" />
+                <!-- Added CSS and JS plugin files required for Design website -->
+                <link rel="stylesheet" href="/website_pms/static/src/css/property_custom.css" />
+                <!-- Plugin for touch and scroll -->
+                <link rel='stylesheet' href="/website_pms/static/src/css/bootstrap-toggle.css" />
+                <script type="text/javascript" src="/website_pms/static/src/js/bootstrap-toggle.js" />
+                <script type="text/javascript" src="/website_pms/static/src/js/property_custom.js"></script>
+                <script type="text/javascript" src="/website_pms/static/src/js/jquery.counterup.min.js"></script>
+                <script src="http://cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.3/waypoints.min.js"></script>
+                <script type="text/javascript" src="/website_pms/static/src/js/google_map_script.js"></script>
+            </xpath>
+        </template>
+
+        <!-- Template for multiple property image display -->
+        <template id="property_extended" name="property_extended">
+            <t t-call="website.layout">
+                <div class="wrapwrap">
+                    <!-- Sort,Pager, smart button display header -->
+                    <div class="col-md-12">
+                        <br />
+                        <div class="row">
+                            <div class="col-md-3" style="text-align:left;"></div>
+                            <div class="col-md-3" style="text-align:left;">
+                                <a class="hidden-xs hidden-sm btn_list btn btn-default active list">
+                                    <i class="fa fa-list"></i>
+                                List
+                                </a>
+                                <a class="hidden-xs btn_grid btn btn-default  grid">
+                                    <i class="fa fa-th"></i>
+                                Grid
+                                </a>
+                            </div>
+                            <div class="col-md-3">
+                                <select form ="property_list_display" name = "dropdown_price" class = "dropdown_filter_change form-control">
+                                    <option value="all" t-att-selected='dropdown_price == "all"'>ALL</option>
+                                    <option value="lowest" t-att-selected='dropdown_price == "lowest"'>Price (lowest first)</option>
+                                    <option value="highest" t-att-selected='dropdown_price == "highest"'>Price (highest first)</option>
+                                    <option value="newest" t-att-selected='dropdown_price == "newest"'>Newest first</option>
+                                </select>
+                                <input form ="property_list_display" type="hidden" name="type_of_property" t-att-value="type_of_property"/>
+                            </div>
+                            <div class="col-md-3 products_pager" style="text-align:right;margin-top: -1%;">
+                                <t t-call="website.pager" />
+                            </div>
+                        </div>
+                        <br/>
+                    </div>
+                    <br/>
+
+                    <!-- filters Display -->
+                    <div class="col-md-3 col-sm-12 line_set">
+                        <!-- Search Button Display on mobile screen-->
+                        <div class='row'>
+                            <div class="visible-xs col-xs-5">
+                                <button type="submit" class="btn btn-primary btn-lg btn_property_search" name="property_search" id="property_search">
+                                    <i class="fa fa-search"></i> Property Search
+                                </button>
+                            </div>
+                            <div class="row">
+                                <br/>
+                            </div>
+                            <div class="visible-xs col-xs-5">
+                                <button type="submit" class="btn btn-primary btn-lg btn_new_show" name="btn_new_show" id="btn_new_show">
+                                    <i class="fa fa-search"></i> New Search
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-6">
+                            <button style="text-align:center;" type="submit" class="hidden-xs btn btn-primary btn-lg btn_new_search" data-toggle="collapse" data-target="#btn_toggle" name="btn_new_search" id="new_search">
+                                <i class="fa fa-plus-circle"></i> New Search
+                            </button>
+                        </div>
+                        <form class="form-horizontal property_list_display" action='/property_list' method="POST" name = "property_list_display" id="property_list_display">
+                            <div id="btn_toggle" class="collapse hidden-xs hidden new_search col-md-12">
+                                <hr />
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id="postcode" name="postcode" placeholder="Post Code" />
+                                    <span class="input-group-addon">
+                                        <i class="fa fa-search"></i>
+                                    </span>
+                                </div>
+                                <br />
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id="area" name="area" placeholder="Area" />
+                                    <span class="input-group-addon">
+                                        <i class="fa fa-paper-plane"></i>
+                                    </span>
+                                </div>
+                                <br />
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id="city" name="city" placeholder="City" />
+                                    <span class="input-group-addon">
+                                        <i class="fa fa-map-marker"></i>
+                                    </span>
+                                </div>
+                                <br/>
+                            </div>
+                            <div id = "property_search" class="hidden-xs property_search col-md-12">
+                                <h4 style="text-align:center">Filters</h4>
+                                <hr/>
+                                <div>
+                                    <h5>Bedrooms</h5>
+                                    <p style="text-align:center;">
+                                        <input type="text" class="dropdown_filter_change text-center" id="bead_amount" name= "bead_amount"
+                                        readonly='true' style="border:0; color:#c0392b; font-weight:bold; background-color: #d2d2d2;" />
+                                    </p>
+                                </div>
+                                <div style="text-align:left;"  class="col-md-9">Min 
+                                    <input type="hidden" class="dropdown_filter_change" t-att-value ="min_bead" name="min_bead" id="min_bead_range_id"/>
+                                </div>
+                                <div style="text-align:right;"  class="col-md-2">Max 
+                                    <input type="hidden" class="dropdown_filter_change" t-att-value ="max_bead" name="max_bead" id="max_bead_range_id"/>
+                                </div>
+                                <div class="form-group price-slider col-md-12 ">
+                                    <div id="bead_slider_range"></div>
+                                </div>
+                                <br/>
+                                <div>
+                                    <h5>Bathroom</h5>
+                                    <p style="text-align:center;">
+                                        <input type="text" class="dropdown_filter_change text-center" id="bath_amount" name= "bath_amount"
+                                    readonly='true' style="border:0; color:#c0392b; font-weight:bold; background-color: #d2d2d2;" />
+                                    </p>
+                                </div>
+                                <div>
+                                    <div style="text-align:left;" class="col-md-9">Min 
+                                        <input type="hidden" class="dropdown_filter_change" t-att-value ="min_bath" name="min_bath" id="min_bath_range_id"/>
+                                    </div>
+                                    <div style="text-align:right;" class="col-md-2">Max 
+                                        <input type="hidden" class="dropdown_filter_change" t-att-value ="max_bath" name="max_bath" id="max_bath_range_id"/>
+                                    </div>
+                                </div>
+                                <div class="form-group price-slider col-md-12 ">
+                                    <div id="bath_slider_range"></div>
+                                </div>
+                                <div>
+                                    <h5>Price</h5>
+                                    <p style="text-align:center;">
+                                        <input type="text" class = "dropdown_filter_change text-center"  id="price_slider" style="border:0; color:#c0392b; font-weight:bold; background-color: #f5f5f5;"/>
+                                    </p>
+                                </div>
+                                <div>
+                                    <div style="text-align:left;" class="col-md-9">Min 
+                                        <input type="hidden" class="dropdown_filter_change" t-att-value ="min_range" name="min_range" id="min_price_range_id"/>
+                                    </div>
+                                    <div style="text-align:right;"  class="col-md-2">Max 
+                                        <input type="hidden" class="dropdown_filter_change" t-att-value ="max_range" name="max_range" id="max_price_range_id"/>
+                                    </div>
+                                </div>
+                                <div class="form-group price-slider col-md-12 ">
+                                    <div id="price_slider_range"></div>
+                                </div>
+                                <button style="text-align:center;" type="submit" class="btn btn-primary btn-lg btn_property_filter" name="property_filter" id="property_filter">
+                                    <i class="fa fa-filter"></i> Filter
+                                
+                                </button>
+                                <div style="text-align:center;" class="hidden" id="property_btns">
+                                    <a class="btn btn-primary btn-lg search_filter_change" name="rent_btn_search_submit" id="rent_btn_search_id">
+                                        <i class="fa fa-key"></i> Rent
+                                    </a>
+                                    <a class="btn btn-primary btn-lg search_filter_change" name="sale_btn_search_submit" id="sale_btn_search_id">
+                                        <i class="fa fa-home"></i> Buy
+                                    </a>
+                                </div>
+                                <div>
+                                    <h5>Furnish</h5>
+                                    <select name = "dropdown_furnish"  class="dropdown_filter_change form-control" id = "inputFurnished">
+                                        <option value="all" t-att-selected='dropdown_furnish == "all"'>ALL</option>
+                                        <option value="full_furnished" t-att-selected='dropdown_furnish == "full_furnished"'>Furnished</option>
+                                        <option value="semi_furnished" t-att-selected='dropdown_furnish == "semi_furnished"'>Semi Furnished</option>
+                                        <option value="none" t-att-selected='dropdown_furnish == "none"'>Unfurnished</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <h5>Facing</h5>
+                                    <select name = "dropdown_facing" class="dropdown_filter_change form-control" id = "inputFacing">
+                                        <option value="all" t-att-selected='dropdown_facing == "all"'>ALL</option>
+                                        <option value="east" t-att-selected='dropdown_facing == "east"'>East</option>
+                                        <option value="west" t-att-selected='dropdown_facing == "west"'>West</option>
+                                        <option value="north" t-att-selected='dropdown_facing == "north"'>North</option>
+                                        <option value="south" t-att-selected='dropdown_facing == "south"'>South</option>
+                                    </select>
+                                </div>
+                                
+                                <br />
+                            </div>
+                            <br />
+                            <div class="col-md-12">
+                                <br />
+                            </div>
+                        </form>
+                        <br />
+                    </div>
+                    <br />
+
+                    <!-- Grid View property image display -->
+                    <div class="col-md-9 col-sm-12 grid_display hide">
+                        <t t-if='property_rec'>
+                            <t t-foreach="property_rec" t-as="o">
+                                <div class="col-md-4">
+                                    <div class="col-md-12" style="height:400px;">
+                                        <a t-att-href="keep('/selected_property?id=%s' % (o.id))">
+                                            <img itemprop="image" class="img img-responsive img_fix_size"
+                                            t-att-src="website.image_url(o, 'image')" />
+                                        </a>
+                                        <div style="min-width:95px;">
+                                            <t t-if="o.id in fav_assets_list">
+                                                <input type="checkbox" data-toggle="toggle" checked="checked" t-att-data='o.id' id="fav_img_btn" class="btn icon-btn fav_img"
+                                             data-on="Remove from favourites" data-off="Add to favourites" data-offstyle="success" data-onstyle="danger" data-style="ios"/>
+                                            </t>
+                                            <t t-if="not o.id in fav_assets_list">
+                                                <input type="checkbox" data-toggle="toggle" t-att-data='o.id' id="fav_img_btn" class="btn icon-btn fav_img"
+                                             data-on="Remove from favourites" data-off="Add to favourites" data-offstyle="success" data-onstyle="danger" data-style="ios"/>
+                                            </t>
+                                        </div>
+                                        <p>
+                                            <div>
+                                                <strong>
+                                                    <a t-att-href="keep('/selected_property?id=%s' % (o.id))">
+                                                        <t t-esc='o.name' />
+                                                    </a>
+                                                    <t t-if='o.state == "normal" and o.ground_rent'>
+                                                        <span t-field='o.ground_rent' style="white-space: nowrap;" t-field-options='{
+                                                            "widget": "monetary",
+                                                            "display_currency": "user_id.partner_id.property_product_pricelist.currency_id"
+                                                        }'></span>
+                                                    </t>
+                                                    <t t-if='o.state == "close" and o.sale_price'>
+                                                        <span t-field='o.sale_price' style="white-space: nowrap;" t-field-options='{
+                                                            "widget": "monetary",
+                                                            "display_currency": "user_id.partner_id.property_product_pricelist.currency_id"
+                                                       }'></span>
+                                                    </t>
+                                                </strong>
+                                                <br/>
+                                                <strong>Near By Places: </strong>
+                                                <br/>
+                                                <t t-foreach="o.nearby_ids" t-as="n">
+                                                    <i class="fa fa-angle-double-right" data-container="body" data-toggle="popover" data-placement="top" title="" data-content="Indicates whether or not this product get other prep before shipment" data-original-title="">
+                                                        <t t-esc='n.name' />
+                                                        <t t-esc='n.distance' />
+                                                        <echo>M</echo>
+                                                    </i>
+                                                </t>
+                                            </div>
+                                            <t t-esc='o.street' />
+                                            <t t-esc='o.street2' />
+                                            <t t-esc='o.township' />
+                                            <br/>
+                                            <t t-esc='o.city' />
+                                            <t t-esc='o.state_id.name' />
+                                            <t t-esc='o.country_id.name' />
+                                            <t t-esc='o.zip' />
+                                            <br/>
+                                            Added: 
+                                            <t t-esc='o.create_date' />
+                                        </p>
+                                    </div>
+                                </div>
+                            </t>
+                        </t>
+                    </div>
+
+                    <!-- List View property image display -->
+                    <div id="list_display" class="col-md-9 list_display">
+                        <div class="">
+                            <t t-if ='property_rec == []'>
+                                <div class= 'contact_demand_class'>
+                                                    <input class='property_detail' type='hidden'
+                                                 />
+                                                    <button type="button" class="btn btn-info btn-lg contact_demand">
+                                                        <i class="fa fa-phone"> Demand Property</i>
+                                                    </button>
+                                                    <div class="thank_you">
+                                                        <div class= "text-danger" style="font-size:16px;">
+                                                            <b>Your message has been sent!</b>
+                                                            <br/>
+                                                     The estate agent should get back to you shortly.
+                                                        </div>
+                                                    </div>
+                                </div>
+                            </t>
+                            <t t-if='property_rec'>
+                                <t t-foreach="property_rec" t-as="o">
+                                    <div class="row ">
+                                        <br />
+                                        <div class='col-md-3'>
+                                            <a class="property_img" t-att-href="keep('/selected_property?id=%s' % (o.id))">
+                                                <img itemprop="image" class="img img-responsive img_fix_size"
+                                                t-att-src="website.image_url(o, 'image')" />
+                                            </a>
+                                            <t t-if="o.id in fav_assets_list">
+                                                <input type="checkbox" data-toggle="toggle" checked="checked" t-att-data='o.id' id="fav_img_btn" class="btn icon-btn fav_img"
+                                                 data-on="Remove from favourites" data-off="Add to favourites" data-offstyle="success" data-onstyle="danger" data-style="ios">
+                                                    <!-- <span class="fa-heart-list-red"><i class="fa fa-heart" style="color:red;"></i></span> -->
+                                                </input>
+                                            </t>
+                                            <t t-if="not o.id in fav_assets_list">
+                                                <input type="checkbox" data-toggle="toggle" t-att-data='o.id' id="fav_img_btn" class="btn icon-btn fav_img"
+                                                 data-on="Remove from favourites" data-off="Add to favourites" data-offstyle="success" data-onstyle="danger" data-style="ios">
+                                                    <!-- <span class="fa-heart-list-green"><i class="fa fa-heart" style="color:green;"></i></span></input> -->
+                                                </input>
+                                            </t>
+                                        </div>
+                                        <div class='col-md-3'>
+                                            <p>
+                                                <div>
+                                                    <strong>
+                                                        <a t-att-href="keep('/selected_property?id=%s' % (o.id))">
+                                                            <t t-esc='o.name' />
+                                                        </a>
+                                                        <t t-if='o.state == "normal" and o.ground_rent'>
+                                                            <span t-field='o.ground_rent' style="white-space: nowrap;" t-field-options='{
+                                                                    "widget": "monetary",
+                                                                    "display_currency": "user_id.partner_id.property_product_pricelist.currency_id"
+                                                                }'></span>
+                                                        </t>
+                                                        <t t-if='o.state == "close" and o.sale_price'>
+                                                            <span t-field='o.sale_price' style="white-space: nowrap;" t-field-options='{
+                                                                    "widget": "monetary",
+                                                                    "display_currency": "user_id.partner_id.property_product_pricelist.currency_id"
+                                                                }'></span>
+                                                        </t>
+                                                    </strong>
+                                                </div>
+                                                <t t-esc='o.street' />
+                                                <t t-esc='o.street2' />
+                                                <t t-esc='o.township' />
+                                                <t t-esc='o.city' />
+                                                <br/>
+                                                <t t-esc='o.state_id.name' />
+                                                <t t-esc='o.country_id.name' />
+                                                <t t-esc='o.zip' />
+                                                <br/>
+                                                Added: 
+                                                <t t-esc='o.create_date' />
+                                            </p>
+                                        </div>
+                                        <div class='col-md-3'>
+                                            <h5>
+                                                <strong>Property features:</strong>
+                                            </h5>
+                                            <t t-foreach="o.utility_ids" t-as="u">
+                                                <t t-esc='u.utility_id.name' />
+                                                <br />
+                                            </t>
+                                            <div class= 'contact_agent_class'>
+                                                <input class='property_detail' type='hidden'
+                                            t-att-value='o.id' />
+                                                <button type="button" t-att-id='o.id' class="btn btn-info btn-lg contact_agent">
+                                                    <i class="fa fa-phone"> Contact Agent</i>
+                                                </button>
+                                                <div class="thank_you">
+                                                    <div class= "text-danger" style="font-size:16px;">
+                                                        <b>Your message has been sent!</b>
+                                                        <br/>
+                                                 The estate agent should get back to you shortly.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class='col-md-3'>
+                                            <strong>Near By Places:</strong>
+                                            <br/>
+                                            <!--  <div id="map" style="width: 70%; height:170px;"></div> -->
+                                            <t t-foreach="o.nearby_ids" t-as="n">
+                                                <i class="fa fa-angle-double-right" data-container="body" data-toggle="popover" data-placement="top" title="" data-content="Indicates whether or not this product get other prep before shipment" data-original-title="">
+                                                    <t t-esc='n.name' />
+                                                    <t t-esc='n.distance' />
+                                                    <echo>M</echo>
+                                                    <t t-esc='m' />
+                                                </i>
+                                                <br/>
+                                            </t>
+                                        </div>
+                                        <br />
+                                    </div>
+                                    <br />
+                                </t>
+                            </t>
+                        </div>
+                    </div>
+
+                    <!-- Sort,Page, smart button display header -->
+                    <div class="col-md-12">
+                        <br />
+                        <div class="row">
+                            <div class="col-md-3" style="text-align:left;"></div>
+                            <div class="col-md-3" style="text-align:left;">
+                                <a class="hidden-xs btn_list btn btn-default active list">
+                                    <i class="fa fa-list"></i>
+                                List
+                                </a>
+                                <a class="hidden-xs hidden-sm btn_grid btn btn-default  grid">
+                                    <i class="fa fa-th"></i>
+                                Grid
+                                </a>
+                            </div>
+                            <div class="col-md-3" style="text-align:center;">
+                                <select form ="property_list_display" name = "dropdown_price" class = "dropdown_filter_change form-control">
+                                    <option value="all" t-att-selected='dropdown_price == "all"'>ALL</option>
+                                    <option value="lowest" t-att-selected='dropdown_price == "lowest"'>Price (lowest first)</option>
+                                    <option value="highest" t-att-selected='dropdown_price == "highest"'>Price (highest first)</option>
+                                    <option value="newest" t-att-selected='dropdown_price == "newest"'>Newest first</option>
+                                </select>
+                            </div>
+                            <div class="col-md-3 products_pager" style="text-align:right;margin-top: -1%;">
+                                <t t-call="website.pager" />
+                            </div>
+                        </div>
+                    </div>
+                     <!-- Scroll top errow -->
+                     <div class="scroll-top-wrapper ">
+                        <span class="scroll-top-inner">
+                            <i class="fa fa-2x fa-arrow-circle-up"></i>
+                        </span>
+                     </div>
+                </div>
+            </t>
+        </template>
+
+        <!-- Modal Template Call -->
+        <template id='contact_agent_modal'>
+            <!-- Model to display contact Agent -->
+            <div class="modal fade" tabindex="-1" role="dialog" id="myModal"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                    <form class="form_view lead_modal_form" name="lead_modal_form">
+                        <!-- Modal content -->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal"
+                                aria-hidden="true">&amp;times;</button>
+                                <h4 class="modal-title">Contact Information</h4>
+                            </div>
+                            <!-- Modal body -->
+                            <div class="" id="modal_info">
+                                <!-- Custom Form View -->
+                                <div class="col-md-12">
+                                    <!-- Custom Form View -->
+                                    <div class="row">
+                                        <div class="form-group">
+                                            <label class="control-label col-md-12" for="inputFirstName">Name:
+                                            </label>
+                                            <div class="col-md-6">
+                                                <input type="text" id="inputFirstName" placeholder="First name"
+                                                    name="firstname" value="" class="form-control" required="" />
+                                            </div>
+                                            <div class="col-md-6">
+                                                <input type="text" id="inputSurname" placeholder="Surname"
+                                                    name="surname" value="" required="" class="form-control" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label class="control-label" for="inputEmail">Email:</label>
+                                            <input type="email" id="inputEmail" placeholder="Email"
+                                                name="email" value="" required="" class="form-control" />
+                                            <span class="help-block" style="display: none;">Please provide an email
+                                                address.</span>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="control-label" for="inputTel">Telephone:</label>
+                                            <input type="text" id="inputTel" placeholder="Telephone number"
+                                                name="tel" value="" required="" class="form-control" />
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label class="control-label" for="inputTelType">Phone type:</label>
+                                            <select id="inputTelType" name="telType" class="form-control">
+                                                <option value="mob">Mobile</option>
+                                                <option value="work">Work</option>
+                                                <option value="home">Home</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="control-label" for="inputTelTime">When to call?</label>
+                                            <select id="inputTelTime" name="telTime" class="form-control">
+                                                <option value="anytime">Anytime</option>
+                                                <option value="morning">Morning</option>
+                                                <option value="afternoon">Afternoon</option>
+                                                <option value="evening">Evening</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="row asset">
+                                        <input type="hidden" value=" " name="asset" id="asset_modal_id"></input>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-md-12">
+                                            <label class="control-label" for="inputMsg">Message for estate
+                                                agent:</label>
+                                            <textarea id="inputMsg" name="msg"
+                                                placeholder="Message for estate agent" rows="3" class="form-control">Hello,&#13;&#10;Please may I arrange a viewing for this property?&#13;&#10;Thanks!
+                                            </textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Modal footer -->
+                            <div class="modal-footer">
+                                <button type="close" class="btn btn-default"
+                                data-dismiss="modal">Close</button>
+                                <a class="btn btn-primary btn-lg" id="send_agent_modal_id" data-dismiss="modal">
+                                    <i class="fa fa-envelope"></i> Send to estate agent
+                                </a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </template>
+
+        <!-- Modal Template Call -->
+        <template id='demand_modal'>
+            <!-- Model to display contact Agent -->
+            <div class="modal fade" tabindex="-1" role="dialog"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                    <form class="form_view lead_modal_form" name="lead_modal_form">
+                        <!-- Modal content -->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal"
+                                aria-hidden="true">&amp;times;</button>
+                                <h4 class="modal-title">Contact Information</h4>
+                            </div>
+                            <!-- Modal body -->
+                            <div class="" id="modal_info">
+                                <!-- Custom Form View -->
+                                <div class="col-md-12">
+                                    <!-- Custom Form View -->
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <label class="control-label">Property Type</label>
+                                            <select name="property_type" class="form-control" id="inputType" placeholder="First name">
+                                                <t t-foreach='property_types' t-as='types'>
+                                                    <option t-att-value="types.id"><t t-esc='types.name'/></option>
+                                                </t>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group">
+                                            <label class="control-label col-md-12" for="inputFirstName">Name:
+                                            </label>
+                                            <div class="col-md-6">
+                                                <input type="text" id="inputFirstName" placeholder="First name"
+                                                    name="firstname" value="" class="form-control" required="" />
+                                            </div>
+                                            <div class="col-md-6">
+                                                <input type="text" id="inputSurname" placeholder="Surname"
+                                                    name="surname" value="" required="" class="form-control" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label class="control-label" for="inputEmail">Email:</label>
+                                            <input type="email" id="inputEmail" placeholder="Email"
+                                                name="email" value="" required="" class="form-control" />
+                                            <span class="help-block" style="display: none;">Please provide an email
+                                                address.</span>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="control-label" for="inputTel">Telephone:</label>
+                                            <input type="text" id="inputTel" placeholder="Telephone number"
+                                                name="tel" value="" required="" class="form-control" />
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label class="control-label" for="inputTelType">Phone type:</label>
+                                            <select id="inputTelType" name="telType" class="form-control">
+                                                <option value="mob">Mobile</option>
+                                                <option value="work">Work</option>
+                                                <option value="home">Home</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="control-label" for="inputTelTime">When to call?</label>
+                                            <select id="inputTelTime" name="telTime" class="form-control">
+                                                <option value="anytime">Anytime</option>
+                                                <option value="morning">Morning</option>
+                                                <option value="afternoon">Afternoon</option>
+                                                <option value="evening">Evening</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label class="control-label" for="input street name">Street:</label>
+                                            <input type="email" id="inputStreet" placeholder="Street"
+                                                name="street" value="" required="" class="form-control" />
+                                            <span class="help-block" style="display: none;">Please provide a Street
+                                                name.</span>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="control-label" for="input street2">Street2:</label>
+                                            <input type="text" id="inputstreet2" placeholder="Street2"
+                                                name="street2" value="" required="" class="form-control"/>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label class="control-label" for="input City">City:</label>
+                                            <input type="city" id="inputCity" placeholder="City"
+                                                name="city" value="" required="" class="form-control" />
+                                            <span class="help-block" style="display: none;">Please provide a City
+                                                name.</span>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="control-label" for="input Zip">Zip Code:</label>
+                                            <input type="text" id="inputZip" placeholder="Zip Code"
+                                                name="zip" value="" required="" class="form-control"/>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label class="control-label">Country</label>
+                                            <select name="country_id" class="form-control" id="inputCountry" >
+                                                <option selected="selected">Select Country</option>
+                                                <t t-foreach='country_names' t-as='country'>
+                                                    <option t-att-value="country.id"><t t-esc='country.name'/></option>
+                                                </t>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="control-label">State</label>
+                                            <select name="state_id" class="form-control" id = "inputState">
+                                                <option selected="selected">Select State</option>
+                                                <t t-foreach='state_names' t-as='state'>
+                                                    <option t-att-value="state.id"><t t-esc='state.name'/></option>
+                                                </t>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="row asset">
+                                        <input type="hidden" value=" " name="asset" id="asset_modal_id"></input>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-md-12">
+                                            <label class="control-label" for="inputMsg">Message for estate
+                                                agent:</label>
+                                            <textarea id="inputMsg" name="msg" 
+                                                placeholder="Message for estate agent" rows="3" 
+                                                class="form-control">Hello,&#13;&#10;Please may I arrange a this kind of property?&#13;&#10;Thanks!
+                                            </textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Modal footer -->
+                            <div class="modal-footer">
+                                <button type="close" class="btn btn-default"
+                                data-dismiss="modal">Close</button>
+                                <a class="btn btn-primary btn-lg" id="send_agent_modal_id" data-dismiss="modal">
+                                    <i class="fa fa-envelope"></i> Send to estate agent
+                                </a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </template>
+        
+
+
+    </data>
+</openerp>

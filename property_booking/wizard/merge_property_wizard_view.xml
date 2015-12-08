@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+	<data>
+		<record id="merge_property_view" model="ir.ui.view">
+            <field name="name">merge.property.form</field>
+            <field name="model">merge.property.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Merge Properties" version="7.0">
+                    <p class="oe_grey">
+                        Merge Properties Which are in draft Status
+                    </p>
+                    <footer>
+                        <button string="Merge Properties" name="merge_property" type="object" default_focus="1" class="oe_highlight"/>
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_property_mergeing" model="ir.actions.act_window">
+            <field name="name">Merge Properties</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">merge.property.wizard</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="merge_property_view"/>
+            <field name="target">new</field>
+            <field name="multi">True</field>
+        </record>
+
+        <record model="ir.values" id="merge_prop_wizzard">
+            <field name="model_id" ref="property_booking.model_property_created" />
+            <field name="name">Merge Properties</field>
+            <field name="key2">client_action_multi</field>
+            <field name="value" eval="'ir.actions.act_window,' + str(ref('action_property_mergeing'))" />
+            <field name="key">action</field>
+            <field name="model">property.created</field>
+        </record>
+
+
+    </data>
+</openerp>
+
+
+
+
+
+
+
+
+<!--
+        <act_window id="action_merge_property" multi="False"
+            name="Merge Properties" key2="client_action_multi"
+            res_model="merge.property.wizard" src_model="property.created"
+            view_mode="form" target="new" view_type="form" />
+
+-->

@@ -1,0 +1,22 @@
+<template>
+    <t t-name="One2Many.listview" t-extend="ListView">
+    <t t-jquery="thead.ui-widget-header > tr:first">
+        this.removeAttr('t-if');
+    </t>
+    <t t-jquery="td.oe-actions">
+        this.removeAttr('t-if');
+    </t>
+    <t t-jquery="thead .oe_list_record_delete" t-operation="append">
+        <button style="border: none;background: transparent;padding: 0;" id="delete_all" class="oe_i" name="delete" type="button">d</button>
+    </t>
+    <t t-jquery="td.oe-actions" t-operation="prepend">
+        <h3 class="oe_view_title"><t t-esc="fields_view.arch.attrs.string"/></h3>
+    </t>
+    <t t-jquery=".oe_list_content thead" t-operation="prepend">
+            <tr style="background:white;">
+                <td><button class="apply_button" type="button" title="Preview">
+                    <span>Apply</span></button></td>
+            </tr><br/>
+    </t>
+</t>
+</template>

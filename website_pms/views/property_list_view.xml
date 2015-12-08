@@ -1,0 +1,523 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <template id="property_list_view" name="property_list_view">
+            <t t-call="website.layout">
+                <div class="wrapwrap">
+                    <br/>
+                    <!-- sidebar display related property-->
+                    <div class="col-md-2">
+                        <a href="property_list">
+                            <button class="btn btn-primary btn-lg" style="display: block;">
+                                <i class="fa fa-chevron-left"></i> Back to search
+                            </button>
+                        </a>
+                        <hr/>
+                        <!-- Big screen scroll display -->
+                        <div id='carousel-custom' class="hidden-xs sidebar_property carousel slide">
+                            <t t-foreach="property_rec" t-as="p">
+                                <a t-att-href="keep('/selected_property?id=%s' % (p.id))">
+                                    <img itemprop="image" class="img img-responsive img_fix_size" t-att-src="website.image_url(p, 'image')" />
+                                </a>
+                                <strong>
+                                    <a t-att-href="keep('/selected_property?id=%s' % (p.id))">
+                                        <t t-esc='p.name' />
+                                    </a>
+                                    <t t-if='p.state == "normal" and p.ground_rent'>
+                                        <span t-field='p.ground_rent' style="white-space: nowrap;" t-field-options='{
+                                             "widget": "monetary",
+                                             "display_currency": "user_id.partner_id.property_product_pricelist.currency_id"
+                                             }'></span>
+                                    </t>
+                                    <t t-if='p.state == "close" and p.sale_price'>
+                                        <span t-field='p.sale_price' style="white-space: nowrap;" t-field-options='{
+                                             "widget": "monetary",
+                                             "display_currency": "user_id.partner_id.property_product_pricelist.currency_id"
+                                             }'></span>
+                                    </t>
+                                </strong>
+                                <br/>
+                                <t t-esc='p.street' />
+                                <t t-esc='p.street2' />
+                                <t t-esc='p.township' />
+                                <t t-esc='p.city' />
+                                <br/>
+                                <t t-esc='p.state_id.name' />
+                                <t t-esc='p.country_id.name' />
+                                <t t-esc='p.zip' /></t>
+                        </div>
+                        <br/>
+
+                        <!-- small screen scroll display -->
+                        <div id='carousel-custom' class="visible-xs sidebar_property carousel slide">
+                            <ol class='carousel-indicators'>
+                                <t t-foreach="property_rec" t-as="p">
+                                    <li>
+                                        <div class="sm_scroll">
+                                            <a t-att-href="keep('/selected_property?id=%s' % (p.id))">
+                                                <img itemprop="image" class="img img-responsive img_fix_size" t-att-src="website.image_url(p, 'image')" />
+                                            </a>
+                                            <strong>
+                                                <a t-att-href="keep('/selected_property?id=%s' % (p.id))">
+                                                    <t t-esc='p.name' />
+                                                </a>
+                                                <t t-if='p.state == "normal" and p.ground_rent'>
+                                                    <span t-field='p.ground_rent' style="white-space: nowrap;" t-field-options='{
+                                                     "widget": "monetary",
+                                                    "display_currency": "user_id.partner_id.property_product_pricelist.currency_id"
+                                                    }'></span>
+                                                </t>
+                                                <t t-if='p.state == "close" and p.sale_price'>
+                                                    <span t-field='p.sale_price' style="white-space: nowrap;" t-field-options='{
+                                                     "widget": "monetary",
+                                                    "display_currency": "user_id.partner_id.property_product_pricelist.currency_id"
+                                                    }'></span>
+                                                </t>
+                                            </strong>
+                                            <br/>
+                                            <t t-esc='p.street' />
+                                            <t t-esc='p.street2' />
+                                            <br/>
+                                            <t t-esc='p.township' />
+                                            <t t-esc='p.city' />
+                                            <br/>
+                                            <t t-esc='p.state_id.name' />
+                                            <t t-esc='p.country_id.name' />
+                                            <t t-esc='p.zip' />
+                                        </div>
+                                    </li>
+                                </t>
+                            </ol>
+                        </div>
+                        <br/>
+                    </div>
+
+                    <!-- middle carousel slider image display -->
+                    <div class="col-md-7">
+                        <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                            <!-- Indicators -->
+                            <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                                <!-- Wrapper for slides -->
+                                <t t-if='propertys'>
+                                    <div class="carousel-inner" role="listbox">
+                                        <div class="item active">
+                                            <img class="img_size img img-responsive" t-att-src="'data:image/jpeg;base64,%s' %propertys.image" />
+                                        </div>
+                                        <t t-foreach="propertys.property_photo_ids" t-as="i">
+                                            <div class="item">
+                                                <img class="img_size img img-responsive" t-att-src="'data:image/jpeg;base64,%s' %i.photos" />
+                                            </div>
+                                        </t>
+                                    </div>
+                                </t>
+                            </div>
+                            <!--  Left and right controls -->
+                            <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+                                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                                <span class="sr-only">Previous</span>
+                            </a>
+                            <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+                                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                                <span class="sr-only">Next</span>
+                            </a>
+                        </div>
+                        <br/>
+                        <!-- Add Property Description -->
+                        <div class="form-group">
+                            <div class="col-md-7">
+                                <strong>
+                                    <span id="pro_name" >
+                                        <t t-esc='propertys.name' />
+                                    </span>
+                                    <t t-if='propertys.state == "normal" and propertys.ground_rent'>
+                                        <span t-field='propertys.ground_rent' style="white-space: nowrap;" t-field-options='{
+                                             "widget": "monetary",
+                                             "display_currency": "user_id.partner_id.property_product_pricelist.currency_id"
+                                         }'></span>
+                                    </t>
+                                    <t t-if='propertys.state == "close" and propertys.sale_price'>
+                                        <span t-field='propertys.sale_price' style="white-space: nowrap;" t-field-options='{
+                                             "widget": "monetary",
+                                             "display_currency": "user_id.partner_id.property_product_pricelist.currency_id"
+                                         }'></span>
+                                    </t>
+                                </strong>
+                                <br/>
+                                <span id="pro_street" >
+                                    <t t-esc='propertys.street' />
+                                </span>
+                                <span id="pro_street2" >
+                                    <t t-esc='propertys.street2' />
+                                </span>
+                                <span id="pro_township" >
+                                    <t t-esc='propertys.township' />
+                                </span>
+                                <br/>
+                                <span id="pro_city" >
+                                    <t t-esc='propertys.city' />
+                                </span>
+                                <span id="pro_state" >
+                                    <t t-esc='propertys.state_id.name' />
+                                </span>
+                                <span id="pro_country" >
+                                    <t t-esc='propertys.country_id.name' />
+                                </span>
+                                <span id="pro_zip" >
+                                    <t t-esc='propertys.zip' />
+                                </span>
+                            </div>
+                            <br/>
+                            <div class="col-md-2">
+                                <t t-if="propertys.id in fav_assets_list">
+                                    <input type="checkbox" data-toggle="toggle" checked="checked" t-att-data='propertys.id' id="fav_img_btn" class="btn icon-btn fav_img"
+                                data-on="Remove from favourites" data-off="Add to favourites" data-offstyle="success" data-onstyle="danger" data-style="ios">
+                                        <!-- <span><i class="fa fa-heart" style="color:red;"></i></span> -->
+                                    </input>
+                                </t>
+                                <t t-if="not propertys.id in fav_assets_list">
+                                    <input type="checkbox" data-toggle="toggle" t-att-data='propertys.id' id="fav_img_btn" class="btn icon-btn fav_img"
+                                data-on="Remove from favourites" data-off="Add to favourites" data-offstyle="success" data-onstyle="danger" data-style="ios">
+                                        <!-- <span class="fa-heart-green"><i class="fa fa-heart" style="color:green;"></i></span> -->
+                                    </input>
+                                </t>
+                            </div>
+                        </div>
+                        <br/>
+                        <br/>
+                        <!-- Add Tab Index View-->
+                        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                            <!-- Basic Property Details -->
+                            <div class="panel panel-default">
+                                <div class="panel-heading" role="tab" id="headingOne">
+                                    <h4 class="panel-title">
+                                        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                            <i class="fa fa-plus-circle"></i> Basic Property Details
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                                    <div class="panel-body">
+                                        <div class="col-md-4">
+                                            <i class="fa fa-home"></i> Property:
+                                            <t t-esc='propertys.name' />
+                                        </div>
+                                        <div class="col-md-4">
+                                            <i class="fa fa-tags"></i> Price:
+                                            <t t-if='propertys.state == "normal" and propertys.ground_rent'>
+                                                <span t-field='propertys.ground_rent' style="white-space: nowrap;" t-field-options='{
+                                                "widget": "monetary",
+                                                "display_currency": "user_id.partner_id.property_product_pricelist.currency_id"
+                                             }'></span>
+                                            </t>
+                                            <t t-if='propertys.state == "close" and propertys.sale_price'>
+                                                <span t-field='propertys.sale_price' style="white-space: nowrap;" t-field-options='{
+                                                "widget": "monetary",
+                                                "display_currency": "user_id.partner_id.property_product_pricelist.currency_id"
+                                                }'></span>
+                                            </t>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <i class="fa fa-retweet"></i> Built-Up Area:
+                                            <t t-esc='propertys.gfa_feet' />
+                                            <echo>Sqft</echo>
+                                        </div>
+                                        <br/>
+                                        <br/>
+                                        <div class="col-md-4">
+                                            <i class="fa fa-bars"></i> Floor:
+                                            <t t-esc='propertys.floor' />
+                                        </div>
+                                        <div class="col-md-4">
+                                            <i class="fa fa-eraser"></i> Bathroom:
+                                            <t t-esc='propertys.bathroom' />
+                                        </div>
+                                        <div class="col-md-4">
+                                            <i class="fa fa-book"></i> Bedrooms:
+                                            <t t-esc='propertys.bedroom' />
+                                        </div>
+                                        <br/>
+                                        <br/>
+                                        <div class="col-md-4">
+                                            <i class="fa fa-delicious"></i> Furnishing: 
+                                            <t t-esc='propertys.furnished' />
+                                        </div>
+                                        <div class="col-md-4">
+                                            <i class="fa fa-ge"></i> Facing: 
+                                            <t t-esc='propertys.facing' />
+                                        </div>
+                                        <div class="col-md-4">
+                                            <i class="fa fa-calendar-o"></i> Age of Property:
+                                            <t t-esc='propertys.age_of_property' />
+                                        </div>
+                                        <br/>
+                                        <br/>
+                                        <div class="col-md-4">
+                                            <i class="fa fa-plus-circle"></i> Added: 
+                                            <t t-esc='propertys.create_date' />
+                                        </div>
+                                    </div>
+                                    <br/>
+                                </div>
+                            </div>
+                            <div class="panel panel-default">
+                                <div class="panel-heading" role="tab" id="headingThree">
+                                    <h4 class="panel-title">
+                                        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                            <i class="fa fa-plus-circle"></i> Amenities
+                                        
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                                    <div class="panel-body">
+                                        <div class="col-md-12">
+                                            <t t-foreach="propertys.utility_ids" t-as="u">
+                                                <div class="col-md-4">
+                                                    <i class="fa fa-angle-double-right"></i>
+                                                    <t t-esc='u.utility_id.name' />
+                                                    <br/>
+                                                </div>
+                                            </t>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Sub Properties Details -->
+                            <div class="panel panel-default">
+                                <div class="panel-heading" role="tab" id="headingTwo">
+                                    <h4 class="panel-title">
+                                        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                            <i class="fa fa-plus-circle"></i> Sub Properties
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                                    <div class="panel-body">
+                                        <div class="col-md-12">
+                                            <t t-foreach="propertys.child_ids" t-as="c">
+                                                <div class="col-md-4">
+                                                    <img class="image_thumb img img-responsive" t-att-src="'data:image/jpeg;base64,%s' %c.image" />
+                                                    <strong>
+                                                        <t t-esc='c.name' />
+                                                        <i class="fa fa-rupee"></i>
+                                                        <t t-esc='c.ground_rent' />
+                                                    </strong>
+                                                    <br/>
+                                                    <t t-esc='c.street' />
+                                                    <t t-esc='c.street2' />
+                                                    <t t-esc='c.township' />
+                                                    <t t-esc='c.city' />
+                                                    <br/>
+                                                    <t t-esc='c.state_id.name' />
+                                                    <t t-esc='c.country_id.name' />
+                                                    <t t-esc='c.zip' />
+                                                </div>
+                                            </t>
+                                            <br/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Image Gallery -->
+                            <div class="panel panel-default">
+                                <div class="panel-heading" role="tab" id="headingFour">
+                                    <h4 class="panel-title">
+                                        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                            <i class="fa fa-plus-circle"></i> Gallery
+                                        </a>
+                                        <!-- Video -->
+                                        <t t-if='propertys.video_url'>
+                                            <a class="pull-right collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                                                <i class="fa fa-plus-circle"></i> Video
+                                            </a>
+                                        </t>
+                                    </h4>
+                                </div>
+                                <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
+                                    <div class="panel-body">
+                                        <div class="col-md-12">
+                                            <!-- Carousel Big image display -->
+                                            <div class="image_bigsize">
+                                                <div id="ex1">
+                                                    <span itemprop="image" t-field="propertys.image" t-field-options='{"widget": "image", "class": "img_set img_size"}' />
+                                                </div>
+                                            </div>
+                                            <!-- Carousel indicators as Properties Photos Thumbnails -->
+                                            <div id='carousel-custom' class='carousel slide' data-ride="carousel">
+                                                <!-- Indicators -->
+                                                <ol class='carousel-indicators'>
+                                                    <li>
+                                                        <img itemprop="image" class="image_thumb img img-responsive" t-att-src="'data:image/jpeg;base64,%s' %propertys.image" />
+                                                    </li>
+                                                    <t t-foreach="propertys.property_photo_ids" t-as="i">
+                                                        <li>
+                                                            <img class="image_thumb img img-responsive" t-att-src="'data:image/jpeg;base64,%s' %i.photos" />
+                                                        </li>
+                                                    </t>
+                                                </ol>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Video Details -->
+                                <div id="collapseFive" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFive">
+                                    <div class="panel-body">
+                                        <div class="col-md-12">
+                                            <!-- Video Play -->
+                                            <t t-if='propertys.video_url'>
+                                                <div class="embed-responsive embed-responsive-16by9">
+                                                    <iframe class="embed-responsive-item" t-att-src = "propertys.video_url" frameborder="0"></iframe>
+                                                </div>
+                                            </t>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- MAP Details -->
+                                <div class="panel panel-default">
+                                    <div class="panel-heading" role="tab" id="headingSix">
+                                        <h4 class="panel-title">
+                                            <a class="collapsed" role="button" data-toggle="collapse" onClick="showMap();"  data-parent="#accordion" href="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                                                <i class="fa fa-plus-circle"></i> Map
+                                            </a>
+                                        </h4>
+                                    </div>
+                                    <div id="collapseSix" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingSix">
+                                        <div class="panel-body">
+                                            <div class="col-md-12">
+                                                <div id="MAP" style="width: 100%;height:500px;"></div>
+                                            </div>
+                                            <div class="hidden col-ms-12">
+                                                <h3>Please select the NearBy Place</h3>
+                                                <table border="0" cellspacing="0" cellpadding="3">
+                                                    <tr>
+                                                        <td> <input type="checkbox" name="mytype" class="chkbox" id="school"  value="school" /><label for="school">School</label><br/></td>
+                                                        <td><input type="checkbox" name="mytype" class="chkbox" id="restaurant"  value="restaurant"/><label for="restaurant" >Restaurant</label></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td> <input type="checkbox" name="mytype" class="chkbox"  id="hospital"  value="hospital"/><label for="hospital" >Hospital</label></td>
+                                                        <td><input type="checkbox" name="mytype"  class="chkbox" id="bus_station"  value="bus_station"/><label for="bus_station" >Bus Stopedge</label></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><input type="checkbox" name="mytype"  class="chkbox" id="park"  value="park"/><label for="park" >Park</label></td>
+                                                        <td><input type="checkbox" name="mytype"  class="chkbox" id="bank"  value="bank"/><label for="bank" >Bank</label></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><input type="checkbox" name="mytype"  class="chkbox" id="bar"  value="bar"/><label for="bar" >Bar</label></td>
+                                                        <td><input type="checkbox" name="mytype"  class="chkbox" id="movie_theater"  value="movie_theater"/><label for="movie_theater" >Movie Theater</label></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><input type="checkbox" name="mytype"  class="chkbox" id="night_club"  value="night_club"/><label for="night_club" >Night Club</label></td>
+                                                        <td><input type="checkbox" name="mytype"  class="chkbox" id="zoo"  value="zoo"/><label for="zoo" >Zoo</label><br/></td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td><input type="checkbox" name="mytype"  class="chkbox" id="gym"  value="gym"/><label for="gym" >Gym</label></td>
+                                                        <td><input type="checkbox" name="mytype"  class="chkbox" id="atm"  value="atm"/><label for="atm" >ATM</label></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><input type="checkbox" name="mytype"  class="chkbox" id="spa"  value="spa"/><label for="spa" >Spa</label></td>
+
+                                                    </tr>
+                                                </table>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Right Side part Custom Form View  -->
+                    <div class="visible-xs col-xs-6">
+                        <button style="text-align:center;" type="submit" class="btn btn-primary btn-lg btn_form_search" data-toggle="collapse" data-target="#btn_form_toggle" name="btn_show_form" id="btn_show_form">
+                            <i class="fa fa-plus-circle"></i> Show to estate agent
+                        </button>
+                    </div>
+                    <br/>
+                    <div class="hidden-xs form_search col-md-3">
+                        <article class="side" style='padding-top:0%;padding-bottom:0%;'>
+                            <div id="btn_form_toggle" class="sidebar_view fixed form_lead">
+                                <div class="row">
+                                    <div class="form-group">
+                                        <label class="control-label col-xs-12" for="inputFirstName">Name:</label>
+                                        <div class="col-xs-6">
+                                            <input type="text" id="inputFirstName" placeholder="First name" name="firstname" value="" class="form-control" required=""/>
+                                        </div>
+                                        <div class="col-xs-6">
+                                            <input type="text" id="inputSurname" placeholder="Surname" name="surname" value="" required="" class="form-control"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-6 form-group">
+                                        <label class="control-label" for="inputEmail">Email:</label>
+                                        <input type="email" id="inputEmail" placeholder="Email" name="email" value="" required="" class="form-control"/>
+                                    </div>
+                                    <div class="col-xs-6 form-group">
+                                        <label class="control-label" for="inputTel">Telephone:</label>
+                                        <input type="text" id="inputTel" placeholder="Telephone number" name="tel" value="" required="" class="form-control"/>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-6 form-group">
+                                        <label class="control-label" for="inputTelType">Phone type:</label>
+                                        <select id="inputTelType" name="telType" class="form-control">
+                                            <option value="mob">Mobile</option>
+                                            <option value="work">Work</option>
+                                            <option value="home">Home</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-xs-6 form-group">
+                                        <label class="control-label" for="inputTelTime">When to call?</label>
+                                        <select id="inputTelTime" name="telTime" class="form-control">
+                                            <option value="anytime">Anytime</option>
+                                            <option value="morning">Morning</option>
+                                            <option value="afternoon">Afternoon</option>
+                                            <option value="evening">Evening</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="row asset">
+                                    <input type="hidden" t-att-value='propertys.id' name="asset" id="asset_id"></input>
+                                    <input type="hidden" t-att-value='propertys.state' name="asset_state" id="asset_state_id"></input>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-12">
+                                        <label class="control-label" for="inputMsg">Message for estate agent:</label>
+                                        <textarea id="inputMsg" name="msg" placeholder="Message for estate agent" rows="3" class="form-control">Hello,&#13;&#10;Please may I arrange a viewing for this property?&#13;&#10;Thanks!</textarea>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-xs-7 col-sm-6 col-md-8">
+                                        <div class="controls">
+                                            <button type="submit" class="btn btn-primary btn-lg" id="send_agent_id">
+                                                <i class="fa fa-envelope"></i> Send to estate agent
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="thank_you_msg">
+                                <div class="form-group row">
+                                    <div class="col-sm-12 text-danger" style="font-size: 30px;">
+                                        <b>Your message has been sent!</b>
+                                        <br/>
+                                            The estate agent should get back to you shortly.
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                    <!-- Scroll top errow -->
+                    <div class="scroll-top-wrapper ">
+                        <span class="scroll-top-inner">
+                            <i class="fa fa-2x fa-arrow-circle-up"></i>
+                        </span>
+                    </div>
+                </div>
+            </t>
+        </template>
+
+    </data>
+</openerp>

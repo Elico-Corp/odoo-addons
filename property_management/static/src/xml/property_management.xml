@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="propertygraph">
+        <br/><b style="margin-left:3%">Change Type :</b>
+        <select id="type_of_graph">
+            <option>column</option>
+            <option>bar</option>
+            <option>line</option>
+            <option>area</option>
+            <option>pie</option>
+         </select>
+        <div id="container_propertygraph" >
+        </div>
+    </t>
+</templates>

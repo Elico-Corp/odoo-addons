@@ -1,0 +1,8 @@
+===================================================================
+Maintaining the change log of the module for each commit.
+===================================================================
+1.2 : Trivedi Maitree - Serpent Consulting Services Pvt Ltd. : 10 Sep 2015
+	* Added dependancy in openerp.py file.
+
+1.1 : Trivedi Maitree - Serpent Consulting Services Pvt Ltd. : 10 Sep 2015
+	* Added the module,improved popup notification method for property.maintenance object

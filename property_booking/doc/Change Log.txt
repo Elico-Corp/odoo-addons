@@ -1,0 +1,22 @@
+CHANGE LOG OF THE MODULE property_booking
+
+Version 1.01 on 18-08-2015 by Malay
+	* Created module property_booking in property_management_odoo
+	
+Version 1.02 on 19-08-2015 by Malay
+    * Improved code in property_booking module.Integreted it with Property Management_System
+
+Version 1.03 on 20-08-2015 by Malay
+    * Added Wizard in property.creation module
+
+Version 1.04 on 31-08-2015 by Malay
+    * Added demo data file in property.label model
+    * Added security file in property_booking module
+
+Version 1.05 on 01-09-2015 by Malay
+    * Added demo data file in property_booking module
+    * Added index.html in property_booking module
+
+Version 1.06 on 04-09-2015 by Malay
+    * Added wizard for Merge properties in property_booking module
+

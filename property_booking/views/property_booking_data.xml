@@ -1,0 +1,73 @@
+<openerp>
+    <data noupdate="1">
+
+        <!-- Label -->
+        <record id="property_booking_label_0" model="property.label">
+            <field name="name">1</field>
+        </record>
+        <record id="property_booking_label_1" model="property.label">
+            <field name="name">2</field>
+        </record>
+        <record id="property_booking_label_2" model="property.label">
+            <field name="name">3</field>
+        </record>
+        <record id="property_booking_label_3" model="property.label">
+            <field name="name">4</field>
+        </record>
+        <record id="property_booking_label_4" model="property.label">
+            <field name="name">5</field>
+        </record>
+        <record id="property_booking_label_5" model="property.label">
+            <field name="name">6</field>
+        </record>
+        <record id="property_booking_label_6" model="property.label">
+            <field name="name">7</field>
+        </record>
+        <record id="property_booking_label_7" model="property.label">
+            <field name="name">8</field>
+        </record>
+        <record id="property_booking_label_8" model="property.label">
+            <field name="name">9</field>
+        </record>
+
+        <!-- Property Booking -->
+        <record id="property_created_1" model="property.created">
+            <field name="name">Siddhraj Arcade</field>
+            <field name="image" type="base64" file="property_booking/static/description/sketch_img_1.jpg"></field>
+            <field name="category_id" ref="account_asset.account_asset_category_fixedassets0"/>
+            <field name="purchase_value">1500000</field>
+            <field name="ground_rent">15000</field>
+            <field name="no_of_towers">2</field>
+            <field name="street">Sarkhej - Gandhinagar Hwy</field>
+            <field name="street2">Near Siddharaj Zavod</field>
+            <field name="township">Sargaasan ,</field>
+            <field name="city">Gandhinagar,</field>
+            <field name="country_id" ref="base.in"></field>
+            <field name="state_id" ref="property_management.guj99"></field>
+            <field name="zip">382423</field>
+
+        </record>
+
+        <record id="property_created_2" model="property.created">
+            <field name="name">Satyam</field>
+            <field name="image" type="base64" file="property_booking/static/description/sketch_img_1.jpg"></field>
+            <field name="category_id" ref="account_asset.account_asset_category_fixedassets0"/>
+            <field name="purchase_value">1500000</field>
+            <field name="ground_rent">15000</field>
+            <field name="is_sub_property">True</field>
+            <field name="floor">2</field>
+            <field name="furnished">semi_furnished</field>
+            <field name="no_of_property">2</field>
+            <field name="parent_id" ref="property_management.property1"></field>
+            <field name="street">206 to 209, Supermall-2,</field>
+            <field name="street2">Infocity, Above Bank Of India,</field>
+            <field name="township">Gandhinagar,</field>
+            <field name="city">Gandhinagar,</field>
+            <field name="country_id" ref="base.in"></field>
+            <field name="state_id" ref="property_management.guj99"></field>
+            <field name="zip">382009</field>
+
+        </record>
+
+    </data>
+</openerp>

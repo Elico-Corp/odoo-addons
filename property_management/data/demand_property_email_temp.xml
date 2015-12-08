@@ -1,0 +1,33 @@
+<openerp>
+<data>
+
+        <!--Email template for demand property-->
+        <record id="email_template_demand_property" model="email.template">
+            <field name="name">Demand Property</field>
+            <field name="email_from">${(object.user_id.login or '')}</field>
+            <field name="subject">Demanded Property</field>
+            <field name="email_to">${(object.email_from or '')|safe}</field>
+            <field name="model_id" ref="property_management.model_crm_lead"/>
+            <field name="auto_delete" eval="True"/>
+            <field name="body_html"><![CDATA[
+                <p><left>Hello <strong>${object.contact_name}</strong>.</left></p>
+                <p>This is to inform you that a Property for which you are demanded with following criteria is available Here, Visit Now.
+                </p>
+                &nbsp;&nbsp;<strong>Details :</strong><br/>
+                <p style="border-left: 1px solid #8e0000; margin-left: 30px;">
+                &nbsp;&nbsp;Min. Bedroom : <strong>${object.min_bedroom}</strong><br />
+                &nbsp;&nbsp;Max Bedroom : <strong>${object.max_bedroom}</strong><br />
+                &nbsp;&nbsp;Min. Bathroom : <strong>${object.min_bathroom}</strong><br />
+                &nbsp;&nbsp;Max Bathroom : <strong>${object.max_bathroom}</strong><br />
+                &nbsp;&nbsp;Min. Price : <strong>${object.min_price}</strong><br />
+                &nbsp;&nbsp;Max Price : <strong>${object.max_price}</strong><br />
+                &nbsp;&nbsp;Facing : <strong>${object.facing}</strong><br />
+                &nbsp;&nbsp;Property Type : <strong>${object.type_id.name}</strong><br />
+                &nbsp;&nbsp;Furnishing : <strong>${object.furnished}</strong><br />
+                </p>
+<strong>Thank You<strong>,<br />
+<br />
+             ]]></field>
+  		</record>
+	</data>
+</openerp>

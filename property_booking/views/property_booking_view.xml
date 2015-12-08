@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <menuitem name="Property Booking" id="menu_sub_property_creation" parent="property_management.menu_property_main" sequence="1"/>
+
+
+        <!-- Property Form View -->
+        <record id ="account_view_id_inh" model="ir.ui.view">
+            <field name="name">account.view.id.inh</field>
+            <field name="model">account.asset.asset</field>
+            <field name ="inherit_id" ref="account_asset.view_account_asset_asset_form"/>
+            <field name="arch" type ="xml">
+                <xpath expr ="//form/sheet/group/group/field[@name='active']"  position ="after">
+                    <field name ="label_id" attrs="{'invisible':[('parent_id','=',False)]}"/>
+                    <field name="Avalbl_property" invisible="1"/>
+                    <field name="book_property" invisible="1"/>
+                </xpath>
+            </field>
+        </record>
+
+
+        <!-- Property Creation Form View  -->
+        <record model="ir.ui.view" id="view_property_created_form">
+            <field name="name">property.created.form</field>
+            <field name="model">property.created</field>
+            <field name="arch" type="xml">
+                <form string="Property">
+                    <header>
+                        <button name="create_property" type="object" string="Create Sub Property" icon="gtk-apply" class="oe_highlight" attrs="{'invisible':['|','|',('lable_bool','=',True),('is_sub_property','=',False),('state','!=','draft')]}"/>
+                        <button name="edit_prop_wizzard" type="object" string="Edit Sub Property" class="oe_highlight" attrs="{'invisible':['|','|',('is_sub_property','=',False),('lable_bool','=',True),('state','=','draft')]}"/>
+                        <button name="merge_prop_wizzard" type="object" string="Merge Sub Property" class="oe_highlight" attrs="{'invisible':['|','|',('is_sub_property','=',False),('lable_bool','=',True),('state','=','draft')]}"/>
+                        <button name="property_unlink" type="object" string="Discard Sub Properties" class=" oe_link" attrs="{'invisible':['|',('is_sub_property','=',False),('lable_bool','=',True)]}"/>
+                        <button name="split_property" type="object" string="Split Properties" class=" oe_highlight" attrs="{'invisible':['|',('is_sub_property','=',False),('state','!=','cancel')]}"/>
+                        <field name="state" widget="statusbar" statusbar_visible="draft"  select="1"/>
+                    </header>
+                    <sheet>
+                        <field name="image" widget="image" class="oe_left oe_avatar"/>
+                        <div class="oe_title oe_left">
+                            <div class="oe_edit_only">
+                                <label for="name"/>
+                            </div>
+                            <h1>
+                                <field name="name" default_focus="1" placeholder="Name"/>
+                            </h1>
+                            <h3 class="oe_edit_only">
+                                (<field name="is_sub_property" class="oe_inline oe_edit_only"/>
+                                <label for="is_sub_property" class="oe_edit_only" string="Is a Sub Property?"/>)
+                                <field name="parent_id" on_change="parent_prop_change(parent_id)" attrs="{'invisible':[('is_sub_property','=',False)],'required':[('is_sub_property','=',True)]}"  placeholder="Parent Property Name"/>
+                            </h3>
+                        </div>
+                        <group>
+                            <group>
+                                <label for="street" string="Address"/>
+                                <div>
+                                    <field name="street" placeholder="Street..." required="1"/>
+                                    <field name="street2" placeholder="Street2..." />
+                                    <field name="township" placeholder="Township..." />
+                                    <div class="address_format">
+                                        <field name="city" placeholder="City" style="width: 35%%" required="1"/>
+                                        <field name="state_id" class="oe_no_button" placeholder="State" style="width: 40%%" options='{"no_open": True}' />
+                                        <field name="zip" placeholder="ZIP" style="width: 25%%"/>
+                                    </div>
+                                    <field name="country_id" placeholder="Country" class="oe_no_button" options='{"no_open": True, "no_create": True}' required="1"/>
+                                </div>
+                                <field name="floor" string="Number Of Floors" attrs="{'invisible':['|',('is_sub_property','=',False), ('lable_bool','=',True)],'required':[('is_sub_property','=',True)]}"/>
+                                <field name="no_of_towers" attrs="{'invisible':[('is_sub_property','=',True)]}"/>
+                                <field name="prefix2" invisible="1" attrs="{'invisible':[('is_sub_property','=',False)]}"/>
+                                <field name="change_lable" attrs="{'invisible':['|',('is_sub_property','=',False),('state','in',('draft','book','normal','close','sold','cancel'))]}"/><newline/>
+                                <field name="label_id"  widget="selection" style="width:40%%;" attrs="{'invisible':['|','|',('is_sub_property','=',False),('change_lable','=',False),('state','=','draft')]}"/>
+                            </group>
+                            <group>
+                                <field name="category_id" />
+                                <field name="prefix3" attrs="{'invisible':['|',('is_sub_property','=',False), ('lable_bool','=',True)]}"/>
+                                <field name="ground_rent"/>
+                                <field name="purchase_value"/>
+                                <field name="no_of_property" attrs="{'invisible':['|',('is_sub_property','=',False), ('lable_bool','=',True)],'required':[('is_sub_property','=',True)]}"/>
+                                <field name="furnished" attrs="{'invisible':[('is_sub_property','=',False)]}"/>
+                                <field name="prop_number" invisible="1"/>
+                                <field name="floor_number" invisible="1"/>
+                                <field name="tower_num" invisible="1"/>
+                                <field name="lable_bool" invisible="1"/>
+                            </group>
+	                    </group>
+                        <group colspan="2" col="2">
+                            <separator string="Sub Properties" attrs="{'invisible':[('lable_bool','=',True),]}"/><newline/>
+                            <field name="child_ids" nolabel="1" attrs="{'invisible':[('lable_bool','=',True)],'readonly':[('state','=','draft')]}">
+                               <tree editable="bottom" colors="black:state == 'draft';red:state == 'book';gray:state == 'cancel';" class="my_class">
+                                    <field name="name" readonly="1"/>
+                                    <field name="property_manager" placeholder="Owner Name" string="Owner Name" attrs="{'required':[('state','in',('book','normal','close','sold'))]}"/>
+                                    <field name="label_id"/>
+                                    <field name="state"/>
+                                    <field name="book_property" string="Book" attrs="{'invisible':[('state','in',('draft','book','normal','close','sold','cancel'))]}" sum="booked"/>
+                                    <field name="Avalbl_property"  string="Available" attrs="{'invisible':[('state','in',('draft','book','normal','close','sold','cancel'))]}" sum="available"/>
+                                    <button name="edit_status" attrs="{'invisible':[('state','in',('new_draft','book','normal','close','sold','cancel'))]}" type="object" states='draft' icon="terp-check" />
+                                    <button name="edit_status_book" attrs="{'invisible':[('state','in',('draft','new_draft','close', 'cancel'))]}" type="object" states='Book' icon="gtk-cancel" />
+                               </tree>
+                            </field>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+        <!-- Property Search View  -->
+        <record id="view_property_created_search" model="ir.ui.view">
+            <field name="name">property.created.search</field>
+            <field name="model">property.created</field>
+            <field name="arch" type="xml">
+                <search string="Property Booking">
+                    <filter string="Available" name="available" domain="[('state','=','draft')]"/>
+                    <filter string="Booking Open" name="Draft" domain="[('state','=','new_draft')]"/>
+                    <filter string="On Lease" name="on_lease" domain="[('state','=','normal')]"/>
+                    <filter string="Sale" name="sale" domain="[('state','=','close')]"/>
+                    <filter string="Sold" name="sold" domain="[('state','=','sold')]"/>
+                    <filter string="Book" name="book" domain="[('state','=','book')]"/>
+                    <filter string="Property" name="property" domain="[('lable_bool','=',False)]"/>
+                    <field name="name"/>
+                    <field name="parent_id"/>
+                    <field name="furnished"/>
+                    <field name="ground_rent" string="Ground rent"/>
+                    <newline/>
+                    <group expand="0" string="Group By..." colspan="4" col="10">
+                        <filter string="Parent Property" name="parentproperty" icon="terp-personal" domain="[]" context="{'group_by':'parent_id'}"/>
+                        <filter string="Furnish Type" icon="terp-personal" domain="[]" context="{'group_by':'furnished'}"/>
+                        <filter string="Label" icon="terp-personal" domain="[]" context="{'group_by':'label_id'}"/>
+                        <filter string="State" icon="terp-personal" domain="[]" context="{'group_by':'state'}"/>
+                        <filter string="City" icon="terp-personal" domain="[]" context="{'group_by':'city'}"/>
+                        <filter string="Country" icon="terp-personal" domain="[]" context="{'group_by':'country_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+
+        <!-- Property Creation Tree View  -->
+        <record id="property_created_tree" model="ir.ui.view">
+            <field name="name">property.created.tree</field>
+            <field name="model">property.created</field>
+            <field name="arch" type="xml">
+                <tree string="Properties" colors="black:state == 'new_draft';blue:state == 'draft';red:state == 'book';gray:state == 'cancel';">
+                    <field name="name"/>
+                    <field name="floor"/>
+                    <field name="no_of_property"/>
+                    <field name="furnished"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+
+
+        <!-- Sub Property Creation Tree View  -->
+        <record id="sub_property_created_tree" model="ir.ui.view">
+            <field name="name">sub.property.created.tree</field>
+            <field name="model">property.created</field>
+            <field name="arch" type="xml">
+                <tree string="Properties" colors="black:state == 'new_draft';blue:state == 'draft';red:state == 'book';gray:state == 'cancel';">
+                    <field name="name"/>
+                    <field name="parent_property_rel"/>
+                    <field name="label_id"/>
+                    <field name="no_of_property"/>
+                    <field name="furnished"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+
+
+        <!--  Action for Property Creation Views  -->
+        <record id="action_create_property2" model="ir.actions.act_window">
+            <field name="name">Property Booking</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">property.created</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('lable_bool','=',False)]</field>
+        </record>
+
+
+        <!--  Action for Sub Property Creation Views  -->
+        <record id="action_create_sub_property" model="ir.actions.act_window">
+            <field name="name">Sub Property</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">property.created</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="sub_property_created_tree"/>
+            <field name="domain">[('lable_bool','=',True)]</field>
+            <field name="context">{'search_default_parentproperty':1}</field>
+        </record>
+
+
+        <menuitem name="Book Property" id="menu_create_property2" parent="menu_sub_property_creation"
+                action="action_create_property2"/>
+
+        <menuitem name="Sub Property" id="menu_create_sub_property2" parent="menu_sub_property_creation"
+              action="action_create_sub_property"/>
+
+
+<!--                #############################################                                       -->
+<!--                              Property Label                                                            -->
+<!--                #############################################                                       -->
+
+
+        <!-- Property label Form View  -->
+        <record model="ir.ui.view" id="view_property_label_form">
+            <field name="name">property.label.form</field>
+            <field name="model">property.label</field>
+            <field name="arch" type="xml">
+                <form string="Label">
+                    <sheet>
+                        <separator string="Label Name:"/>
+                        <h3>
+                            <group col="2">
+                                <field name="name" placeholder="Number Of BHK" style="width:30%%;"/>
+                                <field name="code" placeholder="Code for label" style="width:30%%;"/>
+                            </group>
+                        </h3>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+        <!-- Property label Tree View  -->
+        <record id="property_label_tree" model="ir.ui.view">
+            <field name="name">property.label.tree</field>
+            <field name="model">property.label</field>
+            <field name="arch" type="xml">
+                <tree string="Label">
+                    <field name="name"/>
+                    <field name="code"/>
+                </tree>
+            </field>
+        </record>
+
+
+        <!--  Action for Property label Views  -->
+        <record id="action_property_label" model="ir.actions.act_window">
+            <field name="name">Label</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">property.label</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+        <menuitem name="Label" id="menu_property_label2" parent="property_management.menu_configuration_main"
+                action="action_property_label"/>
+
+    </data>
+</openerp>

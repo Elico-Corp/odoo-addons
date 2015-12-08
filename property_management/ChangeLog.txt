@@ -1,0 +1,52 @@
+===================================================================
+Maintaining the change log of the module for each commit.
+===================================================================
+
+2.14 : Malay Khamar - Serpent Consulting Services Pvt Ltd. : 21 Sep 2015
+    * did code to print report of account.move from tenancy formm view.
+    * create method for schedular of property state change.
+
+2.13 : Nilesh Galoriya - Serpent Consulting Services Pvt Ltd. : 21 Sep 2015
+    * did code to create sale order for property when property is plan to buy.
+    * did code to create contract when lead genrated from rent button from website.
+
+2.12 : Nilesh Galoriya - Serpent Consulting Services Pvt Ltd. : 19 Sep 2015
+    * Inherited the _lead_create_contact() of crm.lead to create tenant 
+        and check related customer tenant field.
+
+2.11 : Trivedi Maitree - Serpent Consulting Services Pvt Ltd. : 10 Sep 2015
+    * Improved create method of tenant.partner and write method of account.analytic.account
+
+2.10 : Trivedi Maitree - Serpent Consulting Services Pvt Ltd. : 10 Sep 2015
+    * Added fields in property,tenant.partner object,Made record rule of tenant contract and property for property user and property agent group.
+
+2.9 : Trivedi Maitree - Serpent Consulting Services Pvt Ltd. : 4 Sep 2015
+    * Override create method of tenant.partner,Made record rule for tenant contract and property.
+
+2.8 : Trivedi Maitree - Serpent Consulting Services Pvt Ltd. : 31 Aug 2015
+    * Improved kanban view and override create method of account.analytic.account.
+
+2.7 : Nilesh Galoriya - Serpent Consulting Services Pvt Ltd. : 28 Aug 2015
+    * Improved the code of button_receive and button_return method.
+
+2.6 : Nilesh Galoriya - Serpent Consulting Services Pvt Ltd. : 28 Aug 2015
+    * Merged the web_calendar.js and property_management.js.
+
+2.5 : Nilesh Galoriya - Serpent Consulting Services Pvt Ltd. : 28 Aug 2015
+    * Removed the code of property.unit model.
+
+2.4 : Nilesh Galoriya - Serpent Consulting Services Pvt Ltd. : 27 Aug 2015
+    * Improved the code to genrate proper purchase installment enteries.
+
+2.3 : Nilesh Galoriya - Serpent Consulting Services Pvt Ltd. : 27 Aug 2015
+    * Improved the code of asset and tenant.partner kanban view.
+
+2.2 : Nilesh Galoriya - Serpent Consulting Services Pvt Ltd. : 24 Aug 2015
+    * Remove unnecessory comments.
+
+2.1 : Nilesh Galoriya - Serpent Consulting Services Pvt Ltd. : 24 Aug 2015
+    * Remove unnecessory xml and py files of wizard.
+
+2.0 : Komal Vaghela - Serpent Consulting Services Pvt Ltd. : 20 June 2015
+	* Added the module
+

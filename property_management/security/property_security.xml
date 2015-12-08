@@ -1,0 +1,87 @@
+<openerp>
+	<data>
+    <record model="ir.rule" id="property_comp_rule">
+        <field name="name">Property multi-company</field>
+        <field name="model_id" ref="model_account_asset_asset"/>
+        <field name="global" eval="True"/>
+        <field name="domain_force">['|',('company_id','=',False),('company_id','child_of',[user.company_id.id])]</field>
+    </record>
+    
+	<record model="ir.rule" id="property_insurance_comp_rule">
+        <field name="name">Property Insurance multi-company</field>
+        <field name="model_id" ref="model_property_insurance"/>
+        <field name="global" eval="True"/>
+        <field name="domain_force">['|',('company_id','=',False),('company_id','child_of',[user.company_id.id])]</field>
+    </record>
+    
+	<record model="ir.rule" id="property_tenancy_comp_rule">
+        <field name="name">Property Tenancy multi-company</field>
+        <field name="model_id" ref="model_account_analytic_account"/>
+        <field name="global" eval="True"/>
+        <field name="domain_force">['|',('company_id','=',False),('company_id','child_of',[user.company_id.id])]</field>
+    </record>
+
+	<record model="ir.rule" id="property_tenancy_rent_schedule_rule">
+        <field name="name">Property Tenancy Rent Schedule multi-company</field>
+        <field name="model_id" ref="model_tenancy_rent_schedule"/>
+        <field name="global" eval="True"/>
+        <field name="domain_force">['|',('company_id','=',False),('company_id','child_of',[user.company_id.id])]</field>
+    </record>
+
+	<record model="ir.rule" id="property_tenancy_rent_schedule">
+        <field name="name">Property Tenancy Rent Schedule</field>
+        <field name="model_id" ref="model_tenancy_rent_schedule"/>
+        <field name="global" eval="True"/>
+        <field name="domain_force">[('rel_tenant_id','=',user.tenant_id.id)]</field>
+    </record>
+
+	<record model="ir.rule" id="property_account_analytic_account_rule">
+        <field name="name">Property tenant contract</field>
+        <field name="model_id" ref="model_account_analytic_account"/>
+        <field name="global" eval="True"/>
+        <field name="domain_force">[('tenant_id','=',user.tenant_id.id)]</field>
+    </record>
+    
+
+    <record model="ir.rule" id="property_account_asset_asset_rule">
+        <field name="name">Property of agent</field>
+        <field name="model_id" ref="model_account_asset_asset"/>
+        <field name="global" eval="True"/>
+        <field name="domain_force">['|', ('property_manager','=',user.partner_id.id) , ('id','in',user.partner_id.fav_assets_ids.ids)]</field>
+        <field name="groups" eval="[(4, ref('property_management.group_property_agent'))]"/>
+    </record>
+    
+    <record model="ir.rule" id="property_account_asset_asset_rule_of_tenant">
+        <field name="name">Property of tenant</field>
+        <field name="model_id" ref="model_account_asset_asset"/>
+        <field name="global" eval="True"/>
+        <field name="domain_force">['|', ('current_tenant','=',user.tenant_id.id) , ('id','in',user.partner_id.fav_assets_ids.ids)]</field>
+        <field name="groups" eval="[(4, ref('property_management.group_property_user'))]"/>
+    </record>
+    
+    <record model="ir.rule" id="tenant_partner_rule">
+        <field name="name">Tenant detail</field>
+        <field name="model_id" ref="model_tenant_partner"/>
+        <field name="global" eval="True"/>
+        <field name="domain_force">[('id','=',user.tenant_id.id)]</field>
+        <field name="groups" eval="[(4, ref('property_management.group_property_user'))]"/>
+    </record>
+    
+    <record model="ir.rule" id="tenant_partner_rule_of_agent">
+        <field name="name">Agent and related Tenant detail</field>
+        <field name="model_id" ref="model_tenant_partner"/>
+        <field name="global" eval="True"/>
+        <field name="domain_force">['|',('id','=',user.tenant_id.id), ('id','=',user.tenant_id.tenant_ids.ids)]</field>
+        <field name="groups" eval="[(4, ref('property_management.group_property_agent'))]"/>
+    </record>
+    
+	<record model="ir.rule" id="property_account_asset_asset_rule_of_manager">
+        <field name="name">Property of manager</field>
+        <field name="model_id" ref="model_account_asset_asset"/>
+        <field name="global" eval="True"/>
+        <field name="domain_force">[('property_manager','=',user.partner_id.id)]</field>
+        <field name="groups" eval="[(4, ref('property_management.group_property_manager'))]"/>
+    </record>
+
+	</data>
+</openerp>

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<record id="partner_address_view_form" model="ir.ui.view">
+            <field name="name">res.partner.form</field>
+            <field name="model">res.partner</field>
+            <field name="priority">6</field>
+            <field name="arch" type="xml">
+				<form string="Tenant Details" version='7.0'>
+				   <sheet>
+				    <group>
+           			 <separator string="Address" colspan="4"/>
+           			 <field name="street"/>
+                     <field name="street2"/>
+                     <field name="zip"/>
+                     <field name="city"/>
+                     <field name="country_id"/>
+                     <field name="state_id"/>
+                   </group>
+                  </sheet>
+	            </form>
+			</field>
+		</record>
+		
+         <!--Inherited Partner Form View-->
+     	<record id="inherited_view_partner_form" model="ir.ui.view">
+	        <field name="name">inherited.view.partner.form</field>
+	        <field name="model">res.partner</field>
+	        <field name="inherit_id" ref="base.view_partner_form"/>
+	        <field name="arch" type="xml">
+	            <xpath expr="//field[@name='website']" position="after">
+	            	<field name="occupation"/>
+	            </xpath>
+                <xpath expr="//page[@string='Sales &amp; Purchases']" position="replace">
+                        <page name='sales_purchases' string="Sales &amp; Purchases">
+                            <group>
+                                <group>
+                                    <field name="user_id" 
+                                        context="{'default_groups_ref': ['base.group_partner_manager']}"/>
+                                    <field name="company_id" groups="base.group_multi_company" options="{'no_create': True}"/>
+                                </group>
+                                <group>
+                                    <field name="customer"/>
+                                    <field name="supplier"/>
+                                    <field name="is_tenant"/>
+                                </group>
+                                <group>
+                                    <field name="ref"/>
+                                    <field name="lang"/>
+                                    <field name="date"/>
+                                </group>
+                                <group>
+                                    <field name="active"/>
+                                </group>
+                            </group>
+                        </page>
+                    </xpath>
+			</field>
+	    </record>
+	    
+	    <!--Inherited User Form View-->
+     	<record id="inherited_view_user_form" model="ir.ui.view">
+	        <field name="name">inherited.view.user.form</field>
+	        <field name="model">res.users</field>
+	        <field name="inherit_id" ref="base.view_users_form"/>
+	        <field name="arch" type="xml">
+	            <field name="active" position="before">
+	            	<field name="tenant_id"/>
+	            </field>
+			</field>
+	    </record>
+
+
+	</data>
+</openerp>

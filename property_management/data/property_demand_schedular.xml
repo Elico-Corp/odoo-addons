@@ -1,0 +1,31 @@
+<openerp>
+<data>
+
+        <!--Scheduler for property demand -->
+        <record model="ir.cron" id="property_demand_cron">
+            <field name="name">property demand</field>
+            <field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+            <field name="numbercall">-1</field>
+            <field name="doall" eval="False"/>
+            <field name="model" eval="'crm.lead'"/>
+            <field name="function" eval="'cron_property_demand'"/>
+            <field name="args" eval="'()'" />
+        </record>
+
+
+
+        <!--Scheduler for property states changed -->
+        <record model="ir.cron" id="property_states_changed">
+            <field name="name">property states changed</field>
+            <field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+            <field name="numbercall">-1</field>
+            <field name="doall" eval="False"/>
+            <field name="model" eval="'account.analytic.account'"/>
+            <field name="function" eval="'cron_property_states_changed'"/>
+            <field name="args" eval="'()'" />
+        </record>
+
+</data>
+</openerp>

@@ -1,0 +1,126 @@
+<openerp>
+    <data>
+<!--                #############################################                                       -->
+<!--                                 Wizzard                                                            -->
+<!--                #############################################                                       -->
+
+
+        <!--property Wizzard Filter Form View  -->
+        <record model="ir.ui.view" id="view_wizz_wizz_wizard">
+            <field name="name">property.wizzard</field>
+            <field name="model">property.wizzard</field>
+            <field name="arch" type="xml">
+                <form string="Property Wizzard" >
+                    <group col="2" colspan="2">
+                        <field name="property_id" on_change="property_change(property_id)" invisible="1"/><newline/>
+                    </group>
+                    <group col="4" colspan="2">
+                        <field name="tower" required="1"/><newline/>
+                        <field name="tower2" invisible="1"/><newline/>
+                        <field name="floor_count" invisible="1" /><newline/>
+                        <field name="floor" required="1"/><newline/>
+                    </group>
+                    <group col="2" colspan="2">
+                        <field name="property_created_ids" invisible="1">
+                            <tree string="Properties">
+                                <field name="name"/>
+                                <field name="floor"/>
+                                <field name="label_id"/>
+                                <field name="state"/>
+                                <field name="furnished"/>
+                            </tree>
+                        </field>
+                    </group>
+                    <footer>
+                        <button name="property_method" type="object" string="Filter" class="oe_highlight"/>
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <!--  Action for Property wizzard Filter -->
+        <record model="ir.actions.act_window" id="action_property_wizz_wizz">
+            <field name="name">Wizard Wizard</field>
+            <field name="res_model">property.wizzard</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+
+        <!--Sub Wizzard Form View  -->
+        <record model="ir.ui.view" id="sub_wizzard_form_view">
+            <field name="name">sub.wizzard.form.view</field>
+            <field name="model">sub.wizzard</field>
+            <field name="arch" type="xml">
+                <form string="Sub Wizzard" >
+                    <group col="4" colspan="2">
+                        <field name="name_obj" required="1" placeholder="Name Of Property"/><newline/>
+                        <field name="furnish" style="width:40%%;"/><newline/>
+                        <field name="is_other"/>
+                    </group>
+                    <group col="2" colspan="2">
+                        <separator string="Sub Properties"/><newline/>
+                        <field name="property_created_ids2" nolabel="1" >
+                            <tree string="Properties" editable="bottom">
+                                <field name="name"/>
+                                <field name="floor" readonly="1"/>
+                                <field name="property_manager"/>
+                                <field name="label_id" widget="selection"/>
+                                <field name="state"/>
+                                <field name="furnished"/>
+                            </tree>
+                        </field>
+                    </group>
+                    <footer>
+                        <button name="sub_method" type="object" string="Update" class="oe_highlight"/>
+                         or 
+                        <button string="Cancel" class="oe_link" special="cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <!--  Action for sub wizzard  -->
+        <record model="ir.actions.act_window" id="action_sub_wizzard_filter">
+            <field name="name">Property Filter</field>
+            <field name="res_model">sub.wizzard</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+
+        <!--Property parent merge wizard Form View  -->
+        <record model="ir.ui.view" id="property_parent_merge_wizard_view">
+            <field name="name">property.parent.merge.wizard.view</field>
+            <field name="model">property.parent.merge.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Property Merge" >
+                    <group col="2" colspan="2">
+                        <separator string="Sub Properties"/><newline/>
+                        <field name="property_created_ids1234" nolabel="1"> 
+                            <tree string="Properties" editable="bottom">
+                                <field name="name"/>
+                                <field name="floor" readonly="1"/>
+                                <field name="property_manager"/>
+                                <field name="label_id" widget="selection"/>
+                                <field name="state"/>
+                            </tree>
+                        </field>
+                    </group>
+                    <group>
+                        <field name="new_prop_id" invisible="1" on_change="onchange_property(new_prop_id)"/>
+                    </group>
+                    <footer>
+                        <button name="property_merge_parent" string="Merge" type="object" class="oe_highlight"/>
+                        <button string="Cancel" class="oe_link" special="cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+    </data>
+</openerp>

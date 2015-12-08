@@ -1,0 +1,13 @@
+CHANGE LOG OF THE MODULE property_management
+
+Version 1.01 on 22-08-2012 by Piyush
+	* On creating a property, create one main analytic account with property's name and 
+	  two child analytic account with name income and expense.
+	  
+	*  In "Accounting/Bank and Cash/Bank Statements" create new field Income Account and 
+	   select this account instead of selecting customer's receivable account.
+
+	*  rent calendar in which it will show the rent to be collected in each date for different properties.
+	
+Version 1.02 on 22-08-2014 by Dhirendrasinh
+    * Migrated in 6.1 to 8.0.
