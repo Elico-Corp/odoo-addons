@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <openerp>
     <data>
-        <template id="metallion_layout" inherit_id="website.layout">
+        <template id="layout" inherit_id="website.layout">
             <xpath expr="//footer//div[@class='pull-right']" position="replace" />
         </template>
     </data>
