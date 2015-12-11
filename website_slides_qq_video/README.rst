@@ -5,7 +5,7 @@
 ==============================
 Website Slides upload QQ video
 ==============================
-This model  extends the functionality of and allows to publish the QQ video
+This model  extends the functionality of website_slides and allows to publish the QQ video
 in the channel
 
 Installation
@@ -14,6 +14,28 @@ Installation
 To install this module, you need to:
 
  * have basic modules installed (website_slides)
+
+
+Usage
+=====
+
+To use this module, you need to:
+
+Url format is : <address>?vid=<vid>,
+The vid is the key for video.
+
+You can get it when you click any qq video most of the time, etc:
+http://v.qq.com/cover/k/kg0cy3syh1ovu9z.html?vid=a001986fc2v,
+
+But if you can't find the vid in the url, like:
+http://v.qq.com/boke/page/n/0/o/n0163mjor1o.html
+
+Click the share button under the video and find the iframe code for the video like:
+<iframe frameborder="0" width="640" height="498" src="http://v.qq.com/iframe/player.html?vid=n0163mjor1o&tiny=0&auto=0" allowfullscreen></iframe>
+
+Just copy and paster the url in the src: http://v.qq.com/iframe/player.html?vid=n0163mjor1o
+
+
 
 Bug Tracker
 ===========
