@@ -30,7 +30,6 @@
                                 <field name="priority" widget="priority" modifiers="{}"/>
                             </group>
                         </group>
-                            <field name="work_ids" modifiers="{}"/>
                             <group>
                                 <group class="oe_subtotal_footer oe_right" name="project_hours">
                                     <field name="effective_hours" widget="float" modifiers="{'readonly': true}"/>
@@ -41,12 +40,12 @@
                                     <field name="total_hours" widget="float" class="oe_subtotal_footer_separator" modifiers="{'readonly': true}"/>
                                 </group>
                             </group>
+                            <field name="work_ids" modifiers="{}"/>
                         <div class="oe_clear"/>
                     </sheet>
                 </form>
             </field>
         </record>
-
         <record id="view_task_planning_tree" model="ir.ui.view">
             <field name="name">project.task.planning.tree</field>
             <field name="model">project.task</field>
@@ -71,41 +70,42 @@
                 </tree>
             </field>
         </record>
-
         <record id="task_planning_search" model="ir.ui.view">
             <field name="name">project.task.planning.search</field>
             <field name="model">project.task</field>
             <field name="arch" type="xml">
                 <search string="Tasks Planning">
-                   <field name="name"/>
-                    <filter name ="filter_my_task" string="My Task" domain="[('user_id', '=', uid)]"/>
+                    <field name="id"/>
+                    <field name="name"/>
+                    <field name="type"/>
+                    <field name="wbs"/>
+                    <field name="categ_ids"/>
+                    <field name="user_id"/>
+                    <field name="reviewer_id"/>
+                    <field name="project_id"/>
+                    <field name="stage_id"/>
+                    <field name="description"/>
+                    <filter name ="filter_my_task" string="My Task" domain="[('user_id','=',uid)]"/>
+                    <separator/>
                     <filter name = "filter_Week1" string="Week1"
                             domain="[('week_1', '>', 0)]"/>
+                    <separator/>        
                     <filter string="Week2"
                             domain="[('week_2', '>', 0)]"/>
+                    <separator/>
                     <filter string="Week3"
                             domain="[('week_3', '>', 0)]"/>
+                    <separator/>
                     <filter string="Week4"
                             domain="[('week_4', '>', 0)]"/>
                     <group expand="0" string="Group By">
                         <filter name="project_id" string="Project" context="{'group_by':'project_id'}"/>
+                        <filter name="stage_id" string="Stage" context="{'group_by':'stage_id'}"/>
+                        <filter name="type" string="Type" context="{'group_by':'type'}"/>
                     </group>
                 </search>
             </field>
         </record>
-
-        <!-- Extend Form, In the list of timnesheet, set the creation of new line on bottom of the list instead of top.-->
-        <record id="view_task_work_tree_inherits" model="ir.ui.view">
-            <field name="name">project.task.work.tree.inherits</field>
-            <field name="model">project.task.work</field>
-            <field name="inherit_id" ref="project.view_task_work_tree"/>
-            <field name="arch" type="xml">
-                <xpath expr="//tree[@string='Task Work']" position="attributes">
-                    <attribute name="editable">bottom</attribute>   
-                </xpath> 
-            </field>
-        </record>
-
         <record id="action_view_task_planning" model="ir.actions.act_window">
             <field name="name">Planning</field>
             <field name="res_model">project.task</field>
@@ -117,20 +117,18 @@
               <p class="oe_view_nocontent_create">
               </p>
             </field>
+            <field name="context">{'search_default_filter_my_task': 1, 'search_default_filter_Week1': 1}</field>
         </record>
-
         <record id="action_view_task_planning_tree" model="ir.actions.act_window.view">
             <field name="view_mode">tree</field>
             <field name="view_id" ref="view_task_planning_tree" />
             <field name="act_window_id" ref="action_view_task_planning" />
         </record>
-
         <record id="action_view_task_planning_form" model="ir.actions.act_window.view">
             <field name="view_mode">form</field>
             <field name="view_id" ref="view_task_planning_form" />
             <field name="act_window_id" ref="action_view_task_planning" />
         </record>
-
         <record id="action_view_wizard_task_planning" model="ir.actions.act_window">
             <field name="name">Reset Planning</field>
             <field name="res_model">project.task</field>
@@ -143,13 +141,6 @@
               </p>
             </field>
         </record>
-
-        <!-- Action to displaying the he tasks from the current user's planning and select the filter "Week 1"-->
-        <record model="ir.actions.act_window" id="elico_project.action_view_task_planning">
-            <field name="context">{'search_default_filter_my_task': 1, 'search_default_filter_Week1': 1}</field>
-       </record>
-
         <menuitem action="action_view_task_planning" id="menu_action_view_task_planning" parent="project.menu_project_management" sequence="6"/>
-
     </data>
 </openerp>

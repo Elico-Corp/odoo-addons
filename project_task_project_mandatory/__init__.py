@@ -3,7 +3,7 @@
 #
 #    OpenERP, Open Source Management Solution
 #    Copyright (C) 2010-2015 Elico Corp (<http://www.elico-corp.com>)
-#    Authors: Luke Zheng
+#    Authors: Sebastien Maillard
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -19,19 +19,4 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from openerp import models, api
-
-
-class WizardResetPlanning(models.TransientModel):
-    _name = 'wizard.reset.planning'
-
-    @api.multi
-    def reset_planning(self):
-        tasks = self.env['project.task'].search([])
-        tasks.write({
-            'week_1': 0,
-            'week_2': 0,
-            'week_3': 0,
-            'week_4': 0,
-        })
-        return True
+from . import models

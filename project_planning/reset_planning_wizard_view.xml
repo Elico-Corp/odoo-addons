@@ -27,6 +27,5 @@
         </record>
 
         <menuitem action="action_view_wizard_reset_planning" id="menu_action_wizard_view_reset_planning" parent="project.menu_project_management"/>
-
     </data>
 </openerp>
