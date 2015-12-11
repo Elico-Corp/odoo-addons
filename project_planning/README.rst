@@ -2,8 +2,8 @@
    :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
    :alt: License: AGPL-3
 
-=============
-Elico Project
-=============
+================
+Project Planning
+================
 
 Enhancements related to Project Management.

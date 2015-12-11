@@ -19,27 +19,35 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-{
-    'name': 'Elico Project',
-    'version': '0.0.1',
-    'category': '',
-    'depends': [
-        'project_timesheet',
-        'project_issue_sheet'
-    ],
-    'author': 'Elico Corp,Odoo Community Association (OCA)',
-    'license': 'AGPL-3',
-    'website': 'https://www.elico-corp.com',
-    'images': [],
-    'demo': ['project_demo.xml'],
-    'data': [
-        'project_task_view.xml',
-        'project_issue_view.xml',
-        'project_timesheet_view.xml',
-        'project_tasks_planning_view.xml',
-        'reset_planning_wizard_view.xml'
-    ],
-    'test': [],
-    'installable': True,
-    'application': False
-}
+from openerp import models, fields
+
+
+class ProjectTask(models.Model):
+    _inherit = 'project.task'
+
+    type = fields.Selection(
+        [('ADM', 'ADM'),
+         ('DEV', 'DEV'),
+         ('FS', 'FS'),
+         ('PM', 'PM'),
+         ('QA', 'QA'),
+         ('SAL', 'SAL'),
+         ('TR', 'TR'),
+         ('TS', 'TS')],
+        string='Type', required=True, help="""
+        Type of task. Following values are available:
+            - ADM: administrative task
+            - DEV: development task
+            - FS: functional specification task
+            - PM: project managment task
+            - QA: quality control task
+            - SAL: sales task
+            - TR: training task
+            - TS: technical specification task
+        """)
+
+
+class ProjectIssue(models.Model):
+    _inherit = 'project.issue'
+
+    project_id = fields.Many2one(required=True)
