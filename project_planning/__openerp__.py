@@ -4,7 +4,7 @@
 
 {
     'name': 'Project Planning',
-    'version': '8.0.1.0.1',
+    'version': '8.0.1.0.2',
     'category': 'Project',
     'depends': [
         'project_task_type',

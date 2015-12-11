@@ -3,11 +3,11 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 {
     'name': 'Elico Project',
-    'version': '8.0.1.0.1',
+    'version': '8.0.1.0.2',
     'category': 'Project',
     'depends': [
-        'project_timesheet',
-        'project_issue_sheet'
+        'project',
+        'project_issue'
     ],
     'author': 'Elico Corp',
     'license': 'AGPL-3',

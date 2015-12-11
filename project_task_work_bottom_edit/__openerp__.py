@@ -6,7 +6,7 @@
     'version': '8.0.1.0.1',
     'category': 'Project',
     'depends': [
-        'project_timesheet',
+        'project',
     ],
     'author': 'Elico Corp',
     'license': 'AGPL-3',
