@@ -13,7 +13,7 @@ Installation
 
 To install this module, you need to:
 
- * have basic modules installed (project_timesheet)
+ * have basic modules installed (project)
 
 
 Bug Tracker

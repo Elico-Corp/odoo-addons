@@ -3,7 +3,7 @@
    :alt: License: AGPL-3
 
 =================
-Project task type
+Project Task Type
 =================
 
 This module extends the functionality of Project and allow you to add a project columns to task and make project required in task and issue,and move the priority from page to form.
@@ -13,7 +13,7 @@ Installation
 
 To install this module, you need to:
 
- * have basic modules installed (project_timesheet, project_issue_sheet)
+ * have basic modules installed (project, project_issue)
 
 
 Bug Tracker

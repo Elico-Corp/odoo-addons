@@ -15,7 +15,7 @@ Installation
 
 To install this module, you need to:
 
- * have basic modules installed (project_timesheet, project_issue_sheet)
+ * have basic modules installed (project, project_issue)
 
 
 Bug Tracker
