@@ -3,7 +3,7 @@
    :alt: License: AGPL-3
 
 ===============
-Task ID Display
+Project Task Id
 ===============
 
 This module extends the functionality of project and allow you to see the task ID from the task views.
@@ -13,7 +13,7 @@ Installation
 
 To install this module, you need to:
 
- * have basic modules installed (project, project_issue)
+ * have basic modules installed (project_issue)
 ​
 Bug Tracker
 ===========

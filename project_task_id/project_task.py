@@ -2,7 +2,7 @@
 # © 2015 Elico corp (www.elico-corp.com)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from openerp.osv import orm, fields
+from openerp.osv import fields, orm
 
 
 class project_task(orm.Model):

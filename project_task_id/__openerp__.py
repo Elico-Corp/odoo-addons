@@ -6,7 +6,6 @@
     'version': '8.0.1.0.1',
     'category': 'project',
     'depends': [
-        'project',
         'project_issue',
     ],
     'author': 'Elico Corp',

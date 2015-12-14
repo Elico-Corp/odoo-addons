@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <openerp>
     <data>
-        <record model="ir.ui.view" id="issue_id_display_kanban_inherit">
+        <record id="project_issue_kanban_view" model="ir.ui.view">
             <field name="name">project_issue.issue_id_display_kanban_view</field>
             <field name="model">project.issue</field>
             <field name="inherit_id" ref="project_issue.project_issue_kanban_view"/>
@@ -10,8 +10,7 @@
                     <field name="id" />
                 </field>  
             </field>
-        </record>
-       
+        </record>   
     </data>
 </openerp>
 
