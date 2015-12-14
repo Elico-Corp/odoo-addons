@@ -2,9 +2,9 @@
    :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
    :alt: License: AGPL-3
 
-===================
-Elico Account Extra
-===================
+============
+Payment UTF8
+============
 
 This module extends the functionality of account payment to support utf8.
 
@@ -13,7 +13,7 @@ Installation
 
 To install this module, you need to:
 
- * have basic modules installed (base,account)
+ * have basic modules installed (account)
 
 
 Bug Tracker
