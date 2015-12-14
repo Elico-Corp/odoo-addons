@@ -11,7 +11,6 @@
     'author': 'Elico Corp',
     'license': 'AGPL-3',
     'website': 'https://www.elico-corp.com',
-    'images': [],
     'data': [
         'project_task_view.xml',
     ],

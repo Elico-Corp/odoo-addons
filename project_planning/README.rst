@@ -6,7 +6,10 @@
 Project Planning
 ================
 
-* This module extends the functionality of Project to support and allow you to reset the planning tasks week 1, 2, 3, and 4 to 0!
+This module extends the functionality of Project to support planning information:
+
+* It creates the fields to display the work of period 1 to 4
+* It allows you to reset the planning tasks week 1, 2, 3, and 4
 
 Installation
 ============

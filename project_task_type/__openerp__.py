@@ -3,7 +3,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 {
     'name': 'Project Task Type',
-    'version': '0.0.1',
+    'version': '8.0.1.0.1',
     'category': '',
     'depends': [
         'project',
@@ -16,7 +16,6 @@
     'data': [
         'project_task_view.xml',
     ],
-    'test': [],
     'installable': True,
     'application': False
 }

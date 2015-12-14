@@ -2,7 +2,7 @@
 # © 2015 Elico corp (www.elico-corp.com)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from openerp import models, fields
+from openerp import fields, models
 
 
 class ProjectTask(models.Model):
@@ -29,8 +29,3 @@ class ProjectTask(models.Model):
             - TS: technical specification task
         """)
 
-
-class ProjectIssue(models.Model):
-    _inherit = 'project.issue'
-
-    project_id = fields.Many2one(required=True)

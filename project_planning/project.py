@@ -2,7 +2,7 @@
 # © 2015 Elico corp (www.elico-corp.com)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from openerp import models, fields
+from openerp import fields, models
 
 
 class ProjectTask(models.Model):
@@ -31,7 +31,7 @@ class ProjectTask(models.Model):
 
     wbs = fields.Char('WBS', help="Work Breakdown Structure")
 
-    week_1 = fields.Float('Week1', help="Time planned for the current week")
-    week_2 = fields.Float('Week2', help="Time planned for next week")
-    week_3 = fields.Float('Week3', help="Time planned in 2 weeks")
-    week_4 = fields.Float('Week4', help="Time planned in 3 weeks")
+    week_1 = fields.Float('Week1', help="Time planned for week 1")
+    week_2 = fields.Float('Week2', help="Time planned for week 2")
+    week_3 = fields.Float('Week3', help="Time planned for week 3")
+    week_4 = fields.Float('Week4', help="Time planned for week 4")
