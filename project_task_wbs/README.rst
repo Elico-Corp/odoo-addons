@@ -6,7 +6,7 @@
 Project Task WBS
 ================
 
-This module extends the functionality of Project and allow you to add a WBS column to project and task.
+This module extends the functionality of Project and adds a Work Break Structure (WBS) field to tasks.
 
 Installation
 ============

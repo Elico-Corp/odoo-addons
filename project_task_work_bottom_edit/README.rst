@@ -6,7 +6,7 @@
 Task Work Bottom Edit
 =====================
 
-This module extends the functionality of Project to support when adding a new line it should be on bottom of the list
+This module extends the functionality of Project to make the lines editable at bottom.
 
 Installation
 ============

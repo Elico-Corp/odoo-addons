@@ -3,7 +3,7 @@
    :alt: License: AGPL-3
 
 ==========================
-Hr Timesheet Line Readonly
+HR Timesheet Line Readonly
 ==========================
 
 This module extends the functionality of timesheet to support set HR timesheet line readonly.

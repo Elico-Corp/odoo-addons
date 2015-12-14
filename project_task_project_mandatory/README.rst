@@ -1,14 +1,12 @@
-Enhancements related to Project Management.
-
 .. image:: https://img.shields.io/badge/licence-AGPL--3-blue.svg
    :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
    :alt: License: AGPL-3
 
-==============================
-Project Task Project Mandatory
-==============================
+==========================
+Project Mandatory in Tasks
+==========================
 
-This module extends the functionality of project to support to make project required at task.
+This module extends the functionality of project to make it mandatory in the tasks.
 
 Installation
 ============
@@ -16,6 +14,7 @@ Installation
 To install this module, you need to:
 
  * have basic modules installed (project, project_issue)
+ * have basic columns required (project_id)
 
 
 Bug Tracker

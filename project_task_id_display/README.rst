@@ -3,10 +3,10 @@
    :alt: License: AGPL-3
 
 =======================
-Project Task ID Display
+Display Project Task ID
 =======================
 
-This module extends the functionality of project to support add id to task kanban view.
+This module extends the functionality of project and displays the corresponding id to task kanban view.
 
 Installation
 ============

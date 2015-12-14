@@ -6,7 +6,7 @@
 Project Task Type
 =================
 
-This module extends the functionality of Project and allow you to add a project columns to task and make project required in task and issue,and move the priority from page to form.
+This module extends the functionality of Project and adds the concept of task type in views and reports.
 
 Installation
 ============
