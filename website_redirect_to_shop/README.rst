@@ -2,11 +2,11 @@
    :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
    :alt: License: AGPL-3
 
-=============
-Website Login
-=============
+============================
+Redirect to shop after login
+============================
 
-This module extends the functionality of website to redirect to the main of the website when log in.
+This module extends the functionality of website to redirect to the shop of the website.
 
 Installation
 ============
