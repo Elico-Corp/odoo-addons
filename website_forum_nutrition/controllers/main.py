@@ -46,7 +46,12 @@ class Symptom(http.Controller):
         if forum:
             values['forum'] = forum
         elif kwargs.get('forum_id'):
-            values['forum'] = request.registry['forum.forum'].browse(request.cr, request.uid, kwargs.pop('forum_id'), context=request.context)
+            values['forum'] = \
+                request.registry['forum.forum'].browse(
+                    request.cr, request.uid,
+                    kwargs.pop('forum_id'),
+                    context=request.context
+            )
         values.update(kwargs)
         return values
 
@@ -101,9 +106,12 @@ class Symptom(http.Controller):
         return request.website.render(
             "website_forum_nutrition.symptoms", values)
 
-    @http.route(['/<model("forum.forum"):forum>/<model("product.symptom"):symptom>/products',
-                '/<model("forum.forum"):forum>/<model("product.symptom"):symptom>/products/page/<int:page>'],
-                type='http', auth="public", website=True)
+    @http.route(['/<model("forum.forum"):forum>',
+                 '/<model("product.symptom"):symptom>/products',
+                 '/<model("forum.forum"):forum>',
+                 '/<model("product.symptom"):symptom>',
+                 '/products/page/<int:page>',
+                 ], type='http', auth="public", website=True)
     def product(self, page=0, symptom=None, forum=None, search='', **post):
         cr, context = request.cr, request.context
         product_obj = request.registry['product.template']
