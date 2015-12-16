@@ -6,17 +6,16 @@ import werkzeug
 
 from openerp import SUPERUSER_ID, http
 from openerp.addons.website.models.website import slug
+from openerp.addons.website_sale.controllers.main import website_sale
 from openerp.addons.website_sale.controllers.main import (QueryURL,
                                                           table_compute)
-from openerp.addons.website_sale_collapse_categories.controllers.main import \
-    WebsiteSale
 from openerp.http import request
 
 PPG = 20  # Products Per Page
 PPR = 4  # Products Per Row
 
 
-class WebsiteSales(WebsiteSale):
+class WebsiteSale(website_sale):
     @http.route(
         ['/shop/check_stock_inventory'], type='json',
         auth="public", methods=['POST'], website=True
@@ -48,14 +47,6 @@ class WebsiteSales(WebsiteSale):
         uid = request.uid
         context = request.context
         pool = request.registry
-
-        parent_category_ids = []
-        if category:
-            parent_category_ids = [category.id]
-            current_category = category
-            while current_category.parent_id:
-                parent_category_ids.append(current_category.parent_id.id)
-                current_category = current_category.parent_id
 
         domain = request.website.sale_product_domain()
         if search:
@@ -156,6 +147,5 @@ class WebsiteSales(WebsiteSale):
                 s.id for s in product.website_style_ids],
             'attrib_encode': lambda attribs: werkzeug.url_encode(
                 [('attrib', i) for i in attribs]),
-            'parent_category_ids': parent_category_ids
         }
         return request.website.render("website_sale.products", values)

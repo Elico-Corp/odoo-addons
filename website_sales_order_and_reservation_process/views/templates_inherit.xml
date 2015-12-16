@@ -117,9 +117,8 @@
                 </t>
             </xpath>
         </template>
-
-        <template id="remove_odoo_information" inherit_id="theme_loftspace.change_footer_copyright">
-            <xpath expr="//div[@class='container copyright']" position="replace">
+        <template id="remove_odoo_information" inherit_id="website.layout_footer_copyright">
+            <xpath expr="//div[@class='pull-right']" position="replace">
                 <div class="container copyright">
                     <div class="col-md-12 text-center">
                         <hr/>
