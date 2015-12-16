@@ -1,31 +1,16 @@
 # -*- coding: utf-8 -*-
-##############################################################################
-#
-#    OpenERP, Open Source Management Solution
-#    Copyright (C) 2010-2015 Elico Corp (<http://www.elico-corp.com>)
-#    Authors: Liu Lixia
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as
-#    published by the Free Software Foundation, either version 3 of the
-#    License, or (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-##############################################################################
-import xlwt
-from datetime import datetime
-from openerp.report import report_sxw
-from openerp.addons.report_xls.report_xls import report_xls
-from openerp import SUPERUSER_ID
-from openerp.tools.translate import translate
+# © 2015 Elico Corp (www.elico-corp.com).
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+
 import logging
+from datetime import datetime
+
+import xlwt
+
+from openerp import SUPERUSER_ID
+from openerp.addons.report_xls.report_xls import report_xls
+from openerp.report import report_sxw
+from openerp.tools.translate import translate
 
 _logger = logging.getLogger(__name__)
 

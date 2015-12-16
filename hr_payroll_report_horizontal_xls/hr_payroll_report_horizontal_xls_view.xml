@@ -14,7 +14,6 @@
             </field>
         </record>
 
-
         <record id="hr_salary_rule_form_inherited" model="ir.ui.view">
             <field name="name">hr.salary.rule.form.inherited</field>
             <field name="model">hr.salary.rule</field>
@@ -37,7 +36,6 @@
                 </field>
             </field>
         </record>
-
 
     </data>
 </openerp>
