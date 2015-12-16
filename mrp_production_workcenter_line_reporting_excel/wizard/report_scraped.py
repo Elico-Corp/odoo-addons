@@ -1,26 +1,8 @@
 # -*- coding: utf-8 -*-
-##############################################################################
-#
-#    OpenERP, Open Source Management Solution
-#    Copyright (C) 2010-2015 Elico Corp (<http://www.elico-corp.com>)
-#    Authors: Siyuan Gu
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as
-#    published by the Free Software Foundation, either version 3 of the
-#    License, or (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-##############################################################################
+# © 2015 Elico Corp (www.elico-corp.com).
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from openerp import models, fields, api
+from openerp import api, fields, models
 
 
 class Reportscraped(models.TransientModel):
@@ -176,11 +158,15 @@ class Reportscraped(models.TransientModel):
                 if attribue_line_id.attribute_id:
                     if attribue_line_id.value_ids:
                         if attribue_line_id.attribute_id.name == u'底部پایین':
-                            vals[product.id]['bottom'] = attribue_line_id.value_ids.name
+                            vals[product.id]['bottom'] = \
+                                attribue_line_id.value_ids.name
                         if attribue_line_id.attribute_id.name == u'内涂توو':
-                            vals[product.id]['inside'] = attribue_line_id.value_ids.name
-                        if attribue_line_id.attribute_id.name == u'外涂پوشش داده شده':
-                            vals[product.id]['outside'] = attribue_line_id.value_ids.name
+                            vals[product.id]['inside'] = \
+                                attribue_line_id.value_ids.name
+                        if attribue_line_id.attribute_id.name == u'\
+                        外涂پوشش داده شده':
+                            vals[product.id]['outside'] = \
+                                attribue_line_id.value_ids.name
         return vals
 
     def _get_lines_write_excel(self):
@@ -226,7 +212,8 @@ class Reportscraped(models.TransientModel):
                     vals[key]['scraped_qty'][process] += scraped_qty
                     vals[key]['total_scraped'] += scraped_qty
                     pencertage = round(vals[key]['total_scraped'] / (
-                        vals[key]['quantity'] + vals[key]['total_scraped']) * 100, 2)
+                        vals[key]['quantity'] + vals[key]['\
+                        total_scraped']) * 100, 2)
                     vals[key]['scraped_percentage'] = pencertage
                 else:
                     vals[key]['quantity'] = finished_qty

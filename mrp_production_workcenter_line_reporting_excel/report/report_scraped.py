@@ -1,24 +1,7 @@
 # -*- coding: utf-8 -*-
-##############################################################################
-#
-#    OpenERP, Open Source Management Solution
-#    Copyright (C) 2010-2015 Elico Corp (<http://www.elico-corp.com>)
-#    Authors: Siyuan Gu
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as
-#    published by the Free Software Foundation, either version 3 of the
-#    License, or (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-##############################################################################
+# © 2015 Elico Corp (www.elico-corp.com).
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+
 try:
     import xlwt
 except ImportError:
@@ -138,7 +121,8 @@ class ReportStockScraped(report_xls):
         col = 0
         total_col = len(data['title'])
 
-        main_title = u"协邦铸业生产工序报废报告انجمن صنعت ریخته گری فرآیندهای تولید دولت قراضه گزارش"
+        main_title = u"\
+        协邦铸业生产工序报废报告انجمن صنعت ریخته گری فرآیندهای تولید دولت قراضه گزارش"
         self._write_table_head(
             ws,
             # start row
