@@ -6,15 +6,14 @@
 Build ACL for products
 ======================
 
-This module extends the functionality of ... to support ...
-    and allow you to ...
+This module extends the functionality of Group to allow you to add a group of product manager.
 
 Installation
 ============
 
 To install this module, you need to:
 
- * have basic modules installed (product, purchase, stock, mrp, base)
+ * have basic modules installed (purchase, mrp)
 
 
 Bug Tracker

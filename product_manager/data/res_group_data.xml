@@ -2,7 +2,7 @@
 <openerp>
     <data noupdate="1">
         <record id="data_product_manager" model="res.groups">
-            <field name="name">Product Manager111</field>
+            <field name="name">Product Manager</field>
             <field name="category_id" ref="base.module_category_hidden"/>
        </record>
     </data>
