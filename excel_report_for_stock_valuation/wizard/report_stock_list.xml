@@ -8,8 +8,7 @@
                 <form string="Confirm">
                     <group>
                         <field name="location_id"/>  
-                    </group>
-                                
+                    </group>        
                     <field name="lines">
                         <tree>
                             <field name='product_id'/>
@@ -30,7 +29,6 @@
                             <field name='stock_inventory_value'/>
                         </tree>
                     </field>
-
                     <footer>
                         <button name="xls_export" type="object" string="Export" class="oe_highlight"/>
                     </footer>

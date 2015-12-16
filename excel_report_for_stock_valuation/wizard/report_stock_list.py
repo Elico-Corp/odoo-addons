@@ -1,25 +1,8 @@
 # -*- coding: utf-8 -*-
-##############################################################################
-#
-#    OpenERP, Open Source Management Solution
-#    Copyright (C) 2010-2015 Elico Corp (<http://www.elico-corp.com>)
-#    Authors: Siyuan Gu
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as
-#    published by the Free Software Foundation, either version 3 of the
-#    License, or (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-##############################################################################
-from openerp import models, fields, api
+# © 2015 Elico Corp (www.elico-corp.com).
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+
+from openerp import api, fields, models
 
 
 class ReportStockList(models.TransientModel):
@@ -113,11 +96,15 @@ class ReportStockList(models.TransientModel):
 
             if key in products.keys():
                 if quantity > 0:
-                    products[key]["in_quantity"] = products[key]["in_quantity"] + quantity
-                    products[key]["in_inventory_value"] = products[key]["in_inventory_value"] + value
+                    products[key]["in_quantity"] =\
+                        products[key]["in_quantity"] + quantity
+                    products[key]["in_inventory_value"] = \
+                        products[key]["in_inventory_value"] + value
                 else:
-                    products[key]["out_quantity"] = products[key]["out_quantity"] + quantity
-                    products[key]["out_inventory_value"] = products[key]["out_inventory_value"] + value
+                    products[key]["out_quantity"] = \
+                        products[key]["out_quantity"] + quantity
+                    products[key]["out_inventory_value"] = \
+                        products[key]["out_inventory_value"] + value
 
             else:
                 products[key] = {
@@ -267,18 +254,21 @@ class ReportStockList(models.TransientModel):
             if 0 == val["stock_in"]:
                 val["stock_in_real_cost"] = 0
             else:
-                val["stock_in_real_cost"] = val["stock_in_inventory_value"] / val["stock_in"]
+                val["stock_in_real_cost"] = \
+                    val["stock_in_inventory_value"] / val["stock_in"]
 
             val["stock_out"] = -product["out_quantity"]
             val["stock_out_inventory_value"] = -product["out_inventory_value"]
             if 0 == val["stock_out"]:
                 val["stock_out_real_cost"] = 0
             else:
-                val["stock_out_real_cost"] = val["stock_out_inventory_value"] / val["stock_out"]
+                val["stock_out_real_cost"] = \
+                    val["stock_out_inventory_value"] / val["stock_out"]
 
             if key in lines_before.keys():
                 val['month_inventory'] = lines_before[key]["quantity"]
-                val['month_inventory_value'] = lines_before[key]["inventory_value"]
+                val['month_inventory_value'] = \
+                    lines_before[key]["inventory_value"]
 
                 if 0 == lines_before[key]["quantity"]:
                     val['month_real_cost'] = 0
