@@ -1,35 +1,18 @@
 # -*- coding: utf-8 -*-
-##############################################################################
-#
-#    OpenERP, Open Source Management Solution
-#    Copyright (C) 2010-2015 Elico Corp (<http://www.elico-corp.com>)
-#    Authors: Liu Lixia
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as
-#    published by the Free Software Foundation, either version 3 of the
-#    License, or (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-##############################################################################
-import xlwt
-from openerp.report import report_sxw
-from openerp.addons.report_xls.report_xls import report_xls
-import logging
-from openerp import SUPERUSER_ID
-from openerp.tools.translate import translate
-from openerp import _
+# © 2015 Elico Corp (www.elico-corp.com).
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+
 import datetime
-import jdatetime
+import logging
 import tempfile
 
+import xlwt
+
+import jdatetime
+from openerp import SUPERUSER_ID, _
+from openerp.addons.report_xls.report_xls import report_xls
+from openerp.report import report_sxw
+from openerp.tools.translate import translate
 
 _logger = logging.getLogger(__name__)
 
@@ -76,10 +59,12 @@ class ReportSaleOrderBom(report_xls):
             ws.write_merge(2, 2, 7, 8, u'', style1)
         date_order = datetime.datetime.strptime(obj.date_order,
                                                 "%Y-%m-%d %H:%M:%S")
-        delivery_date = date_order + datetime.timedelta(days=obj.order_line[0].delay)
-        ir_delivery_date = jdatetime.date.fromgregorian(day=delivery_date.day,
-                                                        month=delivery_date.month,
-                                                        year=delivery_date.year)
+        delivery_date = \
+            date_order + datetime.timedelta(days=obj.order_line[0].delay)
+        ir_delivery_date = \
+            jdatetime.date.fromgregorian(day=delivery_date.day,
+                                         month=delivery_date.month,
+                                         year=delivery_date.year)
         delivery_date_list = [delivery_date.strftime("%Y-%m-%d"),
                               ir_delivery_date.strftime('%Y-%m-%d')]
         ws.write_merge(2, 2, 3, 4, ' '.join(delivery_date_list), style1)
@@ -288,7 +273,8 @@ class ReportSaleOrderBom(report_xls):
             according to product attributes, if has attribute then return
             the first attribute value, else return ''
         """
-        return product and product.attribute_value_ids and product.attribute_value_ids[0].name or ''
+        return product and product.attribute_value_ids \
+            and product.attribute_value_ids[0].name or ''
 
     def generate_xls_report(self, _p, _xs, data, objects, wb):
         """
@@ -337,9 +323,10 @@ class ReportSaleOrderBom(report_xls):
                     for bom_line in mo.bom_line_ids:
                         obj_dict = {}
                         obj_dict['name'] = mo.product_tmpl_id.name
-                        obj_dict['qty'] = self.get_quantity(bom_line.product_qty,
-                                                            mo.product_qty,
-                                                            res['qty'])
+                        obj_dict['qty'] = \
+                            self.get_quantity(bom_line.product_qty,
+                                              mo.product_qty,
+                                              res['qty'])
                         bom_product = bom_line.product_id
                         obj_dict['code'] = self.get_code(bom_product)
                         obj_dict['material_name'] = bom_product.name
