@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="view_report_stock_list" model="ir.ui.view">
+            <field name="name">report_quant_list</field>
+            <field name="model">report.stock.list</field>
+            <field name="arch" type="xml">
+                <form string="Confirm">
+                    <group>
+                        <field name="location_id"/>  
+                    </group>        
+                    <field name="lines">
+                        <tree>
+                            <field name='product_id'/>
+                            <field name='source'/>
+                            <field name='default_code'/>
+                            <field name='cate'/>
+                            <field name='month_inventory'/>
+                            <field name='month_real_cost'/>
+                            <field name='month_inventory_value'/>
+                            <field name='stock_in'/>
+                            <field name='stock_in_real_cost'/>
+                            <field name='stock_in_inventory_value'/>
+                            <field name='stock_out'/>
+                            <field name='stock_out_real_cost'/>
+                            <field name='stock_out_inventory_value'/>
+                            <field name='stock'/>
+                            <field name='stock_real_cost'/>
+                            <field name='stock_inventory_value'/>
+                        </tree>
+                    </field>
+                    <footer>
+                        <button name="xls_export" type="object" string="Export" class="oe_highlight"/>
+                    </footer>
+               </form>
+            </field>
+        </record>
+    </data>
+</openerp>
