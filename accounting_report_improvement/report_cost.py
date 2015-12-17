@@ -1,27 +1,8 @@
 # -*- coding: utf-8 -*-
-##############################################################################
-#
-#    OpenERP, Open Source Management Solution
-#    Copyright (C) 2010-2015 Elico Corp (<http://www.elico-corp.com>)
-#    Authors: Siyuan Gu
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as
-#    published by the Free Software Foundation, either version 3 of the
-#    License, or (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-##############################################################################
+# © 2015 Elico Corp (www.elico-corp.com).
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from openerp import tools
-from openerp import models, fields
+from openerp import fields, models, tools
 
 
 class SaleReportCost(models.Model):
@@ -34,21 +15,26 @@ class SaleReportCost(models.Model):
              SELECT min(l.id) as id,
                     l.product_id as product_id,
                     t.uom_id as product_uom,
-                    sum(l.product_uom_qty / u.factor * u2.factor) as product_uom_qty,
-                    sum(l.product_uom_qty * l.price_unit * (100.0-l.discount) / 100.0) as price_total,
+                    sum(l.product_uom_qty / u.factor * u2.factor) as \
+                        product_uom_qty,
+                    sum(l.product_uom_qty * l.price_unit * (100.0-l.discount) \
+                        / 100.0) as price_total,
                     count(*) as nbr,
                     s.date_order as date,
                     s.date_confirm as date_confirm,
                     s.partner_id as partner_id,
                     s.user_id as user_id,
                     s.company_id as company_id,
-                    extract(epoch from avg(date_trunc('day',s.date_confirm)-date_trunc('day',s.create_date)))/(24*60*60)::decimal(16,2) as delay,
+                    extract(epoch from avg(date_trunc('day',s.date_confirm)- \
+                        date_trunc('day',s.create_date)))/(24*60*60):: \
+                            decimal(16,2) as delay,
                     l.state,
                     t.categ_id as categ_id,
                     s.pricelist_id as pricelist_id,
                     s.project_id as analytic_account_id,
                     s.section_id as section_id,
-                    i.value_float * sum(l.product_uom_qty / u.factor * u2.factor) as total_cost
+                    i.value_float * \sum(\
+                        l.product_uom_qty / u.factor * u2.factor) as total_cost
         """
         return select_str
 
@@ -57,10 +43,12 @@ class SaleReportCost(models.Model):
                 sale_order_line l
                       join sale_order s on (l.order_id=s.id)
                         left join product_product p on (l.product_id=p.id)
-                            left join product_template t on (p.product_tmpl_id=t.id)
+                            left join product_template t on \
+                                (p.product_tmpl_id=t.id)
                     left join product_uom u on (u.id=l.product_uom)
                     left join product_uom u2 on (u2.id=t.uom_id)
-                    left join ir_property i on (t.id=cast(substring(i.res_id from 18 for 10) as integer))
+                    left join ir_property i on (t.id=cast(substring(\
+                        i.res_id from 18 for 10) as integer))
         """
         return from_str
 
@@ -96,7 +84,12 @@ class SaleReportCost(models.Model):
             %s
             FROM ( %s )
             %s
-            %s )""" % (self._table, self._select(), self._from(), self._where(), self._group_by()))
+            %s )""" % (self._table,
+                       self._select(),
+                       self._from(),
+                       self._where(),
+                       self._group_by()
+                       ))
 
 
 class AccountInvoiceCost(models.Model):
@@ -105,12 +98,15 @@ class AccountInvoiceCost(models.Model):
     total_cost = fields.Float(string="Total Cost")
 
     def _select(self):
-        return super(AccountInvoiceCost, self)._select() + ", sub.total_cost as total_cost"
+        return super(AccountInvoiceCost, self)._select() + \
+            ", sub.total_cost as total_cost"
 
     def _sub_select(self):
         return super(AccountInvoiceCost, self)._sub_select() + \
             """, SUM(CASE
-                         WHEN ai.type::text = ANY (ARRAY['out_refund'::character varying::text, 'in_invoice'::character varying::text])
+                         WHEN ai.type::text = \
+                             ANY (ARRAY['out_refund'::character varying::text,\
+                                        'in_invoice'::character varying::text])
                             THEN (- ail.quantity) / u.factor * u2.factor
                             ELSE ail.quantity / u.factor * u2.factor
                         END) *i.value_float as total_cost"""
@@ -158,7 +154,8 @@ class AccountInvoiceCost(models.Model):
             JOIN currency_rate cr ON
                 (cr.currency_id = sub.currency_id AND
                  cr.date_start <= COALESCE(sub.date, NOW()) AND
-                 (cr.date_end IS NULL OR cr.date_end > COALESCE(sub.date, NOW())))
+                 (cr.date_end IS NULL OR cr.date_end > \
+                    COALESCE(sub.date, NOW())))
         )""" % (self._table,
                 self._select(), self._sub_select(), self._from(),
                 self._where(), self._group_by()))
@@ -179,9 +176,13 @@ class PointOfSaleCost(models.Model):
                     s.date_order as date,
                     sum(l.qty * u.factor) as product_qty,
                     sum(l.qty * l.price_unit) as price_total,
-                    sum((l.qty * l.price_unit) * (l.discount / 100)) as total_discount,
-                    (sum(l.qty*l.price_unit)/sum(l.qty * u.factor))::decimal as average_price,
-                    sum(cast(to_char(date_trunc('day',s.date_order) - date_trunc('day',s.create_date),'DD') as int)) as delay_validation,
+                    sum((l.qty * l.price_unit) * (l.discount / 100)) as \
+                        total_discount,
+                    (sum(l.qty*l.price_unit)/sum(l.qty * u.factor))::decimal \
+                        as average_price,
+                    sum(cast(to_char(date_trunc('day',s.date_order) - \
+                        date_trunc('day',s.create_date),'DD') as int)) as \
+                            delay_validation,
                     s.partner_id as partner_id,
                     s.state as state,
                     s.user_id as user_id,
@@ -196,7 +197,8 @@ class PointOfSaleCost(models.Model):
                     left join product_product p on (p.id=l.product_id)
                     left join product_template pt on (pt.id=p.product_tmpl_id)
                     left join product_uom u on (u.id=pt.uom_id)
-                    left join ir_property i on (pt.id=cast(substring(i.res_id from 18 for 10) as integer))
+                    left join ir_property i on (pt.id=cast(substring( \
+                        i.res_id from 18 for 10) as integer))
                 where i.name='standard_price'
                 group by
                     s.date_order, s.partner_id,s.state, pt.categ_id,
