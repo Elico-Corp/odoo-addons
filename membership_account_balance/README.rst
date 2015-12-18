@@ -6,10 +6,7 @@
 Membership Management - Member Account Balance
 ==============================================
 
-This model adds a new type of account: membership account.
-This account is a prepay account which allow member charging
-their account and system can easily check the balance of their
-membership account.
+This module extends the functionality of POS to support adds a new type of account: membership account, and  account is a prepay account which allow member charging,their account and system can easily check the balance of their membership account.
 
 Installation
 ============
