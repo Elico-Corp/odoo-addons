@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- vim:fdl=1: -->
 <templates>
     <t t-extend="Orderline">
         <t t-jquery=".product-name" t-operation="replace">
