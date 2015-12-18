@@ -16,7 +16,7 @@
     'website': 'https://www.elico-corp.com',
     'data': [
         'views/pos_membership.xml',
-        'views/partner_view.xml'
+        'views/partner_view.xml',
     ],
     'qweb': [
         'static/src/xml/pos.xml'
