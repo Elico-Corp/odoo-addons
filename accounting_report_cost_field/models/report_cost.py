@@ -15,48 +15,47 @@ class SaleReportCost(models.Model):
              SELECT min(l.id) as id,
                     l.product_id as product_id,
                     t.uom_id as product_uom,
-                    sum(l.product_uom_qty / u.factor * u2.factor) as \
-                        product_uom_qty,
-                    sum(l.product_uom_qty * l.price_unit * (100.0-l.discount) \
-                        / 100.0) as price_total,
+                    sum(l.product_uom_qty / u.factor * u2.factor)
+                        as product_uom_qty,
+                    sum(l.product_uom_qty * l.price_unit *
+                        (100.0-l.discount) / 100.0) as price_total,
                     count(*) as nbr,
                     s.date_order as date,
                     s.date_confirm as date_confirm,
                     s.partner_id as partner_id,
                     s.user_id as user_id,
                     s.company_id as company_id,
-                    extract(epoch from avg(date_trunc('day',s.date_confirm)- \
-                        date_trunc('day',s.create_date)))/(24*60*60):: \
-                            decimal(16,2) as delay,
+                    extract(epoch from avg(date_trunc('day',s.date_confirm)-
+                        date_trunc('day',s.create_date)))/(24*60*60)
+                            ::decimal(16,2) as delay,
                     l.state,
                     t.categ_id as categ_id,
                     s.pricelist_id as pricelist_id,
                     s.project_id as analytic_account_id,
                     s.section_id as section_id,
-                    i.value_float * \sum(\
-                        l.product_uom_qty / u.factor * u2.factor) as total_cost
+                    i.value_float * sum(l.product_uom_qty /
+                        u.factor * u2.factor) as total_cost
         """
         return select_str
 
     def _from(self):
         from_str = """
                 sale_order_line l
-                      join sale_order s on (l.order_id=s.id)
-                        left join product_product p on (l.product_id=p.id)
-                            left join product_template t on \
-                                (p.product_tmpl_id=t.id)
-                    left join product_uom u on (u.id=l.product_uom)
-                    left join product_uom u2 on (u2.id=t.uom_id)
-                    left join ir_property i on (t.id=cast(substring(\
-                        i.res_id from 18 for 10) as integer))
+                      join sale_order s on (l.order_id = s.id)
+                        left join product_product p on (l.product_id = p.id)
+                            left join product_template t on
+                                (p.product_tmpl_id = t.id)
+                    left join product_uom u on (u.id = l.product_uom)
+                    left join product_uom u2 on (u2.id = t.uom_id)
+                    left join (
+                        select cast(substring(res_id from 18 for 10)
+                            as integer) as product_template_id,
+                                value_float, company_id
+                                from ir_property where name = 'standard_price'
+                    ) as i on (t.id = i.product_template_id and
+                        s.company_id = i.company_id)
         """
         return from_str
-
-    def _where(self):
-        where_str = """
-            WHERE i.name='standard_price'
-        """
-        return where_str
 
     def _group_by(self):
         group_by_str = """
@@ -83,13 +82,10 @@ class SaleReportCost(models.Model):
         cr.execute("""CREATE or REPLACE VIEW %s as (
             %s
             FROM ( %s )
-            %s
-            %s )""" % (self._table,
-                       self._select(),
-                       self._from(),
-                       self._where(),
-                       self._group_by()
-                       ))
+            %s )""" % (
+            self._table, self._select(), self._from(),
+            self._group_by())
+        )
 
 
 class AccountInvoiceCost(models.Model):
@@ -104,9 +100,9 @@ class AccountInvoiceCost(models.Model):
     def _sub_select(self):
         return super(AccountInvoiceCost, self)._sub_select() + \
             """, SUM(CASE
-                         WHEN ai.type::text = \
-                             ANY (ARRAY['out_refund'::character varying::text,\
-                                        'in_invoice'::character varying::text])
+                         WHEN ai.type::text = ANY (ARRAY['out_refund'::
+                                character varying::text, 'in_invoice'::
+                                character varying::text])
                             THEN (- ail.quantity) / u.factor * u2.factor
                             ELSE ail.quantity / u.factor * u2.factor
                         END) *i.value_float as total_cost"""
@@ -121,16 +117,15 @@ class AccountInvoiceCost(models.Model):
                 left JOIN product_template pt ON pt.id = pr.product_tmpl_id
                 LEFT JOIN product_uom u ON u.id = ail.uos_id
                 LEFT JOIN product_uom u2 ON u2.id = pt.uom_id
-                LEFT JOIN ir_property i on
-                 (pr.id=cast(substring(i.res_id from 18 for 10) as integer))
+                left join (
+                    select cast(substring(res_id from 18 for 10)
+                        as integer) as product_template_id,
+                            value_float, company_id
+                            from ir_property where name = 'standard_price'
+                ) as i on (pt.id = i.product_template_id and
+                    i.company_id = ai.company_id)
         """
         return from_str
-
-    def _where(self):
-        where_str = """
-            WHERE i.name='standard_price'
-        """
-        return where_str
 
     def _group_by(self):
         return super(AccountInvoiceCost, self)._group_by() + ", i.value_float"
@@ -149,16 +144,16 @@ class AccountInvoiceCost(models.Model):
             )
             %s
             FROM (
-                %s %s %s %s
+                %s %s %s
             ) AS sub
             JOIN currency_rate cr ON
                 (cr.currency_id = sub.currency_id AND
                  cr.date_start <= COALESCE(sub.date, NOW()) AND
-                 (cr.date_end IS NULL OR cr.date_end > \
-                    COALESCE(sub.date, NOW())))
+                 (cr.date_end IS NULL OR cr.date_end > COALESCE(
+                    sub.date, NOW())))
         )""" % (self._table,
                 self._select(), self._sub_select(), self._from(),
-                self._where(), self._group_by()))
+                self._group_by()))
 
 
 class PointOfSaleCost(models.Model):
@@ -176,13 +171,13 @@ class PointOfSaleCost(models.Model):
                     s.date_order as date,
                     sum(l.qty * u.factor) as product_qty,
                     sum(l.qty * l.price_unit) as price_total,
-                    sum((l.qty * l.price_unit) * (l.discount / 100)) as \
-                        total_discount,
-                    (sum(l.qty*l.price_unit)/sum(l.qty * u.factor))::decimal \
+                    sum((l.qty * l.price_unit) * (l.discount / 100))
+                        as total_discount,
+                    (sum(l.qty*l.price_unit)/sum(l.qty * u.factor))::decimal
                         as average_price,
-                    sum(cast(to_char(date_trunc('day',s.date_order) - \
-                        date_trunc('day',s.create_date),'DD') as int)) as \
-                            delay_validation,
+                    sum(cast(to_char(date_trunc('day',s.date_order) -
+                        date_trunc('day',s.create_date),'DD') as int))
+                            as delay_validation,
                     s.partner_id as partner_id,
                     s.state as state,
                     s.user_id as user_id,
@@ -193,13 +188,18 @@ class PointOfSaleCost(models.Model):
                     pt.categ_id as product_categ_id,
                     i.value_float * sum(l.qty * u.factor) as total_cost
                 from pos_order_line as l
-                    left join pos_order s on (s.id=l.order_id)
-                    left join product_product p on (p.id=l.product_id)
-                    left join product_template pt on (pt.id=p.product_tmpl_id)
-                    left join product_uom u on (u.id=pt.uom_id)
-                    left join ir_property i on (pt.id=cast(substring( \
-                        i.res_id from 18 for 10) as integer))
-                where i.name='standard_price'
+                    left join pos_order s on (s.id = l.order_id)
+                    left join product_product p on (p.id = l.product_id)
+                    left join product_template pt
+                        on (pt.id = p.product_tmpl_id)
+                    left join product_uom u on (u.id = pt.uom_id)
+                    left join (
+                        select cast(substring(res_id from 18 for 10)
+                            as integer) as product_template_id, value_float,
+                            company_id
+                                from ir_property where name = 'standard_price'
+                    ) as i on (pt.id = i.product_template_id and
+                        s.company_id = i.company_id)
                 group by
                     s.date_order, s.partner_id,s.state, pt.categ_id,
                     s.user_id,s.location_id,s.company_id,s.sale_journal,l.product_id,s.create_date,
