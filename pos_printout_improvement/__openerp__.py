@@ -2,9 +2,9 @@
 # © 2015 Elico Corp (www.elico-corp.com).
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 {
-    'name': 'Pos printout improvement',
+    'name': 'POS printout improvement',
     'version': '8.0.1.0.1',
-    'category': 'pos',
+    'category': 'POS',
     'depends': [
         'pos_membership',
     ],

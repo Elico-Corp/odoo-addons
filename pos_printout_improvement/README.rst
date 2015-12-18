@@ -3,11 +3,11 @@
     :alt: License: AGPL-3
  
 =====================
-Pos order improvement
+POS order improvement
 =====================
  
- This module extends the functionality of pos to add customer information,
-order sequence and total quantity on the pos order printout.
+ This module extends the functionality of POS to add customer information,
+order sequence and total quantity on the POS order printout.
  
  Installation
  ============
