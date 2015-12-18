@@ -1,24 +1,7 @@
 # -*- coding: utf-8 -*-
-##############################################################################
-#
-#    OpenERP, Open Source Management Solution
-#    Copyright (C) 2010-2015 Elico Corp (<http://www.elico-corp.com>)
-#    Authors: Liu Lixia<liu.lixia@elico-corp.com>
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as
-#    published by the Free Software Foundation, either version 3 of the
-#    License, or (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-##############################################################################
+# © 2015 Elico Corp (www.elico-corp.com).
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+
 import xlwt
 from datetime import datetime
 from openerp.report import report_sxw
@@ -49,8 +32,10 @@ class report_product_cost(report_xls):
         lang = self.context.get('lang', 'en_US')
         return translate(self.cr, '', 'code', lang, src) or src
 
-    def __init__(self, name, table, rml=False, parser=False, header=True, store=False):
-        super(report_product_cost, self).__init__(name, table, rml, parser, header, store)
+    def __init__(self, name, table, rml=False,
+                 parser=False, header=True, store=False):
+        super(report_product_cost, self).__init__(
+            name, table, rml, parser, header, store)
 
     # write table head
     def table_head(self, ws, obj, style0, style1):
@@ -156,11 +141,15 @@ class report_product_cost(report_xls):
         for product_cost in objects.cost_ids:
             obj_dict = {}
             obj_dict['mo_id'] = product_cost.mo_id.name
-            obj_dict['customer_id'] = product_cost.customer_id.name if product_cost.customer_id else ''
+            obj_dict['customer_id'] = \
+                product_cost.customer_id.name if product_cost.customer_id \
+                else ''
             obj_dict['product_name'] = product_cost.product_name.name
-            obj_dict['product_code'] = product_cost.product_code if product_cost.product_code else ''
+            obj_dict['product_code'] = \
+                product_cost.product_code if product_cost.product_code else ''
             obj_dict['uom'] = product_cost.uom.name
-            obj_dict['finished_product_number'] = product_cost.finished_product_number
+            obj_dict['finished_product_number'] = \
+                product_cost.finished_product_number
             obj_dict['sale_income'] = product_cost.sale_income
             obj_dict['material_cost'] = product_cost.material_cost
             obj_dict['resource_cost'] = product_cost.resource_cost
@@ -170,7 +159,8 @@ class report_product_cost(report_xls):
             obj_dict['sale_profit_percent'] = product_cost.sale_profit_percent
             obj_dict['unit_material_cost'] = product_cost.unit_material_cost
             obj_dict['unit_resource_cost'] = product_cost.unit_resource_cost
-            obj_dict['unit_manufacture_cost'] = product_cost.unit_manufacture_cost
+            obj_dict['unit_manufacture_cost'] = \
+                product_cost.unit_manufacture_cost
             obj_dict['unit_cost'] = product_cost.unit_cost
             result.append(obj_dict)
         num = self.table_info(ws, num, result, style1)

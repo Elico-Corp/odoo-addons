@@ -1,25 +1,8 @@
 # -*- coding: utf-8 -*-
-##############################################################################
-#
-#    OpenERP, Open Source Management Solution
-#    Copyright (C) 2010-2015 Elico Corp (<http://www.elico-corp.com>)
-#    Authors: Liu Lixia<liu.lixia@elico-corp.com>
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as
-#    published by the Free Software Foundation, either version 3 of the
-#    License, or (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-##############################################################################
-from openerp import models, fields, api, _
+# © 2015 Elico Corp (www.elico-corp.com).
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+
+from openerp import api, fields, models, _
 import datetime
 
 
@@ -123,7 +106,9 @@ class ProductCost(models.Model):
     _name = 'product.cost'
 
     cost_batch_id = fields.Many2one(
-        comodel_name='product.cost.batch', string='Cost Batch', ondelete='cascade')
+        comodel_name='product.cost.batch',
+        string='Cost Batch',
+        ondelete='cascade')
     mo_id = fields.Many2one(
         comodel_name='mrp.production', string='Manufacture', required=True)
     customer_id = fields.Many2one(
@@ -171,12 +156,16 @@ class ProductCost(models.Model):
     @api.depends('finished_product_number', 'sale_income',
                  'material_cost', 'resource_cost', 'manufacture_cost')
     def _compute_cost(self):
-        self.total = self.material_cost + self.resource_cost + self.manufacture_cost
+        self.total = \
+            self.material_cost + self.resource_cost + self.manufacture_cost
         if self.total:
             self.sale_profit = self.sale_income - self.total
             self.sale_profit_percent = (self.sale_profit / self.total) * 100
         if self.finished_product_number:
-            self.unit_material_cost = self.material_cost / self.finished_product_number
-            self.unit_resource_cost = self.resource_cost / self.finished_product_number
-            self.unit_manufacture_cost = self.manufacture_cost / self.finished_product_number
+            self.unit_material_cost = \
+                self.material_cost / self.finished_product_number
+            self.unit_resource_cost = \
+                self.resource_cost / self.finished_product_number
+            self.unit_manufacture_cost = \
+                self.manufacture_cost / self.finished_product_number
             self.unit_cost = self.total / self.finished_product_number
