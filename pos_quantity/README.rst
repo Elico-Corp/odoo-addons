@@ -6,7 +6,7 @@
 Order item sequence and total quantity
 ======================================
 
-This module extends the functionality of pos to add the order line sequence and total quantity
+This module extends the functionality of POS to add the order line sequence and total quantity.
 
 Installation
 ============

@@ -1,3 +1,7 @@
+# -*- coding: utf-8 -*-
+# © 2015 Elico Corp (www.elico-corp.com).
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+
 function openerp_pos_quantity(instance, module){
     var QWeb = instance.web.qweb;
     var _t = instance.web._t;
