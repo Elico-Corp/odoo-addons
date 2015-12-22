@@ -1,5 +1,3 @@
-<!-- vim:fdn=3:
--->
 <openerp>
     <data>
         <template id="assets_backend" name="invoice_report assets" inherit_id="web.assets_backend">

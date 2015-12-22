@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
 <data>
-<template id="invoice_report.report_draft_saleorder_invoice_document">
+    <template id="invoice_report.report_draft_saleorder_invoice_document">
         <div class="page">
             <div class="container">
                 <div class="row">
@@ -210,14 +210,14 @@
         <div class="page" t-if="company.invoice_tc">
             <p><span t-raw="company.invoice_tc"/></p>
         </div>
-</template>
+    </template>
 
-<template id="report_draft_saleorder_invoice">
+    <template id="report_draft_saleorder_invoice">
     <t t-call="report.html_container">
         <t t-foreach="doc_ids" t-as="doc_id">
             <t t-raw="translate_doc(doc_id, doc_model, 'partner_id.lang', 'invoice_report.report_draft_saleorder_invoice_document')"/>
         </t>
     </t>
-</template>
+    </template>
 </data>
 </openerp>
