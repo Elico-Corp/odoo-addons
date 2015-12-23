@@ -6,14 +6,14 @@
 Sale Picking Sequence
 =====================
 
-This module extends the functionality of report to This module adds the sequence and total quantity into the sales order printout.
+This module extends the functionality of report to add the sequence and total quantity into the sales order printout.
 
 Installation
 ============
 
 To install this module, you need to:
 
- * have basic modules installed (stock)
+ * have basic modules installed (sale)
 
 
 Usage

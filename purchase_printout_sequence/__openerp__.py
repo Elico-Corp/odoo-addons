@@ -5,7 +5,7 @@
     'name': 'Purchase Picking Sequence',
     'version': '8.0.1.0.1',
     'depends': [
-        'stock',
+        'purchase',
     ],
     'author': 'Elico Corp',
     'license': 'AGPL-3',

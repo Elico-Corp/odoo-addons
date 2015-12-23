@@ -6,7 +6,7 @@
 Stock Picking Sequence
 ======================
 
-This module extends the functionality of report to This module adds the sequence and total quantity into the delivery order printout.
+This module extends the functionality of report to add the sequence and total quantity into the delivery order printout.
 
 Installation
 ============

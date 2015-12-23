@@ -5,7 +5,7 @@
     'name': 'Sale Picking Sequence',
     'version': '8.0.1.0.1',
     'depends': [
-        'stock',
+        'sale',
     ],
     'author': 'Elico Corp',
     'license': 'AGPL-3',
