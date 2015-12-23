@@ -1,26 +1,8 @@
 # -*- coding: utf-8 -*-
-##############################################################################
-#
-#    OpenERP, Open Source Management Solution
-#    Copyright (C) 2010-2015 Elico Corp (<http://www.elico-corp.com>)
-#    Authors: Xiaopeng Xie
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as
-#    published by the Free Software Foundation, either version 3 of the
-#    License, or (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-##############################################################################
+# © 2015 Elico Corp (www.elico-corp.com).
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from openerp import models, fields, api
+from openerp import api, fields, models
 import logging
 
 _logger = logging.getLogger(__name__)
@@ -102,7 +84,8 @@ class check_product_qty_wizard(models.TransientModel):
             name = "[" + product.default_code + "]" + product.name
             product_qty = bom.get('product_qty', 0)
             can_product_qty = bom.get('can_product_qty', 0)
-            diff_qty = product_qty - can_product_qty if product_qty - can_product_qty >0 else 0
+            diff_qty = product_qty - can_product_qty if \
+                product_qty - can_product_qty >0 else 0
 
             vals = {
                 'product_name': bom.get('level', 1) * "------" + name,
@@ -153,7 +136,9 @@ class check_product_qty_wizard(models.TransientModel):
 
         for bom in bom_list:
             can_product_qty = 0
-            can_product_qty = min([x.get('can_product_qty', 0) + (x.get('stock_qty', 0) if x.get('childs', False) else 0) for x in bom])
+            can_product_qty = \
+                min([x.get('can_product_qty', 0) +
+                    (x.get('stock_qty', 0) if x.get('childs', False) else 0) for x in bom])
             for bom2 in bom_list:
                 for line in bom2:
                     if line.get('childs', False) == bom:

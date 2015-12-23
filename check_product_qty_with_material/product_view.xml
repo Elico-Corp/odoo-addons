@@ -17,7 +17,7 @@
         </record>
 
         <record model="ir.actions.act_window" id="action_check_product_qty_report_tree">
-            <field name="name">产品可生产数量</field>
+            <field name="name">Compute the number of products which can be produced</field>
             <field name="res_model">check.product.qty.report</field>
             <field name="view_mode">tree,form,graph</field>
             <field name="view_type">form</field>
