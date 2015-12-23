@@ -1,26 +1,8 @@
 # -*- coding: utf-8 -*-
-##############################################################################
-#
-#    OpenERP, Open Source Management Solution
-#    Copyright (C) 2010-2015 Elico Corp (<http://www.elico-corp.com>)
-#    Authors: Wang Liping
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as
-#    published by the Free Software Foundation, either version 3 of the
-#    License, or (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-##############################################################################
+# © 2015 Elico Corp (www.elico-corp.com).
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from openerp import models, fields, api
+from openerp import api, fields, models
 # from openerp.tools.translate import _
 # from openerp.tools.safe_eval import safe_eval as eval
 # import openerp.addons.decimal_precision as dp
@@ -31,7 +13,8 @@ import datetime
 class stock_count(models.Model):
     _name = 'stock.count'
 
-    _description = 'statistics stock inventory,On Hand ,Draft,Commit,Backorder,Available,On Order'
+    _description = 'statistics stock inventory,On Hand ,Draft,Commit,\
+        Backorder,Available,On Order'
 
     product_id = fields.Many2one('product.product', 'Product')
     location_id = fields.Many2one('stock.location', 'Inventory Location')
@@ -49,9 +32,11 @@ class stock_count(models.Model):
     @api.multi
     def compute_stock_report(self, product_ids=[], location_ids=[]):
         if not product_ids:
-            product_ids = [x.id for x in self.env['product.product'].search([('active', '=', True)])]
+            product_ids = [x.id for x in self.env['product.product'].search(
+                [('active', '=', True)])]
         if not location_ids:
-            location_ids = [x.id for x in self.env['stock.location'].search([('is_compute', '=', True)])]
+            location_ids = [x.id for x in self.env['stock.location'].search(
+                [('is_compute', '=', True)])]
 
         self.delete_stock_count_old_data(product_ids, location_ids)
 
@@ -64,7 +49,8 @@ class stock_count(models.Model):
         #     all_ids = self.search([("1","=","1")])
         #     all_ids.unlink()
         #     return
-        count_ids = self.search([('product_id', 'in', product_ids), ('location_id', 'in', location_ids)])
+        count_ids = self.search([('product_id', 'in', product_ids), (
+            'location_id', 'in', location_ids)])
         if count_ids:
             count_ids.unlink()
         # product_none_ids = self.search([('product_id','is',None)])
@@ -75,19 +61,24 @@ class stock_count(models.Model):
         products = self.env['product.product'].browse(product_ids)
         draft_vals = self.prepare_draft_qty()
         vals = []
-        # unimport_outgoing_qtys = {loc_id1:{product_id1: 20, product_id2:30},loc_id2:{product_id1: 30, product_id2:40}}
+        # unimport_outgoing_qtys = {loc_id1:{product_id1: 20, product_id2:30},
+        #loc_id2:{product_id1: 30, product_id2:40}}
 
         for location in self.env['stock.location'].browse(location_ids):
             qtys = {}
             # products = products.with_context({'location': location.id})
             # qtys = products._product_available(location.id)
-            qtys = self.pool.get('product.product')._product_available(self.env.cr,self.env.uid,product_ids,context={'location': location.id})
-            # location_unimport_outgoing_qty = unimport_outgoing_qtys.get(location.id,{})
+            qtys = self.pool.get('product.product')._product_available(
+                self.env.cr, self.env.uid, product_ids, context={'location': location.id})
+            # location_unimport_outgoing_qty =
+            # unimport_outgoing_qtys.get(location.id,{})
 
             for product in products:
                 product_qtys = qtys.get(product.id, {})
-                # product_unimport_outgoing_qty = location_unimport_outgoing_qty.get(product.id,0)
-                outgoing_qty = product_qtys.get('outgoing_qty', 0)  # + product_unimport_outgoing_qty
+                # product_unimport_outgoing_qty =
+                # location_unimport_outgoing_qty.get(product.id,0)
+                # + product_unimport_outgoing_qty
+                outgoing_qty = product_qtys.get('outgoing_qty', 0) 
                 on_hand_qty = product_qtys.get('qty_available', 0)
 
                 val_line = {
@@ -96,15 +87,19 @@ class stock_count(models.Model):
                     'report_date': datetime.datetime.today(),
                     'draft_qty': 0,
                     'on_hand_qty': on_hand_qty,
-                    'commit_qty': self.prepare_commit(outgoing_qty, on_hand_qty),
-                    'backorder_qty': self.prepare_backorder(outgoing_qty, on_hand_qty),
-                    'available_qty': self.prepare_available(outgoing_qty, on_hand_qty),
+                    'commit_qty': self.prepare_commit(
+                        outgoing_qty, on_hand_qty),
+                    'backorder_qty': self.prepare_backorder(
+                        outgoing_qty, on_hand_qty),
+                    'available_qty': self.prepare_available(
+                        outgoing_qty, on_hand_qty),
                     'on_order_qty': product_qtys.get('incoming_qty', 0),
                     'on_sale_qty': outgoing_qty
                 }
 
                 if location.is_draft_location:
-                    val_line.update({'draft_qty': draft_vals.get(product.id, 0)})
+                    val_line.update(
+                        {'draft_qty': draft_vals.get(product.id, 0)})
                 vals.append(val_line)
         return vals
 
