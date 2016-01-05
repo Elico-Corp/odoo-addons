@@ -21,18 +21,6 @@ Usage
 Configure the company certificate information in website setting, then you can see the certificate information display at the bottom right of website.
 
 
-For further information, please visit:
-
- * https://www.odoo.com/forum/help-1
-
-Known issues / Roadmap
-======================
-
-
-Credits
-=======
-
-
 Contributors
 ------------
 
