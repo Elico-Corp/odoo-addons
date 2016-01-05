@@ -41,40 +41,25 @@ class stock_count(models.Model):
             self.create(val)
 
     def delete_stock_count_old_data(self, product_ids=[], location_ids=[]):
-        # if not product_ids and not location_ids :
-        #     all_ids = self.search([("1","=","1")])
-        #     all_ids.unlink()
-        #     return
         count_ids = self.search([('product_id', 'in', product_ids), (
             'location_id', 'in', location_ids)])
         if count_ids:
             count_ids.unlink()
-        # product_none_ids = self.search([('product_id','is',None)])
-        # if product_none_ids:
-        #     product_none_ids.unlink()
 
     def prepare_stock_report_data(self, product_ids=[], location_ids=[]):
         products = self.env['product.product'].browse(product_ids)
         draft_vals = self.prepare_draft_qty()
         vals = []
-        # unimport_outgoing_qtys = {loc_id1:{product_id1: 20, product_id2:30},
-        #loc_id2:{product_id1: 30, product_id2:40}}
 
         for location in self.env['stock.location'].browse(location_ids):
             qtys = {}
-            # products = products.with_context({'location': location.id})
-            # qtys = products._product_available(location.id)
             qtys = self.pool.get('product.product')._product_available(
-                self.env.cr, self.env.uid, product_ids, context={'location': location.id})
-            # location_unimport_outgoing_qty =
-            # unimport_outgoing_qtys.get(location.id,{})
+                self.env.cr, self.env.uid, product_ids,
+                context={'location': location.id})
 
             for product in products:
                 product_qtys = qtys.get(product.id, {})
-                # product_unimport_outgoing_qty =
-                # location_unimport_outgoing_qty.get(product.id,0)
-                # + product_unimport_outgoing_qty
-                outgoing_qty = product_qtys.get('outgoing_qty', 0) 
+                outgoing_qty = product_qtys.get('outgoing_qty', 0)
                 on_hand_qty = product_qtys.get('qty_available', 0)
 
                 val_line = {
@@ -102,30 +87,24 @@ class stock_count(models.Model):
     def get_value_from_params(self):
         return
 
-    # commit = (sale if on hand > sale else on hand)
     def prepare_commit(self, sale_qty, on_hand_qty):
         return min(sale_qty, on_hand_qty)
 
-    # backorder = (sale - on hand if sale > on hand else 0)
     def prepare_backorder(self, sale_qty, on_hand_qty):
         if sale_qty >= on_hand_qty:
             return (sale_qty - on_hand_qty)
         return 0
 
-    # available = (on hand - sale if on hand > sale else 0)
     def prepare_available(self, sale_qty, on_hand_qty):
         if on_hand_qty > sale_qty:
             return on_hand_qty - sale_qty
         return 0
 
-    # draft = all unconfirmed order quantity
     def prepare_draft_qty(self):
-        # get the draft qty from is_draft tag and state draft
         sale_orde_obj = self.env['sale.order']
         sale_order_draft_ids = [x.id for x in sale_orde_obj.search(
             [('is_draft', '=', 'True'), ('state', '=', 'draft')])]
 
-        # get the draft product id ,product_uom_qty by read group
         order_line_obj = self.env['sale.order.line']
         count_res = order_line_obj.read_group([[
             'order_id', 'in', sale_order_draft_ids]], [
@@ -143,5 +122,9 @@ class stock_count(models.Model):
 class stock_location(models.Model):
     _inherit = 'stock.location'
 
-    is_draft_location = fields.Boolean(string='Is Draft Location', default=False)
-    is_compute = fields.Boolean(string="In Multi Report", help="Whether to compute stock in multi report", default=False)
+    is_draft_location = fields.Boolean(string='Is Draft Location',
+                                       default=False)
+    is_compute = fields.Boolean(
+        string="In Multi Report",
+        help="Whether to compute stock in multi report",
+        default=False)
