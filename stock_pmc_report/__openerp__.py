@@ -1,11 +1,10 @@
 # -*- coding: utf-8 -*-
-# © 2015 Elico Corp (www.elico-corp.com).
+# © 2016 Elico Corp (www.elico-corp.com).
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 {
     'name': 'Stock PMC Report',
-    'version': '1.0',
-    'category': '',
-    # depends sale_extra is_draft field,
+    'version': '8.0.1.0.1',
+    'category': 'Stock',
     'depends': [
         'sale_extra',
         'purchase',

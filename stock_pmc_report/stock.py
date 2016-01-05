@@ -1,19 +1,15 @@
 # -*- coding: utf-8 -*-
-# © 2015 Elico Corp (www.elico-corp.com).
+# © 2016 Elico Corp (www.elico-corp.com).
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from openerp import api, fields, models
-# from openerp.tools.translate import _
-# from openerp.tools.safe_eval import safe_eval as eval
-# import openerp.addons.decimal_precision as dp
-# from openerp.tools.float_utils import float_round
 import datetime
 
 
 class stock_count(models.Model):
     _name = 'stock.count'
 
-    _description = 'statistics stock inventory,On Hand ,Draft,Commit,\
+    _description = 'statistics stock inventory,On Hand ,Draft,Commit, \
         Backorder,Available,On Order'
 
     product_id = fields.Many2one('product.product', 'Product')

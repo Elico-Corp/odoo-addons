@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <openerp>
     <data>
-        <!-- Warehouse-Products Tree View Extend-->
         <record id="view_stock_count_tree" model="ir.ui.view">
             <field name="name">stock.count.tree</field>
             <field name="model">stock.count</field>
@@ -20,8 +19,6 @@
                 </tree>
             </field>
         </record>   
-       
-        <!--WareHouse-Products Search View -->
         <record model="ir.ui.view" id="view_warehouse_product_search">
             <field name="name">stock.count.search</field>
             <field name="model">stock.count</field>
@@ -36,8 +33,6 @@
                 </search>
             </field>
         </record>
-
-        <!--WareHouse-Procuts Graph View -->
         <record model="ir.ui.view" id="view_warehouse_product_graph">
             <field name="name">stock.count.graph</field>
             <field name="model">stock.count</field>
@@ -47,7 +42,6 @@
                 </graph>
             </field>
         </record>
-
         <record model="ir.actions.act_window" id="action_product_statistic_tree">
             <field name="name">Multi-Level Report</field>
             <field name="res_model">stock.count</field>
@@ -55,7 +49,6 @@
             <field name="view_type">form</field>
             <field name="context">{'search_default_Group_by_product':1}</field>
         </record>
-
         <record id="view_location_form_extend" model="ir.ui.view">
             <field name="name">stock.location.form.extend</field>
             <field name="model">stock.location</field>
@@ -67,7 +60,6 @@
                 </xpath>
             </field>
         </record>
-
         <menuitem name="Multi-Level Report" id="menu_product_statistic" action="action_product_statistic_tree" 
             parent="stock.menu_stock_inventory_control" sequence="0"/>
     </data>
