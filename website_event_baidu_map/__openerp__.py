@@ -4,7 +4,7 @@
 {
     'name': 'Website Event Baidu Map',
     'version': '8.0.1.0.3',
-    'category': 'map',
+    'category': 'Website',
     'depends': [
         'website_event',
     ],
