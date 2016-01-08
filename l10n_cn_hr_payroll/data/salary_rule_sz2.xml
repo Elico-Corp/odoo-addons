@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+       <data>
+
+        <!--个人社保-->
+        <!--养老-->
+        <record id="hr_rule_pension1_sz2" model="hr.salary.rule">
+            <field name="category_id" ref="hr_payroll.DED"/>
+            <field name="name">Pension</field>
+            <field name="code">NSZHK1PP</field>
+            <field name="appears_on_payslip" eval="True"/>
+            <field name="sequence">210</field>
+            <field name="condition_select">none</field>
+            <field name="amount_select">percentage</field>
+            <field name="amount_percentage_base">min(max(contract.social_insurance_amount,2030),18162)</field>
+            <field name="amount_percentage">8.0</field>
+        </record>
+
+        <!--医疗-->
+        <record id="hr_rule_medical_sz2" model="hr.salary.rule">
+            <field name="category_id" ref="hr_payroll.DED"/>
+            <field name="name">Medical</field>
+            <field name="code">NSZHK1PM</field>
+            <field name="appears_on_payslip" eval="True"/>
+            <field name="sequence">220</field>
+            <field name="condition_select">none</field>
+            <field name="amount_select">percentage</field>
+            <field name="amount_percentage_base">min(max(contract.social_insurance_amount,3632),18162)</field>
+            <field name="amount_percentage">2.0</field>
+        </record>
+
+        <!--生育-->
+        <record id="hr_rule_bearing_sz2" model="hr.salary.rule">
+            <field name="category_id" ref="hr_payroll.DED"/>
+            <field name="name">Bearing</field>
+            <field name="code">NSZHK1PB</field>
+            <field name="appears_on_payslip" eval="True"/>
+            <field name="sequence">230</field>
+            <field name="condition_select">none</field>
+            <field name="amount_select">percentage</field>
+            <field name="amount_percentage_base">contract.social_insurance_amount</field>
+            <field name="amount_percentage">0.0</field>
+        </record>
+
+        <!--失业-->
+        <record id="hr_rule_unemployment_sz2" model="hr.salary.rule">
+            <field name="category_id" ref="hr_payroll.DED"/>
+            <field name="name">Unemployment</field>
+            <field name="code">NSZHK1PU</field>
+            <field name="appears_on_payslip" eval="True"/>
+            <field name="sequence">240</field>
+            <field name="condition_select">none</field>
+            <field name="amount_select">percentage</field>
+            <field name="amount_percentage_base">min(max(contract.social_insurance_amount,2030),2030)</field>
+            <field name="amount_percentage">1.0</field>
+        </record>
+
+        <!--工伤-->
+        <record id="hr_rule_accident_sz2" model="hr.salary.rule">
+            <field name="category_id" ref="hr_payroll.DED"/>
+            <field name="name">Accident</field>
+            <field name="code">NSZHK1PA</field>
+            <field name="appears_on_payslip" eval="True"/>
+            <field name="sequence">250</field>
+            <field name="condition_select">none</field>
+            <field name="amount_select">percentage</field>
+            <field name="amount_percentage_base">min(max(contract.social_insurance_amount,2030),18162)</field>
+            <field name="amount_percentage">0.0</field>
+        </record>
+
+        <!--公积金-->
+        <record id="hr_rule_housing_fund_sz2" model="hr.salary.rule">
+            <field name="category_id" ref="hr_payroll.DED"/>
+            <field name="name">Housing Fund</field>
+            <field name="code">NSZHK1PH</field>
+            <field name="appears_on_payslip" eval="True"/>
+            <field name="sequence">260</field>
+            <field name="condition_select">none</field>
+            <field name="amount_select">percentage</field>
+            <field name="amount_percentage_base">min(max(contract.social_insurance_amount,1808),30271)</field>
+            <field name="amount_percentage">5.0</field>
+        </record>
+
+        <!--单位社保-->
+        <record id="hr_rule_personal_si_cp_sz2" model="hr.salary.rule">
+            <field name="category_id" ref="TCC"/>
+            <field name="name">Total Company Contribution</field>
+            <field name="code">NSZHK1TC</field>
+            <field name="sequence">899</field>
+            <field name="condition_select">none</field>
+            <field name="appears_on_payslip" eval="True"/>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = categories.COMP</field>
+        </record>
+
+        <!--养老-->
+        <record id="hr_rule_pension1_cp_sz2" model="hr.salary.rule">
+            <field name="category_id" ref="hr_payroll.COMP"/>
+
+            <field name="name">Pension</field>
+            <field name="code">NSZHK1CP</field>
+            <field name="appears_on_payslip" eval="True"/>
+            <field name="sequence">810</field>
+            <field name="condition_select">none</field>
+            <field name="amount_select">percentage</field>
+            <field name="amount_percentage_base">min(max(contract.social_insurance_amount,2030),18162)</field>
+            <field name="amount_percentage">13.0</field>
+        </record>
+
+        <!--医疗-->
+        <record id="hr_rule_medical_cp_sz2" model="hr.salary.rule">
+            <field name="category_id" ref="hr_payroll.COMP"/>
+
+            <field name="name">Medical</field>
+            <field name="code">NSZHK1CM</field>
+            <field name="appears_on_payslip" eval="True"/>
+            <field name="sequence">820</field>
+            <field name="condition_select">none</field>
+            <field name="amount_select">percentage</field>
+            <field name="amount_percentage_base">min(max(contract.social_insurance_amount,3632),18162)</field>
+            <field name="amount_percentage">6.2</field>
+        </record>
+
+        <!--生育-->
+        <record id="hr_rule_bearing_cp_sz2" model="hr.salary.rule">
+            <field name="category_id" ref="hr_payroll.COMP"/>
+
+            <field name="name">Bearing</field>
+            <field name="code">NSZHK1CB</field>
+            <field name="appears_on_payslip" eval="True"/>
+            <field name="sequence">830</field>
+            <field name="condition_select">none</field>
+            <field name="amount_select">percentage</field>
+            <field name="amount_percentage_base">min(max(contract.social_insurance_amount,2030),18162)</field>
+            <field name="amount_percentage">0.5</field>
+        </record>
+
+        <!--失业-->
+        <record id="hr_rule_unemployment_cp_sz2" model="hr.salary.rule">
+            <field name="category_id" ref="hr_payroll.COMP"/>
+            <field name="name">Unemployment</field>
+            <field name="code">NSZHK1CU</field>
+            <field name="appears_on_payslip" eval="True"/>
+            <field name="sequence">840</field>
+            <field name="condition_select">none</field>
+            <field name="amount_select">percentage</field>
+            <field name="amount_percentage_base">min(max(contract.social_insurance_amount,2030),2030)</field>
+            <field name="amount_percentage">1.8</field>
+        </record>
+
+        <!--工伤-->
+        <record id="hr_rule_accident_cp_sz2" model="hr.salary.rule">
+            <field name="category_id" ref="hr_payroll.COMP"/>
+            <field name="name">Accident</field>
+            <field name="code">NSZHK1CA</field>
+            <field name="appears_on_payslip" eval="True"/>
+            <field name="sequence">850</field>
+            <field name="condition_select">none</field>
+            <field name="amount_select">percentage</field>
+            <field name="amount_percentage_base">min(max(contract.social_insurance_amount,2030),18162)</field>
+            <field name="amount_percentage">0.2</field>
+        </record>
+
+        <!--公积金-->
+        <record id="hr_rule_housing_fund_cp_sz2" model="hr.salary.rule">
+            <field name="category_id" ref="hr_payroll.COMP"/>
+            <field name="name">Housing Fund</field>
+            <field name="code">NSZHK1CH</field>
+            <field name="appears_on_payslip" eval="True"/>
+            <field name="sequence">860</field>
+            <field name="condition_select">none</field>
+            <field name="amount_select">percentage</field>
+            <field name="amount_percentage_base">min(max(contract.social_insurance_amount,1808),30271)</field>
+            <field name="amount_percentage">5.0</field>
+        </record>
+
+        <!-- 薪酬结构 -->
+        <record id="hr_payroll_salary_structure_sz2" model="hr.payroll.structure">
+            <field name="code">NSZHK1</field>
+            <field name="name">SZ (Not-SZ Hukou, Medical level 1)</field>
+            <field name="company_id" ref="base.main_company"/>
+            <field eval="[(6, 0, [
+                    ref('hr_payroll.hr_rule_basic'),
+                    ref('hr_payroll.hr_rule_net'),
+                    ref('hr_rule_pension1_sz2'),
+                    ref('hr_rule_medical_sz2'),
+                    ref('hr_rule_bearing_sz2'),
+                    ref('hr_rule_unemployment_sz2'),
+                    ref('hr_rule_accident_sz2'),
+                    ref('hr_rule_housing_fund_sz2'),
+                    ref('hr_rule_pension1_cp_sz2'),
+                    ref('hr_rule_medical_cp_sz2'),
+                    ref('hr_rule_bearing_cp_sz2'),
+                    ref('hr_rule_unemployment_cp_sz2'),
+                    ref('hr_rule_accident_cp_sz2'),
+                    ref('hr_rule_housing_fund_cp_sz2'),
+                    ref('hr_rule_personal_si_cp_sz2'),
+                    ref('hr_rule_pit'),
+                    ref('rules_bt')
+                ])]" name="rule_ids"/>
+            <field name="parent_id"></field>
+        </record>
+
+    </data>
+</openerp>
