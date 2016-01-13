@@ -1,0 +1,38 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* payment_alipay_autopay
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-01-13 06:17+0000\n"
+"PO-Revision-Date: 2016-01-13 06:17+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: payment_alipay_autopay
+#: code:addons/payment_alipay_autopay/models/payment_method.py:32
+#, python-format
+msgid "Can only one payment method for each acquirer: %s"
+msgstr "只能为每个购买方式设置一种支付方式: %s"
+
+#. module: payment_alipay_autopay
+#: field:payment.method,payment_acquirer_id:0
+msgid "Payment Acquirer"
+msgstr "支付方式"
+
+#. module: payment_alipay_autopay
+#: model:ir.model,name:payment_alipay_autopay.model_payment_method
+msgid "Payment Method"
+msgstr "付款方式"
+
+#. module: payment_alipay_autopay
+#: model:ir.model,name:payment_alipay_autopay.model_payment_transaction
+msgid "Payment Transaction"
+msgstr "付款交易"
+
