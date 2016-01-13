@@ -10,9 +10,9 @@
             <field name="environment">test</field>
             <field name="pre_msg"><![CDATA[
 <p>You will be redirected to the alipay website after clicking on the payment button.</p>]]></field>
-            <field name="alipay_pid">2088701568026380</field>
-            <field name="alipay_key">pwc1sh4pv8utmbpj4dywm450t1w2r7ob</field>
-            <field name="alipay_seller_email">sales@elico-corp.com</field>
+            <field name="alipay_pid">dumpy</field>
+            <field name="alipay_key">dumpy</field>
+            <field name="alipay_seller_email">dumpy</field>
             <field name="logistics_payment">SELLER_PAY</field>
             <field name="logistics_fee">0</field>
             <field name="logistics_type">DIRECT</field>
