@@ -1,39 +1,19 @@
-# -*- encoding: utf-8 -*-
-# __author__ = xia.fajin@elico-corp.com
-##############################################################################
-#
-#    OpenERP, Open Source Management Solution
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as
-#    published by the Free Software Foundation, either version 3 of the
-#    License, or (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-##############################################################################
-
+# -*- coding: utf-8 -*-
+# © 2016 Elico Corp (www.elico-corp.com).
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 {
     "name": "Delivery Carrier Extend",
-    "description": """
-
-    Can calculate the Delivery cost with the percentage 
-========================================================
-                    """,
-    "version": "0.1",
-    "depends": ["delivery"],
+    "version": "8.0.1.0.1",
     "category": "delivery",
-    "author": "xia.fajin",
-    "url": "http://www.elico-corp.com/",
-    "data": ['delivery_extend_view.xml'],
+    "author": "Elico Corp",
+    "license": "AGPL-3",
+    "depends": [
+        "delivery",
+    ],
+    "website": "www.elico-corp.com",
+    "data": [
+        'delivery_extend_view.xml',
+    ],
+    "application": False,
     "installable": True,
-    "auto_install": False,
 }
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
