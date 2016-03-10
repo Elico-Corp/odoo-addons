@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<openerp>
+    <data noupdate="1">
+        <menuitem name="Quants" parent="base.menu_reporting_dashboard" id="menu_board_add_quota" action="stock.quantsact" />
+            <record model="ir.ui.view" id="hide_stock_value_tree_quant">
+                <field name="name">stock.quant.tree</field>
+                <field name="model">stock.quant</field>
+                <field name="type">tree</field>
+                <field name="inherit_id" ref="stock.view_stock_quant_tree"/>
+                <field name="arch" type="xml">
+                    <xpath expr="//field[@name = 'inventory_value']" position="attributes">
+                        <attribute name="groups">account.group_account_invoice</attribute>
+                    </xpath>
+                </field>
+            </record>  
+            <record model="ir.ui.view" id="view_stock_quant_form">
+                <field name="name">stock.quant.form</field>
+                <field name="model">stock.quant</field>
+                <field name="type">form</field>
+                <field name="inherit_id" ref="stock.view_stock_quant_form"/>
+                <field name="arch" type="xml">
+                    <xpath expr="//field[@name = 'inventory_value']" position="attributes">
+                        <attribute name="groups">account.group_account_invoice</attribute>
+                    </xpath>
+                </field>
+            </record> 
+    </data>
+</openerp>
