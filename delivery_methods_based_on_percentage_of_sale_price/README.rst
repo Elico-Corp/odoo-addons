@@ -2,11 +2,11 @@
    :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
    :alt: License: AGPL-3
 
-=======================
-Delivery Carrier Extend
-=======================
+==================================================
+Delivery Methods Based On Percentage Of Sale Price
+==================================================
 
- This module extends the functionality of Delivery and allows you to calculate the Delivery cost with the percentage.
+ This module extends the functionality of Delivery and allows you to calculate the Delivery cost based on the sale price percentage.
 
 Installation
 ============
@@ -21,7 +21,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/Elico-Corp/odoo-addons/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us smashing it by providing a detailed and welcomed feedback
-`here <https://github.com/Elico-Corp/odoo-addons/issues/new?body=module:%20delivery_carrier_extend%0Aversion:%20{8.0}%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`here <https://github.com/Elico-Corp/odoo-addons/issues/new?body=module:%delivery_methods_based_on_percentage_of_sale_price%0Aversion:%20{8.0}%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Credits
 =======
