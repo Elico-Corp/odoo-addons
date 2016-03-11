@@ -1,27 +1,10 @@
 # -*- coding: utf-8 -*-
-##############################################################################
-#
-#    OpenERP, Open Source Management Solution
-#    Copyright (C) 2010-2015 Elico Corp (<http://www.elico-corp.com>)
-#    Authors: Xiaopeng Xie
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as
-#    published by the Free Software Foundation, either version 3 of the
-#    License, or (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-##############################################################################
+# © 2016 Elico Corp (www.elico-corp.com).
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from openerp import tools
 from openerp.osv import fields, osv
+
 
 class sale_report(osv.osv):
     _inherit = "sale.report"
@@ -30,19 +13,37 @@ class sale_report(osv.osv):
     _rec_name = 'date'
 
     _columns = {
-        'date': fields.datetime('Date Order', readonly=True),  # TDE FIXME master: rename into date_order
+        # TDE FIXME master: rename into date_order
+        'date': fields.datetime('Date Order', readonly=True),
         'date_confirm': fields.date('Date Confirm', readonly=True),
-        'product_id': fields.many2one('product.product', 'Product', readonly=True),
-        'product_uom': fields.many2one('product.uom', 'Unit of Measure', readonly=True),
+        'product_id': fields.many2one(
+            'product.product',
+            'Product',
+            readonly=True,
+        ),
+        'product_uom': fields.many2one(
+            'product.uom',
+            'Unit of Measure',
+            readonly=True,
+        ),
         'product_uom_qty': fields.float('# of Qty', readonly=True),
 
         'partner_id': fields.many2one('res.partner', 'Partner', readonly=True),
         'company_id': fields.many2one('res.company', 'Company', readonly=True),
         'user_id': fields.many2one('res.users', 'Salesperson', readonly=True),
         'price_total': fields.float('Total Price', readonly=True),
-        'delay': fields.float('Commitment Delay', digits=(16,2), readonly=True),
-        'categ_id': fields.many2one('product.category','Category of Product', readonly=True),
-        'nbr': fields.integer('# of Lines', readonly=True),  # TDE FIXME master: rename into nbr_lines
+        'delay': fields.float(
+            'Commitment Delay',
+            digits=(16, 2),
+            readonly=True,
+        ),
+        'categ_id': fields.many2one(
+            'product.category',
+            'Category of Product',
+            readonly=True,
+        ),
+        # TDE FIXME master: rename into nbr_lines
+        'nbr': fields.integer('# of Lines', readonly=True),
         'state': fields.selection([
             ('draft', 'Quotation'),
             ('sent', 'Quotation Sent'),
@@ -52,13 +53,29 @@ class sale_report(osv.osv):
             ('invoice_except', 'Invoice Exception'),
             ('done', 'Done'),
             ('cancel', 'Cancelled')
-            ], 'Order Status', readonly=True),
-        'pricelist_id': fields.many2one('product.pricelist', 'Pricelist', readonly=True),
-        'analytic_account_id': fields.many2one('account.analytic.account', 'Analytic Account', readonly=True),
+        ], 'Order Status', readonly=True),
+        'pricelist_id': fields.many2one(
+            'product.pricelist',
+            'Pricelist',
+            readonly=True,
+        ),
+        'analytic_account_id': fields.many2one(
+            'account.analytic.account',
+            'Analytic Account',
+            readonly=True,
+        ),
         'section_id': fields.many2one('crm.case.section', 'Sales Team'),
         'country_id': fields.many2one('res.country', 'Country', readonly=True),
-        'currency_id': fields.many2one('res.currency', 'Currency', readonly=True),
-        'standard_currency_id': fields.many2one('res.currency', 'Invoice Currency', readonly=True),
+        'currency_id': fields.many2one(
+            'res.currency',
+            'Currency',
+            readonly=True,
+        ),
+        'standard_currency_id': fields.many2one(
+            'res.currency',
+            'Invoice Currency',
+            readonly=True,
+        ),
         'price_standard': fields.float('Invoice Price', readonly=True),
     }
     _order = 'date desc'
@@ -68,15 +85,19 @@ class sale_report(osv.osv):
              SELECT min(l.id) as id,
                     l.product_id as product_id,
                     t.uom_id as product_uom,
-                    sum(l.product_uom_qty / u.factor * u2.factor) as product_uom_qty,
-                    sum(l.product_uom_qty * l.price_unit * (100.0-l.discount) / 100.0) as price_total,
+                    sum(l.product_uom_qty / u.factor * u2.factor)
+                        as product_uom_qty,
+                    sum(l.product_uom_qty * l.price_unit *
+                        (100.0-l.discount) / 100.0) as price_total,
                     count(*) as nbr,
                     s.date_order as date,
                     s.date_confirm as date_confirm,
                     s.partner_id as partner_id,
                     s.user_id as user_id,
                     s.company_id as company_id,
-                    extract(epoch from avg(date_trunc('day',s.date_confirm)-date_trunc('day',s.create_date)))/(24*60*60)::decimal(16,2) as delay,
+                    extract(epoch from avg(date_trunc('day',s.date_confirm)-
+                        date_trunc('day',s.create_date)))/
+                        (24*60*60)::decimal(16,2) as delay,
                     l.state,
                     t.categ_id as categ_id,
                     s.pricelist_id as pricelist_id,
@@ -85,14 +106,15 @@ class sale_report(osv.osv):
                     r.country_id as country_id,
                     pl.currency_id as currency_id,
                     cp.currency_id as standard_currency_id,
-                     sum((l.product_uom_qty * l.price_unit * (100.0-l.discount) / 100.0) /
-                   (SELECT rate FROM res_currency_rate 
+                    sum((l.product_uom_qty * l.price_unit *
+                        (100.0-l.discount) / 100.0) /
+                   (SELECT rate FROM res_currency_rate
                        WHERE currency_id = pl.currency_id
-                         AND name <= s.date_order 
+                         AND name <= s.date_order
                        ORDER BY name desc LIMIT 1) *
-                    (SELECT rate FROM res_currency_rate 
+                    (SELECT rate FROM res_currency_rate
                        WHERE currency_id = cp.currency_id
-                         AND name <= s.date_order 
+                         AND name <= s.date_order
                        ORDER BY name desc LIMIT 1)
                        ) as price_standard
 
@@ -141,6 +163,5 @@ class sale_report(osv.osv):
             %s
             FROM ( %s )
             %s
-            )""" % (self._table, self._select(), self._from(), self._group_by()))
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
+            )""" % (self._table, self._select(), self._from(), self._group_by()
+                    ))
