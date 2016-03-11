@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
     <data>
-        
         <record id="product.product_pricelist_action" model="ir.actions.act_window">
             <field name="name">Pricelist Versions</field>
             <field name="type">ir.actions.act_window</field>
@@ -10,17 +9,16 @@
             <field name="domain">[('pricelist_id.type','=','sale')]</field>
             <field name="view_id" ref="product.product_pricelist_version_tree_view"/>
             <field name="help" type="html">
-              <p class="oe_view_nocontent_create">
+                <p class="oe_view_nocontent_create">
                 Click to add a pricelist version.
-              </p><p>
-                There can be more than one version of a pricelist, each of
-                these must be valid during a certain period of time. Some
-                examples of versions: Main Prices, 2010, 2011, Summer Sales,
-                etc.
-              </p>
+                </p>
+                <p>
+                    There can be more than one version of a pricelist, each of
+                    these must be valid during a certain period of time. Some
+                    examples of versions: Main Prices, 2010, 2011, Summer Sales,
+                    etc.
+                </p>
             </field>
         </record>
- 
-
     </data>
 </openerp>
