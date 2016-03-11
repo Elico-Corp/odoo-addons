@@ -13,15 +13,15 @@ _logger = logging.getLogger(__name__)
 
 class delivery_carrier(osv.osv):
     '''
-    Add new filed to record the percentage of the total price if  pay by paypal.
+    Add new filed to record the percentage of the total price if pay by paypal.
     '''
     _inherit = "delivery.carrier"
     _name = "delivery.carrier"
 
     _columns = {
-        'percentage': fields.float('The Percentage  of price',
+        'percentage': fields.float('Percentage of Sales price',
                                    required=True,
-                                   help='The percentage of the total price.\
+                                   help='Percentage of delivery based compared with sales price.\
                                    Value between 0~100.'),
     }
 
