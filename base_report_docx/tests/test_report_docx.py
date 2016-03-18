@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from openerp.tests import common
-from openerp.addons.report_docx.report.report_docx \
+from openerp.addons.base_report_docx.report.report_docx \
     import ReportDocx
 
 
