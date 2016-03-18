@@ -6,8 +6,9 @@
 Base Report Docx
 ================
 
-This module adds docx template to the standard odoo reporting engine.
+This module adds a new reporting engine to the current standard QWEB allowing the user to directly upload docx files containing scripts (in jinja2) into Odoo.
 
+The reporting engine will interpret the script and create a pdf/docx based on the docx template.
 
 Installation
 ============
@@ -33,13 +34,12 @@ To configure this module, you need to:
 Usage
 =====
 
-This module adds a new reporting engine to the current standard QWEB allowing the user to directly upload docx files containing scripts (in jinja2) into Odoo.
-
-The reporting engine will interpret the script and create a pdf/docx based on the docx template.
-
 To use this module, you need to:
 
-* Go to System/Technical/Reports/Report, create a new report, change the report type to docx and upload the template file.
+1. Go to System/Technical/Reports/Report
+2. Create a new report
+3. Change the report type to docx
+4. upload the template file.
 
 
 Known issues / Roadmap
@@ -67,6 +67,7 @@ Contributors
 ------------
 
 * Siyuan Gu: gu.siyuan@elico-corp.com
+* Alex Duan: alex.duan@elico-corp.com
 
 Maintainer
 ----------

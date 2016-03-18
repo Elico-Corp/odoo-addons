@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+# © 2016 Elico Corp (www.elico-corp.com).
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from openerp.tests import common
 import openerp
@@ -18,7 +20,7 @@ class TestParser(common.TransactionCase):
         attributes = [
             'name', 'users', 'model_access',
             'rule_groups', 'menu_access', 'view_access', 'comment',
-            'category_id', 'color', 'full_name', 'share'
+            'category_id', 'full_name'
         ]
 
         pool = openerp.registry(self.cr.dbname)

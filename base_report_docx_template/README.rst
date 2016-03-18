@@ -2,11 +2,11 @@
    :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
    :alt: License: AGPL-3
 
-=========================
-Base Report Docx Template
-=========================
+=======================
+Base Report Docx Module
+=======================
 
-This module collect the data from current object and generate the pdf/docx report.
+This module is a technical module to adds a new reporting engine to the default ones and allow later to generate report based on Docx template and Jinja2 scripting language.
 
 Installation
 ============
@@ -30,6 +30,7 @@ Contributors
 ------------
 
 * Siyuan Gu: gu.siyuan@elico-corp.com
+* Alex Duan: alex.duan@elico-corp.com
 
 Maintainer
 ----------
