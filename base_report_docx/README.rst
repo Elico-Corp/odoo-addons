@@ -2,9 +2,9 @@
    :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
    :alt: License: AGPL-3
 
-===========
-Report Docx
-===========
+================
+Base Report Docx
+================
 
 This module adds docx template to the standard odoo reporting engine.
 
