@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="1">
+
+        <record id="payment_acquirer_wcpay" model="payment.acquirer">
+            <field name="name">Wechat Pay</field>
+            <field name="provider">wcpay</field>
+            <field name="company_id" ref="base.main_company"/>
+            <field name="view_template_id" ref="wcpay_acquirer_button"/> 
+            <field name="environment">test</field>
+            <field name="pre_msg"><![CDATA[
+<p>You will be redirected to the wcpay website after clicking on the payment button.</p>]]></field>
+            <field name="logistics_payment">SELLER_PAY</field>
+            <field name="logistics_fee">0</field>
+            <field name="logistics_type">DIRECT</field>
+            <field name="ip_address">127.0.0.1</field>
+        </record>
+
+    </data>
+</openerp>
+
