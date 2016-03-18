@@ -21,7 +21,7 @@ This module pass the data from current object to the docx report engine to creat
 Bug Tracker
 ===========
 
-Bugs are tracked on `GitHub Issues <https://github.com/Elico-Corp/yopark/issues>`.
+Bugs are tracked on `GitHub Issues <https://github.com/Elico-Corp/odoo/issues>`.
 
 Credits
 =======

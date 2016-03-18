@@ -2,7 +2,7 @@
 
 from openerp.tests import common
 import openerp
-from openerp.addons.yopark_contract_report.models.parser \
+from openerp.addons.module_report.models.parser \
     import ReportDocxReport
 
 
