@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <!-- add the membership balance onto the partner list -->
+    <t t-extend='ClientListScreenWidget'>
+        <t t-jquery="table.client-list tr th:last-child()" t-operation="after">
+            <th>Membership Balance</th>
+        </t>
+    </t>
+    <t t-extend='ClientLine'>
+        <t t-jquery="tr.client-line td:last-child()" t-operation="after">
+            <td class="membership_balance"><t t-esc='partner and widget.format_currency(partner.membership_total_future,"Product Price") or "N/A"' /></td>
+        </t>
+    </t>
+</templates>
