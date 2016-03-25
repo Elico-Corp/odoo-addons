@@ -23,10 +23,10 @@ Installation
 
 Usage
 =====
- 1- create a new payment method / account journal: VIP card
+ 1. create a new payment method / account journal: VIP card
     with the check box (membership journal) checked.
- 2- Go to PoS configuration and add the new payment method.
- 3- Normal PoS selling.
+ 2. Go to PoS configuration and add the new payment method.
+ 3. Normal PoS selling.
  For more information, please check this document.
 
 

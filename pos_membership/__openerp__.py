@@ -3,7 +3,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 {
     'name': 'Membership Management - POS Membership',
-    'version': '8.0.1.0.1',
+    'version': '8.0.1.0.2',
     'category': 'Generic Modules',
     'depends': [
         'membership_account_balance',

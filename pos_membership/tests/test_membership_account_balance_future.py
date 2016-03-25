@@ -12,7 +12,7 @@ class TestMembershipAccountBalanceFuture(common.TransactionCase):
         super(TestMembershipAccountBalanceFuture, self).setUp()
         # partner to be used to test.
         self.partner = self.env['res.partner'].create({
-            'name': 'Alex Duan',
+            'name': 'Demo User',
         })
         # accounts to be used: AR/AP/VIP account(with check box checked.)
         account_obj = self.env['account.account']
