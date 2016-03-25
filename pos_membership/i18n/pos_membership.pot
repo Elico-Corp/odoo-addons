@@ -1,0 +1,127 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#   * pos_membership
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-08-18 23:43+0000\n"
+"PO-Revision-Date: 2015-08-18 23:43+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: pos_membership
+#: model:ir.model,name:pos_membership.model_account_voucher
+msgid "Accounting Voucher"
+msgstr ""
+
+#. module: pos_membership
+#. openerp-web
+#: code:addons/pos_membership/static/src/js/screens.js:143
+#, python-format
+msgid "Cannot pay for membership products with VIP Card!"
+msgstr ""
+
+#. module: pos_membership
+#: code:addons/pos_membership/models.py:72
+#, python-format
+msgid "Cannot use VIP card for membership product!"
+msgstr ""
+
+#. module: pos_membership
+#: code:addons/pos_membership/models.py:64
+#, python-format
+msgid "Cannot use VIP card for supplier journal!"
+msgstr ""
+
+#. module: pos_membership
+#: view:res.partner:pos_membership.view_partner_tree_inherit
+msgid "Contacts"
+msgstr ""
+
+#. module: pos_membership
+#. openerp-web
+#: code:addons/pos_membership/static/src/js/screens.js:131
+#: code:addons/pos_membership/static/src/js/screens.js:142
+#: code:addons/pos_membership/static/src/js/screens.js:150
+#: code:addons/pos_membership/static/src/js/screens.js:158
+#: code:addons/pos_membership/static/src/js/screens.js:245
+#: code:addons/pos_membership/static/src/js/screens.js:254
+#: code:addons/pos_membership/static/src/js/screens.js:320
+#, python-format
+msgid "Error"
+msgstr ""
+
+#. module: pos_membership
+#: field:res.partner,membership_total_future:0
+msgid "Future Total Membership"
+msgstr ""
+
+#. module: pos_membership
+#: model:ir.model,name:pos_membership.model_account_invoice
+msgid "Invoice"
+msgstr ""
+
+#. module: pos_membership
+#: field:account.journal,membership:0
+msgid "Is Membership Journal"
+msgstr ""
+
+#. module: pos_membership
+#: model:ir.model,name:pos_membership.model_account_journal
+msgid "Journal"
+msgstr ""
+
+#. module: pos_membership
+#. openerp-web
+#: code:addons/pos_membership/static/src/xml/pos.xml:7
+#, python-format
+msgid "Membership Balance"
+msgstr ""
+
+#. module: pos_membership
+#. openerp-web
+#: code:addons/pos_membership/static/src/js/screens.js:246
+#, python-format
+msgid "No enough balance in the VIP card!"
+msgstr ""
+
+#. module: pos_membership
+#. openerp-web
+#: code:addons/pos_membership/models.py:76
+#: code:addons/pos_membership/static/src/js/screens.js:159
+#, python-format
+msgid "No enough membership balance!"
+msgstr ""
+
+#. module: pos_membership
+#: model:ir.model,name:pos_membership.model_res_partner
+msgid "Partner"
+msgstr ""
+
+#. module: pos_membership
+#. openerp-web
+#: code:addons/pos_membership/static/src/js/screens.js:255
+#, python-format
+msgid "Select a customer first!"
+msgstr ""
+
+#. module: pos_membership
+#. openerp-web
+#: code:addons/pos_membership/static/src/js/screens.js:132
+#, python-format
+msgid "You must select a customer before charging VIP card!"
+msgstr ""
+
+#. module: pos_membership
+#. openerp-web
+#: code:addons/pos_membership/static/src/js/screens.js:151
+#: code:addons/pos_membership/static/src/js/screens.js:321
+#, python-format
+msgid "You must select a customer before paying by VIP card!"
+msgstr ""
