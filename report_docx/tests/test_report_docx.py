@@ -1,13 +1,11 @@
 # -*- coding: utf-8 -*-
-# © 2016 Elico Corp (www.elico-corp.com).
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from openerp.tests import common
 import openerp
 import os
 import base64
-from openerp.addons.base_report_docx_template.models.parser \
-    import ReportDocxReport
+from openerp.addons.report_docx.report.report_docx \
+    import ReportDocx
 
 
 class TestReportDocx(common.TransactionCase):
@@ -29,6 +27,11 @@ class TestReportDocx(common.TransactionCase):
         finally:
             input_stream.close()
 
+    def test_generate_docx_data_with_empty(self):
+        self.assertEqual([{}], ReportDocx(
+            "report.testing.not.data", "testing").generate_docx_data(
+            self.cr, 1, [1], {}, {}))
+
     @openerp.tests.common.at_install(False)
     @openerp.tests.common.post_install(True)
     def test_create_docx(self):
@@ -45,7 +48,7 @@ class TestReportDocx(common.TransactionCase):
         docx_report = self.pool.get('ir.actions.report.xml').browse(
             self.cr, 1, docx_report_id)
 
-        report_engine = ReportDocxReport(
+        report_engine = ReportDocx(
             'report.testing.docx', 'report.docx.template',
         )
         report_engine.pool = openerp.registry(self.cr.dbname)
@@ -74,7 +77,7 @@ class TestReportDocx(common.TransactionCase):
         docx_report = self.pool.get('ir.actions.report.xml').browse(
             self.cr, 1, docx_report_id)
 
-        report_engine = ReportDocxReport(
+        report_engine = ReportDocx(
             'report.testing.not.docx', 'report.docx.template',
         )
         report_engine.pool = openerp.registry(self.cr.dbname)
@@ -106,7 +109,7 @@ class TestReportDocx(common.TransactionCase):
         docx_report = self.pool.get('ir.actions.report.xml').browse(
             self.cr, 1, docx_report_id)
 
-        report_engine = ReportDocxReport(
+        report_engine = ReportDocx(
             'report.testing.convert.pdf.template', 'report.docx.template',
         )
         report_engine.pool = openerp.registry(self.cr.dbname)
@@ -138,10 +141,7 @@ class TestReportDocx(common.TransactionCase):
         docx_report.watermark_template = watermark_id
 
         result = report_engine.create_source_docx(
-            self.cr, 1, [1, 2], {
-                'active_model': 'res.groups',
-                'params': {'action': docx_report_id}
-            }
+            self.cr, 1, [1, 2], {'template_id': docx_report_id}, {}
         )
 
         self.assertEqual(result[1], docx_report.output_type)
@@ -163,7 +163,7 @@ class TestReportDocx(common.TransactionCase):
         docx_report = self.pool.get('ir.actions.report.xml').browse(
             self.cr, 1, docx_report_id)
 
-        report_engine = ReportDocxReport(
+        report_engine = ReportDocx(
             'report.testing.convert.pdf.string', 'report.docx.template',
         )
         report_engine.pool = openerp.registry(self.cr.dbname)
@@ -183,10 +183,7 @@ class TestReportDocx(common.TransactionCase):
         docx_report.template_file = attachment_id
 
         result = report_engine.create_source_docx(
-            self.cr, 1, [1, 2], {
-                'active_model': 'res.groups',
-                'params': {'action': docx_report_id}
-            }
+            self.cr, 1, [1, 2], {'template_id': docx_report_id}, {}
         )
 
         self.assertEqual(result[1], docx_report.output_type)
@@ -209,7 +206,7 @@ class TestReportDocx(common.TransactionCase):
         docx_report = self.pool.get('ir.actions.report.xml').browse(
             self.cr, 1, docx_report_id)
 
-        report_engine = ReportDocxReport(
+        report_engine = ReportDocx(
             'report.testing.convert.pdf.no.watermark', 'report.docx.template',
         )
         report_engine.pool = openerp.registry(self.cr.dbname)
@@ -229,10 +226,7 @@ class TestReportDocx(common.TransactionCase):
         docx_report.template_file = attachment_id
 
         result = report_engine.create_source_docx(
-            self.cr, 1, [1, 2], {
-                'active_model': 'res.groups',
-                'params': {'action': docx_report_id}
-            }
+            self.cr, 1, [1, 2], {'template_id': docx_report_id}, {}
         )
 
         self.assertEqual(result[1], docx_report.output_type)
@@ -254,7 +248,7 @@ class TestReportDocx(common.TransactionCase):
             self.cr, 1, docx_report_id)
         docx_report.watermark_string = 'shadow'
 
-        report_engine = ReportDocxReport(
+        report_engine = ReportDocx(
             'report.testing.convert.single.docx', 'report.docx.template',
         )
         report_engine.pool = openerp.registry(self.cr.dbname)
@@ -274,10 +268,7 @@ class TestReportDocx(common.TransactionCase):
         docx_report.template_file = attachment_id
 
         result = report_engine.create_source_docx(
-            self.cr, 1, [1, 2, 3], {
-                'active_model': 'res.groups',
-                'params': {'action': docx_report_id}
-            }
+            self.cr, 1, [1, 2], {'template_id': docx_report_id}, {}
         )
 
         self.assertEqual(result[1], docx_report.output_type)

@@ -2,13 +2,14 @@
    :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
    :alt: License: AGPL-3
 
-================
-Base Report Docx
-================
+===========
+Report Docx
+===========
 
 This module adds a new reporting engine to the current standard QWEB allowing the user to directly upload docx files containing scripts (in jinja2) into Odoo.
 
 The reporting engine will interpret the script and create a pdf/docx based on the docx template.
+
 
 Installation
 ============
@@ -18,7 +19,6 @@ To install this module, you need to:
 
 * install the libreoffice (https://wiki.ubuntu.com/LibreOffice)
 
-
 Configuration
 =============
 
@@ -26,7 +26,7 @@ To configure this module, you need to:
 
 * Inherit the function generate_docx_data in the report/report_docx.py
 
-* Pass the list of the dictionary to the engine. (etc [{data1}, {data2, .....}])
+* Pass the list of the dictionary to the engine. (etc [{data1}, {data2}, .....])
 
 * Each dictionary will generate a report base on the docx template.
 
@@ -42,16 +42,16 @@ To use this module, you need to:
 4. upload the template file.
 
 
+Bug Tracker
+===========
+
+Bugs are tracked on `GitHub Issues <https://github.com/Elico-Corp/yopark_odoo/issues>`.
+
+
 Known issues / Roadmap
 ======================
 
 * To be implemented: export from docx to html.
-
-
-Bug Tracker
-===========
-
-Bugs are tracked on `GitHub Issues <https://github.com/Elico-Corp/odoo/issues>`.
 
 
 Credits

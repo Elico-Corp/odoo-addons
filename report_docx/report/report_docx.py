@@ -1,6 +1,4 @@
 # -*- coding: utf-8 -*-
-# © 2016 Elico Corp (www.elico-corp.com).
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from openerp.report.report_sxw import report_sxw
 from openerp import pooler
@@ -29,14 +27,14 @@ class ReportDocx(report_sxw):
                 cr, uid, report_ids[0], context=context)
             self.title = report_xml.name
             if report_xml.report_type == 'docx':
-                return self.create_source_docx(cr, uid, ids, context)
+                return self.create_source_docx(cr, uid, ids, data, context)
         return super(ReportDocx, self).create(cr, uid, ids, data, context)
 
-    def create_source_docx(self, cr, uid, ids, context=None):
-        data = self.generate_docx_data(cr, uid, ids, context)
+    def create_source_docx(self, cr, uid, ids, dict, context=None):
+        data = self.generate_docx_data(cr, uid, ids, dict, context)
 
         tmp_folder_name = '/tmp/docx_to_pdf/'
-        output_type = self._get_output_type(cr, uid, context)
+        output_type = self._get_output_type(cr, uid, context, dict)
         output_report = {
             'pdf': 'report.pdf',
             'docx': 'report.docx'
@@ -47,7 +45,7 @@ class ReportDocx(report_sxw):
 
         self._generate_reports(
             cr, uid, context, tmp_folder_name, data,
-            output_type, output_report)
+            output_type, output_report, dict)
 
         report = self._get_convert_file(
             tmp_folder_name, output_report[output_type])
@@ -56,7 +54,7 @@ class ReportDocx(report_sxw):
 
         return (report, output_type)
 
-    def generate_docx_data(self, cr, uid, ids, context):
+    def generate_docx_data(self, cr, uid, ids, data, context):
         """
             Override this method to pass your own data to the engine.
             The return value of this module should be a list with
@@ -66,26 +64,27 @@ class ReportDocx(report_sxw):
 
     def _generate_reports(
         self, cr, uid, context, tmp_folder_name,
-        datas, output_type, output_report
+        datas, output_type, output_report, dict
     ):
         if "pdf" == output_type:
             self._generate_pdf_reports(
                 cr, uid, context, tmp_folder_name, datas,
-                output_type, output_report)
+                output_type, output_report, dict)
             return
 
         self._generate_doc_reports(
             cr, uid, context, tmp_folder_name, datas,
-            output_type, output_report)
+            output_type, output_report, dict)
 
     def _generate_pdf_reports(
         self, cr, uid, context, tmp_folder_name,
-        datas, output_type, output_report
+        datas, output_type, output_report, dict
     ):
         count = 0
         for data in datas:
             self._convert_single_report(
-                cr, uid, context, tmp_folder_name, count, data, output_type)
+                cr, uid, context, tmp_folder_name,
+                count, data, output_type, dict)
             count = count + 1
 
         self._combine_pdf_files(
@@ -93,13 +92,14 @@ class ReportDocx(report_sxw):
 
     def _generate_doc_reports(
         self, cr, uid, context, tmp_folder_name,
-        datas, output_type, output_report
+        datas, output_type, output_report, dict
     ):
         temp_docxs = []
         count = 0
         for data in datas:
             report = self._convert_single_report(
-                cr, uid, context, tmp_folder_name, count, data, output_type)
+                cr, uid, context, tmp_folder_name,
+                count, data, output_type, dict)
             temp_docxs.append(report)
             count = count + 1
 
@@ -161,7 +161,8 @@ class ReportDocx(report_sxw):
         report.save(output_path)
 
     def _convert_single_report(
-        self, cr, uid, context, tmp_folder_name, count, data, output_type
+        self, cr, uid, context, tmp_folder_name,
+        count, data, output_type, dict
     ):
         docx_template_name = 'template_%s.docx' % count
         convert_docx_file_name = 'convert_%s.docx' % count
@@ -172,7 +173,7 @@ class ReportDocx(report_sxw):
         self._convert_docx_from_template(
             cr, uid, data, context,
             tmp_folder_name,
-            docx_template_name, convert_docx_file_name)
+            docx_template_name, convert_docx_file_name, dict)
 
         if output_type == 'pdf':
             self._convert_docx_to_pdf(
@@ -182,7 +183,7 @@ class ReportDocx(report_sxw):
 
             self._create_watermark_pdf(
                 cr, uid, context,
-                tmp_folder_name, watermark_file)
+                tmp_folder_name, watermark_file, dict)
 
             self._add_watermark_to_pdf(
                 tmp_folder_name, watermark_file,
@@ -196,9 +197,9 @@ class ReportDocx(report_sxw):
     def _convert_docx_from_template(
         self, cr, uid, data, context,
         tmp_folder_name,
-        docx_template_name, convert_docx_file_name
+        docx_template_name, convert_docx_file_name, dict
     ):
-        action_id = context['params']['action']
+        action_id = dict['template_id']
         action = self.pool.get('ir.actions.report.xml').browse(
             cr, uid, action_id, context)
 
@@ -226,11 +227,12 @@ class ReportDocx(report_sxw):
 
     def _create_watermark_pdf(
         self, cr, uid, context,
-        tmp_folder_name, watermark_file
+        tmp_folder_name, watermark_file, dict
     ):
         watermark_path = tmp_folder_name + watermark_file
-        watermark_string = self._get_watermark_string(cr, uid, context)
-        watermark_template = self._get_watermark_template(cr, uid, context)
+        watermark_string = self._get_watermark_string(cr, uid, context, dict)
+        watermark_template = self._get_watermark_template(
+            cr, uid, context, dict)
 
         if watermark_template:
             self._save_file(
@@ -296,8 +298,8 @@ class ReportDocx(report_sxw):
 
         return report
 
-    def _get_watermark_string(self, cr, uid, context):
-        action_id = context['params']['action']
+    def _get_watermark_string(self, cr, uid, context, dict):
+        action_id = dict['template_id']
         action = self.pool.get('ir.actions.report.xml').browse(
             cr, uid, action_id, context)
 
@@ -306,15 +308,15 @@ class ReportDocx(report_sxw):
 
         return ""
 
-    def _get_watermark_template(self, cr, uid, context):
-        action_id = context['params']['action']
+    def _get_watermark_template(self, cr, uid, context, dict):
+        action_id = dict['template_id']
         action = self.pool.get('ir.actions.report.xml').browse(
             cr, uid, action_id, context)
 
         return action.watermark_template.datas
 
-    def _get_output_type(self, cr, uid, context):
-        action_id = context['params']['action']
+    def _get_output_type(self, cr, uid, context, dict):
+        action_id = dict['template_id']
         action = self.pool.get('ir.actions.report.xml').browse(
             cr, uid, action_id, context)
 
@@ -328,8 +330,8 @@ class ReportDocx(report_sxw):
         cmd = 'rm -rf ' + tmp_folder_name
         os.system(cmd)
 
-    def _save_file(self, folder_name, file):
-        out_stream = open(folder_name, 'wb')
+    def _save_file(self, file_name, file):
+        out_stream = open(file_name, 'wb')
         try:
             out_stream.writelines(file)
         finally:
