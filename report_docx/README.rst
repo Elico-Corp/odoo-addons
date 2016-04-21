@@ -2,9 +2,9 @@
    :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
    :alt: License: AGPL-3
 
-===========
-Report Docx
-===========
+====================
+Docx template report
+====================
 
 This module adds a new reporting engine to the current standard QWEB allowing the user to directly upload docx files containing scripts (in jinja2) into Odoo.
 
@@ -24,11 +24,11 @@ Configuration
 
 To configure this module, you need to:
 
-* Inherit the function generate_docx_data in the report/report_docx.py
+#. Inherit the function generate_docx_data in the report/report_docx.py
 
-* Pass the list of the dictionary to the engine. (etc [{data1}, {data2}, .....])
+#. Pass the list of the dictionary to the engine. (etc [{data1}, {data2}, .....])
 
-* Each dictionary will generate a report base on the docx template.
+#. Each dictionary will generate a report base on the docx template.
 
 
 Usage
@@ -68,6 +68,7 @@ Contributors
 
 * Siyuan Gu: gu.siyuan@elico-corp.com
 * Alex Duan: alex.duan@elico-corp.com
+* Xie Xiao Peng <xie.xiaopeng@elico-corp.com>
 
 Maintainer
 ----------
