@@ -52,6 +52,7 @@ Known issues / Roadmap
 ======================
 
 * To be implemented: export from docx to html.
+* load the watermark from html (qweb) 
 
 
 Credits
