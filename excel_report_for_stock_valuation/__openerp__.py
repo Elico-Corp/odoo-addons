@@ -5,8 +5,10 @@
     'name': 'Excel report for stock valutaion',
     'version': '8.0.1.0.1',
     'depends': [
-        'stock_account',
+        'mrp',
+        'purchase',
         'report_xls',
+        'stock_account',
     ],
     'author': 'Elico Corp',
     'license': 'AGPL-3',
