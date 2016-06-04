@@ -13,7 +13,7 @@ Installation
 
 To install this module, you need to:
 
- * have basic modules installed (stock_account, report_xls)
+ * have basic modules installed (mrp, purchase, report_xls, stock_account)
 
 
 Bug Tracker
