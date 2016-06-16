@@ -7,6 +7,7 @@ Sale Order Lines Discount
 =========================
 
 This module Add function to change all  order lines discount once in sales order.
+
 Installation
 ============
 

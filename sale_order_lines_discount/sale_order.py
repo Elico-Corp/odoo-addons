@@ -14,7 +14,8 @@ class SaleOrder(models.Model):
     all_discounts = fields.Float(
         'All order lines discount',
         required=True,
-        elp='Change all order lines discount.')
+        default=0,
+        help='Change all order lines discount.')
 
     @api.multi
     def update_discount_lines(self):
@@ -27,5 +28,5 @@ class SaleOrder(models.Model):
             else:
                 raise osv.except_osv(
                     _('Error!'),
-                    _("""Your discount value is out of vlaues,
+                    _("""Your discount value is out of values,
                         it's value between 0 and 100,but 100 except."""))
