@@ -35,7 +35,10 @@ class ReportStockList(models.TransientModel):
             sale_name = self._get_sale_name_from_source(
                 origin_and_sales_name, stock_history.source)
 
-            key = str(stock_history.product_id.id) + ":" + sale_name
+            if self._context['make_to_order'] == 'yes':
+                key = str(stock_history.product_id.id) + ":" + sale_name
+            else:
+                key = str(stock_history.product_id.id) + ":" + ""
 
             quantity = stock_history.quantity
             value = stock_history.inventory_value
@@ -106,7 +109,10 @@ class ReportStockList(models.TransientModel):
             sale_name = self._get_sale_name_from_source(
                 origin_and_sales_name, stock_history.source)
 
-            key = str(stock_history.product_id.id) + ":" + sale_name
+            if self._context['make_to_order'] == 'yes':
+                key = str(stock_history.product_id.id) + ":" + sale_name
+            else:
+                key = str(stock_history.product_id.id) + ":" + ""
 
             quantity = stock_history.quantity
             value = stock_history.inventory_value

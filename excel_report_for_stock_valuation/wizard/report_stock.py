@@ -49,6 +49,15 @@ class StockReportQuant(models.TransientModel):
         required=True,
         default=_get_default_category,
     )
+    make_to_order = fields.Selection(
+        string='MTO',
+        selection=[
+            ('yes', 'Yes'),
+            ('no', 'No'),
+        ],
+        required=True,
+        default='yes',
+    )
 
     @api.one
     def cancel(self):
@@ -60,6 +69,7 @@ class StockReportQuant(models.TransientModel):
             'location_id': self.location_id and self.location_id.id or False,
             'location': self.location_id and self.location_id.name or False,
             'category_id': self.category_id.id,
+            'make_to_order': self.make_to_order,
             'start_date': self.start_date,
             'end_date': self.end_date,
         }

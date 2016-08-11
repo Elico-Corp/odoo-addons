@@ -9,6 +9,7 @@
                     <group colspan="4" >
                         <field name="location_id"/>
                         <field name="category_id"/>
+                        <field name="make_to_order" widget="radio" options="{'horizontal': true}"/>
                         <field name="start_date"/>
                         <field name="end_date"/>
                     </group>
