@@ -24,6 +24,10 @@ class StockReportQuant(models.TransientModel):
         # set the date to the end day of the month
         return datetime.datetime(now.year, now.month, month_range[1])
 
+    def _get_default_category(self):
+            category_all_id = self.env.ref("product.product_category_all")
+            return category_all_id
+
     def _default_stock_location(self):
         try:
             warehouse = self.env.ref("stock.warehouse0")
@@ -35,11 +39,16 @@ class StockReportQuant(models.TransientModel):
     location_id = fields.Many2one(
         'stock.location', string='Location', required=True,
         default=_default_stock_location)
-
     start_date = fields.Date(
         'From', required=True, default=_get_first_date)
     end_date = fields.Date(
         'To', required=True, default=_get_last_date)
+    category_id = fields.Many2one(
+        'product.category',
+        string='Product Category',
+        required=True,
+        default=_get_default_category,
+    )
 
     @api.one
     def cancel(self):
@@ -50,8 +59,9 @@ class StockReportQuant(models.TransientModel):
         ctx = {
             'location_id': self.location_id and self.location_id.id or False,
             'location': self.location_id and self.location_id.name or False,
+            'category_id': self.category_id.id,
             'start_date': self.start_date,
-            'end_date': self.end_date
+            'end_date': self.end_date,
         }
 
         return {

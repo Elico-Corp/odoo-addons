@@ -18,6 +18,17 @@ class ReportStockList(models.TransientModel):
     def _get_sale_name_from_source(self, origin_and_sales_name, source):
         return origin_and_sales_name.get(source) or ""
 
+    def _get_category_ids(self, category_id):
+        # get current category and his children recursively
+        category_obj = self.env['product.category'].search([
+            ('id', '=', category_id)])
+        children = category_obj.child_id
+        category_ids = []
+        category_ids.append(category_id)
+        for child in children:
+            category_ids.extend(self._get_category_ids(child.id))
+        return category_ids
+
     def _get_product_inventory(self, stock_historys, origin_and_sales_name):
         products = {}
         for stock_history in stock_historys:
@@ -45,33 +56,38 @@ class ReportStockList(models.TransientModel):
 
         return products
 
-    def _get_product_inventory_before_start_date(self, origin_and_sales_name):
+    def _get_product_inventory_before_start_date(
+            self, origin_and_sales_name, category_ids):
         start_date = self._context['start_date']
         location_id = self._context['location_id']
 
         stock_historys = self.env['stock.history'].search([
             ('date', '<', start_date),
             ('location_id', '=', location_id),
-            ('quantity', '!=', 0)
+            ('quantity', '!=', 0),
+            ('product_categ_id', 'in', tuple(category_ids)),
         ])
 
         return self._get_product_inventory(
             stock_historys, origin_and_sales_name)
 
-    def _get_product_inventory_at_end_date(self, origin_and_sales_name):
+    def _get_product_inventory_at_end_date(
+            self, origin_and_sales_name, category_ids):
         end_date = self._context['end_date']
         location_id = self._context['location_id']
 
         stock_historys = self.env['stock.history'].search([
             ('date', '<=', end_date),
             ('location_id', '=', location_id),
-            ('quantity', '!=', 0)
+            ('quantity', '!=', 0),
+            ('product_categ_id', 'in', tuple(category_ids)),
         ])
 
         return self._get_product_inventory(
             stock_historys, origin_and_sales_name)
 
-    def _get_product_inventory_between_date(self, origin_and_sales_name):
+    def _get_product_inventory_between_date(
+            self, origin_and_sales_name, category_ids):
         start_date = self._context['start_date']
         end_date = self._context['end_date']
         location_id = self._context['location_id']
@@ -80,7 +96,8 @@ class ReportStockList(models.TransientModel):
             ('date', '>=', start_date),
             ('date', '<=', end_date),
             ('location_id', '=', location_id),
-            ('quantity', '!=', 0)
+            ('quantity', '!=', 0),
+            ('product_categ_id', 'in', tuple(category_ids)),
         ])
 
         products = {}
@@ -193,13 +210,15 @@ class ReportStockList(models.TransientModel):
 
     def _load_lines(self):
         origin_and_sales_name = self._get_source_from_sql()
+        category_ids = self._get_category_ids(self._context['category_id'])
         res = []
 
         lines_before = self._get_product_inventory_before_start_date(
-            origin_and_sales_name)
+            origin_and_sales_name, category_ids)
         lines_end = self._get_product_inventory_at_end_date(
-            origin_and_sales_name)
-        lines = self._get_product_inventory_between_date(origin_and_sales_name)
+            origin_and_sales_name, category_ids)
+        lines = self._get_product_inventory_between_date(
+            origin_and_sales_name, category_ids)
 
         for key, product in lines_before.items():
             if key not in lines.keys() and product["quantity"] != 0:

@@ -8,6 +8,7 @@
                 <form string="Stock">
                     <group colspan="4" >
                         <field name="location_id"/>
+                        <field name="category_id"/>
                         <field name="start_date"/>
                         <field name="end_date"/>
                     </group>
