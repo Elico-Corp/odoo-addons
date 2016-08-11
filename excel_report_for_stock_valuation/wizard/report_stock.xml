@@ -27,6 +27,6 @@
             <field name="view_id" ref="view_stock_report"/>
             <field name="target">new</field>
         </record>
-        <menuitem id="menu_action_stock_report" action="action_stock_report" parent="stock.next_id_61" sequence="3"/>
+        <menuitem id="menu_action_stock_report" action="action_stock_report" parent="stock.menu_warehouse_report" sequence="140"/>
     </data>
 </openerp>

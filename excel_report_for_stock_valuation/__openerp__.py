@@ -8,6 +8,7 @@
         'mrp',
         'purchase',
         'report_xls',
+        'sale',
         'stock_account',
     ],
     'author': 'Elico Corp',
