@@ -1,34 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
-    <data>
-        <record id="view_stock_report" model="ir.ui.view">
-            <field name="name">stock.quant.report</field>
-            <field name="model">stock.report.quant</field>
-            <field name="arch" type="xml">
-                <form string="Stock">
-                    <group colspan="4" >
-                        <field name="location_id"/>
-                        <field name="category_id"/>
-                        <field name="make_to_order" widget="radio" options="{'horizontal': true}"/>
-                        <field name="start_date"/>
-                        <field name="end_date"/>
-                    </group>
-                    <footer>
-                        <button name="print_report" type="object" string="Print" class="oe_highlight"/>
-                        or
-                        <button special="cancel" string="Cancel" name="cancel" type="object"/>
-                    </footer>
-               </form>
-            </field>
-        </record>
-        <record id="action_stock_report" model="ir.actions.act_window">
-            <field name="name">Stock Report</field>
-            <field name="res_model">stock.report.quant</field>
-            <field name="view_type">form</field>
-            <field name="view_mode">tree,form</field>
-            <field name="view_id" ref="view_stock_report"/>
-            <field name="target">new</field>
-        </record>
-        <menuitem id="menu_action_stock_report" action="action_stock_report" parent="stock.menu_warehouse_report" sequence="140"/>
-    </data>
+
+    <record id="view_stock_report" model="ir.ui.view">
+        <field name="name">stock.quant.report</field>
+        <field name="model">stock.report.quant</field>
+        <field name="arch" type="xml">
+            <form string="Stock">
+                <group colspan="4" >
+                    <field name="location_id"/>
+                    <field name="category_id"/>
+                    <field name="make_to_order" widget="radio" options="{'horizontal': true}"/>
+                    <field name="start_date"/>
+                    <field name="end_date"/>
+                </group>
+                <footer>
+                    <button name="print_report" type="object" string="Print" class="oe_highlight"/>
+                    or
+                    <button special="cancel" string="Cancel" name="cancel" type="object"/>
+                </footer>
+           </form>
+        </field>
+    </record>
+    <record id="action_stock_report" model="ir.actions.act_window">
+        <field name="name">Stock Report</field>
+        <field name="res_model">stock.report.quant</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="view_stock_report"/>
+        <field name="target">new</field>
+    </record>
+    <menuitem id="menu_action_stock_report" action="action_stock_report" parent="stock.menu_warehouse_report" sequence="140"/>
+
 </openerp>

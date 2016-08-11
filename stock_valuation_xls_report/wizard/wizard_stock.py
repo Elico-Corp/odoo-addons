@@ -40,9 +40,9 @@ class StockReportQuant(models.TransientModel):
         'stock.location', string='Location', required=True,
         default=_default_stock_location)
     start_date = fields.Date(
-        'From', required=True, default=_get_first_date)
+        string='From', required=True, default=_get_first_date)
     end_date = fields.Date(
-        'To', required=True, default=_get_last_date)
+        string='To', required=True, default=_get_last_date)
     category_id = fields.Many2one(
         'product.category',
         string='Product Category',
