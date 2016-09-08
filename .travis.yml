@@ -14,6 +14,7 @@ addons:
       - python-serial
       - python-yaml
       - wkhtmltopdf # for odoo pdf reports
+      - python-ldap # for auth_ldap
 
 env:
   global:
