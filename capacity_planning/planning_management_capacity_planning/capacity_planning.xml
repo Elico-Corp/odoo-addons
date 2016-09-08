@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="0"> 
+    
+        <!-- 
+        Capacity planning
+		-->
+		<record forcecreate="True" id="ir_cron_update_capacity_planning"  model="ir.cron">
+            <field name="name">Automatic updates of capacity planning</field>
+            <field eval="True" name="active" />
+            <field name="user_id" ref="base.user_root" />
+            <field name="interval_number">1</field>
+            <field name="interval_type">hours</field>
+            <field name="numbercall">-1</field>
+            <field eval="False" name="doall" />
+            <field eval="'check_cron'" name="function" />                                                             
+            <field eval="" name="args" />
+            <field name="model">capacity.planning</field> 
+        </record>
+		
+		<record model="ir.ui.view" id="capacity_planning_tree_view">
+            <field name="name">capacity.planning.tree</field>
+            <field name="model">capacity.planning</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Capacity planning">
+                    <field name="name"/>
+                    <field name="startdate"/>
+                    <field name="enddate"/>
+                    <field name="tpstotal" sum="Tpstotal"/>
+                    <field name="tpsoccup" sum="Tpsoccup"/>
+                    <field name="tpsdispo" sum="Tpsdispo"/>
+                    <field name="busy" widget="progressbar" avg="Avg. of Availability"/>
+                </tree>    
+            </field>
+        </record>
+           
+        <record id="view_task_tree2_capacity" model="ir.ui.view">
+            <field name="name">project.task.tree.inherit1</field>
+            <field name="model">project.task</field>
+            <field name="inherit_id" ref="project.view_task_tree2"/>
+            <field name="arch" type="xml">
+                <xpath expr="/tree/field[@name='date_start']" position="replace">
+                    <field name="date_start" invisible="0"/>
+                </xpath>
+                <xpath expr="/tree/field[@name='date_deadline']" position="replace">
+                    <field name="date_deadline" invisible="0"/>
+                </xpath>
+            </field>
+        </record>    
+
+        <record model="ir.ui.view" id="capacity_planning_form_view">
+            <field name="name">capacity.planning.form</field>
+            <field name="model">capacity.planning</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Capacity planning" version="7.0">
+                    <heater>
+                        <button name="check_update_capacity" colspan="2" string="Update" type="object" groups="base.group_planning_management_manager,base.group_planning_management_admin"/>
+                    </heater>
+                    <sheet string="Capacity Planning">
+                        <group colspan="4" col="4">
+                            <separator string="Information" colspan="4" orientation="horizontal"/>
+                        </group>                                     
+                        <h1>
+                            <field name="name"/>
+                        </h1>
+                        <group colspan="6" col="4">
+                            <field name="sel_department"/>
+                            <newline/>
+                            <field name="startdate" attrs="{'readonly':[('id','!=',False)]}"/>
+                            <field name="enddate" attrs="{'readonly':[('id','!=',False)]}"/>
+                            <newline/>
+                            <field name="tpstotal" readonly="1"/>
+                    	    <field name="tpsoccup" readonly="1"/>
+                    	    <field name="tpsdispo" readonly="1"/>
+                    	    <field name="id" invisible="1"/>
+                    	    <group colspan="4" col="4">
+                                <label string="Do not forget to update!!!"/>
+                            </group>
+                    	    <group colspan="4" col="4">
+                                <separator string="Planning..." colspan="4" orientation="horizontal"/>
+                            </group>
+                        </group> 
+                        <group colspan="4" groups="base.group_planning_management_manager,base.group_planning_management_admin,base.group_planning_management_user">
+                    <notebook colspan="4">
+                        <page string="...by Employee">
+                        <field colspan="4" name="planning_user" nolabel="1" widget="one2many_list" readonly="1">
+                            <tree string="If the line is red, check the contract and the employee's working hours." colors="red:idhourofwork==0">
+                        		<field name="emp"/>
+                        		<button name="check_employee" string="Open employee" type="object" icon="gtk-edit"  attrs="{'invisible':[('idhourofwork','!=',0)]}"/>
+                    			<!-- <field name="departement"/> -->
+        	            		<field name="nbtask" sum="Nbtask"/>
+            	        		<field name="htask" sum="Htask"/>
+                	    		<field name="nbmeeting" sum="Nbmeeting"/>
+                    			<field name="hmeeting" sum="Hmeeting"/>
+                    			<field name="nbhelpdesk" sum="Nbhelpdesk"/>
+                   	 			<field name="nbconge" sum="Nbconge"/>
+                   	 			<field name="hconge" sum="Hconge"/>
+                   				<field name="tpstotalemp" sum="TpsTot"/>
+ 	                    		<field name="tpsoccupemp" sum="TpsOcc"/>
+    	                		<!-- <field name="tpsdispoemp" sum="TpsDisp"/>
+                   				<field name="busyp" widget="progressbar" avg="Avg. of Availability"/> -->
+                   				<field name="busyp" widget="progressbar"/>
+                   				<button name="check_shared_calendar" string="Open Shared calendar" type="object" icon="terp-go-month"/>
+                   				<field name="idresource" invisible="1"/>
+                   				<field name="iduser" invisible="1"/>
+                   				<field name="idemp" invisible="1"/>
+                   				<field name="idhourofwork" invisible="1"/>
+                   			</tree>                   			
+                   		</field>
+                    	</page>
+                    	</notebook>
+                    	</group>
+                    	<newline/>
+                    	<group colspan="4" groups="base.group_planning_management_manager,base.group_planning_management_admin">
+                    	<separator string="Management, allocation and statistical" colspan="4" orientation="horizontal"/>                   	
+                    	<notebook colspan="4">
+                    	<page string="Tasks" groups="base.group_planning_management_user,base.group_planning_management_manager,base.group_planning_management_admin">
+                    	    <field name="task" colspan="1" nolabel="1" readonly="0"/>	      			
+                    	</page>
+                    	<page string="Meetings" groups="base.group_planning_management_user,base.group_planning_management_manager,base.group_planning_management_admin">
+                   		    <field name="meeting" nolabel="1" readonly="0" />       			
+                    	</page>
+                    	<page string="Helpdesks" groups="base.group_planning_management_user,base.group_planning_management_manager,base.group_planning_management_admin">
+                   		    <field name="helpdesk" nolabel="1" readonly="0"/>       			
+                    	</page>
+                    	<page string="Before" groups="base.group_planning_management_manager,base.group_planning_management_admin">
+                        <field colspan="4" name="planning_before" nolabel="1" widget="one2many_list" readonly="1">
+                            <tree string="List of task, meeting, helpdesk, leave to be completed before the planning" colors="red:idhourofwork==0">
+                        		<field name="emp"/>
+                    			<field name="departement"/>
+        	            		<field name="nbtask" sum="Nbtask"/>
+        	            		<button name="check_task" string="Open tasks" type="object" icon="gtk-edit"/>
+                	    		<field name="nbmeeting" sum="Nbmeeting"/>
+        	            		<button name="check_meeting" string="Open meetings" type="object" icon="gtk-edit"/> 
+                	    		<field name="nbhelpdesk" sum="Nbhelpdesk"/>
+        	            		<button name="check_helpdesk" string="Open helpdesks" type="object" icon="gtk-edit"/>
+                   	 			<field name="nbconge" sum="Nbconge"/>
+        	            		<button name="check_leave" string="Open leaves" type="object" icon="gtk-edit"/>
+                   				<field name="idresource" invisible="1"/>
+                   				<field name="iduser" invisible="1"/>
+                   				<field name="idemp" invisible="1"/>
+                   				<field name="idhourofwork" invisible="1"/>
+                   			</tree>                   			
+                   		</field>
+                    	</page>
+                    	<page string="Without deadline" groups="base.group_planning_management_manager,base.group_planning_management_admin">
+                        <field colspan="4" name="planning_without_deadline" nolabel="1" widget="one2many_list" readonly="1">
+                            <tree string="Tasks without deadline or not started" colors="red:idhourofwork==0">
+                        		<field name="emp"/>
+                    			<field name="departement"/>
+        	            		<field name="nbtask1" sum="Nbtask1"/>
+        	            		<field name="nbtask2" sum="Nbtask2"/>
+                   				<button name="check_task_without_deadline" string="Open tasks" type="object" icon="gtk-edit"/>
+                   				<field name="idresource" invisible="1"/>
+                   				<field name="iduser" invisible="1"/>
+                   				<field name="idemp" invisible="1"/>
+                   				<field name="idhourofwork" invisible="1"/>
+                   			</tree>                   			
+                   		</field>
+                    	</page> 
+                    </notebook> 
+                    </group> 
+                    </sheet>               
+                </form>
+            </field>
+        </record>
+        
+        <record model="ir.ui.view" id="capacity_planning_filter">
+            <field name="name">capacity.planning.filter</field>
+            <field name="model">capacity.planning</field>
+            <field name="type">search</field>
+            <field name="arch" type="xml">
+                <search string="Search Capacity Planning">
+                    <field name="name" select="1"/>
+                    <field name="startdate" select="1" string="Start date" />
+                    <field name="enddate" select="1" string="End date" />
+                    <newline/>
+                    <group expand="0" string="Group By..." colspan="11" col="11" groups="base.group_extended">
+                        <filter string="Order Date" icon="terp-go-month" domain="[]" context="{'group_by':'startdate'}"/>
+                    </group>                                       
+                </search>
+            </field>
+        </record>
+        
+        <record model="ir.actions.act_window" id="action_capacity_planning_form">
+            <field name="name">Capacity planning</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">capacity.planning</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form,tree</field>
+            <field name="view_id" ref="capacity_planning_tree_view"/>
+        </record>
+        
+        <record model="ir.ui.view" id="planning_generator_form_view">
+            <field name="name">planning.generator.form</field>
+            <field name="model">planning.generator</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Planning generator" version="7.0">
+                    <heater>
+                        <button name="capacity_generator" colspan="2" string="Generate" type="object" groups="base.group_planning_management_manager,base.group_planning_management_admin"/>
+                    </heater>
+                    <sheet string="Planning generator">
+                        <h1>
+                            <field name="year"/>
+                        </h1>
+                        <group colspan="6" col="4">
+                            <field name="in_part"/>
+                            <field name="sel_department"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        
+        <record model="ir.actions.act_window" id="action_capacity_planning_config_form">
+            <field name="name">Planning generator</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">planning.generator</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+            <field name="view_id" ref="planning_generator_form_view"/>
+        </record>
+         
+        <menuitem name="Planning" parent="base.menu_main_pm" id="planning_menu_mainform2" sequence="2" groups="base.group_planning_management_manager,base.group_planning_management_user,base.group_planning_management_admin"/>          
+        <menuitem name="Capacity planning" parent="planning_menu_mainform2" id="capacity_planning_menu_mainform" action="action_capacity_planning_form" groups="base.group_planning_management_manager,base.group_planning_management_user,base.group_planning_management_admin"/>
+        <menuitem name="Générateur de planning" parent="base.menu_definitions" id="capacity_configuration_genrator" sequence="1" action="action_capacity_planning_config_form"/>
+    
+    </data>
+</openerp>

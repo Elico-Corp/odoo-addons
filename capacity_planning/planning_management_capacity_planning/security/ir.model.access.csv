@@ -1,0 +1,17 @@
+"id","name","model_id:id","group_id:id","perm_read","perm_write","perm_create","perm_unlink"
+
+"access_capacity_planning_admin","capacity.planning","model_capacity_planning","base.group_planning_management_admin",1,1,1,1
+"access_capacity_planning_user_admin","capacity.planning.user","model_capacity_planning_user","base.group_planning_management_admin",1,1,1,1
+"access_capacity_planning_before_admin","capacity.planning.before","model_capacity_planning_before","base.group_planning_management_admin",1,1,1,1
+"access_capacity_planning_without_deadline_admin","capacity.planning.without.deadline","model_capacity_planning_without_deadline","base.group_planning_management_admin",1,1,1,1
+
+"access_capacity_planning_manager","capacity.planning","model_capacity_planning","base.group_planning_management_manager",1,1,1,1
+"access_capacity_planning_user_manager","capacity.planning.user","model_capacity_planning_user","base.group_planning_management_manager",1,1,1,1
+"access_capacity_planning_before_manager","capacity.planning.before","model_capacity_planning_before","base.group_planning_management_manager",1,1,1,1
+"access_capacity_planning_without_deadline_manager","capacity.planning.without.deadline","model_capacity_planning_without_deadline","base.group_planning_management_manager",1,1,1,1
+
+"access_capacity_planning_user","capacity.planning","model_capacity_planning","base.group_planning_management_user",1,0,0,0
+"access_capacity_planning_user_user","capacity.planning.user","model_capacity_planning_user","base.group_planning_management_user",1,0,0,0
+"access_capacity_planning_before_user","capacity.planning.before","model_capacity_planning_before","base.group_planning_management_user",1,0,0,0
+"access_capacity_planning_without_deadline_user","capacity.planning.without.deadline","model_capacity_planning_without_deadline","base.group_planning_management_user",1,0,0,0
+"access_capacity_planning_crm_helpdesk","crm.helpdesk","model_crm_helpdesk","base.group_planning_management_user",1,0,0,0
