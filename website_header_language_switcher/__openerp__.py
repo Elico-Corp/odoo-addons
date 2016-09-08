@@ -3,7 +3,7 @@
 #
 #    OpenERP, Open Source Management Solution
 #    Copyright (C) 2010-2015 Elico Corp (<http://www.elico-corp.com>)
-#    Authors: Liu Lixia
+#    Authors: Rona Lin
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -19,15 +19,20 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-{'name': 'Website Certificate',
- 'version': '8.0.0.0.3',
- 'category': 'website',
- 'depends': ['base', 'website'],
- 'author': 'Elico-Corp,Odoo Community Association (OCA)',
- 'license': 'AGPL-3',
- 'website': 'https://www.elico-corp.com',
- 'images': [],
- 'demo': [],
- 'data': ['certificate_view.xml'],
- 'installable': True,
- 'application': False}
+{
+    'name': 'Website Header Language Switch',
+    'version': '8.0.0.0.2',
+    'category': 'website',
+    'depends': ['base', 'website'],
+    'author': 'Elico-Corp,Odoo Community Association (OCA)',
+    'license': 'AGPL-3',
+    'website': 'https://www.elico-corp.com',
+    'images': [],
+    'demo': [],
+    'data': ['header_language.xml'],
+    'installable': True,
+    'application': False,
+    'description': """
+         Add a language switch in the header of the website.
+    """
+}

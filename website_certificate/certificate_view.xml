@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <openerp>
     <data>
+        
         <record id="view_website_config_settings" model="ir.ui.view">
             <field name="model">website.config.settings</field>
             <field name="name">website.config.settings.form.inherit</field>
@@ -53,5 +54,6 @@
                 </span>
             </xpath>
         </template>
+
     </data>
 </openerp>

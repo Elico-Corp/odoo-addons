@@ -1,17 +1,17 @@
 .. image:: https://img.shields.io/badge/licence-AGPL--3-blue.svg
     :alt: License
 
-Website Certificate
-==============
+website_baidu_map_multi
+=======================
 
-This module aims to display company multi certificate information at the bottom right of website.
+This module inherits from the website_baidu_map module. It allows you to display multiple addresses on the map.
 
 Installation
 ============
 
 To install this module, you need to:
 
- * have basic modules installed (website, base)
+ * Have the website_baidu_map module in your addons path.
 
 Configuration
 =============
@@ -22,8 +22,6 @@ To configure this module, you need to:
 
 Usage
 =====
-
-Configure the company Certificate information in website setting, then you can see the Certificate information display at the bottom right of website.
 
 
 For further information, please visit:
@@ -56,4 +54,4 @@ OCA, or the Odoo Community Association, is a nonprofit organization
     whose mission is to support the collaborative development of Odoo features
         and promote its widespread use.
 
-To contribute to this module, please visit http://odoo-community.org.
+To contribute to this module, please visit http://odoo-community.org. 
