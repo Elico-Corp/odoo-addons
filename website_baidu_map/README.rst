@@ -1,8 +1,9 @@
 .. image:: https://img.shields.io/badge/licence-AGPL--3-blue.svg
     :alt: License
 
-website_baidu_map
-================================
+=================
+Website Baidu Map
+=================
 
 This module replace google map with baidu map in the contact us page.
 
