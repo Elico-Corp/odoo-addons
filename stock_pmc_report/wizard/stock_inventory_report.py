@@ -7,6 +7,7 @@ import logging
 
 _logger = logging.getLogger(__name__)
 
+
 class stock_inventory_report_wizard(models.TransientModel):
     '''
     Stock Inventory Statistic Wizard
