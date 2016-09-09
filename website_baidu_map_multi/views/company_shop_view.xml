@@ -42,8 +42,7 @@
           <xpath expr="//div[@id='allmap']" position="replace">
             <div id="allmap">
                 <script type="text/javascript">
-                    // 百度地图API功能
-                    var map = new BMap.Map("allmap");// 创建Map实例
+                    var map = new BMap.Map("allmap");
                     var citys = [];
                     var myKeys = [];
                     <t t-foreach="res_company.shop_ids" t-as="shops">
