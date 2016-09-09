@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <openerp>
     <data>
+
         <template id="company_description_inherited" name="map" inherit_id="website.company_description" customize_show="True">
             <xpath expr="a" position="replace">
                 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -24,5 +25,6 @@
                 </script>
             </xpath>
         </template>
+
     </data>
 </openerp>
