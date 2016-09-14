@@ -61,10 +61,7 @@ class account_voucher(osv.osv):
     def onchange_prepayment_account(
             self, cr, uid, ids, use_prepayment_account):
         res = {}
-        line_cr_id = ""
         if not use_prepayment_account:
-            line_cr_id = self.browse(cr, uid, fields)
-            print "\n\n\nll%s\n\n\n" % line_cr_id
             return res
 
         res['value'] = {'line_cr_ids': [], 'line_dr_ids': [], 'line_ids': []}
