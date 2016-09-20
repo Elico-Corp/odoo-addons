@@ -21,8 +21,8 @@ Fine tune Prepayment addon
 Contributors
 ------------
 
- * Andy Lu <andy.lu@elico-corp.com>
-
+* Eric Caudal <eric.caudal@elico-corp.com>
+* Andy Lu <andy.lu@elico-corp.com>
 
 
 Maintainer
