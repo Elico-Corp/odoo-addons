@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+<data>
+
+<record model="ir.ui.view" id="inherit_view_crm_case_opportunities_filter">
+     <field name="name">opportunities.search.elico.extra</field>
+     <field name="model">crm.lead</field>
+     <field name="inherit_id" ref="crm.view_crm_case_opportunities_filter"/>
+     <field name="arch" type="xml">
+         <xpath expr="//search/filter[@string='Won']" position="after">
+             <filter string="Today" name="today" 
+                 domain="[('date_action','=',time.strftime('%%Y-%%m-%%d'))]"/>
+                          
+             <!-- TODO: datetime.datetime.today().weekday() can not work!  jon.chow#elico-corp.com Oct 30, 2013  -->
+             <filter string="This Week" name="this_week" 
+                 domain="[('date_action','&lt;=', (context_today() + relativedelta(weeks=-1,day=0, weekday=-1)).strftime('%%Y-%%m-%%d')),('date_action','&gt;=',(context_today() - relativedelta(weeks=0, weekday=-1)).strftime('%%Y-%%m-%%d'))]"/>
+                  
+             <filter string="Past" name="past"
+                 domain="[('date_action','&lt;',time.strftime('%%Y-%%m-%%d')),]"/>
+         </xpath>
+     </field>
+</record>
+
+</data>
+</openerp>
