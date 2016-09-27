@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="1">
+
+        <!-- Sequences for saas.instance -->
+
+        <record id="default_project_pending_stage" model="project.task.type">
+            <field name="name">Pending</field>
+            <field name="project_default">True</field>
+            <field name="sequence">-1000</field>
+            <field name="description">"It is created by default, the stage where pending projects are."</field>
+        </record>
+        
+        <record id="default_project_done_stage" model="project.task.type">
+            <field name="name">Done</field>
+            <field name="project_default">True</field>
+            <field name="sequence">1000</field>
+            <field name="description">"It is created by default, the stage where done projects are."</field>
+        </record>
+
+    </data>
+</openerp>
