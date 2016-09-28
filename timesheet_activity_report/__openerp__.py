@@ -6,9 +6,11 @@
     'version': '8.0.1.0.2',
     'category': 'Human Resources',
     'depends': [
-        'hr_timesheet',
-        'project_timesheet',
-        'project_issue_sheet',
+         'project_timesheet',
+         'project_issue_sheet',
+         'project_task_category',
+         'project_project_category',
+         'business_requirement'
     ],
     'author': 'Elico Corp',
     'license': 'AGPL-3',
