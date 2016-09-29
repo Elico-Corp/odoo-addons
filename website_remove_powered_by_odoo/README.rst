@@ -6,8 +6,8 @@
 Website Remove Powered by Odoo
 ==============================
 
-* This module extends the functionality of website and allows you to remove Powered by Odoo from the website.
-
+* This module allows you to remove Powered by Odoo from the website.
+* Note: This module interits the template from the webstie_sale. It may has conflict with certain themes.
 
 Installation
 ============
