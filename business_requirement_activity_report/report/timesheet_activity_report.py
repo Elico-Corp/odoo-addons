@@ -1,62 +1,75 @@
 # -*- coding: utf-8 -*-
 #   2016 Elico Corp (https://www.elico-corp.com).
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
-
-from openerp.osv import fields, osv
+from openerp import fields, models
 from openerp import tools
 
 
-class TimesheetReport(osv.Model):
+class TimesheetReport(models.Model):
     """ Timesheet Activities Report """
     _name = "timesheet.activity.report"
     _auto = False
     _description = "Timesheet Activities Report"
     _rec_name = 'activity_name'
 
-    _columns = {
-        'id': fields.integer('Id', readonly=True),
-        'activity_type': fields.selection(
-            [
-                ('task', 'Task'),
-                ('issue', 'Issue'),
-                ('timesheet', 'Timesheet'),
-            ], 'Type',
-            readonly=True,
-            help="Type is used to separate Tasks, " +
-            "Issues and Timesheets input directly"),
-        'description': fields.char(
-            'Description', readonly=True),
-        'hours': fields.float(
-            'Time spent', digits=(16, 2),
-            readonly=True, help="Time spent on timesheet"),
-        'user_id': fields.many2one('res.users', 'User', readonly=True),
-        'product_id': fields.many2one(
-            'product.product', 'Product', readonly=True),
-        'date': fields.date('Date', readonly=True),
-        'project_id': fields.many2one(
-            'project.project', 'Project', readonly=True),
-        'project_state': fields.char(
-            'State', readonly=True, help="Project State"),
-        'activity_stage_id': fields.many2one(
-            'project.task.type', 'Stage', readonly=True,
-            help="Activity Stage"),
-        'account_id': fields.many2one(
-            'account.analytic.account', 'Analytic account', readonly=True),
-        'activity_id': fields.char(
-            'Activity id', readonly=True, help="Task id or Issue id"),
-        'activity_name': fields.char(
-            'Activity name', readonly=True, help="Task name or Issue name"),
-        'task_categ_id': fields.many2one(
-            'task.category', 'Task cat.', readonly=True, help="Task category"),
-        'br_id': fields.many2one(
-            'business.requirement', 'Bus. requ.',
-            readonly=True, help="Business requirement"),
-        'partner_id': fields.many2one(
-            'res.partner', 'Customer', readonly=True),
-        'project_categ_id': fields.many2one(
-            'project.project.category', 'Project Cat.',
-            readonly=True, help="Project Category"),
-    }
+    id = fields.Integer(string='ID', readonly=True)
+    activity_type = fields.Selection(
+        selection=[
+            ('task', 'Task'),
+            ('issue', 'Issue'),
+            ('timesheet', 'Timesheet'),
+        ],
+        string='Type',
+        readonly=True,
+        help="Type is used to separate Tasks, " +
+        "Issues and Timesheets input directly")
+    description = fields.Char(string='Description')
+    hours = fields.Float(string='Time spent')
+    user_id = fields.Many2one(
+        comodel_name='res.users',
+        string='User',
+        ondelete='restrict',
+        readonly=True)
+    product_id = fields.Many2one(
+        comodel_name='product.product',
+        string='Product',
+        ondelete='restrict',
+        readonly=True)
+    date = fields.Date('Date', readonly=True)
+    project_id = fields.Many2one(
+        comodel_name='project.project', string='Project', readonly=True)
+    project_state = fields.Char(
+        string='State', readonly=True, help="Project State")
+    activity_stage_id = fields.Many2one(
+        comodel_name='project.task.type',
+        string='Stage',
+        readonly=True,
+        help="Activity Stage")
+    account_id = fields.Many2one(
+        comodel_name='account.analytic.account',
+        string='Analytic account',
+        readonly=True)
+    activity_id = fields.Char(
+        string='Activity id', readonly=True, help="Task id or Issue id")
+    activity_name = fields.Char(
+        string='Activity name', readonly=True, help="Task name or Issue name"),
+    task_categ_id = fields.Many2one(
+        comodel_name='task.category',
+        string='Task cat.',
+        readonly=True,
+        help="Task category")
+    br_id = fields.Many2one(
+        comodel_name='business.requirement',
+        string='Bus. requ.',
+        readonly=True,
+        help="Business requirement")
+    partner_id = fields.Many2one(
+        comodel_name='res.partner', string='Customer', readonly=True)
+    project_categ_id = fields.Many2one(
+        comodel_name='project.project.category',
+        string='Project Cat.',
+        readonly=True,
+        help="Project Category")
 
     def init(self, cr):
         """
