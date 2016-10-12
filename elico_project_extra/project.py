@@ -106,11 +106,11 @@ class task(osv.osv):
         mail_message = self.pool.get('mail.message')
         subject = '['+str(task_id.id)+'] "' + task_id.name + '" is finished'
         rendered_body = "Task [%d] \"%s\" is Finished.\n\n Task Descriptions:\n %s \n\n Project: \"%s\".\n Progress: %%%.2f. \n\n-----\n Good Job. \n Project Task Reminder"%(task_id.id, task_id.name,  task_id.description, task_id.project_id.name, task_id.project_id.progress_rate or 100)
-        email_from = "eric.caudal@elico-corp.com"
+        email_from = "admin@example.com"
         email_to = [task_id.user_id.user_email]
         
         if task_id.user_id.user_email:
-            email_cc = ["eric.caudal@elico-corp.com"]
+            email_cc = ["admin@example.com"]
         
         #mail_message.schedule_with_attach(cr, uid, email_from, email_to, subject, rendered_body,
         #                model="project.task", email_cc=email_cc, email_bcc=None, reply_to=False,

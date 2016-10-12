@@ -4,7 +4,7 @@
 
 
 {
-    'name': 'Project Extra module for Elico Corp',
+    'name': 'Project Extra module',
     'version': '0.3',
     'category': 'Project Managements',
     'description': """
