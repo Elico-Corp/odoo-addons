@@ -24,11 +24,11 @@ Configuration
 
 To configure this module, you need to:
 
-#. Inherit the function generate_docx_data in the report/report_docx.py
+* Inherit the function generate_docx_data in the report/report_docx.py
 
-#. Pass the list of the dictionary to the engine. (etc [{data1}, {data2}, .....])
+* Pass the list of the dictionary to the engine. (etc [{data1}, {data2}, .....])
 
-#. Each dictionary will generate a report base on the docx template.
+* Each dictionary will generate a report base on the docx template.
 
 
 Usage

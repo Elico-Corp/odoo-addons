@@ -12,6 +12,8 @@ import base64
 from docxtpl import DocxTemplate
 from lxml import etree
 from docx import Document
+import time
+import random
 _logger = logging.getLogger(__name__)
 
 
@@ -23,7 +25,6 @@ class ReportDocx(report_sxw):
         report_obj = self.pool.get('ir.actions.report.xml')
         report_ids = report_obj.search(
             cr, uid, [('report_name', '=', self.name[7:])], context=context)
-
         if report_ids:
             report_xml = report_obj.browse(
                 cr, uid, report_ids[0], context=context)
@@ -35,7 +36,10 @@ class ReportDocx(report_sxw):
     def create_source_docx(self, cr, uid, ids, dict, context=None):
         data = self.generate_docx_data(cr, uid, ids, dict, context)
 
-        tmp_folder_name = '/tmp/docx_to_pdf/'
+        tmp_folder_name = '/tmp/docx_to_pdf/' +\
+                          str(int(time.time())) +\
+                          str(int(1000 + random.random() * 1000)) + '/'
+
         output_type = self._get_output_type(cr, uid, context, dict)
         output_report = {
             'pdf': 'report.pdf',
@@ -332,8 +336,8 @@ class ReportDocx(report_sxw):
         cmd = 'rm -rf ' + tmp_folder_name
         os.system(cmd)
 
-    def _save_file(self, file_name, file):
-        out_stream = open(file_name, 'wb')
+    def _save_file(self, folder_name, file):
+        out_stream = open(folder_name, 'wb')
         try:
             out_stream.writelines(file)
         finally:
