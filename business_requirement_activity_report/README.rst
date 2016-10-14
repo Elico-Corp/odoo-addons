@@ -45,4 +45,3 @@ This module is maintained by Elico Corporation.
 Elico Corporation offers consulting services to implement open source management software in SMEs, with a strong involvement in quality of service.
 
 Our headquarters are located in Shanghai with branches in Hong Kong, ShenZhen and Singapore servicing customers from Greater China, Asia Pacific, Europe, Americas, etc...
-Maintainer

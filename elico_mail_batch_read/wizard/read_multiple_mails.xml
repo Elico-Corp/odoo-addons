@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+    <record id="read_multiple_mails" model="ir.ui.view">
+        <field name="name">Read multiple emails</field>
+        <field name="model">mail.message.read</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+           <form string="Mark as read">
+                <group>
+                    <separator string="Are you sure you want to mark these mails as read?"/>
+                    <label string="Please note that: &#10; &#10;
+                    Mails will be marked as read if you click OK button. &#10;" colspan="4"/>
+                </group>
+                <footer>
+                    <button name="readmails" string="OK" type="object" class="oe_highlight"/>
+                    or
+                    <button string="Cancel" class="oe_link" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+     </record>
+     <act_window name="Mark All As Read"
+        context="{}"
+        res_model="mail.message.read"
+        src_model="mail.message"
+        view_mode="form"
+        target="new"
+        limit='80'
+        multi="True"
+        key2="client_action_multi"
+        id="action_view_message_list"/>
+    </data>
+</openerp>

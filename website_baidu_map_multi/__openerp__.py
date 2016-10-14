@@ -2,16 +2,18 @@
 #   2016 Elico Corp (https://www.elico-corp.com).
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 {
-    'name': 'Website Baidu Map',
+    'name': 'Website Baidu Map Multi',
     'version': '8.0.1.0.1',
-    'category': 'map',
-    'depends': ['website', 'base'],
-    'author': 'Elico Corp',
+    'category': 'Hidden',
+    'depends': ['website', 'base', 'website_baidu_map'],
+    'author': 'Elico-Corp,Odoo Community Association (OCA)',
     'license': 'AGPL-3',
     'website': 'https://www.elico-corp.com',
     'images': [],
-    'demo': [],
-    'data': ['website_baidu_map.xml'],
+    'data': [
+        'views/company_shop_view.xml',
+        'security/ir.model.access.csv'
+    ],
     'installable': True,
     'application': False
 }
