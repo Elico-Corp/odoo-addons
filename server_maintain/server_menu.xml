@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <!-- Menu Server Root-->
+        <menuitem id="menu_server" name="Server" sequence="40"/>
+            <!-- Menu Server Linux-->
+            <menuitem id="menu_server_maintain" name="Linux" parent="menu_server"  sequence="10"/>
+                <menuitem id="menu_server_linux2" action="action_server_linux" parent="menu_server_maintain" sequence="20"/>
+            <!-- Menu Server Modules-->
+            <menuitem id="menu_module_maintain" name="OE Modules" parent="menu_server"  sequence="30"/>
+                <menuitem id="service_module_tree" action="action_mod_tree" parent="menu_module_maintain"/>
+            <!-- Menu Server Postgres-->
+            <menuitem id="menu_server_module_pgserver" name="Postgres" parent="menu_server"  sequence="40"/>
+                <!-- server_postgres -->
+                <menuitem id="menu_server_postgres1" action="action_server_postgres_tree" parent="menu_server_module_pgserver" sequence="10"/>
+            <!-- Menu Server Baazar-->
+            <menuitem id="menu_server_module_baazar" name="Baazar" parent="menu_server"  sequence="50"/>
+            <!-- Menu Server Other-->
+            <menuitem id="menu_server_maintain_conf" name="Configuration" parent="menu_server"  sequence="100"/>
+                <!-- server_tags -->
+                <menuitem id="server_tags_menu" action="action_server_tags_tree" parent="menu_server_maintain_conf" sequence="10"/>
+                <!-- other -->
+                <menuitem id="service_name_conf" action="action_service_name_cof" parent="menu_server_maintain_conf" sequence="10"/>
+
+                <menuitem id="service_erp_conf" action="action_erp_cof" parent="menu_server_maintain_conf" sequence="20"/>
+                <menuitem id="service_dbuser_conf" action="action_dbuser_cof" parent="menu_server_maintain_conf" sequence="30"/>
+                <menuitem id="service_webserver_conf" action="action_webserver_cof" parent="menu_server_maintain_conf" sequence="40"/>
+                <menuitem id="service_ssh_key_conf" action="action_ssh_key_tree" parent="menu_server_maintain_conf" sequence="60"/>
+    </data>
+</openerp>

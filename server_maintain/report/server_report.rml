@@ -1,0 +1,1226 @@
+<?xml version="1.0"?>
+<document filename="test.pdf">
+  <template pageSize="(595.0,842.0)" title="Test" author="Martin Simon" allowSplitting="20">
+    <pageTemplate id="first">
+      <frame id="first" x1="64.0" y1="42.0" width="491" height="758"/>
+    </pageTemplate>
+  </template>
+  <stylesheet>
+    <blockTableStyle id="Standard_Outline">
+      <blockAlignment value="LEFT"/>
+      <blockValign value="TOP"/>
+    </blockTableStyle>
+    <blockTableStyle id="Table1">
+      <blockAlignment value="LEFT"/>
+      <blockValign value="TOP"/>
+      <lineStyle kind="LINEBEFORE" colorName="#000000" start="0,0" stop="0,-1"/>
+      <lineStyle kind="LINEABOVE" colorName="#000000" start="0,0" stop="0,0"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="0,-1" stop="0,-1"/>
+      <lineStyle kind="LINEBEFORE" colorName="#000000" start="1,0" stop="1,-1"/>
+      <lineStyle kind="LINEAFTER" colorName="#000000" start="1,0" stop="1,-1"/>
+      <lineStyle kind="LINEABOVE" colorName="#000000" start="1,0" stop="1,0"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="1,-1" stop="1,-1"/>
+      <lineStyle kind="LINEBEFORE" colorName="#000000" start="0,1" stop="0,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="0,-1" stop="0,-1"/>
+      <lineStyle kind="LINEBEFORE" colorName="#000000" start="1,1" stop="1,-1"/>
+      <lineStyle kind="LINEAFTER" colorName="#000000" start="1,1" stop="1,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="1,-1" stop="1,-1"/>
+      <lineStyle kind="LINEBEFORE" colorName="#000000" start="0,2" stop="0,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="0,-1" stop="0,-1"/>
+      <lineStyle kind="LINEBEFORE" colorName="#000000" start="1,2" stop="1,-1"/>
+      <lineStyle kind="LINEAFTER" colorName="#000000" start="1,2" stop="1,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="1,-1" stop="1,-1"/>
+      <lineStyle kind="LINEBEFORE" colorName="#000000" start="0,3" stop="0,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="0,-1" stop="0,-1"/>
+      <lineStyle kind="LINEBEFORE" colorName="#000000" start="1,3" stop="1,-1"/>
+      <lineStyle kind="LINEAFTER" colorName="#000000" start="1,3" stop="1,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="1,-1" stop="1,-1"/>
+      <lineStyle kind="LINEBEFORE" colorName="#000000" start="0,4" stop="0,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="0,-1" stop="0,-1"/>
+      <lineStyle kind="LINEBEFORE" colorName="#000000" start="1,4" stop="1,-1"/>
+      <lineStyle kind="LINEAFTER" colorName="#000000" start="1,4" stop="1,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="1,-1" stop="1,-1"/>
+      <lineStyle kind="LINEBEFORE" colorName="#000000" start="0,5" stop="0,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="0,-1" stop="0,-1"/>
+      <lineStyle kind="LINEBEFORE" colorName="#000000" start="1,5" stop="1,-1"/>
+      <lineStyle kind="LINEAFTER" colorName="#000000" start="1,5" stop="1,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="1,-1" stop="1,-1"/>
+      <lineStyle kind="LINEBEFORE" colorName="#000000" start="0,6" stop="0,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="0,-1" stop="0,-1"/>
+      <lineStyle kind="LINEBEFORE" colorName="#000000" start="1,6" stop="1,-1"/>
+      <lineStyle kind="LINEAFTER" colorName="#000000" start="1,6" stop="1,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="1,-1" stop="1,-1"/>
+    </blockTableStyle>
+    <blockTableStyle id="Table6">
+      <blockAlignment value="LEFT"/>
+      <blockValign value="TOP"/>
+      <lineStyle kind="LINEBEFORE" colorName="#000000" start="0,0" stop="0,-1"/>
+      <lineStyle kind="LINEABOVE" colorName="#000000" start="0,0" stop="0,0"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="0,-1" stop="0,-1"/>
+      <lineStyle kind="LINEBEFORE" colorName="#000000" start="1,0" stop="1,-1"/>
+      <lineStyle kind="LINEAFTER" colorName="#000000" start="1,0" stop="1,-1"/>
+      <lineStyle kind="LINEABOVE" colorName="#000000" start="1,0" stop="1,0"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="1,-1" stop="1,-1"/>
+      <lineStyle kind="LINEBEFORE" colorName="#000000" start="0,1" stop="0,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="0,-1" stop="0,-1"/>
+      <lineStyle kind="LINEBEFORE" colorName="#000000" start="1,1" stop="1,-1"/>
+      <lineStyle kind="LINEAFTER" colorName="#000000" start="1,1" stop="1,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="1,-1" stop="1,-1"/>
+      <lineStyle kind="LINEBEFORE" colorName="#000000" start="0,2" stop="0,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="0,-1" stop="0,-1"/>
+      <lineStyle kind="LINEBEFORE" colorName="#000000" start="1,2" stop="1,-1"/>
+      <lineStyle kind="LINEAFTER" colorName="#000000" start="1,2" stop="1,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="1,-1" stop="1,-1"/>
+    </blockTableStyle>
+    <blockTableStyle id="Table5">
+      <blockAlignment value="LEFT"/>
+      <blockValign value="TOP"/>
+      <lineStyle kind="LINEBEFORE" colorName="#000000" start="0,0" stop="0,-1"/>
+      <lineStyle kind="LINEABOVE" colorName="#000000" start="0,0" stop="0,0"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="0,-1" stop="0,-1"/>
+      <lineStyle kind="LINEBEFORE" colorName="#000000" start="1,0" stop="1,-1"/>
+      <lineStyle kind="LINEAFTER" colorName="#000000" start="1,0" stop="1,-1"/>
+      <lineStyle kind="LINEABOVE" colorName="#000000" start="1,0" stop="1,0"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="1,-1" stop="1,-1"/>
+      <lineStyle kind="LINEBEFORE" colorName="#000000" start="0,1" stop="0,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="0,-1" stop="0,-1"/>
+      <lineStyle kind="LINEBEFORE" colorName="#000000" start="1,1" stop="1,-1"/>
+      <lineStyle kind="LINEAFTER" colorName="#000000" start="1,1" stop="1,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="1,-1" stop="1,-1"/>
+      <lineStyle kind="LINEBEFORE" colorName="#000000" start="0,2" stop="0,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="0,-1" stop="0,-1"/>
+      <lineStyle kind="LINEBEFORE" colorName="#000000" start="1,2" stop="1,-1"/>
+      <lineStyle kind="LINEAFTER" colorName="#000000" start="1,2" stop="1,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="1,-1" stop="1,-1"/>
+      <lineStyle kind="LINEBEFORE" colorName="#000000" start="0,3" stop="0,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="0,-1" stop="0,-1"/>
+      <lineStyle kind="LINEBEFORE" colorName="#000000" start="1,3" stop="1,-1"/>
+      <lineStyle kind="LINEAFTER" colorName="#000000" start="1,3" stop="1,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="1,-1" stop="1,-1"/>
+      <lineStyle kind="LINEBEFORE" colorName="#000000" start="0,4" stop="0,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="0,-1" stop="0,-1"/>
+      <lineStyle kind="LINEBEFORE" colorName="#000000" start="1,4" stop="1,-1"/>
+      <lineStyle kind="LINEAFTER" colorName="#000000" start="1,4" stop="1,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="1,-1" stop="1,-1"/>
+    </blockTableStyle>
+    <blockTableStyle id="Table2">
+      <blockAlignment value="LEFT"/>
+      <blockValign value="TOP"/>
+      <lineStyle kind="LINEBEFORE" colorName="#000000" start="0,0" stop="0,-1"/>
+      <lineStyle kind="LINEABOVE" colorName="#000000" start="0,0" stop="0,0"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="0,-1" stop="0,-1"/>
+      <lineStyle kind="LINEAFTER" colorName="#000000" start="1,0" stop="1,-1"/>
+      <lineStyle kind="LINEABOVE" colorName="#000000" start="1,0" stop="1,0"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="1,-1" stop="1,-1"/>
+      <lineStyle kind="LINEBEFORE" colorName="#000000" start="0,1" stop="0,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="0,-1" stop="0,-1"/>
+      <lineStyle kind="LINEAFTER" colorName="#000000" start="1,1" stop="1,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="1,-1" stop="1,-1"/>
+      <lineStyle kind="LINEBEFORE" colorName="#000000" start="0,2" stop="0,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="0,-1" stop="0,-1"/>
+      <lineStyle kind="LINEAFTER" colorName="#000000" start="1,2" stop="1,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="1,-1" stop="1,-1"/>
+      <lineStyle kind="LINEBEFORE" colorName="#000000" start="0,3" stop="0,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="0,-1" stop="0,-1"/>
+      <lineStyle kind="LINEAFTER" colorName="#000000" start="1,3" stop="1,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="1,-1" stop="1,-1"/>
+      <lineStyle kind="LINEBEFORE" colorName="#000000" start="0,4" stop="0,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="0,-1" stop="0,-1"/>
+      <lineStyle kind="LINEAFTER" colorName="#000000" start="1,4" stop="1,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="1,-1" stop="1,-1"/>
+      <lineStyle kind="LINEBEFORE" colorName="#000000" start="0,5" stop="0,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="0,-1" stop="0,-1"/>
+      <lineStyle kind="LINEAFTER" colorName="#000000" start="1,5" stop="1,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="1,-1" stop="1,-1"/>
+    </blockTableStyle>
+    <blockTableStyle id="Table3">
+      <blockAlignment value="LEFT"/>
+      <blockValign value="TOP"/>
+      <lineStyle kind="LINEBEFORE" colorName="#000000" start="0,0" stop="0,-1"/>
+      <lineStyle kind="LINEABOVE" colorName="#000000" start="0,0" stop="0,0"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="0,-1" stop="0,-1"/>
+      <lineStyle kind="LINEABOVE" colorName="#000000" start="1,0" stop="1,0"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="1,-1" stop="1,-1"/>
+      <lineStyle kind="LINEABOVE" colorName="#000000" start="2,0" stop="2,0"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="2,-1" stop="2,-1"/>
+      <lineStyle kind="LINEAFTER" colorName="#000000" start="3,0" stop="3,-1"/>
+      <lineStyle kind="LINEABOVE" colorName="#000000" start="3,0" stop="3,0"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="3,-1" stop="3,-1"/>
+      <lineStyle kind="LINEBEFORE" colorName="#000000" start="0,1" stop="0,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="0,-1" stop="0,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="1,-1" stop="1,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="2,-1" stop="2,-1"/>
+      <lineStyle kind="LINEAFTER" colorName="#000000" start="3,1" stop="3,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="3,-1" stop="3,-1"/>
+      <lineStyle kind="LINEBEFORE" colorName="#000000" start="0,2" stop="0,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="0,-1" stop="0,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="1,-1" stop="1,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="2,-1" stop="2,-1"/>
+      <lineStyle kind="LINEAFTER" colorName="#000000" start="3,2" stop="3,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="3,-1" stop="3,-1"/>
+      <lineStyle kind="LINEBEFORE" colorName="#000000" start="0,3" stop="0,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="0,-1" stop="0,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="1,-1" stop="1,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="2,-1" stop="2,-1"/>
+      <lineStyle kind="LINEAFTER" colorName="#000000" start="3,3" stop="3,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="3,-1" stop="3,-1"/>
+      <lineStyle kind="LINEBEFORE" colorName="#000000" start="0,4" stop="0,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="0,-1" stop="0,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="1,-1" stop="1,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="2,-1" stop="2,-1"/>
+      <lineStyle kind="LINEAFTER" colorName="#000000" start="3,4" stop="3,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="3,-1" stop="3,-1"/>
+      <lineStyle kind="LINEBEFORE" colorName="#000000" start="0,5" stop="0,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="0,-1" stop="0,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="1,-1" stop="1,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="2,-1" stop="2,-1"/>
+      <lineStyle kind="LINEAFTER" colorName="#000000" start="3,5" stop="3,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="3,-1" stop="3,-1"/>
+      <lineStyle kind="LINEBEFORE" colorName="#000000" start="0,6" stop="0,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="0,-1" stop="0,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="1,-1" stop="1,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="2,-1" stop="2,-1"/>
+      <lineStyle kind="LINEAFTER" colorName="#000000" start="3,6" stop="3,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="3,-1" stop="3,-1"/>
+    </blockTableStyle>
+    <blockTableStyle id="OpenERP">
+      <blockAlignment value="LEFT"/>
+      <blockValign value="TOP"/>
+      <lineStyle kind="LINEBEFORE" colorName="#000000" start="0,0" stop="0,-1"/>
+      <lineStyle kind="LINEABOVE" colorName="#000000" start="0,0" stop="0,0"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="0,-1" stop="0,-1"/>
+      <lineStyle kind="LINEBEFORE" colorName="#000000" start="1,0" stop="1,-1"/>
+      <lineStyle kind="LINEABOVE" colorName="#000000" start="1,0" stop="1,0"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="1,-1" stop="1,-1"/>
+      <lineStyle kind="LINEBEFORE" colorName="#000000" start="2,0" stop="2,-1"/>
+      <lineStyle kind="LINEABOVE" colorName="#000000" start="2,0" stop="2,0"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="2,-1" stop="2,-1"/>
+      <lineStyle kind="LINEBEFORE" colorName="#000000" start="3,0" stop="3,-1"/>
+      <lineStyle kind="LINEAFTER" colorName="#000000" start="3,0" stop="3,-1"/>
+      <lineStyle kind="LINEABOVE" colorName="#000000" start="3,0" stop="3,0"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="3,-1" stop="3,-1"/>
+      <lineStyle kind="LINEBEFORE" colorName="#000000" start="0,1" stop="0,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="0,-1" stop="0,-1"/>
+      <lineStyle kind="LINEBEFORE" colorName="#000000" start="1,1" stop="1,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="1,-1" stop="1,-1"/>
+      <lineStyle kind="LINEBEFORE" colorName="#000000" start="2,1" stop="2,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="2,-1" stop="2,-1"/>
+      <lineStyle kind="LINEBEFORE" colorName="#000000" start="3,1" stop="3,-1"/>
+      <lineStyle kind="LINEAFTER" colorName="#000000" start="3,1" stop="3,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="3,-1" stop="3,-1"/>
+      <lineStyle kind="LINEBEFORE" colorName="#000000" start="0,2" stop="0,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="0,-1" stop="0,-1"/>
+      <lineStyle kind="LINEBEFORE" colorName="#000000" start="1,2" stop="1,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="1,-1" stop="1,-1"/>
+      <lineStyle kind="LINEBEFORE" colorName="#000000" start="2,2" stop="2,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="2,-1" stop="2,-1"/>
+      <lineStyle kind="LINEBEFORE" colorName="#000000" start="3,2" stop="3,-1"/>
+      <lineStyle kind="LINEAFTER" colorName="#000000" start="3,2" stop="3,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="3,-1" stop="3,-1"/>
+      <lineStyle kind="LINEBEFORE" colorName="#000000" start="0,3" stop="0,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="0,-1" stop="0,-1"/>
+      <lineStyle kind="LINEBEFORE" colorName="#000000" start="1,3" stop="1,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="1,-1" stop="1,-1"/>
+      <lineStyle kind="LINEBEFORE" colorName="#000000" start="2,3" stop="2,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="2,-1" stop="2,-1"/>
+      <lineStyle kind="LINEBEFORE" colorName="#000000" start="3,3" stop="3,-1"/>
+      <lineStyle kind="LINEAFTER" colorName="#000000" start="3,3" stop="3,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="3,-1" stop="3,-1"/>
+      <lineStyle kind="LINEBEFORE" colorName="#000000" start="0,4" stop="0,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="0,-1" stop="0,-1"/>
+      <lineStyle kind="LINEBEFORE" colorName="#000000" start="1,4" stop="1,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="1,-1" stop="1,-1"/>
+      <lineStyle kind="LINEBEFORE" colorName="#000000" start="2,4" stop="2,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="2,-1" stop="2,-1"/>
+      <lineStyle kind="LINEBEFORE" colorName="#000000" start="3,4" stop="3,-1"/>
+      <lineStyle kind="LINEAFTER" colorName="#000000" start="3,4" stop="3,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="3,-1" stop="3,-1"/>
+      <lineStyle kind="LINEBEFORE" colorName="#000000" start="0,5" stop="0,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="0,-1" stop="0,-1"/>
+      <lineStyle kind="LINEBEFORE" colorName="#000000" start="1,5" stop="1,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="1,-1" stop="1,-1"/>
+      <lineStyle kind="LINEBEFORE" colorName="#000000" start="2,5" stop="2,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="2,-1" stop="2,-1"/>
+      <lineStyle kind="LINEBEFORE" colorName="#000000" start="3,5" stop="3,-1"/>
+      <lineStyle kind="LINEAFTER" colorName="#000000" start="3,5" stop="3,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="3,-1" stop="3,-1"/>
+      <lineStyle kind="LINEBEFORE" colorName="#000000" start="0,6" stop="0,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="0,-1" stop="0,-1"/>
+      <lineStyle kind="LINEBEFORE" colorName="#000000" start="1,6" stop="1,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="1,-1" stop="1,-1"/>
+      <lineStyle kind="LINEBEFORE" colorName="#000000" start="2,6" stop="2,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="2,-1" stop="2,-1"/>
+      <lineStyle kind="LINEBEFORE" colorName="#000000" start="3,6" stop="3,-1"/>
+      <lineStyle kind="LINEAFTER" colorName="#000000" start="3,6" stop="3,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="3,-1" stop="3,-1"/>
+      <lineStyle kind="LINEBEFORE" colorName="#000000" start="0,7" stop="0,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="0,-1" stop="0,-1"/>
+      <lineStyle kind="LINEBEFORE" colorName="#000000" start="1,7" stop="1,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="1,-1" stop="1,-1"/>
+      <lineStyle kind="LINEBEFORE" colorName="#000000" start="2,7" stop="2,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="2,-1" stop="2,-1"/>
+      <lineStyle kind="LINEBEFORE" colorName="#000000" start="3,7" stop="3,-1"/>
+      <lineStyle kind="LINEAFTER" colorName="#000000" start="3,7" stop="3,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="3,-1" stop="3,-1"/>
+      <lineStyle kind="LINEBEFORE" colorName="#000000" start="0,8" stop="0,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="0,-1" stop="0,-1"/>
+      <lineStyle kind="LINEBEFORE" colorName="#000000" start="1,8" stop="1,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="1,-1" stop="1,-1"/>
+      <lineStyle kind="LINEBEFORE" colorName="#000000" start="2,8" stop="2,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="2,-1" stop="2,-1"/>
+      <lineStyle kind="LINEBEFORE" colorName="#000000" start="3,8" stop="3,-1"/>
+      <lineStyle kind="LINEAFTER" colorName="#000000" start="3,8" stop="3,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="3,-1" stop="3,-1"/>
+      <lineStyle kind="LINEBEFORE" colorName="#000000" start="0,9" stop="0,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="0,-1" stop="0,-1"/>
+      <lineStyle kind="LINEBEFORE" colorName="#000000" start="1,9" stop="1,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="1,-1" stop="1,-1"/>
+      <lineStyle kind="LINEBEFORE" colorName="#000000" start="2,9" stop="2,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="2,-1" stop="2,-1"/>
+      <lineStyle kind="LINEBEFORE" colorName="#000000" start="3,9" stop="3,-1"/>
+      <lineStyle kind="LINEAFTER" colorName="#000000" start="3,9" stop="3,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="3,-1" stop="3,-1"/>
+      <lineStyle kind="LINEBEFORE" colorName="#000000" start="0,10" stop="0,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="0,-1" stop="0,-1"/>
+      <lineStyle kind="LINEBEFORE" colorName="#000000" start="1,10" stop="1,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="1,-1" stop="1,-1"/>
+      <lineStyle kind="LINEBEFORE" colorName="#000000" start="2,10" stop="2,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="2,-1" stop="2,-1"/>
+      <lineStyle kind="LINEBEFORE" colorName="#000000" start="3,10" stop="3,-1"/>
+      <lineStyle kind="LINEAFTER" colorName="#000000" start="3,10" stop="3,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="3,-1" stop="3,-1"/>
+    </blockTableStyle>
+    <blockTableStyle id="Table4">
+      <blockAlignment value="LEFT"/>
+      <blockValign value="TOP"/>
+      <lineStyle kind="LINEBEFORE" colorName="#000000" start="0,0" stop="0,-1"/>
+      <lineStyle kind="LINEABOVE" colorName="#000000" start="0,0" stop="0,0"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="0,-1" stop="0,-1"/>
+      <lineStyle kind="LINEBEFORE" colorName="#000000" start="1,0" stop="1,-1"/>
+      <lineStyle kind="LINEABOVE" colorName="#000000" start="1,0" stop="1,0"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="1,-1" stop="1,-1"/>
+      <lineStyle kind="LINEBEFORE" colorName="#000000" start="2,0" stop="2,-1"/>
+      <lineStyle kind="LINEABOVE" colorName="#000000" start="2,0" stop="2,0"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="2,-1" stop="2,-1"/>
+      <lineStyle kind="LINEBEFORE" colorName="#000000" start="3,0" stop="3,-1"/>
+      <lineStyle kind="LINEABOVE" colorName="#000000" start="3,0" stop="3,0"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="3,-1" stop="3,-1"/>
+      <lineStyle kind="LINEBEFORE" colorName="#000000" start="4,0" stop="4,-1"/>
+      <lineStyle kind="LINEABOVE" colorName="#000000" start="4,0" stop="4,0"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="4,-1" stop="4,-1"/>
+      <lineStyle kind="LINEBEFORE" colorName="#000000" start="5,0" stop="5,-1"/>
+      <lineStyle kind="LINEABOVE" colorName="#000000" start="5,0" stop="5,0"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="5,-1" stop="5,-1"/>
+      <lineStyle kind="LINEBEFORE" colorName="#000000" start="6,0" stop="6,-1"/>
+      <lineStyle kind="LINEAFTER" colorName="#000000" start="6,0" stop="6,-1"/>
+      <lineStyle kind="LINEABOVE" colorName="#000000" start="6,0" stop="6,0"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="6,-1" stop="6,-1"/>
+      <lineStyle kind="LINEBEFORE" colorName="#000000" start="0,1" stop="0,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="0,-1" stop="0,-1"/>
+      <lineStyle kind="LINEBEFORE" colorName="#000000" start="1,1" stop="1,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="1,-1" stop="1,-1"/>
+      <lineStyle kind="LINEBEFORE" colorName="#000000" start="2,1" stop="2,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="2,-1" stop="2,-1"/>
+      <lineStyle kind="LINEBEFORE" colorName="#000000" start="3,1" stop="3,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="3,-1" stop="3,-1"/>
+      <lineStyle kind="LINEBEFORE" colorName="#000000" start="4,1" stop="4,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="4,-1" stop="4,-1"/>
+      <lineStyle kind="LINEBEFORE" colorName="#000000" start="5,1" stop="5,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="5,-1" stop="5,-1"/>
+      <lineStyle kind="LINEBEFORE" colorName="#000000" start="6,1" stop="6,-1"/>
+      <lineStyle kind="LINEAFTER" colorName="#000000" start="6,1" stop="6,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="6,-1" stop="6,-1"/>
+    </blockTableStyle>
+    <blockTableStyle id="Table7">
+      <blockAlignment value="LEFT"/>
+      <blockValign value="TOP"/>
+      <lineStyle kind="LINEBEFORE" colorName="#000000" start="0,0" stop="0,-1"/>
+      <lineStyle kind="LINEABOVE" colorName="#000000" start="0,0" stop="0,0"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="0,-1" stop="0,-1"/>
+      <lineStyle kind="LINEAFTER" colorName="#000000" start="1,0" stop="1,-1"/>
+      <lineStyle kind="LINEABOVE" colorName="#000000" start="1,0" stop="1,0"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="1,-1" stop="1,-1"/>
+      <lineStyle kind="LINEBEFORE" colorName="#000000" start="0,1" stop="0,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="0,-1" stop="0,-1"/>
+      <lineStyle kind="LINEAFTER" colorName="#000000" start="1,1" stop="1,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="1,-1" stop="1,-1"/>
+      <lineStyle kind="LINEBEFORE" colorName="#000000" start="0,2" stop="0,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="0,-1" stop="0,-1"/>
+      <lineStyle kind="LINEAFTER" colorName="#000000" start="1,2" stop="1,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="1,-1" stop="1,-1"/>
+      <lineStyle kind="LINEBEFORE" colorName="#000000" start="0,3" stop="0,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="0,-1" stop="0,-1"/>
+      <lineStyle kind="LINEAFTER" colorName="#000000" start="1,3" stop="1,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="1,-1" stop="1,-1"/>
+      <lineStyle kind="LINEBEFORE" colorName="#000000" start="0,4" stop="0,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="0,-1" stop="0,-1"/>
+      <lineStyle kind="LINEAFTER" colorName="#000000" start="1,4" stop="1,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="1,-1" stop="1,-1"/>
+      <lineStyle kind="LINEBEFORE" colorName="#000000" start="0,5" stop="0,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="0,-1" stop="0,-1"/>
+      <lineStyle kind="LINEAFTER" colorName="#000000" start="1,5" stop="1,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="1,-1" stop="1,-1"/>
+    </blockTableStyle>
+    <initialize>
+      <paraStyle name="all" alignment="justify"/>
+    </initialize>
+    <paraStyle name="P1" fontName="Helvetica"/>
+    <paraStyle name="P2" fontName="Helvetica"/>
+    <paraStyle name="P3" fontName="Helvetica"/>
+    <paraStyle name="P4" fontName="Helvetica" fontSize="10.0" leading="13"/>
+    <paraStyle name="P5" fontName="Helvetica" fontSize="10.0" leading="13"/>
+    <paraStyle name="P6" fontName="Helvetica-Bold"/>
+    <paraStyle name="P7" fontName="Helvetica" fontSize="11.0" leading="14"/>
+    <paraStyle name="P8" fontName="Helvetica"/>
+    <paraStyle name="P9" rightIndent="0.0" leftIndent="0.0" fontName="Helvetica-Bold" fontSize="9.0" leading="11" alignment="LEFT" textColor="#404040"/>
+    <paraStyle name="P10" rightIndent="0.0" leftIndent="0.0" fontName="Helvetica-Bold" fontSize="9.0" leading="11" alignment="LEFT" textColor="#404040"/>
+    <paraStyle name="P11" fontName="Helvetica" fontSize="10.0" leading="13" spaceBefore="0.0" spaceAfter="6.0" textColor="#000000"/>
+    <paraStyle name="P12" fontName="Helvetica" spaceBefore="0.0" spaceAfter="6.0" textColor="#000000"/>
+    <paraStyle name="P13" fontName="Helvetica" fontSize="12.0" leading="15" spaceBefore="0.0" spaceAfter="6.0" textColor="#000000"/>
+    <paraStyle name="P14" fontName="Helvetica" spaceBefore="0.0" spaceAfter="6.0"/>
+    <paraStyle name="P15" fontName="Helvetica" spaceBefore="0.0" spaceAfter="6.0"/>
+    <paraStyle name="P16" fontName="Helvetica-Bold" fontSize="10.0" leading="13" spaceBefore="0.0" spaceAfter="6.0"/>
+    <paraStyle name="P17" fontName="Helvetica" fontSize="10.0" leading="13" spaceBefore="0.0" spaceAfter="6.0"/>
+    <paraStyle name="P18" fontName="Helvetica" fontSize="10.0" leading="13" spaceBefore="0.0" spaceAfter="6.0"/>
+    <paraStyle name="P19" fontName="Helvetica" spaceBefore="0.0" spaceAfter="6.0"/>
+    <paraStyle name="P20" fontName="Helvetica" spaceBefore="0.0" spaceAfter="6.0"/>
+    <paraStyle name="P21" fontName="Helvetica" spaceBefore="0.0" spaceAfter="6.0"/>
+    <paraStyle name="P22" fontName="Helvetica-Bold" spaceBefore="0.0" spaceAfter="6.0"/>
+    <paraStyle name="P23" fontName="Helvetica-Bold" spaceBefore="0.0" spaceAfter="6.0"/>
+    <paraStyle name="P24" fontName="Helvetica-Bold" spaceBefore="0.0" spaceAfter="6.0"/>
+    <paraStyle name="P25" fontName="Helvetica" spaceBefore="0.0" spaceAfter="6.0"/>
+    <paraStyle name="P26" fontName="Helvetica" fontSize="11.0" leading="14" spaceBefore="0.0" spaceAfter="6.0"/>
+    <paraStyle name="P27" fontName="Helvetica" fontSize="12.0" leading="15" spaceBefore="0.0" spaceAfter="6.0"/>
+    <paraStyle name="P28" fontName="Helvetica" fontSize="12.0" leading="15" spaceBefore="0.0" spaceAfter="6.0"/>
+    <paraStyle name="P29" fontName="Helvetica" fontSize="12.0" leading="15" spaceBefore="0.0" spaceAfter="6.0"/>
+    <paraStyle name="P30" fontName="Helvetica" fontSize="12.0" leading="15" spaceBefore="0.0" spaceAfter="6.0"/>
+    <paraStyle name="P31" fontName="Helvetica" fontSize="12.0" leading="15" spaceBefore="0.0" spaceAfter="6.0"/>
+    <paraStyle name="P32" fontName="Helvetica" fontSize="12.0" leading="15" spaceBefore="0.0" spaceAfter="6.0"/>
+    <paraStyle name="P33" fontName="Helvetica" fontSize="12.0" leading="15" spaceBefore="0.0" spaceAfter="6.0"/>
+    <paraStyle name="P34" fontName="Helvetica" spaceBefore="0.0" spaceAfter="6.0"/>
+    <paraStyle name="P35" fontName="Helvetica" spaceBefore="0.0" spaceAfter="6.0"/>
+    <paraStyle name="P36" fontName="Helvetica" fontSize="12.0" leading="15" spaceBefore="0.0" spaceAfter="6.0"/>
+    <paraStyle name="P37" fontName="Helvetica" spaceBefore="0.0" spaceAfter="6.0"/>
+    <paraStyle name="P38" fontName="Helvetica" spaceBefore="0.0" spaceAfter="6.0"/>
+    <paraStyle name="P39" fontName="Helvetica" spaceBefore="0.0" spaceAfter="6.0"/>
+    <paraStyle name="P40" rightIndent="0.0" leftIndent="14.0" fontName="Helvetica" fontSize="12.0" leading="15" spaceBefore="0.0" spaceAfter="6.0"/>
+    <paraStyle name="P41" rightIndent="0.0" leftIndent="0.0" fontName="Helvetica" fontSize="10.0" leading="13" alignment="CENTER" spaceBefore="0.0" spaceAfter="6.0" textColor="#000000"/>
+    <paraStyle name="P42" rightIndent="0.0" leftIndent="0.0" fontName="Helvetica" fontSize="10.0" leading="13" spaceBefore="0.0" spaceAfter="6.0" textColor="#000000"/>
+    <paraStyle name="P43" rightIndent="0.0" leftIndent="0.0" fontName="Helvetica" fontSize="10.0" leading="13" alignment="LEFT" spaceBefore="0.0" spaceAfter="6.0" textColor="#000000"/>
+    <paraStyle name="P44" fontName="Helvetica" fontSize="18.0" leading="22" spaceBefore="12.0" spaceAfter="6.0" textColor="#000000"/>
+    <paraStyle name="P45" rightIndent="-20.0" leftIndent="0.0" fontName="Helvetica" fontSize="10.0" leading="13" alignment="LEFT" spaceBefore="0.0" spaceAfter="6.0" textColor="#000000"/>
+    <paraStyle name="P46" fontName="Helvetica" fontSize="8.0" leading="10" alignment="LEFT" spaceBefore="0.0" spaceAfter="0.0"/>
+    <paraStyle name="P47" fontName="Helvetica" fontSize="8.0" leading="10" alignment="LEFT" spaceBefore="0.0" spaceAfter="0.0"/>
+    <paraStyle name="P48" fontName="Helvetica-Bold" fontSize="18.0" leading="22" spaceBefore="12.0" spaceAfter="6.0"/>
+    <paraStyle name="P49" fontName="Helvetica-Bold" fontSize="18.0" leading="22" spaceBefore="12.0" spaceAfter="6.0"/>
+    <paraStyle name="P50" fontName="Helvetica-Bold" fontSize="18.0" leading="22" spaceBefore="12.0" spaceAfter="6.0"/>
+    <paraStyle name="P51" fontName="Helvetica" fontSize="18.0" leading="22" spaceBefore="12.0" spaceAfter="6.0" textColor="#000000"/>
+    <paraStyle name="P52" fontName="Helvetica-Bold" fontSize="115%" leading="NaN" spaceBefore="12.0" spaceAfter="6.0"/>
+    <paraStyle name="P53" fontName="Helvetica-Bold" fontSize="18.0" leading="22" spaceBefore="12.0" spaceAfter="6.0"/>
+    <paraStyle name="P54" fontName="Helvetica-Bold" fontSize="18.0" leading="22" spaceBefore="12.0" spaceAfter="6.0"/>
+    <paraStyle name="P55" fontName="Helvetica" fontSize="18.0" leading="22" spaceBefore="12.0" spaceAfter="6.0" textColor="#000000"/>
+    <paraStyle name="P56" fontName="Helvetica-Oblique" fontSize="14.0" leading="17" spaceBefore="12.0" spaceAfter="6.0" textColor="#000000"/>
+    <paraStyle name="P57" fontName="Helvetica-Oblique" fontSize="14.0" leading="17" spaceBefore="12.0" spaceAfter="6.0" textColor="#000000"/>
+    <paraStyle name="P58" fontName="Helvetica-Oblique" fontSize="14.0" leading="17" spaceBefore="12.0" spaceAfter="6.0" textColor="#000000"/>
+    <paraStyle name="P59" fontName="Helvetica-Oblique" fontSize="14.0" leading="17" spaceBefore="12.0" spaceAfter="6.0" textColor="#000000"/>
+    <paraStyle name="P60" fontName="Helvetica-BoldOblique" fontSize="14.0" leading="17" spaceBefore="12.0" spaceAfter="6.0"/>
+    <paraStyle name="P61" fontName="Helvetica-Oblique" fontSize="14.0" leading="17" spaceBefore="12.0" spaceAfter="6.0"/>
+    <paraStyle name="P62" fontName="Helvetica-BoldOblique" fontSize="14.0" leading="17" spaceBefore="12.0" spaceAfter="6.0"/>
+    <paraStyle name="P63" fontName="Helvetica-Oblique" fontSize="14.0" leading="17" spaceBefore="12.0" spaceAfter="6.0"/>
+    <paraStyle name="P64" fontName="Helvetica-Oblique" fontSize="13.0" leading="16" spaceBefore="12.0" spaceAfter="6.0"/>
+    <paraStyle name="Standard" fontName="Helvetica"/>
+    <paraStyle name="Text body" fontName="Helvetica" spaceBefore="0.0" spaceAfter="6.0"/>
+    <paraStyle name="Heading" fontName="Helvetica" fontSize="8.0" leading="10" spaceBefore="12.0" spaceAfter="6.0"/>
+    <paraStyle name="List" fontName="Helvetica" spaceBefore="0.0" spaceAfter="6.0"/>
+    <paraStyle name="Table Contents" fontName="Helvetica"/>
+    <paraStyle name="Table Heading" fontName="Helvetica" alignment="CENTER"/>
+    <paraStyle name="Caption" fontName="Helvetica" fontSize="12.0" leading="15" spaceBefore="6.0" spaceAfter="6.0"/>
+    <paraStyle name="Index" fontName="Helvetica"/>
+    <paraStyle name="terp_header" fontName="Helvetica-Bold" fontSize="15.0" leading="19" alignment="LEFT" spaceBefore="12.0" spaceAfter="6.0"/>
+    <paraStyle name="terp_default_8" fontName="Helvetica" fontSize="8.0" leading="10" alignment="LEFT" spaceBefore="0.0" spaceAfter="0.0"/>
+    <paraStyle name="terp_default_Bold_8" fontName="Helvetica-Bold" fontSize="8.0" leading="10" alignment="LEFT" spaceBefore="0.0" spaceAfter="0.0"/>
+    <paraStyle name="terp_default_Bold_9" fontName="Helvetica-Bold" fontSize="9.0" leading="11" alignment="LEFT" spaceBefore="0.0" spaceAfter="0.0"/>
+    <paraStyle name="terp_default_9" fontName="Helvetica" fontSize="9.0" leading="11" alignment="LEFT" spaceBefore="0.0" spaceAfter="0.0"/>
+    <paraStyle name="terp_tblheader_General" fontName="Helvetica-Bold" fontSize="8.0" leading="10" alignment="LEFT" spaceBefore="6.0" spaceAfter="6.0"/>
+    <paraStyle name="terp_tblheader_General_Centre" fontName="Helvetica-Bold" fontSize="8.0" leading="10" alignment="CENTER" spaceBefore="6.0" spaceAfter="6.0"/>
+    <paraStyle name="terp_default_Centre_8" fontName="Helvetica" fontSize="8.0" leading="10" alignment="CENTER" spaceBefore="0.0" spaceAfter="0.0"/>
+    <paraStyle name="terp_tblheader_Details" fontName="Helvetica-Bold" fontSize="9.0" leading="11" alignment="LEFT" spaceBefore="6.0" spaceAfter="6.0"/>
+    <paraStyle name="Footer" fontName="Helvetica"/>
+    <paraStyle name="Horizontal Line" fontName="Helvetica" fontSize="6.0" leading="8" spaceBefore="0.0" spaceAfter="14.0"/>
+    <paraStyle name="Heading 9" fontName="Helvetica-Bold" fontSize="75%" leading="NaN" spaceBefore="12.0" spaceAfter="6.0"/>
+    <paraStyle name="terp_tblheader_General_Right" fontName="Helvetica-Bold" fontSize="8.0" leading="10" alignment="RIGHT" spaceBefore="6.0" spaceAfter="6.0"/>
+    <paraStyle name="terp_tblheader_Details_Centre" fontName="Helvetica-Bold" fontSize="9.0" leading="11" alignment="CENTER" spaceBefore="6.0" spaceAfter="6.0"/>
+    <paraStyle name="terp_tblheader_Details_Right" fontName="Helvetica-Bold" fontSize="9.0" leading="11" alignment="RIGHT" spaceBefore="6.0" spaceAfter="6.0"/>
+    <paraStyle name="terp_default_Right_8" fontName="Helvetica" fontSize="8.0" leading="10" alignment="RIGHT" spaceBefore="0.0" spaceAfter="0.0"/>
+    <paraStyle name="terp_header_Right" fontName="Helvetica-Bold" fontSize="15.0" leading="19" alignment="LEFT" spaceBefore="12.0" spaceAfter="6.0"/>
+    <paraStyle name="terp_header_Centre" fontName="Helvetica-Bold" fontSize="15.0" leading="19" alignment="CENTER" spaceBefore="12.0" spaceAfter="6.0"/>
+    <paraStyle name="terp_default_address" fontName="Helvetica" fontSize="10.0" leading="13" alignment="LEFT" spaceBefore="0.0" spaceAfter="0.0"/>
+    <paraStyle name="terp_default_Centre_9" fontName="Helvetica" fontSize="9.0" leading="11" alignment="CENTER" spaceBefore="0.0" spaceAfter="0.0"/>
+    <paraStyle name="terp_default_Right_9" fontName="Helvetica" fontSize="9.0" leading="11" alignment="RIGHT" spaceBefore="0.0" spaceAfter="0.0"/>
+    <paraStyle name="terp_default_1" fontName="Helvetica" fontSize="2.0" leading="3" alignment="LEFT" spaceBefore="0.0" spaceAfter="0.0"/>
+    <paraStyle name="terp_default_Right_9_Bold" fontName="Helvetica-Bold" fontSize="9.0" leading="11" alignment="RIGHT" spaceBefore="0.0" spaceAfter="0.0"/>
+    <paraStyle name="terp_default_Italic" rightIndent="0.0" leftIndent="20.0" fontName="Helvetica-Oblique" fontSize="8.0" leading="10" alignment="LEFT" spaceBefore="0.0" spaceAfter="0.0"/>
+    <paraStyle name="Preformatted Text" fontName="Helvetica" fontSize="10.0" leading="13" spaceBefore="0.0" spaceAfter="0.0"/>
+    <paraStyle name="terp_default_Centre_9_Bold" fontName="Helvetica-Bold" fontSize="9.0" leading="11" alignment="CENTER" spaceBefore="0.0" spaceAfter="0.0"/>
+    <paraStyle name="Header" fontName="Helvetica"/>
+    <paraStyle name="Heading 1" fontName="Helvetica-Bold" fontSize="115%" leading="NaN" spaceBefore="12.0" spaceAfter="6.0"/>
+    <paraStyle name="Heading 2" fontName="Helvetica-BoldOblique" fontSize="14.0" leading="17" spaceBefore="12.0" spaceAfter="6.0"/>
+    <paraStyle name="Heading 3" fontName="Helvetica-Oblique" fontSize="13.0" leading="16" spaceBefore="12.0" spaceAfter="6.0"/>
+    <images/>
+  </stylesheet>
+  <story>
+    <para style="P46">[[repeatIn(objects,'o')]]</para>
+    <para style="P47">
+      <font color="white"> </font>
+    </para>
+    <para style="P46">
+      <font color="white"> </font>
+    </para>
+    <para style="P46">
+      <font color="white"> </font>
+    </para>
+    <para style="P46">
+      <font color="white"> </font>
+    </para>
+    <para style="P50">Ubuntu Installation</para>
+    <blockTable colWidths="164.0,327.0" style="Table1">
+      <tr>
+        <td>
+          <para style="P16">Machine Name</para>
+        </td>
+        <td>
+          <para style="P17">sarment-openerp</para>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <para style="P16">Ubuntu version</para>
+        </td>
+        <td>
+          <para style="P18">12.04.2 LTS 64bit</para>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <para style="P17">Private IP:</para>
+        </td>
+        <td>
+          <para style="P17">192.168.0.1(eth1), 112.65.229.254(eth0-0)</para>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <para style="P17">Public IP:</para>
+        </td>
+        <td>
+          <para style="P17">114.80.110.17(eth0)</para>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <para style="P18"><font face="Helvetica">ERP Public address</font>: </para>
+        </td>
+        <td>
+          <para style="P36">
+            <font color="white"> </font>
+          </para>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <para style="P3">Login User/Password</para>
+        </td>
+        <td>
+          <para style="P3">root / STzWBWrWd7kiB8p</para>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <para style="P3">SSH PORT</para>
+        </td>
+        <td>
+          <para style="P3">4443</para>
+        </td>
+      </tr>
+    </blockTable>
+    <para style="P11">
+      <font color="white"> </font>
+    </para>
+    <para style="P56"><font face="Helvetica">1.1</font> General Info</para>
+    <blockTable colWidths="245.0,245.0" style="Table6">
+      <tr>
+        <td>
+          <para style="P4">
+            <font color="white"> </font>
+          </para>
+        </td>
+        <td>
+          <para style="P4">INFO</para>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <para style="P3">CPU</para>
+        </td>
+        <td>
+          <para style="P18">Intel(R) Xeon(R) X3430 @ 2.4GHz *4</para>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <para style="P3">MemTotal: </para>
+        </td>
+        <td>
+          <para style="P11">8165692 kB</para>
+        </td>
+      </tr>
+    </blockTable>
+    <para style="P11">
+      <font color="white"> </font>
+    </para>
+    <para style="P58"><font face="Helvetica">1.2 </font>Disk Partition</para>
+    <blockTable colWidths="245.0,245.0" style="Table5">
+      <tr>
+        <td>
+          <para style="P3">Mount Point</para>
+        </td>
+        <td>
+          <para style="P3">Disk Space</para>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <para style="P11">/ </para>
+        </td>
+        <td>
+          <para style="P11">20 Go</para>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <para style="P11">/mnt/backup</para>
+        </td>
+        <td>
+          <para style="P11">300 Go</para>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <para style="P11">/mnt/data</para>
+        </td>
+        <td>
+          <para style="P11">160 Go</para>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <para style="P11">swap</para>
+        </td>
+        <td>
+          <para style="P11">8 Go</para>
+        </td>
+      </tr>
+    </blockTable>
+    <para style="P12">
+      <font color="white"> </font>
+    </para>
+    <para style="P56"><font face="Helvetica">1.3 </font>SSH</para>
+    <para style="P15">By default, SSH and SFTP service is enabled on Virtual Machine. The SSH port uses port 4443. We use ssh key and password to authenticate </para>
+    <para style="P60">
+      <font color="white"> </font>
+    </para>
+    <para style="P15">
+      <font color="white"> </font>
+    </para>
+    <para style="P15">
+      <font color="white"> </font>
+    </para>
+    <para style="P15">
+      <font color="white"> </font>
+    </para>
+    <para style="P56"><font face="Helvetica">1.4</font><font face="Helvetica"> Useful</font> Commands</para>
+    <para style="P1">Some Commands to Restart Service</para>
+    <blockTable colWidths="145.0,183.0" style="Table2">
+      <tr>
+        <td>
+          <para style="P41">OpenERP Trunk</para>
+        </td>
+        <td>
+          <para style="P41">/etc/init.d/openerp-server_trunk (start/stop/restart)</para>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <para style="P41">OpenERP Stable</para>
+        </td>
+        <td>
+          <para style="P41">/etc/init.d/openerp-server_stable (start/stop/restart)</para>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <para style="P41">OpenERP Release</para>
+        </td>
+        <td>
+          <para style="P41">/etc/init.d/openerp-server_release (start/stop/restart)</para>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <para style="P41">Postgresql</para>
+        </td>
+        <td>
+          <para style="P41">/etc/init.d/postgresql (start/stop/restart)</para>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <para style="P41">Nginx</para>
+        </td>
+        <td>
+          <para style="P41">/etc/init.d/nginx (start/stop/restart)</para>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <para style="P41">Ssh</para>
+        </td>
+        <td>
+          <para style="P41">/etc/init.d/ssh (start/stop/restart)</para>
+        </td>
+      </tr>
+    </blockTable>
+    <para style="P52">
+      <font color="white"> </font>
+    </para>
+    <para style="P53">
+      <font face="Helvetica" size="18.0">Information </font>
+      <font face="Helvetica" size="18.0">about</font>
+      <font face="Helvetica" size="18.0"> System</font>
+    </para>
+    <para style="P57">2.1 Service Directories</para>
+    <blockTable colWidths="62.0,142.0,141.0,122.0" style="Table3">
+      <tr>
+        <td>
+          <para style="P41">Name</para>
+        </td>
+        <td>
+          <para style="P41">Source</para>
+        </td>
+        <td>
+          <para style="P41">Conf</para>
+        </td>
+        <td>
+          <para style="P41">Log</para>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <para style="P41">OpenERP Trunk</para>
+        </td>
+        <td>
+          <para style="P41">/opt/openerp/sarm/trunk</para>
+        </td>
+        <td>
+          <para style="P41">“/opt/openerp/conf/trunk.conf”</para>
+        </td>
+        <td>
+          <para style="P41">“/var/log/openerp/trunk.log”</para>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <para style="P41">OpenERP Stable</para>
+        </td>
+        <td>
+          <para style="P41">/opt/openerp/sarm/stable</para>
+        </td>
+        <td>
+          <para style="P41">“/opt/openerp/conf/stable.conf”</para>
+        </td>
+        <td>
+          <para style="P41">“/var/log/openerp/stable.log”</para>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <para style="P41">OpenERP Release</para>
+        </td>
+        <td>
+          <para style="P41">/opt/openerp/sarm/release</para>
+        </td>
+        <td>
+          <para style="P41">“/opt/openerp/conf/release.conf”</para>
+        </td>
+        <td>
+          <para style="P41">“/var/log/openerp/release.log”</para>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <para style="P41">Postgres</para>
+        </td>
+        <td>
+          <para style="P41">/opt/posgresql</para>
+        </td>
+        <td>
+          <para style="P41">“/etc/postgresql”</para>
+        </td>
+        <td>
+          <para style="P41">“/var/log/postgresql/postgresql-9.2-main.log”</para>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <para style="P41">nginx</para>
+        </td>
+        <td>
+          <para style="P41">/usr/local/nginx</para>
+        </td>
+        <td>
+          <para style="P41">“/etc/nginx”</para>
+        </td>
+        <td>
+          <para style="P41">“/var/log/nginx/*”</para>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <para style="P41">Ssh</para>
+        </td>
+        <td>
+          <para style="P41">“”</para>
+        </td>
+        <td>
+          <para style="P41">“/etc/ssh”</para>
+        </td>
+        <td>
+          <para style="P41">-</para>
+        </td>
+      </tr>
+    </blockTable>
+    <para style="P51">
+      <font color="white"> </font>
+    </para>
+    <para style="P44">
+      <font color="white"> </font>
+    </para>
+    <para style="P44">
+      <font color="white"> </font>
+    </para>
+    <para style="P44">
+      <font color="white"> </font>
+    </para>
+    <para style="P44">
+      <font color="white"> </font>
+    </para>
+    <para style="P55">OpenERP Status</para>
+    <para style="P15"><font face="Helvetica">OpenERP Version</font>:<font face="Helvetica">OpenERP 7.0</font></para>
+    <para style="P19">We install three OpenERP servers, one for production, one for releases and one for test:</para>
+    <para style="P19">Production ServerThis server is the real environment that we use.<font face="Helvetica"/><font face="Helvetica">It works with the stable database.</font></para>
+    <para style="P19">Release ServerThis server is to approved developments, it has the same environment and a copy of database as production.</para>
+    <para style="P19">
+      <font face="Helvetica" size="12.0">Trunk ServerThis server is to test all new developments, new modules, modifications and test of OpenERP. It works with the </font>
+      <font face="Helvetica" size="12.0">trunk </font>
+      <font face="Helvetica" size="12.0">database.</font>
+    </para>
+    <para style="P13">
+      <font color="white"> </font>
+    </para>
+    <para style="P59">3.1 General Information</para>
+    <blockTable colWidths="123.0,123.0,123.0,123.0" style="OpenERP">
+      <tr>
+        <td>
+          <para style="P3">
+            <font color="white"> </font>
+          </para>
+        </td>
+        <td>
+          <para style="P6">Production Server</para>
+        </td>
+        <td>
+          <para style="P6">Trunk server</para>
+        </td>
+        <td>
+          <para style="P6">Release Server</para>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <para style="P6">Version</para>
+        </td>
+        <td>
+          <para style="P20">7.0</para>
+        </td>
+        <td>
+          <para style="P20">7.0</para>
+        </td>
+        <td>
+          <para style="P20">7.0</para>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <para style="P22">Domain</para>
+        </td>
+        <td>
+          <para style="P25">erp.sarment.cn</para>
+        </td>
+        <td>
+          <para style="P25">trunk.sarment.cn</para>
+        </td>
+        <td>
+          <para style="P25">release.sarment.cn</para>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <para style="P6">user</para>
+        </td>
+        <td>
+          <para style="P15">openerp</para>
+        </td>
+        <td>
+          <para style="P15">openerp</para>
+        </td>
+        <td>
+          <para style="P15">openerp</para>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <para style="P22">Source Path</para>
+        </td>
+        <td>
+          <para style="P3">/opt/openerp/stable/</para>
+        </td>
+        <td>
+          <para style="P15">/opt/openerp/trunk/ </para>
+        </td>
+        <td>
+          <para style="P15">/opt/openerp/release</para>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <para style="P6">Net RPC Port</para>
+        </td>
+        <td>
+          <para style="P3">6161</para>
+        </td>
+        <td>
+          <para style="P3">6171</para>
+        </td>
+        <td>
+          <para style="P3">6181</para>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <para style="P6">XMLRPC Port</para>
+        </td>
+        <td>
+          <para style="P3">6162</para>
+        </td>
+        <td>
+          <para style="P3">6172</para>
+        </td>
+        <td>
+          <para style="P3">6182</para>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <para style="P6">XMLRPCs Port</para>
+        </td>
+        <td>
+          <para style="P3">6163</para>
+        </td>
+        <td>
+          <para style="P3">6173</para>
+        </td>
+        <td>
+          <para style="P3">6183</para>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <para style="P6">Conf File</para>
+        </td>
+        <td>
+          <para style="P7">/opt/openerp/conf/local.conf</para>
+        </td>
+        <td>
+          <para style="P26">/opt/openerp/conf/local.conf</para>
+        </td>
+        <td>
+          <para style="P26">/opt/openerp/conf/local.conf</para>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <para style="P6">INIT File</para>
+        </td>
+        <td>
+          <para style="P5">/etc/init.d/openerp-server_stable</para>
+        </td>
+        <td>
+          <para style="P18">/etc/init.d/openerp-server_trunk</para>
+        </td>
+        <td>
+          <para style="P18">/etc/init.d/openerp-server_release</para>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <para style="P22">Web client</para>
+        </td>
+        <td>
+          <para style="P25">https://erp.sarment.cn:6162</para>
+        </td>
+        <td>
+          <para style="P25">https://trunk.sarment.cn:6172</para>
+        </td>
+        <td>
+          <para style="P25">https://release.sarment.cn:6182</para>
+        </td>
+      </tr>
+    </blockTable>
+    <para style="P1">
+      <font color="white"> </font>
+    </para>
+    <para style="P1">
+      <font color="white"> </font>
+    </para>
+    <para style="P1">
+      <font color="white"> </font>
+    </para>
+    <para style="P1">
+      <font color="white"> </font>
+    </para>
+    <para style="P1">
+      <font color="white"> </font>
+    </para>
+    <para style="P1">
+      <font color="white"> </font>
+    </para>
+    <para style="P1">
+      <font color="white"> </font>
+    </para>
+    <para style="P1">
+      <font color="white"> </font>
+    </para>
+    <para style="P1">
+      <font color="white"> </font>
+    </para>
+    <para style="P1">
+      <font color="white"> </font>
+    </para>
+    <para style="P1">
+      <font color="white"> </font>
+    </para>
+    <para style="P50"><font face="Helvetica">4 </font>Database Server – POSTGRES</para>
+    <para style="P27">The PostgreSQL version <font face="Helvetica">9.2</font> is installed on this VM.</para>
+    <para style="P27"><font face="Helvetica">source code folder</font>: /opt/postgresql/ → /mnt/data/postgresql/9.2(stable/trunk/back)</para>
+    <para style="P27"><font face="Helvetica">config path</font>: /etc/postgresql/</para>
+    <para style="P27"><font face="Helvetica">port:</font> 4432/4433</para>
+    <para style="P27"><font face="Helvetica">Linux user</font>: postgres</para>
+    <para style="P27"><font face="Helvetica">Postgres DB User</font>: </para>
+    <para style="P28" leftIndent="15" bulletIndent="0"><bullet size="12.0"><seq id="L2"/></bullet>postgres. Use md5 authentication.</para>
+    <para style="P14" leftIndent="15" bulletIndent="0">
+      <bullet>
+        <seq id="L2"/>
+      </bullet>
+      <font face="Helvetica" size="12.0">openerp. Pwd: </font>
+      <font face="Helvetica">
+        <font face="Helvetica" size="12.0">openerp</font>
+      </font>
+      <font face="Helvetica" size="12.0">. (md5 password)</font>
+    </para>
+    <para style="P40">
+      <font color="white"> </font>
+    </para>
+    <para style="P29">Graphical administration tool for Postgresql: pgadmin3.</para>
+    <para style="P29">
+      <font color="white"> </font>
+    </para>
+    <para style="P53"><font face="Helvetica">5 </font>Web Server</para>
+    <para style="P34">We use Nginx for http server, created three virtual hosts, trunk, release and production, for each one of the openerp service.</para>
+    <para style="P34">However, the Nginx service is already properly set up. Once the domain name is not yet, the service could be used.</para>
+    <blockTable colWidths="70.0,70.0,70.0,70.0,70.0,70.0,70.0" style="Table4">
+      <tr>
+        <td>
+          <para style="P8">
+            <font face="Helvetica">Application</font>
+          </para>
+        </td>
+        <td>
+          <para style="P9">User</para>
+        </td>
+        <td>
+          <para style="P9">Version</para>
+        </td>
+        <td>
+          <para style="P10">Log<font face="Helvetica">/var/log/nginx/error_log</font></para>
+        </td>
+        <td>
+          <para style="P1">Error Path</para>
+        </td>
+        <td>
+          <para style="P9">Domain</para>
+        </td>
+        <td>
+          <para style="P9">Port</para>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <para style="P3">
+            <font color="white"> </font>
+          </para>
+        </td>
+        <td>
+          <para style="P35">www-data</para>
+        </td>
+        <td>
+          <para style="P35">
+            <font face="Helvetica">nginx/1.1.19</font>
+          </para>
+        </td>
+        <td>
+          <para style="P23">
+            <font face="Helvetica">/var/log/nginx/access_log</font>
+          </para>
+        </td>
+        <td>
+          <para style="P23">
+            <font face="Helvetica">/var/log/nginx/error_log</font>
+          </para>
+        </td>
+        <td>
+          <para style="P8">
+            <font face="Helvetica">Erp.</font>
+          </para>
+        </td>
+        <td>
+          <para style="P8">
+            <font face="Helvetica">80</font>
+          </para>
+        </td>
+      </tr>
+    </blockTable>
+    <para style="P24">
+      <font face="Helvetica"/>
+    </para>
+    <para style="P30"><font face="Helvetica">R</font>redirect to ssl address and pass all requests to openerp server.</para>
+    <para style="P61"><font face="Helvetica">5</font><font face="Helvetica">.1 </font>Http Server</para>
+    <para style="P21">All requests on port 80 will be redirected to port 443.</para>
+    <para style="P61"><font face="Helvetica">5</font><font face="Helvetica">.2 </font>HTTPS Server</para>
+    <para style="P21">It listen on port 443 of each domain of virtual host and pass the request to openerp server.</para>
+    <para style="P2"><font face="Helvetica">5</font><font face="Helvetica">.3 </font>SSL Certificates</para>
+    <para style="P21">We generated a self-used certificated for HTTP Ssl.</para>
+    <para style="P31">They are in /opt/certs.</para>
+    <para style="P31">
+      <font color="white"> </font>
+    </para>
+    <para style="P31">
+      <font color="white"> </font>
+    </para>
+    <para style="P48"><font face="Helvetica">6 </font>Backup Procedure</para>
+    <para style="P62">
+      <font face="Helvetica">6.1 </font>
+      <font face="Helvetica">Postgres Backup</font>
+    </para>
+    <para style="P39">
+      <font face="Helvetica">6.1.1 Backup</font>
+    </para>
+    <para style="P38">A cron tab is run <font face="Helvetica">every day</font> to backup the whole Postgres databases and the root directory.</para>
+    <para style="P42">Currently three scripts are used to handle all the backup tasks, Pg_backup.sh, Pg_backup_all.sh, Backup_root.sh.</para>
+    <blockTable colWidths="134.0,181.0" style="Table7">
+      <tr>
+        <td>
+          <para style="P43">Scripts File path:</para>
+        </td>
+        <td>
+          <para style="P45">/mnt/backup/scripts/Pg_backup.sh</para>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <para style="P42">pg backup dir </para>
+        </td>
+        <td>
+          <para style="P42">/mnt/backup/pg_backup</para>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <para style="P42">Pg backup log</para>
+        </td>
+        <td>
+          <para style="P42">/var/log/backup/</para>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <para style="P42">pg port</para>
+        </td>
+        <td>
+          <para style="P42">4432</para>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <para style="P42">pg host</para>
+        </td>
+        <td>
+          <para style="P42">localhost</para>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <para style="P42">pg user</para>
+        </td>
+        <td>
+          <para style="P42">postgres</para>
+        </td>
+      </tr>
+    </blockTable>
+    <para style="P38">
+      <font color="white"> </font>
+    </para>
+    <para style="P38">The backup files is in the location: /mnt/backup/pg_backup</para>
+    <para style="P38">To create a backup on demand:</para>
+    <para style="P38"><font face="Courier" size="10.0"># su postgres</font> → login as postgres user<font face="Courier" size="10.0">$ ./pg_backup_all.sh</font> → to launch the whole backup.<font face="Courier" size="10.0">$ ./pg_back.sh bva &lt;port_number&gt;</font> → to launch backup for one cluster.(4432 for stable, 4433 for trunk/release, the default one is disabled)</para>
+    <para style="P64"><font face="Helvetica">6.1.2 </font>Restore</para>
+    <para style="P38">How to backup Backup Procedures:</para>
+    <para style="P37" leftIndent="15" bulletIndent="0"><bullet><seq id="L3"/></bullet>Copy the dump filecp /mnt/backup/pg_backup/dump.backup.bz2 /tmp</para>
+    <para style="P37" leftIndent="15" bulletIndent="0"><bullet><seq id="L3"/></bullet>Unzip File</para>
+    <para style="P37" leftIndent="15" bulletIndent="0"><bullet><seq id="L3"/></bullet>bunzip2 /tmp/dump.backup</para>
+    <para style="P37" leftIndent="15" bulletIndent="0"><bullet><seq id="L3"/></bullet>(you will get a file dump_file.dump)</para>
+    <para style="P37" leftIndent="15" bulletIndent="0"><bullet><seq id="L3"/></bullet>Create New Datbasesu postgres</para>
+    <para style="P37" leftIndent="15" bulletIndent="0"><bullet><seq id="L3"/></bullet>createdb -O user dbname</para>
+    <para style="P37" leftIndent="15" bulletIndent="0"><bullet><seq id="L3"/></bullet>Restore databasepg_restore -d dbname /tmp/dump.backup</para>
+    <para style="P63"><font face="Helvetica">6.2</font> Root Backup</para>
+    <para style="P38">All the root files will be backup every night into one file /mnt/backup/backup_root.tar.</para>
+    <para style="P32">To restore, unzip the backup file in /mnt/backup and then rewrite them into root directory.</para>
+    <para style="P49"><font face="Helvetica">7 </font>Version Control System - Bazaar</para>
+    <para style="P39">We have installed bazaar for version control system, to keep a history and version control of both trunk, release and production servers are under control.</para>
+    <para style="P39">More information could be found in the link below:</para>
+    <para style="P39">http://doc.bazaar.canonical.com/beta/en/user-guide/</para>
+    <para style="P33">Note: Bazaar is for internal usage, not access is provided to Sarment.</para>
+    <para style="P33">
+      <font color="white"> </font>
+    </para>
+    <para style="P49"><font face="Helvetica">9 </font>Server Monitoring Service – Munin</para>
+    <para style="P39">An application munin (munin-node) is installed in this server, in the purpose of Monitoring.</para>
+    <para style="P33">Currently these services are monitored: CPU, Memory, Network, Disk, Procs, Postgresql statistics.</para>
+    <para>
+      <seqReset id="L2"/>
+    </para>
+    <para>
+      <seqReset id="L3"/>
+    </para>
+  </story>
+</document>
+
