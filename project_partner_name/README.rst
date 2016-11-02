@@ -10,7 +10,8 @@ This module extends the functionality of Project:
 
 * Makes "Customer" mandatory field.
 * Modifies the name_get adding the customer reference to the project name.
-* Modifies the name_search to search also by customer reference linked to project.
+* Modifies the name_search to search also by customer reference linked to
+project.
 
 Installation
 ============
@@ -22,10 +23,10 @@ To install this module, you need to:
 Bug Tracker
 ===========
 
-Bugs are tracked on `GitHub Issues <https://github.com/Elico-Corp/elico_odoo/issues>`_.
-In case of trouble, please check there if your issue has already been reported.
-If you spotted it first, help us smashing it by providing a detailed and welcomed feedback
-`here <https://github.com/Elico-Corp/elico_odoo/issues/new?body=module:%20read_customer_reference%0Aversion:%20{8.0.1.0.1}%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+Bugs are tracked on `GitHub Issues
+<https://github.com/OCA/infrastructure-dns/issues>`_. In case of trouble, please
+check there if your issue has already been reported. If you spotted it first,
+help us smashing it by providing a detailed and welcomed feedback.
 
 Credits
 =======
@@ -34,6 +35,8 @@ Contributors
 ------------
 
 * Victor M. Martin <victor.martin@elico-corp.com>
+* Eric Caudal <eric.caudal@elico-corp.com>
+* Noah Wang <noah.wang@elico-corp.com>
 
 Maintainer
 ----------
@@ -44,6 +47,9 @@ Maintainer
 
 This module is maintained by Elico Corporation.
 
-Elico Corporation offers consulting services to implement open source management software in SMEs, with a strong involvement in quality of service.
+Elico Corporation offers consulting services to implement open source
+management software in SMEs, with a strong involvement in quality of service.
 
-Our headquarters are located in Shanghai with branches in Hong Kong, ShenZhen and Singapore servicing customers from Greater China, Asia Pacific, Europe, Americas, etc...
+Our headquarters are located in Shanghai with branches in Hong Kong, ShenZhen
+and Singapore servicing customers from Greater China, Asia Pacific, Europe,
+Americas, etc...
