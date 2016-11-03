@@ -8,32 +8,9 @@ from openerp import api, models
 class AnalyticAccount(models.Model):
     _inherit = 'account.analytic.account'
 
-    def name_search(self, cr, uid, name, args=None, operator='ilike', context=None, limit=100):
-
-        if not args:
-            args=[]
-        if context is None:
-            context={}
-        account_ids = []
-        if name:
-            account_ids = self.search(cr, uid, [('code', '=', name)] + args, limit=limit, context=context)
-            if not account_ids:
-                dom = []
-                if '/' in name:
-                    for name2 in name.split('/'):
-                        # intermediate search without limit and args - could be expensive for large tables if `name` is not selective
-                        account_ids = self.search(cr, uid, dom + [('name', operator, name2.strip())], limit=None, context=context)
-                        if not account_ids: break
-                        dom = [('parent_id','in',account_ids)]
-                    if account_ids and args:
-                        # final filtering according to domain (args)4
-                        account_ids = self.search(cr, uid, [('id', 'in', account_ids)] + args, limit=limit, context=context)
-        if not account_ids:
-            return super(account_analytic_account, self).name_search(cr, uid, name, args, operator=operator, context=context, limit=limit)
-        return self.name_get(cr, uid, account_ids, context=context)
-
     def _get_full_names(self, elmt, level):
-        # a general tail recursion function
+
+        # This is a inner tail recursion function
         def iter_parent_ids(elmt, level, full_names):
 
             if level <= 0:
@@ -61,8 +38,6 @@ class AnalyticAccount(models.Model):
 
 
         for id in ids:
-            import pdb
-            pdb.set_trace()
 
             elmt = self.browse(cr, uid, id, context=context)
             full_names = self._get_full_names(elmt, 6)
@@ -87,21 +62,9 @@ class AnalyticAccount(models.Model):
 
                     full_names[0] = "%s - %s" % (partner_ref, full_names[0])
 
-                # path order change to [from root to leaf]
+                # order is First-Root-Last-Leaf
                 full_names.reverse()
                 
-            res.append((id, '/'.join(full_names)))
+            res.append((id, ' / '.join(full_names)))
 
         return res
-
-
-    '''    
-    def _get_one_full_name(self, elmt, level=6):
-        if level<=0:
-            return '...'
-        if elmt.parent_id and not elmt.type == 'template':
-            parent_path = self._get_one_full_name(elmt.parent_id, level-1) + " / "
-        else:
-            parent_path = ''
-        return parent_path + 'ccc' + elmt.name
-    '''
