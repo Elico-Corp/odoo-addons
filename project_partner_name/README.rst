@@ -7,18 +7,17 @@ Project Partner Name
 =========================
 
 This module extends the functionality of Project:
+  * Makes "Customer" mandatory field.
+  * Modifies the name_get adding the customer reference to the project name.
+  * Modifies the name_search to search also by customer reference linked to
 
-   * Makes "Customer" mandatory field.
-   * Modifies the name_get adding the customer reference to the project name.
-   * Modifies the name_search to search also by customer reference linked to
 project.
 
 Installation
 ============
 
 To install this module, you need to:
-
- * have basic modules installed (project)
+  * have basic modules installed (project)
 
 Bug Tracker
 ===========
