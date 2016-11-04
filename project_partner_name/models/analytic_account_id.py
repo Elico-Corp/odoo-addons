@@ -10,7 +10,6 @@ class AnalyticAccount(models.Model):
 
     def _get_full_names(self, elmt, level):
 
-        # This is a inner tail recursion function
         def iter_parent_ids(elmt, level, full_names):
 
             if level <= 0:
@@ -18,12 +17,11 @@ class AnalyticAccount(models.Model):
                 return (None, 0, full_names)
             elif elmt.parent_id and not elmt.type == 'template':
                 full_names.append(elmt.name)
-                return iter_parent_ids(elmt.parent_id, level-1, full_names)
+                return iter_parent_ids(elmt.parent_id, level - 1, full_names)
             else:
                 full_names.append(elmt.name)
-                return (None, level-1, full_names)
+                return (None, level - 1, full_names)
 
-        # call recursion function
         (_, _, full_names) = iter_parent_ids(elmt, level, [])
 
         return full_names
@@ -42,7 +40,7 @@ class AnalyticAccount(models.Model):
             elmt = self.browse(cr, uid, id, context=context)
             full_names = self._get_full_names(elmt, 6)
 
-            if len(full_names)>0:
+            if isinstance(full_names, list) and full_names:
         
                 project_ids = self.pool['project.project'].search(
                     cr, uid,
@@ -51,7 +49,7 @@ class AnalyticAccount(models.Model):
                 )
 
 
-                if project_ids and (len(project_ids) > 0):
+                if isinstance(project_ids, list) and project_ids:
                     project_obj = self.pool['project.project'].browse(
                         cr, uid,
                         project_ids[0],
@@ -62,8 +60,7 @@ class AnalyticAccount(models.Model):
 
                     full_names[0] = "%s - %s" % (partner_ref, full_names[0])
 
-                # order is First-Root-Last-Leaf
-                full_names.reverse()
+                full_names.reverse()  # order on First Root Last Leaf
                 
             res.append((id, ' / '.join(full_names)))
 
