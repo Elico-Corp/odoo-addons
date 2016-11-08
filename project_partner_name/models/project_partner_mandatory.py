@@ -8,22 +8,20 @@ from openerp import api, models
 class ProjectProject(models.Model):
     _inherit = 'project.project'
 
+    def _get_partner_ref(self, proj):
+        if proj.partner_id:
+            if proj.partner_id.is_company and proj.partner_id.ref:
+                return proj.partner_id.ref
+            elif proj.partner_id.parent_id and proj.partner_id.parent_id.ref:
+                return proj.partner_id.parent_id.ref
+        return False
 
     @api.multi
     @api.depends('name', 'partner_id')
     def name_get(self):
-
-        def _get_partner_ref(proj):
-            if proj.partner_id:
-                if proj.partner_id.is_company and proj.partner_id.ref:
-                    return proj.partner_id.ref
-                elif proj.partner_id.parent_id and proj.partner_id.parent_id.ref:
-                    return proj.partner_id.parent_id.ref
-            return False
-
         result = []
         for project in self:
-            partner_ref = _get_partner_ref(project)
+            partner_ref = self._get_partner_ref(project) 
             if partner_ref:
                 result.append((
                     project.id,
