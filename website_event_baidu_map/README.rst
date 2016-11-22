@@ -1,28 +1,46 @@
 .. image:: https://img.shields.io/badge/licence-AGPL--3-blue.svg
-   :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
-   :alt: License: AGPL-3
+    :alt: License
 
 =======================
-website_event_baidu_map
+Website Event Baidu Map
 =======================
 
-This module replace google map with baidu map of the website event module. The address is only based on street field.
+This module extends the functionality of website to support baidu map in the website event page.
+
 
 Installation
 ============
 
 To install this module, you need to:
 
- * have basic modules installed (website, base, website_event)
+ * have basic modules installed (website_event)
 
 
-Bug Tracker
-===========
+Configuration
 
-Bugs are tracked on `GitHub Issues <https://github.com/Elico-Corp/odoo/issues>`_.
-In case of trouble, please check there if your issue has already been reported.
-If you spotted it first, help us smashing it by providing a detailed and welcomed feedback
-`here <https://github.com/Elico-Corp/odoo/issues/new?body=module:%20website_event_baidu_map%0Aversion:%208.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+=============
+
+To configure this module, you need to:
+
+* Go to Settings/Parameters/System Parameters and create a record which Key must be named baidu.api and the Value like [http://api.map.baidu.com/api]?v=[2.0]&ak=[your ak].
+
+Configuration
+=============
+
+To configure this module, you need to:
+
+ * No specific configuration needed.
+
+Usage
+=====
+
+
+For further information, please visit:
+
+ * https://www.odoo.com/forum/help-1
+
+Known issues / Roadmap
+======================
 
 
 Credits
@@ -33,16 +51,19 @@ Contributors
 ------------
 
 * Liu Lixia <liu.lixia@elico-corp.com>
+* Rona Lin <rona.lin@elico-corp.com>
 
 Maintainer
 ----------
 
 .. image:: https://www.elico-corp.com/logo.png
-:alt: Elico Corp
-:target: https://www.elico-corp.com
+   :alt: Elico Corp
+   :target: https://www.elico-corp.com
 
-This module is maintained by Elico Corporation.
+This module is maintained by the OCA.
 
-Elico Corporation offers consulting services to implement open source management software in SMEs, with a strong involvement in quality of service.
+OCA, or the Odoo Community Association, is a nonprofit organization
+    whose mission is to support the collaborative development of Odoo features
+        and promote its widespread use.
 
-Our headquarters are located in Shanghai with branches in Hong Kong, ShenZhen and Singapore servicing customers from Greater China, Asia Pacific, Europe, Americas, etc...
+To contribute to this module, please visit http://odoo-community.org. 
