@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <openerp>
     <data>
-        <template id="event_description_full_inherited" name="map" inherit_id="website_event.event_description_full">
-            <xpath expr="//div[@class='panel-body']/a" position="replace">
+
+        <template id="company_description_inherited" name="map" inherit_id="website.company_description" customize_show="True">
+            <xpath expr="a" position="replace">
                 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
                 <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
                 <style type="text/css">
@@ -20,9 +21,10 @@
                     var local = new BMap.LocalSearch(map, {
                         renderOptions:{map: map}
                     });
-                    local.search('<t t-esc="event.address_id.street"/>');
+                    local.search('<t t-esc="res_company.street"/>');
                 </script>
             </xpath>
         </template>
+
     </data>
 </openerp>
