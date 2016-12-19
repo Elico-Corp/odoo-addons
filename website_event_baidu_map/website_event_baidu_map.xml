@@ -10,14 +10,13 @@
                     #allmap{width:100%;height:250px;}
                     p{margin-left:5px; font-size:14px;}
                 </style>
-                <script type="text/javascript" t-att-src="request.registry['ir.config_parameter'].get_param(request.cr, request.uid, 'baidu.api')"></script>
+                <script type="text/javascript" src="http://api.map.baidu.com/api?v=1.3"></script>
                 <div id="allmap"></div>
                 <script type="text/javascript">
-                    // BaiDu map API v2.0 function
-                    var map = new BMap.Map("allmap");
-                    map.addControl(new BMap.MapTypeControl());
+                    // 百度地图API功能
+                    var map = new BMap.Map("allmap");          
                     map.centerAndZoom(new BMap.Point(121.480237, 31.236305), 11);
-                    map.enableScrollWheelZoom(true);
+                    map.enableScrollWheelZoom();
                     var local = new BMap.LocalSearch(map, {
                         renderOptions:{map: map}
                     });
@@ -25,6 +24,5 @@
                 </script>
             </xpath>
         </template>
-
     </data>
 </openerp>
