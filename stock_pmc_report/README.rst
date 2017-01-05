@@ -12,7 +12,7 @@ Installation
 
 To install this module, you need to:
 
- * have basic modules installed (sale_extra, purchase, stock)
+ * have basic modules installed (purchase, stock)
 
 
 Bug Tracker
