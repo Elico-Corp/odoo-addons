@@ -8,8 +8,6 @@
     'depends': [
          'project_timesheet',
          'project_issue_sheet',
-         'project_task_category',
-         'project_project_category',
          'business_requirement'
     ],
     'author': 'Elico Corp',
