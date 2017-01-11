@@ -8,10 +8,10 @@ membership account.
 Technical Notes (Please ignore if you are functional)
 =====================================================
  - This module total rewrites the following methods:
-    * debit and credit fields compute function on model: res_partner.
+    * debit and credit fields compute function on model: res_partner
  - Tricks
-    * This module still uses V7 API since need to
-    overwrite some compute functions on model: res_partner;
+    * This module still uses V7 API since need to overwrite some compute
+    functions on model res_partner
 
 Usage
 -----
