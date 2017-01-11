@@ -23,5 +23,6 @@ Total membership is calculated in the customer.
 Contributors
 ------------
 
+* Eric Caudal <eric.cauda@elico-corp.com>
 * Alex Duan <alex.duan@elico-corp.com>
 * Siyuan Gu: <gu.siyuan@elico-corp.com>
