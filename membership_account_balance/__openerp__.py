@@ -3,7 +3,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 {
     'name': 'Membership Management - Member Account Balance',
-    'version': '0.1',
+    'version': '8.0.1.0.1',
     'category': '',
     'depends': ['account', 'membership', 'base_setup'],
     'author': 'Elico Corp',
