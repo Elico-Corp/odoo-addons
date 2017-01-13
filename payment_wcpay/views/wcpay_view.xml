@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="1">
+        
+        <template id="wcpay_acquirer_button">
+            <form t-att-action="tx_url" method="post" target="_self">
+                <input type="hidden" name="_input_charset" t-att-value="tx_values['_input_charset']"/>
+                <input type="hidden" name="partner" t-att-value="tx_values['partner']"/>
+                <input type="hidden" name="payment_type" t-att-value="tx_values['payment_type']"/>
+                <input type="hidden" name="sign_type" t-att-value="tx_values['sign_type']"/>
+                <input type="hidden" name="total_fee" t-att-value="tx_values['total_fee']"/>
+                <input type="hidden" name="out_trade_no" t-att-value="tx_values['out_trade_no']"/>
+                <input type="hidden" name="subject" t-att-value="tx_values['subject']"/>
+                <input type="hidden" name="sign" t-att-value="tx_values['sign']"/>
+                <!-- submit -->
+                <button type="submit" width="100px"
+                    t-att-class="submit_class">
+                    <img t-if="not submit_txt" src="/payment_wcpay/static/src/img/wx_logo.png"/>
+                    <span t-if="submit_txt"><t t-esc="submit_txt"/> <span class="fa fa-long-arrow-right"/></span>
+                </button>
+            </form>
+        </template>
+
+        <template id="confirmation" inherit_id="website_sale.confirmation">
+            <xpath expr="//div[@class='oe_website_sale_tx_status']" position="after">
+                <t t-if="order.payment_acquirer_id and order.payment_acquirer_id.provider == 'wcpay'">
+                    <div>
+                        <img t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s'%('QR', order.payment_tx_id.wcpay_txn_paylink, 300, 300)"/>
+                    </div>
+                </t>
+                
+            </xpath>
+        </template>
+
+    </data>
+</openerp>
