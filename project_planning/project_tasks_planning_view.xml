@@ -89,7 +89,7 @@
                     <separator/>
                     <filter name = "filter_Week1" string="Week1"
                             domain="[('week_1', '>', 0)]"/>
-                    <separator/>        
+                    <separator/>
                     <filter string="Week2"
                             domain="[('week_2', '>', 0)]"/>
                     <separator/>
