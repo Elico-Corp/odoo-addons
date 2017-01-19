@@ -4,7 +4,6 @@
     <record id="mail_message_group_user" model="ir.rule">
         <field name="name">Mail list only for owner</field>
         <field name="model_id" ref="model_mail_message"/>
-        <field name="domain_force">[('partner_ids', '=', user.partner_id.id)]</field>
         <field name="groups" eval="[(4, ref('base.group_user'))]"/>
     </record>
   </data>
