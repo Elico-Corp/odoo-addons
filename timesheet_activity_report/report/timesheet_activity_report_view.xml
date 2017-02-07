@@ -14,7 +14,6 @@
                     <field name="br_id"/>
                     <field name="activity_id" string="ID"/>
                     <field name="activity_type"/>
-                    <field name="task_categ_id"/>
                     <field name="activity_name"/>
                     <field name="activity_stage_id"/>
                     <field name="date"/>
@@ -61,7 +60,6 @@
                     <field name="br_id"/>
                     <field name="partner_id"/>
                     <field name="activity_stage_id"/>
-                    <field name="task_categ_id"/>
                     <field name="project_categ_id"/>
                     <filter string="Current Month" domain="[('date','&gt;=', datetime.datetime.now().strftime('%%Y-%%m-01'))]"/>
                     <filter string="Previous Month" name="previous_month" domain="[('date','&gt;=',(context_today()-relativedelta(months=1)).strftime('%%Y-%%m-01')),('date','&lt;',time.strftime('%%Y-%%m-01'))]"/>
@@ -74,7 +72,6 @@
                         <filter string="Business Requirement" domain="[]" context="{'group_by': 'br_id'}"/>
                         <filter string="Customer" domain="[]" context="{'group_by': 'partner_id'}"/>
                         <filter string="Activity stage" domain="[]" context="{'group_by': 'activity_stage_id'}"/>
-                        <filter string="Task category" domain="[]" context="{'group_by': 'task_categ_id'}"/>
                         <filter string="Project category" domain="[]" context="{'group_by': 'project_categ_id'}"/>
                     </group>
                 </search>
