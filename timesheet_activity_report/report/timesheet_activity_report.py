@@ -44,9 +44,6 @@ class TimesheetReport(osv.Model):
             'Activity id', readonly=True, help="Task id or Issue id"),
         'activity_name': fields.char(
             'Activity name', readonly=True, help="Task name or Issue name"),
-        'task_categ_id': fields.many2one(
-            'task.category', 'Task cat.',
-            readonly=True, help="Task category"),
         'br_id': fields.many2one(
             'business.requirement', 'Bus. requ.',
             readonly=True, help="Business requirement"),
@@ -103,7 +100,6 @@ class TimesheetReport(osv.Model):
                         COALESCE(t.name, i.name) AS activity_name,
                         -- The hours are null in case the timesheet
                         -- is not linked to a task
-                        t.task_categ_id,
                         b.id AS br_id,
                         a.partner_id,
                         p.project_categ_id
