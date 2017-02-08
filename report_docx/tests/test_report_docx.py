@@ -6,8 +6,7 @@ from openerp.tests import common
 import openerp
 import os
 import base64
-from openerp.addons.report_docx.report.report_docx \
-    import ReportDocx
+from ..report.report_docx import ReportDocx
 
 
 class TestReportDocx(common.TransactionCase):

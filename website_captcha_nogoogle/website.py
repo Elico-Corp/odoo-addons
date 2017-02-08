@@ -6,11 +6,16 @@ import base64
 import random
 import string
 from binascii import hexlify, unhexlify
-
-from captcha.image import ImageCaptcha
-from simplecrypt import decrypt, encrypt
-
 from openerp import api, fields, models
+
+try:
+    from captcha.image import ImageCaptcha
+except ImportError:
+    pass
+try:
+    from simplecrypt import decrypt, encrypt
+except ImportError:
+    pass
 
 
 class website(models.Model):

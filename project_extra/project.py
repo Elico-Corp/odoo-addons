@@ -5,7 +5,7 @@
 from openerp.osv import fields, osv
 
 
-class task(osv.osv):
+class Task(osv.osv):
     _inherit = "project.task"
     _name = "project.task"
 
@@ -55,7 +55,7 @@ class task(osv.osv):
         return res
 
     def onchange_project(self, cr, uid, ids, project_id):
-        res = super(task, self).onchange_project(cr, uid, ids, project_id)
+        res = super(Task, self).onchange_project(cr, uid, ids, project_id)
 
         if project_id and 'value' in res:
             project = self.pool.get('project.project').browse(
@@ -107,7 +107,7 @@ class task(osv.osv):
     def do_open(self, cr, uid, ids, context=None):
         if context is None:
             context = {}
-        res = super(task, self).do_open(cr, uid, ids, context)
+        res = super(Task, self).do_open(cr, uid, ids, context)
         vals = {}
         task_id = len(ids) and ids[0] or False
         task_id = self.browse(cr, uid, task_id, context=context)
@@ -121,7 +121,7 @@ class task(osv.osv):
 
     # LY: inherit close action, move the task to last stage
     def action_close(self, cr, uid, ids, context=None):
-        res = super(task, self).action_close(cr, uid, ids, context)
+        res = super(Task, self).action_close(cr, uid, ids, context)
         vals = {}
         task_id = len(ids) and ids[0] or False
         task_id = self.browse(cr, uid, task_id, context=context)
@@ -163,15 +163,15 @@ class task(osv.osv):
 
     # LY: inherit normal priority, change color to yellow
     def set_normal_priority(self, cr, uid, ids, *args):
-        super(task, self).set_normal_priority(cr, uid, ids, args)
+        super(Task, self).set_normal_priority(cr, uid, ids, args)
         self.write(cr, uid, ids, {'color': 0}, context=None)
         return True
 
     # LY: inherit close action, move the task to last stage
     def set_high_priority(self, cr, uid, ids, *args):
-        super(task, self).set_high_priority(cr, uid, ids, args)
+        super(Task, self).set_high_priority(cr, uid, ids, args)
         self.write(cr, uid, ids, {'color': 3}, context=None)
         return True
 
 
-task()
+Task()

@@ -2,15 +2,14 @@
    :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
    :alt: License: AGPL-3
 
-=========================
+====================
 Project Partner Name
-=========================
+====================
 
 This module extends the functionality of Project:
   * Makes "Customer" mandatory field.
   * Modifies the name_get adding the customer reference to the project name.
-  * Modifies the name_search to search also by customer reference linked to
-project.
+  * Modifies the name_search to search also by customer reference linked to project.
 
 Installation
 ============
@@ -40,8 +39,8 @@ Maintainer
 ----------
 
 .. image:: https://www.elico-corp.com/logo.png
-:alt: Elico Corp
-:target: https://www.elico-corp.com
+   :alt: Elico Corp
+   :target: https://www.elico-corp.com
 
 This module is maintained by Elico Corporation.
 
