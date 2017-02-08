@@ -7,8 +7,8 @@
     'author': 'Elico Corp',
     'website': 'http://www.elico-corp.com',
     'summary': '',
-    'description' : """
-         access rule: case 
+    'description': """
+         access rule: case
     """,
     'depends': ['base', 'crm'],
     'category': '',

@@ -4,14 +4,14 @@
 {
     'name': 'Mail Batch Read',
     'description': '''
-    In the same view as Inbox, add a "list" view button. When switching to
-    list view, display the following info:
+    In the same view as Inbox, add a "list" view button. When switching to list
+    view, display the following info:
     - Date: date
     - From: partner_ids
     - Subject: subject
     - Body (only the begginning)
-    - When the user checks one or several emails, add an option in the drop
-    down menu to mark them all as read.
+    - When the user checks one or several emails, add an option in the drop down
+    menu to mark them all as read.
     ''',
     'author': 'Elico Corp',
     'sequence': '119',
