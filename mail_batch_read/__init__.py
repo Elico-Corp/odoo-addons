@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 # © 2015 Elico corp (www.elico-corp.com)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
-import message_list
-import wizard
+
+from . import message_list
+from . import wizard

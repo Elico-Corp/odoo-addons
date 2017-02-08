@@ -63,7 +63,7 @@ class AnalyticAccount(models.Model):
                             partner_ref,
                             full_names[0]
                         )
-                full_names.reverse()  # order on First Root Last Leaf                
+                full_names.reverse()  # order on First Root Last Leaf
             res.append((id, ' / '.join(full_names)))
 
         return res
