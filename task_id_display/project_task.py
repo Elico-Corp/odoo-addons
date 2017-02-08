@@ -28,4 +28,3 @@ class project_task(orm.Model):
     _columns = {
         'id': fields.integer('ID', readonly=True),
     }
-    

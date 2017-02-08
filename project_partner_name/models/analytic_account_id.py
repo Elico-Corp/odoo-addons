@@ -2,7 +2,8 @@
 # © 2016 Elico Corp (www.elico-corp.com).
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from openerp import api, models
+from openerp import models
+
 
 class AnalyticAccount(models.Model):
     _inherit = 'account.analytic.account'
@@ -33,7 +34,7 @@ class AnalyticAccount(models.Model):
 
         return full_names
 
-    def name_get(self, cr, uid, ids, context=None): 
+    def name_get(self, cr, uid, ids, context=None):
 
         res = []
         if not ids:
@@ -58,7 +59,10 @@ class AnalyticAccount(models.Model):
                     )
                     partner_ref = self._get_partner_ref(project_obj)
                     if partner_ref:
-                        full_names[0] = "%s - %s" % (partner_ref, full_names[0])
+                        full_names[0] = "%s - %s" % (
+                            partner_ref,
+                            full_names[0]
+                        )
                 full_names.reverse()  # order on First Root Last Leaf                
             res.append((id, ' / '.join(full_names)))
 

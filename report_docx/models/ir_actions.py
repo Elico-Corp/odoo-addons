@@ -4,6 +4,7 @@
 from openerp import fields, models
 from openerp import SUPERUSER_ID
 from openerp.tools.translate import _
+from openerp.exceptions import Warning
 
 
 class IrActionsReportXml(models.Model):
@@ -47,12 +48,14 @@ class IrActionsReportXml(models.Model):
 
     def create_action(self, cr, uid, ids, context=None):
         """ Create a contextual action for each of the report."""
-        for ir_actions_report_xml in self.browse(cr, uid, ids, context=context):
+        for ir_actions_report_xml in self.browse(
+                cr, uid, ids, context=context):
             ir_values_id = self.pool['ir.values'].create(cr, SUPERUSER_ID, {
                 'name': ir_actions_report_xml.name,
                 'model': ir_actions_report_xml.model,
                 'key2': 'client_print_multi',
-                'value': "ir.actions.report.xml,%s" % ir_actions_report_xml.id,
+                'value': "ir.actions.report.xml,%s" %
+                         ir_actions_report_xml.id,
             }, context)
             ir_actions_report_xml.write({
                 'ir_values_id': ir_values_id,
@@ -62,12 +65,15 @@ class IrActionsReportXml(models.Model):
     def unlink_action(self, cr, uid, ids, context=None):
         """ Remove the contextual actions created for the reports."""
         self.check_access_rights(cr, uid, 'write', raise_exception=True)
-        for ir_actions_report_xml in self.browse(cr, uid, ids, context=context):
+        for ir_actions_report_xml in self.browse(
+                cr, uid, ids, context=context):
             if ir_actions_report_xml.ir_values_id:
                 try:
                     self.pool['ir.values'].unlink(
-                        cr, SUPERUSER_ID, ir_actions_report_xml.ir_values_id.id, context
+                        cr, SUPERUSER_ID,
+                        ir_actions_report_xml.ir_values_id.id, context
                     )
                 except Exception:
-                    raise UserError(_('Deletion of the action record failed.'))
+                    # raise UserError(_('Deletion of the action record failed.'))
+                    raise Exception(_('Deletion of the action record failed.'))
         return True
