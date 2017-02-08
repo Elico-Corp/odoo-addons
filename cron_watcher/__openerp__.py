@@ -9,16 +9,7 @@
     'author': 'Elico Corp',
     'license': 'AGPL-3',
     'website': 'https://www.elico-corp.com',
-    'description': """
-Sends notification to a group named "Cron Watcher" when a cron job has not run
-for X minutes.
-
-X can be defined in "Settings", "Scheduler Actions", "Cron Watcher",
-"Technical Data", "Arguments"
-    * 5 minutes = (5,)
-    * 10 minutes = (10,)
-    * etc...
-""",
+    'support': '',
     'data': ['cron_data.xml'],
     'installable': True,
     'application': False

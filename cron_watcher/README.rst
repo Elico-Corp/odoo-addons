@@ -2,22 +2,25 @@
    :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
    :alt: License: AGPL-3
 
-=========================
-Website Captcha No Google
-=========================
+============
+Cron Watcher
+============
 
-This module allows you to integrate a python CAPTCHA to your website forms.
-You can configure your CAPTCHA in "Settings" -> "Website Settings"
+Sends notification to a group named "Cron Watcher" when a cron job has not run
+for X minutes.
 
-You will need to install and purchase the "website_captcha_nogoogle_crm"
-to use it in your "contact us" page
+X can be defined in "Settings", "Scheduler Actions", "Cron Watcher",
+"Technical Data", "Arguments"
+  * 5 minutes = (5,)
+  * 10 minutes = (10,)
+  * etc...
 
 Installation
 ============
 
 To install this module, you need to:
 
- * have basic modules installed (website)
+ * have basic modules installed (mail)
 
 
 Bug Tracker
@@ -26,7 +29,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/Elico-Corp/odoo/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us smashing it by providing a detailed and welcomed feedback
-`here <https://github.com/Elico-Corp/odoo/issues/new?body=module:%20website_captcha_nogoogle%0Aversion:%20{8.0}%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`here <https://github.com/Elico-Corp/odoo/issues/new?body=module:%20excel_report_for_stock_valuation%0Aversion:%20{8.0}%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Credits
 =======
@@ -34,7 +37,7 @@ Credits
 Contributors
 ------------
 
-* Augustin Cisterne-Kaas <augustin.cisterne-kaas@elico-corp.com>
+* Noah Wang <noah.wang@elico-corp.com>
 
 Maintainer
 ----------
