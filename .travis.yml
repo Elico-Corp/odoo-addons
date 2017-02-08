@@ -1,17 +1,11 @@
-language: python
 sudo: false
-cache:
-  - pip
-  - apt
-
-python:
-  - "2.7"
+cache: pip
 
 addons:
   apt:
     packages:
       - expect-dev  # provides unbuffer utility
-      - python-lxml  # because pip installation is slow
+      - python-lxml # because pip installation is slow
       - python-simplejson
       - python-serial
       - python-yaml
@@ -20,28 +14,35 @@ addons:
       - nodejs
       - npm
 
-env:
-  global:
-  - VERSION="8.0" TESTS="0" LINT_CHECK="0" TRANSIFEX="0"
+language: python
 
-  matrix:
-  - LINT_CHECK="1"
-  - EXCLUDE="" TESTS="1" ODOO_REPO="odoo/odoo"
-  - EXCLUDE="" TESTS="1" ODOO_REPO="OCA/OCB"
+python:
+  - '2.7'
 
 virtualenv:
   system_site_packages: true
 
+env:
+  matrix:
+  - LINT_CHECK="1"
+  - TESTS="1" ODOO_REPO="odoo/odoo"
+  - TESTS="1" ODOO_REPO="OCA/OCB"
+  global:
+  - VERSION="8.0" TESTS="0" LINT_CHECK="0" TRANSIFEX="0"
+
 install:
-  - pip install --upgrade pycrypto
-  - pip install docxtpl erppeek captcha simple-crypt python-ldap Pillow
-  - npm install -g less less-plugin-clean-css
   - git clone --depth=1 https://github.com/Elico-Corp/maintainer-quality-tools.git ${HOME}/maintainer-quality-tools
   - export PATH=${HOME}/maintainer-quality-tools/travis:${PATH}
   - travis_install_nightly
+  - pip install --upgrade pycrypto
+  - pip install docxtpl erppeek captcha simple-crypt python-ldap Pillow
+  - npm install -g less less-plugin-clean-css
+
+services:
+  - postgresql
 
 script:
   - travis_run_tests
 
 after_success:
-  - travis_after_tests_success
+  - travis_after_test_success
