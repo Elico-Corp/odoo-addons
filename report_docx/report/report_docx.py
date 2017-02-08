@@ -9,11 +9,19 @@ from pyPdf import PdfFileWriter, PdfFileReader
 from reportlab.pdfgen import canvas
 import os
 import base64
-from docxtpl import DocxTemplate
 from lxml import etree
-from docx import Document
 import time
 import random
+
+try:
+    from docxtpl import DocxTemplate
+except ImportError:
+    pass
+try:
+    from docx import Document
+except ImportError:
+    pass
+
 _logger = logging.getLogger(__name__)
 
 

@@ -21,7 +21,7 @@ class ProjectProject(models.Model):
     def name_get(self):
         result = []
         for project in self:
-            partner_ref = self._get_partner_ref(project) 
+            partner_ref = self._get_partner_ref(project)
             if partner_ref:
                 result.append((
                     project.id,
