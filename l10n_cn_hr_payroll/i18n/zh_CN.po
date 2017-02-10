@@ -1,0 +1,699 @@
+
+#. module: l10n_cn_hr_payroll
+#: model:ir.model.fields,field_description:l10n_cn_hr_payroll.field_hr_contract_social_insurance_amount
+msgid "Social Insurance Base"
+msgstr "社保基数"
+
+
+#. module: l10n_cn_hr_payroll
+#: model:ir.model.fields,field_description:l10n_cn_hr_payroll.field_hr_contract_pit_base_amount
+msgid "PIT Base"
+msgstr "个人所得税基数"
+
+#. module: hr_contract
+#: model:ir.model.fields,field_description:hr_contract.field_hr_contract_type_id
+msgid "Contract Type"
+msgstr "合同类别"
+
+#. module: l10n_cn_hr_payroll
+#: model:hr.salary.rule.category,name:l10n_cn_hr_payroll.PIT
+msgid "Personal Income Tax"
+msgstr "个人所得税"
+
+#. module: l10n_cn_hr_payroll
+#: model:hr.salary.rule.category,name:l10n_cn_hr_payroll.TCC
+msgid "Total Company Contribution"
+msgstr "单位社保合计"
+
+#. module: hr_payroll
+#: model:hr.salary.rule.category,name:hr_payroll.BASIC
+msgid "Basic"
+msgstr "基本工资"
+
+#. module: hr_payroll
+#: model:hr.salary.rule.category,name:hr_payroll.ALW
+msgid "Allowance"
+msgstr "津贴"
+
+#. module: hr_payroll
+#: model:hr.salary.rule.category,name:hr_payroll.GROSS
+msgid "Gross"
+msgstr "个人总收入"
+
+#. module: hr_payroll
+#: model:hr.salary.rule.category,name:hr_payroll.DED
+msgid "Deduction"
+msgstr "扣除"
+
+#. module: hr_payroll
+#: model:hr.salary.rule.category,name:hr_payroll.NET
+msgid "Net"
+msgstr "实发工资"
+
+#. module: hr_payroll
+#: model:hr.salary.rule.category,name:hr_payroll.COMP
+msgid "Company Contribution"
+msgstr "公司支付"
+
+#. module: hr_payroll
+#: model:hr.salary.rule,name:hr_payroll.hr_rule_basic
+msgid "Basic"
+msgstr "基本工资"
+
+#. module: hr_payroll
+#: model:hr.salary.rule,name:hr_payroll.hr_rule_taxable
+msgid "Gross"
+msgstr "个人总收入"
+
+#. module: hr_payroll
+#: model:hr.salary.rule,name:hr_payroll.hr_rule_net
+msgid "Net"
+msgstr "实发工资"
+
+#. module: l10n_cn_hr_payroll
+#: model:hr.salary.rule.category,name:l10n_cn_hr_payroll.BT
+msgid "Pre tax income"
+msgstr "税前收入"
+
+#. module: l10n_cn_hr_payroll
+#: model:hr.salary.rule,name:l10n_cn_hr_payroll.rules_bt
+msgid "Pre tax income"
+msgstr "税前收入"
+
+#. module: l10n_cn_hr_payroll
+#: model:hr.salary.rule,name:l10n_cn_hr_payroll.hr_rule_pit
+msgid "PIT"
+msgstr "个人所得税"
+
+#. module: l10n_cn_hr_payroll
+#: model:hr.salary.rule,name:l10n_cn_hr_payroll.hr_rule_pit_f
+msgid "PIT"
+msgstr "个人所得税"
+
+#. module: l10n_cn_hr_payroll
+#: model:hr.salary.rule,name:l10n_cn_hr_payroll.rules_dysb
+msgid "Company pay social security"
+msgstr "单位缴纳社保"
+
+#. module: l10n_cn_hr_payroll
+#: model:hr.salary.rule,name:l10n_cn_hr_payroll.hr_payroll_rules_dyyb
+msgid "Company pay health insurance"
+msgstr "单位缴纳医保"
+
+#. module: l10n_cn_hr_payroll
+#: model:hr.salary.rule,name:l10n_cn_hr_payroll.hr_payroll_rules_dyyb
+msgid "Company pay Unemployment insurance"
+msgstr "单位缴纳失业保险"
+
+#. module: l10n_cn_hr_payroll
+#: model:hr.salary.rule,name:l10n_cn_hr_payroll.hr_payroll_rules_dyylbx
+msgid "Company pay pension insurance"
+msgstr "单位缴纳养老保险"
+
+#. module: l10n_cn_hr_payroll
+#: model:hr.salary.rule,name:l10n_cn_hr_payroll.hr_rule_base_salary
+msgid "Base Salary"
+msgstr "基本工资"
+
+#. module: l10n_cn_hr_payroll
+#: model:hr.salary.rule,name:l10n_cn_hr_payroll.hr_rule_base_for_pit
+msgid "Base for PIT"
+msgstr "个人所得税基数"
+
+#. module: l10n_cn_hr_payroll
+#: model:hr.salary.rule,name:l10n_cn_hr_payroll.hr_rule_base_for_si
+msgid "Base for SI"
+msgstr "社保基数"
+
+#. module: l10n_cn_hr_payroll
+#: model:hr.salary.rule,name:l10n_cn_hr_payroll.hr_rule_personal_si_sz1
+msgid "Personal SI"
+msgstr "个人社保"
+
+#. module: l10n_cn_hr_payroll
+#: model:hr.salary.rule,name:l10n_cn_hr_payroll.hr_rule_personal_si_sz2
+msgid "Personal SI"
+msgstr "个人社保"
+
+#. module: l10n_cn_hr_payroll
+#: model:hr.salary.rule,name:l10n_cn_hr_payroll.hr_rule_personal_si_sz3
+msgid "Personal SI"
+msgstr "个人社保"
+
+#. module: l10n_cn_hr_payroll
+#: model:hr.salary.rule,name:l10n_cn_hr_payroll.hr_rule_personal_si_sz4
+msgid "Personal SI"
+msgstr "个人社保"
+
+#. module: l10n_cn_hr_payroll
+#: model:hr.salary.rule,name:l10n_cn_hr_payroll.hr_rule_personal_si_sh1
+msgid "Personal SI"
+msgstr "个人社保"
+
+#. module: l10n_cn_hr_payroll
+#: model:hr.salary.rule,name:l10n_cn_hr_payroll.hr_rule_personal_si_sh2
+msgid "Personal SI"
+msgstr "个人社保"
+
+#. module: l10n_cn_hr_payroll
+#: model:hr.salary.rule,name:l10n_cn_hr_payroll.hr_rule_personal_si_sh3
+msgid "Personal SI"
+msgstr "个人社保"
+
+#. module: l10n_cn_hr_payroll
+#: model:hr.salary.rule,name:l10n_cn_hr_payroll.hr_rule_allowance
+msgid "Allowance"
+msgstr "津贴"
+
+#. module: l10n_cn_hr_payroll
+#: model:hr.salary.rule,name:l10n_cn_hr_payroll.hr_rule_transportation_allowance
+msgid "Transportation Allowance"
+msgstr "车贴补助"
+
+#. module: l10n_cn_hr_payroll
+#: model:hr.salary.rule,name:l10n_cn_hr_payroll.hr_rule_communication_allowance
+msgid "Communication Allowance"
+msgstr "话费补助"
+
+#. module: l10n_cn_hr_payroll
+#: model:hr.salary.rule,name:l10n_cn_hr_payroll.hr_rule_deduction
+msgid "Deduction"
+msgstr "扣除"
+
+#. module: l10n_cn_hr_payroll
+#: model:hr.salary.rule,name:l10n_cn_hr_payroll.hr_rule_accident_sz1
+msgid "Accident"
+msgstr "工伤"
+
+#. module: l10n_cn_hr_payroll
+#: model:hr.salary.rule,name:l10n_cn_hr_payroll.hr_rule_accident_sz2
+msgid "Accident"
+msgstr "工伤"
+
+#. module: l10n_cn_hr_payroll
+#: model:hr.salary.rule,name:l10n_cn_hr_payroll.hr_rule_accident_sz3
+msgid "Accident"
+msgstr "工伤"
+
+#. module: l10n_cn_hr_payroll
+#: model:hr.salary.rule,name:l10n_cn_hr_payroll.hr_rule_accident_sz4
+msgid "Accident"
+msgstr "工伤"
+
+#. module: l10n_cn_hr_payroll
+#: model:hr.salary.rule,name:l10n_cn_hr_payroll.hr_rule_accident_sh1
+msgid "Accident"
+msgstr "工伤"
+
+#. module: l10n_cn_hr_payroll
+#: model:hr.salary.rule,name:l10n_cn_hr_payroll.hr_rule_accident_sh2
+msgid "Accident"
+msgstr "工伤"
+
+#. module: l10n_cn_hr_payroll
+#: model:hr.salary.rule,name:l10n_cn_hr_payroll.hr_rule_accident_sh3
+msgid "Accident"
+msgstr "工伤"
+
+#. module: l10n_cn_hr_payroll
+#: model:hr.salary.rule,name:l10n_cn_hr_payroll.hr_rule_unemployment_sz1
+msgid "Unemployment"
+msgstr "失业"
+
+#. module: l10n_cn_hr_payroll
+#: model:hr.salary.rule,name:l10n_cn_hr_payroll.hr_rule_unemployment_sz2
+msgid "Unemployment"
+msgstr "失业"
+
+#. module: l10n_cn_hr_payroll
+#: model:hr.salary.rule,name:l10n_cn_hr_payroll.hr_rule_unemployment_sz3
+msgid "Unemployment"
+msgstr "失业"
+
+#. module: l10n_cn_hr_payroll
+#: model:hr.salary.rule,name:l10n_cn_hr_payroll.hr_rule_unemployment_sz4
+msgid "Unemployment"
+msgstr "失业"
+
+#. module: l10n_cn_hr_payroll
+#: model:hr.salary.rule,name:l10n_cn_hr_payroll.hr_rule_unemployment_sh1
+msgid "Unemployment"
+msgstr "失业"
+
+#. module: l10n_cn_hr_payroll
+#: model:hr.salary.rule,name:l10n_cn_hr_payroll.hr_rule_unemployment_sh2
+msgid "Unemployment"
+msgstr "失业"
+
+#. module: l10n_cn_hr_payroll
+#: model:hr.salary.rule,name:l10n_cn_hr_payroll.hr_rule_unemployment_sh3
+msgid "Unemployment"
+msgstr "失业"
+
+#. module: l10n_cn_hr_payroll
+#: model:hr.salary.rule,name:l10n_cn_hr_payroll.hr_rule_bearing_sz1
+msgid "Bearing"
+msgstr "生育"
+
+#. module: l10n_cn_hr_payroll
+#: model:hr.salary.rule,name:l10n_cn_hr_payroll.hr_rule_bearing_sz2
+msgid "Bearing"
+msgstr "生育"
+
+#. module: l10n_cn_hr_payroll
+#: model:hr.salary.rule,name:l10n_cn_hr_payroll.hr_rule_bearing_sz3
+msgid "Bearing"
+msgstr "生育"
+
+#. module: l10n_cn_hr_payroll
+#: model:hr.salary.rule,name:l10n_cn_hr_payroll.hr_rule_bearing_sz4
+msgid "Bearing"
+msgstr "生育"
+
+#. module: l10n_cn_hr_payroll
+#: model:hr.salary.rule,name:l10n_cn_hr_payroll.hr_rule_bearing_sh1
+msgid "Bearing"
+msgstr "生育"
+
+#. module: l10n_cn_hr_payroll
+#: model:hr.salary.rule,name:l10n_cn_hr_payroll.hr_rule_bearing_sh2
+msgid "Bearing"
+msgstr "生育"
+
+#. module: l10n_cn_hr_payroll
+#: model:hr.salary.rule,name:l10n_cn_hr_payroll.hr_rule_bearing_sh3
+msgid "Bearing"
+msgstr "生育"
+
+#. module: l10n_cn_hr_payroll
+#: model:hr.salary.rule,name:l10n_cn_hr_payroll.hr_rule_medical_sz1
+msgid "Medical"
+msgstr "医疗"
+
+#. module: l10n_cn_hr_payroll
+#: model:hr.salary.rule,name:l10n_cn_hr_payroll.hr_rule_medical_sz2
+msgid "Medical"
+msgstr "医疗"
+
+#. module: l10n_cn_hr_payroll
+#: model:hr.salary.rule,name:l10n_cn_hr_payroll.hr_rule_medical_sz3
+msgid "Medical"
+msgstr "医疗"
+
+#. module: l10n_cn_hr_payroll
+#: model:hr.salary.rule,name:l10n_cn_hr_payroll.hr_rule_medical_sz4
+msgid "Medical"
+msgstr "医疗"
+
+
+#. module: l10n_cn_hr_payroll
+#: model:hr.salary.rule,name:l10n_cn_hr_payroll.hr_rule_medical_sh1
+msgid "Medical"
+msgstr "医疗"
+
+#. module: l10n_cn_hr_payroll
+#: model:hr.salary.rule,name:l10n_cn_hr_payroll.hr_rule_medical_sh2
+msgid "Medical"
+msgstr "医疗"
+
+#. module: l10n_cn_hr_payroll
+#: model:hr.salary.rule,name:l10n_cn_hr_payroll.hr_rule_medical_sh3
+msgid "Medical"
+msgstr "医疗"
+
+#. module: l10n_cn_hr_payroll
+#: model:hr.salary.rule,name:l10n_cn_hr_payroll.hr_rule_pension1_sz1
+msgid "Pension"
+msgstr "养老"
+
+#. module: l10n_cn_hr_payroll
+#: model:hr.salary.rule,name:l10n_cn_hr_payroll.hr_rule_pension1_sz2
+msgid "Pension"
+msgstr "养老"
+
+#. module: l10n_cn_hr_payroll
+#: model:hr.salary.rule,name:l10n_cn_hr_payroll.hr_rule_pension1_sz3
+msgid "Pension"
+msgstr "养老"
+
+#. module: l10n_cn_hr_payroll
+#: model:hr.salary.rule,name:l10n_cn_hr_payroll.hr_rule_pension1_sz4
+msgid "Pension"
+msgstr "养老"
+
+#. module: l10n_cn_hr_payroll
+#: model:hr.salary.rule,name:l10n_cn_hr_payroll.hr_rule_pension1_sh1
+msgid "Pension"
+msgstr "养老"
+
+#. module: l10n_cn_hr_payroll
+#: model:hr.salary.rule,name:l10n_cn_hr_payroll.hr_rule_pension1_sh2
+msgid "Pension"
+msgstr "养老"
+
+#. module: l10n_cn_hr_payroll
+#: model:hr.salary.rule,name:l10n_cn_hr_payroll.hr_rule_pension1_sh3
+msgid "Pension"
+msgstr "养老"
+
+#. module: l10n_cn_hr_payroll
+#: model:hr.salary.rule,name:l10n_cn_hr_payroll.hr_rule_housing_fund_sz1
+msgid "Housing Fund"
+msgstr "住房公积金"
+
+#. module: l10n_cn_hr_payroll
+#: model:hr.salary.rule,name:l10n_cn_hr_payroll.hr_rule_housing_fund_sz2
+msgid "Housing Fund"
+msgstr "住房公积金"
+
+#. module: l10n_cn_hr_payroll
+#: model:hr.salary.rule,name:l10n_cn_hr_payroll.hr_rule_housing_fund_sz3
+msgid "Housing Fund"
+msgstr "住房公积金"
+
+#. module: l10n_cn_hr_payroll
+#: model:hr.salary.rule,name:l10n_cn_hr_payroll.hr_rule_housing_fund_sz4
+msgid "Housing Fund"
+msgstr "住房公积金"
+
+#. module: l10n_cn_hr_payroll
+#: model:hr.salary.rule,name:l10n_cn_hr_payroll.hr_rule_housing_fund_sh1
+msgid "Housing Fund"
+msgstr "住房公积金"
+
+#. module: l10n_cn_hr_payroll
+#: model:hr.salary.rule,name:l10n_cn_hr_payroll.hr_rule_housing_fund_sh2
+msgid "Housing Fund"
+msgstr "住房公积金"
+
+#. module: l10n_cn_hr_payroll
+#: model:hr.salary.rule,name:l10n_cn_hr_payroll.hr_rule_housing_fund_sh3
+msgid "Housing Fund"
+msgstr "住房公积金"
+
+#. module: l10n_cn_hr_payroll
+#: model:hr.salary.rule.category,name:l10n_cn_hr_payroll.PersonalSI
+msgid "Personal SI"
+msgstr "个人社保"
+
+#. module: l10n_cn_hr_payroll
+#: model:hr.salary.rule.category,name:l10n_cn_hr_payroll.CompanySI
+msgid "Company SI"
+msgstr "单位社保合计"
+
+#. module: l10n_cn_hr_payroll
+#: model:hr.salary.rule,name:l10n_cn_hr_payroll.hr_rule_personal_si_cp_sz1
+msgid "Company SI"
+msgstr "单位社保合计"
+
+#. module: l10n_cn_hr_payroll
+#: model:hr.salary.rule,name:l10n_cn_hr_payroll.hr_rule_personal_si_cp_sz2
+msgid "Company SI"
+msgstr "单位社保合计"
+
+#. module: l10n_cn_hr_payroll
+#: model:hr.salary.rule,name:l10n_cn_hr_payroll.hr_rule_personal_si_cp_sz3
+msgid "Company SI"
+msgstr "单位社保合计"
+
+#. module: l10n_cn_hr_payroll
+#: model:hr.salary.rule,name:l10n_cn_hr_payroll.hr_rule_personal_si_cp_sz4
+msgid "Company SI"
+msgstr "单位社保合计"
+
+#. module: l10n_cn_hr_payroll
+#: model:hr.salary.rule,name:l10n_cn_hr_payroll.hr_rule_personal_si_cp_sh1
+msgid "Company SI"
+msgstr "单位社保合计"
+
+#. module: l10n_cn_hr_payroll
+#: model:hr.salary.rule,name:l10n_cn_hr_payroll.hr_rule_personal_si_cp_sh2
+msgid "Company SI"
+msgstr "单位社保合计"
+
+#. module: l10n_cn_hr_payroll
+#: model:hr.salary.rule,name:l10n_cn_hr_payroll.hr_rule_personal_si_cp_sh3
+msgid "Company SI"
+msgstr "单位社保合计"
+
+#. module: l10n_cn_hr_payroll
+#: model:hr.salary.rule,name:l10n_cn_hr_payroll.hr_rule_union_fee
+msgid "Union Fee"
+msgstr "工会费"
+
+#. module: l10n_cn_hr_payroll
+#: model:hr.salary.rule,name:l10n_cn_hr_payroll.hr_rule_accident_cp_sz1
+msgid "Accident"
+msgstr "工伤"
+
+#. module: l10n_cn_hr_payroll
+#: model:hr.salary.rule,name:l10n_cn_hr_payroll.hr_rule_accident_cp_sz2
+msgid "Accident"
+msgstr "工伤"
+
+#. module: l10n_cn_hr_payroll
+#: model:hr.salary.rule,name:l10n_cn_hr_payroll.hr_rule_accident_cp_sz3
+msgid "Accident"
+msgstr "工伤"
+
+#. module: l10n_cn_hr_payroll
+#: model:hr.salary.rule,name:l10n_cn_hr_payroll.hr_rule_accident_cp_sz4
+msgid "Accident"
+msgstr "工伤"
+
+#. module: l10n_cn_hr_payroll
+#: model:hr.salary.rule,name:l10n_cn_hr_payroll.hr_rule_accident_cp_sh1
+msgid "Accident"
+msgstr "工伤"
+
+#. module: l10n_cn_hr_payroll
+#: model:hr.salary.rule,name:l10n_cn_hr_payroll.hr_rule_accident_cp_sh2
+msgid "Accident"
+msgstr "工伤"
+
+#. module: l10n_cn_hr_payroll
+#: model:hr.salary.rule,name:l10n_cn_hr_payroll.hr_rule_accident_cp_sh3
+msgid "Accident"
+msgstr "工伤"
+
+#. module: l10n_cn_hr_payroll
+#: model:hr.salary.rule,name:l10n_cn_hr_payroll.hr_rule_unemployment_cp_sz1
+msgid "Unemployment"
+msgstr "失业"
+
+#. module: l10n_cn_hr_payroll
+#: model:hr.salary.rule,name:l10n_cn_hr_payroll.hr_rule_unemployment_cp_sz2
+msgid "Unemployment"
+msgstr "失业"
+
+#. module: l10n_cn_hr_payroll
+#: model:hr.salary.rule,name:l10n_cn_hr_payroll.hr_rule_unemployment_cp_sz3
+msgid "Unemployment"
+msgstr "失业"
+
+#. module: l10n_cn_hr_payroll
+#: model:hr.salary.rule,name:l10n_cn_hr_payroll.hr_rule_unemployment_cp_sz4
+msgid "Unemployment"
+msgstr "失业"
+
+#. module: l10n_cn_hr_payroll
+#: model:hr.salary.rule,name:l10n_cn_hr_payroll.hr_rule_unemployment_cp_sh1
+msgid "Unemployment"
+msgstr "失业"
+
+#. module: l10n_cn_hr_payroll
+#: model:hr.salary.rule,name:l10n_cn_hr_payroll.hr_rule_unemployment_cp_sh2
+msgid "Unemployment"
+msgstr "失业"
+
+#. module: l10n_cn_hr_payroll
+#: model:hr.salary.rule,name:l10n_cn_hr_payroll.hr_rule_unemployment_cp_sh3
+msgid "Unemployment"
+msgstr "失业"
+
+#. module: l10n_cn_hr_payroll
+#: model:hr.salary.rule,name:l10n_cn_hr_payroll.hr_rule_bearing_cp_sz1
+msgid "Bearing"
+msgstr "生育"
+
+#. module: l10n_cn_hr_payroll
+#: model:hr.salary.rule,name:l10n_cn_hr_payroll.hr_rule_bearing_cp_sz2
+msgid "Bearing"
+msgstr "生育"
+
+#. module: l10n_cn_hr_payroll
+#: model:hr.salary.rule,name:l10n_cn_hr_payroll.hr_rule_bearing_cp_sz3
+msgid "Bearing"
+msgstr "生育"
+
+#. module: l10n_cn_hr_payroll
+#: model:hr.salary.rule,name:l10n_cn_hr_payroll.hr_rule_bearing_cp_sz4
+msgid "Bearing"
+msgstr "生育"
+
+#. module: l10n_cn_hr_payroll
+#: model:hr.salary.rule,name:l10n_cn_hr_payroll.hr_rule_bearing_cp_sh1
+msgid "Bearing"
+msgstr "生育"
+
+#. module: l10n_cn_hr_payroll
+#: model:hr.salary.rule,name:l10n_cn_hr_payroll.hr_rule_bearing_cp_sh2
+msgid "Bearing"
+msgstr "生育"
+
+#. module: l10n_cn_hr_payroll
+#: model:hr.salary.rule,name:l10n_cn_hr_payroll.hr_rule_bearing_cp_sh3
+msgid "Bearing"
+msgstr "生育"
+
+#. module: l10n_cn_hr_payroll
+#: model:hr.salary.rule,name:l10n_cn_hr_payroll.hr_rule_medical_cp_sz1
+msgid "Medical"
+msgstr "医疗"
+
+#. module: l10n_cn_hr_payroll
+#: model:hr.salary.rule,name:l10n_cn_hr_payroll.hr_rule_medical_cp_sz2
+msgid "Medical"
+msgstr "医疗"
+
+#. module: l10n_cn_hr_payroll
+#: model:hr.salary.rule,name:l10n_cn_hr_payroll.hr_rule_medical_cp_sz3
+msgid "Medical"
+msgstr "医疗"
+
+#. module: l10n_cn_hr_payroll
+#: model:hr.salary.rule,name:l10n_cn_hr_payroll.hr_rule_medical_cp_sz4
+msgid "Medical"
+msgstr "医疗"
+
+
+#. module: l10n_cn_hr_payroll
+#: model:hr.salary.rule,name:l10n_cn_hr_payroll.hr_rule_medical_cp_sh1
+msgid "Medical"
+msgstr "医疗"
+
+#. module: l10n_cn_hr_payroll
+#: model:hr.salary.rule,name:l10n_cn_hr_payroll.hr_rule_medical_cp_sh2
+msgid "Medical"
+msgstr "医疗"
+
+#. module: l10n_cn_hr_payroll
+#: model:hr.salary.rule,name:l10n_cn_hr_payroll.hr_rule_medical_cp_sh3
+msgid "Medical"
+msgstr "医疗"
+
+#. module: l10n_cn_hr_payroll
+#: model:hr.salary.rule,name:l10n_cn_hr_payroll.hr_rule_pension1_cp_sz1
+msgid "Pension"
+msgstr "养老"
+
+#. module: l10n_cn_hr_payroll
+#: model:hr.salary.rule,name:l10n_cn_hr_payroll.hr_rule_pension1_cp_sz2
+msgid "Pension"
+msgstr "养老"
+
+#. module: l10n_cn_hr_payroll
+#: model:hr.salary.rule,name:l10n_cn_hr_payroll.hr_rule_pension1_cp_sz3
+msgid "Pension"
+msgstr "养老"
+
+#. module: l10n_cn_hr_payroll
+#: model:hr.salary.rule,name:l10n_cn_hr_payroll.hr_rule_pension1_cp_sz4
+msgid "Pension"
+msgstr "养老"
+
+#. module: l10n_cn_hr_payroll
+#: model:hr.salary.rule,name:l10n_cn_hr_payroll.hr_rule_pension1_cp_sh1
+msgid "Pension"
+msgstr "养老"
+
+#. module: l10n_cn_hr_payroll
+#: model:hr.salary.rule,name:l10n_cn_hr_payroll.hr_rule_pension1_cp_sh2
+msgid "Pension"
+msgstr "养老"
+
+#. module: l10n_cn_hr_payroll
+#: model:hr.salary.rule,name:l10n_cn_hr_payroll.hr_rule_pension1_cp_sh3
+msgid "Pension"
+msgstr "养老"
+
+#. module: l10n_cn_hr_payroll
+#: model:hr.salary.rule,name:l10n_cn_hr_payroll.hr_rule_housing_fund_cp_sz1
+msgid "Housing Fund"
+msgstr "住房公积金"
+
+#. module: l10n_cn_hr_payroll
+#: model:hr.salary.rule,name:l10n_cn_hr_payroll.hr_rule_housing_fund_cp_sz2
+msgid "Housing Fund"
+msgstr "住房公积金"
+
+#. module: l10n_cn_hr_payroll
+#: model:hr.salary.rule,name:l10n_cn_hr_payroll.hr_rule_housing_fund_cp_sz3
+msgid "Housing Fund"
+msgstr "住房公积金"
+
+#. module: l10n_cn_hr_payroll
+#: model:hr.salary.rule,name:l10n_cn_hr_payroll.hr_rule_housing_fund_cp_sz4
+msgid "Housing Fund"
+msgstr "住房公积金"
+
+#. module: l10n_cn_hr_payroll
+#: model:hr.salary.rule,name:l10n_cn_hr_payroll.hr_rule_housing_fund_cp_sh1
+msgid "Housing Fund"
+msgstr "住房公积金"
+
+#. module: l10n_cn_hr_payroll
+#: model:hr.salary.rule,name:l10n_cn_hr_payroll.hr_rule_housing_fund_cp_sh2
+msgid "Housing Fund"
+msgstr "住房公积金"
+
+#. module: l10n_cn_hr_payroll
+#: model:hr.salary.rule,name:l10n_cn_hr_payroll.hr_rule_housing_fund_cp_sh3
+msgid "Housing Fund"
+msgstr "住房公积金"
+
+#. module: l10n_cn_hr_payroll
+#: model:hr.payroll.structure,name:l10n_cn_hr_payroll.hr_payroll_salary_structure_sz1
+msgid "SZ (SZ Hukou)"
+msgstr "深圳(深圳户口)"
+
+#. module: l10n_cn_hr_payroll
+#: model:hr.payroll.structure,name:l10n_cn_hr_payroll.hr_payroll_salary_structure_sz2
+msgid "SZ (Not-SZ Hukou, Medical level 1)"
+msgstr "深圳(非深圳户口, 基本医保一档)"
+
+#. module: l10n_cn_hr_payroll
+#: model:hr.payroll.structure,name:l10n_cn_hr_payroll.hr_payroll_salary_structure_sz3
+msgid "SZ (Not-SZ Hukou, Medical level 2)"
+msgstr "深圳(非深圳户口, 基本医保二档)"
+
+#. module: l10n_cn_hr_payroll
+#: model:hr.payroll.structure,name:l10n_cn_hr_payroll.hr_payroll_salary_structure_sz4
+msgid "SZ (Not-SZ Hukou, Medical level 3)"
+msgstr "深圳(非深圳户口, 基本医保三档)"
+
+#. module: l10n_cn_hr_payroll
+#: model:hr.payroll.structure,name:l10n_cn_hr_payroll.hr_payroll_salary_structure_sh1
+msgid "SH (CN Urban Hukou)"
+msgstr "上海(中国城镇户口)"
+
+#. module: l10n_cn_hr_payroll
+#: model:hr.payroll.structure,name:l10n_cn_hr_payroll.hr_payroll_salary_structure_sh2
+msgid "SH (CN Rural Hukou)"
+msgstr "上海(中国农村户口)"
+
+#. module: l10n_cn_hr_payroll
+#: model:hr.payroll.structure,name:l10n_cn_hr_payroll.hr_payroll_salary_structure_sh3
+msgid "SH (Foreigner W/ SI)"
+msgstr "上海(有社保的外国人)"
+
+#. module: l10n_cn_hr_payroll
+#: model:hr.payroll.structure,name:l10n_cn_hr_payroll.hr_payroll_salary_structure_sh4
+msgid "SH (Foreigner W/O S)"
+msgstr "上海(没有社保的外国人)"
+
+#. module: l10n_cn_hr_payroll
+#: code:addons/l10n_cn_hr_payroll/models/l10n_cn_hr_payroll.py:24
+#, python-format
+msgid "PIT Base must be greater than 0."
+msgstr "个人所得税基数必须大于0"

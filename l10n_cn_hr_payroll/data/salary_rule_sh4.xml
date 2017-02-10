@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+       <data>
+
+        <!-- 薪酬结构 -->
+        <record id="hr_payroll_salary_structure_sh4" model="hr.payroll.structure">
+            <field name="code">SHFNS</field>
+            <field name="name">SH (Foreigner W/O SI)</field>
+            <field name="company_id" ref="base.main_company"/>
+            <field eval="[(6, 0, [
+                    ref('hr_payroll.hr_rule_basic'),
+                    ref('hr_payroll.hr_rule_net'),
+                    ref('hr_rule_pit_f'),
+                    ref('rules_bt')
+                ])]" name="rule_ids"/>
+            <field name="parent_id"></field>
+        </record>
+
+    </data>
+</openerp>

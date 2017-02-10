@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="rules_bt" model="hr.salary.rule">
+            <field name="category_id" ref="hr_payroll.GROSS"/>
+            <field name="name">Salary Before PIT</field>
+            <field name="code">BFPIT</field>
+            <field name="appears_on_payslip" eval="True"/>
+            <field name="sequence">500</field>
+            <field name="condition_select">none</field>
+            <field name="amount_select">percentage</field>
+            <field name="amount_percentage_base">categories.BASIC + categories.ALW - categories.DED</field>
+            <field name="amount_percentage">100.0</field>
+        </record>
+
+        <record id="hr_payroll.hr_rule_net" model="hr.salary.rule">
+            <field name="name">Net</field>
+            <field name="sequence" eval="700"/>
+            <field name="code">NET</field>
+            <field name="category_id" ref="hr_payroll.NET"/>
+            <field name="condition_select">none</field>
+            <field name="amount_select">percentage</field>
+            <field name="amount_percentage_base">categories.BASIC + categories.ALW - categories.DED</field>
+            <field name="amount_percentage">100.0</field>
+            <field name="register_id" ref="hr_payroll.contrib_register_employees"/>
+        </record>
+
+        <!-- 津贴 -->
+        <record id="hr_rule_allowance" model="hr.salary.rule">
+            <field name="category_id" ref="hr_payroll.ALW"/>
+            <field name="name">Allowance</field>
+            <field name="code">ALLOWANCE</field>
+            <field name="appears_on_payslip" eval="False"/>
+            <field name="sequence">300</field>
+            <field name="condition_select">none</field>
+            <field name="amount_select">fix</field>
+        </record>
+
+        <!-- 津贴-车贴补助 -->
+        <record id="hr_rule_transportation_allowance" model="hr.salary.rule">
+            <field name="category_id" ref="hr_payroll.ALW"/>
+            <field name="parent_rule_id" ref="hr_rule_allowance"/>
+            <field name="name">Transportation Allowance</field>
+            <field name="code">TransportationAllowance</field>
+            <field name="appears_on_payslip" eval="True"/>
+            <field name="sequence">310</field>
+            <field name="condition_select">none</field>
+            <field name="amount_select">percentage</field>
+            <field name="amount_percentage_base">inputs.TransportationAllowance and inputs.TransportationAllowance.amount</field>
+            <field name="amount_percentage">100.0</field>
+        </record>
+
+        <!-- 津贴-话费补助 -->
+        <record id="hr_rule_communication_allowance" model="hr.salary.rule">
+            <field name="category_id" ref="hr_payroll.ALW"/>
+            <field name="parent_rule_id" ref="hr_rule_allowance"/>
+            <field name="name">Communication Allowance</field>
+            <field name="code">CommunicationAllowance</field>
+            <field name="appears_on_payslip" eval="True"/>
+            <field name="sequence">320</field>
+            <field name="condition_select">none</field>
+            <field name="amount_select">percentage</field>
+            <field name="amount_percentage_base">inputs.CommunicationAllowance and inputs.CommunicationAllowance.amount</field>
+            <field name="amount_percentage">100.0</field>
+        </record>
+
+        <!-- 扣除 -->
+        <record id="hr_rule_deduction" model="hr.salary.rule">
+            <field name="category_id" ref="hr_payroll.DED"/>
+            <field name="name">Deduction</field>
+            <field name="code">DEDUCTION</field>
+            <field name="appears_on_payslip" eval="False"/>
+            <field name="sequence">400</field>
+            <field name="condition_select">none</field>
+            <field name="amount_select">fix</field>
+        </record>
+
+        <!-- 扣除-工会费 -->
+        <record id="hr_rule_union_fee" model="hr.salary.rule">
+            <field name="category_id" ref="hr_payroll.DED"/>
+            <field name="parent_rule_id" ref="hr_rule_deduction"/>
+            <field name="name">Union Fee</field>
+            <field name="code">UnionFee</field>
+            <field name="appears_on_payslip" eval="True"/>
+            <field name="sequence">410</field>
+            <field name="condition_select">none</field>
+            <field name="amount_select">percentage</field>
+            <field name="amount_percentage_base">inputs.UnionFee and inputs.UnionFee.amount</field>
+            <field name="amount_percentage">100.0</field>
+        </record>
+
+        <!-- Rule Inputs -->
+        <record id="hr_rule_input_transportation_allowance" model="hr.rule.input">
+            <field name="code">TransportationAllowance</field>
+            <field name="name">Transportation Allowance</field>
+            <field name="input_id" ref="hr_rule_transportation_allowance"/>
+        </record>
+
+        <record id="hr_rule_input_communication_allowance" model="hr.rule.input">
+            <field name="code">CommunicationAllowance</field>
+            <field name="name">Communication Allowance</field>
+            <field name="input_id" ref="hr_rule_communication_allowance"/>
+        </record>
+
+        <record id="hr_rule_input_union_fee" model="hr.rule.input">
+            <field name="code">UnionFee</field>
+            <field name="name">Union Fee</field>
+            <field name="input_id" ref="hr_rule_union_fee"/>
+        </record>
+
+        <!-- 个人所得税母规则-->
+        <record id="hr_rule_pit" model="hr.salary.rule">
+            <field name="category_id" ref="hr_payroll.DED"/>
+            <field name="name">Personal Income Tax</field>
+            <field name="code">PIT</field>
+            <field name="sequence">600</field>
+            <field name="condition_select">none</field>
+            <field name="appears_on_payslip" eval="True"/>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute"><![CDATA[amount=min(BFPIT,contract.pit_base_amount)
+if amount < 3500:
+    result = 0.0
+elif amount > 3500 and (amount-3500) <= 1500:
+    result = (amount-3500) * 0.3 - 0
+elif (amount-3500) > 1500 and (amount-3500) <= 4500:
+    result = (amount-3500) * 0.1 - 105
+elif (amount-3500) > 4500 and (amount-3500) <= 9000:
+    result = (amount-3500) * 0.2 - 555
+elif (amount-3500) > 9000 and (amount-3500) <= 35000:
+    result = (amount-3500) * 0.25 - 1055
+elif (amount-3500) > 35000 and (amount-3500) <= 55000:
+    result = (amount-3500) * 0.3 - 2755
+elif (amount-3500) > 55000 and (amount-3500) <= 80000:
+    result = (amount-3500) * 0.35 - 5505
+elif (amount-3500) > 80000:
+    result = (amount-3500) * 0.45 - 13505]]></field>
+        </record>
+
+        <!-- 外国人个人所得税母规则-->
+        <record id="hr_rule_pit_f" model="hr.salary.rule">
+            <field name="category_id" ref="hr_payroll.DED"/>
+            <field name="name">Personal Income Tax</field>
+            <field name="code">PIT</field>
+            <field name="sequence">600</field>
+            <field name="condition_select">none</field>
+            <field name="appears_on_payslip" eval="True"/>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute"><![CDATA[amount=min(BFPIT,contract.pit_base_amount)
+if amount < 4800:
+    result = 0.0
+elif amount > 4800 and (amount-4800) <= 1500:
+    result = (amount-4800) * 0.3 - 0
+elif (amount-4800) > 1500 and (amount-4800) <= 4500:
+    result = (amount-4800) * 0.1 - 105
+elif (amount-4800) > 4500 and (amount-4800) <= 9000:
+    result = (amount-4800) * 0.2 - 555
+elif (amount-4800) > 9000 and (amount-4800) <= 35000:
+    result = (amount-4800) * 0.25 - 1055
+elif (amount-4800) > 35000 and (amount-4800) <= 55000:
+    result = (amount-4800) * 0.3 - 2755
+elif (amount-4800) > 55000 and (amount-4800) <= 80000:
+    result = (amount-4800) * 0.35 - 5505
+elif (amount-4800) > 80000:
+    result = (amount-4800) * 0.45 - 13505]]></field>
+        </record>
+
+    </data>
+</openerp>
