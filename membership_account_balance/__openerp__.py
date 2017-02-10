@@ -11,6 +11,7 @@
     'author': 'Elico Corp',
     'license': 'AGPL-3',
     'website': 'https://www.elico-corp.com',
+    'support': '',
     'data': [
         'views/account_view.xml',
         'views/partner_view.xml',

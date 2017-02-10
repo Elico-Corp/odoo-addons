@@ -23,6 +23,7 @@ Technical Notes (Please ignore if you are functional)
     * This module still uses V7 API since need to
     overwrite some compute functions on model: res_partner;
 
+
 Usage
 -----
 A new check box records the membership for the account.
@@ -51,5 +52,5 @@ Maintainer
 ----------
 
 .. image:: https://www.elico-corp.com/logo.png
-:alt: Elico Corp
-:target: https://www.elico-corp.com
+   :alt: Elico Corp
+   :target: https://www.elico-corp.com
