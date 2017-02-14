@@ -1,40 +1,48 @@
-language: python
 sudo: false
 cache: pip
-
-python:
-  - "2.7"
 
 addons:
   apt:
     packages:
       - expect-dev  # provides unbuffer utility
-      - python-lxml  # because pip installation is slow
+      - python-lxml # because pip installation is slow
       - python-simplejson
       - python-serial
       - python-yaml
       - wkhtmltopdf # for odoo pdf reports
       - python-ldap # for auth_ldap
+      - nodejs
+      - npm
+
+language: python
+
+python:
+  - '2.7'
+
+virtualenv:
+  system_site_packages: true
 
 env:
-  global:
-  - VERSION="9.0" TESTS="0" LINT_CHECK="0" TRANSIFEX="0"
-
   matrix:
   - LINT_CHECK="1"
   - TESTS="1" ODOO_REPO="odoo/odoo"
   - TESTS="1" ODOO_REPO="OCA/OCB"
-
-virtualenv:
-  system_site_packages: true
+  global:
+  - VERSION="8.0" TESTS="0" LINT_CHECK="0" TRANSIFEX="0"
 
 install:
   - git clone --depth=1 https://github.com/Elico-Corp/maintainer-quality-tools.git ${HOME}/maintainer-quality-tools
   - export PATH=${HOME}/maintainer-quality-tools/travis:${PATH}
   - travis_install_nightly
+  - pip install --upgrade pycrypto
+  - pip install docxtpl erppeek captcha simple-crypt python-ldap Pillow
+  - npm install -g less less-plugin-clean-css
+
+services:
+  - postgresql
 
 script:
   - travis_run_tests
 
 after_success:
-  - travis_after_tests_success
+  - travis_after_test_success
