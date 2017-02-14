@@ -11,9 +11,9 @@ for X minutes.
 
 X can be defined in "Settings", "Scheduler Actions", "Cron Watcher",
 "Technical Data", "Arguments"
-  * 5 minutes = (5,)
-  * 10 minutes = (10,)
-  * etc...
+ * 5 minutes = (5,)
+ * 10 minutes = (10,)
+ * etc...
 
 Installation
 ============

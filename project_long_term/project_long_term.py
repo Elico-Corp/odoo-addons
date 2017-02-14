@@ -24,7 +24,7 @@ from openerp.osv import fields, osv
 from openerp.addons.resource.faces import task as Task
 
 
-class project_phase(osv.osv):
+class ProjectPhase(osv.osv):
     _name = "project.phase"
     _description = "Project Phase"
 
@@ -262,7 +262,7 @@ class project_phase(osv.osv):
             default.update(name=_('%s (copy)') % (
                 self.browse(cr, uid, id, context=context).name)
             )
-        return super(project_phase, self).copy(cr, uid, id, default, context)
+        return super(ProjectPhase, self).copy(cr, uid, id, default, context)
 
     def set_draft(self, cr, uid, ids, *args):
         self.write(cr, uid, ids, {'state': 'draft'})
@@ -328,10 +328,10 @@ class project_phase(osv.osv):
         return result
 
 
-project_phase()
+ProjectPhase()
 
 
-class project_user_allocation(osv.osv):
+class ProjectUserAllocation(osv.osv):
     _name = 'project.user.allocation'
     _description = 'Phase User Allocation'
     _rec_name = 'user_id'
@@ -366,10 +366,10 @@ class project_user_allocation(osv.osv):
     }
 
 
-project_user_allocation()
+ProjectUserAllocation()
 
 
-class project(osv.osv):
+class Project(osv.osv):
     _inherit = "project.project"
 
     def _phase_count(self, cr, uid, ids, field_name, arg, context=None):
@@ -489,13 +489,13 @@ class project(osv.osv):
         if default is None:
             default = {}
         default.update(phase_ids=[])
-        new_project_id = super(project, self).copy(
+        new_project_id = super(Project, self).copy(
             cr, uid, id, default, context)
         self.map_phase(cr, uid, id, new_project_id, context=context)
         return new_project_id
 
 
-class account_analytic_account(osv.osv):
+class AccountAnalyticAccount(osv.osv):
     _inherit = 'account.analytic.account'
     _description = 'Analytic Account'
     _columns = {
@@ -507,7 +507,7 @@ class account_analytic_account(osv.osv):
 
     def on_change_template(
             self, cr, uid, ids, template_id, date_start=False, context=None):
-        res = super(account_analytic_account, self).on_change_template(
+        res = super(AccountAnalyticAccount, self).on_change_template(
             cr, uid, ids, template_id, date_start=False,
             context=context)
         if template_id and 'value' in res:
@@ -518,7 +518,7 @@ class account_analytic_account(osv.osv):
     def _trigger_project_creation(self, cr, uid, vals, context=None):
         if context is None:
             context = {}
-        res = super(account_analytic_account, self)._trigger_project_creation(
+        res = super(AccountAnalyticAccount, self)._trigger_project_creation(
             cr, uid, vals, context=context)
         if res:
             return res
@@ -529,10 +529,10 @@ class account_analytic_account(osv.osv):
             )
 
 
-account_analytic_account()
+AccountAnalyticAccount()
 
 
-class project_task(osv.osv):
+class ProjectTask(osv.osv):
     _inherit = "project.task"
     _columns = {
         'phase_id': fields.many2one(
@@ -543,6 +543,6 @@ class project_task(osv.osv):
     }
 
 
-project_task()
+ProjectTask()
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

@@ -22,7 +22,7 @@ from openerp.tools.translate import _
 from openerp.osv import fields, osv
 
 
-class project_compute_phases(osv.osv_memory):
+class ProjectComputePhases(osv.osv_memory):
     _name = 'project.compute.phases'
     _description = 'Project Compute Phases'
     _columns = {
@@ -84,6 +84,6 @@ class project_compute_phases(osv.osv_memory):
         return result
 
 
-project_compute_phases()
+ProjectComputePhases()
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

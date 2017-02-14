@@ -22,7 +22,7 @@
 from openerp.osv import fields, osv
 
 
-class project_compute_tasks(osv.osv_memory):
+class ProjectComputeTasks(osv.osv_memory):
     _name = 'project.compute.tasks'
     _description = 'Project Compute Tasks'
     _columns = {
@@ -65,6 +65,6 @@ class project_compute_tasks(osv.osv_memory):
         return result
 
 
-project_compute_tasks()
+ProjectComputeTasks()
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
