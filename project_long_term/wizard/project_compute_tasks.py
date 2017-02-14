@@ -21,11 +21,16 @@
 
 from openerp.osv import fields, osv
 
+
 class project_compute_tasks(osv.osv_memory):
     _name = 'project.compute.tasks'
     _description = 'Project Compute Tasks'
     _columns = {
-        'project_id': fields.many2one('project.project', 'Project', required=True)
+        'project_id': fields.many2one(
+            'project.project',
+            'Project',
+            required=True
+        )
     }
 
     def compute_date(self, cr, uid, ids, context=None):
@@ -33,7 +38,6 @@ class project_compute_tasks(osv.osv_memory):
         Schedule the tasks according to users and priority.
         """
         project_pool = self.pool.get('project.project')
-        task_pool = self.pool.get('project.task')
         if context is None:
             context = {}
         context['compute_by'] = 'project'
@@ -50,7 +54,8 @@ class project_compute_tasks(osv.osv_memory):
             context = {}
         mod_obj = self.pool.get('ir.model.data')
         act_obj = self.pool.get('ir.actions.act_window')
-        result = mod_obj._get_id(cr, uid, 'project_long_term', 'act_resouce_allocation')
+        result = mod_obj._get_id(
+            cr, uid, 'project_long_term', 'act_resouce_allocation')
         id = mod_obj.read(cr, uid, [result], ['res_id'])[0]['res_id']
         result = {}
         if not id:
@@ -58,6 +63,7 @@ class project_compute_tasks(osv.osv_memory):
         result = act_obj.read(cr, uid, [id], context=context)[0]
         result['target'] = 'current'
         return result
+
 
 project_compute_tasks()
 

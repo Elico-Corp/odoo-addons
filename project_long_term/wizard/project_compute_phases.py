@@ -21,6 +21,7 @@
 from openerp.tools.translate import _
 from openerp.osv import fields, osv
 
+
 class project_compute_phases(osv.osv_memory):
     _name = 'project.compute.phases'
     _description = 'Project Compute Phases'
@@ -45,15 +46,19 @@ class project_compute_phases(osv.osv_memory):
         project_pool = self.pool.get('project.project')
         data = self.read(cr, uid, ids, [], context=context)[0]
         if not data['project_id'] and data['target_project'] == 'one':
-            raise osv.except_osv(_('Error!'), _('Please specify a project to schedule.'))
+            raise osv.except_osv(
+                _('Error!'), _('Please specify a project to schedule.')
+            )
 
         if data['target_project'] == 'one':
             project_ids = [data['project_id'][0]]
         else:
-            project_ids = project_pool.search(cr, uid, [('user_id','=',uid)], context=context)
+            project_ids = project_pool.search(
+                cr, uid, [('user_id', '=', uid)], context=context)
 
         if project_ids:
-            project_pool.schedule_phases(cr, uid, project_ids, context=context)
+            project_pool.schedule_phases(
+                cr, uid, project_ids, context=context)
         return self._open_phases_list(cr, uid, data, context=context)
 
     def _open_phases_list(self, cr, uid, data, context=None):
@@ -64,13 +69,20 @@ class project_compute_phases(osv.osv_memory):
             context = {}
         mod_obj = self.pool.get('ir.model.data')
         act_obj = self.pool.get('ir.actions.act_window')
-        result = mod_obj._get_id(cr, uid, 'project_long_term', 'act_project_phase')
+        result = mod_obj._get_id(
+            cr, uid, 'project_long_term', 'act_project_phase')
         id = mod_obj.read(cr, uid, [result], ['res_id'])[0]['res_id']
         result = act_obj.read(cr, uid, [id], context=context)[0]
         result['target'] = 'current'
-        project_id = data.get('project_id') and data.get('project_id')[0] or False
-        result['context'] = {"search_default_project_id":project_id, "default_project_id":project_id, "search_default_current": 1}
+        project_id = data.get('project_id') and\
+            data.get('project_id')[0] or False
+        result['context'] = {
+            "search_default_project_id": project_id,
+            "default_project_id": project_id,
+            "search_default_current": 1
+        }
         return result
+
 
 project_compute_phases()
 
