@@ -43,19 +43,19 @@
             </field>
     	</record>-->
 
-
-        <record id="view_phase_task_search_form_group_timebox" model="ir.ui.view">
-            <field name="name">phase.task.search.form.group_timebox</field>
-            <field name="model">project.task</field>
-            <field name="type">search</field>
-            <field name="inherit_id" ref="project.view_task_search_form"/>
-            <field name="arch" type="xml">
-                <xpath expr="//filter[@name='group_user_id']" position="after">
-                    <separator orientation="vertical"/>
-                    <filter string="Timebox" name="group_timebox_id" icon="terp-gnome-cpu-frequency-applet+" domain="[]"
-                            context="{'group_by':'timebox_id'}"/>
-                </xpath>
-            </field>
-        </record>
+        <!--FIXME: group_user_id dosen't exist-->
+        <!--<record id="view_phase_task_search_form_group_timebox" model="ir.ui.view">-->
+            <!--<field name="name">phase.task.search.form.group_timebox</field>-->
+            <!--<field name="model">project.task</field>-->
+            <!--<field name="type">search</field>-->
+            <!--<field name="inherit_id" ref="project.view_task_search_form"/>-->
+            <!--<field name="arch" type="xml">-->
+                <!--<xpath expr="//filter[@name='group_user_id']" position="after">-->
+                    <!--<separator orientation="vertical"/>-->
+                    <!--<filter string="Timebox" name="group_timebox_id" icon="terp-gnome-cpu-frequency-applet+" domain="[]"-->
+                            <!--context="{'group_by':'timebox_id'}"/>-->
+                <!--</xpath>-->
+            <!--</field>-->
+        <!--</record>-->
     </data>
 </openerp>

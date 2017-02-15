@@ -5,7 +5,7 @@
 from openerp.osv import fields, orm
 
 
-class crm_batch_lead(orm.TransientModel):
+class CrmBatchLead(orm.TransientModel):
     _name = "crm.batch.lead"
     _description = "CRM Batch Lead"
 

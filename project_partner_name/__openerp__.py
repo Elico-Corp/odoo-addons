@@ -6,7 +6,6 @@
     "version": "8.0.1.0.0",
     'category': 'Project Management',
     "website": "www.elico-corp.com",
-    "support": "",
     "author": "Elico Corp",
     "license": "AGPL-3",
     "application": False,

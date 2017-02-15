@@ -13,15 +13,13 @@ class res_partner(osv.osv):
             string="Account Payable (Prepayment)",
             domain="[('type', '=', 'payable')]",
             help="This account will be used instead of the default one as the \
-                prepayment payable account for the current partner",
-            required=True),
+                prepayment payable account for the current partner"),
         'property_account_prereceivable': fields.many2one(
             'account.account',
             string="Account Receivable (Prepayment)",
             domain="[('type', '=', 'receivable')]",
             help="This account will be used instead of the default one as the \
-                prepayment receivable account for the current partner",
-            required=True),
+                prepayment receivable account for the current partner"),
     }
 
 

@@ -9,7 +9,6 @@
     'author': 'Elico Corp',
     'license': 'AGPL-3',
     'website': 'https://www.elico-corp.com',
-    'support': '',
     'data': ['cron_data.xml'],
     'installable': True,
     'application': False

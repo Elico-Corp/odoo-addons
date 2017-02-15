@@ -15,8 +15,6 @@
     ''',
     'author': 'Elico Corp',
     'sequence': '119',
-    'license': '',
-    'support': '',
     'depends': ['mail'],
     'data': ['message_list.xml',
              'wizard/read_multiple_mails.xml',

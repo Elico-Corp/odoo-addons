@@ -7,10 +7,8 @@
     'name': 'Project Extra module',
     'version': '8.0.1.0.3',
     'category': 'Project Managements',
-    'license': '',
     'author': 'Elico Corp',
     'website': 'http://www.openerp.net.cn/',
-    'support': '',
     'depends': ['project', 'project_long_term'],
     'init_xml': [],
     'update_xml': [

@@ -29,8 +29,9 @@ class Task(osv.osv):
                     task_id.project_id.partner_id
                 prefix = self._get_partner_prefix(partner_id)
 
-                if task_id.code_gap:
-                    prefix += " " + task_id.code_gap + " - "
+                # FIXME: 'project.task' object has no attribute 'code_gap'
+                # if task_id.code_gap:
+                #     prefix += " " + task_id.code_gap + " - "
 
                 res.update({
                     task_id.id: prefix + task_id.name
@@ -126,39 +127,7 @@ class Task(osv.osv):
         task_id = len(ids) and ids[0] or False
         task_id = self.browse(cr, uid, task_id, context=context)
 
-        # vals['type_id']= task_id.project_id and \
-        # task_id.project_id.type_ids and \
-        # task_id.project_id.type_ids[-1].id
         self.write(cr, uid, [task_id.id], vals, context=context)
-
-        # # LY send a email reminder to task responsible and Eric.
-        # mail_message = self.pool.get('mail.message')
-        # subject = '[' + str(task_id.id) + '] "' + \
-        #           task_id.name + '" is finished'
-        # rendered_body = "Task [%d] \"%s\" is Finished.\n\n " \
-        #                 "Task Descriptions:\n %s \n\n " \
-        #                 "Project: \"%s\".\n " \
-        #                 "Progress: %%%.2f. \n\n-----\n Good Job." \
-        #                 " \n Project Task Reminder" % (
-        #                     task_id.id,
-        #                     task_id.name,
-        #                     task_id.description,
-        #                     task_id.project_id.name,
-        #                     task_id.project_id.progress_rate or 100
-        #                 )
-        #
-        # email_from = "admin@example.com"
-        # email_to = [task_id.user_id.user_email]
-        #
-        # if task_id.user_id.user_email:
-        #     email_cc = ["admin@example.com"]
-        #
-        # mail_message.schedule_with_attach(
-        #     cr, uid, email_from, email_to, subject, rendered_body,
-        #     model="project.task", email_cc=email_cc, email_bcc=None,
-        #     reply_to=False, attachments=None, references=False,
-        #     res_id=task_id.id, subtype='plain', context=context
-        # )
         return res
 
     # LY: inherit normal priority, change color to yellow

@@ -25,7 +25,7 @@ from openerp.addons.web.http import request
 import openerp.addons.website_crm.controllers.main as main
 
 
-class Contactus(main.contactus):
+class ContactUs(main.contactus):
 
     @http.route(['/crm/contactus'], type='http', auth="public",
                 website=True, multilang=True)
@@ -35,7 +35,7 @@ class Contactus(main.contactus):
         if not kw or not challenge or not response:
             pass
         elif request.website.is_captcha_valid(challenge, response):
-            return super(Contactus, self).contactus(*args, **kw)
+            return super(ContactUs, self).contactus(*args, **kw)
         else:
             kw['error'] = set(['recaptcha_response_field'])
         return request.website.render("website.contactus", kw)

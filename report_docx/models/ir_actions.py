@@ -73,9 +73,6 @@ class IrActionsReportXml(models.Model):
                         ir_actions_report_xml.ir_values_id.id, context
                     )
                 except Exception:
-                    # raise UserError(
-                    #     _('Deletion of the action record failed.')
-                    # )
                     raise Exception(
                         _('Deletion of the action record failed.')
                     )

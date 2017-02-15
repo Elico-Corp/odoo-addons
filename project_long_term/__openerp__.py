@@ -24,7 +24,6 @@
     'version': '8.0.1.1.0',
     'author': 'Elico Corp',
     'website': 'http://www.openerp.com',
-    'support': '',
     'license': 'AGPL-3',
     'category': 'Project Management',
     'images': [
