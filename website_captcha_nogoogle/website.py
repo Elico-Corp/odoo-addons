@@ -7,7 +7,7 @@ import random
 import string
 from binascii import hexlify, unhexlify
 
-from captcha.image import ImageCaptcha
+from openerp.captcha.image import ImageCaptcha
 from simplecrypt import decrypt, encrypt
 
 from openerp import api, fields, models
