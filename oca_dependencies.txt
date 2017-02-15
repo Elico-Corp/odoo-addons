@@ -1,0 +1,1 @@
+odoo_community https://github.com/Elico-Corp/odoo_community.git 8.0
