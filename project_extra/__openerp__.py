@@ -8,7 +8,7 @@
     'version': '8.0.1.0.3',
     'category': 'Project Managements',
     'author': 'Elico Corp',
-    'website': 'http://www.openerp.net.cn/',
+    'website': 'https://www.elico-corp.com',
     'depends': ['project', 'project_long_term'],
     'init_xml': [],
     'update_xml': [

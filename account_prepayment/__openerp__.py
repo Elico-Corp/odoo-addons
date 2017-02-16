@@ -8,7 +8,7 @@
     'summary': '''Prepayment Account for customers and usage of prepayment
         account for payments in purchase''',
     'author': 'Elico Corp',
-    'website': 'http://www.elico-corp.com',
+    'website': 'https://www.elico-corp.com',
     'depends': [
         'account',
         'account_voucher',

@@ -23,7 +23,7 @@
     'name': 'Long Term Projects',
     'version': '8.0.1.1.0',
     'author': 'Elico Corp',
-    'website': 'http://www.openerp.com',
+    'website': 'https://www.elico-corp.com',
     'license': 'AGPL-3',
     'category': 'Project Management',
     'images': [
