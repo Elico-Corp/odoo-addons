@@ -5,16 +5,10 @@
 
 {
     'name': 'Project Extra module',
-    'version': '0.3',
+    'version': '8.0.1.0.3',
     'category': 'Project Managements',
-    'description': """
-        * set color yellow for high priority task, set color red for task in
-        delay.
-        * add parnter prefix for task name, in kanban view and tree view.
-        * set default stage (first, last)for action: open task and close task,
-        """,
     'author': 'Elico Corp',
-    'website': 'http://www.openerp.net.cn/',
+    'website': 'https://www.elico-corp.com',
     'depends': ['project', 'project_long_term'],
     'init_xml': [],
     'update_xml': [
@@ -25,6 +19,5 @@
     'demo_xml': [],
     'test': [],
     'installable': True,
-    'active': False,
     'certificate': '',
 }

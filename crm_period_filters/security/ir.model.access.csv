@@ -5,9 +5,7 @@ crm.access_crm_lead_manager,crm.lead.manager,crm.model_crm_lead,base.group_sale_
 crm.access_crm_phonecall_manager,crm.phonecall.manager,crm.model_crm_phonecall,base.group_sale_manager,1,1,1,0
 crm.access_crm_case_section_manager,crm.case.section.manager,crm.model_crm_case_section,base.group_sale_manager,1,1,1,0
 crm.access_crm_case_stage_manager,crm.case.stage,crm.model_crm_case_stage,base.group_sale_manager,1,1,1,0
-crm.access_crm_case_resource_type_manager,crm_case_resource_type manager,crm.model_crm_case_resource_type,base.group_sale_manager,1,1,1,0
 crm.access_crm_phonecall_report_manager,crm.phonecall.report,crm.model_crm_phonecall_report,base.group_sale_manager,1,1,1,0
-crm.access_calendar_attendee_crm_manager,calendar.attendee.crm.manager,crm.model_calendar_attendee,base.group_sale_manager,1,1,1,0
 crm.mail_mailgate_thread,mail.thread,mail.model_mail_thread,base.group_sale_salesman,1,1,1,0
 crm.access_crm_case_categ_manager,crm.case.categ manager,crm.model_crm_case_categ,base.group_sale_manager,1,1,1,0
 crm.access_base_action_rule_manager,base.action.rule manager,base_action_rule.model_base_action_rule,base.group_sale_manager,1,1,1,0

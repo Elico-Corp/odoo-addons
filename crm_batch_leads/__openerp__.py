@@ -14,7 +14,6 @@
     ],
     'data': [
         'wizard/batch_lead_view.xml',
-        'email_template.xml',
     ],
     'installable': True,
     'active': False,

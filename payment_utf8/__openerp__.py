@@ -5,7 +5,7 @@
     'name': 'Payment UTF8',
     'version': '8.0.1.0.3',
     'author': 'Elico Corp',
-    'website': 'http://www.elico-corp.com',
+    'website': 'https://www.elico-corp.com',
     'depends': [
         'account',
     ],

@@ -6,7 +6,7 @@
     'version': '8.0.0.0.2',
     'category': 'website',
     'depends': ['base', 'website'],
-    'author': 'Elico-Corp,Odoo Community Association (OCA)',
+    'author': 'Elico Corp,Odoo Community Association (OCA)',
     'license': 'AGPL-3',
     'website': 'https://www.elico-corp.com',
     'images': [],

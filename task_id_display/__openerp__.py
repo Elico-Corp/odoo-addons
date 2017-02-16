@@ -21,7 +21,7 @@
 ##############################################################################
 {
     'name': 'Task ID Display',
-    'version': '0.1',
+    'version': '8.0.1.0.0',
     'category': '',
     'depends': ['project', 'project_issue'],
     'author': 'Elico Corp',

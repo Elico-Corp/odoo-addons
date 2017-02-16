@@ -1,0 +1,3 @@
+business-requirement https://github.com/noahzaozao/business-requirement.git 8.0-noah-merge-56-57-59-61
+odoo_community https://github.com/Elico-Corp/odoo_community.git 8.0
+website https://github.com/OCA/website 8.0

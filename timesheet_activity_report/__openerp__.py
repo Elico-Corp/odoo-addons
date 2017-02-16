@@ -8,7 +8,8 @@
     'depends': [
         'project_timesheet',
         'project_issue_sheet',
-        'business_requirement'
+        'business_requirement',
+        'business_requirement_deliverable_project'
     ],
     'author': 'Elico Corp',
     'license': 'AGPL-3',
