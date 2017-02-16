@@ -28,4 +28,3 @@ class ProjectTask(models.Model):
             - TR: training task
             - TS: technical specification task
         """)
-
