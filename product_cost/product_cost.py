@@ -2,7 +2,7 @@
 # © 2015 Elico Corp (www.elico-corp.com).
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from openerp import api, fields, models, _
+from openerp import api, fields, models
 import datetime
 
 
@@ -11,18 +11,24 @@ class ProductCostBatch(models.Model):
 
     name = fields.Char(string='Name', required=True,
                        readonly=True, states={'draft': [('readonly', False)]})
-    date_start = fields.Date(string='Date From', required=True,
-                             readonly=True,
-                             default=datetime.date(datetime.date.today().year,
-                                                   datetime.date.today().month
-                                                   - 1, 1),
-                             states={'draft': [('readonly', False)]})
+    date_start = fields.Date(
+        string='Date From',
+        required=True,
+        readonly=True,
+        default=datetime.date(
+            datetime.date.today().year,
+            datetime.date.today().month - 1,
+            1
+        ),
+        states={'draft': [('readonly', False)]}
+    ),
     date_to = fields.Date(string='Date End', required=True,
                           readonly=True,
-                          default=(datetime.date(datetime.date.today().year,
-                                                 datetime.date.today().month,
-                                                 1)
-                                   - datetime.timedelta(1)),
+                          default=(
+                              datetime.date(
+                                  datetime.date.today().year,
+                                  datetime.date.today().month, 1
+                              ) - datetime.timedelta(1)),
                           states={'draft': [('readonly', False)]})
     state = fields.Selection([('draft', 'Draft'), ('close', 'Close'),
                               ], string='Status', select=True,

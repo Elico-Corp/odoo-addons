@@ -4,7 +4,11 @@
 
 import tempfile
 
-import xlrd
+try:
+    import xlrd
+except ImportError, e:
+    pass
+
 from openerp import api, fields, models, _
 from openerp.osv import osv
 
