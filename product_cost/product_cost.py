@@ -168,7 +168,7 @@ class ProductCost(models.Model):
     def _compute_cost(self):
         for batch in self:
             batch.total = batch.material_cost + batch.resource_cost +\
-                          batch.manufacture_cost
+                batch.manufacture_cost
             if batch.total:
                 batch.sale_profit = batch.sale_income - batch.total
                 batch.sale_profit_percent =\

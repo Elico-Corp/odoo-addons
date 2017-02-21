@@ -16,6 +16,7 @@
     'author': 'Elico Corp',
     'license': 'AGPL-3',
     'website': 'https://www.elico-corp.com',
+    "support": "support@elico-corp.com",
     'data': [
         'wizard/product_cost_import.xml',
         'security/ir.model.access.csv',

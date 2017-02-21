@@ -11,6 +11,7 @@
         "delivery",
     ],
     "website": "www.elico-corp.com",
+    "support": "support@elico-corp.com",
     "data": [
         'delivery_extend_view.xml',
     ],

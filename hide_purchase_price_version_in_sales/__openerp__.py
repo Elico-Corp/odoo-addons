@@ -11,6 +11,7 @@
     ],
     "category": "Reporting",
     "website": "www.elico-corp.com",
+    "support": "support@elico-corp.com",
     "installable": True,
     "application": False,
     "data": [
