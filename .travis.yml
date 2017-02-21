@@ -12,7 +12,6 @@ addons:
       - wkhtmltopdf # for odoo pdf reports
       - python-ldap # for auth_ldap
       - nodejs
-      - npm
 
 language: python
 
@@ -36,7 +35,6 @@ install:
   - travis_install_nightly
   - pip install --upgrade pycrypto
   - pip install docxtpl erppeek captcha simple-crypt python-ldap Pillow
-  - npm install -g less less-plugin-clean-css
 
 services:
   - postgresql
