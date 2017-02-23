@@ -21,7 +21,7 @@ class ProductCostBatch(models.Model):
             1
         ),
         states={'draft': [('readonly', False)]}
-    ),
+    )
     date_to = fields.Date(string='Date End', required=True,
                           readonly=True,
                           default=(

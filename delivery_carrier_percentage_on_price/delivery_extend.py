@@ -3,7 +3,8 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 import logging
-from openerp import models, fields, api
+from openerp.osv import fields
+from openerp import models, api
 from openerp.tools.translate import _
 
 
@@ -18,10 +19,12 @@ class DeliveryCarrier(models.Model):
     _name = "delivery.carrier"
 
     _columns = {
-        'percentage': fields.float('Percentage of Sales price',
-                                   required=True,
-                                   help='Percentage of delivery based compared with sales price.\
-                                   Value between 0~100.'),
+        'percentage': fields.float(
+            'Percentage of Sales price',
+            required=True,
+            help='Percentage of delivery based compared with sales price.\
+            Value between 0~100.'
+        )
     }
 
 
