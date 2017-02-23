@@ -2,18 +2,20 @@
    :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
    :alt: License: AGPL-3
 
-=================
-Snippet Baidu Map
-=================
+====================================
+Business Requirement Activity Report
+====================================
 
-This module extends the functionality of website to remove the Google Map.
+This module extends the functionality of project adding a timesheet report listed at timesheet completion analysis.
+You can use this report to communicate the timesheet analysis to the project members.
+
 
 Installation
 ============
 
 To install this module, you need to:
 
- * have basic modules installed (snippet_google_map)
+ * have basic modules installed (hr_timesheet, project_timesheet, project_issue_sheet)
 
 
 Bug Tracker
@@ -22,16 +24,14 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/Elico-Corp/odoo/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us smashing it by providing a detailed and welcomed feedback
-`here <https://github.com/Elico-Corp/odoo/issues/new?body=module:%20snippet_baidu_map%0Aversion:%20{8.0}%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
-Credits
-=======
 
 Contributors
 ------------
 
-* Luke Zheng <luke.zheng@elico-corp.com>
-    
+* Eric Caudal <eric.caudal@elico-corp.com>
+* Sébastien Maillard <sebastien.maillard@elico-corp.com>
+
 
 Maintainer
 ----------
