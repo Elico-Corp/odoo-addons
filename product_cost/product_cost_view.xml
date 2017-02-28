@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data>
+
+    <record id="action_product_cost_tree" model="ir.actions.act_window">
+        <field name="name">Product Cost</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">product.cost.batch</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="product_cost_batch_tree" model="ir.ui.view">
+        <field name="name">product cost batch tree</field>
+        <field name="model">product.cost.batch</field>
+        <field name="arch" type="xml" >
+            <tree>
+                <field name="name" />
+                <field name="date_start" />
+                <field name="date_to" />
+                <field name="state" />
+                <field name="categ_id"/>
+            </tree>
+        </field>
+    </record>
+
+      <record id="view_product_cost_tree" model="ir.ui.view">
+        <field name="name">product.cost.tree</field>
+        <field name="model">product.cost</field>
+        <field name="arch" type="xml">
+            <tree string="Product Costs" editable="bottom">
+                <field name="mo_id"/>
+                <field name="customer_id"/>
+                <field name="product_name"/>
+                <field name="product_code"/>
+                <field name="uom"/>
+                <field name="finished_product_number"/>
+                <field name="sale_income"/>
+                <field name="material_cost"/>
+                <field name="resource_cost"/>
+                <field name="manufacture_cost"/>
+                <field name="total"/>
+                <field name="sale_profit"/>
+                <field name="sale_profit_percent"/>
+                <field name="unit_material_cost"/>
+                <field name="unit_resource_cost"/>
+                <field name="unit_manufacture_cost"/>
+                <field name="unit_cost"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="product_cost_batch_form" model="ir.ui.view">
+        <field name="name">product cost batch form</field>
+        <field name="model">product.cost.batch</field>
+        <field name="arch" type="xml" >
+            <form>
+                <header>
+                    <button name="generate_product_cost_by_mrp" type="object" string="Generate Product Cost" class="oe_highlight" states="draft"/>
+                    <button name="product_cost_report" class="oe_highlight" type="object" string="Product Cost Report"
+                    attrs="{'invisible': [('cost_ids', '=', [])]}" states="draft"/>
+                    <button name="%(action_product_cost_import)d" type="action" string="Retrive" class="oe_highlight" states="draft"/>
+                    <button name="close_product_cost_batch" type="object" string="Close" states="draft" class="oe_highlight"/>
+                    <button string="Set to Draft" name="draft_product_cost_batch" type="object" states="close" />
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                  <label for="name" class="oe_edit_only"/>
+                  <h1>
+                      <field name="name"/>
+                  </h1>
+                  <group col="4">
+                      <label for="date_start" string="Period"/>
+                       <div>
+                            <field name="date_start" class="oe_inline"/> - <field name="date_to" class="oe_inline"/>
+                       </div>
+                       <field name="categ_id" widget="many2many_tags"/>
+                  </group>
+                  <separator string="Cost list"/>
+                  <field name="cost_ids"/>
+              </sheet>
+            </form>
+        </field>
+    </record>
+
+    <menuitem action="action_product_cost_tree" id="menu_product_cost" parent="mrp.menu_mrp_manufacturing" groups="account.group_account_user,mrp.group_mrp_user" name="Product Cost" sequence="60"/>
+
+    <record id="action_product_cost_batch_report_xls" model="ir.actions.report.xml">
+      <field name="name">Product Cost Report</field>
+      <field name="model">product.cost.batch</field>
+      <field name="type">ir.actions.report.xml</field>
+      <field name="report_name">report.product.cost.batch.report.xls</field>
+      <field name="report_type">xls</field>
+      <field name="auto" eval="False"/>
+    </record>
+
+    <record model="ir.values" id="action_product_cost_batch_report_xls_values">
+      <field name="name">Product Cost Report Xls</field>
+      <field name="key2">client_action_multi</field>
+      <field name="value" eval="'ir.actions.report.xml,' +str(ref('action_product_cost_batch_report_xls'))" />
+      <field name="model">product.cost.batch</field>
+    </record>  
+    
+  </data>
+</openerp>

@@ -147,6 +147,7 @@ class ReportStockValuationProduction(report_xls):
                 style
             )
 
+
 ReportStockValuationProduction(
     'report.stock.valuation.report.xls', 'report.stock.list',
     parser=ReportStockValuationParser)

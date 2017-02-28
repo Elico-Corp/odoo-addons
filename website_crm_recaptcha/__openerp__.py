@@ -20,7 +20,7 @@
 #
 ##############################################################################
 {'name': 'Contact Form reCAPTCHA',
- 'version': '1.0',
+ 'version': '8.0.1.0.0',
  'category': 'Website',
  'depends': ['website_recaptcha', 'website_crm'],
  'author': 'Elico Corp',

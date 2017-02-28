@@ -38,4 +38,6 @@ class account_account(osv.osv):
         'paypal_url': fields.function(
             _edi_paypal_url, type='char', string='Paypal Url'),
     }
+
+
 account_account()

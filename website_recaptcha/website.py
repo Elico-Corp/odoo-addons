@@ -20,10 +20,14 @@
 #
 ##############################################################################
 from openerp.osv import orm, fields
-from recaptcha.client import captcha
+
+try:
+    from recaptcha.client import captcha
+except ImportError:
+    pass
 
 
-class website(orm.Model):
+class Website(orm.Model):
     _inherit = 'website'
 
     # makes it overridable for custom theme

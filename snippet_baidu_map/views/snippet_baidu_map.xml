@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+
+        <template id="inherited" name="google map API inherited" inherit_id="snippet_google_map.s_google_map_API" active="True">
+            <xpath expr="//body/script[@src='https://maps.googleapis.com/maps/api/js?v=3.exp&#38;libraries=places']" position="replace">
+            </xpath>
+        </template>
+
+    </data>
+</openerp>

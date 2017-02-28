@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_product_cost_batch,product_cost_batch,model_product_cost_batch,mrp.group_mrp_user,1,1,1,1
+access_product_cost,product_cost,model_product_cost,mrp.group_mrp_user,1,1,1,1

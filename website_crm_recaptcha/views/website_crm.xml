@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <openerp>
     <data>
-        <template id="contactus_form_recaptcha" name="Google reCAPTCHA" inherit_id="website_crm.contactus_form" inherit_option_id="website_crm.contactus_form">
+        <template id="contactus_form_recaptcha"
+                  name="Google reCAPTCHA"
+                  inherit_id="website_crm.contactus_form">
             <xpath expr="//form" position="before">
                 <script type="text/javascript">
                         var RecaptchaOptions = {

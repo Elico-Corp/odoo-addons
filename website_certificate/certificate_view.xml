@@ -18,7 +18,7 @@
                     <label for="certificate_logo1"/>
                     <div class="oe_inline">
                         <field name="certificate_logo1" widget="image" class="
-                            oe_avatar oe_left"/>
+                        oe_avatar oe_left"/>
                     </div>
                     <label for="certificate_number2"/>
                     <div class="oe_inline">
@@ -31,7 +31,7 @@
                     <label for="certificate_logo2"/>
                     <div class="oe_inline">
                         <field name="certificate_logo2" widget="image" class="
-                            oe_avatar oe_left"/>
+                        oe_avatar oe_left"/>
                     </div>
                 </div>
             </field>
@@ -41,13 +41,15 @@
             <xpath expr="//footer//div/span[@t-field='res_company.name']" position="after">
                 <span>-
                     <a t-attf-href="#{website.certificate_url1}" target="_BLANK">
-                       <span t-field="website.certificate_logo1" t-field-options='{"widget": "image", "style": "display: inline; vertical-align: baseline;"}'/>
+                        <span t-field="website.certificate_logo1"
+                              t-field-options='{"widget": "image", "style": "display: inline; vertical-align: baseline;"}'/>
                     </a>
                     <span t-field="website.certificate_number1"/>
                 </span>
                 <span>-
                     <a t-attf-href="#{website.certificate_url2}" target="_BLANK">
-                       <span t-field="website.certificate_logo2" t-field-options='{"widget": "image", "style": "display: inline; vertical-align: baseline;"}'/>
+                        <span t-field="website.certificate_logo2"
+                              t-field-options='{"widget": "image", "style": "display: inline; vertical-align: baseline;"}'/>
                     </a>
                     <span t-field="website.certificate_number2"/>
                 </span>
