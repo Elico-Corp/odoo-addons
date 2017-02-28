@@ -20,7 +20,7 @@ Usage
 =====
 This model does the below updates for websit_sale:
  * remove the string "Taxes" in shopping cart and payment
- * Disable the "Add to cart" button and show button "预定"
+ * Disable the "Add to cart" button and show button "Order"
     when product quantity isn't available.
  * add the description and inventory status in shopping cart page
  * add the add the description and inventory status in payment page

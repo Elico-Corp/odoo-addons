@@ -39,10 +39,10 @@ $(document).ready(function () {
                 var inventory_dom = $('.js_inventory[data-line-id='+line_id+']');
                 if (data){
                     inventory_dom.attr("style","color:green");
-                    inventory_dom.val("购买").html("购买");
+                    inventory_dom.val("Purchase").html("Purchase");
                 }else {
                     inventory_dom.attr("style","color:red");
-                    inventory_dom.val("预定").html("预定");
+                    inventory_dom.val("Order").html("Order");
                 }
                 
                 return

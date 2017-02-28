@@ -57,13 +57,13 @@
             <xpath expr="//table[@id='cart_products']//tbody//tr//td[5]" position="after">
                 <t t-if="website.check_stock_inventory(line.product_id, line.product_uom_qty)">
                     <td>
-                        <div class="js_inventory" t-att-data-line-id="line.id" style="color:green">购买</div>
+                        <div class="js_inventory" t-att-data-line-id="line.id" style="color:green">Purchase</div>
                     </td>
                 </t>
                 
                 <t t-if="not website.check_stock_inventory(line.product_id, line.product_uom_qty)">
                     <td>
-                        <div class="js_inventory" t-att-data-line-id="line.id" style="color:red">预定</div>
+                        <div class="js_inventory" t-att-data-line-id="line.id" style="color:red">Order</div>
                     </td>
                 </t>
             </xpath>
