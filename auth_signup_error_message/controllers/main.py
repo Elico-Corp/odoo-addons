@@ -32,9 +32,14 @@ class AuthSignupInherit(AuthSignupHome):
                 return super(AuthSignupHome, self).web_login(*args, **kw)
             except (SignupError, AssertionError), e:
                 if e.message == self.password_error_message:
-                    qcontext['error'] = _(u'两次填写的密码不一致，请重新填写密码')
+                    qcontext['error'] = _(
+                        u'Password not match, please re-enter the password'
+                    )
                 else:
-                    qcontext['error'] = _(u'该用户名已经被注册，请重新填写用户名')
+                    qcontext['error'] = _(
+                        u'Username has been registered, \
+                        please fill in the username again'
+                    )
 
         return request.render('auth_signup.signup', qcontext)
 
