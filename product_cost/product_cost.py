@@ -2,7 +2,7 @@
 # © 2015 Elico Corp (www.elico-corp.com).
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from openerp import api, fields, models, _
+from openerp import api, fields, models
 import datetime
 
 
@@ -11,18 +11,24 @@ class ProductCostBatch(models.Model):
 
     name = fields.Char(string='Name', required=True,
                        readonly=True, states={'draft': [('readonly', False)]})
-    date_start = fields.Date(string='Date From', required=True,
-                             readonly=True,
-                             default=datetime.date(datetime.date.today().year,
-                                                   datetime.date.today().month
-                                                   - 1, 1),
-                             states={'draft': [('readonly', False)]})
+    date_start = fields.Date(
+        string='Date From',
+        required=True,
+        readonly=True,
+        default=datetime.date(
+            datetime.date.today().year,
+            datetime.date.today().month - 1,
+            1
+        ),
+        states={'draft': [('readonly', False)]}
+    )
     date_to = fields.Date(string='Date End', required=True,
                           readonly=True,
-                          default=(datetime.date(datetime.date.today().year,
-                                                 datetime.date.today().month,
-                                                 1)
-                                   - datetime.timedelta(1)),
+                          default=(
+                              datetime.date(
+                                  datetime.date.today().year,
+                                  datetime.date.today().month, 1
+                              ) - datetime.timedelta(1)),
                           states={'draft': [('readonly', False)]})
     state = fields.Selection([('draft', 'Draft'), ('close', 'Close'),
                               ], string='Status', select=True,
@@ -32,59 +38,63 @@ class ProductCostBatch(models.Model):
         inverse_name='cost_batch_id',
         string='Cost List',
         readonly=True, states={'draft': [('readonly', False)]})
-    categ_id = fields.Many2many(comodel_name='product.category',
-                                string='Internal Category',
-                                required=True, change_default=True,
-                                domain="[('type','=','normal')]",
-                                readonly=True,
-                                states={'draft': [('readonly', False)]},
-                                help="Select category for the current product")
-
-    @api.one
-    def generate_product_cost_by_mrp(self):
-        product_cost = self.env['product.cost']
-        manufacture = self.env['mrp.production']
-        cost_ids = self.cost_ids
-        if cost_ids:
-            cost_ids.unlink()
-        categ_ids = []
-        for categ_id in self.categ_id:
-            categ_ids.append(categ_id.id)
-            categ_ids.extend(categ_id.child_id.ids)
-        domain = [('date_start', '<', self.date_to),
-                  ('date_start', '>', self.date_start),
-                  ('state', 'in', ('in_production', 'done')),
-                  ('product_id.product_tmpl_id.categ_id.id',
-                   'in', categ_ids)]
-        mo_ids = manufacture.search(domain)
-        for mrp in mo_ids:
-            customer_id = False
-            sale_income = 0
-            finished_product_number = 0
-            if mrp.sale_name:
-                sale_obj = self.env['sale.order'].search(
-                    [('name', '=', mrp.sale_name)])
-                customer_id = sale_obj.partner_id.id
-                sale_income = sale_obj.amount_total
-            for finished_product in mrp.move_created_ids2:
-                if finished_product.product_qty:
-                    finished_product_number += finished_product.product_qty
-            res = {
-                'cost_batch_id': self.id,
-                'mo_id': mrp.id,
-                'customer_id': customer_id,
-                'product_name': mrp.product_id.id,
-                'finished_product_number': finished_product_number,
-                'sale_income': sale_income,
-            }
-            product_cost.create(res)
+    categ_id = fields.Many2many(
+        comodel_name='product.category',
+        string='Internal Category',
+        required=True, change_default=True,
+        domain="[('type','=','normal')]",
+        readonly=True,
+        states={'draft': [('readonly', False)]},
+        help="Select category for the current product"
+    )
 
     @api.multi
-    def draft_product_cost_batch(self):
+    def generate_product_cost_by_mrp(self):
+        for batch in self:
+            product_cost = batch.env['product.cost']
+            manufacture = batch.env['mrp.production']
+            cost_ids = batch.cost_ids
+            if cost_ids:
+                cost_ids.unlink()
+            categ_ids = []
+            for categ_id in batch.categ_id:
+                categ_ids.append(categ_id.id)
+                categ_ids.extend(categ_id.child_id.ids)
+            domain = [('date_start', '<', batch.date_to),
+                      ('date_start', '>', batch.date_start),
+                      ('state', 'in', ('in_production', 'done')),
+                      ('product_id.product_tmpl_id.categ_id.id',
+                       'in', categ_ids)]
+            mo_ids = manufacture.search(domain)
+            for mrp in mo_ids:
+                customer_id = False
+                sale_income = 0
+                finished_product_number = 0
+                if mrp.sale_name:
+                    sale_obj = batch.env['sale.order'].search(
+                        [('name', '=', mrp.sale_name)])
+                    customer_id = sale_obj.partner_id.id
+                    sale_income = sale_obj.amount_total
+                for finished_product in mrp.move_created_ids2:
+                    if finished_product.product_qty:
+                        finished_product_number +=\
+                            finished_product.product_qty
+                res = {
+                    'cost_batch_id': batch.id,
+                    'mo_id': mrp.id,
+                    'customer_id': customer_id,
+                    'product_name': mrp.product_id.id,
+                    'finished_product_number': finished_product_number,
+                    'sale_income': sale_income,
+                }
+                product_cost.create(res)
+
+    @api.multi
+    def draft_batch(self):
         return self.write({'state': 'draft'})
 
     @api.multi
-    def close_product_cost_batch(self):
+    def close_batch(self):
         return self.write({'state': 'close'})
 
     @api.multi
@@ -152,20 +162,22 @@ class ProductCost(models.Model):
             'A product cost with the same manufacture already exists !'),
     ]
 
-    @api.one
+    @api.multi
     @api.depends('finished_product_number', 'sale_income',
                  'material_cost', 'resource_cost', 'manufacture_cost')
     def _compute_cost(self):
-        self.total = \
-            self.material_cost + self.resource_cost + self.manufacture_cost
-        if self.total:
-            self.sale_profit = self.sale_income - self.total
-            self.sale_profit_percent = (self.sale_profit / self.total) * 100
-        if self.finished_product_number:
-            self.unit_material_cost = \
-                self.material_cost / self.finished_product_number
-            self.unit_resource_cost = \
-                self.resource_cost / self.finished_product_number
-            self.unit_manufacture_cost = \
-                self.manufacture_cost / self.finished_product_number
-            self.unit_cost = self.total / self.finished_product_number
+        for batch in self:
+            batch.total = batch.material_cost + batch.resource_cost +\
+                batch.manufacture_cost
+            if batch.total:
+                batch.sale_profit = batch.sale_income - batch.total
+                batch.sale_profit_percent =\
+                    (batch.sale_profit / batch.total) * 100
+            if batch.finished_product_number:
+                batch.unit_material_cost = \
+                    batch.material_cost / batch.finished_product_number
+                batch.unit_resource_cost = \
+                    batch.resource_cost / batch.finished_product_number
+                batch.unit_manufacture_cost = \
+                    batch.manufacture_cost / batch.finished_product_number
+                batch.unit_cost = batch.total / batch.finished_product_number

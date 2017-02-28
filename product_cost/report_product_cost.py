@@ -8,17 +8,19 @@ from openerp.report import report_sxw
 from openerp.addons.report_xls.report_xls import report_xls
 import logging
 from openerp.tools.translate import translate
-from openerp import _
+from openerp import api
+
 
 _logger = logging.getLogger(__name__)
 
 _ir_translation_name = 'report.product.cost.batch.report.xls'
 
 
-class report_product_cost_parser(report_sxw.rml_parse):
+class ReportProductCostParser(report_sxw.rml_parse):
 
+    @api.v7
     def __init__(self, cr, uid, name, context):
-        super(report_product_cost_parser, self).__init__(
+        super(ReportProductCostParser, self).__init__(
             cr, uid, name, context=context)
         self.context = context
         self.localcontext.update({
@@ -26,7 +28,7 @@ class report_product_cost_parser(report_sxw.rml_parse):
         })
 
 
-class report_product_cost(report_xls):
+class ReportProductCost(report_xls):
 
     def _(self, src):
         lang = self.context.get('lang', 'en_US')
@@ -34,7 +36,7 @@ class report_product_cost(report_xls):
 
     def __init__(self, name, table, rml=False,
                  parser=False, header=True, store=False):
-        super(report_product_cost, self).__init__(
+        super(ReportProductCost, self).__init__(
             name, table, rml, parser, header, store)
 
     # write table head
@@ -166,6 +168,6 @@ class report_product_cost(report_xls):
         num = self.table_info(ws, num, result, style1)
 
 
-report_product_cost(
+ReportProductCost(
     'report.report.product.cost.batch.report.xls', 'product.cost.batch',
-    parser=report_product_cost_parser)
+    parser=ReportProductCostParser)

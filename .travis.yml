@@ -12,7 +12,6 @@ addons:
       - wkhtmltopdf # for odoo pdf reports
       - python-ldap # for auth_ldap
       - nodejs
-      - npm
 
 language: python
 
@@ -34,9 +33,8 @@ install:
   - git clone --depth=1 https://github.com/Elico-Corp/maintainer-quality-tools.git ${HOME}/maintainer-quality-tools
   - export PATH=${HOME}/maintainer-quality-tools/travis:${PATH}
   - travis_install_nightly
-  - pip install --upgrade pycrypto
+  - pip install --upgrade pycrypto xlrd
   - pip install docxtpl erppeek captcha simple-crypt python-ldap Pillow
-  - npm install -g less less-plugin-clean-css
 
 services:
   - postgresql
