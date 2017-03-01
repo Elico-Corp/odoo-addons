@@ -40,7 +40,8 @@ class WebsiteSale(website_sale):
         ['/shop',
          '/shop/page/<int:page>',
          '/shop/category/<model("product.public.category"):category>',
-         '/shop/category/<model("product.public.category"):category>/page/<int:page>'],
+         '/shop/category/<model("product.public.category"):category>/\
+         page/<int:page>'],
         type='http', auth="public", website=True)
     def shop(self, page=0, category=None, search='', **post):
         cr = request.cr
@@ -125,8 +126,11 @@ class WebsiteSale(website_sale):
         from_currency = pool.get('product.price.type')._get_field_currency(
             cr, uid, 'list_price', context)
         to_currency = pricelist.currency_id
-        compute_currency = lambda price: pool['res.currency']._compute(
-            cr, uid, from_currency, to_currency, price, context=context)
+
+        def compute_currency(price):
+            return pool['res.currency']._compute(
+                cr, uid, from_currency, to_currency, price, context=context
+            )
 
         values = {
             'search': search,
