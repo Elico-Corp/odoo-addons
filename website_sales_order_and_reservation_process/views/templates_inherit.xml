@@ -70,10 +70,10 @@
 
             <xpath expr="//table[@id='cart_products']" position="after">
                 <div style="color:red">
-                    购买产品可以当日发出，预定产品当日不能发出，
+                    Purchased products can be issued on the same day, order products can't be.
                 </div>
                 <div style="color:red">
-                    需要等到第二日或者与客服联系确认发货时间
+                    Need to wait until the second day or contact customer service to confirm the delivery time.
                 </div>
             </xpath>
         </template>
