@@ -6,7 +6,7 @@
             <field name="model">check.product.qty.wizard</field>
             <field name="type">form</field>
             <field name="arch" type="xml">
-                <form string="计算产品可生产数量" version="7">
+                <form string="计算产品可生产数量">
                     <group>
                         <field name="product_name"/>
                         <field name="product_qty"/>

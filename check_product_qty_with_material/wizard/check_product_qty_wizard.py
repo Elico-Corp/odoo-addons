@@ -12,32 +12,33 @@ class check_product_qty_wizard(models.TransientModel):
     _name = "check.product.qty.wizard"
     _descript = "Check Product Qty With Mateial"
 
-    product_name = fields.Char(string='产品')
-    product_qty = fields.Float(string='数量')
-    location_id = fields.Many2one('stock.location', string='库位', default=12)
+    product_name = fields.Char(string='Product')
+    product_qty = fields.Float(string='Quantity')
+    location_id = fields.Many2one('stock.location', string='Location', default=12)
 
-    @api.one
+    @api.multi
     def apply(self):
-        # if not self.product_name:
-        #     return
-        product_qty = self.product_qty
-        product_qty = product_qty if product_qty > 1 else 1
+        for obj in self:
+            # if not obj.product_name:
+            #     return
+            product_qty = obj.product_qty
+            product_qty = product_qty if product_qty > 1 else 1
 
-        domain = [
-            '|',
-            ('name_template', 'like', self.product_name),
-            ('default_code', 'like', self.product_name)
-        ]
-        products = self.env['product.product'].search(domain)
-        bom_map = self.calculate_product_bom_weight(products, product_qty)
+            domain = [
+                '|',
+                ('name_template', 'like', obj.product_name),
+                ('default_code', 'like', obj.product_name)
+            ]
+            products = obj.env['product.product'].search(domain)
+            bom_map = obj.calculate_product_bom_weight(products, product_qty)
 
-        line_obj = self.env['check.product.qty.report']
-        lines = line_obj.search([])
-        lines.unlink()
-        self.praepare_report(bom_map)
+            line_obj = obj.env['check.product.qty.report']
+            lines = line_obj.search([])
+            lines.unlink()
+            obj.prepare_report(bom_map)
 
-        action = self.go_to_tree_view()
-        return action
+            action = obj.go_to_tree_view()
+            return action
 
     @api.multi
     def go_to_tree_view(self):
@@ -74,7 +75,7 @@ class check_product_qty_wizard(models.TransientModel):
                 bom_map.append(bom_map2[0])
         return bom_map
 
-    def praepare_report(self, bom_map):
+    def prepare_report(self, bom_map):
         product_obj = self.env['product.product']
         line_obj = self.env['check.product.qty.report']
 
@@ -98,7 +99,7 @@ class check_product_qty_wizard(models.TransientModel):
 
             child_bom = bom.get('childs', None)
             if child_bom:
-                self.praepare_report(child_bom)
+                self.prepare_report(child_bom)
 
     @api.multi
     def analyze_bom_map(self, bom_map, bom_list):
