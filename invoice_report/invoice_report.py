@@ -5,17 +5,17 @@
 from openerp import api, fields, models
 
 
-class accountInvoice(models.Model):
+class AccountInvoice(models.Model):
     _inherit = 'account.invoice'
 
     discount_amount = fields.Float(
-        string='Discount Amount', compute='_discount_amount')
+        string='Discount Amount', compute='_compute_discount_amount')
     original_amount = fields.Float(
-        string='Original Amount', compute='_original_amount')
+        string='Original Amount', compute='_compute_original_amount')
 
     @api.one
     @api.depends('invoice_line')
-    def _discount_amount(self):
+    def _compute_discount_amount(self):
         discount_amount = 0.0
         for line in self.invoice_line:
             discount_amount += line.price_unit * line.discount / 100 \
@@ -24,7 +24,7 @@ class accountInvoice(models.Model):
 
     @api.one
     @api.depends('invoice_line')
-    def _original_amount(self):
+    def _compute_original_amount(self):
         original_amount = 0.0
         for line in self.invoice_line:
             original_amount += line.price_unit * line.quantity

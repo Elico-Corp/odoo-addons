@@ -20,15 +20,12 @@
 ##############################################################################
 {
     'name': 'Invoice Report',
-    'version': '1.0',
+    'version': '8.0.1.0.0',
     'category': '',
     'depends': ['stock', 'sale'],
     'author': 'Elico Corp',
     'license': 'AGPL-3',
     'website': 'https://www.elico-corp.com',
-    'description': """
-        Module which hides the OpenERP announcement bar.
-    """,
     'data': [
         'invoice_report.xml',
         'views/report_saleorder_extend.xml',
