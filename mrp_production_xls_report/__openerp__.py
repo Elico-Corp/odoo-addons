@@ -12,6 +12,7 @@
     'author': 'Elico Corp',
     'license': 'AGPL-3',
     'website': 'https://www.elico-corp.com',
+    'support': 'support@elico-corp.com',
     'data': [
         'mrp_inherit_view.xml',
     ],

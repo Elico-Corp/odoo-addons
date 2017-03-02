@@ -8,8 +8,12 @@ import tempfile
 
 import xlwt
 
-import jdatetime
-from openerp import SUPERUSER_ID, _
+try:
+    import jdatetime
+except ImportError, e:
+    pass
+
+from openerp import SUPERUSER_ID
 from openerp.addons.report_xls.report_xls import report_xls
 from openerp.report import report_sxw
 from openerp.tools.translate import translate
