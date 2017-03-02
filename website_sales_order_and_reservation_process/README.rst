@@ -18,7 +18,9 @@ To install this module, you need to:
 
 Usage
 =====
+
 This model does the below updates for websit_sale:
+
  * remove the string "Taxes" in shopping cart and payment
  * Disable the "Add to cart" button and show button "Order"
     when product quantity isn't available.
@@ -30,7 +32,9 @@ This model does the below updates for websit_sale:
 
 Technical Notes
 ===============
+
 Inherit below template of website_forum:
+
  * total
  * checkout
  * product
