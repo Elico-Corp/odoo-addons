@@ -5,7 +5,10 @@
 import logging
 from datetime import datetime
 
-import xlwt
+try:
+    import xlwt
+except ImportError, e:
+    pass
 
 from openerp import SUPERUSER_ID
 from openerp.addons.report_xls.report_xls import report_xls
