@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record id="action_hr_payroll_report_xls" model="ir.actions.report.xml">
+            <field name="name">Payroll Horizontal Xls Report</field>
+            <field name="model">hr.payslip.run</field>
+            <field name="type">ir.actions.report.xml</field>
+            <field name="report_name">report.hr.payroll.report.xls</field>
+            <field name="report_type">xls</field>
+            <field name="auto" eval="False"/>
+            <field name="groups_id" eval="[(4, ref('base.group_system'))]" />
+        </record>
+        <record model="ir.values" id="action_hr_payroll_report_xls_values">
+            <field name="name">Hr Payroll Report Xls</field>
+            <field name="key2">client_action_multi</field>
+            <field name="value" eval="'ir.actions.report.xml,' +str(ref('action_hr_payroll_report_xls'))" />
+            <field name="model">hr.payslip.run</field>
+        </record>   
+    </data>
+</openerp>

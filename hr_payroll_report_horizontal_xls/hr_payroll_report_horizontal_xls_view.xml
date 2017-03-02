@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        
+        <record id="hr_payslip_run_form_inherited" model="ir.ui.view">
+            <field name="name">hr.payslip.run.form.inherited</field>
+            <field name="model">hr.payslip.run</field>
+            <field name="inherit_id" ref="hr_payroll.hr_payslip_run_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="/form/header/button[@name='draft_payslip_run']" position="after">
+                    <button name="payroll_report" class="oe_highlight" type="object" string="Export in Xls"
+                    attrs="{'invisible': [('slip_ids', '=', [])]}"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="hr_salary_rule_form_inherited" model="ir.ui.view">
+            <field name="name">hr.salary.rule.form.inherited</field>
+            <field name="model">hr.salary.rule</field>
+            <field name="inherit_id" ref="hr_payroll.hr_salary_rule_form"/>
+            <field name="arch" type="xml">
+                <field name="appears_on_payslip" position="after">
+                    <field name="appear_on_report"/> 
+                </field>
+            </field>
+        </record>
+
+        <record id="hr_salary_rule_category_form_inherited" model="ir.ui.view">
+            <field name="name">hr.salary.rule.category.form.inherited</field>
+            <field name="model">hr.salary.rule.category</field>
+            <field name="inherit_id" ref="hr_payroll.hr_salary_rule_category_form"/>
+            <field name="arch" type="xml">
+                <field name="parent_id" position="after">
+                    <field name="sequence_number"/> 
+                    <field name="category_type" />
+                </field>
+            </field>
+        </record>
+
+    </data>
+</openerp>
