@@ -12,6 +12,7 @@
     'author': 'Elico Corp',
     'license': 'AGPL-3',
     'website': 'https://www.elico-corp.com',
+    'support': 'support@elico-corp.com',
     'data': [
         'hr_payroll_report_horizontal_xls_view.xml',
         'report_hr_payroll.xml',

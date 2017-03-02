@@ -251,6 +251,7 @@ class ReportHrPayroll(report_xls):
             num = self.table_info(ws, num, result, title_list, style1)
             num = self.table_foot(ws, num, col, style1, style2)
 
+
 ReportHrPayroll(
     'report.report.hr.payroll.report.xls', 'hr.payslip.run',
     parser=ReportHrPayrollParser)
