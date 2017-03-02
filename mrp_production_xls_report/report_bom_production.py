@@ -43,8 +43,8 @@ class ReportSaleOrderBom(report_xls):
             generate fixed table head,return title_list and col number
         """
         ws.row(0).height = 255 * 3
-        ws.write_merge(0, 0, 0, 8, u'协邦铸业生产任务单دولت MO ریخته گری در', style0)
-        ws.write(1, 0, u'客户名称:\nنام مشتری:', style1)
+        ws.write_merge(0, 0, 0, 8, u'Production task list', style0)
+        ws.write(1, 0, u'Customer:', style1)
         partner = obj.partner_id
         if partner and partner.name:
             ws.write(1, 1, partner.name, style1)
@@ -68,18 +68,18 @@ class ReportSaleOrderBom(report_xls):
         delivery_date_list = [delivery_date.strftime("%Y-%m-%d"),
                               ir_delivery_date.strftime('%Y-%m-%d')]
         ws.write_merge(2, 2, 3, 4, ' '.join(delivery_date_list), style1)
-        ws.write(1, 2, u'生产任务单号:\nتعداد MO:', style1)
+        ws.write(1, 2, u'MO:', style1)
         ws.write_merge(1, 1, 3, 4, obj.name, style1)
-        ws.write_merge(1, 1, 5, 6, u'跟单员:\nMerchandiser:', style1)
-        ws.write(2, 0, u'下单日期:\nتنها عضویت:', style1)
+        ws.write_merge(1, 1, 5, 6, u'跟Merchandiser:', style1)
+        ws.write(2, 0, u'Date of order:', style1)
         ir_date_order = jdatetime.date.fromgregorian(day=date_order.day,
                                                      month=date_order.month,
                                                      year=date_order.year)
         oder_date = obj.date_order.split(' ')
         date_list = [oder_date[0], ir_date_order.strftime('%Y-%m-%d')]
         ws.write(2, 1, ' '.join(date_list), style1)
-        ws.write(2, 2, u'出货日期:\nتاریخ ارسال:', style1)
-        ws.write_merge(2, 2, 5, 6, u'业务员:\nفروشنده:', style1)
+        ws.write(2, 2, u'Date of dispatch:', style1)
+        ws.write_merge(2, 2, 5, 6, u'Salesman:', style1)
         # expand col width
         ws.col(1).width = 333 * 18
         ws.col(2).width = 333 * 10
@@ -96,11 +96,11 @@ class ReportSaleOrderBom(report_xls):
         """
             according to attribute, dynamic print product title.
         """
-        ws.write(num, 0, u'产品编码\nکد محصول', style1)
-        ws.write_merge(num, num, 1, 2, u'产品名称\nنام محصول', style1)
-        ws.write(num, 3, u'数量مقدار', style1)
-        ws.write(num, 4, u'装箱率نرخ بسته بندی', style1)
-        ws.write_merge(num, num, 5, 8, u'图片تصویر', style1)
+        ws.write(num, 0, u'Product code', style1)
+        ws.write_merge(num, num, 1, 2, u'产品名称', style1)
+        ws.write(num, 3, u'Quantity', style1)
+        ws.write(num, 4, u'Packing rate', style1)
+        ws.write_merge(num, num, 5, 8, u'Picture', style1)
         num += 1
         return num
 
@@ -126,19 +126,19 @@ class ReportSaleOrderBom(report_xls):
         """
             generate table foot,return row number
         """
-        ws.write(num, 0, u'金工\nرش فلز', style1)
+        ws.write(num, 0, u'Meting Work', style1)
         ws.write_merge(num, num, 1, col, u'', style1)
         ws.row(num).height = HEIGHT
         num += 1
-        ws.write(num, 0, u'包装明细\nجزئیات بسته بندی', style1)
+        ws.write(num, 0, u'Packing details', style1)
         ws.write_merge(num, num, 1, col, u'', style1)
         ws.row(num).height = HEIGHT
         num += 1
-        ws.write(num, 0, u'压铸商标\nعلامت تجاری ریخته گری', style1)
+        ws.write(num, 0, u'Die casting brand', style1)
         ws.write_merge(num, num, 1, col, u'', style1)
         ws.row(num).height = HEIGHT
         num += 1
-        ws.write(num, 0, u'备注\nاظهار', style1)
+        ws.write(num, 0, u'Comment', style1)
         if obj.client_order_ref:
             ws.write_merge(num, num, 1, col, obj.client_order_ref, style1)
         else:
@@ -149,15 +149,15 @@ class ReportSaleOrderBom(report_xls):
 
     def bom_head(self, ws, num, style1, style4):
         title_list = []
-        ws.write(num, 0, u'材料编码\nکد مواد', style4)
-        ws.write(num, 1, u'材料名称\nنام ماده', style1)
-        ws.write(num, 2, u'底部پایین', style1)
-        ws.write(num, 3, u'内涂توو', style1)
-        ws.write(num, 4, u'外涂پوشش داده شده', style1)
-        ws.write(num, 5, u'烤温درجه حرارت پخت', style1)
-        ws.write(num, 6, u'生产任务单号\nتعداد MO:', style1)
-        ws.write(num, 7, u'需用数量\nتعداد مورد نیاز', style1)
-        ws.write(num, 8, u'产品名称\nنام محصول', style1)
+        ws.write(num, 0, u'Material class number', style4)
+        ws.write(num, 1, u'Material name', style1)
+        ws.write(num, 2, u'Bottom', style1)
+        ws.write(num, 3, u'Inner coating', style1)
+        ws.write(num, 4, u'Exterior coating', style1)
+        ws.write(num, 5, u'Baking temperature', style1)
+        ws.write(num, 6, u'MO:', style1)
+        ws.write(num, 7, u'Need quantity', style1)
+        ws.write(num, 8, u'Product name', style1)
         ws.row(num).height = HEIGHT
         num += 1
         return num, title_list
@@ -309,7 +309,7 @@ class ReportSaleOrderBom(report_xls):
                     flag = True
                 num = self.product_info(ws, num, obj_dict, product, style1)
             num = self.table_foot(ws, num, 8, obj, style1)
-            material = u'领用材料明细\nجزئیات مواد مصادره'
+            material = u'Recipients materials subsidiary'
             if flag:
                 ws.write_merge(num, num, 0, 8,
                                material, style4)
@@ -334,13 +334,13 @@ class ReportSaleOrderBom(report_xls):
                         for attribute in bom_product.attribute_value_ids:
                             attr = attribute.attribute_id
                             if attr and attr.name and attribute.name:
-                                if attr.name == u'底部پایین':
+                                if attr.name == u'Bottom':
                                     obj_dict['bottom'] = attribute.name
-                                elif attr.name == u'内涂توو':
+                                elif attr.name == u'Inner coating内涂توو':
                                     obj_dict['inner'] = attribute.name
-                                elif attr.name == u'外涂پوشش داده شده':
+                                elif attr.name == u'Exterior coating':
                                     obj_dict['outside'] = attribute.name
-                                elif attr.name == u'烤温درجه حرارت پخت':
+                                elif attr.name == u'Baking temperature':
                                     obj_dict['bake'] = attribute.name
                         result.append(obj_dict)
                     num, title_list = self.bom_head(ws, num, style1, style4)

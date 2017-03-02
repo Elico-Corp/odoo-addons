@@ -4,7 +4,7 @@
 {
     'name': 'Mrp Production Xls Report',
     'version': '8.0.1.0.1',
-    'category': 'hr',
+    'category': 'Manufacturing',
     'depends': [
         'mrp',
         'report_xls',
