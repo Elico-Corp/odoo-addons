@@ -2,7 +2,12 @@
 from openerp.osv import osv, fields
 from openerp import models, fields, api, _
 from openerp.exceptions import except_orm, Warning, RedirectWarning
-import xlrd
+
+try:
+    import xlrd
+except ImportError, e:
+    pass
+
 import logging
 _logger = logging.getLogger(__name__)
 
@@ -21,14 +26,12 @@ class excel_importer(object):
         self.excel_data = {}
         self.value = {}
         self.read_excel()
-        _logger.debug("LY == INIT done in class excel import\n %s =="%self.excel_data)
-        
+
     def prepare_file_path_from_bin_value(self):
         if self.excel_bin_value:
             #todo
             self.file_path = '/tmp/file_name.xls'
         else:
-            logger.error("import excel: no excel uploaded or file path  ==\n")
             raise osv.except_osv(u'错误',u'请选择要导入的Excel文件!')
             
         return 
