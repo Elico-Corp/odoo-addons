@@ -16,7 +16,7 @@ class PosSession(models.Model):
 
     @api.one
     @api.depends('statement_ids')
-    def _get_line_ids(self):
+    def _compute_get_line_ids(self):
         line_ids = []
         for bankstate in self.statement_ids:
             line_ids.extend(bankstate.line_ids)
@@ -26,6 +26,6 @@ class PosSession(models.Model):
         'account.bank.statement.line',
         'session_id',
         string="Payment Lines",
-        compute='_get_line_ids',
+        compute='_compute_get_line_ids',
         readonly=True,
         copy=False)
