@@ -6,6 +6,7 @@
     'version': '8.0.1.0.1',
     'category': 'web',
     'depends': [
+        'website',
         'website_sale',
     ],
     'author': 'Elico Corp',
