@@ -145,6 +145,7 @@ class ReportStockQuantity(report_xls):
                 style
             )
 
+
 ReportStockQuantity(
     'report.mrp.quantity.xls', 'report.quantity',
     parser=ReportQuantityParser)

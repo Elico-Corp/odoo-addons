@@ -16,27 +16,6 @@ class Reportscraped(models.TransientModel):
     start_date = fields.Date('From')
     end_date = fields.Date('To')
 
-    # This function join the below tabels:
-    #   mrp_production
-    #   mrp_production_workcenter_line
-    #   mrp_workcenter_line_reporting
-    #   res_users
-    #   mrp_workcenter
-    #   resource_resource
-    #   sale_order
-    #
-    # It returns the records of total finished qty and scraped qty for each
-    # sale order under current user's company
-    #
-    # Example:
-    # sale_id | customer_id | product_name | process_name | scraped_qty | finished_qty
-    #---------+-------------+--------------+--------------+-------------+--------------
-    #      13 |          75 |          188 | C1           |           1 |           99
-    #      13 |          75 |          188 | A1           |          20 |          100
-    #      13 |          75 |          188 | B1           |          10 |          300
-    #         |             |            4 | Assemble     |         889 |         1088
-    #         |             |           10 | Assemble     |           2 |          200
-
     def _get_res_from_sql(self):
         user_id = self._context['uid']
         select_statement = """
@@ -160,7 +139,8 @@ class Reportscraped(models.TransientModel):
                         if attribue_line_id.attribute_id.name == u'Bottom':
                             vals[product.id]['bottom'] = \
                                 attribue_line_id.value_ids.name
-                        if attribue_line_id.attribute_id.name == u'Inner coating':
+                        if attribue_line_id.attribute_id.name == u'\
+                        Inner coating':
                             vals[product.id]['inside'] = \
                                 attribue_line_id.value_ids.name
                         if attribue_line_id.attribute_id.name == u'\

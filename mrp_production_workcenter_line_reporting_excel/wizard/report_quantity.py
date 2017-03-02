@@ -16,28 +16,6 @@ class ReportQuantity(models.TransientModel):
     start_date = fields.Date('From')
     end_date = fields.Date('To')
 
-    # This function join the below tabels:
-    #   mrp_production
-    #   mrp_production_workcenter_line
-    #   mrp_workcenter_line_reporting
-    #   res_users
-    #   mrp_workcenter
-    #   resource_resource
-    #   sale_order
-    #
-    # It returns the records of total finished qty for
-    # sale order under current user's company
-    #
-    # Example:
-    # sale_id | customer_id | product_name | product_qty |   process_name    | finished_qty
-    # ---------+-------------+--------------+-------------+-------------------+--------------
-    #      13 |          75 |          188 |    1110.000 | C1                |           99
-    #      13 |          75 |          188 |    1110.000 | B1                |          300
-    #      13 |          75 |          188 |    1110.000 | A1                |          100
-    #         |             |           33 |       1.000 | Repairs workshop  |
-    #         |             |            4 |       3.000 | Assemble          |         1088
-    #         |             |           10 |       2.000 | Assemble          |
-    #         |             |           33 |       1.000 | Assembly workshop |
     def _get_res_from_sql(self):
         user_id = self._context['uid']
 

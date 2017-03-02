@@ -147,6 +147,7 @@ class ReportStockScraped(report_xls):
                 style
             )
 
+
 ReportStockScraped(
     'report.mrp.scraped.xls', 'report.scraped',
     parser=ReportScrapedParser)
