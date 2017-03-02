@@ -117,15 +117,16 @@
                 </t>
             </xpath>
         </template>
-        <template id="remove_odoo_information" inherit_id="website.layout_footer_copyright">
-            <xpath expr="//div[@class='pull-right']" position="replace">
-                <div class="container copyright">
-                    <div class="col-md-12 text-center">
-                        <hr/>
-                        <div>Copyright &amp;copy; <span t-field="res_company.name">Company name</span></div>
-                    </div>
-                </div>
-            </xpath>
-        </template>
+        <!-- FIXME: fix the pull-right not found issue-->
+        <!--<template id="remove_odoo_information" inherit_id="website.layout_footer_copyright">-->
+            <!--<xpath expr="//div[@class='pull-right']" position="replace">-->
+                <!--<div class="container copyright">-->
+                    <!--<div class="col-md-12 text-center">-->
+                        <!--<hr/>-->
+                        <!--<div>Copyright &amp;copy; <span t-field="res_company.name">Company name</span></div>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</xpath>-->
+        <!--</template>-->
     </data>
 </openerp>
