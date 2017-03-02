@@ -241,13 +241,13 @@ class ReportQuantity(models.TransientModel):
     def _get_table_titile(self, process_len):
         # save the format in col:title
         title = {
-            u'0': u"销售订单سفارش فروش",
-            u'1': u"客户مشتری",
-            u'2': u"产品محصول",
-            u'3': u"底部پایین",
-            u'4': u"内涂توو",
-            u'5': u"外涂پوشش داده شده",
-            u'6': u"数量مقدار",
+            u'0': u"Sales Order",
+            u'1': u"Customer",
+            u'2': u"Products",
+            u'3': u"Bottom",
+            u'4': u"Inner coating",
+            u'5': u"Exterior coating",
+            u'6': u"Quantity",
         }
 
         index = 7

@@ -157,14 +157,14 @@ class Reportscraped(models.TransientModel):
             for attribue_line_id in product.attribute_line_ids:
                 if attribue_line_id.attribute_id:
                     if attribue_line_id.value_ids:
-                        if attribue_line_id.attribute_id.name == u'底部پایین':
+                        if attribue_line_id.attribute_id.name == u'Bottom':
                             vals[product.id]['bottom'] = \
                                 attribue_line_id.value_ids.name
-                        if attribue_line_id.attribute_id.name == u'内涂توو':
+                        if attribue_line_id.attribute_id.name == u'Inner coating':
                             vals[product.id]['inside'] = \
                                 attribue_line_id.value_ids.name
                         if attribue_line_id.attribute_id.name == u'\
-                        外涂پوشش داده شده':
+                        Exterior coating':
                             vals[product.id]['outside'] = \
                                 attribue_line_id.value_ids.name
         return vals
@@ -257,15 +257,15 @@ class Reportscraped(models.TransientModel):
     def _get_table_titile(self, process_len):
         # save the format in col:title
         title = {
-            u'0': u"销售订单سفارش فروش",
-            u'1': u"客户مشتری",
-            u'2': u"产品محصول",
-            u'3': u"底部پایین",
-            u'4': u"内涂توو",
-            u'5': u"外涂پوشش داده شده",
-            u'6': u"完成数量تعداد کامل",
-            u'7': u"总报废量مقدار کل ضایعات",
-            u'8': u"报废率نرخ قراضه"
+            u'0': u"Sales Order",
+            u'1': u"Customer",
+            u'2': u"Products",
+            u'3': u"Bottom",
+            u'4': u"Inner coating",
+            u'5': u"Exterior coating",
+            u'6': u"Quantity completion",
+            u'7': u"Total scrap amount",
+            u'8': u"Scrappage",
         }
 
         index = 9

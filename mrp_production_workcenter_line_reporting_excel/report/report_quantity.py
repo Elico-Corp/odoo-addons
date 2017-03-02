@@ -120,7 +120,7 @@ class ReportStockQuantity(report_xls):
         col = 0
         total_col = len(data['title'])
 
-        main_title = u"协邦铸业产品工序产量报告ریخته گری دولت گزارش تولید گام محصول"
+        main_title = u"Foundry industry product process production report"
         self._write_table_head(
             ws,
             # start row

@@ -122,7 +122,7 @@ class ReportStockScraped(report_xls):
         total_col = len(data['title'])
 
         main_title = u"\
-        协邦铸业生产工序报废报告انجمن صنعت ریخته گری فرآیندهای تولید دولت قراضه گزارش"
+        Foundry industry product process production report"
         self._write_table_head(
             ws,
             # start row
