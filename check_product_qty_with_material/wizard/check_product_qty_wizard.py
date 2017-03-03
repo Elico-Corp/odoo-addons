@@ -14,7 +14,11 @@ class check_product_qty_wizard(models.TransientModel):
 
     product_name = fields.Char(string='Product')
     product_qty = fields.Float(string='Quantity')
-    location_id = fields.Many2one('stock.location', string='Location', default=12)
+    location_id = fields.Many2one(
+        'stock.location',
+        string='Location',
+        default=12
+    )
 
     @api.multi
     def apply(self):
@@ -48,8 +52,8 @@ class check_product_qty_wizard(models.TransientModel):
             'action_check_product_qty_report_tree')
         action_id = action_id and action_id[1]
 
-        final_url = "/web#page=0&limit=&view_type=list&model=check.product.qty.report&" + \
-            "action=" + str(action_id)
+        final_url = "/web#page=0&limit=&view_type=list&model=" + \
+            "check.product.qty.report&action=" + str(action_id)
 
         return {
             'type': 'ir.actions.act_url',
@@ -86,7 +90,7 @@ class check_product_qty_wizard(models.TransientModel):
             product_qty = bom.get('product_qty', 0)
             can_product_qty = bom.get('can_product_qty', 0)
             diff_qty = product_qty - can_product_qty if \
-                product_qty - can_product_qty >0 else 0
+                product_qty - can_product_qty > 0 else 0
 
             vals = {
                 'product_name': bom.get('level', 1) * "------" + name,
@@ -136,10 +140,13 @@ class check_product_qty_wizard(models.TransientModel):
             bom_list, key=lambda bom: bom[0].get('level', 0), reverse=True)
 
         for bom in bom_list:
-            can_product_qty = 0
-            can_product_qty = \
-                min([x.get('can_product_qty', 0) +
-                    (x.get('stock_qty', 0) if x.get('childs', False) else 0) for x in bom])
+            result_list = []
+            for x in bom:
+                result_list.append(
+                    x.get('can_product_qty', 0) +\
+                    (x.get('stock_qty', 0) if x.get('childs', False) else 0))
+
+            can_product_qty = min(result_list)
             for bom2 in bom_list:
                 for line in bom2:
                     if line.get('childs', False) == bom:
