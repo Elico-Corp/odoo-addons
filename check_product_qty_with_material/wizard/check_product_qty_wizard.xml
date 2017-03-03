@@ -20,7 +20,7 @@
             </field>
         </record>
 
-        <act_window name="计算产品可生产数量" res_model="check.product.qty.wizard" view_mode="form" target="new" id="action_check_product_qty_wizard"/>
-        <menuitem name="计算产品可生产数量" id="menu_check_product_qty_wizard" parent="mrp.menu_mrp_planning" action="action_check_product_qty_wizard" sequence="9"/>
+        <act_window name="Calculator quantity production" res_model="check.product.qty.wizard" view_mode="form" target="new" id="action_check_product_qty_wizard"/>
+        <menuitem name="Calculator quantity production" id="menu_check_product_qty_wizard" parent="mrp.menu_mrp_planning" action="action_check_product_qty_wizard" sequence="9"/>
     </data>
 </openerp>

@@ -10,7 +10,7 @@ class CheckProductQtyReport(models.Model):
     _descript = "Check Product Qty Report"
 
     product_name = fields.Char(string='Product')
-    product_qty = fields.Float(string='Number of material')
-    stock_qty = fields.Float(string='Number of stock')
-    can_product_qty = fields.Float(string='Number can be produced')
-    diff_qty = fields.Float(string='Number of differences')
+    product_qty = fields.Float(string='Qty of material')
+    stock_qty = fields.Float(string='Stock Qty')
+    can_product_qty = fields.Float(string='Qty that can be produced')
+    diff_qty = fields.Float(string='Difference qty')
