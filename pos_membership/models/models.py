@@ -19,13 +19,14 @@ class AccountJournal(models.Model):
 class AccountInvoice(models.Model):
     _inherit = 'account.invoice'
 
-    @api.one
+    @api.multi
     def _is_there_membership_product(self):
-        if self.invoice_line:
-            for l in self.invoice_line:
-                if l.product_id.membership:
-                    return True
-        return False
+        for obj in self:
+            if obj.invoice_line:
+                for l in obj.invoice_line:
+                    if l.product_id.membership:
+                        return True
+            return False
 
 
 class AccountVoucher(models.Model):
