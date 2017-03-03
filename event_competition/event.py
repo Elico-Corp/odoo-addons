@@ -48,7 +48,7 @@ class EventSerial(models.Model):
 
 
 # Odoo offical class so i need to respect their class name convention.
-class event_registration(models.Model):
+class EventRegistration(models.Model):
     """ Event Registration """
     _inherit = 'event.registration'
 
@@ -65,7 +65,7 @@ class event_registration(models.Model):
 
     @api.model
     def create(self, vals):
-        res = super(event_registration, self).create(vals)
+        res = super(EventRegistration, self).create(vals)
         # Confirm the serial key when the registration is created.
         if res:
             res.serial_id.confirm()
@@ -76,4 +76,4 @@ class event_registration(models.Model):
         # cancel serial
         for registration in self:
             registration.serial_id.cancel()
-        return super(event_registration, self).unlink()
+        return super(EventRegistration, self).unlink()
