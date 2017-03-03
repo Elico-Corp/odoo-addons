@@ -1,11 +1,12 @@
 # -*- coding: utf-8 -*-
-# © 2016 Elico Corp (www.elico-corp.com).
+# © 2015 Elico Corp (www.elico-corp.com).
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-import openerp.addons.decimal_precision as dp
-from openerp import _, api, fields, models
-from openerp.exceptions import Warning
+from openerp import api, fields, models, _
 from openerp.osv import fields as old_fields
+from openerp.exceptions import Warning
+
+import openerp.addons.decimal_precision as dp
 
 
 class AccountJournal(models.Model):
@@ -18,9 +19,8 @@ class AccountJournal(models.Model):
 class AccountInvoice(models.Model):
     _inherit = 'account.invoice'
 
-    @api.multi
+    @api.one
     def _is_there_membership_product(self):
-        self.ensure_one()
         if self.invoice_line:
             for l in self.invoice_line:
                 if l.product_id.membership:
@@ -55,7 +55,7 @@ class AccountVoucher(models.Model):
 
             # check if there is enough membership balance
             if not self._check_enough_membership_balance():
-                raise Warning(_('Not enough membership balance!'))
+                raise Warning(_('No enough membership balance!'))
         return super(AccountVoucher, self).button_proforma_voucher()
 
 
