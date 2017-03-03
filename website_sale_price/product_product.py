@@ -19,12 +19,13 @@ class product_template(osv.Model):
             product = p.product_variant_ids[0]
             if user.property_product_pricelist:
                 price = \
-                self.pool.get('product.pricelist').price_get(
-                    cr, SUPERUSER_ID, [user.property_product_pricelist.id],
-                    product.id, 1.0, user.partner_id.id, {
-                        'uom': product.uom_id.id,
-                        'date': fields.datetime.now,
-                    })[user.property_product_pricelist.id]
+                    self.pool.get('product.pricelist').price_get(
+                        cr, SUPERUSER_ID,
+                        [user.property_product_pricelist.id],
+                        product.id, 1.0, user.partner_id.id, {
+                            'uom': product.uom_id.id,
+                            'date': fields.datetime.now,
+                        })[user.property_product_pricelist.id]
                 if price is False:
                     price = product.price
             res[p.id] = price
