@@ -143,7 +143,7 @@ class check_product_qty_wizard(models.TransientModel):
             result_list = []
             for x in bom:
                 result_list.append(
-                    x.get('can_product_qty', 0) +\
+                    x.get('can_product_qty', 0) + \
                     (x.get('stock_qty', 0) if x.get('childs', False) else 0))
 
             can_product_qty = min(result_list)
