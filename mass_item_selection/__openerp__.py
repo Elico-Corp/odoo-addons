@@ -2,7 +2,7 @@
 # © 2015 Elico Corp (www.elico-corp.com).
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 {
-    'name': 'Add items of mass',
+    'name': 'Mass item selection',
     'version': '8.0.1.0.1',
     'depends': [
         'sale',
@@ -13,10 +13,10 @@
     'license': 'AGPL-3',
     'website': 'https://www.elico-corp.com',
     'data': [
-        'wizard/mass_items.xml',
+        'wizard/mass_item_selection.xml',
         'wizard/mass_items_confirm.xml',
         'wizard/mass_items_quantities.xml',
-        'views/mass_items.xml',
+        'views/mass_item_selection.xml',
         'views/quantity.xml',
     ],
     'installable': True,
