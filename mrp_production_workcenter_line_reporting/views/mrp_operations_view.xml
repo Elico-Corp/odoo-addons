@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="mrp_production_workcenter_line_form_inherit2" model="ir.ui.view">
+            <field name="name">mrp.production.workcenter.line.form2</field>
+            <field name="model">mrp.production.workcenter.line</field>
+            <field name="inherit_id" ref="mrp_operations.mrp_production_workcenter_form_view_inherit"/>
+            <field name="arch" type="xml">
+                <xpath expr="//page[@string='Information']" position="after">
+                    <page string="Finished and Scraped reporting">
+                        <field name="reporting_ids">
+                            <tree>
+                                <field name="date" />
+                                <field name="finished_qty" sum="Total"/>
+                                <field name="scraped_qty" sum="Total"/>
+                                <field name="scraped_reason_id"/>
+                            </tree>
+                        </field>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</openerp>

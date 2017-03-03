@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_mrp_workcenter_line_reporting,mrp.workcenter.line.reporting,model_mrp_workcenter_line_reporting,mrp.group_mrp_user,1,1,1,1
+access_mrp_workcenter_line_scraped_reason,mrp.workcenter.line.scraped.reason,model_mrp_workcenter_line_scraped_reason,mrp.group_mrp_user,1,1,1,1
