@@ -5,7 +5,7 @@
 from openerp import fields, models
 
 
-class check_product_qty_report(models.Model):
+class CheckProductQtyReport(models.Model):
     _name = "check.product.qty.report"
     _descript = "Check Product Qty Report"
 

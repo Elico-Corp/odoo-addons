@@ -11,8 +11,7 @@
     'author': 'Elico Corp',
     'license': 'AGPL-3',
     'website': 'https://www.elico-corp.com',
-    'description': """
-    """,
+    'support': 'support@elico-corp.com',
     'data': [
         'wizard/check_product_qty_wizard.xml',
         'product_view.xml',
