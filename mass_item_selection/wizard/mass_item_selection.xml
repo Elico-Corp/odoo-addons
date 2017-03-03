@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="view_mass_items" model="ir.ui.view">
+            <field name="name">mass_items</field>
+            <field name="model">mass.items</field>
+            <field name="arch" type="xml">
+                <form string="Order Items">               
+                    <group colspan="4" >
+                        <div>
+                            <separator string="Products" colspan="4"/>
+                            <newline/>
+                            <field name="product_ids">
+                                <tree>
+                                    <field name="name" />
+                                    <field name="default_code"/>
+                                    <field name="categ_id" />
+                                    <field name="ean13" />
+                                </tree>
+                            </field>
+                        </div>
+                    </group>
+                    <footer>
+                        <button name="adjust_quantities" type="object" string="Adjust Quantities" class="oe_highlight"/>
+                        or
+                        <button special="cancel" string="Cancel" name="cancel_sheet" type="object"/>
+                    </footer>
+               </form>
+            </field>
+        </record>
+
+        <record id="action_mass_items" model="ir.actions.act_window">
+            <field name="name">Items</field>
+            <field name="res_model">mass.items</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_mass_items"/>
+            <field name="target">new</field>
+        </record>
+
+    </data>
+</openerp>
