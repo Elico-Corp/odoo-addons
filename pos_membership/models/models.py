@@ -56,7 +56,7 @@ class AccountVoucher(models.Model):
 
             # check if there is enough membership balance
             if not self._check_enough_membership_balance():
-                raise Warning(_('No enough membership balance!'))
+                raise Warning(_('Not enough membership balance!'))
         return super(AccountVoucher, self).button_proforma_voucher()
 
 
