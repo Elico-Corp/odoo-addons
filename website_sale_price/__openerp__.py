@@ -8,7 +8,12 @@
     'version': '1.0',
     'description': """""",
     'author': 'aviot',
-    'depends': ['product','website_sale'],
-    'qweb': ['views/templates.xml'],
+    'depends': [
+        'product',
+        'website_sale'
+    ],
+    'qweb': [
+        'views/templates.xml'
+    ],
     'installable': True,
 }
