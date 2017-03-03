@@ -9,15 +9,12 @@
     'category': 'Project Managements',
     'author': 'Elico Corp',
     'website': 'https://www.elico-corp.com',
-    'depends': ['project', 'project_long_term'],
+    'depends': ['project'],
     'init_xml': [],
     'update_xml': [
-            'project_view.xml',
             'project_data.xml',
             'security/ir.model.access.csv',
         ],
-    'demo_xml': [],
-    'test': [],
     'installable': True,
     'certificate': '',
 }

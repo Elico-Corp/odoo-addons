@@ -58,17 +58,6 @@ class Task(osv.osv):
     def onchange_project(self, cr, uid, ids, project_id):
         res = super(Task, self).onchange_project(cr, uid, ids, project_id)
 
-        if project_id and 'value' in res:
-            project = self.pool.get('project.project').browse(
-                cr, uid, [project_id])
-            # LY if no phase in project, leave phase empty
-            res['value'].update(
-                {
-                    'phase_id': project[0] and
-                    project[0].phase_ids and
-                    project[0].phase_ids[0].id or False
-                }
-            )
         return res
 
     def _task_to_update_after_project_change(
