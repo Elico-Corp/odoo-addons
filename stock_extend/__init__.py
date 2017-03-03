@@ -1,5 +1,8 @@
 # -*- coding: utf-8 -*-
-import stock_picking
-import excel_importer
-import tests
-import wizard
+# © 2016 Elico corp (www.elico-corp.com)
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+
+from . import stock_picking
+from . import excel_importer
+from . import tests
+from . import wizard

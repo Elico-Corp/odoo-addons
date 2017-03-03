@@ -85,4 +85,3 @@
         <menuitem name="产品导入" id="menu_import_product_from_excel" parent="stock.menu_stock_product" action="action_import_product_from_excel" sequence="7"/>
     </data>
 </openerp>
-
