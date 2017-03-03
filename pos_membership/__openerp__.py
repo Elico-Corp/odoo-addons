@@ -6,7 +6,7 @@
     'version': '8.0.1.0.2',
     'category': 'Generic Modules',
     'depends': [
-        'membership_account_balance',
+        'account_membership_balance',
         'point_of_sale',
         'account_accountant',
         'account_voucher',
