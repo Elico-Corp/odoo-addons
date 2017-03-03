@@ -6,7 +6,7 @@ from openerp import SUPERUSER_ID
 from openerp.osv import osv, fields
 
 
-class product_template(osv.Model):
+class ProductTemplate(osv.Model):
     _inherit = 'product.template'
 
     def _user_product_price(self, cr, uid, ids, name, arg, context=None):

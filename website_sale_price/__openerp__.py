@@ -5,9 +5,9 @@
     'name': 'Website Sale Product Price',
     'category': 'Hidden',
     'summary': '',
-    'version': '1.0',
-    'description': """""",
-    'author': 'aviot',
+    'version': '8.0.1.0.0',
+    'author': 'Elico Corp',
+    'support': 'support@elico-corp.com',
     'depends': [
         'product',
         'website_sale'
