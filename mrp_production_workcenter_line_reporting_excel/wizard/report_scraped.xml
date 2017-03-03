@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="view_report_scraped" model="ir.ui.view">
+            <field name="name">Report Scraped</field>
+            <field name="model">report.scraped</field>
+            <field name="arch" type="xml">
+                <form string="Stock">
+                    <group>
+                        <group>
+                            <field name="start_date"/>
+                        </group>
+                        <group>
+                            <field name="end_date"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="sale_order"/>
+                        <field name="partner_id"/>
+                    </group>
+
+                    <notebook>
+                        <page string="Product">
+                            <field name="product_product">
+                                <tree>
+                                    <field name="name"/>
+                                </tree>
+                            </field>
+                        </page>   
+                    </notebook>
+
+                    <footer>
+                        <button name="print_report" type="object" string="Print" class="oe_highlight"/>
+                        or
+                        <button special="cancel" string="Cancel" name="cancel"/>
+                    </footer>
+               </form>
+            </field>
+        </record>
+
+        <record id="action_report_scraped" model="ir.actions.act_window">
+            <field name="name">Scraped Report</field>
+            <field name="res_model">report.scraped</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_report_scraped"/>
+            <field name="target">new</field>
+        </record>
+
+        <menuitem id="menu_report_mrp_scraped" action="action_report_scraped" parent="mrp.next_id_77" sequence="12"/>
+
+    </data>
+</openerp>

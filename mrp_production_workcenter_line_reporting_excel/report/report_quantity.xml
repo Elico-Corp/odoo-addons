@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="report_mrp_quantity" model="ir.actions.report.xml">
+            <field name="name">Report Mrp Quantity</field>
+            <field name="model">report.quantity</field>
+            <field name="type">ir.actions.report.xml</field>
+            <field name="report_name">mrp.quantity.xls</field>
+            <field name="report_type">xls</field>
+            <field name="auto" eval="False"/>
+        </record>
+    </data>
+</openerp>
