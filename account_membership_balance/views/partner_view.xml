@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
     <data>
-        <record id="view_partner_membershiop" model="ir.ui.view">
+        <record id="view_partner_membership" model="ir.ui.view">
             <field name="name">res.partner.property.form.membership</field>
             <field name="model">res.partner</field>
             <field name="inherit_id" ref="base.view_partner_form"/>

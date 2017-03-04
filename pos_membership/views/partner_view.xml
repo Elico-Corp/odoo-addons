@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
     <data>
-        <record id="view_partner_membershiop" model="ir.ui.view">
+        <record id="view_partner_membership" model="ir.ui.view">
             <field name="name">res.partner.property.form.membership</field>
             <field name="model">res.partner</field>
-            <field name="inherit_id" ref="membership_account_balance.view_partner_membershiop"/>
+            <field name="inherit_id" ref="account_membership_balance.view_partner_membership"/>
             <field name="arch" type="xml">
                 <xpath expr="//field[@name='membership_total']" position="after">
                     <field name="membership_total_future"/>
