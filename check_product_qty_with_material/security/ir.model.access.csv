@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_check_product_qty_report,access_check_product_qty_report,model_check_product_qty_report,,1,0,0,0

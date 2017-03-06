@@ -15,6 +15,7 @@
     'data': [
         'wizard/check_product_qty_wizard.xml',
         'product_view.xml',
+        'security/ir.model.access.csv',
     ],
     'installable': True,
     'application': False,
