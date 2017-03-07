@@ -5,10 +5,10 @@
     'name': 'Paypal Credit card Acquirer',
     'category': 'Hidden',
     'summary': 'Payment Acquirer: Paypal Credit card Implementation',
-    'version': '1.0',
-    'description': """Paypal Credit card Payment Acquirer""",
-    'author': 'OpenERP SA',
+    'version': '8.0.1.0.0',
+    'author': 'Elico Corp, OpenERP SA',
     'depends': ['payment_paypal', 'website_sale'],
+    'support': 'support@elico-corp.com',
     'data': [
         'payment_view.xml',
         'data/payment.xml',
