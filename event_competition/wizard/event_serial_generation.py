@@ -14,9 +14,10 @@ class EventSerialGeneration(models.TransientModel):
         string='Event', required=True)
     nb = fields.Integer('Number', required=True)
 
-    @api.one
+    @api.multi
     def generate(self):
-        data = {'event_id': self.event_id.id}
-        for i in range(self.nb):
-            self.env['event.serial'].create(data)
-        return {'type': 'ir.actions.act_window_close'}
+        for obj in self:
+            data = {'event_id': obj.event_id.id}
+            for i in range(obj.nb):
+                obj.env['event.serial'].create(data)
+            return {'type': 'ir.actions.act_window_close'}
