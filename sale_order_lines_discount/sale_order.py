@@ -28,5 +28,4 @@ class SaleOrder(models.Model):
             else:
                 raise osv.except_osv(
                     _('Error!'),
-                    _("""Your discount value is out of values,
-                        it's value between 0 and 100,but 100 except."""))
+                    _("""Value between 0 and less than 100."""))
