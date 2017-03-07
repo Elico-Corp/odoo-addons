@@ -37,14 +37,16 @@ class EventSerial(models.Model):
                 break
         self.name = name
 
-    @api.one
+    @api.multi
     def confirm(self):
         now = str(datetime.now())
-        self.write({'state': 'done', 'used_date': now})
+        for obj in self:
+            obj.write({'state': 'done', 'used_date': now})
 
-    @api.one
+    @api.multi
     def cancel(self):
-        self.write({'state': 'draft', 'used_date': None})
+        for obj in self:
+            obj.write({'state': 'draft', 'used_date': None})
 
 
 # Odoo offical class so i need to respect their class name convention.
