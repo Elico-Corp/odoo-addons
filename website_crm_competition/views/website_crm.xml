@@ -7,13 +7,14 @@
         </record>
 
         <!-- removes google map -->
-        <record id="company_description" model="ir.ui.view">
-            <field name="name">Company Description</field>
-            <field name="inherit_id" ref="website.company_description" />
-            <field name="arch" type="xml" >
-                <a position="replace" />
-            </field>
-        </record>
+        <!-- FIXME -->
+        <!--<record id="company_description" model="ir.ui.view">-->
+            <!--<field name="name">Company Description</field>-->
+            <!--<field name="inherit_id" ref="website.company_description" />-->
+            <!--<field name="arch" type="xml" >-->
+                <!--<a position="replace" />-->
+            <!--</field>-->
+        <!--</record>-->
 
         <!-- removes placeholder -->
         <record id="contactus_form" model="ir.ui.view">
