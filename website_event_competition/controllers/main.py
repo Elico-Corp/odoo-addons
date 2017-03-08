@@ -1,27 +1,9 @@
 # -*- coding: utf-8 -*-
-##############################################################################
-#
-#    OpenERP, Open Source Management Solution
-#    Copyright (C) 2010-2015 Elico Corp (<http://www.elico-corp.com>)
-#    Authors: Augustin Cisterne-Kaas
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as
-#    published by the Free Software Foundation, either version 3 of the
-#    License, or (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-##############################################################################
+# © 2016 Elico corp (www.elico-corp.com)
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+
 from openerp import http
 from openerp.http import request
-# from openerp.tools.translate import _
 
 
 class EventCompetition(http.Controller):
@@ -45,7 +27,7 @@ class EventCompetition(http.Controller):
     @http.route('/competition', type='http',
                 methods=['POST'], auth="public", website=True)
     def post(self, **kwargs):
-        cr, uid, context = request.cr, request.uid, request.context
+        cr, _, context = request.cr, request.uid, request.context
         registration_obj = request.registry['event.registration']
         values = self._values(kwargs)
         registration = None
