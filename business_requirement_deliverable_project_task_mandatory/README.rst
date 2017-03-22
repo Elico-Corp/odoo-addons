@@ -6,27 +6,23 @@
 Business Requirement Deliverable Project Task Mandatory
 =======================================================
 
-This module
-
-Installation
-============
+This module extends the functionality of Project Category
+Business Requirement Project and allow to set a Category
+that will make required have all task linked to a Business Requirement.
 
 Usage
 =====
 
 To use this module, you need to:
 
-#. Go to project task form view
-
-.. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
-   :alt: Try me on Runbot
-   :target: https://runbot.odoo-community.org/runbot//140/8.0
+#. Go to Project Category
+#. Select one Category and check br_required
 
 Bug Tracker
 ===========
 
 Bugs are tracked on `GitHub Issues
-<https://github.com/OCA/project/issues>`_. In case of trouble, please
+<https://github.com/Elico-Corp/odoo-addons/issues>`_. In case of trouble, please
 check there if your issue has already been reported. If you spotted it first,
 help us smash it by providing detailed and welcomed feedback.
 
@@ -42,14 +38,26 @@ Contributors
 Maintainer
 ----------
 
-.. image:: https://odoo-community.org/logo.png
-   :alt: Odoo Community Association
-   :target: https://odoo-community.org
+.. image:: https://www.elico-corp.com/logo.png
+   :alt: Elico Corp
+   :target: https://www.elico-corp.com
 
-This module is maintained by the OCA.
+This module is maintained by Elico Corporation.
 
-OCA, or the Odoo Community Association, is a nonprofit organization whose
-mission is to support the collaborative development of Odoo features and
-promote its widespread use.
+Elico Corp is an innovative actor in China, Hong-Kong and Singapore servicing
+well known international companies and as well as local mid-sized businesses.
+Since 2010, our seasoned Sino-European consultants have been providing full
+range Odoo services:
 
-To contribute to this module, please visit https://odoo-community.org.
+* Business consultancy for Gap analysis, BPM, operational work-flows review. 
+* Ready-to-use ERP packages aimed at starting businesses.
+* Odoo implementation for manufacturing, international trading, service industry
+  and e-commerce. 
+* Connectors and integration with 3rd party software (Magento, Taobao, Coswin,
+  Joomla, Prestashop, Tradevine etc...).
+* Odoo Support services such as developments, training, maintenance and hosting.
+
+Our headquarters are located in Shanghai with branch in Singapore servicing
+customers from all over Asia Pacific.
+
+Contact information: `Sales <contact@elico-corp.com>`__
