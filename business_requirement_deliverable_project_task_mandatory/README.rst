@@ -7,8 +7,8 @@ Business Requirement Deliverable Project Task Mandatory
 =======================================================
 
 This module extends the functionality of Project Category
-Business Requirement Project and allow to set a Category
-that will make required have all task linked to a Business Requirement.
+Business Requirement Project and allows to set a Category
+that will make all tasks linked to a Business Requirement required.
 
 Usage
 =====
@@ -16,7 +16,7 @@ Usage
 To use this module, you need to:
 
 #. Go to Project Category
-#. Select one Category and check br_required
+#. Select one Category and check BR Required
 
 Bug Tracker
 ===========

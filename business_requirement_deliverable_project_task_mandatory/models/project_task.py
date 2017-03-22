@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
-# © 2016 Elico Corp (www.elico-corp.com).
+# © 2017 Elico Corp (www.elico-corp.com).
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
-# import json
-# from lxml import etree
 from openerp import api, fields, models
 
 
@@ -22,5 +20,5 @@ class ProjectTask(models.Model):
         for t in self:
             if t.br_required and not t.business_requirement_id.id:
                 raise models.ValidationError(
-                    'Project related category requires'
-                    ' Business Requirement linked')
+                    'The Business Requirement is mandatory'
+                    ' for this type of project category')
