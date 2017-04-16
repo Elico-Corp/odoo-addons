@@ -2,44 +2,42 @@
    :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
    :alt: License: AGPL-3
 
-======================================
-Membership Management - POS Membership
-======================================
+==============================================
+Membership Management - Member Account Balance
+==============================================
 
-This module adds new features of membership to POS:
-
-* Introduced a new type of journal/payment method:
-  VIP journal to allow member paying by his/her VIP card.
-  
-  Constraint: cannot pay for the membership product.
-* Display the balance of the member account.
+This module extends the functionality of POS to support adds a new type of
+account: membership account, and  account is a prepay account which allow member
+charging, their account and system can easily check the balance of their 
+membership account.
 
 Installation
 ============
 
-You need to have the following modules available:
+To install this module, you need to:
 
-    * membership
-    * pos_pricelist (optional) -> to allow VIP members have a different price.
-    * account_membership_balance
+ * have basic modules installed (account, membership)
+
+Known issues / Roadmap
+======================
+
+* This module total rewrites the following methods: debit and credit fields
+  compute function on model: res_partner.
+* This module still uses V7 API since need to overwrite some compute functions
+  on model res_partner
 
 Usage
-=====
+-----
+A new check box records the membership for the account (Default is not membership).
 
-#. Creates a new payment method / account journal: VIP card
-    with the check box (membership journal) checked.
-#. Go to PoS configuration and add the new payment method.
-#. Normal PoS selling.
-  
-
+Total membership is calculated in the customer view.
 
 Bug Tracker
 ===========
 
-Bugs are tracked on `GitHub Issues <https://github.com/Elico-Corp/odoo-addons/issues>`_.
+Bugs are tracked on `GitHub Issues <https://github.com/Elico-Corp/odoo/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
-If you spotted it first, help us smashing it by providing a detailed and welcomed
-feedback.
+If you spotted it first, help us smashing it by providing a detailed and welcomed feedback.
 
 Credits
 =======
@@ -48,6 +46,7 @@ Contributors
 ------------
 
 * Alex Duan <alex.duan@elico-corp.com>
+* Gu SiYuan <gu.siyuan@elico-corp.com>
 * Eric Caudal <eric.caudal@elico-corp.com>
 
 Maintainer

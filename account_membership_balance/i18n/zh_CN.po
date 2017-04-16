@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#   * membership_account_balance
+#   * account_membership_balance
 #
 msgid ""
 msgstr ""
@@ -15,22 +15,22 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
 
-#. module: membership_account_balance
-#: model:ir.model,name:membership_account_balance.model_account_account
+#. module: account_membership_balance
+#: model:ir.model,name:account_membership_balance.model_account_account
 msgid "Account"
 msgstr "科目"
 
-#. module: membership_account_balance
+#. module: account_membership_balance
 #: field:account.account,membership_total:0
 msgid "Membership account"
 msgstr "会员储值科目"
 
-#. module: membership_account_balance
-#: model:ir.model,name:membership_account_balance.model_res_partner
+#. module: account_membership_balance
+#: model:ir.model,name:account_membership_balance.model_res_partner
 msgid "Partner"
 msgstr ""
 
-#. module: membership_account_balance
+#. module: account_membership_balance
 #: field:res.partner,membership_total:0
 msgid "Total Membership"
 msgstr "总储值"
