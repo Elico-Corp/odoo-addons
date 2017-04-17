@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record forcecreate="True" id="res_portal_supplier_account" model="res.groups">
+            <field name="name">Portal Supplier Account</field>
+        </record>
+    </data>
+</openerp>

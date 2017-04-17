@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <!-- read/write/create own product template -->
+        <record id="product_supplier_product_template_rule" model="ir.rule">
+            <field name="name" >Products Supplier</field>
+            <field name="model_id" ref="product.model_product_template"/>
+            <field name="domain_force">['|',('supplier_ids','=',user.partner_id.id),('create_uid','=',user.id)]</field>
+            <field name="groups" eval="[(4,ref('res_portal_supplier_account'))]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_unlink" eval="True"/>
+        </record>
+
+        <!-- read/write/create own claim -->
+        <record id="product_supplier_product_claim_rule" model="ir.rule">
+            <field name="name" >Products Supplier Claim</field>
+            <field name="model_id" ref="crm_claim.model_crm_claim"/>
+            <field name="domain_force">[('user_id','=',user.id)]</field>
+            <field name="groups" eval="[(4,ref('res_portal_supplier_account'))]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_unlink" eval="True"/>
+        </record>
+
+        <!-- see own invoice; -->
+        <record id="supplier_portal_account_invoice_user_rule" model="ir.rule">
+            <field name="name">Supplier Portal Personal Account Invoices</field>
+            <field name="model_id" ref="account.model_account_invoice"/>
+            <field name="domain_force">[('partner_id', 'in', [user.partner_id.id])]</field>
+            <field name="groups" eval="[(4, ref('res_portal_supplier_account'))]"/>
+        </record>
+
+        <!-- see own invoice line. -->
+        <record id="supplier_portal_account_invoice_line_rule" model="ir.rule">
+            <field name="name">Supplier Portal Invoice Lines</field>
+            <field name="model_id" ref="account.model_account_invoice_line"/>
+            <field name="domain_force">['|',('partner_id', '=', False),('partner_id.id','child_of',user.partner_id.id)]</field>
+            <field eval="1" name="perm_unlink"/>
+            <field eval="1" name="perm_write"/>
+            <field eval="0" name="perm_read"/>
+            <field eval="1" name="perm_create"/>
+            <field name="groups" eval="[(4, ref('res_portal_supplier_account'))]"/>
+        </record>
+
+        <!-- see own product's purchase order. -->
+        <record id="supplier_p_purchase_order_rule" model="ir.rule">
+            <field name="name">Supplier Portal Quotations Purchase</field>
+            <field name="model_id" ref="purchase.model_purchase_order"/>
+            <field name="domain_force">[('partner_id', 'in', [user.partner_id.id])]</field>
+            <field name="groups" eval="[(4, ref('res_portal_supplier_account'))]"/>
+        </record>
+
+        <!-- see own product's sale order. -->
+        <record id="supplier_p_sale_order_rule" model="ir.rule">
+            <field name="name">Supplier Portal Quotations Sales Order</field>
+            <field name="model_id" ref="sale.model_sale_order"/>
+            <field name="domain_force">[('supplier_ids', '=', user.partner_id.id)]</field>
+            <field eval="1" name="perm_unlink"/>
+            <field eval="1" name="perm_write"/>
+            <field eval="1" name="perm_read"/>
+            <field eval="1" name="perm_create"/>
+            <field name="groups" eval="[(4, ref('res_portal_supplier_account'))]"/>
+        </record>
+
+
+        <!-- Stock Portal Access Rules -->
+        <record id="portal_stock_picking_user_rule" model="ir.rule">
+            <field name="name">Portal Personal Pickings</field>
+            <field name="model_id" ref="stock.model_stock_picking"/>
+            <field name="domain_force">['|', '|', ('create_uid','=',user.id),('supplier_ids', '=', user.partner_id.id),('group_user_ids', '=', user.partner_id.id)]</field>
+            <field eval="1" name="perm_unlink"/>
+            <field eval="1" name="perm_write"/>
+            <field eval="1" name="perm_read"/>
+            <field eval="1" name="perm_create"/>
+            <field name="groups" eval="[(4, ref('res_portal_supplier_account'))]"/>
+        </record>
+
+
+    </data>
+</openerp>
