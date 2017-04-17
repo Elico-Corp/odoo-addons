@@ -6,7 +6,7 @@
 Invoice Report
 ==============
 
-Module which hides the OpenERP announcement bar.
+This modules introduces a new invoice report format.
 
 Installation
 ============
