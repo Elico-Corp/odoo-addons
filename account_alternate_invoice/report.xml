@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+<data>
+
+<report
+    auto="False"
+    id="account_alternate_invoice"
+    model="account.invoice"
+    name="account.alternate.invoice"
+    rml="account_alternate_invoice/report/account_alternate_invoice.rml"
+    string="Alternate Invoice"
+    />
+    
+</data>
+</openerp>
