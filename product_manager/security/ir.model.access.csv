@@ -1,0 +1,13 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+stock.access_product_product_stock_manager,product.product stock_manager,product.model_product_product,stock.group_stock_manager,1,0,0,0
+mrp.access_product_product_mrp_manager,product.product mrp_manager,product.model_product_product,mrp.group_mrp_manager,1,0,0,0
+product.access_product_product_sale_manager,product.product salemanager,product.model_product_product,base.group_sale_manager,1,0,0,0
+purchase.access_product_product_purchase_manager,product.product purchase_manager,product.model_product_product,purchase.group_purchase_manager,1,0,0,0
+product_manager.access_product_product_manager,product.product product_manager,product.model_product_product,product_manager.data_product_manager,1,1,1,1
+product_manager.access_product_template_manager,product.tempalte product_manager,product.model_product_template,product_manager.data_product_manager,1,1,1,1
+stock.access_product_product_stock_user,product_product_stock_user,product.model_product_product,stock.group_stock_user,1,0,0,0
+product.access_product_template_sale_manager,product.template salemanager,product.model_product_template,base.group_sale_manager,1,0,0,0
+stock.access_product_template_stock_user,product.template stock user,product.model_product_template,stock.group_stock_user,1,0,0,0
+stock.access_product_template_stock_manager,product.template stock_manager,product.model_product_template,stock.group_stock_manager,1,0,0,0
+purchase.access_product_template_purchase_manager,product.template purchase_manager,product.model_product_template,purchase.group_purchase_manager,1,0,0,0
+mrp.access_product_template_mrp_manager,product.template mrp_manager,product.model_product_template,mrp.group_mrp_manager,1,0,0,0
