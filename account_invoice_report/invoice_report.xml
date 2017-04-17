@@ -6,14 +6,14 @@
             string="Quotation / Order"
             model="sale.order" 
             report_type="qweb-pdf"
-            file="invoice_report.report_saleorder_extend" 
-            name="invoice_report.report_saleorder"
+            file="account_invoice_report.report_saleorder_extend" 
+            name="account_invoice_report.report_saleorder"
         />
 
         <report id="report_draftorder_invoice" 
-        name="invoice_report.report_draft_saleorder_invoice" 
+        name="account_invoice_report.report_draft_saleorder_invoice" 
         model="sale.order"
-        file="invoice_report.report_draft_order_invoice"  
+        file="account_invoice_report.report_draft_order_invoice"  
         string="Tax Invoice" 
         report_type="qweb-pdf"/>
 
@@ -22,8 +22,8 @@
             model="account.invoice"
             string="Invoice with T&amp;C"
             report_type="qweb-pdf"
-            name="invoice_report.report_invoice"
-            file="invoice_report.report_invoice_extend"
+            name="account_invoice_report.report_invoice"
+            file="account_invoice_report.report_invoice_extend"
         />
 
         <report 
@@ -31,8 +31,8 @@
             id="stock.action_report_picking" 
             model="stock.picking" 
             report_type="qweb-pdf"
-            name="invoice_report.report_picking_full" 
-            file="invoice_report.report_picking_extend_full" 
+            name="account_invoice_report.report_picking_full" 
+            file="account_invoice_report.report_picking_extend_full" 
         />
 
         <report 
@@ -40,8 +40,8 @@
             id="action_report_picking" 
             model="stock.picking" 
             report_type="qweb-pdf"
-            name="invoice_report.report_picking" 
-            file="invoice_report.report_picking_extend" 
+            name="account_invoice_report.report_picking" 
+            file="account_invoice_report.report_picking_extend" 
         />
 
         <!-- edit invoice form view -->

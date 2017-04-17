@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
 <data>
-<template id="invoice_report.report_invoice_document">
+<template id="account_invoice_report.report_invoice_document">
         <div class="page">
             <div class="container">
                 <div class="row">
@@ -189,12 +189,6 @@
 
                 <div style="height:20px"/>
 
-                <div style="text-align:center; font-size:10px !important; color: #848484; height: 13px">
-                    <p style="margin:3">Castlery Pte Ltd</p>
-                    <p style="margin:3">GST Reg No: 201327477H</p>
-                    <p style="margin:3"><t t-if="company.email"><span t-field="company.phone"/>|<span t-field="company.email"/></t></p>
-                    <p style="margin:3">2 Alexandra Road, Delta House #01-03A, Singapore 159919</p>
-                </div>
             </div>
         </div>
         <div class="page" t-if="company.invoice_tc">
@@ -205,7 +199,7 @@
 <template id="report_invoice">
     <t t-call="report.html_container">
         <t t-foreach="doc_ids" t-as="doc_id">
-            <t t-raw="translate_doc(doc_id, doc_model, 'partner_id.lang', 'invoice_report.report_invoice_document')"/>
+            <t t-raw="translate_doc(doc_id, doc_model, 'partner_id.lang', 'account_invoice_report.report_invoice_document')"/>
         </t>
     </t>
 </template>

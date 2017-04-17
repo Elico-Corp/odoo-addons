@@ -6,7 +6,7 @@
 Invoice Report
 ==============
 
-This modules introduces a new invoice report format.
+This modules introduces a new set of reports format.
 
 Installation
 ============
