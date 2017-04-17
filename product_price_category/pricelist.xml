@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+ 
+		 <record id="product_pricelist_item_priccategory_form_view" model="ir.ui.view">
+            <field name="name">product.pricelist.pricecategory.item.form</field>
+            <field name="model">product.pricelist.item</field>
+            <field name="inherit_id" ref="product.product_pricelist_item_form_view" />
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+             	<xpath expr="//field[@name='categ_id']" position="after">
+					<field name="pricecategory_id" string = "Price Category"/>
+				</xpath>
+            </field>    
+         </record>
+         
+    </data>
+</openerp>

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data> 
+    	<!-- product fomr view  -->
+    	<record model="ir.ui.view" id="product_normal_form_view_pricecategory">
+			<field name="name">product.form_normal_view_pricecategory</field>
+			<field name="model">product.product</field>
+			<field name="inherit_id" ref="product.product_normal_form_view" />
+			<field name="arch" type="xml">
+			  	<xpath expr="//group[@string='Sale Conditions']" position="inside">
+					<field name="pricecategory_id" string = 'Price Category' widget="selection"/>
+				</xpath>
+				
+            </field>
+        </record>
+        
+        <!-- product search view  -->
+        <record model="ir.ui.view" id="product_normal_search_form_view_pricecategory">
+			<field name="name">product.form_normal_view_pricecategory</field>
+			<field name="model">product.product</field>
+			<field name="inherit_id" ref="product.product_search_form_view" />
+			 <field name="arch" type="xml">
+                <xpath expr="//search/group/filter[@string='Company']" position="after">
+                       <filter string='Price Category' icon="terp-stock_symbol-selection" domain="[]" context="{'group_by':'pricecategory_id'}"/>
+                   
+                </xpath>
+            </field>
+        </record>
+        
+        
+        <!-- product tree view  -->
+		<record model="ir.ui.view" id="product_normal_tree_view_pricecategory">
+			<field name="name">product.tree_normal_view_pricecategory</field>
+			<field name="model">product.product</field>
+			<field name="inherit_id" ref="product.product_product_tree_view" />
+			<field name="arch" type="xml">
+				<!-- price and price_category only sale_manager can see. jon.chow#elico-corp.com Jun 4, 2013-->
+				<xpath expr="//field[@name='name']" position="after">
+				    <field name="pricecategory_id" string = "Price Category" groups='base.group_sale_manager'/>
+		        </xpath>
+            </field>
+        </record>
+              
+        <!-- product.pricecategory  form  view  -->
+        <record id="product_pricecategory_form_view" model="ir.ui.view">
+            <field name="name">product.pricecategory.form</field>
+            <field name="model">product.pricecategory</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Product Categories">
+                    <field name="name" select="1"/>
+                    <field name="sequence" invisible="1"/>
+                </form>
+            </field>
+        </record>
+        <!-- product.pricecategory  action  -->
+        <record id="product_pricecategory_action_form" model="ir.actions.act_window">
+            <field name="name">Product Price Category</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">product.pricecategory</field>
+        </record>
+        
+        <record id="product_pricecategory_purchase_form_action" model="ir.actions.act_window">
+            <field name="name">Product Price Category</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">product.pricecategory</field>
+        </record>
+        
+        <!-- product.pricecategory  menu  -->
+		<menuitem action="product_pricecategory_purchase_form_action"
+            id="menu_product_pricecategory_purchase_action"
+            parent="purchase.menu_purchase_config_pricelist" sequence="2"/>   
+        
+        <menuitem action="product_pricecategory_action_form"
+            id="menu_product_pricecategory_action_form"
+            parent="product.menu_product_pricelist_main" sequence="2"/>
+            
+    </data>
+</openerp>

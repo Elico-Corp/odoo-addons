@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+  
+        <record model="ir.ui.view" id="product_plist_form">
+            <field name="name">product.plist.form</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="product.product_normal_form_view"/>
+                <field name="arch" type="xml">
+	                <notebook position="inside">        
+				  <page string="Pricelist" groups="product.group_system">
+					<separator string="Product Pricelist" />				  
+				  	<field name="pdt_pline" select='2' colspan="4" nolabel="1" string="Product Pricelist" context="{'default_product_id':id}">
+				  		<tree string='Pricelist' editable='bottom'>
+				  			<field name="name" size='5' />
+				  			<field name='price_version_id'></field>
+				  			<field name="product_id" size='10' required="True" invisible='1'/>
+				  			<field name="min_quantity"/>	    
+				  			<field name="base"/>
+				  			<field name="price_discount"/>	   
+				  			<field name="price_surcharge" required="True" />	   				  			
+				  		</tree>	
+				  		<form string='Pricelist' groups="base.group_system">
+				  			<field name="name" size='5' />
+				  			<field name='price_version_id'></field>
+				  			<field name="product_id" size='10' required="True" />
+				  			<field name="min_quantity"/>	    
+				  			<field name="base"/>
+				  			<field name="price_discount"/>	   
+				  			<field name="price_surcharge" required="True" />	   				  			
+				  		</form>			  		
+				  	</field>
+
+				  </page>
+			</notebook>
+
+		  </field>
+        </record>
+    
+ 
+    
+    </data>
+ </openerp>
