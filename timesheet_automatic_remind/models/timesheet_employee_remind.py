@@ -6,13 +6,11 @@ import datetime
 import time
 import pytz
 from openerp import fields, models, api, _
-from openerp.exceptions import Warning as UserError
 
 
 class TimesheetReport(models.TransientModel):
-    """ Timesheet Activities Report """
-    _name = "timesheet.automatic.remind"
-    _description = "Timesheet Input Remind Service"
+    _name = "timesheet.employee.remind"
+    _description = "Timesheet Employee Remind Service"
     _inherit = ['mail.thread']
 
     MONDAY = 0
@@ -23,8 +21,14 @@ class TimesheetReport(models.TransientModel):
     WEEKEND = [5, 6]
 
     @api.model
-    def _start_remind(self, count_days=7, workhours=8, resethours=1):
-        employ_remind_list = {}
+    def _start_remind(
+            self,
+            count_days=7,
+            workstart='9:00:00',
+            workend='18:00:00',
+            resethours=1
+            ):
+        employee_remind_list = {}
         employ_list = self.env['hr.employee'].search([])
         hrholidaypublicobj = self.env['hr.holidays.public']
         hranalytictmobj = self.env['hr.analytic.timesheet']
@@ -32,7 +36,7 @@ class TimesheetReport(models.TransientModel):
             count = 0
             selected_date = datetime.date.today()
             date_one_day = datetime.timedelta(days=1)
-            employ_remind_list[employee.id]=[]
+            employee_remind_list[employee.id]=[]
             while count < count_days:
                 selected_date = selected_date - date_one_day
                 if not hrholidaypublicobj.is_public_holiday(
@@ -45,7 +49,8 @@ class TimesheetReport(models.TransientModel):
                     allhours_should = self._get_all_hour(
                         selected_date,
                         employee.id,
-                        workhours,
+                        workstart,
+                        workend,
                         resethours
                     )
                     if not allhours_should:
@@ -66,22 +71,22 @@ class TimesheetReport(models.TransientModel):
                         if allhours_should <= allhours_real:
                             pass
                         else:
-                            employ_remind_list[employee.id].append(
+                            employee_remind_list[employee.id].append(
                                 str(selected_date)
                             )
                     else:
-                        employ_remind_list[employee.id].append(
+                        employee_remind_list[employee.id].append(
                             str(selected_date)
                         )
                     count += 1
-        self.send_email(employ_remind_list)
+        self.send_email_employee(employee_remind_list)
 
     @api.multi
-    def send_email(self, employ_remind_list=False):
+    def send_email_employee(self, employee_remind_list=False):
         hrtimesheetobj = self.env['hr_timesheet_sheet.sheet']
         hremployeeobj = self.env['hr.employee']
-        if employ_remind_list:
-            for employee_id, date_list in employ_remind_list.items():
+        if employee_remind_list:
+            for employee_id, date_list in employee_remind_list.items():
                 employee = hremployeeobj.browse(employee_id)
                 hrtimesheetlist = hrtimesheetobj.search([
                     (
@@ -89,7 +94,9 @@ class TimesheetReport(models.TransientModel):
                     )], order = 'date_to DESC', )
                 if hrtimesheetlist:
                     for hrtimesheet in hrtimesheetlist:
-                        hrtimesheet.message_post(body=_("please input your TM in %s") % date_list)
+                        hrtimesheet.message_post(
+                            body=_("please input your TM in %s") % date_list
+                        )
                         break
 
 
@@ -101,7 +108,8 @@ class TimesheetReport(models.TransientModel):
             return True
 
     @api.multi
-    def _get_all_hour(self, selected_date, employee_id, workhours, resethours):
+    def _get_all_hour(self, selected_date, employee_id, workstart,
+                      workend, resethours):
         no_work = 0
         employee = self.env['hr.employee'].browse(employee_id)
         employee_tz_str = employee.user_id.tz
@@ -110,9 +118,10 @@ class TimesheetReport(models.TransientModel):
         else:
             employee_tz = standard_tz = pytz.utc
         selected_date_start = self._str_to_datetime(
-            str(selected_date) + ' 9:00:00', standard_tz)
+            str(selected_date) + ' ' + str(workstart), standard_tz)
         selected_date_end = self._str_to_datetime(
-            str(selected_date) + ' 18:00:00', standard_tz)
+            str(selected_date) + ' ' + str(workend), standard_tz)
+        workhours = selected_date_end.hour - selected_date_start.hour
         hrholidayobj = self.env['hr.holidays']
         leaves = hrholidayobj.search(
             [
