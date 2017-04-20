@@ -27,7 +27,7 @@ class TimesheetReport(models.TransientModel):
             workstart='9:00:00',
             workend='18:00:00',
             resethours=1
-            ):
+    ):
         employee_remind_list = {}
         employee_list = self.env['hr.employee'].search([])
         publicholiday = self.env['hr.holidays.public']
@@ -36,7 +36,7 @@ class TimesheetReport(models.TransientModel):
             count = 0
             selected_date = datetime.date.today()
             date_one_day = datetime.timedelta(days=1)
-            employee_remind_list[employee.id]=[]
+            employee_remind_list[employee.id] = []
             while count < count_days:
                 selected_date = selected_date - date_one_day
                 if not publicholiday.is_public_holiday(
@@ -45,7 +45,7 @@ class TimesheetReport(models.TransientModel):
                 ) \
                         and not self.is_weekend(
                             selected_date
-                        ):
+                ):
                     allhours_expected = self._get_all_hour(
                         selected_date,
                         employee.id,
@@ -91,15 +91,13 @@ class TimesheetReport(models.TransientModel):
                 hrtimesheetlist = hrtimesheetobj.search([
                     (
                         'user_id', '=', employee.user_id.id
-                    )], order = 'date_to DESC', )
+                    )], order='date_to DESC', )
                 if hrtimesheetlist:
                     for hrtimesheet in hrtimesheetlist:
                         hrtimesheet.message_post(
                             body=_("please input your TM in %s") % date_list
                         )
                         break
-
-
 
     def is_weekend(self, selected_date):
         if selected_date.weekday() not in self.WEEKEND:
@@ -131,7 +129,7 @@ class TimesheetReport(models.TransientModel):
             ]
         )
         if not leaves:
-            return workhours+resethours
+            return workhours + resethours
         for leave in leaves:
             leave_date_from = self._tz_offset(
                 leave.date_from, employee_tz
@@ -145,14 +143,14 @@ class TimesheetReport(models.TransientModel):
             elif leave_date_from >= selected_date_start \
                     and selected_date_end >= leave_date_to:
                 return leave_date_from.hour - selected_date_start.hour + \
-                       selected_date_end.hour - leave_date_to.hour
+                    selected_date_end.hour - leave_date_to.hour
             elif leave_date_to <= selected_date_end \
                     and leave_date_to > selected_date_start >= leave_date_from:
                 return selected_date_end.hour - leave_date_to.hour
             elif leave_date_from < selected_date_start \
                     and selected_date_end < leave_date_to:
                 return no_work
-        return workhours+resethours
+        return workhours + resethours
 
     def _str_to_datetime(self, str=False, standard_tz=False):
         return datetime.datetime.strptime(
