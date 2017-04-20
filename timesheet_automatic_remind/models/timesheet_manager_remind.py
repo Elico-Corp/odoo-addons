@@ -29,10 +29,10 @@ class TimesheetReport(models.TransientModel):
             resethours=1
     ):
         manager_remind_list = []
-        employ_list = self.env['hr.employee'].search([])
-        hrholidaypublicobj = self.env['hr.holidays.public']
+        employee_list = self.env['hr.employee'].search([])
+        publicholiday = self.env['hr.holidays.public']
         hranalytictmobj = self.env['hr.analytic.timesheet']
-        for employee in employ_list:
+        for employee in employee_list:
             count = 0
             selected_date = datetime.date.today()
             date_one_day = datetime.timedelta(days=1)
@@ -42,21 +42,21 @@ class TimesheetReport(models.TransientModel):
             })
             while count < count_days:
                 selected_date = selected_date - date_one_day
-                if not hrholidaypublicobj.is_public_holiday(
+                if not publicholiday.is_public_holiday(
                         selected_date,
                         employee.id
                 ) \
                         and not self.is_weekend(
                             selected_date
                 ):
-                    allhours_should = self._get_all_hour(
+                    allhours_expected = self._get_all_hour(
                         selected_date,
                         employee.id,
                         workstart,
                         workend,
                         resethours
                     )
-                    if not allhours_should:
+                    if not allhours_expected:
                         continue
                     hrworklist = hranalytictmobj.search([
                         ('date',
@@ -71,7 +71,7 @@ class TimesheetReport(models.TransientModel):
                         for hrwork in hrworklist:
                             workhours_real += hrwork.unit_amount
                         allhours_real = workhours_real + resethours
-                        if allhours_should <= allhours_real:
+                        if allhours_expected <= allhours_real:
                             pass
                         else:
                             manager_remind_list[
