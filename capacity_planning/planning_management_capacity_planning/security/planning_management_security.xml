@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+
+        <record model="res.groups" id="base.group_planning_management_admin">
+            <field name="name">Planning Management / Admin</field>
+        </record>   
+        <record model="res.groups" id="base.group_planning_management_manager">
+            <field name="name">Planning Management / Manager</field>
+        </record>
+        <record model="res.groups" id="base.group_planning_management_user">
+            <field name="name">Planning Management / User</field>
+        </record>
+        
+        <record model="ir.rule" id="emplo_visibility_rule">
+        	<field name="name" >Emp test</field>
+        	<field name="model_id" ref="model_capacity_planning_user"/>
+        	<field name="global" eval="True"/>
+        	<field name="domain_force">[('iduser','=',user.id)]</field>
+        	<field name="groups" eval="[(4,ref('base.group_planning_management_user'))]"/>
+        </record>
+
+    </data>
+</openerp>
