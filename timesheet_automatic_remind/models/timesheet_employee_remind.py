@@ -5,7 +5,7 @@
 import datetime
 import time
 import pytz
-from openerp import fields, models, api, _
+from openerp import fields, models, api
 
 
 class TimesheetReport(models.TransientModel):
