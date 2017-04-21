@@ -9,6 +9,25 @@ from openerp import fields, models, api, _
 
 
 class TimesheetReport(models.TransientModel):
+    _name = "timesheet.manager.remind.employee"
+    _description = "Timesheet Manager Remind Employee list"
+
+    employee_id = fields.Many2one(
+        string='Employee',
+        comodel_name='hr.employee'
+    )
+
+    manager_id = fields.Many2one(
+        string='Manager',
+        comodel_name='timesheet.manager.remind'
+    )
+
+    date_reminder = fields.Char(
+        string='Reminding date'
+    )
+
+
+class TimesheetReport(models.TransientModel):
     _name = "timesheet.manager.remind"
     _description = "Timesheet Manager Remind Service"
     _inherit = ['mail.thread']
@@ -19,6 +38,21 @@ class TimesheetReport(models.TransientModel):
     THURSDAY = 3
     FRIDAY = 4
     WEEKEND = [5, 6]
+
+    manager_id = fields.Many2one(
+        string='Manager',
+        comodel_name='hr.employee'
+    )
+
+    employee_list = fields.One2many(
+        'timesheet.manager.remind.employee',
+        'manager_id',
+        string='Employee list'
+    )
+
+    created_date = fields.Char(
+        string='Create date'
+    )
 
     @api.model
     def _start_remind(
@@ -34,7 +68,7 @@ class TimesheetReport(models.TransientModel):
         hranalytictmobj = self.env['hr.analytic.timesheet']
         for employee in employee_list:
             count = 0
-            selected_date = datetime.date.today()
+            selected_date = self._tz_offset_today(self.env.user.tz)
             date_one_day = datetime.timedelta(days=1)
             manager_remind_list.append({
                 'employee_id': employee.id,
@@ -90,41 +124,90 @@ class TimesheetReport(models.TransientModel):
                                 len(manager_remind_list) - 1
                             ]['manager_id'] = employee.parent_id.id
                     count += 1
-        manager_remind_list = filter(
+        employee_with_manager_list = filter(
             lambda employee: 'manager_id' in employee,
             manager_remind_list
         )
-        self.send_email_manager(manager_remind_list)
+        manager_list = set([employee['manager_id'] for employee in
+                            employee_with_manager_list])
+        for manager in manager_list:
+            employee_remind_list = []
+            employee_with_specific_manager_list = filter(
+                lambda employee: employee['manager_id'] == manager,
+                employee_with_manager_list
+            )
+            for employee in employee_with_specific_manager_list:
+                employee_remind_list.append(
+                    (
+                        0, False,
+                        {
+                            'employee_id': employee['employee_id'],
+                            'date_reminder': ", ".join(employee['date'])
+                        }
+                    )
+                )
+            self.create(
+                {
+                    'manager_id': employee['manager_id'],
+                    'created_date': str(
+                        self._tz_offset_today(self.env.user.tz)
+                    ),
+                    'employee_list': employee_remind_list
+                }
+            )
+        self.send_email_manager(manager_list)
 
     @api.multi
-    def send_email_manager(self, manager_remind_list=False):
-        hremployeeobj = self.env['hr.employee']
-        mail_obj = self.env['mail.mail']
-        manager_list = set([employee['manager_id'] for employee in
-                            manager_remind_list])
-        if manager_list:
-            for manager_id in list(manager_list):
-                employee_date_list = filter(
-                    lambda employee: employee['manager_id'] == manager_id,
-                    manager_remind_list
-                )
-                manager = hremployeeobj.browse(manager_id)
-                subject = _("Dear %s <br clear=left>") % manager.name
-                body_html = "Follow employees would need to input timesheet: "
-                for employee_date in employee_date_list:
-                    employee = hremployeeobj.browse(
-                        employee_date['employee_id']
-                    )
-                    body_html += _('%s Date: %s <br clear=left>') % (
-                        employee.name,
-                        employee_date['date']
-                    )
-                mail = mail_obj.create(
-                    {'subject': subject,
-                     'email_to': manager.work_email,
-                     'body_html': body_html}
-                )
-                mail_obj.send([mail.id])
+    def send_email_manager(
+            self,
+            manager_list=False,
+            template_xmlid='manager_reminder_email_template',
+            force=False
+    ):
+        mail_ids = []
+        data = self.env['ir.model.data']
+        mailmess = self.pool['mail.message']
+        mail = self.env['mail.mail']
+        template = self.pool['email.template']
+        local_context = self._context.copy()
+        dummy, template_id = data.get_object_reference(
+            'timesheet_automatic_remind',
+            template_xmlid
+        )
+        local_context.update({
+            'dbname': self.env.cr.dbname,
+        })
+        for manager_id in manager_list:
+            for manager in self.search([
+                    ('manager_id', '=', manager_id),
+                    ('created_date', '=', str(
+                        self._tz_offset_today(self.env.user.tz))
+                     )
+            ]):
+                email_from = self.env.user.company_id.email
+                if manager.manager_id.work_email and email_from and (
+                        manager.manager_id.work_email != email_from or
+                        force):
+                    mail_id = template.send_mail(self.env.cr,
+                                                 self.env.uid,
+                                                 template_id,
+                                                 manager.id,
+                                                 context=local_context)
+                    vals = {}
+                    vals['model'] = None
+                    vals['res_id'] = False
+                    the_mailmess = mail.browse(mail_id).mail_message_id
+                    mailmess.write(self.env.cr,
+                                   self.env.uid,
+                                   [the_mailmess.id],
+                                   vals,
+                                   context=self._context)
+                    mail_ids.append(mail_id)
+
+        if mail_ids:
+            res = mail.send(mail_ids)
+
+        return res
 
     def is_weekend(self, selected_date):
         if selected_date.weekday() not in self.WEEKEND:
@@ -191,3 +274,8 @@ class TimesheetReport(models.TransientModel):
             "%Y-%m-%d %H:%M:%S"
         ).replace(tzinfo=pytz.utc)
         return utc_date.astimezone(employee_tz)
+
+    def _tz_offset_today(self, employee_tz_str=False):
+        employee_tz = pytz.timezone(employee_tz_str)
+        utc_date = datetime.datetime.today().replace(tzinfo=pytz.utc)
+        return utc_date.astimezone(employee_tz).date()
