@@ -54,76 +54,71 @@ class TimesheetReport(models.TransientModel):
         string='Create date'
     )
 
-    @api.model
-    def _start_remind(
+    @api.multi
+    def _check_weekend_or_holiday(
             self,
-            count_days=7,
-            workstart='9:00:00',
-            workend='18:00:00',
-            resethours=1
+            selected_date=False,
+            employee_id=False
     ):
-        manager_remind_list = []
-        employee_list = self.env['hr.employee'].search([])
         publicholiday = self.env['hr.holidays.public']
+        if not publicholiday.is_public_holiday(
+                selected_date,
+                employee_id
+        ) \
+                and not self.is_weekend(
+                    selected_date
+        ):
+            return True
+        else:
+            return False
+
+    @api.multi
+    def _remind_manager_workhours(
+            self,
+            manager_remind_list=False,
+            selected_date=False,
+            employee=False,
+            resethours=False,
+            allhours_expected=False,
+    ):
         hranalytictmobj = self.env['hr.analytic.timesheet']
-        for employee in employee_list:
-            count = 0
-            selected_date = self._tz_offset_today(self.env.user.tz)
-            date_one_day = datetime.timedelta(days=1)
-            manager_remind_list.append({
-                'employee_id': employee.id,
-                'date': [],
-            })
-            while count < count_days:
-                selected_date = selected_date - date_one_day
-                if not publicholiday.is_public_holiday(
-                        selected_date,
-                        employee.id
-                ) \
-                        and not self.is_weekend(
-                            selected_date
-                ):
-                    allhours_expected = self._get_all_hour(
-                        selected_date,
-                        employee.id,
-                        workstart,
-                        workend,
-                        resethours
-                    )
-                    if not allhours_expected:
-                        continue
-                    hrworklist = hranalytictmobj.search([
-                        ('date',
-                         '=',
-                         str(selected_date)),
-                        ('user_id',
-                         '=',
-                         employee.user_id.id)
-                    ])
-                    if hrworklist:
-                        workhours_real = 0
-                        for hrwork in hrworklist:
-                            workhours_real += hrwork.unit_amount
-                        allhours_real = workhours_real + resethours
-                        if allhours_expected <= allhours_real:
-                            pass
-                        else:
-                            manager_remind_list[
-                                len(manager_remind_list) - 1
-                            ]['date'].append(str(selected_date))
-                            if employee.parent_id:
-                                manager_remind_list[
-                                    len(manager_remind_list) - 1
-                                ]['manager_id'] = employee.parent_id.id
-                    else:
-                        manager_remind_list[
-                            len(manager_remind_list) - 1
-                        ]['date'].append(str(selected_date))
-                        if employee.parent_id:
-                            manager_remind_list[
-                                len(manager_remind_list) - 1
-                            ]['manager_id'] = employee.parent_id.id
-                    count += 1
+        hrworklist = hranalytictmobj.search([
+            ('date',
+             '=',
+             str(selected_date)),
+            ('user_id',
+             '=',
+             employee.user_id.id)
+        ])
+        if hrworklist:
+            workhours_real = 0
+            for hrwork in hrworklist:
+                workhours_real += hrwork.unit_amount
+            allhours_real = workhours_real + resethours
+            if allhours_expected <= allhours_real:
+                pass
+            else:
+                manager_remind_list[
+                    len(manager_remind_list) - 1
+                ]['date'].append(str(selected_date))
+                if employee.parent_id:
+                    manager_remind_list[
+                        len(manager_remind_list) - 1
+                    ]['manager_id'] = employee.parent_id.id
+        else:
+            manager_remind_list[
+                len(manager_remind_list) - 1
+            ]['date'].append(str(selected_date))
+            if employee.parent_id:
+                manager_remind_list[
+                    len(manager_remind_list) - 1
+                ]['manager_id'] = employee.parent_id.id
+
+    @api.multi
+    def _create_remind_list_object(
+            self,
+            manager_remind_list,
+    ):
         employee_with_manager_list = filter(
             lambda employee: 'manager_id' in employee,
             manager_remind_list
@@ -155,6 +150,51 @@ class TimesheetReport(models.TransientModel):
                     'employee_list': employee_remind_list
                 }
             )
+        return manager_list
+
+    @api.model
+    def _start_remind(
+            self,
+            count_days=7,
+            workstart='9:00:00',
+            workend='18:00:00',
+            resethours=1
+    ):
+        manager_remind_list = []
+        employee_list = self.env['hr.employee'].search([])
+        for employee in employee_list:
+            count = 0
+            selected_date = self._tz_offset_today(self.env.user.tz)
+            date_one_day = datetime.timedelta(days=1)
+            manager_remind_list.append({
+                'employee_id': employee.id,
+                'date': [],
+            })
+            while count < count_days:
+                selected_date = selected_date - date_one_day
+                if self._check_weekend_or_holiday(
+                        selected_date,
+                        employee.id
+                ):
+                    allhours_expected = self._get_all_hour(
+                        selected_date,
+                        employee.id,
+                        workstart,
+                        workend,
+                        resethours
+                    )
+                    if allhours_expected:
+                        self._remind_manager_workhours(
+                            manager_remind_list,
+                            selected_date,
+                            employee,
+                            resethours,
+                            allhours_expected,
+                        )
+                        count += 1
+        manager_list = self._create_remind_list_object(
+            manager_remind_list
+        )
         self.send_email_manager(manager_list)
 
     @api.multi
