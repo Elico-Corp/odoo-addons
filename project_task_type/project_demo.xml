@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data noupdate="1">
+        <!-- SET new mandatory field for existing demo data -->
+        <function model="project.task" name="write">
+             <function eval="[[]]" model="project.task" name="search"/>
+             <value eval="{'type': 'DEV'}" />
+        </function>
+    </data>
+</openerp>
