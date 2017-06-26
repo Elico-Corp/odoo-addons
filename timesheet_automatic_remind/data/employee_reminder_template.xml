@@ -6,13 +6,13 @@
                 Timesheet Reminder - Send by Email
             </field>
             <field name="email_from">
-                ${(object.employee_id.company_id.email)|safe}
+                ${(object.employee_id.company_id.email) | safe}
             </field>
             <field name="email_to">
-                ${(object.employee_id.work_email or object.employee_id.company_id.email)|safe}
+                ${(object.employee_id.work_email or object.employee_id.company_id.email) | safe}
             </field>
             <field name="subject">
-                ${object.employee_id.company_id.name|safe} Timesheet Reminder
+                ${object.employee_id.company_id.name | safe} Timesheet Reminder
                 (Ref ${object.employee_id.user_id or 'n/a'})
             </field>
             <field name="model_id"
@@ -22,11 +22,12 @@
             .lang}</field>
             <field name="body_html">
                 <![CDATA[
-                <h1>Dear ${object.employee_id.name}:</h1></br>
-                <p>Please input your timesheet:
+                <h1>Dear ${object.employee_id.name}:</h1>
+                <ul>Please input your timesheets for the following days:
                   % for date in object.date_list
-                  <p>${date.reminder_date}</p>
+                  <li>${date.reminder_date}</li>
                   % endfor
+                </ul>
                 ]]>
             </field>
         </record>

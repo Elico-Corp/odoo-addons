@@ -6,13 +6,13 @@
                 Timesheet Reminder for Manager - Send by Email
             </field>
             <field name="email_from">
-                ${(object.manager_id.company_id.email)|safe}
+                ${(object.manager_id.company_id.email) | safe}
             </field>
             <field name="email_to">
-                ${(object.manager_id.work_email or object.manager_id.company_id.email)|safe}
+                ${(object.manager_id.work_email or object.manager_id.company_id.email) | safe}
             </field>
             <field name="subject">
-                ${object.manager_id.company_id.name|safe} Timesheet Reminder
+                ${object.manager_id.company_id.name | safe} Timesheet Reminder
                 for your employees
                 (Ref ${object.manager_id.user_id or 'n/a'})
             </field>
@@ -24,11 +24,16 @@
             <field name="body_html">
                 <![CDATA[
                 <h1>Dear ${object.manager_id.name}:</h1></br>
-                <p>Following employees have not yet input their timesheets:
+                <ul>Following employees have not yet input their timesheets:
                   % for employee in object.employee_list
-                  <p><span style="color:red">${employee.employee_id.name}</span>:
-                  <span>${employee.date_reminder}</span></p>
+                  <li>
+                    <span style="color:red">${employee.employee_id.name}</span>:
+                    <ul>
+                        <li>${employee.date_reminder}</li>
+                    </ul>
+                  </li>
                   % endfor
+                </ul>
                 ]]>
             </field>
         </record>

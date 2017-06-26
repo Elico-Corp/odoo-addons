@@ -1,11 +1,10 @@
 # -*- coding: utf-8 -*-
-# © 2015 Elico corp (www.elico-corp.com)
+# © 2015-2017 Elico corp (http://www.elico-corp.com)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-import datetime
-import time
-import pytz
 from openerp import fields, models, api
+
+from common_method import *
 
 
 class TimesheetReport(models.TransientModel):
@@ -31,13 +30,6 @@ class TimesheetReport(models.TransientModel):
     _name = "timesheet.manager.remind"
     _description = "Timesheet Manager Remind Service"
     _inherit = ['mail.thread']
-
-    MONDAY = 0
-    TUESDAY = 1
-    WEDNESDAY = 2
-    THURSDAY = 3
-    FRIDAY = 4
-    WEEKEND = [5, 6]
 
     manager_id = fields.Many2one(
         string='Manager',
@@ -65,7 +57,7 @@ class TimesheetReport(models.TransientModel):
                 selected_date,
                 employee_id
         ) \
-                and not self.is_weekend(
+                and not is_weekend(
                     selected_date
         ):
             return True
@@ -145,7 +137,7 @@ class TimesheetReport(models.TransientModel):
                 {
                     'manager_id': employee['manager_id'],
                     'created_date': str(
-                        self._tz_offset_today(self.env.user.tz)
+                        tz_offset_today(self.env.user.tz)
                     ),
                     'employee_list': employee_remind_list
                 }
@@ -164,8 +156,8 @@ class TimesheetReport(models.TransientModel):
         employee_list = self.env['hr.employee'].search([])
         for employee in employee_list:
             count = 0
-            selected_date = self._tz_offset_today(self.env.user.tz)
-            date_one_day = datetime.timedelta(days=1)
+            selected_date = tz_offset_today(self.env.user.tz)
+            date_one_day = timedelta(days=1)
             manager_remind_list.append({
                 'employee_id': employee.id,
                 'date': [],
@@ -221,7 +213,7 @@ class TimesheetReport(models.TransientModel):
             for manager in self.search([
                     ('manager_id', '=', manager_id),
                     ('created_date', '=', str(
-                        self._tz_offset_today(self.env.user.tz))
+                        tz_offset_today(self.env.user.tz))
                      )
             ]):
                 email_from = self.env.user.company_id.email
@@ -249,12 +241,6 @@ class TimesheetReport(models.TransientModel):
 
         return res
 
-    def is_weekend(self, selected_date):
-        if selected_date.weekday() not in self.WEEKEND:
-            return False
-        else:
-            return True
-
     @api.multi
     def _get_all_hour(self, selected_date, employee_id, workstart,
                       workend, resethours):
@@ -265,10 +251,12 @@ class TimesheetReport(models.TransientModel):
             employee_tz = standard_tz = pytz.timezone(employee_tz_str)
         else:
             employee_tz = standard_tz = pytz.utc
-        selected_date_start = self._str_to_datetime(
-            str(selected_date) + ' ' + str(workstart), standard_tz)
-        selected_date_end = self._str_to_datetime(
-            str(selected_date) + ' ' + str(workend), standard_tz)
+        selected_date_start = str_to_datetime(
+            str(selected_date) + ' ' + str(workstart),
+            tz_info=standard_tz)
+        selected_date_end = str_to_datetime(
+            str(selected_date) + ' ' + str(workend),
+            tz_info=standard_tz)
         workhours = selected_date_end.hour - selected_date_start.hour
         hrholidayobj = self.env['hr.holidays']
         leaves = hrholidayobj.search(
@@ -281,11 +269,11 @@ class TimesheetReport(models.TransientModel):
         if not leaves:
             return workhours + resethours
         for leave in leaves:
-            leave_date_from = self._tz_offset(
-                leave.date_from, employee_tz
+            leave_date_from = str_to_datetime(
+                leave.date_from, new_tz=employee_tz
             )
-            leave_date_to = self._tz_offset(
-                leave.date_to, employee_tz
+            leave_date_to = str_to_datetime(
+                leave.date_to, new_tz=employee_tz
             )
             if leave_date_from >= selected_date_start \
                     and leave_date_from < selected_date_end <= leave_date_to:
@@ -301,21 +289,3 @@ class TimesheetReport(models.TransientModel):
                     and selected_date_end < leave_date_to:
                 return no_work
         return workhours + resethours
-
-    def _str_to_datetime(self, str=False, standard_tz=False):
-        return datetime.datetime.strptime(
-            time.strftime(str),
-            "%Y-%m-%d %H:%M:%S"
-        ).replace(tzinfo=standard_tz)
-
-    def _tz_offset(self, str=False, employee_tz=False):
-        utc_date = datetime.datetime.strptime(
-            time.strftime(str),
-            "%Y-%m-%d %H:%M:%S"
-        ).replace(tzinfo=pytz.utc)
-        return utc_date.astimezone(employee_tz)
-
-    def _tz_offset_today(self, employee_tz_str=False):
-        employee_tz = pytz.timezone(employee_tz_str)
-        utc_date = datetime.datetime.today().replace(tzinfo=pytz.utc)
-        return utc_date.astimezone(employee_tz).date()
