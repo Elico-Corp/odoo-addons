@@ -241,13 +241,3 @@ class TimesheetReport(models.TransientModel):
                     and selected_date_end < leave_date_to:
                 return no_work
         return workhours + resethours
-
-class IrCron(models.Model):
-    _inherit = 'ir.cron'
-
-    @api.multi
-    def test_cron_job(self):
-        model_name = self[0].model
-        method_name = self[0].function
-        args = self[0].args
-        getattr(self.env[model_name], method_name)()
