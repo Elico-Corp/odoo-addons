@@ -2,13 +2,12 @@
 # © 2015 Elico corp (www.elico-corp.com)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 {
-    'name': 'Timesheet Automatic Remind',
+    'name': 'Timesheet Automatic Reminder',
     'version': '8.0.1.0.3',
     'category': 'Human Resources',
     'depends': [
         'hr_timesheet_sheet',
         'project',
-        'hr_holidays',
         'hr_holidays_compute_days'
     ],
     'author': 'Elico Corp',

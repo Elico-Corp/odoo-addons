@@ -8,8 +8,8 @@ from common_method import *
 
 
 class TimesheetReport(models.TransientModel):
-    _name = "timesheet.manager.remind.employee"
-    _description = "Timesheet Manager Remind Employee list"
+    _name = "timesheet.manager.reminder.employee"
+    _description = "Timesheet Manager Reminder Employee list"
 
     employee_id = fields.Many2one(
         string='Employee',
@@ -18,7 +18,7 @@ class TimesheetReport(models.TransientModel):
 
     manager_id = fields.Many2one(
         string='Manager',
-        comodel_name='timesheet.manager.remind'
+        comodel_name='timesheet.manager.reminder'
     )
 
     date_reminder = fields.Char(
@@ -27,8 +27,8 @@ class TimesheetReport(models.TransientModel):
 
 
 class TimesheetReport(models.TransientModel):
-    _name = "timesheet.manager.remind"
-    _description = "Timesheet Manager Remind Service"
+    _name = "timesheet.manager.reminder"
+    _description = "Timesheet Manager Reminder Service"
     _inherit = ['mail.thread']
 
     manager_id = fields.Many2one(
@@ -37,7 +37,7 @@ class TimesheetReport(models.TransientModel):
     )
 
     employee_list = fields.One2many(
-        'timesheet.manager.remind.employee',
+        'timesheet.manager.reminder.employee',
         'manager_id',
         string='Employee list'
     )
@@ -166,7 +166,7 @@ class TimesheetReport(models.TransientModel):
                 selected_date = selected_date - date_one_day
                 if self._check_weekend_or_holiday(
                         selected_date,
-                        employee.id
+                        employee_id=employee.id
                 ):
                     allhours_expected = self._get_all_hour(
                         selected_date,

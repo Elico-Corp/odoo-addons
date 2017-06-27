@@ -16,7 +16,7 @@
                 (Ref ${object.employee_id.user_id or 'n/a'})
             </field>
             <field name="model_id"
-                   ref="timesheet_automatic_remind.model_timesheet_employee_remind"/>
+                   ref="timesheet_automatic_reminder.model_timesheet_employee_reminder"/>
             <field name="auto_delete" eval="True"/>
             <field name="lang">${object.employee_id.user_id.partner_id
             .lang}</field>

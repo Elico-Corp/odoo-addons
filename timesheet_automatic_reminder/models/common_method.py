@@ -2,9 +2,11 @@
 # © 2015-2017 Elico corp (http://www.elico-corp.com)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-import pytz
 import time
 from datetime import datetime, timedelta, date
+import pytz
+
+# from openerp import models, api
 
 DATETIME = '%Y-%m-%d %H:%M:%S'
 DATE = '%Y-%m-%d'
