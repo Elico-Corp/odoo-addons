@@ -106,9 +106,6 @@ class TimesheetReminderCommon(models.TransientModel):
         if not employee_records:
             employee_records = self.env['hr.employee'].search([])
         count_date_str = [r.strftime(DATE_FORMAT) for r in count_date]
-        # employee_leave_dict = dict.\
-        #     fromkeys(employee_records.ids,
-        #              dict.fromkeys(deepcopy(count_date_str), 0))
         employee_leave_dict = defaultdict(dict)
         for employee in employee_records:
             employee_leave_dict[employee.id] = dict.fromkeys(count_date_str, 0)
@@ -131,13 +128,12 @@ class TimesheetReminderCommon(models.TransientModel):
     @api.model
     def _get_employee_tms(self, end_date, count_days, employee_records=False):
         """
-
-        :param start_date:
-        :param count_days:
-        :param work_start:
-        :param work_end:
-        :param employee_records:
-        :return:
+        Search the time sheet records to find out the employee
+        TMS hours during the check period
+        :param end_date: The last check date
+        :param count_days: the days need to check
+        :param employee_records: the employee need check
+        :return: (type: dict) {employee_id: {date1: hours, date2: hours, ...}, ...}
         """
         end_date_str = end_date.strftime(DATE_FORMAT)
         start_date = end_date - timedelta(days=count_days)
@@ -175,7 +171,7 @@ class TimesheetReminderCommon(models.TransientModel):
         :param workstart: the time when you start work(work on)
         :param workend: the time when you end work(work off)
         :param resethours: during the work time how many hours you get to reset
-        :param reminder_type: Email to employee(1) or manager(2)
+        :param reminder_type: Choose the email send to employee(1) or manager(2)
         :return:
         """
         delta_one_day = timedelta(days=1)
@@ -222,14 +218,14 @@ class TimesheetReminderCommon(models.TransientModel):
                                           employee_leave_dict, employee_tms_dict,
                                           need_work_hours):
         """
-
-        :param end_date:
-        :param count_days:
-        :param employee_records:
-        :param employee_leave_dict:
-        :param employee_tms_dict:
-        :param need_work_hours:
-        :return:
+        Create the records which employee need remind to fill the TMS
+        :param end_date: the last check day date
+        :param count_days: the days need check
+        :param employee_records: the employee need check
+        :param employee_leave_dict: record the employee's time for leave
+        :param employee_tms_dict: record the employee's time for TMS
+        :param need_work_hours: the hours the emloyee need record every day.
+        :return: the records need send email
         """
         result = self.env['timesheet.reminder']
         self.search([('create_date', '=', fields.Date.today())]).unlink()
@@ -263,7 +259,7 @@ class TimesheetReminderCommon(models.TransientModel):
     @api.model
     def _send_email_reminder_employee(self, reminder_records, force=False):
         """
-
+        Send the reminder email to employee
         :param reminder_records:
         :param force:
         :return:
@@ -272,8 +268,6 @@ class TimesheetReminderCommon(models.TransientModel):
         data = self.env['ir.model.data']
         mail = self.env['mail.mail']
         template_xmlid = 'employee_reminder_email_template'
-        # if reminder_type == 2:
-        #     template_xmlid = 'manager_reminder_email_template'
         template = data.xmlid_to_object(
             'timesheet_automatic_reminder.{}'.format(template_xmlid))
         mail_ids = []
@@ -294,7 +288,7 @@ class TimesheetReminderCommon(models.TransientModel):
     @api.model
     def _send_email_reminder_manager(self, reminder_records, force=False):
         """
-
+        Send the reminder email to manager
         :param reminder_records:
         :param force:
         :return:
@@ -312,7 +306,7 @@ class TimesheetReminderCommon(models.TransientModel):
             manager = reminder.employee_id.parent_id
             if not manager:
                 continue
-            key = manager   # (manager.id, manager.name)
+            key = manager
             if key not in manager_employee_dict:
                 manager_employee_dict[key] = {
                     'manager': manager,
