@@ -7,9 +7,9 @@
             <field name="interval_type">days</field>
             <field name="numbercall">-1</field>
             <field name="doall" eval="False"/>
-            <field eval="'timesheet.employee.remind'" name="model"/>
+            <field eval="'timesheet.reminder'" name="model"/>
             <field eval="'_start_remind'" name="function"/>
-            <field eval="7,'9:00:00','18:00:00',1" name="args"/>
+            <field eval="7,'9:00:00','18:00:00',1, 1" name="args"/>
             <field name="active" eval="False"/>
         </record>
         <record id="ir_cron_timesheet_manager_remind_action" model="ir.cron">
@@ -18,9 +18,9 @@
             <field name="interval_type">days</field>
             <field name="numbercall">-1</field>
             <field name="doall" eval="False"/>
-            <field eval="'timesheet.manager.remind'" name="model"/>
+            <field eval="'timesheet.reminder'" name="model"/>
             <field eval="'_start_remind'" name="function"/>
-            <field eval="7,'9:00:00','18:00:00',1" name="args"/>
+            <field eval="7,'9:00:00','18:00:00',1, 2" name="args"/>
             <field name="active" eval="False"/>
         </record>
     </data>
