@@ -3,7 +3,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 {
     'name': 'Timesheet Automatic Reminder',
-    'version': '8.0.1.0.3',
+    'version': '8.0.1.0.0',
     'category': 'Human Resources',
     'depends': [
         'hr_timesheet_sheet',

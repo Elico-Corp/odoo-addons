@@ -4,7 +4,6 @@
 
 from datetime import datetime, timedelta
 from collections import defaultdict
-
 from openerp import models, api, fields
 from openerp.tools import DEFAULT_SERVER_TIME_FORMAT as TIME_FORMAT, \
     DEFAULT_SERVER_DATE_FORMAT as DATE_FORMAT, \
@@ -15,26 +14,34 @@ class RemindDateLine(models.TransientModel):
     _name = 'reminder.date.line'
     _description = 'Date need reminder lines'
 
-    # columns
     reminder_date = fields.Date('Reminder Date')
     leave_hours = fields.Float('Leave Hours')
     work_hours = fields.Float('Work Hours')
     lack_hours = fields.Float('Lack Hours')
-    reminder_id = fields.Many2one('timesheet.reminder', 'Reminder Timesheet',
-                                  ondelete='cascade')
+    reminder_id = fields.Many2one(
+        'timesheet.reminder',
+        'Reminder Timesheet',
+        ondelete='cascade'
+    )
 
 
-class TimesheetReminderCommon(models.TransientModel):
+class TimesheetReminder(models.TransientModel):
     _name = 'timesheet.reminder'
     _description = 'TimeSheet Reminder'
     _inherit = ['mail.thread']
 
-    # columns
     employee_id = fields.Many2one('hr.employee', 'Employee')
-    manager_id = fields.Many2one('hr.employee', 'Employee Manager',
-                                 related='employee_id.parent_id', store=True)
-    reminder_date_ids = fields.One2many('reminder.date.line', 'reminder_id',
-                                        string='Reminder Date')
+    manager_id = fields.Many2one(
+        'hr.employee',
+        'Employee Manager',
+        related='employee_id.parent_id',
+        store=True
+    )
+    reminder_date_ids = fields.One2many(
+        'reminder.date.line',
+        'reminder_id',
+        string='Reminder Date'
+    )
 
     @staticmethod
     def _get_leave_to_days(leave, work_start, work_end, employee_leave_dict):
@@ -251,7 +258,6 @@ class TimesheetReminderCommon(models.TransientModel):
                     }])
             result |= self.create({
                 'employee_id': emp_id,
-                # 'manager_id', employee.parent_id.id,
                 'reminder_date_ids': reminder_date_ids,
             })
         return result
@@ -283,7 +289,6 @@ class TimesheetReminderCommon(models.TransientModel):
             res = mail.send(mail_ids)
 
         return res
-
 
     @api.model
     def _send_email_reminder_manager(self, reminder_records, force=False):
