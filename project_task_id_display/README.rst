@@ -2,26 +2,27 @@
    :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
    :alt: License: AGPL-3
 
-===============
-Project Task Id
-===============
+=======================
+Display Project Task ID
+=======================
 
-This module extends the functionality of project and allow you to see the task ID from the task views.
+This module extends the functionality of project and displays the corresponding id to task kanban view.
 
 Installation
 ============
 
 To install this module, you need to:
 
- * have basic modules installed (project_issue)
-​
+ * have basic modules installed (project)
+
+
 Bug Tracker
 ===========
 
 Bugs are tracked on `GitHub Issues <https://github.com/Elico-Corp/odoo/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us smashing it by providing a detailed and welcomed feedback
-`here <https://github.com/Elico-Corp/odoo/issues/new?body=module:%20task_id_display%0Aversion:%20{8.0}%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`here <https://github.com/Elico-Corp/odoo/issues/new?body=module:%20project_task_id_display%0Aversion:%20{8.0}%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Credits
 =======
@@ -29,14 +30,14 @@ Credits
 Contributors
 ------------
 
-* Bob Lucas <luo.yumeng@elico-corp.com>
+* Sébastien Maillard <sebastien.maillard@elico-corp.com>
 
 Maintainer
 ----------
 
 .. image:: https://www.elico-corp.com/logo.png
-:alt: Elico Corp
-:target: https://www.elico-corp.com
+   :alt: Elico Corp
+   :target: https://www.elico-corp.com
 
 This module is maintained by Elico Corporation.
 
