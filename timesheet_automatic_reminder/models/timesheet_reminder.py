@@ -64,30 +64,38 @@ class TimesheetReminder(models.TransientModel):
         end_leave_date = end_leave.date()
         one_day = timedelta(days=1)
         while count <= diff_days:
-            if check_date.strftime(DATE_FORMAT) in employee_leave_dict[employee.id]:
-                if start_leave_date == check_date and end_leave_date == check_date:
+            check_date_str = check_date.strftime(DATE_FORMAT)
+            if check_date_str in employee_leave_dict[employee.id]:
+                if start_leave_date == check_date \
+                        and end_leave_date == check_date:
                     _sl, _el = start_leave, end_leave
-                elif start_leave_date == check_date and end_leave_date != check_date:
+                elif start_leave_date == check_date \
+                        and end_leave_date != check_date:
                     _sl = start_leave
-                    _el = datetime.combine(check_date,
-                                           datetime.strptime('23:59:59', TIME_FORMAT).time())\
-                        .replace(tzinfo=start_leave.tzinfo)
-                elif start_leave_date != check_date and end_leave_date == check_date:
+                    _el = datetime.combine(
+                        check_date,
+                        datetime.strptime('23:59:59', TIME_FORMAT).time()).\
+                        replace(tzinfo=start_leave.tzinfo)
+                elif start_leave_date != check_date \
+                        and end_leave_date == check_date:
                     _el = end_leave
-                    _sl = datetime.combine(check_date,
-                                           datetime.strptime('00:00:00', TIME_FORMAT).time())\
-                        .replace(tzinfo=end_leave.tzinfo)
+                    _sl = datetime.combine(
+                        check_date,
+                        datetime.strptime('00:00:00', TIME_FORMAT).time()).\
+                        replace(tzinfo=end_leave.tzinfo)
                 else:
-                    employee_leave_dict[employee.id][check_date.strftime(DATE_FORMAT)] += 9
+                    employee_leave_dict[employee.id][check_date_str] += 9
                     count += 1
                     check_date += one_day
                     continue
-                work_on = datetime.combine(check_date, work_start).replace(tzinfo=_sl.tzinfo)
-                work_off = datetime.combine(check_date, work_end).replace(tzinfo=_el.tzinfo)
+                work_on = datetime.combine(check_date, work_start).\
+                    replace(tzinfo=_sl.tzinfo)
+                work_off = datetime.combine(check_date, work_end).\
+                    replace(tzinfo=_el.tzinfo)
                 leave_on = _sl if _sl > work_on else work_on
                 leave_off = _el if _el < work_off else work_off
                 leave_hours = leave_off.hour - leave_on.hour
-                employee_leave_dict[employee.id][check_date.strftime(DATE_FORMAT)] += \
+                employee_leave_dict[employee.id][check_date_str] += \
                     leave_hours if leave_hours > 0 else 0
             count += 1
             check_date += one_day
@@ -129,7 +137,8 @@ class TimesheetReminder(models.TransientModel):
         ], order='date_from')
         for leave in leave_records:
             employee_leave_dict = self._get_leave_to_days(leave, work_start,
-                                                          work_end, employee_leave_dict)
+                                                          work_end,
+                                                          employee_leave_dict)
         return employee_leave_dict
 
     @api.model
@@ -140,7 +149,8 @@ class TimesheetReminder(models.TransientModel):
         :param end_date: The last check date
         :param count_days: the days need to check
         :param employee_records: the employee need check
-        :return: (type: dict) {employee_id: {date1: hours, date2: hours, ...}, ...}
+        :return: (type: dict) {employee_id: {date1: hours, date2: hours, ...},
+        ...}
         """
         end_date_str = end_date.strftime(DATE_FORMAT)
         start_date = end_date - timedelta(days=count_days)
@@ -172,13 +182,14 @@ class TimesheetReminder(models.TransientModel):
     def _start_remind(self, count_days, workstart, workend,
                       rest_hours, reminder_type=1):
         """
-        The cron job start part, find the employee who didn't input his TMS and create the
-        record for reminder his manager in the noon
+        The cron job start part, find the employee who didn't input his TMS and
+         create the record for reminder his manager in the noon
         :param count_days: how many days need check
         :param workstart: the time when you start work(work on)
         :param workend: the time when you end work(work off)
         :param resethours: during the work time how many hours you get to reset
-        :param reminder_type: Choose the email send to employee(1) or manager(2)
+        :param reminder_type: Choose the email send to employee(1) or
+        manager(2)
         :return:
         """
         delta_one_day = timedelta(days=1)
@@ -186,20 +197,24 @@ class TimesheetReminder(models.TransientModel):
         _yesterday = (datetime.now() - delta_one_day)
         workstart_time = datetime.strptime(workstart, TIME_FORMAT).time()
         workend_time = datetime.strptime(workend, TIME_FORMAT).time()
-        employee_leave_dict = self._get_employee_leaves(_yesterday, count_days,
-                                                        workstart_time, workend_time,
-                                                        employee_records=employee_records)
-        employee_tms_dict = self._get_employee_tms(_yesterday, count_days,
-                                                   employee_records=employee_records)
+        employee_leave_dict = \
+            self._get_employee_leaves(_yesterday, count_days,
+                                      workstart_time, workend_time,
+                                      employee_records=employee_records)
+        employee_tms_dict = \
+            self._get_employee_tms(_yesterday, count_days,
+                                   employee_records=employee_records)
         need_work_hours = workend_time.hour - workstart_time.hour - rest_hours
         reminder_records = self.\
-            _create_employee_reminder_records(_yesterday, count_days, employee_records,
-                                              employee_leave_dict, employee_tms_dict,
+            _create_employee_reminder_records(_yesterday, count_days,
+                                              employee_records,
+                                              employee_leave_dict,
+                                              employee_tms_dict,
                                               need_work_hours)
         if reminder_type == 2:
-            self._send_email_reminder_manager(reminder_records=reminder_records)
+            self._send_email_reminder_manager(reminder_records)
         else:
-            self._send_email_reminder_employee(reminder_records=reminder_records)
+            self._send_email_reminder_employee(reminder_records)
 
         return True
 
@@ -209,7 +224,8 @@ class TimesheetReminder(models.TransientModel):
         Check the date belong to working day or rest day
         :param selected_date: the date need to checked
         :param employee_id: the employee need checked
-        :return: if the check_date is working day return True, otherwise return False
+        :return: if the check_date is working day return True,
+        otherwise return False
         """
         public_holiday_obj = self.env['hr.holidays.public']
         if isinstance(check_date, basestring):
@@ -221,8 +237,10 @@ class TimesheetReminder(models.TransientModel):
         return not (_is_weekend or _is_public_holiday)
 
     @api.model
-    def _create_employee_reminder_records(self, end_date, count_days, employee_records,
-                                          employee_leave_dict, employee_tms_dict,
+    def _create_employee_reminder_records(self, end_date, count_days,
+                                          employee_records,
+                                          employee_leave_dict,
+                                          employee_tms_dict,
                                           need_work_hours):
         """
         Create the records which employee need remind to fill the TMS
@@ -239,13 +257,16 @@ class TimesheetReminder(models.TransientModel):
         check_date_list = [end_date - timedelta(x) for x in xrange(count_days)]
         for employee in employee_records:
             emp_id = employee.id
-            real_check_list = filter(lambda x: self._check_is_working_day(x, emp_id),
-                                     check_date_list)
+            real_check_list = \
+                filter(lambda x: self._check_is_working_day(x, emp_id),
+                       check_date_list)
             reminder_date_ids = []
             for check_date in real_check_list:
                 check_date_str = check_date.strftime(DATE_FORMAT)
-                leave_hours = employee_leave_dict.get(emp_id, {}).get(check_date_str, 0)
-                tms_hours = employee_tms_dict.get(emp_id, {}).get(check_date_str, 0)
+                leave_hours = employee_leave_dict.get(emp_id, {}).\
+                    get(check_date_str, 0)
+                tms_hours = employee_tms_dict.get(emp_id, {}).\
+                    get(check_date_str, 0)
                 effective_hours = leave_hours + tms_hours
 
                 if need_work_hours > effective_hours:
@@ -279,8 +300,10 @@ class TimesheetReminder(models.TransientModel):
         mail_ids = []
         for reminder in reminder_records:
             emp_work_email = reminder.employee_id.work_email
-            if emp_work_email and email_from and (email_from != emp_work_email or force):
-                mail_id = template.with_context(dbname=self.env.cr.dbname).send_mail(reminder.id)
+            if emp_work_email and email_from and \
+                    (email_from != emp_work_email or force):
+                mail_id = template.with_context(dbname=self.env.cr.dbname).\
+                    send_mail(reminder.id)
                 the_mailmess = mail.browse(mail_id).mail_message_id
                 the_mailmess.write({'model': None, 'res_id': False})
                 mail_ids.append(mail_id)
@@ -318,14 +341,16 @@ class TimesheetReminder(models.TransientModel):
                     'employee': {},
                     'res_id': reminder.id
                 }
-            reminder_date = (', ').join([x.reminder_date for x in reminder.reminder_date_ids])
+            reminder_date = (', ').join(
+                [x.reminder_date for x in reminder.reminder_date_ids])
             emp_key = (reminder.employee_id.id, reminder.employee_id.name)
             manager_employee_dict[key]['employee'][emp_key] = reminder_date
 
         for manager_record, real_content in manager_employee_dict.items():
             emp_work_email = manager_record.work_email
             res_id = real_content.pop('res_id')
-            if emp_work_email and email_from and (emp_work_email != email_from or force):
+            if emp_work_email and email_from and \
+                    (emp_work_email != email_from or force):
                 mail_id = template.with_context(manager=real_content).\
                     send_mail(res_id)
                 the_mailmess = mail.browse(mail_id).mail_message_id
