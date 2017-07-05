@@ -29,6 +29,7 @@ Credits
 Contributors
 ------------
 
+* Eric Caudal <eric.caudal@elico-corp.com>
 * Rona Lin <rona.lin@elico-corp.com>
 
 Maintainer
