@@ -30,6 +30,7 @@ Credits
 Contributors
 ------------
 
+* Eric Caudal <eric.caudal@elico-corp.com>
 * Sébastien Maillard <sebastien.maillard@elico-corp.com>
 
 Maintainer
