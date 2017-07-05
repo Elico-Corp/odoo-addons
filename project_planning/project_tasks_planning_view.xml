@@ -20,8 +20,7 @@
                         </h1>
                         <group>
                             <group>
-                                <field name="type" modifiers="{'required': true}"/>
-                                <field name="wbs" modifiers="{}"/>
+                                <field name="categ_id" modifiers="{'readonly': true}"/>
                                 <field name="project_id" domain="[('state','not in', ('close', 'cancelled'))]" on_change="onchange_project(project_id)" context="{'default_use_tasks':1}" modifiers="{'required': true}"/>
                             </group>
                             <group>
@@ -30,17 +29,17 @@
                                 <field name="priority" widget="priority" modifiers="{}"/>
                             </group>
                         </group>
-                            <group>
-                                <group class="oe_subtotal_footer oe_right" name="project_hours">
-                                    <field name="effective_hours" widget="float" modifiers="{'readonly': true}"/>
-                                    <label for="remaining_hours" string="Remaining"/>
-                                    <div>
-                                        <field name="remaining_hours" widget="float" modifiers="{}"/>
-                                    </div>
-                                    <field name="total_hours" widget="float" class="oe_subtotal_footer_separator" modifiers="{'readonly': true}"/>
-                                </group>
-                            </group>
+                        <group>
                             <field name="work_ids" modifiers="{}"/>
+                            <group class="oe_subtotal_footer oe_right" name="project_hours">
+                                <field name="effective_hours" widget="float" modifiers="{'readonly': true}"/>
+                                <label for="remaining_hours" string="Remaining"/>
+                                <div>
+                                    <field name="remaining_hours" widget="float" modifiers="{}"/>
+                                </div>
+                                <field name="total_hours" widget="float" class="oe_subtotal_footer_separator" modifiers="{'readonly': true}"/>
+                            </group>
+                        </group>
                         <div class="oe_clear"/>
                     </sheet>
                 </form>
@@ -53,8 +52,7 @@
             <field name="arch" type="xml">
                 <tree >
                     <field name="id"/>
-                    <field name="type"/>
-                    <field name="wbs"/>
+                    <field name="categ_id"/>
                     <field name="name"/>
                     <field name="project_id"/>
                     <field name="remaining_hours"/>
@@ -76,16 +74,17 @@
             <field name="arch" type="xml">
                 <search string="Tasks Planning">
                     <field name="id"/>
-                    <field name="name"/>
-                    <field name="type"/>
-                    <field name="wbs"/>
+                    <field name="name" string="Tasks"/>
+                    <field name="categ_id"/>
                     <field name="categ_ids"/>
                     <field name="user_id"/>
                     <field name="reviewer_id"/>
+                    <field name="user_id"/>
                     <field name="project_id"/>
                     <field name="stage_id"/>
                     <field name="description"/>
-                    <filter name ="filter_my_task" string="My Task" domain="[('user_id','=',uid)]"/>
+                    <filter name ="filter_my_task" string="My Task"
+                            domain="[('user_id','=',uid)]"/>
                     <separator/>
                     <filter name = "filter_Week1" string="Week1"
                             domain="[('week_1', '>', 0)]"/>
@@ -101,7 +100,7 @@
                     <group expand="0" string="Group By">
                         <filter name="project_id" string="Project" context="{'group_by':'project_id'}"/>
                         <filter name="stage_id" string="Stage" context="{'group_by':'stage_id'}"/>
-                        <filter name="type" string="Type" context="{'group_by':'type'}"/>
+                        <filter name="categ_id" string="Category" context="{'group_by': 'categ_id'}"/>
                     </group>
                 </search>
             </field>
