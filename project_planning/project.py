@@ -12,4 +12,3 @@ class ProjectTask(models.Model):
     week_2 = fields.Float('Week2', help="Time planned for next week")
     week_3 = fields.Float('Week3', help="Time planned for week 3")
     week_4 = fields.Float('Week4', help="Time planned for week 4")
-
