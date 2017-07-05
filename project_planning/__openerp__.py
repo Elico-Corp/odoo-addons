@@ -3,7 +3,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 {
     'name': 'Project Planning',
-    'version': '8.0.1.0.3',
+    'version': '8.0.1.0.0',
     'category': 'Project',
     'depends': [
         'project_task_type',
