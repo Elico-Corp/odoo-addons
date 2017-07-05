@@ -4,7 +4,7 @@
 
 {
     'name': 'Hr Timesheet Line Readonly',
-    'version': '8.0.1.0.1',
+    'version': '8.0.1.0.0',
     'category': 'hr',
     'depends': [
         'hr_timesheet',
