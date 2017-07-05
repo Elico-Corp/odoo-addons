@@ -30,6 +30,7 @@ Credits
 Contributors
 ------------
 
+* Eric Caudal <eric.caudal@elico-corp.com>
 * Gu SiYuan <gu.siyuan@elico-corp.com>
 
 Maintainer
