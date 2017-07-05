@@ -68,20 +68,13 @@
                 </tree>
             </field>
         </record>
-        <record id="task_planning_search" model="ir.ui.view">
+        <record id="view_task_search_form" model="ir.ui.view">
             <field name="name">project.task.planning.search</field>
             <field name="model">project.task</field>
+            <field name="inherit_id" ref="project.view_task_search_form"/>
             <field name="arch" type="xml">
-                <search string="Tasks Planning">
+                <filter string="My Tasks" position="replace">
                     <field name="id"/>
-                    <field name="name" string="Tasks"/>
-                    <field name="categ_id"/>
-                    <field name="categ_ids"/>
-                    <field name="user_id"/>
-                    <field name="reviewer_id"/>
-                    <field name="user_id"/>
-                    <field name="project_id"/>
-                    <field name="stage_id"/>
                     <field name="description"/>
                     <filter name ="filter_my_task" string="My Task"
                             domain="[('user_id','=',uid)]"/>
@@ -102,7 +95,7 @@
                         <filter name="stage_id" string="Stage" context="{'group_by':'stage_id'}"/>
                         <filter name="categ_id" string="Category" context="{'group_by': 'categ_id'}"/>
                     </group>
-                </search>
+                </filter>
             </field>
         </record>
         <record id="action_view_task_planning" model="ir.actions.act_window">
@@ -111,7 +104,7 @@
             <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>
             <field name="view_id" ref="view_task_planning_tree"/>
-            <field name="search_view_id" ref="task_planning_search" />
+            <field name="search_view_id" ref="view_task_search_form" />
             <field name="help" type="html">
               <p class="oe_view_nocontent_create">
               </p>
@@ -134,7 +127,7 @@
             <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>
             <field name="view_id" ref="view_task_planning_tree"/>
-            <field name="search_view_id" ref="task_planning_search" />
+            <field name="search_view_id" ref="view_task_search_form" />
             <field name="help" type="html">
               <p class="oe_view_nocontent_create">
               </p>
