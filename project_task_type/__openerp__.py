@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
-# © 2015-2017 Elico corp (http://www.elico-corp.com)
+# © 2015-2017 Elico corp (https://www.elico-corp.com)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 {
     'name': 'Project Task Type',
-    'version': '8.0.1.0.1',
+    'version': '8.0.1.0.0',
     'category': '',
     'depends': [
         'project',
