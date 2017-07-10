@@ -3,26 +3,9 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from datetime import datetime, timedelta
-from collections import defaultdict
 from openerp import models, api, fields
 from openerp.tools import DEFAULT_SERVER_TIME_FORMAT as TIME_FORMAT, \
-    DEFAULT_SERVER_DATE_FORMAT as DATE_FORMAT, \
-    DEFAULT_SERVER_DATETIME_FORMAT as DATETIME_FORMAT
-
-###########################TEST Ir Corn Job#########################
-class IrCron(models.Model):
-    _inherit = 'ir.cron'
-
-    @api.multi
-    def ir_cron_test(self):
-        for record in self:
-            model_name = record.model
-            method_name = record.function
-            args = record.args
-            model_obj = self.env[model_name]
-            func_str = 'getattr(model_obj, method_name)%s' % args
-            eval(func_str)
-####################################################################
+    DEFAULT_SERVER_DATE_FORMAT as DATE_FORMAT
 
 
 class RemindDateLine(models.TransientModel):
