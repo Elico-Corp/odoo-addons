@@ -52,20 +52,21 @@ class RemindDateLine(models.TransientModel):
         """
         holiday_obj = self.env['hr.holidays']
         records = self.filtered(lambda x: x.is_working_day and x.reminder_id)
-        s2d = lambda x: fields.Datetime.from_string(x)
         for record in records:
             reminder_date_str = record.reminder_date
-            _reminder_date = s2d(reminder_date_str)
+            _reminder_date = fields.Datetime.from_string(reminder_date_str)
             employee = record.reminder_id.employee_id
             reminder_date = fields.Datetime.context_timestamp(employee,
                                                               _reminder_date)
-            work_on = s2d(record.reminder_id.work_on_time).time()
-            work_off = s2d(record.reminder_id.work_off_time).time()
+            work_on = fields.Datetime.\
+                from_string(record.reminder_id.work_on_time).time()
+            work_off = fields.Datetime.\
+                from_string(record.reminder_id.work_off_time).time()
 
             leave_records = holiday_obj.search([
                 ('employee_id', '=', employee.id),
                 ('type', '=', 'remove'),
-                ('state' , 'not in', ['cancel', 'refuse']),
+                ('state', 'not in', ['cancel', 'refuse']),
                 ('date_from', '<=', reminder_date_str),
                 ('date_to', '>=', reminder_date_str)
             ])
