@@ -2,3 +2,4 @@ business-requirement https://github.com/noahzaozao/business-requirement.git 8.0-
 odoo_community https://github.com/Elico-Corp/odoo_community.git 8.0
 reporting-engine https://github.com/OCA/reporting-engine 8.0
 website https://github.com/OCA/website 8.0
+hr https://github.com/OCA/hr.git 8.0
