@@ -14,7 +14,7 @@
     'license': 'AGPL-3',
     'website': 'https://www.elico-corp.com',
     'data': [
-        'views/timesheet_cron_job.xml',
+        'data/timesheet_cron_job.xml',
         'data/employee_reminder_template.xml',
         'data/manager_reminder_template.xml'
     ],
