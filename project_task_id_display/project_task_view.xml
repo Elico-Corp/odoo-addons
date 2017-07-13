@@ -1,46 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <openerp>
     <data>
-        <record model="ir.ui.view" id="task_id_display_tree_inherit">
+        <record id="task_id_display_tree_view" model="ir.ui.view">
             <field name="name">project_task.task_id_display_tree_view</field>
             <field name="model">project.task</field>
             <field name="inherit_id" ref="project.view_task_tree2"/>
             <field name="arch" type="xml">
                 <field name="name" position="before">
                     <field name="id" />
-                </field>  
+                </field>
             </field>
         </record>
-        <record model="ir.ui.view" id="task_id_display_form_inherit">
+        <record id="task_id_display_form_view" model="ir.ui.view">
             <field name="name">project_task.task_id_display_form_view</field>
             <field name="model">project.task</field>
             <field name="inherit_id" ref="project.view_task_form2"/>
             <field name="arch" type="xml">
                 <field name="name" position="before">
                     <field name="id" />
-                </field>  
+                </field>
             </field>
         </record>
-        <record model="ir.ui.view" id="task_id_display_kanban_inherit">
+        <record id="task_id_display_kanban_view" model="ir.ui.view">
             <field name="name">project_task.task_id_display_kanban_view</field>
             <field name="model">project.task</field>
             <field name="inherit_id" ref="project.view_task_kanban"/>
             <field name="arch" type="xml">
                 <field name="name" position="before">
                     <field name="id" />
-                </field>  
+                </field>
             </field>
         </record>
-        <record model="ir.ui.view" id="task_id_display_search_inherit">
+        <record id="task_id_display_search_view" model="ir.ui.view">
             <field name="name">project_task.task_id_display_search_view</field>
             <field name="model">project.task</field>
             <field name="inherit_id" ref="project.view_task_search_form"/>
             <field name="arch" type="xml">
                 <field name="name" position="before">
                     <field name="id" />
-                </field>  
+                </field>
             </field>
         </record>
     </data>
 </openerp>
-
