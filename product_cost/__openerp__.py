@@ -9,6 +9,9 @@
         'report_xls',
         'mrp',
         'account',
+        'sale',
+        'purchase',
+        'stock',
     ],
     'external_dependencies': {
         'python': ['xlrd'],
