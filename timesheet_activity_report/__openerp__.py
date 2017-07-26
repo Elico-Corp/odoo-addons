@@ -3,7 +3,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 {
     'name': 'Timesheet Activities Report',
-    'version': '8.0.1.1.0',
+    'version': '8.0.1.1.0', #FIXME is it the right version? I assume the module needs to be upgraded...
     'category': 'Human Resources',
     'depends': [
         'project_timesheet',
