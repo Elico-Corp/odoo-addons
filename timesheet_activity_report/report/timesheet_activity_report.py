@@ -21,7 +21,7 @@ class TimesheetReport(models.TransientModel):
             ('issue', 'Issue'),
             ('timesheet', 'Timesheet'),
         ], 'Type', readonly=True,
-        help="Type is used to separate Tasks, Issues and" \
+        help="Type is used to separate Tasks, Issues and " \
             "Timesheets input directly")
     description = fields.Char('Description', readonly=True)
     hours = fields.Float(
