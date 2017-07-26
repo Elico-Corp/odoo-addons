@@ -2,66 +2,60 @@
 # © 2015 Elico corp (www.elico-corp.com)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from openerp.osv import fields, osv
-from openerp import tools
+from openerp import models, api, fields, tools
 
 
-class TimesheetReport(osv.Model):
-    """ Timesheet Activities Report """
+class TimesheetReport(models.TransientModel):
+    """
+        Timesheet Activities Report.
+    """
     _name = "timesheet.activity.report"
-    _auto = False
+    _auto = False #FIXME needed in new API?
     _description = "Timesheet Activities Report"
-    _rec_name = 'activity_name'
+    _rec_name = 'activity_name' #FIXME needed in new API?
 
-    _columns = {
-        'id': fields.integer('Id', readonly=True),
-        'activity_type': fields.selection(
-            [
-                ('task', 'Task'),
-                ('issue', 'Issue'),
-                ('timesheet', 'Timesheet'),
-            ], 'Type', readonly=True,
-            help="Type is used to separate Tasks, Issues and\
-                Timesheets input directly"),
-        'description': fields.char('Description', readonly=True),
-        'hours': fields.float(
-            'Time spent', digits=(16, 2), readonly=True,
-            help="Time spent on timesheet"),
-        'user_id': fields.many2one('res.users', 'User', readonly=True),
-        'product_id': fields.many2one(
-            'product.product', 'Product', readonly=True),
-        'date': fields.date('Date', readonly=True),
-        'project_id': fields.many2one(
-            'project.project', 'Project', readonly=True),
-        'project_state': fields.char(
-            'State', readonly=True, help="Project State"),
-        'activity_stage_id': fields.many2one(
-            'project.task.type', 'Stage',
-            readonly=True, help="Activity Stage"),
-        'account_id': fields.many2one(
-            'account.analytic.account', 'Analytic account', readonly=True),
-        'activity_id': fields.char(
-            'Activity id', readonly=True, help="Task id or Issue id"),
-        'activity_name': fields.char(
-            'Activity name', readonly=True, help="Task name or Issue name"),
-        'br_id': fields.many2one(
+    id = fields.Integer('Id', readonly=True)
+    activity_type = fields.Selection(
+        [
+            ('task', 'Task'),
+            ('issue', 'Issue'),
+            ('timesheet', 'Timesheet'),
+        ], 'Type', readonly=True,
+        help="Type is used to separate Tasks, Issues and\
+            Timesheets input directly")
+    description = fields.Char('Description', readonly=True)
+    hours = fields.Float(
+        'Time spent', digits=(16, 2), readonly=True,
+        help="Time spent on timesheet")
+    user_id = fields.Many2one('res.users', 'User', readonly=True)
+    product_id = fields.Many2one('product.product', 'Product', readonly=True)
+    date = fields.Date('Date', readonly=True)
+    project_id = fields.Many2one('project.project', 'Project', readonly=True)
+    project_state = fields.Char('State', readonly=True, help="Project State")
+    activity_stage_id = fields.Many2one(
+        'project.task.type', 'Stage',
+        readonly=True, help="Activity Stage")
+    account_id = fields.Many2one(
+            'account.analytic.account', 'Analytic account', readonly=True)
+    activity_id = fields.Char(
+            'Activity id', readonly=True, help="Task id or Issue id")
+    activity_name = fields.Char(
+            'Activity name', readonly=True, help="Task name or Issue name")
+    br_id = fields.Many2one(
             'business.requirement', 'Bus. requ.',
-            readonly=True, help="Business requirement"),
-        'partner_id': fields.many2one(
-            'res.partner', 'Customer', readonly=True),
-        'project_categ_id': fields.many2one(
+            readonly=True, help="Business requirement")
+    partner_id = fields.Many2one(
+            'res.partner', 'Customer', readonly=True)
+    project_categ_id = fields.Many2one(
             'project.project.category',
-            'Project Cat.', readonly=True, help="Project Category"),
-    }
+            'Project Cat.', readonly=True, help="Project Category")
 
-    def init(self, cr):
+    def __init__(self):
         """
             Timesheet Activities Report.
-
-            @param cr: the current row, from the database cursor
         """
         tools.drop_view_if_exists(cr, 'timesheet_activity_report')
-        cr.execute("""
+        self.env.cr.execute("""
             CREATE OR REPLACE VIEW timesheet_activity_report AS (
                 SELECT row_number() OVER (ORDER BY q.timesheet_id) AS id, q.*
                 FROM (
