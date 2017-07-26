@@ -57,64 +57,61 @@ class TimesheetReport(models.TransientModel):
         tools.drop_view_if_exists(cr, 'timesheet_activity_report')
         self.env.cr.execute("""
             CREATE OR REPLACE VIEW timesheet_activity_report AS (
-                SELECT row_number() OVER (ORDER BY q.timesheet_id) AS id, q.*
-                FROM (
-                    SELECT
-                        ts.id as timesheet_id,
-                        -- Check if the timesheet is linked to a task
-                        -- or an issue
-                        CASE WHEN tw.id IS NOT NULL THEN 'task'
+                SELECT
+                    ts.id,
+                    -- Check if the timesheet is linked to a task
+                    -- or an issue
+                    CASE WHEN tw.id IS NOT NULL THEN 'task'
+                    ELSE (
+                        CASE WHEN i.id IS NOT NULL THEN 'issue'
+                        -- Timesheet created in the timesheet
+                        -- activities panel
                         ELSE (
-                            CASE WHEN i.id IS NOT NULL THEN 'issue'
-                            -- Timesheet created in the timesheet
-                            -- activities panel
-                            ELSE (
-                                CASE WHEN ts.id IS NOT NULL THEN 'timesheet'
-                                -- No timesheet attached to this
-                                -- task/project/BR
-                                ELSE NULL
-                                END
-                            )
+                            CASE WHEN ts.id IS NOT NULL THEN 'timesheet'
+                            -- No timesheet attached to this
+                            -- task/project/BR
+                            ELSE NULL
                             END
                         )
-                        END AS activity_type,
-                        -- Description from the task first
-                        -- because the one in the timesheet
-                        -- is wrong when it's linked to a task
-                        COALESCE(tw.name, al.name) AS description,
-                        al.unit_amount AS hours,
-                        al.user_id,
-                        al.product_id,
-                        al.date,
-                        p.id AS project_id,
-                        p.state AS project_state,
-                        COALESCE(t.stage_id, i.stage_id) AS activity_stage_id,
-                        COALESCE(a.id, al.account_id) AS account_id,
-                        COALESCE(t.id, i.id) AS activity_id,
-                        COALESCE(t.name, i.name) AS activity_name,
-                        -- The hours are null in case the timesheet
-                        -- is not linked to a task
-                        b.id AS br_id,
-                        a.partner_id,
-                        p.project_categ_id
-                    FROM
-                        hr_analytic_timesheet ts
-                        INNER JOIN account_analytic_line al
-                            ON al.id = ts.line_id
-                        -- Link with the task
-                        LEFT OUTER JOIN project_task_work tw
-                            ON tw.hr_analytic_timesheet_id = ts.id
-                        LEFT OUTER JOIN project_task t ON t.id = tw.task_id
-                        -- Link with the issue
-                        LEFT OUTER JOIN project_issue i ON i.id = ts.issue_id
-                        -- Link with the project
-                        LEFT OUTER JOIN project_project p
-                            ON p.id = COALESCE(t.project_id, i.project_id)
-                        -- Link with the analytic account
-                        LEFT OUTER JOIN account_analytic_account a
-                            ON a.id = p.analytic_account_id
-                        -- Link with the BR
-                        LEFT OUTER JOIN business_requirement b
-                            ON b.linked_project = p.id
-                ) AS q
+                        END
+                    )
+                    END AS activity_type,
+                    -- Description from the task first
+                    -- because the one in the timesheet
+                    -- is wrong when it's linked to a task
+                    COALESCE(tw.name, al.name) AS description,
+                    al.unit_amount AS hours,
+                    al.user_id,
+                    al.product_id,
+                    al.date,
+                    p.id AS project_id,
+                    p.state AS project_state,
+                    COALESCE(t.stage_id, i.stage_id) AS activity_stage_id,
+                    COALESCE(a.id, al.account_id) AS account_id,
+                    COALESCE(t.id, i.id) AS activity_id,
+                    COALESCE(t.name, i.name) AS activity_name,
+                    -- The hours are null in case the timesheet
+                    -- is not linked to a task
+                    b.id AS br_id,
+                    a.partner_id,
+                    p.project_categ_id
+                FROM
+                    hr_analytic_timesheet ts
+                    INNER JOIN account_analytic_line al
+                        ON al.id = ts.line_id
+                    -- Link with the task
+                    LEFT OUTER JOIN project_task_work tw
+                        ON tw.hr_analytic_timesheet_id = ts.id
+                    LEFT OUTER JOIN project_task t ON t.id = tw.task_id
+                    -- Link with the issue
+                    LEFT OUTER JOIN project_issue i ON i.id = ts.issue_id
+                    -- Link with the project
+                    LEFT OUTER JOIN project_project p
+                        ON p.id = COALESCE(t.project_id, i.project_id)
+                    -- Link with the analytic account
+                    LEFT OUTER JOIN account_analytic_account a
+                        ON a.id = p.analytic_account_id
+                    -- Link with the BR
+                    LEFT OUTER JOIN business_requirement b
+                        ON b.linked_project = p.id
             )""")
