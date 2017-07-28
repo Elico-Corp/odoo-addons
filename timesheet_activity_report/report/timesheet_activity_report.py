@@ -10,9 +10,9 @@ class TimesheetReport(models.TransientModel):
         Timesheet Activities Report.
     """
     _name = "timesheet.activity.report"
-    _auto = False #FIXME needed in new API?
+    _auto = False # Database table should not be created, use init() instead
     _description = "Timesheet Activities Report"
-    _rec_name = 'activity_name' #FIXME needed in new API?
+    _rec_name = 'activity_name' # Field used for the Name
 
     id = fields.Integer('Id', readonly=True)
     activity_type = fields.Selection(
@@ -50,7 +50,7 @@ class TimesheetReport(models.TransientModel):
             'project.project.category',
             'Project Cat.', readonly=True, help="Project Category")
 
-    def __init__(self):
+    def init(self):
         """
             Timesheet Activities Report.
         """
