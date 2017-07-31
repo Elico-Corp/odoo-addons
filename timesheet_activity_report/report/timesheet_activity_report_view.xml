@@ -30,9 +30,6 @@
             <field name="model">timesheet.activity.report</field>
             <field name="arch" type="xml">
                 <graph type="pivot">
-                    <field name="project_id"/>
-                    <field name="product_id"/>
-                    <field name="user_id"/>
                     <field name="hours" type="measure"/>
                 </graph>
             </field>
