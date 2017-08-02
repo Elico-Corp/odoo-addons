@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="view_multicompany_report" model="ir.ui.view">
+            <field name="name">multicompany.report.form</field>
+            <field name="model">multicompany.report</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+		<form string="Multi-Company Compared Reports">
+			<separator string="Report's Company and Fiscal Year" colspan="4"/>
+			<field name="company_id"/>
+			<field name="compared"/>
+
+			<separator string="Report's Accounting periods" colspan="4"/>
+			<field name="fiscalyear1" domain="[('company_id','=',company_id)]"/>
+			<field name="periods1" domain="[('fiscalyear_id','=',fiscalyear1)]"/>
+			
+			<group attrs="{'invisible':[('compared','=',False)]}" colspan="4">
+				<separator string="Report's Accounting periods for comparison" colspan="4"/>
+				<field name="fiscalyear2" domain="[('company_id','=',company_id)]"/>
+				<field name="periods2" domain="[('fiscalyear_id','=',fiscalyear2)]"/>
+			</group>
+			<separator string="Report's Options" colspan="4"/>
+			<field name="report_type"/>
+			<field name="report_details"/>
+			<field name="skip_accts_no_activity"  colspan="4"/>
+			<field name="hide_accounts"  colspan="4"/>
+			<field name="hide_view_accounts"  colspan="4"/>
+			<group attrs="{'invisible':[('report_details','!=','RepCus')]}" colspan="4">
+				<separator string="Customized Report's options" colspan="4"/>
+				<field name="field_1" />
+				<field name="c_field_1" />
+				<field name="field_2" />
+				<field name="c_field_2"/>
+				<field name="field_3"/>
+				<field name="c_field_3"/>
+				<field name="field_4"/>
+				<field name="c_field_4"/>
+				<field name="field_5"/>
+				<field name="c_field_5"/>
+			</group>
+			<group col="4" colspan="4">
+				<button icon="gtk-cancel" special="cancel" string="Cancel" colspan="2"/>
+				<button icon="gtk-print" name="check_report" string="Print" type="object" colspan="2" default_focus="1"/>
+			</group>
+		</form>
+            </field>
+        </record>
+        <record id="action_multicompany_report" model="ir.actions.act_window">
+            <field name="name">Multi-Company Compared Reports</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">multicompany.report</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_multicompany_report"/>
+            <field name="target">new</field>
+            <field name="help">Display multi-company financial statements (Income statement and Balance Sheet) for the given company and periods. You can also compare 2 range of periods.</field>
+        </record>
+
+       <menuitem icon="STOCK_PRINT"
+            name="Multi-Company Reports"
+            action="action_multicompany_report"
+            groups="account.group_account_user,account.group_account_manager"
+            id="menu_multicompany_report"
+            parent="account.final_accounting_reports"/>
+
+
+    </data>
+</openerp>

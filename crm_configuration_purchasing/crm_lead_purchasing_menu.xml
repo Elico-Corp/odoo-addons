@@ -1,0 +1,292 @@
+<?xml version="1.0"?>
+<openerp>
+<data noupdate="1">
+    <menuitem id="menu_prepurchasing" name="Purchasing" parent="crm.menu_crm" sequence="5"/>
+    <menuitem id="menu_reppurchasing" name="Reporting (Purchasing)" parent="crm.menu_crm" sequence="10"/>
+
+<!--        MENU        -->
+
+    <record model="ir.actions.act_window" id="crm_case_category_act_leadsp_all">
+        <field name="name">All Leads (Purchasing)</field>
+        <field name="res_model">crm.case</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="crm_case_tree_view_leadsp"/>
+        <field name="domain" eval="'[(\'section_id\',\'=\','+str(section_supportp2)+')]'"/>
+    </record>
+    <record model="ir.actions.act_window.view" id="action_crm_tag_tree_view_leadsp_all">
+        <field name="sequence" eval="1"/>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="crm_case_tree_view_leadsp"/>
+        <field name="act_window_id" ref="crm_case_category_act_leadsp_all"/>
+    </record>
+    <record model="ir.actions.act_window.view" id="action_crm_tag_form_view_leadsp_all">
+        <field name="sequence" eval="3"/>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="crm_case_form_view_leadsp"/>
+        <field name="act_window_id" ref="crm_case_category_act_leadsp_all"/>
+    </record>
+    <menuitem parent="menu_prepurchasing" name="Leads (Purchasing)" 	id="menu_crm_case_categ0_act_leadsp" action="crm_case_category_act_leadsp_all"/>
+    <menuitem parent="menu_crm_case_categ0_act_leadsp" id="menu_crm_case_categ0_act_leadsp_all" action="crm_case_category_act_leadsp_all"/>
+
+    <record model="ir.actions.act_window" id="crm_case_category_act_leadsp_all1">
+        <field name="name">Current Leads (Purchasing)</field>
+        <field name="res_model">crm.case</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="crm_case_tree_view_leadsp"/>
+        <field name="domain" eval="'[(\'section_id\',\'=\','+str(section_supportp2)+'),(\'state\',\'&lt;&gt;\',\'done\'),(\'state\',\'&lt;&gt;\',\'cancel\')]'"/>
+    </record>
+    <record model="ir.actions.act_window.view" id="action_crm_tag_tree_view_leadsp_all1">
+        <field name="sequence" eval="1"/>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="crm_case_tree_view_leadsp"/>
+        <field name="act_window_id" ref="crm_case_category_act_leadsp_all1"/>
+    </record>
+    <record model="ir.actions.act_window.view" id="action_crm_tag_form_view_leadsp_all1">
+        <field name="sequence" eval="3"/>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="crm_case_form_view_leadsp"/>
+        <field name="act_window_id" ref="crm_case_category_act_leadsp_all1"/>
+    </record>
+    <menuitem parent="menu_crm_case_categ0_act_leadsp_all" id="menu_crm_case_categ0_act_leadsp_all1" action="crm_case_category_act_leadsp_all1"/>
+
+    <record model="ir.actions.act_window" id="crm_case_category_act_leadsp_unassigned">
+        <field name="name">Unassigned Leads (Purchasing)</field>
+        <field name="res_model">crm.case</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="crm_case_tree_view_leadsp"/>
+        <field name="domain" eval="'[(\'section_id\',\'=\','+str(section_supportp2)+'),(\'state\',\'&lt;&gt;\',\'done\'),(\'state\',\'&lt;&gt;\',\'cancel\'),(\'user_id\',\'=\',False)]'"/>
+    </record>
+    <record model="ir.actions.act_window.view" id="action_crm_tag_tree_view_leadsp_unassigned">
+        <field name="sequence" eval="1"/>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="crm_case_tree_view_leadsp"/>
+        <field name="act_window_id" ref="crm_case_category_act_leadsp_unassigned"/>
+    </record>
+    <record model="ir.actions.act_window.view" id="action_crm_tag_form_view_leadsp_unassigned">
+        <field name="sequence" eval="3"/>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="crm_case_form_view_leadsp"/>
+        <field name="act_window_id" ref="crm_case_category_act_leadsp_unassigned"/>
+    </record>
+    <menuitem
+        parent="menu_crm_case_categ0_act_leadsp_all"
+        id="menu_crm_case_categ0_act_leadsp_unassigned"
+        action="crm_case_category_act_leadsp_unassigned"/>
+
+    <record model="ir.actions.act_window" id="crm_case_category_act_leadsp_all2">
+        <field name="name">All Draft Leads (Purchasing)</field>
+        <field name="res_model">crm.case</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="crm_case_tree_view_leadsp"/>
+        <field name="domain" eval="'[(\'section_id\',\'=\','+str(section_supportp2)+'),(\'state\',\'=\',\'draft\')]'"/>
+    </record>
+    <record model="ir.actions.act_window.view" id="action_crm_tag_tree_view_leadsp_all2">
+        <field name="sequence" eval="1"/>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="crm_case_tree_view_leadsp"/>
+        <field name="act_window_id" ref="crm_case_category_act_leadsp_all2"/>
+    </record>
+    <record model="ir.actions.act_window.view" id="action_crm_tag_form_view_leadsp_all2">
+        <field name="sequence" eval="3"/>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="crm_case_form_view_leadsp"/>
+        <field name="act_window_id" ref="crm_case_category_act_leadsp_all2"/>
+    </record>
+    <menuitem parent="menu_crm_case_categ0_act_leadsp_all1" id="menu_crm_case_categ0_act_leadsp_all2" action="crm_case_category_act_leadsp_all2"/>
+
+    <record model="ir.actions.act_window" id="crm_case_category_act_leadsp_all3">
+        <field name="name">All Open Leads (Purchasing)</field>
+        <field name="res_model">crm.case</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="crm_case_tree_view_leadsp"/>
+        <field name="domain" eval="'[(\'section_id\',\'=\','+str(section_supportp2)+'),(\'state\',\'=\',\'open\')]'"/>
+    </record>
+    <record model="ir.actions.act_window.view" id="action_crm_tag_tree_view_leadsp_all3">
+        <field name="sequence" eval="1"/>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="crm_case_tree_view_leadsp"/>
+        <field name="act_window_id" ref="crm_case_category_act_leadsp_all3"/>
+    </record>
+    <record model="ir.actions.act_window.view" id="action_crm_tag_form_view_leadsp_all3">
+        <field name="sequence" eval="3"/>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="crm_case_form_view_leadsp"/>
+        <field name="act_window_id" ref="crm_case_category_act_leadsp_all3"/>
+    </record>
+    <menuitem parent="menu_crm_case_categ0_act_leadsp_all1" id="menu_crm_case_categ0_act_leadsp_all3" action="crm_case_category_act_leadsp_all3"/>
+
+    <record model="ir.actions.act_window" id="crm_case_category_act_leadsp_all4">
+        <field name="name">All Pending Leads (Purchasing)</field>
+        <field name="res_model">crm.case</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="crm_case_tree_view_leadsp"/>
+        <field name="domain" eval="'[(\'section_id\',\'=\','+str(section_supportp2)+'),(\'state\',\'=\',\'pending\')]'"/>
+    </record>
+    <record model="ir.actions.act_window.view" id="action_crm_tag_tree_view_leadsp_all4">
+        <field name="sequence" eval="1"/>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="crm_case_tree_view_leadsp"/>
+        <field name="act_window_id" ref="crm_case_category_act_leadsp_all4"/>
+    </record>
+    <record model="ir.actions.act_window.view" id="action_crm_tag_form_view_leadsp_all4">
+        <field name="sequence" eval="3"/>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="crm_case_form_view_leadsp"/>
+        <field name="act_window_id" ref="crm_case_category_act_leadsp_all4"/>
+    </record>
+    <menuitem parent="menu_crm_case_categ0_act_leadsp_all1" id="menu_crm_case_categ0_act_leadsp_all4" action="crm_case_category_act_leadsp_all4"/>
+
+<!-- =================================================================== -->
+    <record model="ir.actions.act_window" id="crm_case_category_act_leadsp_my">
+        <field name="name">My Leads (Purchasing)</field>
+        <field name="res_model">crm.case</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="crm_case_tree_view_leadsp"/>
+        <field name="domain" eval="'[(\'section_id\',\'=\','+str(section_supportp2)+'),(\'user_id\',\'=\',uid)]'"/>
+    </record>
+    <record model="ir.actions.act_window.view" id="action_crm_tag_tree_view_leadsp_my">
+        <field name="sequence" eval="1"/>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="crm_case_tree_view_leadsp"/>
+        <field name="act_window_id" ref="crm_case_category_act_leadsp_my"/>
+    </record>
+    <record model="ir.actions.act_window.view" id="action_crm_tag_form_view_leadsp_my">
+        <field name="sequence" eval="3"/>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="crm_case_form_view_leadsp"/>
+        <field name="act_window_id" ref="crm_case_category_act_leadsp_my"/>
+    </record>
+    <menuitem parent="menu_crm_case_categ0_act_leadsp" id="menu_crm_case_categ0_act_leadsp_my" action="crm_case_category_act_leadsp_my"/>
+
+    <record model="ir.actions.act_window" id="crm_case_category_act_leadsp_my_new">
+        <field name="name">New Lead (Purchasing)</field>
+        <field name="res_model">crm.case</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form,tree</field>
+        <field name="view_id" ref="crm_case_form_view_leadsp"/>
+        <field name="domain" eval="'[(\'section_id\',\'=\','+str(section_supportp2)+')]'"/>
+    </record>
+    <record model="ir.actions.act_window.view" id="action_crm_tag_tree_view_leadsp_new">
+        <field name="sequence" eval="2"/>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="crm_case_tree_view_leadsp"/>
+        <field name="act_window_id" ref="crm_case_category_act_leadsp_my_new"/>
+    </record>
+    <record model="ir.actions.act_window.view" id="action_crm_tag_form_view_leadsp_new">
+        <field name="sequence" eval="1"/>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="crm_case_form_view_leadsp"/>
+        <field name="act_window_id" ref="crm_case_category_act_leadsp_my_new"/>
+    </record>
+    <menuitem parent="menu_crm_case_categ0_act_leadsp" id="menu_crm_case_category_act_leadsp_my_new" action="crm_case_category_act_leadsp_my_new" sequence="50"/>
+
+    <record model="ir.actions.act_window" id="crm_case_category_act_leadsp_my1">
+        <field name="name">My Current Leads (Purchasing)</field>
+        <field name="res_model">crm.case</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="crm_case_tree_view_leadsp"/>
+        <field name="domain" eval="'[(\'section_id\',\'=\','+str(section_supportp2)+'),(\'user_id\',\'=\',uid),(\'state\',\'&lt;&gt;\',\'done\'),(\'state\',\'&lt;&gt;\',\'cancel\')]'"/>
+    </record>
+    <record model="ir.actions.act_window.view" id="action_crm_tag_tree_view_leadsp_my1">
+        <field name="sequence" eval="1"/>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="crm_case_tree_view_leadsp"/>
+        <field name="act_window_id" ref="crm_case_category_act_leadsp_my1"/>
+    </record>
+    <record model="ir.actions.act_window.view" id="action_crm_tag_form_view_leadsp_my1">
+        <field name="sequence" eval="3"/>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="crm_case_form_view_leadsp"/>
+        <field name="act_window_id" ref="crm_case_category_act_leadsp_my1"/>
+    </record>
+    <menuitem parent="menu_crm_case_categ0_act_leadsp_my" id="menu_crm_case_categ0_act_leadsp_my1" action="crm_case_category_act_leadsp_my1"/>
+
+    <record model="ir.actions.act_window" id="crm_case_category_act_leadsp_my3">
+        <field name="name">My Open Leads (Purchasing)</field>
+        <field name="res_model">crm.case</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="crm_case_tree_view_leadsp"/>
+        <field name="domain" eval="'[(\'section_id\',\'=\','+str(section_supportp2)+'),(\'user_id\',\'=\',uid),(\'state\',\'=\',\'open\')]'"/>
+    </record>
+    <record model="ir.actions.act_window.view" id="action_crm_tag_tree_view_leadsp_my3">
+        <field name="sequence" eval="1"/>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="crm_case_tree_view_leadsp"/>
+        <field name="act_window_id" ref="crm_case_category_act_leadsp_my3"/>
+    </record>
+    <record model="ir.actions.act_window.view" id="action_crm_tag_form_view_leadsp_my3">
+        <field name="sequence" eval="3"/>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="crm_case_form_view_leadsp"/>
+        <field name="act_window_id" ref="crm_case_category_act_leadsp_my3"/>
+    </record>
+    <menuitem parent="menu_crm_case_categ0_act_leadsp_my1" id="menu_crm_case_categ0_act_leadsp_my3" action="crm_case_category_act_leadsp_my3"/>
+
+    <record model="ir.actions.act_window" id="crm_case_category_act_leadsp_my4">
+        <field name="name">My Pending Leads (Purchasing)</field>
+        <field name="res_model">crm.case</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="crm_case_tree_view_leadsp"/>
+        <field name="domain" eval="'[(\'section_id\',\'=\','+str(section_supportp2)+'),(\'user_id\',\'=\',uid),(\'state\',\'=\',\'pending\')]'"/>
+    </record>
+    <record model="ir.actions.act_window.view" id="action_crm_tag_tree_view_leadsp_my4">
+        <field name="sequence" eval="1"/>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="crm_case_tree_view_leadsp"/>
+        <field name="act_window_id" ref="crm_case_category_act_leadsp_my4"/>
+    </record>
+    <record model="ir.actions.act_window.view" id="action_crm_tag_form_view_leadsp_my4">
+        <field name="sequence" eval="3"/>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="crm_case_form_view_leadsp"/>
+        <field name="act_window_id" ref="crm_case_category_act_leadsp_my4"/>
+    </record>
+    <menuitem parent="menu_crm_case_categ0_act_leadsp_my1" id="menu_crm_case_categ0_act_leadsp_my4" action="crm_case_category_act_leadsp_my4"/>
+
+<!--        REPORTS        -->
+    <menuitem name="Leads (Purchasing)"  id="menu_action_report_crm_case_leadsp" parent="menu_reppurchasing"/>    
+
+    <record model="ir.actions.act_window" id="action_report_crm_case_leadsp_user">
+        <field name="res_model">report.crm.case.user</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">graph,tree</field>
+        <field name="domain" eval="'[(\'section_id\',\'=\','+str(section_supportp2)+')]'"/>
+    </record>
+    <menuitem name="Cases by Leads (Purchasing) and User" parent="menu_action_report_crm_case_leadsp" action="action_report_crm_case_leadsp_user" id="menu_action_report_crm_case_leadsp_user"/>
+
+
+    <record model="ir.actions.act_window" id="action_report_crm_case_leadsp_categ">
+        <field name="res_model">report.crm.case.section.categ2</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">graph,tree</field>
+        <field name="domain" eval="'[(\'section_id\',\'=\','+str(section_supportp2)+')]'"/>
+    </record>
+    <menuitem parent="menu_action_report_crm_case_leadsp" name="Cases by Leads (Purchasing) and Type" action="action_report_crm_case_leadsp_categ" id="menu_action_report_crm_case_leadsp_categ"/>
+
+    <record model="ir.actions.act_window" id="action_report_crm_case_leadsp_stage">
+        <field name="res_model">report.crm.case.section.stage</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">graph,tree</field>
+        <field name="domain" eval="'[(\'section_id\',\'=\','+str(section_supportp2)+')]'"/>
+    </record>
+    <menuitem name="Cases by Leads (Purchasing) and Stage" parent="menu_action_report_crm_case_leadsp" action="action_report_crm_case_leadsp_stage" id="menu_action_report_crm_case_leadsp_stage"/>
+
+    <record model="ir.actions.act_window" id="action_report_crm_case_leadsp_categ_stage">
+        <field name="res_model">report.crm.case.section.categ.stage</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree</field>
+        <field name="domain" eval="'[(\'section_id\',\'=\','+str(section_supportp2)+')]'"/>
+    </record>
+    <menuitem name="Cases by Section, Category and Stage" parent="menu_action_report_crm_case_leadsp"  action="action_report_crm_case_leadsp_categ_stage" id="menu_action_report_crm_case_leadsp_categ_stage"/>
+
+    <record model="ir.actions.act_window" id="action_report_crm_case_leadsp_categ_categ2">
+        <field name="res_model">report.crm.case.section.categ.categ2</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree</field>
+        <field name="domain" eval="'[(\'section_id\',\'=\','+str(section_supportp2)+')]'"/>
+    </record>
+    <menuitem name="Cases by Section, Category and Type" parent="menu_action_report_crm_case_leadsp" action="action_report_crm_case_leadsp_categ_categ2" id="menu_action_report_crm_case_leadsp_categ_categ2"/>
+
+    
+</data>
+</openerp>

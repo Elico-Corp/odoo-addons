@@ -1,0 +1,50 @@
+<openerp>
+<data>
+
+    <record model="ir.ui.view" id="view_document_directory_form_p">
+        <field name="name">document.directory</field>
+        <field name="model">document.directory</field>
+        <field name="type">form</field>
+        <field name="inherit_id" ref="document.view_document_directory_form"/>
+        <field name="arch" type="xml">
+            <field name="report_id" position="after">
+                <separator string="ICS Calendar" colspan="4"/>
+                <field name="ics_object_id"/>
+                <field name="ics_domain"/>
+                <field name="ics_field_ids" colspan="4">
+                    <tree string="ICS Mapping" editable="bottom">
+                        <field name="name"/>
+                        <field name="field_id" domain="[('model_id','=',parent.ics_object_id)]"/>
+                    </tree>
+                </field>
+            </field>
+        </field>
+    </record>
+	
+	 <record model="ir.ui.view" id="view_case_inherit_form_p">
+        <field name="name">crm.case.code.form</field>
+        <field name="model">crm.case</field>
+        <field name="type">form</field>
+        <field name="inherit_id" ref="crm.crm_case-view"/>
+        <field name="arch" type="xml">
+            <field name="priority" position="after">
+                <field name="code"/>
+            </field>
+        </field>
+    </record>
+    
+    <record model="ir.ui.view" id="view_case_inherit_form1_p">
+        <field name="name">crm.case.inherit.form1</field>
+        <field name="model">crm.case</field>
+        <field name="type">form</field>
+        <field name="inherit_id" ref="crm.crm_case-view"/>
+        <field name="arch" type="xml">
+            <field name="date" position="replace">
+           		<field name="date" on_change="on_change_duration(date, duration)" required="1"/>
+                <field name="duration" string="Duration(In Hour)" on_change="on_change_duration(date, duration)" widget="float_time"/>
+            </field>
+        </field>
+    </record>
+    
+</data>
+</openerp>

@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<openerp>
+	<data>
+		<!-- report-related wizards -->
+		<wizard
+			string="Multi-Company Closing Period Wizard"
+			model="account.period"
+			name="elico_multi_company_year_end_process.multi.company.period.close"
+			id="wizard_multi_company_period_close"/>
+			
+		<menuitem
+			name="Multi-Company Closing Periods Wizard"
+			action="wizard_multi_company_period_close"
+			type="wizard"
+			parent="account.menu_account_end_year_treatments"
+			sequence="100"
+			id="menu_multi_company_period_close"/>
+			
+		<wizard
+			string="Multi-Company Opening Periods Wizard"
+			model="account.period"
+			name="elico_multi_company_year_end_process.multi.company.period.open"
+			id="wizard_multi_company_period_open"/>
+			
+		<menuitem
+			name="Multi-Company Opening Periods Wizard"
+			action="wizard_multi_company_period_open"
+			type="wizard"
+			parent="account.menu_account_end_year_treatments"
+			sequence="110"
+			id="menu_multi_company_period_open"/>
+
+		<wizard
+			string="Multi-Company Closing Fiscal Year Wizard"
+			model="account.period"
+			name="elico_multi_company_year_end_process.multi.company.fy.close"
+			id="wizard_multi_company_fy_close"/>
+			
+		<menuitem
+			name="Multi-Company Closing Fiscal Year Wizard"
+			action="wizard_multi_company_fy_close"
+			type="wizard"
+			parent="account.menu_account_end_year_treatments"
+			sequence="120"
+			id="menu_multi_company_fy_close"/>
+	</data>
+</openerp>

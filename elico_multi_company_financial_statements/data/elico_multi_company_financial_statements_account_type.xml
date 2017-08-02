@@ -1,0 +1,292 @@
+<?xml version="1.0"?>
+<openerp>
+	<data>
+	
+		<!-- Copyright 2010 Eric Caudal -->
+		<!--
+		Account Subtype: adding entries for misc. entries
+		-->
+	
+		<record model="account.account.type" id="acc_type_mcifrs_closing" >
+			<field name="name">Closing</field>
+			<field name="code">closing</field>
+			<field name="level1" ref="rep_att_mcifrs_na_l1" />
+			<field name="level2" ref="rep_att_mcifrs_na_l2" />
+			<field name="operating">false</field>
+			<field name="current">false</field>
+			<field name="sequence">10</field>
+		</record>
+		<record model="account.account.type" id="acc_type_mcifrs_view" >
+			<field name="name">View</field>
+			<field name="code">view</field>
+			<field name="level1" ref="rep_att_mcifrs_na_l1" />
+			<field name="level2" ref="rep_att_mcifrs_na_l2" />
+			<field name="operating">False</field>
+			<field name="current">False</field>
+			<field name="sequence">20</field>
+		</record>
+		<record model="account.account.type" id="acc_type_mcifrs_na" >
+			<field name="name">Not Applicable</field>
+			<field name="code">na</field>
+			<field name="level1" ref="rep_att_mcifrs_na_l1" />
+			<field name="level2" ref="rep_att_mcifrs_na_l2" />
+			<field name="operating">False</field>
+			<field name="current">False</field>
+			<field name="sequence">30</field>
+		</record>
+	
+		<!--
+		Account Subtype: adding entries to support IFRS, Statement of Financial Position
+		-->
+	
+		<record model="account.account.type" id="acc_type_mcifrs_receivable" >
+			<field name="name">Accounts Receivable</field>
+			<field name="code">receivable</field>
+			<field name="level1" ref="rep_att_mcifrs_assets" />
+			<field name="level2" ref="rep_att_mcifrs_ca" />
+			<field name="operating">True</field>
+			<field name="current">True</field>
+			<field name="sequence">100</field>
+		</record>
+		
+		<record model="account.account.type" id="acc_type_mcifrs_cash" >
+			<field name="name">Cash</field>
+			<field name="code">cash</field>
+			<field name="level1" ref="rep_att_mcifrs_assets" />
+			<field name="level2" ref="rep_att_mcifrs_ca" />
+			<field name="operating">True</field>
+			<field name="current">True</field>
+			<field name="sequence">110</field>
+		</record>
+		<record model="account.account.type" id="acc_type_mcifrs_Inventory" >
+			<field name="name">Inventory</field>
+			<field name="code">inventory</field>
+			<field name="level1" ref="rep_att_mcifrs_assets" />
+			<field name="level2" ref="rep_att_mcifrs_ca" />
+			<field name="operating">True</field>
+			<field name="current">True</field>
+			<field name="sequence">120</field>
+		</record>
+		<record model="account.account.type" id="acc_type_mcifrs_other_current_assets" >
+			<field name="name">Other Current Assets</field>
+			<field name="code">other_cur_asset</field>
+			<field name="level1" ref="rep_att_mcifrs_assets" />
+			<field name="level2" ref="rep_att_mcifrs_ca" />
+			<field name="operating">True</field>
+			<field name="current">True</field>
+			<field name="sequence">130</field>
+		</record>
+		<record model="account.account.type" id="acc_type_mcifrs_lands" >
+			<field name="name">Lands and Properties</field>
+			<field name="code">lands</field>
+			<field name="level1" ref="rep_att_mcifrs_assets" />
+			<field name="level2" ref="rep_att_mcifrs_nca" />
+			<field name="operating">True</field>
+			<field name="current">False</field>
+			<field name="sequence">140</field>
+		</record>
+		<record model="account.account.type" id="acc_type_mcifrs_acc_depreciations" >
+			<field name="name">Accumulated Depreciations</field>
+			<field name="code">acc_depreciation</field>
+			<field name="level1" ref="rep_att_mcifrs_assets" />
+			<field name="level2" ref="rep_att_mcifrs_nca" />
+			<field name="operating">True</field>
+			<field name="current">False</field>
+			<field name="sequence">150</field>
+		</record>
+		<record model="account.account.type" id="acc_type_mcifrs_intangible" >
+			<field name="name">Intangible Assets</field>
+			<field name="code">intangible</field>
+			<field name="level1" ref="rep_att_mcifrs_assets" />
+			<field name="level2" ref="rep_att_mcifrs_nca" />
+			<field name="operating">False</field>
+			<field name="current">False</field>
+			<field name="sequence">160</field>
+		</record>
+		<record model="account.account.type" id="acc_type_mcifrs_other_assets" >
+			<field name="name">Other Non Current Assets</field>
+			<field name="code">other_non_cur_assets</field>
+			<field name="level1" ref="rep_att_mcifrs_assets" />
+			<field name="level2" ref="rep_att_mcifrs_nca" />
+			<field name="operating">False</field>
+			<field name="current">False</field>
+			<field name="sequence">170</field>
+		</record>
+		<record model="account.account.type" id="acc_type_mcifrs_payable" >
+			<field name="name">Accounts Payable</field>
+			<field name="code">payable</field>
+			<field name="level1" ref="rep_att_mcifrs_liabilities" />
+			<field name="level2" ref="rep_att_mcifrs_cl" />
+			<field name="operating">True</field>
+			<field name="current">True</field>
+			<field name="sequence">180</field>
+		</record>
+		<record model="account.account.type" id="acc_type_mcifrs_tax_payable" >
+			<field name="name">Taxes Payable</field>
+			<field name="code">tax_payable</field>
+			<field name="level1" ref="rep_att_mcifrs_liabilities" />
+			<field name="level2" ref="rep_att_mcifrs_cl" />
+			<field name="operating">True</field>
+			<field name="current">True</field>
+			<field name="sequence">190</field>
+		</record>
+		<record model="account.account.type" id="acc_type_mcifrs_other_current_liabilities" >
+			<field name="name">Other Current Liabilities </field>
+			<field name="code">other_current_liabilities</field>
+			<field name="level1" ref="rep_att_mcifrs_liabilities" />
+			<field name="level2" ref="rep_att_mcifrs_cl" />
+			<field name="operating">True</field>
+			<field name="current">True</field>
+			<field name="sequence">200</field>
+		</record>
+		<record model="account.account.type" id="acc_type_mcifrs_liability" >
+			<field name="name">Long Term Liability</field>
+			<field name="code">liability</field>
+			<field name="level1" ref="rep_att_mcifrs_liabilities" />
+			<field name="level2" ref="rep_att_mcifrs_ncl" />
+			<field name="operating">False</field>
+			<field name="current">False</field>
+			<field name="sequence">210</field>
+		</record>
+		<record model="account.account.type" id="acc_type_mcifrs_equities" >
+			<field name="name">Equities</field>
+			<field name="code">equities</field>
+			<field name="level1" ref="rep_att_mcifrs_equities" />
+			<field name="level2" ref="rep_att_mcifrs_oc" />
+			<field name="operating">False</field>
+			<field name="current">False</field>
+			<field name="sequence">220</field>
+		</record>
+	
+		<!--
+		Account Subtype: adding entries to support IFRS, Statement of Income
+		-->
+	
+		<record model="account.account.type" id="acc_type_mcifrs_sales" >
+			<field name="name">Sales</field>
+			<field name="code">sales</field>
+			<field name="level1" ref="rep_att_mcifrs_income" />
+			<field name="level2" ref="rep_att_mcifrs_gp" />
+			<field name="operating">True</field>
+			<field name="current">True</field>
+			<field name="sequence">300</field>
+		</record>
+		<record model="account.account.type" id="acc_type_mcifrs_cost_of_sales" >
+			<field name="name">Cost of sales</field>
+			<field name="code">cost_of_sales</field>
+			<field name="level1" ref="rep_att_mcifrs_expenses" />
+			<field name="level2" ref="rep_att_mcifrs_gp" />
+			<field name="operating">True</field>
+			<field name="current">True</field>
+			<field name="sequence">310</field>
+		</record>
+		<record model="account.account.type" id="acc_type_mcifrs_sales_marketing" >
+			<field name="name">Sales and Marketing</field>
+			<field name="code">sales_marketing</field>
+			<field name="level1" ref="rep_att_mcifrs_expenses" />
+			<field name="level2" ref="rep_att_mcifrs_ebitar" />
+			<field name="operating">True</field>
+			<field name="current">True</field>
+			<field name="sequence">320</field>
+		</record>
+		<record model="account.account.type" id="acc_type_mcifrs_rd" >
+			<field name="name">Research and Development</field>
+			<field name="code">rd</field>
+			<field name="level1" ref="rep_att_mcifrs_expenses" />
+			<field name="level2" ref="rep_att_mcifrs_ebitar" />
+			<field name="operating">True</field>
+			<field name="current">True</field>
+			<field name="sequence">330</field>
+		</record>
+		<record model="account.account.type" id="acc_type_mcifrs_admin" >
+			<field name="name">General and Administrative</field>
+			<field name="code">general_administrative</field>
+			<field name="level1" ref="rep_att_mcifrs_expenses" />
+			<field name="level2" ref="rep_att_mcifrs_ebitar" />
+			<field name="operating">True</field>
+			<field name="current">True</field>
+			<field name="sequence">340</field>
+		</record>
+		<record model="account.account.type" id="acc_type_mcifrs_depreciation" >
+			<field name="name">Depreciation</field>
+			<field name="code">Depreciation</field>
+			<field name="level1" ref="rep_att_mcifrs_expenses" />
+			<field name="level2" ref="rep_att_mcifrs_ebitar" />
+			<field name="operating">False</field>
+			<field name="current">True</field>
+			<field name="sequence">350</field>
+		</record>
+		<record model="account.account.type" id="acc_type_mcifrs_rec_exp" >
+			<field name="name">Other Recurring Expenses</field>
+			<field name="code">other_rec_expenses</field>
+			<field name="level1" ref="rep_att_mcifrs_expenses" />
+			<field name="level2" ref="rep_att_mcifrs_ebitar" />
+			<field name="operating">True</field>
+			<field name="current">True</field>
+			<field name="sequence">360</field>
+		</record>
+		<record model="account.account.type" id="acc_type_mcifrs_non_rec_exp" >
+			<field name="name">Other Non Recurring Expenses</field>
+			<field name="code">other_non_rec_expenses</field>
+			<field name="level1" ref="rep_att_mcifrs_expenses" />
+			<field name="level2" ref="rep_att_mcifrs_ebitanr" />
+			<field name="operating">True</field>
+			<field name="current">True</field>
+			<field name="sequence">370</field>
+		</record>
+		<record model="account.account.type" id="acc_type_mcifrs_amort" >
+			<field name="name">Amortization</field>
+			<field name="code">Amortization</field>
+			<field name="level1" ref="rep_att_mcifrs_expenses" />
+			<field name="level2" ref="rep_att_mcifrs_ebit" />
+			<field name="operating">False</field>
+			<field name="current">True</field>
+			<field name="sequence">380</field>
+		</record>
+		<record model="account.account.type" id="acc_type_mcifrs_financing" >
+			<field name="name">Financing</field>
+			<field name="code">financing</field>
+			<field name="level1" ref="rep_att_mcifrs_expenses" />
+			<field name="level2" ref="rep_att_mcifrs_nibt" />
+			<field name="operating">False</field>
+			<field name="current">True</field>
+			<field name="sequence">390</field>
+		</record>
+		<record model="account.account.type" id="acc_type_mcifrs_associate" >
+			<field name="name">Associate/Joint-Venture</field>
+			<field name="code">associate</field>
+			<field name="level1" ref="rep_att_mcifrs_expenses" />
+			<field name="level2" ref="rep_att_mcifrs_nibt" />
+			<field name="operating">False</field>
+			<field name="current">True</field>
+			<field name="sequence">400</field>
+		</record>
+		<record model="account.account.type" id="acc_type_mcifrs_non_op_exp" >
+			<field name="name">Other Non Operating Expenses</field>
+			<field name="code">non_operating_expenses</field>
+			<field name="level1" ref="rep_att_mcifrs_expenses" />
+			<field name="level2" ref="rep_att_mcifrs_nibt" />
+			<field name="operating">False</field>
+			<field name="current">True</field>
+			<field name="sequence">410</field>
+		</record>
+		<record model="account.account.type" id="acc_type_mcifrs_non_op_inc" >
+			<field name="name">Other Non Operating Income</field>
+			<field name="code">non_operating_income</field>
+			<field name="level1" ref="rep_att_mcifrs_income" />
+			<field name="level2" ref="rep_att_mcifrs_nibt" />
+			<field name="operating">False</field>
+			<field name="current">True</field>
+			<field name="sequence">420</field>
+		</record>
+		<record model="account.account.type" id="acc_type_mcifrs_tax" >
+			<field name="name">Taxes</field>
+			<field name="code">taxes</field>
+			<field name="level1" ref="rep_att_mcifrs_expenses" />
+			<field name="level2" ref="rep_att_mcifrs_earnings" />
+			<field name="operating">False</field>
+			<field name="current">True</field>
+			<field name="sequence">430</field>
+		</record>
+	</data>
+</openerp>

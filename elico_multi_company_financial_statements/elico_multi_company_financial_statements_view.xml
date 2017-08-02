@@ -1,0 +1,206 @@
+<?xml version="1.0"?>
+<openerp>
+	<data>
+        <!--
+Alter view_account_type forms
+    -->
+		
+		<record id="view_account_type_form_inherit1" model="ir.ui.view">
+			<field name="name">account.account.type.form.inherit1</field>
+			<field name="model">account.account.type</field>
+			<field name="inherit_id" ref="account.view_account_type_form" />
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<field name="name" position="before">
+					<field name="company_id" select="1"/>
+				    <separator string="Account User Type General Options" colspan="4"/>
+				</field>
+			</field>
+		</record>
+		<record id="view_account_type_form_inherit2" model="ir.ui.view">
+			<field name="name">account.account.type.form.inherit2</field>
+			<field name="model">account.account.type</field>
+			<field name="inherit_id" ref="account.view_account_type_form" />
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<field name="close_method" position="after">
+				    <separator string="Account User Type Report Options" colspan="4"/>
+					<field name="sequence" select="1"/>
+					<field name="current" select="1"/>
+					<field name="operating" select="1"/>
+					<field name="level1" domain="[('type','=','level1')]" select="1"/>
+					<field name="level2" domain="[('type','=','level2')]" select="1"/>
+				</field>
+			</field>
+		</record>
+		
+		<record id="view_account_type_tree" model="ir.ui.view">
+			<field name="name">account.account.type.tree.inherit</field>
+			<field name="model">account.account.type</field>
+			<field name="inherit_id" ref="account.view_account_type_tree" />
+			<field name="type">tree</field>
+			<field name="field_parent">child_id</field>
+			<field name="priority" eval="16"/>
+			<field name="arch" type="xml">
+				<field name="name" position="before">
+					<field name="company_id"/>
+					<field name="level1"/>
+					<field name="level2"/>
+					<field name="current"/>
+					<field name="operating"/>
+				</field>
+			</field>
+		</record>
+		<record id="view_account_type_search" model="ir.ui.view">
+			<field name="name">account.account.type.search.inherit</field>
+			<field name="model">account.account.type</field>
+			<field name="inherit_id" ref="account.view_account_type_search" />
+			<field name="type">tree</field>
+			<field name="field_parent">child_id</field>
+			<field name="priority" eval="16"/>
+			<field name="arch" type="xml">
+				<field name="code" position="after">
+				    <newline/>
+				    <group expand="0" string="Extended Filters...">
+							<field name="company_id"/>
+							<field name="level1"/>
+							<field name="level2"/>
+							<field name="current"/>
+							<field name="operating"/>
+				    </group>
+				    <newline/>
+				    <group expand="0" string="Group By..." colspan="12" col="10">
+				        <filter string="level 1" icon="terp-accessories-archiver-minus" domain="[]" context="{'group_by':'level1'}"/>
+				        <separator orientation="vertical"/>
+				        <filter string="level2" icon="terp-accessories-archiver+" domain="[]" context="{'group_by':'level2'}"/>
+				        <filter string="current"  icon="terp-go-today" context="{'group_by':'current'}"/>
+				        <separator orientation="vertical"/>
+				        <filter string="Operating" icon="terp-idea" domain="[]" context="{'group_by':'operating'}"/>
+				    </group>
+				</field>
+			</field>
+		</record>
+
+        <!--
+Alter view_account forms
+    -->
+		<record id="view_account_tree" model="ir.ui.view">
+			<field name="name">account.account.tree.inherit</field>
+			<field name="model">account.account</field>
+			<field name="inherit_id" ref="account.view_account_tree" />
+			<field name="type">tree</field>
+			<field name="field_parent">child_id</field>
+			<field name="arch" type="xml">
+				<field name="code" position="before">
+				    <field name="user_type"/>
+				</field>
+			</field>
+		</record>
+		<record id="view_account_list" model="ir.ui.view">
+			<field name="name">account.account.list.inherit</field>
+			<field name="model">account.account</field>
+			<field name="inherit_id" ref="account.view_account_list" />
+			<field name="type">tree</field>
+			<field name="field_parent">child_id</field>
+			<field name="arch" type="xml">
+				<field name="user_type" position="replace">
+				    <field name="user_type"/>
+				</field>
+			</field>
+		</record>
+        <!--
+Alter view_account_period and fiscalyear forms
+    -->
+
+		<record id="view_account_fiscalyear_tree" model="ir.ui.view">
+			<field name="name">account.fiscalyear.tree.inherit</field>
+			<field name="model">account.fiscalyear</field>
+			<field name="inherit_id" ref="account.view_account_fiscalyear_tree" />
+			<field name="type">tree</field>
+			<field name="arch" type="xml">
+				<field name="code" position="before">
+					<field name="company_id"/>
+				</field>
+			</field>
+		</record>
+
+		<record id="view_account_period_tree" model="ir.ui.view">
+			<field name="name">account.period.tree.inherit</field>
+			<field name="model">account.period</field>
+			<field name="inherit_id" ref="account.view_account_period_tree" />
+			<field name="type">tree</field>
+			<field name="arch" type="xml">
+				<field name="code" position="before">
+					<field name="company_id"  select="1"/>
+				</field>
+			</field>
+		</record>
+		
+        <!--
+    Report Attributes
+    -->
+        <record id="view_account_report_attribute_tree" model="ir.ui.view">
+            <field name="name">res.report.attribute.tree</field>
+            <field name="model">res.report.attribute</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Account Report Attribute">
+                    <field name="company_id"/>
+                    <field name="sequence"/>
+                    <field name="type"/>
+                    <field name="code"/>
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+        <record id="view_account_report_attribute_form" model="ir.ui.view">
+            <field name="name">res.report.attribute.form</field>
+            <field name="model">res.report.attribute</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Account Report Attribute">
+                    <field name="company_id"/>
+                    <field name="sequence"/>
+                    <field name="type"/>
+                    <field name="code" select="1"/>
+                    <field name="name" select="1"/>
+                </form>
+            </field>
+        </record>
+        <record id="view_account_report_attribute_search" model="ir.ui.view">
+            <field name="name">res.report.attribute.search</field>
+            <field name="model">res.report.attribute</field>
+            <field name="type">search</field>
+            <field name="arch" type="xml">
+                <search string="Report Attribute Type">
+                  <group>
+                    <filter string="level 1" icon="terp-accessories-archiver+" domain="[('type', '=', 'level1')]"/>
+                    <filter string="level 2" icon="terp-accessories-archiver-minus" domain="[('type', '=', 'level2')]"/>
+                    <separator orientation="vertical"/>
+                    <field name="type" />
+                    <field name="code"/>
+                    <field name="name"/>
+                    <field name="company_id" widget="selection" groups="base.group_multi_company"/>
+                  </group>
+                    <newline/>
+                  <group expand="0" string="Group By...">
+                      <filter string="Type" icon="terp-emblem-documents" domain="[]" context="{'group_by':'type'}"/>
+                  </group>
+                </search>
+            </field>
+        </record>
+
+
+        <record id="action_report_attribute_form" model="ir.actions.act_window">
+            <field name="name">Account Report Attributes</field>
+            <field name="res_model">res.report.attribute</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="view_account_report_attribute_search"/>
+            <field name="help">An account report attribute is used to determine how an account is display in the multi-company reports. Reports such as the multi-company Statement of Financial Position and Income Statement use sequence, level1/level2, current and operating attributes to order the report elements.</field>
+        </record>
+        <menuitem action="action_report_attribute_form" 
+        id="menu_action_report_attribute_form" 
+        parent="account.account_account_menu"/>
+	</data>
+</openerp>

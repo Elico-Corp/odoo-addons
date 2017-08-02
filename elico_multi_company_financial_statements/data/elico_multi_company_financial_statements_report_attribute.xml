@@ -1,0 +1,139 @@
+<?xml version="1.0"?>
+<openerp>
+	<data>
+	
+		<!-- Copyright 2010 Eric Caudal -->
+	
+		<!--
+		Account Reports' Attributes: adding entries for Level1 and Level2 IFRS Attributes
+		-->
+	
+		<record model="res.report.attribute" id="rep_att_mcifrs_none" >
+			<field name="type">none</field>
+			<field name="code">none</field>
+			<field name="name">none</field>
+			<field name="sequence">5</field>
+		</record>
+		<record model="res.report.attribute" id="rep_att_mcifrs_assets" >
+			<field name="type">level1</field>
+			<field name="code">assets</field>
+			<field name="name">Assets</field>
+			<field name="sequence">10</field>
+		</record>
+		<record model="res.report.attribute" id="rep_att_mcifrs_liabilities" >
+			<field name="type">level1</field>
+			<field name="code">liabilities</field>
+			<field name="name">Liabilities</field>
+			<field name="sequence">20</field>
+		</record>
+		<record model="res.report.attribute" id="rep_att_mcifrs_equities" >
+			<field name="type">level1</field>
+			<field name="code">equities</field>
+			<field name="name">Equities</field>
+			<field name="sequence">30</field>
+		</record>
+		<record model="res.report.attribute" id="rep_att_mcifrs_income" >
+			<field name="type">level1</field>
+			<field name="code">income</field>
+			<field name="name">Income</field>
+			<field name="sequence">40</field>
+		</record>
+		<record model="res.report.attribute" id="rep_att_mcifrs_expenses" >
+			<field name="type">level1</field>
+			<field name="code">expenses</field>
+			<field name="name">Expenses</field>
+			<field name="sequence">50</field>
+		</record>
+		<record model="res.report.attribute" id="rep_att_mcifrs_other_l1" >
+			<field name="type">level1</field>
+			<field name="code">other_l1</field>
+			<field name="name">Other</field>
+			<field name="sequence">60</field>
+		</record>
+		<record model="res.report.attribute" id="rep_att_mcifrs_na_l1" >
+			<field name="type">level1</field>
+			<field name="code">na_l1</field>
+			<field name="name">Not Applicable</field>
+			<field name="sequence">70</field>
+		</record>
+	
+		<record model="res.report.attribute" id="rep_att_mcifrs_nca" >
+			<field name="type">level2</field>
+			<field name="code">nca</field>
+			<field name="name">Non Current Assets</field>
+			<field name="sequence">110</field>
+		</record>
+		<record model="res.report.attribute" id="rep_att_mcifrs_ca" >
+			<field name="type">level2</field>
+			<field name="code">ca</field>
+			<field name="name">Current Assets</field>
+			<field name="sequence">120</field>
+		</record>
+		<record model="res.report.attribute" id="rep_att_mcifrs_oc" >
+			<field name="type">level2</field>
+			<field name="code">oc</field>
+			<field name="name">Owners' Capital</field>
+			<field name="sequence">130</field>
+		</record>
+		<record model="res.report.attribute" id="rep_att_mcifrs_ncl" >
+			<field name="type">level2</field>
+			<field name="code">ncl</field>
+			<field name="name">Non Current Liabilities</field>
+			<field name="sequence">140</field>
+		</record>
+		<record model="res.report.attribute" id="rep_att_mcifrs_cl" >
+			<field name="type">level2</field>
+			<field name="code">cl</field>
+			<field name="name">Current Liabilities</field>
+			<field name="sequence">150</field>
+		</record>
+		<record model="res.report.attribute" id="rep_att_mcifrs_gp" >
+			<field name="type">level2</field>
+			<field name="code">gp</field>
+			<field name="name">Gross Profit</field>
+			<field name="sequence">160</field>
+		</record>
+		<record model="res.report.attribute" id="rep_att_mcifrs_ebitar" >
+			<field name="type">level2</field>
+			<field name="code">ebitar</field>
+			<field name="name">EBITA (Recurring)</field>
+			<field name="sequence">170</field>
+		</record>
+		<record model="res.report.attribute" id="rep_att_mcifrs_ebitanr" >
+			<field name="type">level2</field>
+			<field name="code">ebitanr</field>
+			<field name="name">EBITA (Non Recurring)</field>
+			<field name="sequence">180</field>
+		</record>
+		<record model="res.report.attribute" id="rep_att_mcifrs_ebit" >
+			<field name="type">level2</field>
+			<field name="code">ebit</field>
+			<field name="name">EBIT</field>
+			<field name="sequence">190</field>
+		</record>
+		<record model="res.report.attribute" id="rep_att_mcifrs_nibt" >
+			<field name="type">level2</field>
+			<field name="code">nibt</field>
+			<field name="name">Net Income Before Taxes</field>
+			<field name="sequence">200</field>
+		</record>
+		<record model="res.report.attribute" id="rep_att_mcifrs_earnings" >
+			<field name="type">level2</field>
+			<field name="code">earnings</field>
+			<field name="name">Earnings</field>
+			<field name="sequence">210</field>
+		</record>
+		<record model="res.report.attribute" id="rep_att_mcifrs_na_l2" >
+			<field name="type">level2</field>
+			<field name="code">na_l2</field>
+			<field name="name">Not Applicable</field>
+			<field name="sequence">220</field>
+		</record>
+		<record model="res.report.attribute" id="rep_att_mcifrs_other_l2" >
+			<field name="type">level2</field>
+			<field name="code">other_l2</field>
+			<field name="name">Other</field>
+			<field name="sequence">230</field>
+		</record>
+	</data>
+</openerp>

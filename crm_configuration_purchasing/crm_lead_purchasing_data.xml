@@ -1,0 +1,85 @@
+<?xml version="1.0"?>
+<openerp>
+<data noupdate="1">
+<!--        CASE SECTION        -->
+    <record model="crm.case.section" id="section_supportp2">
+        <field name="name">Leads (purchasing)</field>
+        <field name="code">leadsp</field>
+    </record>
+
+<!--        CASE CATEGORY(categ_id)        -->    
+    <record model="crm.case.categ" id="categ_leadp1">
+        <field name="name">Existing supplier</field>
+        <field name="section_id" ref="section_supportp2"/>
+    </record>
+    <record model="crm.case.categ" id="categ_leadp2">
+        <field name="name">Self Generated</field>
+        <field name="section_id" ref="section_supportp2"/>
+    </record>    
+    <record model="crm.case.categ" id="categ_leadp3">
+        <field name="name">Employee</field>
+        <field name="section_id" ref="section_supportp2"/>
+    </record>
+    <record model="crm.case.categ" id="categ_leadp4">
+        <field name="name">Partner</field>
+        <field name="section_id" ref="section_supportp2"/>
+    </record>
+    <record model="crm.case.categ" id="categ_leadp6">
+        <field name="name">Website</field>
+        <field name="section_id" ref="section_supportp2"/>
+    </record>    
+    <record model="crm.case.categ" id="categ_leadp7">
+        <field name="name">Word of mouth</field>
+        <field name="section_id" ref="section_supportp2"/>
+    </record>    
+    <record model="crm.case.categ" id="categ_leadp8">
+        <field name="name">Fair</field>
+        <field name="section_id" ref="section_supportp2"/>
+    </record>    
+    <record model="crm.case.categ" id="categ_leadp9">
+        <field name="name">Other</field>
+        <field name="section_id" ref="section_supportp2"/>
+    </record>    
+
+<!--        CASE STATUS(stage_id)        -->
+    <record model="crm.case.stage" id="stage_leadp1">
+        <field name="name">New</field>
+        <field name="section_id" ref="section_supportp2"/>
+    </record>
+    <record model="crm.case.stage" id="stage_leadp2">
+        <field name="name">Assigned</field>
+        <field name="section_id" ref="section_supportp2"/>
+    </record>
+    <record model="crm.case.stage" id="stage_leadp3">
+        <field name="name">In Process</field>
+        <field name="section_id" ref="section_supportp2"/>
+    </record>
+    <record model="crm.case.stage" id="stage_leadp4">
+        <field name="name">Converted</field>
+        <field name="section_id" ref="section_supportp2"/>
+    </record>
+    <record model="crm.case.stage" id="stage_leadp5">
+        <field name="name">Recycled</field>
+        <field name="section_id" ref="section_supportp2"/>
+    </record>
+    <record model="crm.case.stage" id="stage_leadp6">
+        <field name="name">Dead</field>
+        <field name="section_id" ref="section_supportp2"/>
+    </record>
+
+<!--        CASE CATEGORY2(category2_id)        -->    
+    <record model="crm.case.category2" id="category_leadp1">
+        <field name="name">Email</field>
+        <field name="section_id" ref="section_supportp2"/>
+    </record>
+    <record model="crm.case.category2" id="category_leadp2">
+        <field name="name">Web</field>
+        <field name="section_id" ref="section_supportp2"/>
+    </record>
+    <record model="crm.case.category2" id="category_leadp3">
+        <field name="name">Purchasing website</field>
+        <field name="section_id" ref="section_supportp2"/>
+    </record>
+    
+</data>
+</openerp>

@@ -1,0 +1,29 @@
+<?xml version="1.0" ?>
+<openerp>
+<data>
+    <!-- Views to make payment type mandatory in invoice -->
+    <record model="ir.ui.view" id="invoice_form42">
+        <field name="name">account.invoice.form4.payment_type2</field>
+        <field name="model">account.invoice</field>
+        <field name="type">form</field>
+        <field name="inherit_id" ref="account_payment_extension.invoice_form4"/>
+        <field name="arch" type="xml">
+            <field name="payment_type" position="replace">
+                <field name="payment_type" on_change="onchange_payment_type(payment_type, partner_id)" select="2" required="True"/>
+            </field>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="invoice_supplier_form22">
+        <field name="name">account.invoice.supplier.form22</field>
+        <field name="model">account.invoice</field>
+        <field name="type">form</field>
+        <field name="inherit_id" ref="account_payment_extension.invoice_supplier_form2"/>
+        <field name="arch" type="xml">
+            <field name="payment_type" position="replace">
+                <field name="payment_type" on_change="onchange_payment_type(payment_type, partner_id)" select="2"  required="True"/>
+            </field>
+        </field>
+    </record>
+</data>
+</openerp>

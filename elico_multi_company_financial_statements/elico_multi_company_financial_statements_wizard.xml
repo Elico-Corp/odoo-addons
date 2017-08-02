@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<openerp>
+	<data>
+		<!-- report-related wizards 
+		<wizard 
+			string="Multi-Company Accounts Report"
+			model="account.account"
+			name="elico_multi_company_financial_statements.report"
+			menu="False"
+			id="wizard_multi_company_report"/>
+		<menuitem
+			name="Multi-Company Financial Statements"
+			action="wizard_multi_company_report"
+			type="wizard"
+			parent="account.final_accounting_reports"
+			id="menu_multi_company_report"/>
+-->
+	</data>
+</openerp>

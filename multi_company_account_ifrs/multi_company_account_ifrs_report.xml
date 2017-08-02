@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<openerp>
+	<data>
+		<report id="multi_company_account_ifrs_multicompany_account_report"
+			string="Multi-Company Accounts Report"
+			model="account.account"
+			name="multi_company_account_ifrs.multicompany.account.report"
+			rml="multi_company_account_ifrs/report/multicompany_account_report.rml"
+			auto="False"
+			menu="False"/>
+		<report id="multi_company_account_ifrs_multicompany_account_compared_report"
+			string="Multi-Company Accounts Compared Report"
+			model="account.account"
+			name="multi_company_account_ifrs.multicompany.account.compared.report"
+			rml="multi_company_account_ifrs/report/multicompany_account_compared_report.rml"
+			auto="False"
+			menu="False"/>
+	</data>
+</openerp>

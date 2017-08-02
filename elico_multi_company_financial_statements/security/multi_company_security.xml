@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<openerp>
+	<data>
+	
+		<!--
+		Security rules
+		-->
+	
+    <record id="acc_type_emcfs_comp_rule" model="ir.rule">
+        <field name="name">Account type</field>
+        <field model="ir.model" name="model_id" ref="model_account_account_type"/>
+        <field eval="True" name="global"/>
+        <field name="domain_force">['|','|',('company_id','=',False),('company_id','child_of',[user.company_id.id]),('company_id.child_ids','child_of',[user.company_id.id])]</field>
+    </record>
+    <record id="rep_att_emcfs_comp_rule" model="ir.rule">
+        <field name="name">Account Reports Attribute</field>
+        <field model="ir.model" name="model_id" ref="model_res_report_attribute"/>
+        <field eval="True" name="global"/>
+        <field name="domain_force">['|','|',('company_id','=',False),('company_id','child_of',[user.company_id.id]),('company_id.child_ids','child_of',[user.company_id.id])]</field>
+    </record>
+	
+	</data>
+</openerp>

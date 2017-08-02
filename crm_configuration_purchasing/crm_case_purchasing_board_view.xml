@@ -1,0 +1,157 @@
+<?xml version="1.0"?>
+<openerp>
+	<data>
+<!--
+		<record model="board.note.type" id="note_crm_type">
+			<field name="name">CRM Configuration</field>
+		</record>	
+-->		
+		<record model="ir.ui.view" id="view_crm_case_user_graph1p">
+			<field name="name">crm.case.user.graph1p</field>
+			<field name="model">report.crm.case.user</field>
+			<field name="type">graph</field>
+			<field name="arch" type="xml">
+				<graph string="Cases by User and Section" type="pie">
+					<field name="state"/>
+					<field name="nbr" operator="+"/>
+				</graph>
+			</field>
+		</record>	
+		<record model="ir.ui.view" id="view_crm_lead_stage_graph1p">
+		    <field name="name">Leads By Stage - Graph</field>
+		    <field name="model">report.crm.case.section.stage</field>
+		    <field name="type">graph</field>
+		    <field name="arch" type="xml">
+		        <graph string="Leads By Stage" type="pie">
+		            <field name="stage_id"/>
+		            <field name="nbr" operator="+"/>
+		            <field name="state" group="True"/>
+		        </graph>
+		    </field>
+		</record>
+
+		<record model="ir.actions.act_window" id="act_my_leads">
+			<field name="res_model">crm.case</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="view_id" ref="crm_configuration.crm_case_tree_view_leads"/>
+			<field name="domain">[('section_id.name', '=', 'Leads'),('user_id','=',uid),('state','!=','pending'),('state','!=','cancel')]</field>
+		</record>
+<!--
+		<record model="ir.actions.act_window" id="act_my_meetings">
+			<field name="res_model">crm.case</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="view_id" ref="crm_configuration.crm_case_tree_view_meet"/>
+			<field name="domain">[('section_id.name', '=', 'Meetings'),('user_id','=',uid),('state','!=','pending'),('state','!=','cancel')]</field>
+		</record>
+-->
+		<record model="ir.actions.act_window" id="act_my_leadsp">
+			<field name="res_model">crm.case</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="view_id" ref="crm_case_tree_view_leadsp"/>
+			<field name="domain">[('section_id.name', '=', 'Leads (purchasing)'),('user_id','=',uid),('state','!=','pending'),('state','!=','cancel')]</field>
+		</record>
+			
+		<act_window name="My Cases"
+				domain="[('user_id','=',uid),('state','!=','pending'),('state','!=','cancel')]"
+				res_model="crm.case"
+				view_type="form"
+				view_mode="tree,form"
+				id="act_my_cases"/>	
+							
+		<record model="ir.actions.act_window" id="act_my_leads_stage">
+			<field name="res_model">report.crm.case.section.stage</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">graph,tree,form</field>
+			<field name="view_id" ref="view_crm_lead_stage_graph1p"/>
+			<field name="domain">[('section_id.name', '=', 'Leads'),('user_id','=',uid),('state','!=','pending'),('state','!=','cancel')]</field>
+		</record>
+		<record model="ir.actions.act_window" id="act_my_leads_stagep">
+			<field name="res_model">report.crm.case.section.stage</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">graph,tree,form</field>
+			<field name="view_id" ref="view_crm_lead_stage_graph1p"/>
+			<field name="domain">[('section_id.name', '=', 'Leads (purchasing)'),('user_id','=',uid),('state','!=','pending'),('state','!=','cancel')]</field>
+		</record>
+					
+		<record model="ir.actions.act_window" id="act_sales_pipeline">
+			<field name="res_model">report.crm.case.user</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">graph,tree,form</field>
+			<field name="view_id" ref="view_crm_case_user_graph1p"/>
+			<field name="domain">[('section_id.name', '=', 'Opportunities'),('user_id','=',uid),('state','!=','pending'),('state','!=','cancel')]</field>
+		</record>	
+		
+		<record model="ir.actions.act_window" id="act_purc_pipeline">
+			<field name="res_model">report.crm.case.user</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">graph,tree,form</field>
+			<field name="view_id" ref="view_crm_case_user_graph1p"/>
+			<field name="domain">[('section_id.name','=','Opportunities (Purchasing)'),('user_id','=',uid),('state','!=','pending'),('state','!=','cancel')]</field>
+		</record>
+					
+		<record model="ir.ui.view" id="board_crm_formp">
+			<field name="name">CRM - Purchasing Dashboard Form</field>
+			<field name="model">board.board</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<form string="Purchasing Dashboard">
+					<hpaned>
+
+						<child1>
+
+							<action
+								string="My Leads"
+								name="%(act_my_leads)d"
+								colspan="4"
+								height="150"
+								width="510"/>
+
+							<action
+								string="My Leads (Purchasing)"
+								name="%(act_my_leadsp)d"
+								height="150"
+								colspan="4"/>
+
+							<action
+								string="My Cases"
+								name="%(act_my_cases)d"
+								colspan="4"
+								height="200"/>
+
+						</child1>
+
+						<child2>
+							<action
+								string="My Purchasing Leads By Stage"
+								name="%(act_my_leads_stagep)d"
+								colspan="4"/>
+
+							<action
+								string="My Purchasing Pipeline"
+								name="%(act_purc_pipeline)d"
+								colspan="4"/>
+
+						</child2>
+					</hpaned>
+				</form>
+			</field>
+		</record>
+		<record model="ir.actions.act_window" id="open_board_crmp">
+			<field name="name">CRM Purchasing Dashboard</field>
+			<field name="res_model">board.board</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">form</field>
+			<field name="usage">menu</field>
+			<field name="view_id" ref="board_crm_formp"/>
+		</record>
+
+		<menuitem 
+			name="Purchasing Dashboard" parent="board_crm_configuration.menu_board_crm_config"
+			action="open_board_crmp"
+			sequence="1"
+			id="menu_board_crmp" icon="terp-graph"/>
+	</data>
+</openerp>

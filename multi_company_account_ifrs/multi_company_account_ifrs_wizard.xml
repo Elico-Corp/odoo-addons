@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<openerp>
+	<data>
+		<!-- report-related wizards -->
+		<wizard 
+			string="Multi-Company Accounts Report"
+			model="account.account"
+			name="multi_company_account_ifrs.multicompany.account.report"
+			menu="False"
+			id="wizard_multicompany_account_report"/>
+		<menuitem
+			name="Financial Management/Legal Statements/Multi-Company Financial Statements/Multi-Company Accounts Report"
+			action="wizard_multicompany_account_report"
+			type="wizard"
+			id="menu_multicompany_account_report"/>
+			
+		<wizard
+			string="Multi-Company Closing Period Wizard"
+			model="account.period"
+			name="multi_company_account_ifrs.multicompany.period.close"
+			id="wizard_multicompany_period_close"/>
+			
+		<menuitem
+			name="Financial Management/Periodical Processing/End of Year Treatments/Multi-Company Closing Periods Wizard"
+			action="wizard_multicompany_period_close"
+			type="wizard"
+			id="menu_multicompany_period_close"/>
+			
+		<wizard
+			string="Multi-Company Closing Fiscal Year Wizard"
+			model="account.period"
+			name="multi_company_account_ifrs.multicompany.fiscalyear.close"
+			id="wizard_multicompany_fiscalyear_close"/>
+			
+		<menuitem
+			name="Financial Management/Periodical Processing/End of Year Treatments/Multi-Company Fiscal Year Closing Wizard"
+			action="wizard_multicompany_fiscalyear_close"
+			type="wizard"
+			id="menu_multicompany_fiscalyear_close"/>
+			
+		<wizard
+			string="Multi-Company Opening Period Wizard"
+			model="account.period"
+			name="multi_company_account_ifrs.multicompany.period.open"
+			id="wizard_multicompany_period_open"/>
+			
+		<menuitem
+			name="Financial Management/Periodical Processing/End of Year Treatments/Multi-Company Opening Periods Wizard"
+			action="wizard_multicompany_period_open"
+			type="wizard"
+			id="menu_multicompany_period_open"/>
+	</data>
+</openerp>

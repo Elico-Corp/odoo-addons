@@ -1,0 +1,287 @@
+<?xml version="1.0"?>
+<openerp>
+<data noupdate="1">
+    <menuitem id="menu_prepurchasing" name="Purchasing" parent="crm.menu_crm" sequence="5"/>
+    <menuitem id="menu_reppurchasing" name="Reporting (Purchasing)" parent="crm.menu_crm" sequence="10"/>
+
+     <record model="ir.actions.act_window" id="crm_case_category_act_opporp11">
+          <field name="name">All Opportunities (Purchasing)</field>
+          <field name="res_model">crm.case</field>
+          <field name="view_mode">tree,form,calendar,graph</field>
+          <field name="view_id" ref="crm_case_tree_view_opporp"/>
+          <field name="domain" eval="'[(\'section_id\',\'=\','+str(section_supportp3)+')]'"/>
+     </record>
+     <record model="ir.actions.act_window.view" id="action_crm_tag_calendar_view_opporp11">
+          <field name="sequence" eval="3"/>
+          <field name="view_mode">calendar</field>
+          <field name="view_id" ref="crm_case_calendar_view_opporp"/>
+          <field name="act_window_id" ref="crm_case_category_act_opporp11"/>
+     </record>
+     <record model="ir.actions.act_window.view" id="action_crm_tag_tree_view_opporp11">
+          <field name="sequence" eval="1"/>
+          <field name="view_mode">tree</field>
+          <field name="view_id" ref="crm_case_tree_view_opporp"/>
+          <field name="act_window_id" ref="crm_case_category_act_opporp11"/>
+     </record>
+     <record model="ir.actions.act_window.view" id="action_crm_tag_form_view_opporp11">
+          <field name="sequence" eval="2"/>
+          <field name="view_mode">form</field>
+          <field name="view_id" ref="crm_case_form_view_opporp"/>
+          <field name="act_window_id" ref="crm_case_category_act_opporp11"/>
+     </record>
+     <record model="ir.actions.act_window.view" id="action_crm_tag_graph_view_opporp11">
+          <field name="sequence" eval="4"/>
+          <field name="view_mode">graph</field>
+          <field name="view_id" ref="crm_case_graph_view_stage_costp"/>
+          <field name="act_window_id" ref="crm_case_category_act_opporp11"/>
+     </record>
+     <menuitem name="Opportunities (Purchasing)" id="menu_crm_case_oppp" parent="menu_prepurchasing" action="crm_case_category_act_opporp11"/>
+
+
+<!--          MENU          -->
+     <menuitem parent="menu_crm_case_oppp" id="menu_crm_case_categ0_act_opporp11" action="crm_case_category_act_opporp11"/>
+
+     <record model="ir.actions.act_window" id="crm_case_category_act_opporp1">
+          <field name="name">All Open Opportunities (Purchasing)</field>
+          <field name="res_model">crm.case</field>
+          <field name="view_mode">tree,calendar,form,graph</field>
+          <field name="view_id" ref="crm_case_tree_view_opporp"/>
+          <field name="domain" eval="'[(\'section_id\',\'=\','+str(section_supportp3)+'),(\'state\',\'=\',\'open\')]'"/>
+     </record>
+     <record model="ir.actions.act_window.view" id="action_crm_tag_tree_view_opporp1">
+          <field name="sequence" eval="1"/>
+          <field name="view_mode">tree</field>
+          <field name="view_id" ref="crm_case_tree_view_opporp"/>
+          <field name="act_window_id" ref="crm_case_category_act_opporp1"/>
+     </record>
+     <record model="ir.actions.act_window.view" id="action_crm_tag_calendar_view_opporp1">
+          <field name="sequence" eval="2"/>
+          <field name="view_mode">calendar</field>
+          <field name="view_id" ref="crm_case_calendar_view_opporp"/>
+          <field name="act_window_id" ref="crm_case_category_act_opporp1"/>
+     </record>
+     <record model="ir.actions.act_window.view" id="action_crm_tag_form_view_opporp1">
+          <field name="sequence" eval="3"/>
+          <field name="view_mode">form</field>
+          <field name="view_id" ref="crm_case_form_view_opporp"/>
+          <field name="act_window_id" ref="crm_case_category_act_opporp1"/>
+     </record>
+     <record model="ir.actions.act_window.view" id="action_crm_tag_graph_view_opporp1">
+          <field name="sequence" eval="4"/>
+          <field name="view_mode">graph</field>
+          <field name="view_id" ref="crm_case_graph_view_stage_costp"/>
+          <field name="act_window_id" ref="crm_case_category_act_opporp1"/>
+     </record>
+     <menuitem parent="menu_crm_case_categ0_act_opporp11" id="menu_crm_case_categ0_act_opporp1" action="crm_case_category_act_opporp1"/>
+
+
+     <record model="ir.actions.act_window" id="crm_case_category_act_opporp_all2">
+          <field name="name">All Unassigned Opportunities (Purchasing)</field>
+          <field name="res_model">crm.case</field>
+          <field name="view_mode">tree,calendar,form,graph</field>
+          <field name="view_id" ref="crm_case_tree_view_opporp"/>
+          <field name="domain" eval="'[(\'section_id\',\'=\','+str(section_supportp3)+'),(\'user_id\',\'=\',False)]'"/>
+     </record>
+     <record model="ir.actions.act_window.view" id="action_crm_tag_tree_view_opporp_all2">
+          <field name="sequence" eval="1"/>
+          <field name="view_mode">tree</field>
+          <field name="view_id" ref="crm_case_tree_view_opporp"/>
+          <field name="act_window_id" ref="crm_case_category_act_opporp_all2"/>
+     </record>
+     <record model="ir.actions.act_window.view" id="action_crm_tag_calendar_view_opporp_all2">
+          <field name="sequence" eval="2"/>
+          <field name="view_mode">calendar</field>
+          <field name="view_id" ref="crm_case_calendar_view_opporp"/>
+          <field name="act_window_id" ref="crm_case_category_act_opporp_all2"/>
+     </record>
+     <record model="ir.actions.act_window.view" id="action_crm_tag_form_view_opporp_all2">
+          <field name="sequence" eval="3"/>
+          <field name="view_mode">form</field>
+          <field name="view_id" ref="crm_case_form_view_opporp"/>
+          <field name="act_window_id" ref="crm_case_category_act_opporp_all2"/>
+     </record>
+     <record model="ir.actions.act_window.view" id="action_crm_tag_graph_view_opporp_all2">
+          <field name="sequence" eval="4"/>
+          <field name="view_mode">graph</field>
+          <field name="view_id" ref="crm_case_graph_view_stage_costp"/>
+          <field name="act_window_id" ref="crm_case_category_act_opporp_all2"/>
+     </record>
+     <menuitem parent="menu_crm_case_categ0_act_opporp11" id="menu_crm_case_categ0_act_opporp_all2" action="crm_case_category_act_opporp_all2"/>
+
+
+<!-- ======================================================== -->
+     <record model="ir.actions.act_window" id="crm_case_category_act_opporp22">
+          <field name="name">My Opportunities (Purchasing)</field>
+          <field name="res_model">crm.case</field>
+          <field name="view_mode">tree,calendar,form,graph</field>
+          <field name="view_id" ref="crm_case_calendar_view_opporp"/>
+          <field name="domain" eval="'[(\'section_id\',\'=\','+str(section_supportp3)+'),(\'user_id\',\'=\',uid)]'"/>
+     </record>
+     <record model="ir.actions.act_window.view" id="action_crm_tag_calendar_view_opporp22">
+          <field name="sequence" eval="2"/>
+          <field name="view_mode">calendar</field>
+          <field name="view_id" ref="crm_case_calendar_view_opporp"/>
+          <field name="act_window_id" ref="crm_case_category_act_opporp22"/>
+     </record>
+     <record model="ir.actions.act_window.view" id="action_crm_tag_tree_view_opporp22">
+          <field name="sequence" eval="1"/>
+          <field name="view_mode">tree</field>
+          <field name="view_id" ref="crm_case_tree_view_opporp"/>
+          <field name="act_window_id" ref="crm_case_category_act_opporp22"/>
+     </record>
+     <record model="ir.actions.act_window.view" id="action_crm_tag_form_view_opporp22">
+          <field name="sequence" eval="3"/>
+          <field name="view_mode">form</field>
+          <field name="view_id" ref="crm_case_form_view_opporp"/>
+          <field name="act_window_id" ref="crm_case_category_act_opporp22"/>
+     </record>
+     <record model="ir.actions.act_window.view" id="action_crm_tag_graph_view_opporp22">
+          <field name="sequence" eval="4"/>
+          <field name="view_mode">graph</field>
+          <field name="view_id" ref="crm_case_graph_view_stage_costp"/>
+          <field name="act_window_id" ref="crm_case_category_act_opporp22"/>
+     </record>
+     <menuitem parent="menu_crm_case_oppp" id="menu_crm_case_categ0_act_opporp22" action="crm_case_category_act_opporp22"/>
+
+     <record model="ir.actions.act_window" id="crm_case_category_act_opporp">
+          <field name="name">Opportunity</field>
+          <field name="res_model">crm.case</field>
+          <field name="view_type">form</field>
+          <field name="view_mode">form,tree,calendar</field>
+          <field name="view_id" ref="crm_case_form_view_opporp"/>
+          <field name="domain" eval="'[(\'section_id\',\'=\','+str(section_supportp3)+')]'"/>
+     </record>
+     <record model="ir.actions.act_window.view" id="action_crm_tag_form_view_opporp">
+          <field name="sequence" eval="1"/>
+          <field name="view_mode">form</field>
+          <field name="view_id" ref="crm_case_form_view_opporp"/>
+          <field name="act_window_id" ref="crm_case_category_act_opporp"/>
+     </record>
+     <record model="ir.actions.act_window.view" id="action_crm_tag_tree_view_opporp">
+          <field name="sequence" eval="2"/>
+          <field name="view_mode">tree</field>
+          <field name="view_id" ref="crm_case_tree_view_opporp"/>
+          <field name="act_window_id" ref="crm_case_category_act_opporp"/>
+     </record>
+     <record model="ir.actions.act_window.view" id="action_crm_tag_cal_view_opporp">
+          <field name="sequence" eval="3"/>
+          <field name="view_mode">calendar</field>
+          <field name="act_window_id" ref="crm_case_category_act_opporp"/>
+     </record>
+     <menuitem name="New Opportunity"
+        parent="menu_crm_case_oppp"
+        id="menu_crm_case_categ0_act_opporp"
+        action="crm_case_category_act_opporp"
+        sequence="50"/>
+
+     <record model="ir.actions.act_window" id="crm_case_category_act_opporp2">
+          <field name="name">My Open Opportunities (Purchasing)</field>
+          <field name="res_model">crm.case</field>
+          <field name="view_mode">tree,calendar,form,graph</field>
+          <field name="view_id" ref="crm_case_tree_view_opporp"/>
+          <field name="domain" eval="'[(\'section_id\',\'=\','+str(section_supportp3)+'),(\'state\',\'=\',\'open\'),(\'user_id\',\'=\',uid)]'"/>
+     </record>
+     <record model="ir.actions.act_window.view" id="action_crm_tag_tree_view_opporp2">
+          <field name="sequence" eval="1"/>
+          <field name="view_mode">tree</field>
+          <field name="view_id" ref="crm_case_tree_view_opporp"/>
+          <field name="act_window_id" ref="crm_case_category_act_opporp2"/>
+     </record>
+     <record model="ir.actions.act_window.view" id="action_crm_tag_calendar_view_opporp2">
+          <field name="sequence" eval="2"/>
+          <field name="view_mode">calendar</field>
+          <field name="view_id" ref="crm_case_calendar_view_opporp"/>
+          <field name="act_window_id" ref="crm_case_category_act_opporp2"/>
+     </record>
+     <record model="ir.actions.act_window.view" id="action_crm_tag_form_view_opporp2">
+          <field name="sequence" eval="3"/>
+          <field name="view_mode">form</field>
+          <field name="view_id" ref="crm_case_form_view_opporp"/>
+          <field name="act_window_id" ref="crm_case_category_act_opporp2"/>
+     </record>
+     <record model="ir.actions.act_window.view" id="action_crm_tag_graph_view_opporp2">
+          <field name="sequence" eval="4"/>
+          <field name="view_mode">graph</field>
+          <field name="view_id" ref="crm_case_graph_view_stage_costp"/>
+          <field name="act_window_id" ref="crm_case_category_act_opporp2"/>
+     </record>
+     <menuitem parent="menu_crm_case_categ0_act_opporp22" id="menu_crm_case_categ0_act_opporp2" action="crm_case_category_act_opporp2"/>
+
+     <record model="ir.actions.act_window" id="crm_case_category_act_opporp_my2">
+          <field name="name">My Pending Opportunities (Purchasing)</field>
+          <field name="res_model">crm.case</field>
+          <field name="view_mode">tree,calendar,form,graph</field>
+          <field name="view_id" ref="crm_case_tree_view_opporp"/>
+          <field name="domain" eval="'[(\'section_id\',\'=\','+str(section_supportp3)+'),(\'state\',\'=\',\'pending\'),(\'user_id\',\'=\',uid)]'"/>
+     </record>
+     <record model="ir.actions.act_window.view" id="action_crm_tag_tree_view_opporp_my2">
+          <field name="sequence" eval="1"/>
+          <field name="view_mode">tree</field>
+          <field name="view_id" ref="crm_case_tree_view_opporp"/>
+          <field name="act_window_id" ref="crm_case_category_act_opporp_my2"/>
+     </record>
+     <record model="ir.actions.act_window.view" id="action_crm_tag_calendar_view_opporp_my2">
+          <field name="sequence" eval="2"/>
+          <field name="view_mode">calendar</field>
+          <field name="view_id" ref="crm_case_calendar_view_opporp"/>
+          <field name="act_window_id" ref="crm_case_category_act_opporp_my2"/>
+     </record>
+     <record model="ir.actions.act_window.view" id="action_crm_tag_form_view_opporp_my2">
+          <field name="sequence" eval="3"/>
+          <field name="view_mode">form</field>
+          <field name="view_id" ref="crm_case_form_view_opporp"/>
+          <field name="act_window_id" ref="crm_case_category_act_opporp_my2"/>
+     </record>
+     <record model="ir.actions.act_window.view" id="action_crm_tag_graph_view_opporp_my2">
+          <field name="sequence" eval="4"/>
+          <field name="view_mode">graph</field>
+          <field name="view_id" ref="crm_case_graph_view_stage_costp"/>
+          <field name="act_window_id" ref="crm_case_category_act_opporp_my2"/>
+     </record>
+     <menuitem parent="menu_crm_case_categ0_act_opporp22" id="menu_crm_case_categ0_act_opporp_my2" action="crm_case_category_act_opporp_my2"/>
+
+<!--          REPORTS               -->
+     <record model="ir.actions.act_window" id="action_report_crm_case_opporp_user">
+          <field name="res_model">report.crm.case.user</field>
+          <field name="view_type">form</field>
+          <field name="view_mode">graph,tree</field>
+          <field name="domain" eval="'[(\'section_id\',\'=\','+str(section_supportp3)+')]'"/>
+     </record>
+     <menuitem name="Opportunities (Purchasing)" parent="menu_reppurchasing" id="menu_action_report_crm_case_opporp"/>
+     <menuitem name="Cases by Opportunities (Purchasing) and User" parent="menu_action_report_crm_case_opporp" action="action_report_crm_case_opporp_user" id="menu_action_report_crm_case_opporp_user"/>
+
+     <record model="ir.actions.act_window" id="action_report_crm_case_opporp_categ">
+          <field name="res_model">report.crm.case.section.categ2</field>
+          <field name="view_type">form</field>
+          <field name="view_mode">graph,tree</field>
+          <field name="domain" eval="'[(\'section_id\',\'=\','+str(section_supportp3)+')]'"/>
+     </record>
+     <menuitem name="Cases by Opportunities (Purchasing) and Type"  parent="menu_action_report_crm_case_opporp" action="action_report_crm_case_opporp_categ" id="menu_action_report_crm_case_opporp_categ"/>
+
+     <record model="ir.actions.act_window" id="action_report_crm_case_opporp_stage">
+          <field name="res_model">report.crm.case.section.stage</field>
+          <field name="view_type">form</field>
+          <field name="view_mode">graph,tree</field>
+          <field name="domain" eval="'[(\'section_id\',\'=\','+str(section_supportp3)+')]'"/>
+     </record>
+     <menuitem name="Cases by Opportunities (Purchasing) and Stage" parent="menu_action_report_crm_case_opporp"  action="action_report_crm_case_opporp_stage" id="menu_action_report_crm_case_opporp_stage"/>
+
+     <record model="ir.actions.act_window" id="action_report_crm_case_opporp_categ_stage">
+          <field name="res_model">report.crm.case.section.categ.stage</field>
+          <field name="view_type">form</field>
+          <field name="view_mode">tree</field>
+          <field name="domain" eval="'[(\'section_id\',\'=\','+str(section_supportp3)+')]'"/>
+     </record>
+     <menuitem name="Cases by Opportunities (Purchasing), Category and Stage" parent="menu_action_report_crm_case_opporp" action="action_report_crm_case_opporp_categ_stage" id="menu_action_report_crm_case_opporp_categ_stage"/>
+
+     <record model="ir.actions.act_window" id="action_report_crm_case_opporp_categ_categ2">
+          <field name="res_model">report.crm.case.section.categ.categ2</field>
+          <field name="view_type">form</field>
+          <field name="view_mode">tree</field>
+          <field name="domain" eval="'[(\'section_id\',\'=\','+str(section_supportp3)+')]'"/>
+     </record>
+     <menuitem name="Cases by Opportunities (Purchasing), Category and Type" parent="menu_action_report_crm_case_opporp" action="action_report_crm_case_opporp_categ_categ2" id="menu_action_report_crm_case_opporp_categ_categ2"/>
+
+
+</data>
+</openerp>

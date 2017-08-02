@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<openerp>
+<data>
+
+    # ------------------------------------------------------ 
+    # cases (Purchasing)
+    # ------------------------------------------------------ 
+<record model="ir.ui.view" id="crm_case_form_inheritp">
+	<field name="name">crm.case.form.purchasing.inherit</field>
+	<field name="model">crm.case</field>
+	<field name="inherit_id" ref="crm.crm_case-view"/>
+	<field name="type">form</field>
+	<field name="arch" type="xml">
+		<field name="user_id" position="after">
+			<field name="note" select = "1" colspan = "2"/>
+			<field name="tags" select = "1" colspan = "2"/>
+	                <newline/>
+			<field name="partner_name" string="Partner" select = "1" colspan = "2"/>
+			<field name="collected_material"/>
+			<field name="fair_name" select="2"/>
+			<field name="website" select="2"/>
+		</field>
+	</field>
+</record>
+</data>
+</openerp>

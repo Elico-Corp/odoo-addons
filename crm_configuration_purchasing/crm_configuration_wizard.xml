@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <wizard
+            id="wizard_crm_partner_createp"
+            keyword="client_action_multi"
+            model="crm.case"
+            name="crm.case.partner_createp"
+            multi="True"
+            string="Create Partner"/>
+
+        <wizard
+            id="wizard_crm_meetingp"
+            keyword="client_action_multi"
+            model="crm.case"
+            name="crm.case.meetingp"
+            multi="True"
+            string="Schedule Meeting"/>
+
+        <wizard
+            id="wizard_crm_opportunity_setp"
+            keyword="client_action_multi"
+            model="crm.case"
+            name="crm.case.opportunity_setp"
+            multi="True"
+            string="Convert To Opportunity"/>
+
+
+    </data>
+</openerp>
