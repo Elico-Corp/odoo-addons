@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+	<data>
+        <menuitem id="menu_1_00" name="My Emails" parent="oa_base.menu_1" sequence="5" />		
+        	<menuitem id="menu_1_001" name="Inbox" parent="menu_1_00" sequence="101" action="poweremail.action_poweremail_inbox_tree" />
+        	<menuitem id="menu_1_002" name="Drafts" parent="menu_1_00" sequence="102" action="poweremail.action_poweremail_drafts_tree" />
+        	<menuitem id="menu_1_003" name="Outbox" parent="menu_1_00" sequence="103" action="poweremail.action_poweremail_outbox_tree" />
+        	<menuitem id="menu_1_004" name="Follow-up" parent="menu_1_00" sequence="104" action="poweremail.action_poweremail_follow_tree" />
+        	<menuitem id="menu_1_005" name="Sent" parent="menu_1_00" sequence="105" action="poweremail.action_poweremail_sent_tree" />
+        	<menuitem id="menu_1_006" name="Trash" parent="menu_1_00" sequence="106" action="poweremail.action_poweremail_trash_tree" />
+	</data>
+</openerp>

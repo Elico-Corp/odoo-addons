@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="1">
+        <record id="seq_type_gap_analysis" model="ir.sequence.type">
+            <field name="name">Gap Analysis</field>
+            <field name="code">gap_analysis</field>
+        </record>
+
+        <record id="seq_gap_analysis" model="ir.sequence">
+            <field name="name">Gap Analysis</field>
+            <field name="code">gap_analysis</field>
+            <field name="prefix">GAP</field>
+            <field name="padding">3</field>
+        </record>
+    </data>
+</openerp>

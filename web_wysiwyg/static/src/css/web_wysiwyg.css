@@ -1,0 +1,25 @@
+.openerp .oe_forms a.wysiwyg_button {
+	font-size: 12px;
+	height: inherit;
+}
+
+.openerp .oe_forms a.wysiwyg_button_off, .ui-dialog .ui-dialog-content a.wysiwyg_button_off {/* actually the same as .openerp .oe_form_dirty > .oe_form_header > .oe_form_buttons > .oe_form_button_save */
+	color: white;
+	background: #dc5f59;
+	background: -moz-linear-gradient(#dc5f59, #b33630);
+	background: -webkit-gradient(linear, left top, left bottom, from(#dc5f59), to(#b33630));
+	background: -webkit-linear-gradient(#dc5f59, #b33630);
+	-moz-box-shadow: none;
+	-webkit-box-shadow: none;
+	-box-shadow: none;
+	font-weight: bold;
+}
+
+.openerp .oe_form_readonly a.wysiwyg_button {
+	display: none;
+}
+
+.oe_translation_form .cke_skin_kama {
+	margin-left: 3%;
+}
+

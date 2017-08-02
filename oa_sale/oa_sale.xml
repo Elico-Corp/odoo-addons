@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+	<data>
+		<record id="action_order_form_mine" model="ir.actions.act_window">
+            <field name="name">My Sales Orders</field>
+            <field name="res_model">sale.order</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form,calendar,graph</field>
+            <field name="domain">[('user_id','=',uid)]</field>
+	        <field name="filter" eval="True"/>
+            <field name="search_view_id" ref="sale.view_sales_order_filter"/>
+        </record>	
+        <record id="action_partner_customer_form_mine" model="ir.actions.act_window">
+            <field name="name">My Customers</field>
+            <field name="res_model">res.partner</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,kanban,form</field>
+            <field name="context">{'search_default_user_id':uid,'search_default_customer':1}</field>
+            <field name="search_view_id" ref="base.view_res_partner_filter"/>
+        </record>
+	
+	
+	       
+		<menuitem id="menu_1_01" name="My Sales" parent="oa_base.menu_1" sequence="10" groups="base.group_sale_manager,base.group_sale_salesman" />
+			<menuitem id="menu_1_013" name="My Sales" parent="menu_1_01" sequence="113" action="action_order_form_mine" />
+        	<menuitem id="menu_1_014" name="My Customers" parent="menu_1_01" sequence="114" action="action_partner_customer_form_mine" />
+	</data>
+</openerp>

@@ -1,0 +1,380 @@
+<?xml version="1.0" ?>
+<openerp>
+	<data noupdate="1">
+  		<record id="res_users_bertrandd0" model="res.users">
+			<field model="ir.actions.actions" name="menu_id" search="[('name', '=', u'Menu')]"/>
+			<field name="address_id" ref="office_address"/>
+			<field name="password">bertrand</field>
+			<field name="context_lang">en_US</field>
+			<field name="name">Bertrand D</field>
+			<field eval="[(6,0,[ref('base.group_user')])]" name="group_id"/>
+			<field name="company_id" ref="base.main_company"/>
+			<field eval="[(6,0,[ref('base.main_company')])]" name="company_ids"/>
+			<field eval="1" name="active"/>
+			<field name="login">bertrand</field>
+			<field eval="1" name="menu_tips"/>
+		</record>
+  		<record id="res_users_christina0" model="res.users">
+			<field model="ir.actions.actions" name="menu_id" search="[('name', '=', u'Menu')]"/>
+			<field name="address_id" ref="office_address"/>
+			<field name="password">christina</field>
+			<field name="context_lang">en_US</field>
+			<field name="name">Christina L</field>
+			<field eval="[(6,0,[ref('base.group_user')])]" name="group_id"/>
+			<field name="company_id" ref="base.main_company"/>
+			<field eval="[(6,0,[ref('base.main_company')])]" name="company_ids"/>
+			<field eval="1" name="active"/>
+			<field name="login">christina</field>
+			<field eval="1" name="menu_tips"/>
+		</record>
+		<record id="res_users_libo0" model="res.users">
+			<field model="ir.actions.actions" name="menu_id" search="[('name', '=', u'Menu')]"/>
+			<field name="address_id" ref="office_address"/>
+			<field name="password">libo</field>
+			<field name="context_lang">en_US</field>
+			<field name="name">Libo Wu</field>
+			<field eval="[(6,0,[ref('base.group_user')])]" name="group_id"/>
+			<field name="company_id" ref="base.main_company"/>
+			<field eval="[(6,0,[ref('base.main_company')])]" name="company_ids"/>
+			<field eval="1" name="active"/>
+			<field name="login">libo</field>
+			<field eval="1" name="menu_tips"/>
+		</record>
+		<record id="res_users_liurenwu0" model="res.users">
+            <field model="ir.actions.actions" name="menu_id" search="[('name', '=', u'Menu')]"/>
+            <field name="address_id" ref="office_address"/>
+            <field name="password">liurenwu</field>
+            <field name="context_lang">en_US</field>
+            <field name="name">liurenwu</field>
+            <field eval="[(6,0,[ref('base.group_user')])]" name="group_id"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field eval="[(6,0,[ref('base.main_company')])]" name="company_ids"/>
+            <field eval="1" name="active"/>
+            <field name="login">liurenwu</field>
+            <field eval="1" name="menu_tips"/>
+        </record>
+        <record id="res_users_kiros0" model="res.users">
+            <field model="ir.actions.actions" name="menu_id" search="[('name', '=', u'Menu')]"/>
+            <field name="address_id" ref="office_address"/>
+            <field name="password">kiros</field>
+            <field name="context_lang">en_US</field>
+            <field name="name">kiros</field>
+            <field eval="[(6,0,[ref('base.group_user')])]" name="group_id"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field eval="[(6,0,[ref('base.main_company')])]" name="company_ids"/>
+            <field eval="1" name="active"/>
+            <field name="login">kiros</field>
+            <field eval="1" name="menu_tips"/>
+        </record>
+		<record id="res_users_fabienb0" model="res.users">
+			<field model="ir.actions.actions" name="menu_id" search="[('name', '=', u'Menu')]"/>
+			<field name="address_id" ref="office_address"/>
+			<field name="password">fabien</field>
+			<field name="context_lang">en_US</field>
+			<field name="name">Fabien B</field>
+			<field eval="[(6,0,[ref('base.group_user')])]" name="group_id"/>
+			<field name="company_id" ref="base.main_company"/>
+			<field eval="[(6,0,[ref('base.main_company')])]" name="company_ids"/>
+			<field eval="1" name="active"/>
+			<field name="login">fabien</field>
+			<field eval="1" name="menu_tips"/>
+		</record>
+		<record id="res_users_jeromel0" model="res.users">
+			<field model="ir.actions.actions" name="menu_id" search="[('name', '=', u'Menu')]"/>
+			<field name="address_id" ref="hkoffice_address"/>
+			<field name="password">jerome</field>
+			<field name="context_lang">en_US</field>
+			<field name="name">Jerome L</field>
+			<field eval="[(6,0,[ref('base.group_user')])]" name="group_id"/>
+			<field name="company_id" ref="base.main_company"/>
+			<field eval="[(6,0,[ref('hk_company'),ref('base.main_company')])]" name="company_ids"/>
+			<field eval="1" name="active"/>
+			<field name="login">jerome</field>
+			<field eval="1" name="menu_tips"/>
+		</record>
+		<record id="res_users_estherc0" model="res.users">
+			<field model="ir.actions.actions" name="menu_id" search="[('name', '=', u'Menu')]"/>
+			<field name="address_id" ref="hkoffice_address"/>
+			<field name="password">esther</field>
+			<field name="context_lang">en_US</field>
+			<field name="name">Esther C</field>
+			<field eval="[(6,0,[ref('base.group_user')])]" name="group_id"/>
+			<field name="company_id" ref="base.main_company"/>
+			<field eval="[(6,0,[ref('hk_company'),ref('base.main_company')])]" name="company_ids"/>
+			<field eval="1" name="active"/>
+			<field name="login">esther</field>
+			<field eval="1" name="menu_tips"/>
+		</record>
+		<record id="res_users_sammyc0" model="res.users">
+			<field model="ir.actions.actions" name="menu_id" search="[('name', '=', u'Menu')]"/>
+			<field name="address_id" ref="office_address"/>
+			<field name="password">sammy</field>
+			<field name="context_lang">en_US</field>
+			<field name="name">Sammy Chen</field>
+			<field eval="[(6,0,[ref('base.group_user')])]" name="group_id"/>
+			<field name="company_id" ref="base.main_company"/>
+			<field eval="[(6,0,[ref('base.main_company')])]" name="company_ids"/>
+			<field eval="1" name="active"/>
+			<field name="login">sammy</field>
+			<field eval="1" name="menu_tips"/>
+		</record>
+		<record id="res_users_eagle0" model="res.users">
+			<field model="ir.actions.actions" name="menu_id" search="[('name', '=', u'Menu')]"/>
+			<field name="address_id" ref="office_address"/>
+			<field name="password">eagle</field>
+			<field name="context_lang">en_US</field>
+			<field name="name">Eagle</field>
+			<field eval="[(6,0,[ref('base.group_user')])]" name="group_id"/>
+			<field name="company_id" ref="base.main_company"/>
+			<field eval="[(6,0,[ref('base.main_company')])]" name="company_ids"/>
+			<field eval="1" name="active"/>
+			<field name="login">eagle</field>
+			<field eval="1" name="menu_tips"/>
+		</record>
+		<record id="res_users_jean-eudesl0" model="res.users">
+			<field model="ir.actions.actions" name="menu_id" search="[('name', '=', u'Menu')]"/>
+			<field name="address_id" ref="office_address"/>
+			<field name="password">jean-eudes</field>
+			<field name="context_lang">en_US</field>
+			<field name="name">Jean-Eudes L</field>
+			<field eval="[(6,0,[ref('base.group_user')])]" name="group_id"/>
+			<field name="company_id" ref="base.main_company"/>
+			<field eval="[(6,0,[ref('base.main_company')])]" name="company_ids"/>
+			<field eval="1" name="active"/>
+			<field name="login">jean-eudes</field>
+			<field eval="1" name="menu_tips"/>
+		</record>
+		<record id="res_users_jp0" model="res.users">
+			<field model="ir.actions.actions" name="menu_id" search="[('name', '=', u'Menu')]"/>
+			<field name="address_id" ref="hkoffice_address"/>
+			<field name="password">jp</field>
+			<field name="context_lang">en_US</field>
+			<field name="name">Jean-Philippe G</field>
+			<field eval="[(6,0,[ref('base.group_partner_manager'),ref('base.group_user'),ref('stock.group_stock_user'),ref('stock.group_stock_manager'),ref('mrp.group_mrp_user'),ref('mrp.group_mrp_manager')])]" name="group_id"/>
+			<field name="company_id" ref="base.main_company"/>
+			<field eval="[(6,0,[ref('base.main_company'),ref('hk_company')])]" name="company_ids"/>
+			<field eval="1" name="active"/>
+			<field name="login">jp</field>
+			<field eval="1" name="menu_tips"/>
+		</record>
+		<record id="res_users_johnw0" model="res.users">
+			<field model="ir.actions.actions" name="menu_id" search="[('name', '=', u'Menu')]"/>
+			<field name="address_id" ref="office_address"/>
+			<field name="password">john</field>
+			<field name="context_lang">en_US</field>
+			<field name="name">John W</field>
+			<field eval="[(6,0,[ref('base.group_user')])]" name="group_id"/>
+			<field name="company_id" ref="base.main_company"/>
+			<field eval="[(6,0,[ref('base.main_company')])]" name="company_ids"/>
+			<field eval="1" name="active"/>
+			<field name="login">john</field>
+			<field eval="1" name="menu_tips"/>
+		</record>
+		<record id="res_users_brunoc0" model="res.users">
+			<field model="ir.actions.actions" name="menu_id" search="[('name', '=', u'Menu')]"/>
+			<field name="address_id" ref="factory_address"/>
+			<field name="password">bruno</field>
+			<field name="context_lang">en_US</field>
+			<field name="name">Bruno C</field>
+			<field eval="[(6,0,[ref('base.group_user')])]" name="group_id"/>
+			<field name="company_id" ref="base.main_company"/>
+			<field eval="[(6,0,[ref('base.main_company')])]" name="company_ids"/>
+			<field eval="1" name="active"/>
+			<field name="login">bruno</field>
+			<field eval="1" name="menu_tips"/>
+		</record>
+
+	</data>
+
+	<data noupdate="1">
+
+		<!--  Remove Access to all menus to the TAO Users -->
+		<record id="base.group_no_one" model="res.groups">
+			<field name="menu_access" eval="[(6,0,[ref('base.menu_base_partner'),ref('taoutil.menu_1'),ref('taoutil.menu_2'),ref('taoutil.menu_3'),ref('taoutil.menu_4'),ref('taoutil.menu_5'),ref('taoutil.menu_6')])]" />
+		</record>
+		<!--  Add access to TAO Menus for the Admin Group -->
+		<record id="base.group_system" model="res.groups">
+			<field name="menu_access" eval="[(6,0,[ref('base.menu_base_partner')])]" />
+		</record>
+
+		<!--  Add access to Extended TAO Menus -->
+		<record id="base.group_extended" model="res.groups">
+			<field name="menu_access" eval="[(6,0,[ref('taoutil.menu_5_205')])]" />
+		</record>
+
+
+		<record id="base.group_partner_manager" model="res.groups">
+			<field name="users" model="res.users" search="[('login', 'in', ['admin', 'jp', 'jerome', 'john', 'esther'])]"/>
+		</record>
+
+		<record id="base.group_sale_salesman" model="res.groups">
+			<field name="name">Sales</field>
+			<field name="users" model="res.users" search="[('login', 'in', ['admin', 'sammy', 'jerome', 'esther'])]"/>
+			<field eval="[(6,0,[ref('taoutil.menu_1')])]" name="menu_access"/>
+		</record>
+		<record id="base.group_sale_manager" model="res.groups">
+			<field name="name">Sales / Manager</field>
+			<field name="users" model="res.users" search="[('login', 'in', ['admin', 'jerome', 'esther'])]"/>
+			<field eval="[(6,0,[ref('taoutil.menu_1')])]" name="menu_access"/>
+		</record>
+		<record id="res_group_sales2" model="res.groups">
+			<field name="name">Sales / Guests</field>
+			<field name="users" model="res.users" search="[('login', 'in', ['admin', 'jp', 'jerome', 'john', 'esther', 'bertrand', 'eagle', 'christina'])]"/>
+		</record>
+
+		<record id="res_group_marketing0" model="res.groups">
+			<field name="users" model="res.users" search="[('login', 'in', ['admin', 'bertrand', 'christina'])]"/>
+			<field name="name">Marketing</field>
+			<field eval="[(6,0,[])]" name="rule_groups"/>
+			<field eval="[(6,0,[ref('taoutil.menu_2')])]" name="menu_access"/>
+		</record>
+		<record id="res_group_marketing1" model="res.groups">
+			<field name="users" search="[('login', 'in', ['admin', 'bertrand'])]"/>
+			<field name="name">Marketing / Manager</field>
+			<field eval="[(6,0,[])]" name="rule_groups"/>
+			<field eval="[(6,0,[])]" name="menu_access"/>
+		</record>
+		<record id="res_group_marketing2" model="res.groups">
+			<field name="users" model="res.users" search="[('login', 'in', ['admin', 'jp', 'libo', 'bertrand','christina'])]"/>
+			<field name="name">Marketing / Guests</field>
+			<field eval="[(6,0,[])]" name="rule_groups"/>
+		</record>
+
+
+		<record id="res_group_rd0" model="res.groups">
+			<field name="users" model="res.users" search="[('login', 'in', ['admin', 'fabien', 'libo'])]"/>
+			<field name="name">R&amp;D</field>
+			<field eval="[(6,0,[])]" name="rule_groups"/>
+			<field eval="[(6,0,[ref('taoutil.menu_5')])]" name="menu_access"/>
+		</record>
+		<record id="res_group_rd1" model="res.groups">
+			<field name="users" model="res.users" search="[('login', 'in', ['admin', 'libo'])]"/>
+			<field name="name">R&amp;D / Manager</field>
+			<field eval="[(6,0,[])]" name="rule_groups"/>
+			<field eval="[(6,0,[])]" name="menu_access"/>
+		</record>
+		<record id="res_group_rd2" model="res.groups">
+			<field name="users" model="res.users" search="[('login', 'in', ['admin', 'jp', 'fabien', 'bertrand', 'libo'])]"/>
+			<field name="name">R&amp;D / Guests</field>
+			<field eval="[(6,0,[])]" name="rule_groups"/>
+		</record>
+
+		<record id="res_group_pmc0" model="res.groups">
+			<field name="users" model="res.users" search="[('login', 'in', ['admin', 'eagle'])]"/>
+			<field name="name">PMC</field>
+			<field eval="[(6,0,[])]" name="rule_groups"/>
+			<field eval="[(6,0,[ref('taoutil.menu_4')])]" name="menu_access"/>
+		</record>
+		<record id="res_group_pmc1" model="res.groups">
+			<field name="users" model="res.users" search="[('login', 'in', ['admin', 'eagle', 'bruno'])]"/>
+			<field name="name">PMC Manager</field>
+			<field eval="[(6,0,[])]" name="rule_groups"/>
+			<field eval="[(6,0,[])]" name="menu_access"/>
+		</record>
+		<record id="res_group_pmc2" model="res.groups">
+			<field name="users" model="res.users" search="[('login', 'in', ['admin', 'jp', 'eagle', 'john', 'bruno'])]"/>
+			<field name="name">PMC / Guests</field>
+			<field eval="[(6,0,[])]" name="rule_groups"/>
+		</record>
+
+		<record id="res_group_saleshk0" model="res.groups">
+			<field name="users" model="res.users" search="[('login', 'in', ['admin', 'jp', 'jerome', 'esther'])]"/>
+			<field name="name">Sales / HK</field>
+			<field eval="[(6,0,[])]" name="rule_groups"/>
+			<field eval="[(6,0,[ref('taoutil.menu_1')])]" name="menu_access"/>
+		</record>
+
+		<record id="res_group_sourcing0" model="res.groups">
+			<field name="users" model="res.users" search="[('login', 'in', ['admin', 'john'])]"/>
+			<field name="name">Sourcing</field>
+			<field eval="[(6,0,[])]" name="rule_groups"/>
+			<field eval="[(6,0,[ref('taoutil.menu_3')])]" name="menu_access"/>
+		</record>
+		<record id="res_group_sourcing1" model="res.groups">
+			<field name="users" model="res.users" search="[('login', 'in', ['admin', 'jp', 'john'])]"/>
+			<field name="name">Sourcing / Manager</field>
+			<field eval="[(6,0,[])]" name="rule_groups"/>
+			<field eval="[(6,0,[])]" name="menu_access"/>
+		</record>
+		<record id="res_group_sourcing2" model="res.groups">
+			<field name="users" model="res.users" search="[('login', 'in', ['admin', 'jp', 'eagle', 'john'])]"/>
+			<field name="name">Sourcing / Guests</field>
+			<field eval="[(6,0,[])]" name="rule_groups"/>
+		</record>
+
+		<record id="res_group_production0" model="res.groups">
+			<field name="users" model="res.users" search="[('login', 'in', ['admin', 'eagle'])]"/>
+			<field name="name">Production</field>
+			<field eval="[(6,0,[])]" name="rule_groups"/>
+			<field eval="[(6,0,[])]" name="menu_access"/>
+		</record>
+		<record id="res_group_production1" model="res.groups">
+			<field name="users" model="res.users" search="[('login', 'in', ['admin', 'eagle', 'bruno'])]"/>
+			<field name="name">Production / Manager</field>
+			<field eval="[(6,0,[])]" name="rule_groups"/>
+			<field eval="[(6,0,[ref('taoutil.menu_6')])]" name="menu_access"/>
+		</record>
+		<record id="res_group_production2" model="res.groups">
+			<field name="users" model="res.users" search="[('login', 'in', ['admin', 'jp', 'eagle', 'bruno'])]"/>
+			<field name="name">Production / Guests</field>
+			<field eval="[(6,0,[])]" name="rule_groups"/>
+			<field eval="[(6,0,[])]" name="menu_access"/>
+		</record>
+
+		<record id="base.group_account_user" model="res.groups">
+			<field name="name">TAccounting</field>
+			<field name="users" model="res.users" search="[('login', 'in', ['admin', 'jerome', 'jean-eudes'])]"/>
+			<field eval="[(6,0,[])]" name="rule_groups"/>
+			<field eval="[(6,0,[])]" name="menu_access"/>
+		</record>
+		<record id="base.group_account_manager" model="res.groups">
+			<field name="users" model="res.users" search="[('login', 'in', ['admin', 'jean-eudes'])]"/>
+			<field name="name">TAccounting / Manager</field>
+			<field eval="[(6,0,[])]" name="rule_groups"/>
+			<field eval="[(6,0,[ref('taoutil.menu_6')])]" name="menu_access"/>
+		</record>
+		<record id="res_group_account2" model="res.groups">
+			<field name="users" model="res.users" search="[('login', 'in', ['jp', 'john', 'bruno'])]"/>
+			<field name="name">TAccounting / Guests</field>
+			<field eval="[(6,0,[])]" name="rule_groups"/>
+			<field eval="[(6,0,[])]" name="menu_access"/>
+		</record>
+	</data>
+
+	<data>
+	    <act_window
+	        id="action_tao_product_bom_structure"
+	        name="TAO Product BoM Structure"
+	        domain="[('product_id', '=', active_id),('bom_id','=',False)]"
+	        view_type="tree"
+	        view_id="mrp.mrp_bom_tree_view"
+	        res_model="mrp.bom"
+	        src_model="product.product"
+	        groups="taoutil.res_group_rd0,taoutil.res_group_marketing0,taoutil.res_group_pmc0"/>        
+	    <act_window
+	        id="act_tao_product_product_2_mrp_bom"
+	        domain="[('bom_id','!=',False)]"
+	        name="TAO Parent BOMs"
+	        context="{'search_default_product_id': [active_id],'default_product_id':active_id}"
+	        res_model="mrp.bom"
+	        src_model="product.product"
+	        groups="base.group_sale_salesman,taoutil.res_group_sales2,taoutil.res_group_rd0,taoutil.res_group_marketing0,taoutil.res_group_pmc0"/>   
+	    <act_window
+	        id="act_tao_product_product_2_default_mrp_bom"
+	        name="TAO Product BOM"
+	        domain="[('bom_id','=',False)]"
+	        context="{'search_default_product_id': [active_id],'default_product_id':active_id}"
+			view_type="form"
+	        res_model="mrp.bom"
+	        src_model="product.product"
+	        groups="taoutil.res_group_rd0,taoutil.res_group_marketing0,taoutil.res_group_pmc0"/>  
+	    <act_window
+	        id="act_tao_product_product_3_mrp_bom"
+	        name="TAO All BOMs"
+	        context="{'search_default_product_id': [active_id],'default_product_id':active_id}"
+	        res_model="mrp.bom"
+	        src_model="product.product"
+	        groups="base.group_sale_salesman,taoutil.res_group_sales2,taoutil.res_group_rd0,taoutil.res_group_marketing0,taoutil.res_group_pmc0"/>   
+	</data>
+
+</openerp>

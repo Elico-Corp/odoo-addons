@@ -1,0 +1,427 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+	<data>
+
+	<record id="action_product_all" model="ir.actions.act_window">
+        <field name="name">Products</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">product.product</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+	<record id="tao_test_action1" model="ir.actions.act_window">
+        <field name="name">Test Action 1</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">product.product</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('product_category_type','in', ['Products', 'Product Components']), ('state','not in', [''])]</field>
+        <field name="view_id" ref="product.product_product_tree_view"/>
+        <field name="search_view_id" ref="product.product_search_form_view"/>
+    </record>
+	<record id="tao_test_action2" model="ir.actions.act_window">
+        <field name="name">Test Action 2</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">product.product</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('product_category_type','in', ['Products', 'Product Components']), ('state','in', [''])]</field>
+        <field name="view_id" ref="product.product_product_tree_view"/>
+        <field name="search_view_id" ref="product.product_search_form_view"/>
+    </record>
+
+	<!-- Actions for Sales Orders and Sales -->
+	<record id="action_order_tree_101" model="ir.actions.act_window">
+        <field name="name">Quotation Draft</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">sale.order</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form,calendar,graph</field>
+        <field name="domain">[('state','=','internal_d')]</field>
+        <field name="search_view_id" ref="sale.view_sales_order_filter"/>
+    </record>
+    <record id="action_order_tree_102" model="ir.actions.act_window">
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">sale.order</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form,calendar,graph</field>
+        <field name="domain">[('state','=','internal_q')]</field>
+        <field name="search_view_id" ref="sale.view_sales_order_filter"/>
+    </record>
+    <record id="tao_action_order_tree_103" model="ir.actions.act_window">
+        <field name="name">Sales Order</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">sale.order</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form,calendar,graph</field>
+        <field name="domain">[('state','=','manual')]</field>
+        <field name="search_view_id" ref="sale.view_sales_order_filter"/>
+    </record>
+    <record id="action_order_form_tao_105" model="ir.actions.act_window">
+        <field name="name">Sales Order Shipped</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">sale.order</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form,calendar,graph</field>
+        <field name="search_view_id" ref="sale.view_sales_order_filter"/>
+        <field name="domain">[('shipped','=',True)]</field>
+    </record>    
+    
+    <record id="action_order_form_106" model="ir.actions.act_window">
+        <field name="name">Closed Sales Orders</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">sale.order</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form,calendar,graph</field>
+        <field name="search_view_id" ref="sale.view_sales_order_filter"/>
+        <field name="domain">[('state','=','done')]</field>
+    </record>
+
+    <record id="action_customer_references" model="ir.actions.act_window">
+        <field name="name">Customer references</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">customer_reference</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="taosourcing.tao_customer_reference_search_view"/>
+        <field name="domain"></field>
+    </record>
+
+
+
+	<record id="action_sales_all_orders" model="ir.actions.act_window">
+        <field name="name">All Sales Orders</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">sale.order</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form,calendar,graph</field>
+        <field name="domain"></field>
+        <field name="search_view_id" ref="sale.view_sales_order_filter"/>
+    </record>
+
+    <record id="product_finished_action_301" model="ir.actions.act_window">
+        <field name="name">SKU Products</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">product.product</field>
+        <field name="view_type">form</field>
+        <field name="domain">[('product_category_type', '=', 'Sellables')]</field>
+        <field name="view_id" ref="product.product_product_tree_view"/>
+        <field name="search_view_id" ref="product.product_search_form_view"/>
+    </record>
+    <record id="product_finished_action_302" model="ir.actions.act_window">
+        <field name="name">Packaging Products</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">product.product</field>
+        <field name="view_type">form</field>
+        <field name="domain">[('product_category_type', '=', 'Packaging Sets')]</field>
+        <field name="view_id" ref="product.product_product_tree_view"/>
+        <field name="search_view_id" ref="product.product_search_form_view"/>
+    </record>
+    <record id="product_pack_action_303" model="ir.actions.act_window">
+        <field name="name">Packaging Components</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">product.product</field>
+        <field name="view_type">form</field>
+        <field name="domain">[('product_category_type', '=','Packaging Components')]</field>
+        <field name="view_id" ref="product.product_product_tree_view"/>
+        <field name="search_view_id" ref="product.product_search_form_view"/>
+    </record>
+    
+
+
+
+    <!-- Actions for Packaging Sets and Marketing -->
+	<record id="product_finished_action_101" model="ir.actions.act_window">
+        <field name="name">Finished Products</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">product.product</field>
+        <field name="view_type">form</field>
+        <field name="domain">[('product_category_type', '=', 'Products')]</field>
+        <field name="view_id" ref="product.product_product_tree_view"/>
+        <field name="search_view_id" ref="product.product_search_form_view"/>
+    </record>
+	<record id="product_finished_action_101_bom" model="ir.actions.act_window">
+        <field name="name">Finished Products</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">product.product</field>
+        <field name="view_type">form</field>
+        <field name="context">{'ProductRequiresBoM':'tao'}</field>
+        <field name="domain">[('product_category_type', '=', 'Products')]</field>
+        <field name="view_id" ref="product.product_product_tree_view"/>
+        <field name="search_view_id" ref="product.product_search_form_view"/>
+    </record>
+    <record id="pack_set_action_106" model="ir.actions.act_window">
+        <field name="name">Packaging Sets, Generic</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">product.product</field>
+        <field name="view_type">form</field>
+        <field name="domain">[('product_category_type', '=', 'Packaging Sets'),('customer_ref', '=', False)]</field>
+        <field name="view_id" ref="product.product_product_tree_view"/>
+        <field name="search_view_id" ref="product.product_search_form_view"/>
+    </record>
+    <record id="pack_set_action_104" model="ir.actions.act_window">
+        <field name="name">Packaging Sets, Specific</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">product.product</field>
+        <field name="view_type">form</field>
+        <field name="domain">[('product_category_type', '=', 'Packaging Sets'),('customer_ref', '!=', False)]</field>
+        <field name="view_id" ref="product.product_product_tree_view"/>
+        <field name="search_view_id" ref="product.product_search_form_view"/>
+        <field name="help">there is a customer reference</field>
+    </record>
+    <record id="pack_set_action_105" model="ir.actions.act_window">
+        <field name="name">Packaging Sets, Waiting for completion</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">product.product</field>
+        <field name="view_type">form</field>
+        <field name="domain">[('product_category_type', '=', 'Packaging Sets'),('customer_ref', '!=', False),('state', '=', 'draft')]</field>
+        <field name="view_id" ref="product.product_product_tree_view"/>
+        <field name="search_view_id" ref="product.product_search_form_view"/>
+        <field name="help">When a specific Product is created out of a standard Product, it waits in development status to be completed by marketing</field>
+    </record>
+    <record id="pack_set_action_107" model="ir.actions.act_window">
+        <field name="name">Packaging Sets, All</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">product.product</field>
+        <field name="view_type">form</field>
+        <field name="domain">[('product_category_type', '=', 'Packaging Sets')]</field>
+        <field name="view_id" ref="product.product_product_tree_view"/>
+        <field name="search_view_id" ref="product.product_search_form_view"/>
+        <field name="help">All packaging sets</field>
+    </record>
+    <record id="product_pack_action_201" model="ir.actions.act_window">
+        <field name="name">Bill of Packaging</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">mrp.bom</field>
+        <field name="view_type">form</field>
+        <field name="domain">[('product_id.product_category_type','=','Packaging Sets')]</field>
+        <field name="search_view_id" ref="mrp.view_mrp_bom_filter"/>
+        <field name="help">BOMs for Packaging</field>
+    </record>
+    <record id="product_pack_action_tao_302" model="ir.actions.act_window">
+        <field name="name">Waiting for Marketing Approval</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">sale.order</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form,calendar,graph</field>
+        <field name="domain">['|',('state','=','internal_q'),('state','=','draft')]</field>
+        <field name="search_view_id" ref="sale.view_sales_order_filter"/>
+    </record>
+
+    <record id="pack_component_waiting_action" model="ir.actions.act_window">
+        <field name="name">Waiting for Marketing Approval</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">product.product</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('state','=','draft'),('tao_status_pack_comp','in',[('drft_cltval'), ('mockup_cltval')])]</field>
+        <field name="search_view_id" ref="sale.view_sales_order_filter"/>
+    </record>
+    
+    
+
+    <!-- Menus for Sourcing -->
+        <record id="purchase_form_action_101" model="ir.actions.act_window">
+            <field name="name">Quotations waiting for Price Approval</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">purchase.order</field>
+            <field name="view_mode">tree,form,graph,calendar</field>
+            <field name="domain">[('state', '=','draft')]</field>
+            <field name="search_view_id" ref="purchase.view_purchase_order_filter"/>
+        </record>
+        <record id="purchase_form_action_102" model="ir.actions.act_window">
+            <field name="name">Quotation waiting for Approval</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">purchase.order</field>
+            <field name="view_mode">tree,form,graph,calendar</field>
+            <field name="domain">[('state', '=','wait')]</field>
+            <field name="search_view_id" ref="purchase.view_purchase_order_filter"/>
+        </record>
+        <record id="purchase_form_action_104" model="ir.actions.act_window">
+            <field name="name">Purchase Order Closed</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">purchase.order</field>
+            <field name="view_mode">tree,form,graph,calendar</field>
+            <field name="domain">[('state', '=','cancel')]</field>
+            <field name="search_view_id" ref="purchase.view_purchase_order_filter"/>
+        </record>
+        <record id="purchase_form_action_105" model="ir.actions.act_window">
+            <field name="name">All Purchase Orders</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">purchase.order</field>
+            <field name="view_mode">tree,form,graph,calendar</field>
+            <field name="search_view_id" ref="purchase.view_purchase_order_filter"/>
+        </record>
+        <record id="purchase_rfq2" model="ir.actions.act_window">
+            <field name="name">all purchase</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">purchase.order</field>
+            <field name="view_type">form</field>
+            
+            <field name="view_mode">tree,form,graph,calendar</field>
+            <field name="search_view_id" ref="purchase.view_purchase_order_filter"/>            
+        </record>
+    	<record id="product_components_action_tao_201" model="ir.actions.act_window">
+            <field name="name">Product Components, All</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">product.product</field>
+            <field name="view_type">form</field>
+            <field name="domain">[('product_category_type', '=','Product Components')]</field>
+            <field name="view_id" ref="product.product_product_tree_view"/>
+            <field name="search_view_id" ref="product.product_search_form_view"/>
+        </record>
+        <record id="product_components_action_tao_202" model="ir.actions.act_window">
+            <field name="name">Packaging Components</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">product.product</field>
+            <field name="view_type">form</field>
+            <field name="domain">[('product_category_type', '=', 'Packaging Components')]</field>
+            <field name="view_id" ref="product.product_product_tree_view"/>
+            <field name="search_view_id" ref="product.product_search_form_view"/>
+        </record>
+
+    
+	
+     <!-- Actions for PMC -->
+    <record id="procurement_exceptions_403" model="ir.actions.act_window">
+        <field name="name">Upcoming Procurement</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">procurement.order</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('state','=','confirmed')]</field>
+        <field name="view_id" ref="procurement.procurement_tree_view"/>
+        <field name="search_view_id" ref="procurement.view_procurement_filter"/>
+    </record>
+    
+     <!-- Actions for R&D -->
+     <record id="product_finished_action_tao_101" model="ir.actions.act_window">
+        <field name="name">Finished Products</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">product.product</field>
+        <field name="view_type">form</field>
+        <field name="domain">[('product_category_type', '=', 'Products')]</field>
+        <field name="view_id" ref="product.product_product_tree_view"/>
+        <field name="search_view_id" ref="product.product_search_form_view"/>
+    </record>
+    <record id="product_components_action_tao_107" model="ir.actions.act_window">
+        <field name="name">Components in Development</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">product.product</field>
+        <field name="view_type">form</field>
+        <field name="domain">[('product_category_type', '=', 'Product Components'), ('state','=','draft')]</field>
+        <field name="view_id" ref="product.product_product_tree_view"/>
+        <field name="search_view_id" ref="product.product_search_form_view"/>
+    </record>
+    <record id="mrp_bom_form_action_202" model="ir.actions.act_window">
+        <field name="name">BOM for Finished Products</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">mrp.bom</field>
+        <field name="view_type">form</field>
+        <field name="domain">[('product_id.product_category_type', '=', 'Products')]</field>
+        <field name="search_view_id" ref="mrp.view_mrp_bom_filter"/>
+    </record>
+        <record id="mrp_bom_form_action_203" model="ir.actions.act_window">
+        <field name="name">BOM for Sub-Assembly</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">mrp.bom</field>
+        <field name="view_type">form</field>
+        <field name="domain">[('bom_id','!=',False),('product_id.product_category_type', '=','Product Components')]</field>
+        <field name="search_view_id" ref="mrp.view_mrp_bom_filter"/>
+    </record>
+    <record id="mrp_bom_form_action_204" model="ir.actions.act_window">
+        <field name="name">BOM for Products in Development</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">mrp.bom</field>
+        <field name="view_type">form</field>
+        <field name="domain">[('product_id.state','=','draft')]</field>
+        <field name="search_view_id" ref="mrp.view_mrp_bom_filter"/>
+    </record>
+    <record id="mrp_bom_form_action_205" model="ir.actions.act_window">
+        <field name="name">Leaf BOMs</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">mrp.bom</field>
+        <field name="view_type">form</field>
+        <field name="domain">[('bom_id', '!=', False)]</field>
+        <field name="search_view_id" ref="mrp.view_mrp_bom_filter"/>
+    </record>
+    
+
+
+     <!--tuyaoli  2011-11-24-->
+     <!--jp  2012-01-10-->
+        <record id="product_SKU_action" model="ir.actions.act_window">
+            <field name="name">SKU Products</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">product.product</field>
+            <field name="view_type">form</field>
+            <field name="domain">[('product_category_type', '=', 'Sellables')]</field>
+            <field name="view_id" ref="taoproduct.product_product_tree_view"/>
+            <field name="search_view_id" ref="product.product_search_form_view"/>
+            <field name="help">This view displays a list of all SKU  products a </field>
+        </record>
+        
+        <record id="product_finished_action" model="ir.actions.act_window">
+            <field name="name">Finished Products</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">product.product</field>
+            <field name="view_type">form</field>
+            <field name="domain">[('product_category_type', '=', 'Products')]</field>
+            <field name="view_id" ref="taoproduct.product_product_tree_view"/>
+            <field name="search_view_id" ref="product.product_search_form_view"/>
+            <field name="help">This view displays a list of all child of  products a </field>
+        </record>
+        
+        <record id="product_components_action" model="ir.actions.act_window">
+            <field name="name">Product Components</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">product.product</field>
+            <field name="view_type">form</field>
+            <field name="domain">[('product_category_type', '=', 'Product Components')]</field>
+            <field name="view_id" ref="taoproduct.product_product_tree_view"/>
+            <field name="search_view_id" ref="product.product_search_form_view"/>
+            <field name="help">This view displays a list of all Components products that we buy from  suppliers  for  products</field>
+        </record>
+        
+        <record id="product_electronic_components_action" model="ir.actions.act_window">
+            <field name="name">Electronic Components</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">product.product</field>
+            <field name="view_type">form</field>
+            <field name="domain">[('product_category', 'like', 'Electronic component')]</field>
+            <field name="view_id" ref="taoproduct.product_product_tree_view"/>
+            <field name="search_view_id" ref="product.product_search_form_view"/>
+            <field name="help">This view displays a list of Electronic Components products</field>
+        </record>
+
+        <record id="product_mechanical_components_action" model="ir.actions.act_window">
+            <field name="name">Mechanical Components</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">product.product</field>
+            <field name="view_type">form</field>
+            <!--<field name="domain">[('seller_ids', 'not like', '')]</field>tuyaoli 2011-11-24-->
+            <field name="domain">[('product_category', 'like', 'Mechanical fixation component')]</field>
+            <field name="view_id" ref="taoproduct.product_product_tree_view"/>
+            <field name="search_view_id" ref="product.product_search_form_view"/>
+            <field name="help">This view displays a list of Mechanical fixation Components products</field>
+        </record>
+        <record id="product_subassembly_components_action" model="ir.actions.act_window">
+            <field name="name">Sub-Assembly Components</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">product.product</field>
+            <field name="view_type">form</field>
+            <!--tuyaoli 2011-11-24-->
+            <field name="domain">[('product_category_type', '=', 'Sub-assembly')]</field>
+            <field name="context">{'ProductRequiresBoM':'Sub-assembly'}</field>
+            <field name="view_id" ref="taoproduct.product_product_tree_view"/>
+            <field name="search_view_id" ref="product.product_search_form_view"/>
+            <field name="help">This view displays a list of Sub-assembly Components products</field>
+        </record> 
+
+
+     <!-- Actions for Tao Manufacturing -->
+        
+        
+	</data>
+</openerp>

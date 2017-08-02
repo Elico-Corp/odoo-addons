@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+	<data>
+        <record id="board_oa_form" model="ir.ui.view">
+            <field name="name">board.oa.form</field>
+            <field name="model">board.board</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="My Board">
+                    <board style="2-1">
+                        <column>
+                            <action name="103" string="My notes"/>
+                        </column>
+                        <column>
+                            
+                        </column>
+                    </board>
+                </form>
+            </field>
+        </record>
+
+        <record id="open_board_oa" model="ir.actions.act_window">
+            <field name="name">Personal Dashboard</field>
+            <field name="res_model">board.board</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="usage">menu</field>
+            <field name="view_id" ref="board_oa_form"/>
+        </record>
+	
+	
+	
+	
+      <menuitem web_icon="images/perso.png" web_icon_hover="images/perso-hover.png" id="menu_1" name="Personal" sequence="-1" groups="base.group_user" action="open_board_oa" />
+	</data>
+</openerp>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- vim:fdl=1:
+-->
+<templates id="template" xml:space="preserve">
+<t t-name="Header-content">
+    <h1 class="header_title">
+        <t t-esc="user.company_id[1]"/> (<t t-esc="widget.session.db"/>)<br/>
+        <small class="username"><t t-esc="user.name"/></small>
+    </h1>
+    <div class="header_corner">
+        <ul class="block">
+            <li>
+                <a t-att-href="'/' + widget.qs" title="Home" class="home"><img t-att-src='_s + "/web/static/src/img/header-home.png"' width="16" height="16" border="0"/></a>
+            </li>
+            <li class="preferences">
+                <a href="javascript:void(0)" title="Preferences" class="preferences"><img t-att-src='_s + "/web/static/src/img/header-preferences.png"' width="16" height="16" border="0"/></a>
+            </li>
+            <li>
+                <a href="javascript:void(0)" title="About" class="about"><img t-att-src='_s + "/web/static/src/img/header-about.png"' width="16" height="16" border="0"/></a>
+            </li>
+            <li>
+            	<a href="http://settings.messenger.live.com/Conversation/IMMe.aspx?invitee=my_own_key@apps.messenger.live.com" title="Live Chat" target="_blank" ><img src="http://messenger.services.live.com/users/my_own_key@apps.messenger.live.com/presenceimage?mkt=en-US" width="16" height="16" border="0" /></a>
+            </li>
+        </ul>
+        <div class="block">
+            <a href="javascript:void(0)" class="logout">LOGOUT</a>
+        </div>
+
+    </div>
+    <div class="oe-shortcuts"> </div>
+</t>
+</templates>
+

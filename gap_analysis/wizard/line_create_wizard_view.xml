@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<openerp>
+    <data>
+        <record id="line_create_wizard_view" model="ir.ui.view">
+            <field name="name">gap.analysis.line.create.wizard</field>
+            <field name="model">gap_analysis.line_create_wizard</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Create Gap Analysis Lines">
+                    <group col="2" colspan="2">
+                        <field name="tmpl" invisible="1"/>
+                        <field name="gap_id" domain="[('is_tmpl','=',tmpl),'|',('is_tmpl','=',True),('state','=','draft')]"/>
+                    </group>
+                    <group colspan="2"/>
+                    <separator colspan="4"/>
+                    <group colspan="2"/>
+                    <group col="2" colspan="2">
+                        <button icon="gtk-cancel" special="cancel" string="Cancel" colspan="1"/>
+                        <button icon="gtk-apply" name="create_line" string="Create" type="object" colspan="1" default_focus="1"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_gap_analysis_mass_add_to_analysis">
+            <field name="name">Add to Analysis</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_id" ref="line_create_wizard_view"/>
+            <field name="domain">[]</field>
+            <field name="context">{'default_tmpl' : False}</field>
+            <field name="res_model">gap_analysis.line_create_wizard</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="usage">menu</field>
+            <field name="target">new</field>
+        </record>
+
+        <record model="ir.values" id="values_gap_analysis_mass_add_to_analysis">
+            <field name="model_id" ref="gap_analysis.model_gap_analysis_functionality" />
+            <field name="object" eval="1" />
+            <field name="name">Add to Analysis</field>
+            <field name="key2">client_action_multi</field>
+            <field name="value" eval="'ir.actions.act_window,' + str(ref('action_gap_analysis_mass_add_to_analysis'))" />
+            <field name="key">action</field>
+            <field name="model">gap_analysis.functionality</field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_gap_analysis_mass_add_to_template">
+            <field name="name">Add to Template</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_id" ref="line_create_wizard_view"/>
+            <field name="domain">[]</field>
+            <field name="context">{'default_tmpl' : True}</field>
+            <field name="res_model">gap_analysis.line_create_wizard</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="usage">menu</field>
+            <field name="target">new</field>
+        </record>
+
+        <record model="ir.values" id="values_gap_analysis_mass_add_to_template">
+            <field name="model_id" ref="gap_analysis.model_gap_analysis_functionality" />
+            <field name="object" eval="1" />
+            <field name="name">Add to Template</field>
+            <field name="key2">client_action_multi</field>
+            <field name="value" eval="'ir.actions.act_window,' + str(ref('action_gap_analysis_mass_add_to_template'))" />
+            <field name="key">action</field>
+            <field name="model">gap_analysis.functionality</field>
+        </record>
+
+    </data>
+</openerp>

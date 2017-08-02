@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+	<data>
+        <!-- Meeting -->
+	    <record model="ir.actions.act_window" id="crm_case_categ_meet_gantt">
+	        <field name="name">Meetings Gantt</field>
+	        <field name="res_model">crm.meeting</field>
+	        <field name="view_mode">gantt,calendar,tree,form</field>
+	        <field name="search_view_id" ref="crm.view_crm_case_meetings_filter"/>
+	    </record>
+    	<!-- CRM -->
+	    <record model="ir.actions.act_window" id="crm_case_category_act_leads_mine">
+	        <field name="name">My Leads</field>
+	        <field name="res_model">crm.lead</field>
+	        <field name="view_mode">tree,form</field>
+	        <field name="domain">[('user_id','=',uid), '|', ('type','=','lead'), ('type','=',False)]</field>
+	        <field name="filter" eval="True"/>
+	        <field name="search_view_id" ref="crm.view_crm_case_leads_filter"/>
+	        <field name="context">{'search_default_new':1, 'default_type': 'lead', 'search_default_section_id': section_id, 'stage_type': 'lead'}</field>
+	    </record>
+		<record model="ir.actions.act_window" id="crm_case_category_act_opport_mine">
+		     <field name="name">My Opportunities</field>
+		     <field name="res_model">crm.lead</field>
+		     <field name="view_mode">kanban,tree,form,graph,calendar</field>
+		     <field name="domain">[('user_id','=',uid),('type','=','opportunity')]</field>
+		     <field name="filter" eval="True"/>
+		     <field name="search_view_id" ref="crm.view_crm_case_opportunities_filter"/>
+		     <field name="context">{'search_default_new':1, 'search_default_open':1, 'search_default_section_id':section_id, 'stage_type': 'opportunity', 'default_type': 'opportunity'}</field>
+		</record>
+
+	
+		<menuitem id="menu_1_01" name="My CRM" parent="oa_base.menu_1" sequence="10" groups="base.group_sale_manager,base.group_sale_salesman" />        	
+			<menuitem id="menu_1_010" name="My Scheduled Calls" parent="menu_1_01" sequence="110" action="crm.crm_case_categ_phone0" />
+        	<menuitem id="menu_1_011" name="My Leads" parent="menu_1_01" sequence="111" action="crm_case_category_act_leads_mine" />
+        	<menuitem id="menu_1_012" name="My Opportunities" parent="menu_1_01" sequence="112" action="crm_case_category_act_opport_mine" />
+        	
+        <menuitem id="menu_1_10" name="My Meetings" parent="oa_base.menu_1" sequence="15" />
+        	<menuitem id="menu_1_101" name="Calendars" parent="menu_1_10" sequence="121" action="crm.crm_case_categ_meet" />
+        	<menuitem id="menu_1_102" name="Gantt Meetings" parent="menu_1_10" sequence="122" action="crm_case_categ_meet_gantt" />
+        	<menuitem id="menu_1_103" name="Meeting Invitations" parent="menu_1_10" sequence="123" action="crm.action_view_attendee_form" />
+	</data>
+</openerp>

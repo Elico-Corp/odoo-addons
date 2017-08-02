@@ -1,0 +1,17 @@
+K 10
+svn:ignore
+V 70
+
+
+
+.project
+
+.pydevproject
+
+.settings
+
+dn.list
+
+tao_users_no_ldap.xml
+
+END

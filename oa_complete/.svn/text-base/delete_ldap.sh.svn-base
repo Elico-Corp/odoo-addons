@@ -1,0 +1,2 @@
+ldapsearch -LLL -H ldap://zent01 -D cn=ebox,dc=zent01 -w 26k8iCJ1w7UmjfFX -b dc=TUP,dc=zent01 dn | sed -e 's/dn: //g' | tac > dn.list
+ldapdelete -H ldap://zent01 -D cn=ebox,dc=zent01 -w 26k8iCJ1w7UmjfFX -f dn.list 

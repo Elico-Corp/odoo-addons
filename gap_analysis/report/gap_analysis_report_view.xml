@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+	<report auto="False"
+    		id="report_webkit_gap_analysis"
+            model="gap_analysis"
+            name="Gap_Analysis"
+            file="gap_analysis/report/report_webkit_gap_analysis.mako"
+            string="Gap Analysis"
+            report_type="webkit"
+            webkit_header="report_webkit.ir_header_webkit_basesample0"/>
+</data>
+</openerp>

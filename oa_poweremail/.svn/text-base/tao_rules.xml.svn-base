@@ -1,0 +1,483 @@
+<?xml version="1.0" ?>
+<openerp>
+	<data noupdate="0">
+	
+	
+		<!-- OLD RULES
+		<record id="ir_rule_personalorderlines0" model="ir.rule">
+			<field name="model_id" ref="sale.model_sale_order_line"/>
+			<field name="domain_force">['|',('order_id.user_id','=',user.id),('order_id.user_id','=',False)]</field>
+			<field name="name">TAO Personal Order Lines</field>
+			<field eval="0" name="global"/>
+			<field eval="[(6,0,[ref('base.group_sale_salesman')])]" name="groups"/>
+			<field eval="1" name="perm_unlink"/>
+			<field eval="0" name="perm_write"/>
+			<field eval="0" name="perm_read"/>
+			<field eval="0" name="perm_create"/>
+		</record>
+		<record id="ir_rule_personalorderlines1" model="ir.rule">
+			<field name="model_id" ref="sale.model_sale_order_line"/>
+			<field name="domain_force">[(1,'=',1)]</field>
+			<field name="name">TAO Manager Order Lines</field>
+			<field eval="0" name="global"/>
+			<field eval="[(6,0,[ref('base.group_sale_manager')])]" name="groups"/>
+			<field eval="1" name="perm_unlink"/>
+			<field eval="1" name="perm_write"/>
+			<field eval="1" name="perm_read"/>
+			<field eval="1" name="perm_create"/>
+		</record>
+	
+
+		<record id="ir_rule_personalorderdraft" model="ir.rule">
+			<field name="model_id" ref="sale.model_sale_order"/>
+			<field name="domain_force">[('user_id','=',user.id),('state','in', ['internal_d']]</field>
+			<field name="name">TAO Personal Order</field>
+			<field eval="0" name="global"/>
+			<field eval="[(6,0,[ref('base.group_sale_salesman')])]" name="groups"/>
+			<field eval="1" name="perm_unlink"/>
+			<field eval="1" name="perm_write"/>
+			<field eval="1" name="perm_read"/>
+			<field eval="1" name="perm_create"/>
+		</record>
+		<record id="ir_rule_personalorders1" model="ir.rule">
+			<field name="model_id" ref="sale.model_sale_order"/>
+			<field name="domain_force">[(1,'=',1)]</field>
+			<field name="name">TAO Manager Orders</field>
+			<field eval="0" name="global"/>
+			<field eval="[(6,0,[ref('base.group_sale_manager')])]" name="groups"/>
+			<field eval="1" name="perm_unlink"/>
+			<field eval="1" name="perm_write"/>
+			<field eval="1" name="perm_read"/>
+			<field eval="1" name="perm_create"/>
+		</record>
+	    
+	    
+		<record id="ir_rule_categries_default" model="ir.rule">
+			<field name="model_id" ref="product.model_product_product"/>
+			<field name="domain_force">[('state', 'in', ['draft', 'sellable'])]</field>
+			<field name="name">TAO Default access to 'All Products' (read only)</field>
+			<field eval="0" name="global"/>
+			<field eval="[(6,0,[ref('base.group_user')])]" name="groups"/>
+			<field eval="0" name="perm_unlink"/>
+			<field eval="0" name="perm_write"/>
+			<field eval="1" name="perm_read"/>
+			<field eval="0" name="perm_create"/>
+		</record>
+
+		<record id="ir_rule_categries_rnd0" model="ir.rule">
+			<field name="model_id" ref="product.model_product_product"/>
+			<field name="domain_force">[('product_category_type','in', ['Products', 'Product Components']), '|', ('create_uid','=',user.id), ('state', 'in', ['draft', 'sellable', 'obsolete', 'end'])]</field>
+			<field name="name">TAO RnD Components Categories (read only)</field>
+			<field eval="0" name="global"/>
+			<field eval="[(6,0,[ref('taoutil.res_group_rd0')])]" name="groups"/>
+			<field eval="0" name="perm_unlink"/>
+			<field eval="1" name="perm_write"/>
+			<field eval="1" name="perm_read"/>
+			<field eval="1" name="perm_create"/>
+		</record>
+		<record id="ir_rule_categries_rnd1" model="ir.rule">
+			<field name="model_id" ref="product.model_product_product"/>
+			<field name="domain_force">[('product_category_type','in', ['Products', 'Product Components']), '|', ('create_uid','=',user.id), ('state', 'in', ['draft', 'sellable', 'obsolete', 'end'])]</field>
+			<field name="name">TAO RnD Manager Categories (full access)</field>
+			<field eval="0" name="global"/>
+			<field eval="[(6,0,[ref('taoutil.res_group_rd1')])]" name="groups"/>
+			<field eval="1" name="perm_unlink"/>
+			<field eval="1" name="perm_write"/>
+			<field eval="1" name="perm_read"/>
+			<field eval="1" name="perm_create"/>
+		</record>
+
+		<record id="ir_rule_categries_marketing0" model="ir.rule">
+			<field name="model_id" ref="product.model_product_product"/>
+			<field name="domain_force">[('product_category_type','in', ['Sellables', 'Packaging Sets', 'Packaging Components', 'Products']), '|', ('create_uid','=',user.id), ('state', 'in', ['draft', 'sellable', 'obsolete', 'end'])]</field>
+			<field name="name">TAO Marketing RW Sellables, Pack. Sets, Pack. Comp, Fin. Products</field>
+			<field eval="0" name="global"/>
+			<field eval="[(6,0,[ref('res_group_marketing0')])]" name="groups"/>
+			<field eval="0" name="perm_unlink"/>
+			<field eval="1" name="perm_write"/>
+			<field eval="1" name="perm_read"/>
+			<field eval="1" name="perm_create"/>
+		</record>
+		<record id="ir_rule_categries_marketing1" model="ir.rule">
+			<field name="model_id" ref="product.model_product_product"/>
+			<field name="domain_force">[('product_category_type','in', ['Sellables', 'Packaging Sets', 'Packaging Components', 'Products']), '|', ('create_uid','=',user.id), ('state', 'in', ['draft', 'sellable', 'obsolete', 'end'])]</field>
+			<field name="name">TAO Marketing RW Sellables, Pack. Sets, Pack. Comp, Fin. Products</field>
+			<field eval="0" name="global"/>
+			<field eval="[(6,0,[ref('res_group_marketing1')])]" name="groups"/>
+			<field eval="1" name="perm_unlink"/>
+			<field eval="1" name="perm_write"/>
+			<field eval="1" name="perm_read"/>
+			<field eval="1" name="perm_create"/>
+		</record>
+	
+	
+	
+		<record id="ir_rule_categries_sales012" model="ir.rule">
+			<field name="model_id" ref="product.model_product_product"/>
+			<field name="domain_force">[('product_category_type','in', ['Sellables', 'Packaging Sets', 'Packaging Components']), ('state', 'in', ['draft', 'sellable', 'obsolete'])]</field>
+			<field name="name">TAO Sales RW Sellables, Packaging Sets and Components</field>
+			<field eval="0" name="global"/>
+			<field eval="[(6,0,[ref('base.group_sale_salesman'),ref('res_group_sales2')])]" name="groups"/>
+			<field eval="0" name="perm_unlink"/>
+			<field eval="1" name="perm_write"/>
+			<field eval="1" name="perm_read"/>
+			<field eval="0" name="perm_create"/>
+		</record>
+
+	
+	
+	
+		<record id="ir_rule_categries_pmc012" model="ir.rule">
+			<field name="model_id" ref="product.model_product_product"/>
+			<field name="domain_force">[('product_category_type','in', ['Product Components', 'Packaging Components']), ('state', 'in', ['draft', 'sellable', 'obsolete'])]</field>
+			<field name="name">TAO PMC RO Product and Packaging Components</field>
+			<field eval="0" name="global"/>
+			<field eval="[(6,0,[ref('res_group_pmc0'), ref('res_group_pmc2')])]" name="groups"/>
+			<field eval="0" name="perm_unlink"/>
+			<field eval="0" name="perm_write"/>
+			<field eval="1" name="perm_read"/>
+			<field eval="0" name="perm_create"/>
+		</record>
+
+		<record id="ir_rule_categries_sourcing012" model="ir.rule">
+			<field name="model_id" ref="product.model_product_product"/>
+			<field name="domain_force">[('product_category_type','in', ['Products', 'Packaging Sets', 'Product Components', 'Packaging Components']), ('state', 'in', ['draft', 'sellable', 'obsolete'])]</field>
+			<field name="name">TAO Sourcing RW Product and Packaging Components</field>
+			<field eval="0" name="global"/>
+			<field eval="[(6,0,[ref('res_group_sourcing0'), ref('res_group_sourcing2')])]" name="groups"/>
+			<field eval="0" name="perm_unlink"/>
+			<field eval="1" name="perm_write"/>
+			<field eval="1" name="perm_read"/>
+			<field eval="0" name="perm_create"/>
+		</record>
+		-->
+
+
+
+		<!-- New rules -->
+
+
+		<!-- *** All Employees *** -->
+		<!-- * Product * -->
+		<!-- Read all products that are not draft/obolste/end. Current user can access his own draft products -->
+		<!-- user - _r__ - product, product component, pack set, pack comp -->
+		<record id="ir_rule_read_product_user" model="ir.rule">
+			<field name="model_id" ref="product.model_product_template"/>
+			<field name="domain_force">['&amp;', ('product_category_type','in', ['Products', 'Product Components', 'Packaging Sets', 'Packaging Components']), '|', ('state', 'in', ['draft' , 'sellable']), ('create_uid','=', user.id)]</field>
+			<field name="name">TAO Employee Read Product and Packaging</field>
+			<field eval="0" name="global"/>
+			<field eval="[(6,0,[ref('base.group_user')])]" name="groups"/>
+			<field eval="0" name="perm_unlink"/>
+			<field eval="0" name="perm_write"/>
+			<field eval="1" name="perm_read"/>
+			<field eval="0" name="perm_create"/>
+		</record>
+		<record id="ir_rule_delete_product_user" model="ir.rule">
+			<field name="model_id" ref="product.model_product_template"/>
+			<field name="domain_force">[('state', '=', False), ('create_uid','=', user.id)]</field>
+			<field name="name">TAO Delete own Draft Product</field>
+			<field eval="0" name="global"/>
+			<field eval="[(6,0,[ref('base.group_user')])]" name="groups"/>
+			<field eval="1" name="perm_unlink"/>
+			<field eval="0" name="perm_write"/>
+			<field eval="0" name="perm_read"/>
+			<field eval="0" name="perm_create"/>
+		</record>
+		<!-- *** End of Group Employee *** -->
+		
+		
+
+		<!-- *** Group R&D *** -->
+		<!-- * Product * -->
+		<!-- rd0 - c___ - product, prod comp -->
+		<record id="ir_rule_create_product_rd0" model="ir.rule">
+			<field name="model_id" ref="product.model_product_product"/>
+			<field name="domain_force">[('product_category_type','in', ['Products', 'Product Components'])]</field>
+			<field name="name">TAO RnD Create Product</field>
+			<field eval="0" name="global"/>
+			<field eval="[(6,0,[ref('res_group_rd0')])]" name="groups"/>
+			<field eval="0" name="perm_unlink"/>
+			<field eval="0" name="perm_write"/>
+			<field eval="0" name="perm_read"/>
+			<field eval="1" name="perm_create"/>
+		</record>
+		<!-- rd0 - __u_ - product, prod comp -->
+		<record id="ir_rule_update_product_rd0" model="ir.rule">
+			<field name="model_id" ref="product.model_product_product"/>
+			<field name="domain_force">[('product_category_type','in', ['Products', 'Product Components'])]</field>
+			<field name="name">TAO RnD Update Product</field>
+			<field eval="0" name="global"/>
+			<field eval="[(6,0,[ref('res_group_rd0')])]" name="groups"/>
+			<field eval="0" name="perm_unlink"/>
+			<field eval="1" name="perm_write"/>
+			<field eval="0" name="perm_read"/>
+			<field eval="0" name="perm_create"/>
+		</record>
+
+		<!-- rd1 - _r__ - product, prod comp: any state, which includes obsolete and end -->
+		<record id="ir_rule_read_product_rd1" model="ir.rule">
+			<field name="model_id" ref="product.model_product_product"/>
+			<field name="domain_force">[('product_category_type','in', ['Products', 'Product Components'])]</field>
+			<field name="name">TAO R&amp;D Manager Read Obsolete Product</field>
+			<field eval="0" name="global"/>
+			<field eval="[(6,0,[ref('res_group_rd1')])]" name="groups"/>
+			<field eval="0" name="perm_unlink"/>
+			<field eval="0" name="perm_write"/>
+			<field eval="1" name="perm_read"/>
+			<field eval="0" name="perm_create"/>
+		</record>
+		<!-- rd1 - ___d - product, prod comp: any state, which includes obsolete and end -->
+		<record id="ir_rule_delete_product_rd1" model="ir.rule">
+			<field name="model_id" ref="product.model_product_product"/>
+			<field name="domain_force">[('product_category_type','in', ['Products', 'Product Components'])]</field>
+			<field name="name">TAO R&amp;D Manager Read Obsolete Product</field>
+			<field eval="0" name="global"/>
+			<field eval="[(6,0,[ref('res_group_rd1')])]" name="groups"/>
+			<field eval="1" name="perm_unlink"/>
+			<field eval="0" name="perm_write"/>
+			<field eval="1" name="perm_read"/>
+			<field eval="0" name="perm_create"/>
+		</record>
+		<!-- *** End of Group R&D *** -->
+
+
+
+		<!-- *** Group Marketing *** -->
+		<!-- * Product * -->
+		<!-- marketing0 - c___ - pack set, pack comp, sellables -->
+		<record id="ir_rule_create_product_marketing0" model="ir.rule">
+			<field name="model_id" ref="product.model_product_product"/>
+			<field name="domain_force">[('product_category_type','in', ['Sellables', 'Packaging Sets', 'Packaging Components'])]</field>
+			<field name="name">TAO Marketing Create Product</field>
+			<field eval="0" name="global"/>
+			<field eval="[(6,0,[ref('res_group_marketing0')])]" name="groups"/>
+			<field eval="0" name="perm_unlink"/>
+			<field eval="0" name="perm_write"/>
+			<field eval="0" name="perm_read"/>
+			<field eval="1" name="perm_create"/>
+		</record>
+		<!-- marketing0 - _r__ - Sellables -->
+		<record id="ir_rule_read_product_marketing0" model="ir.rule">
+			<field name="model_id" ref="product.model_product_product"/>
+			<field name="domain_force">[('product_category_type','in', ['Sellables'])]</field>
+			<field name="name">TAO Marketing Read Sellables</field>
+			<field eval="0" name="global"/>
+			<field eval="[(6,0,[ref('res_group_marketing0')])]" name="groups"/>
+			<field eval="0" name="perm_unlink"/>
+			<field eval="0" name="perm_write"/>
+			<field eval="1" name="perm_read"/>
+			<field eval="0" name="perm_create"/>
+		</record>
+		<!-- marketing0 - __u_ - product, pack set, pack comp, sellables -->
+		<record id="ir_rule_update_product_marketing0" model="ir.rule">
+			<field name="model_id" ref="product.model_product_product"/>
+			<field name="domain_force">[('product_category_type','in', ['Products', 'Sellables', 'Packaging Sets', 'Packaging Components'])]</field>
+			<field name="name">TAO Marketing Update Product</field>
+			<field eval="0" name="global"/>
+			<field eval="[(6,0,[ref('res_group_marketing0')])]" name="groups"/>
+			<field eval="0" name="perm_unlink"/>
+			<field eval="1" name="perm_write"/>
+			<field eval="0" name="perm_read"/>
+			<field eval="0" name="perm_create"/>
+		</record>
+		<!-- marketing0 - ___d - pack set, pack comp, sellables -->
+		<record id="ir_rule_delete_product_marketing0" model="ir.rule">
+			<field name="model_id" ref="product.model_product_product"/>
+			<field name="domain_force">[('product_category_type','in', ['Sellables', 'Packaging Sets', 'Packaging Components'])]</field>
+			<field name="name">TAO Marketing Delete Product</field>
+			<field eval="0" name="global"/>
+			<field eval="[(6,0,[ref('res_group_marketing1')])]" name="groups"/>
+			<field eval="1" name="perm_unlink"/>
+			<field eval="0" name="perm_write"/>
+			<field eval="0" name="perm_read"/>
+			<field eval="0" name="perm_create"/>
+		</record>
+		<!-- marketing1 - c___ - product, pack set, pack comp, sellables -->
+		<record id="ir_rule_create_product_marketing1" model="ir.rule">
+			<field name="model_id" ref="product.model_product_product"/>
+			<field name="domain_force">[('product_category_type','in', ['Products', 'Sellables', 'Packaging Sets', 'Packaging Components'])]</field>
+			<field name="name">TAO Marketing Manager Create Product</field>
+			<field eval="0" name="global"/>
+			<field eval="[(6,0,[ref('res_group_marketing1')])]" name="groups"/>
+			<field eval="0" name="perm_unlink"/>
+			<field eval="0" name="perm_write"/>
+			<field eval="0" name="perm_read"/>
+			<field eval="1" name="perm_create"/>
+		</record>
+		<!-- marketing1 - __u_ - product, pack set, pack comp, sellables -->
+		<record id="ir_rule_update_product_marketing1" model="ir.rule">
+			<field name="model_id" ref="product.model_product_product"/>
+			<field name="domain_force">[('product_category_type','in', ['Products', 'Sellables', 'Packaging Sets', 'Packaging Components'])]</field>
+			<field name="name">TAO Marketing Manager Update Product</field>
+			<field eval="0" name="global"/>
+			<field eval="[(6,0,[ref('res_group_marketing1')])]" name="groups"/>
+			<field eval="0" name="perm_unlink"/>
+			<field eval="1" name="perm_write"/>
+			<field eval="0" name="perm_read"/>
+			<field eval="0" name="perm_create"/>
+		</record>
+		<!-- marketing1 - ___d - product, pack set, pack comp, sellables -->
+		<record id="ir_rule_delete_product_marketing1" model="ir.rule">
+			<field name="model_id" ref="product.model_product_product"/>
+			<field name="domain_force">[('product_category_type','in', ['Products', 'Sellables', 'Packaging Sets', 'Packaging Components'])]</field>
+			<field name="name">TAO Marketing Manager Delete Product</field>
+			<field eval="0" name="global"/>
+			<field eval="[(6,0,[ref('res_group_marketing1')])]" name="groups"/>
+			<field eval="1" name="perm_unlink"/>
+			<field eval="0" name="perm_write"/>
+			<field eval="0" name="perm_read"/>
+			<field eval="0" name="perm_create"/>
+		</record>
+		<!-- *** End of Group Marketing *** -->
+
+
+
+		<!-- *** Group Sourcing *** -->
+		<!-- * Product * -->
+		<!-- sourcing0 - __u_ - product, product component, pack set, pack comp -->
+		<record id="ir_rule_update_product_sourcing0" model="ir.rule">
+			<field name="model_id" ref="product.model_product_product"/>
+			<field name="domain_force">[('product_category_type','in', ['Products', 'Packaging Sets', 'Product Components', 'Packaging Components'])]</field>
+			<field name="name">TAO Sourcing Update Product and Packaging</field>
+			<field eval="0" name="global"/>
+			<field eval="[(6,0,[ref('res_group_sourcing0')])]" name="groups"/>
+			<field eval="0" name="perm_unlink"/>
+			<field eval="1" name="perm_write"/>
+			<field eval="0" name="perm_read"/>
+			<field eval="0" name="perm_create"/>
+		</record>
+		<!-- *** End of Group Sourcing *** -->
+		
+		
+		
+
+		<!-- *** Group Sales *** -->
+		<!-- * Product * -->
+		<!-- salesman - _r__ - Sellables -->
+		<record id="ir_rule_read_product_sales0" model="ir.rule">
+			<field name="model_id" ref="product.model_product_product"/>
+			<field name="domain_force">[('product_category_type','in', ['Sellables'])]</field>
+			<field name="name">TAO Salesman Read Sellables</field>
+			<field eval="0" name="global"/>
+			<field eval="[(6,0,[ref('base.group_sale_salesman')])]" name="groups"/>
+			<field eval="0" name="perm_unlink"/>
+			<field eval="0" name="perm_write"/>
+			<field eval="1" name="perm_read"/>
+			<field eval="0" name="perm_create"/>
+		</record>
+		<!-- salesman - __u_ - Packaging Components -->
+		<record id="ir_rule_update_product_sales0" model="ir.rule">
+			<field name="model_id" ref="product.model_product_product"/>
+			<field name="domain_force">[('product_category_type','in', ['Packaging Components'])]</field>
+			<field name="name">TAO Salesmen Update Product</field>
+			<field eval="0" name="global"/>
+			<field eval="[(6,0,[ref('base.group_sale_salesman')])]" name="groups"/>
+			<field eval="0" name="perm_unlink"/>
+			<field eval="1" name="perm_write"/>
+			<field eval="0" name="perm_read"/>
+			<field eval="0" name="perm_create"/>
+		</record>
+
+
+		<!-- * Sales Order * -->
+		<!-- salesman 		- c___ 	- sales order //Has been set in ir.model.access.csv    -->
+		<!--record id="ir_rule_create_saleorder_sales0" model="ir.rule">
+			<field name="model_id" ref="sale.model_sale_order"/>
+			<field name="domain_force">[(1,'=',1)]</field>
+			<field name="name">TAO Salesmen Create Sale Order</field>
+			<field eval="0" name="global"/>
+			<field eval="[(6,0,[ref('base.group_sale_salesman')])]" name="groups"/>
+			<field eval="0" name="perm_unlink"/>
+			<field eval="0" name="perm_write"/>
+			<field eval="0" name="perm_read"/>
+			<field eval="1" name="perm_create"/>
+		</record-->
+		<!-- salesman 		- _r__ 	- sales order -->
+	    <record id="sale_order_personal_rule" model="ir.rule">
+	        <field name="name">Personal Orders</field>
+	        <field ref="sale.model_sale_order" name="model_id"/>
+	        <field name="domain_force">['|',('user_id','=',user.id),('user_id','=',False)]</field>
+	        <field name="groups" eval="[(4, ref('base.group_sale_salesman'))]"/>
+			<field eval="1" name="perm_unlink"/>
+			<field eval="1" name="perm_write"/>
+			<field eval="0" name="perm_read"/>
+			<field eval="0" name="perm_create"/>
+	    </record>
+		<record id="ir_rule_read_saleorder_sales0" model="ir.rule">
+			<field name="model_id" ref="sale.model_sale_order"/>
+			<field name="domain_force">['|',('user_id','=',user.id),('state','in',['internal_q','draft','waiting_date','manual','progress','shipping_except','invoice_except','done','cancel'])]</field>
+			<field name="name">TAO Salesmen Read Sale Order</field>
+			<field eval="0" name="global"/>
+			<field eval="[(6,0,[ref('base.group_sale_salesman')])]" name="groups"/>
+			<field eval="0" name="perm_unlink"/>
+			<field eval="0" name="perm_write"/>
+			<field eval="1" name="perm_read"/>
+			<field eval="0" name="perm_create"/>
+		</record>
+		<!-- salesman 		- __u_ 	- sales order -->
+		<record id="ir_rule_update_saleorder_sales0" model="ir.rule">
+			<field name="model_id" ref="sale.model_sale_order_line"/>
+			<field name="domain_force">[('state','in',['internal_d', 'internal_q'])]</field>
+			<field name="name">TAO Salesmen Update Sale Order</field>
+			<field eval="0" name="global"/>
+			<field eval="[(6,0,[ref('base.group_sale_salesman')])]" name="groups"/>
+			<field eval="0" name="perm_unlink"/>
+			<field eval="1" name="perm_write"/>
+			<field eval="0" name="perm_read"/>
+			<field eval="0" name="perm_create"/>
+		</record>
+		<!-- salesman 	- ___d - sales order, in Internal draft -->
+		<record id="ir_rule_delete_saleorder_sales0" model="ir.rule">
+			<field name="model_id" ref="sale.model_sale_order"/>
+			<field name="domain_force">[('state','in',['internal_d'])]</field>
+			<field name="name">TAO Salesmen Delete Sale Order</field>
+			<field eval="0" name="global"/>
+			<field eval="[(6,0,[ref('base.group_sale_salesman')])]" name="groups"/>
+			<field eval="1" name="perm_unlink"/>
+			<field eval="0" name="perm_write"/>
+			<field eval="0" name="perm_read"/>
+			<field eval="0" name="perm_create"/>
+		</record>
+
+
+		
+		<!-- salesmanager  - c___ - sales order //Has been set in ir.model.access.csv    -->
+		<!-- record id="ir_rule_create_saleorder_sales1" model="ir.rule">
+			<field name="model_id" ref="sale.model_sale_order"/>
+			<field name="domain_force">[(1,'=',1)]</field>
+			<field name="name">TAO Manager Create Sale Order</field>
+			<field eval="0" name="global"/>
+			<field eval="[(6,0,[ref('base.group_sale_manager')])]" name="groups"/>
+			<field eval="0" name="perm_unlink"/>
+			<field eval="0" name="perm_write"/>
+			<field eval="0" name="perm_read"/>
+			<field eval="1" name="perm_create"/>
+		</record-->
+		<!-- salesmanager  - __u_ - sales order //Has been set in ir.model.access.csv    -->
+		<!-- record id="ir_rule_update_saleorder_sales1" model="ir.rule">
+			<field name="model_id" ref="sale.model_sale_order"/>
+			<field name="domain_force">[(1,'=',1)]</field>
+			<field name="name">TAO Manager Update Sale Order</field>
+			<field eval="0" name="global"/>
+			<field eval="[(6,0,[ref('base.group_sale_manager')])]" name="groups"/>
+			<field eval="0" name="perm_unlink"/>
+			<field eval="1" name="perm_write"/>
+			<field eval="0" name="perm_read"/>
+			<field eval="0" name="perm_create"/>
+		</record-->
+		<!-- salesmanager  - ___d - sales order //Has been set in ir.model.access.csv    -->
+		<!-- record id="ir_rule_delete_saleorder_sales1" model="ir.rule">
+			<field name="model_id" ref="sale.model_sale_order"/>
+			<field name="domain_force">[(1,'=',1)]</field>
+			<field name="name">TAO Manager Delete Sale Order</field>
+			<field eval="0" name="global"/>
+			<field eval="[(6,0,[ref('base.group_sale_manager')])]" name="groups"/>
+			<field eval="1" name="perm_unlink"/>
+			<field eval="0" name="perm_write"/>
+			<field eval="0" name="perm_read"/>
+			<field eval="0" name="perm_create"/>
+		</record-->
+		<!-- *** End of Group Sales *** -->
+
+	</data>
+</openerp>

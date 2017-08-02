@@ -1,0 +1,163 @@
+version: 1
+
+dn: dc=zent01
+objectClass: organization
+objectClass: dcObject
+objectClass: top
+dc: zent01
+o: zent01
+
+dn: ou=Users,dc=zent01
+objectClass: organizationalUnit
+ou: Users
+
+dn: ou=Groups,dc=zent01
+objectClass: organizationalUnit
+ou: Groups
+
+dn: ou=slaves,dc=zent01
+objectClass: organizationalUnit
+ou: slaves
+
+dn: cn=ebox,dc=zent01
+objectClass: organizationalRole
+objectClass: simpleSecurityObject
+description: eBox admin account
+userPassword:: MjZrOGlDSjF3N1VtamZGWA==
+cn: ebox
+
+dn: cn=__USERS__,ou=Groups,dc=zent01
+cn: __USERS__
+gidNumber: 1901
+objectClass: posixGroup
+description: All users
+
+dn: uid=jp,ou=Users,dc=zent01
+cn: JP gal
+uid: jp
+sn: gal
+loginShell: /bin/bash
+uidNumber: 2001
+gidNumber: 1901
+homeDirectory: /home/jp
+userPassword:: e1NIQX00MXZzNXNYbTRPaHNwUjBFUU9raWdxbldySW89
+quota: 100
+objectClass: inetOrgPerson
+objectClass: posixAccount
+objectClass: passwordHolder
+objectClass: systemQuotas
+eboxSha1Password: {SHA}41vs5sXm4OhspR0EQOkigqnWrIo=
+eboxMd5Password: {MD5}IB8AtcpdZaHBGOXjJDFRTA==
+eboxLmPassword: C23413A8A1E7665FC2265B23734E0DAC
+eboxNtPassword: A3A685F89364D4A5182B028FBE79AC38
+eboxDigestPassword: {MD5}pR/t2chzIHm6xWj31BPEbA==
+eboxRealmPassword: {MD5}a51fedd9c8732079bac568f7d413c46c
+givenName: JP
+
+dn: cn=taoemployee,ou=Groups,dc=zent01
+cn: taoemployee
+gidNumber: 2001
+objectClass: posixGroup
+memberUid: jp
+memberUid: tangyong
+
+dn: cn=master,dc=zent01
+objectClass: masterHost
+masterCertificate:: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUNJVENDQVlxZ0F3SU
+ JBZ0lKQUw3eitlV3JiaE1lTUEwR0NTcUdTSWIzRFFFQkJRVUFNQll4RkRBU0JnTlYKQkFNVEMyVkN
+ iM2dnVTJWeWRtVnlNQjRYRFRFeE1USXlPREExTVRNd01Gb1hEVEl4TVRJeU5UQTFNVE13TUZvdwpG
+ akVVTUJJR0ExVUVBeE1MWlVKdmVDQlRaWEoyWlhJd2daOHdEUVlKS29aSWh2Y05BUUVCQlFBRGdZM
+ EFNSUdKCkFvR0JBTk45MFhxRnVQc2lqNHFrTkdERGFMZW54WEt0NTYyVm90WUZXbUlHQTBNU2NiVD
+ lZaHZjc21GYnZ2SEUKeUtoaGJqcW1HRGZYMTBxS050REVnZWdkSk45bm1aUjBDTU9yNTVWdmFBRjF
+ HZDJ2VlQxUFVsRUpDaE5UTmQwVwpUaEZOMlpMZE9DRkZSeGRDMHZQTXdxd3BXZVhwdzFVQjQ1M3lj
+ RzBpWVJjK3RoaFRBZ01CQUFHamR6QjFNQjBHCkExVWREZ1FXQkJUYzVOTGsrZUtDVkVXRG1EaUV5L
+ 3FCOUV2WUNUQkdCZ05WSFNNRVB6QTlnQlRjNU5MaytlS0MKVkVXRG1EaUV5L3FCOUV2WUNhRWFwQm
+ d3RmpFVU1CSUdBMVVFQXhNTFpVSnZlQ0JUWlhKMlpYS0NDUUMrOC9ubApxMjRUSGpBTUJnTlZIUk1
+ FQlRBREFRSC9NQTBHQ1NxR1NJYjNEUUVCQlFVQUE0R0JBSUh4ekx0bjNSVVB6bDBKCjR1anBNTlI3
+ aytieVYvdy9HSFZVUm02c2hadW4zdVVpVnNPdXd4NnZ1dEtQN0w2N1NuMzVxV2g5WkdHdUEwMDEKb
+ WdCUGU3TVQvVWZhM3hxcWgrQldiUFg2eUpSZ2pqSzJDQUpUK2VOTHlXeUdMZ2IyMjNtUnc0YlpYeW
+ 13bEN3bApYWHV2Ty9JZGc3SHVFcXBJMnYzaXhXUEFkQkJjCi0tLS0tRU5EIENFUlRJRklDQVRFLS0
+ tLS0K
+masterCACertificate:: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUNJVENDQVlxZ0F3
+ SUJBZ0lKQUw3eitlV3JiaE1lTUEwR0NTcUdTSWIzRFFFQkJRVUFNQll4RkRBU0JnTlYKQkFNVEMyV
+ kNiM2dnVTJWeWRtVnlNQjRYRFRFeE1USXlPREExTVRNd01Gb1hEVEl4TVRJeU5UQTFNVE13TUZvdw
+ pGakVVTUJJR0ExVUVBeE1MWlVKdmVDQlRaWEoyWlhJd2daOHdEUVlKS29aSWh2Y05BUUVCQlFBRGd
+ ZMEFNSUdKCkFvR0JBTk45MFhxRnVQc2lqNHFrTkdERGFMZW54WEt0NTYyVm90WUZXbUlHQTBNU2Ni
+ VDlZaHZjc21GYnZ2SEUKeUtoaGJqcW1HRGZYMTBxS050REVnZWdkSk45bm1aUjBDTU9yNTVWdmFBR
+ jFHZDJ2VlQxUFVsRUpDaE5UTmQwVwpUaEZOMlpMZE9DRkZSeGRDMHZQTXdxd3BXZVhwdzFVQjQ1M3
+ ljRzBpWVJjK3RoaFRBZ01CQUFHamR6QjFNQjBHCkExVWREZ1FXQkJUYzVOTGsrZUtDVkVXRG1EaUV
+ 5L3FCOUV2WUNUQkdCZ05WSFNNRVB6QTlnQlRjNU5MaytlS0MKVkVXRG1EaUV5L3FCOUV2WUNhRWFw
+ Qmd3RmpFVU1CSUdBMVVFQXhNTFpVSnZlQ0JUWlhKMlpYS0NDUUMrOC9ubApxMjRUSGpBTUJnTlZIU
+ k1FQlRBREFRSC9NQTBHQ1NxR1NJYjNEUUVCQlFVQUE0R0JBSUh4ekx0bjNSVVB6bDBKCjR1anBNTl
+ I3aytieVYvdy9HSFZVUm02c2hadW4zdVVpVnNPdXd4NnZ1dEtQN0w2N1NuMzVxV2g5WkdHdUEwMDE
+ KbWdCUGU3TVQvVWZhM3hxcWgrQldiUFg2eUpSZ2pqSzJDQUpUK2VOTHlXeUdMZ2IyMjNtUnc0YlpY
+ eW13bEN3bApYWHV2Ty9JZGc3SHVFcXBJMnYzaXhXUEFkQkJjCi0tLS0tRU5EIENFUlRJRklDQVRFL
+ S0tLS0K
+masterLDAPCACertificate:: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUNJVENDQVlx
+ Z0F3SUJBZ0lKQU5yVnVibFIyRHZ6TUEwR0NTcUdTSWIzRFFFQkJRVUFNQll4RkRBU0JnTlYKQkFNV
+ EMyVkNiM2dnVTJWeWRtVnlNQjRYRFRFeE1USXlPREExTWpNd09Gb1hEVEl4TVRJeU5UQTFNak13T0
+ ZvdwpGakVVTUJJR0ExVUVBeE1MWlVKdmVDQlRaWEoyWlhJd2daOHdEUVlKS29aSWh2Y05BUUVCQlF
+ BRGdZMEFNSUdKCkFvR0JBS2xJOEpualJlbmVibjFCYlFUQ2hWRkVXZ0hkM0thU1R6YUNmRVpJYnRh
+ bWNjLzVuNTJvVFNQR1NsSkUKK2hFL0Y3dExWRTkzd3V6RHBhNzhFcTZjbXphWFhNMEY5b3VOSHlxM
+ 1NYQk9va0N3UjNJemtXR3ZFWTFjekQrVgp5MDdCTlpCTndmb2VPTDhmdFRrTWhlK3c4YnhRVTFyYV
+ cwelBIMkNqSUczY01SemxBZ01CQUFHamR6QjFNQjBHCkExVWREZ1FXQkJTS1NFMy9nL0RNU29YQ0x
+ 0Yk8zWkVuVk1LdHBEQkdCZ05WSFNNRVB6QTlnQlNLU0UzL2cvRE0KU29YQ0x0Yk8zWkVuVk1LdHBL
+ RWFwQmd3RmpFVU1CSUdBMVVFQXhNTFpVSnZlQ0JUWlhKMlpYS0NDUURhMWJtNQpVZGc3OHpBTUJnT
+ lZIUk1FQlRBREFRSC9NQTBHQ1NxR1NJYjNEUUVCQlFVQUE0R0JBRVdpVFhyWEdZbTZLVXFRCjhaVH
+ BnR3NsTDFHcXFZYXFjZXJEVU5MQnR3R1FNTGgrUlN4bUxzNjRVNldFV29Jc05NYWZyUWtoSEZLSTB
+ uQlgKNnBOZllYRzk3aXF0T0hURkZGSXVuRjQ1OGR5NkxJVHQ5SUxmYXErdGNFVlYzU3BmYnlBQjV1
+ UnlFSmRkOVM3VQpJdkNoOXZWNDh3RE9WZ1BudXFtWVdCcllmTXlFCi0tLS0tRU5EIENFUlRJRklDQ
+ VRFLS0tLS0K
+cn: master
+
+dn: uid=tangyong,ou=Users,dc=zent01
+cn: Tang Yong
+uid: tangyong
+sn: Yong
+loginShell: /bin/bash
+uidNumber: 2002
+gidNumber: 1901
+homeDirectory: /home/tangyong
+userPassword:: e1NIQX00MXZzNXNYbTRPaHNwUjBFUU9raWdxbldySW89
+quota: 100
+objectClass: inetOrgPerson
+objectClass: posixAccount
+objectClass: passwordHolder
+objectClass: systemQuotas
+eboxSha1Password: {SHA}41vs5sXm4OhspR0EQOkigqnWrIo=
+eboxMd5Password: {MD5}IB8AtcpdZaHBGOXjJDFRTA==
+eboxLmPassword: C23413A8A1E7665FC2265B23734E0DAC
+eboxNtPassword: A3A685F89364D4A5182B028FBE79AC38
+eboxDigestPassword: {MD5}91kcHTEKsxXG0NPxyd9oZg==
+eboxRealmPassword: {MD5}f7591c1d310ab315c6d0d3f1c9df6866
+givenName: Tang
+
+dn: cn=Marketing,ou=Groups,dc=zent01
+cn: Marketing
+gidNumber: 2002
+objectClass: posixGroup
+memberUid: tangyong
+memberUid: michael
+
+dn: uid=michael,ou=Users,dc=zent01
+cn: Michael Zhu
+uid: michael
+sn: Zhu
+loginShell: /bin/bash
+uidNumber: 2003
+gidNumber: 1901
+homeDirectory: /home/michael
+userPassword:: e1NIQX00MXZzNXNYbTRPaHNwUjBFUU9raWdxbldySW89
+quota: 100
+objectClass: inetOrgPerson
+objectClass: posixAccount
+objectClass: passwordHolder
+objectClass: systemQuotas
+eboxSha1Password: {SHA}41vs5sXm4OhspR0EQOkigqnWrIo=
+eboxMd5Password: {MD5}IB8AtcpdZaHBGOXjJDFRTA==
+eboxLmPassword: C23413A8A1E7665FC2265B23734E0DAC
+eboxNtPassword: A3A685F89364D4A5182B028FBE79AC38
+eboxDigestPassword: {MD5}aRn7WXzQWYyEWyt8SuNubQ==
+eboxRealmPassword: {MD5}6919fb597cd0598c845b2b7c4ae36e6d
+givenName: Michael
+

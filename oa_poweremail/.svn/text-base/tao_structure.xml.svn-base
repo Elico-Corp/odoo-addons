@@ -1,0 +1,343 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+	<data noupdate="0">
+	<!-- Menus for TAO Sales -->
+      <menuitem 	icon="terp-partner" id="menu_1"	 name="TAO Sales" sequence="0"/>
+        <menuitem 	id="menu_1_10"	 name="Sales Order" parent="menu_1" sequence="10" />
+          <menuitem 	id="menu_1_101"	 name="Quotation Draft"		parent="menu_1_10" sequence="100" action="action_order_tree_101" />
+          <menuitem 	id="menu_1_102"	 name="Internal Quotation"	parent="menu_1_10" sequence="100" action="action_order_tree_102" />
+          <menuitem 	id="menu_1_103"	 name="Quotation" 			parent="menu_1_10" sequence="100" action="sale.action_order_tree5" />
+          <menuitem 	id="menu_1_104"	 name="Sales Order" 		parent="menu_1_10" sequence="100" action="tao_action_order_tree_103" />
+          <menuitem 	id="menu_1_105"	 name="Sales Order Shipped" parent="menu_1_10" sequence="100" action="action_order_form_tao_105" />
+          <menuitem 	id="menu_1_106"	 name="Closed Sales Orders" parent="menu_1_10" sequence="100" action="action_order_form_106" />
+          <menuitem 	id="menu_1_107"	 name="All Sales Orders"    parent="menu_1_10" sequence="100" action="action_sales_all_orders" />
+
+        <menuitem 	id="menu_1_20"	 name="Customer" parent="menu_1" sequence="10" />
+            <menuitem 	id="menu_1_201"	 name="Customer" parent="menu_1_20" sequence="100" action="base.action_partner_form" />
+            <menuitem 	id="menu_1_202"	 name="Addresses" parent="menu_1_20" sequence="100" action="base.view_partner_address_tree" />
+            <menuitem 	id="menu_1_203"	 name="References" parent="menu_1_20" sequence="100" action="action_customer_references" />
+
+        <menuitem 	id="menu_1_30"	 name="Global Lists" parent="menu_1" sequence="10" />
+			<!--  <menuitem   id="menu_action_view_taoproduct_tao_sku" parent="taoutil.menu_1_30" sequence="100" action="action_view_taoproduct_tao_sku"  icon="terp-accessories-archiver+" />  -->
+        	<menuitem 	id="menu_1_301"	 name="Product Sellable" 		parent="menu_1_30" sequence="10" action="product_finished_action_301" />
+        	<menuitem 	id="menu_1_302"	 name="Packaging Sets"			parent="menu_1_30" sequence="20" action="product_finished_action_302" />
+        	<menuitem 	id="menu_1_303"	 name="Packaging Components" 	parent="menu_1_30" sequence="30" action="product_pack_action_303" />
+            <menuitem 	id="menu_1_304"	 name="Packaging Component waiting for approval"	parent="menu_1_30" sequence="40" action="pack_component_waiting_action" />
+        	<menuitem   id="menu_1_305"  name="Products by Category"    parent="menu_1_30" sequence="50" action="product.product_category_action"/>
+            <menuitem 	id="menu_1_306"	 name="Finished Products"		parent="menu_1_30" sequence="60" action="product_finished_action_tao_101" />
+
+        <menuitem 	id="menu_1_40"	 name="Sellables By Categories"			parent="menu_1" sequence="10" />
+        <menuitem 	id="menu_1_50"	 name="Packaging Sets By Categories"	parent="menu_1" sequence="10" />
+        <menuitem 	id="menu_1_60"	 name="Product By Categories" 			parent="menu_1" sequence="10" />
+
+          <menuitem id="tao_next_id_64" name="Reporting" parent="menu_1" sequence="11"/>
+          	<menuitem id="tao_menu_dasboard" name="Dashboard" sequence="0" parent="tao_next_id_64"/>
+          		<menuitem id="tao_menu_board_sales_manager" icon="terp-graph" action="sale.open_board_sales_manager" parent="tao_menu_dasboard" sequence="0" />
+           	<menuitem action="sale.action_order_report_all" id="tao_menu_report_product_all" parent="tao_next_id_64" sequence="1" />
+           	
+ 
+        <menuitem id="tao_menu_base_config" name="Configuration" parent="menu_1" sequence="30"  />                       
+           <menuitem id="tao_menu_sale_config_sales" name="Sales" parent="tao_menu_base_config" sequence="0" />
+           		<menuitem action="sale.action_shop_form" id="tao_menu_action_shop_form" parent="tao_menu_sale_config_sales" sequence="0" />
+           		<!--<menuitem id="tao_menu_definition_journal_invoice_type"  parent="tao_menu_sale_config_sales" action="sale_journal.action_definition_journal_invoice_type"  />-->
+           <menuitem id="tao_menu_config_address_book" name="Address Book" parent="tao_menu_base_config" sequence="2"   />
+           		<menuitem id="tao_menu_localisation" name="Localisation" parent="tao_menu_config_address_book" sequence="1"/>
+           			<menuitem action="base.action_country" 		 id="tao_menu_country_partner" 			parent="tao_menu_localisation" sequence="0"/>
+           			<menuitem action="base.action_country_state" id="tao_menu_country_state_partner"	parent="tao_menu_localisation" sequence="1"/>
+           			<menuitem action="base.action_currency_form" id="tao_menu_action_currency_form" 	parent="tao_menu_localisation" sequence="3"/>
+           			
+            	<menuitem action="base.action_partner_title_partner" id="tao_menu_partner_title_partner" parent="tao_menu_config_address_book" sequence="2"/>
+           		<menuitem action="base.action_partner_title_contact" id="tao_menu_partner_title_contact" parent="tao_menu_config_address_book" sequence="3" name="Contact Titles" />
+           		<menuitem action="base.action_partner_category_form" id="tao_menu_partner_category_form" parent="tao_menu_config_address_book" sequence="4" name="Partner Categories"/>
+           		<menuitem action="base.action_res_bank_form" 		 id="tao_menu_action_res_bank_form"  parent="tao_menu_config_address_book" sequence="5"/>
+           <menuitem id="tao_menu_resource_config" name="Resource" parent="tao_menu_base_config" sequence="5"  />
+           		<menuitem action="resource.action_resource_calendar_leave_tree" id="tao_menu_view_resource_calendar_leaves_search" parent="tao_menu_resource_config" sequence="1"/>
+           <menuitem   id="tao_prod_config_main" name="Global Lists" parent="tao_menu_base_config" sequence="9"/>
+           		<menuitem action="product.product_category_action_form"  		id="tao_menu_product_category_action_form"         parent="tao_prod_config_main" />
+            	
+            	<menuitem     action="product.product_ul_form_action"   id="tao_menu_product_ul_form_action" parent="tao_prod_config_main" sequence="3"/>
+            	
+            	<menuitem id="tao_next_id_16" name="Units of Measure" parent="tao_prod_config_main" sequence="65"/>
+            		<menuitem action="product.product_uom_categ_form_action" id="tao_menu_product_uom_categ_form_action" parent="tao_next_id_16" sequence="5"/>
+            		<menuitem action="product.product_uom_form_action" id="tao_menu_product_uom_form_action" parent="tao_next_id_16"/>
+           <menuitem   id="product.menu_product_pricelist_main" name="Pricelists" parent="tao_menu_base_config" sequence="50"/>
+                <menuitem action="product.product_pricelist_view_tree"  		id="tao_menu_product_pricelist_view_tree"         parent="tao_prod_config_main"/>
+                <menuitem action="product.product_pricelist_action"  		id="tao_menu_product_pricelist_action"         parent="tao_prod_config_main" sequence="2"/>
+                <menuitem action="product.product_price_type_view"  		id="tao_menu_product_price_type_view"         parent="tao_prod_config_main"/>
+        
+<!-- Menus for Marketing -->
+      <menuitem 	icon="terp-partner" id="menu_2"	 name="TAO Marketing" sequence="0"/>
+        <menuitem 	id="menu_2_10"	 name="Global Lists, Wizards" parent="menu_2" sequence="10" />
+          <menuitem 	id="menu_2_101"	 name="Products Sellables"				parent="menu_2_10" sequence="100" action="product_SKU_action" />
+          <menuitem 	id="menu_2_102"	 name="Products Finished"				parent="menu_2_10" sequence="100" action="product_finished_action_101" />
+		  <menuitem 	id="menu_2_103"	 name="Products Finished with a BOM"	parent="menu_2_10" sequence="100" action="product_finished_action_101_bom" />
+          <menuitem 	id="menu_2_107"	 name="Packaging Sets"					parent="menu_2_10" sequence="100" action="pack_set_action_107" />
+		  <menuitem     id="menu_2_108"  name="Products by Category"    		parent="menu_2_10" sequence="100" action="product.product_category_action"/>
+		  <menuitem     id="menu_action_view_taoproduct_tao_packnsku"			parent="menu_2_10" sequence="100" action="taoproduct.action_view_taoproduct_tao_packnsku"  icon="terp-accessories-archiver+" />
+		  <menuitem     id="menu_action_view_taoproduct_tao_duppacknsku"		parent="menu_2_10" sequence="100" action="taoproduct.action_view_taoproduct_tao_duppacknsku"  icon="terp-accessories-archiver+" />
+
+        <menuitem 	id="menu_2_20"	 	name="Packaging Sets" parent="menu_2" sequence="15" />
+          <menuitem 	id="menu_2_20_01"	 name="Packaging Sets, All Generic"					parent="menu_2_20" sequence="1" action="pack_set_action_106" />
+          <menuitem 	id="menu_2_20_02"	 name="Packaging Sets, All Specific"				parent="menu_2_20" sequence="2" action="pack_set_action_104" />
+          <menuitem 	id="menu_2_20_03"	 name="Packaging Sets, All Specific in Development" parent="menu_2_20" sequence="3" action="pack_set_action_105"/>
+
+        <menuitem 	id="menu_2_25"	 	name="Packagings Components"	parent="menu_2" sequence="20" />
+          <menuitem 	id="menu_2_25_01"	 name="Packaging Component"							parent="menu_2_25" sequence="1" action="product_pack_action_303" />
+          <menuitem 	id="menu_2_25_02"	 name="Packaging Component waiting for approval"	parent="menu_2_25" sequence="1" action="pack_component_waiting_action" />
+        <menuitem 	id="menu_2_30"	 	name="Sellables Categories"		parent="menu_2" sequence="10" />
+        <menuitem 	id="menu_2_40"	 	name="Product Categories" 		parent="menu_2" sequence="10" />
+        		
+        <menuitem 	id="menu_2_60"	 name="BOP" parent="menu_2" sequence="20" />
+          <menuitem 	id="menu_2_60_1"	 name="Bill of Packaging"						parent="menu_2_60" sequence="100" action="product_pack_action_201" />
+
+        <menuitem 	id="menu_2_50"	 	name="Sales Order" parent="menu_2" sequence="25" />
+          <menuitem 	id="menu_2_50_1"	 name="Running"									parent="menu_2_50" sequence="100" action="tao_action_order_tree_103" />
+          <menuitem 	id="menu_2_50_2"	 name="Marketing Inbox"							parent="menu_2_50" sequence="100" action="product_pack_action_tao_302" />
+
+        <menuitem 	id="menu_2_55"	 name="Customer" parent="menu_2" sequence="30" />
+            <menuitem 	id="menu_2_551"	 name="Customer" parent="menu_2_55" sequence="100" action="base.action_partner_form" />
+            <menuitem 	id="menu_2_552"	 name="Addresses" parent="menu_2_55" sequence="100" action="base.view_partner_address_tree" />
+            <menuitem 	id="menu_2_553"	 name="References" parent="menu_2_55" sequence="100" action="action_customer_references" />
+
+
+       <menuitem id="tao2_next_id_64" name="Reporting" parent="menu_2" sequence="35"/>
+         	<menuitem id="tao2_menu_dasboard" name="Dashboard" sequence="0" parent="tao2_next_id_64"/>
+         		<menuitem action="sale.open_board_sales_manager" icon="terp-graph" id="tao2_menu_board_sales_manager" parent="tao2_menu_dasboard" sequence="0" />
+          	<menuitem action="sale.action_order_report_all" id="tao2_menu_report_product_all" parent="tao2_next_id_64" sequence="1" />
+
+       <menuitem id="tao2_menu_base_config" name="Configuration" parent="menu_2" sequence="40"  />                       
+      		<menuitem action="product.product_category_action_form"  id="tao2_menu_product_category_action_form"            parent="tao2_menu_base_config" />
+            	
+         	<menuitem name="Variant dimensions" id="tao2_menu_variant_dimension" parent="tao2_menu_base_config" />
+         		<menuitem id="tao2_menu_variant_dimension_option" icon="STOCK_JUSTIFY_FILL" parent="tao2_menu_variant_dimension" action="product_variant_multi.action_dimension_option" />
+         		<menuitem id="tao2_menu_variant_dimension_types" icon="STOCK_JUSTIFY_FILL" parent="tao2_menu_variant_dimension" action="product_variant_multi.action_dimension_type" />
+	
+        
+ <!-- Menus for Sourcing -->
+     <menuitem 	icon="terp-purchase" id="menu_3"	 name="TAO Sourcing" sequence="0"/>
+     	<menuitem 	id="menu_3_10"	 name="Purchase Order" parent="menu_3" sequence="10" />
+     		<menuitem 	id="menu_3_101"	 name="Quotations (waiting for Price Approval)" parent="menu_3_10" sequence="100" action="purchase_form_action_101" />
+     		<menuitem 	id="menu_3_102"	 name="Quotation (waiting for Approval)" parent="menu_3_10" sequence="100" action="purchase_form_action_102" />
+     		<menuitem 	id="menu_3_103"	 name="Purchase Order (Running)" parent="menu_3_10" sequence="100" action="purchase_rfq2" />
+     		<menuitem 	id="menu_3_104"	 name="Purchase Order (Closed)" parent="menu_3_10" sequence="100" action="purchase_form_action_104" />
+     		<menuitem 	id="menu_3_105"	 name="All Purchase Orders" parent="menu_3_10" sequence="100" action="purchase_form_action_105" />
+     		
+     	<menuitem 	id="menu_3_20"	 name="Global Lists" parent="menu_3" sequence="10" />
+     		<menuitem 	id="menu_3_203"	 name="Product Finished, All" parent="menu_3_20" sequence="10" action="product_finished_action_101" />
+     		<menuitem 	id="menu_3_204"	 name="Packaging Sets, All" parent="menu_3_20" sequence="20" action="product_finished_action_302" />
+     		<menuitem 	id="menu_3_205"	 name="Product Components, All" parent="menu_3_20" sequence="100" action="product_components_action_tao_201" />
+
+        <menuitem 	id="menu_3_25"	 name="Packaging Sets By Categories"	parent="menu_3" sequence="10" />
+     		<menuitem 	id="menu_3_204"	 name="Packaging Sets, All" parent="menu_3_25" sequence="05" action="product_finished_action_302" />
+        <menuitem 	id="menu_3_26"	 name="Product By Categories" 			parent="menu_3" sequence="10" />
+     		<menuitem 	id="menu_3_203"	 name="Products, All" parent="menu_3_26" sequence="05" action="product_finished_action_101" />
+
+     	<menuitem 	id="menu_3_21"	 name="Products Components By Categories" parent="menu_3" sequence="10" />
+     		<menuitem 	id="menu_3_2100"	 name="Product  Components, All" parent="menu_3_21" sequence="5" action="product_components_action_tao_201" />
+
+     	<menuitem 	id="menu_3_22"	 name="Packagings Components By Categories" parent="menu_3" sequence="10" />
+     		<menuitem 	id="menu_3_2200"	 name="Packagings Components, All" parent="menu_3_22" sequence="5" action="product_pack_action_303" />
+     	
+     	<menuitem 	id="menu_3_30"	 name="Supplier" 	parent="menu_3" sequence="10" />
+     		<menuitem 	id="menu_3_301"	 name="Supplier" 		parent="menu_3_30" sequence="100" action="base.action_partner_supplier_form" />
+            <menuitem 	id="menu_3_302"	 name="Addresses" 		parent="menu_3_30" sequence="105" action="base.view_partner_address_tree" />
+
+     	<menuitem 	id="menu_3_40"	 name="Sales Order" parent="menu_3" sequence="10" />
+     		<menuitem 	id="menu_3_401"	 name="Running" 		parent="menu_3_40" sequence="100" action="tao_action_order_tree_103" />
+     		<menuitem 	id="menu_3_402"	 name="Sourcing Inbox"	parent="menu_3_40" sequence="100" action="action_order_tree_102" />
+     		<menuitem 	id="menu_3_403"	 name="Upcoming Orders" parent="menu_3_40" sequence="100" action="sale.action_order_tree5" />
+     		
+     	<menuitem id="base.next_id_73" name="Reporting" parent="taoutil.menu_3" sequence="100" />
+     		<menuitem   id="tao_menu_purchase_deshboard"          name="Dashboard"            parent="base.next_id_73" sequence="0"/>
+            	<menuitem    action="purchase.open_board_purchase"  icon="terp-graph"   id="tao_menu_board_purchase"   parent="tao_menu_purchase_deshboard"   sequence="4"/>
+     		<menuitem action="purchase.action_purchase_order_report_all" id="tao_menu_action_purchase_order_report_all" parent="base.next_id_73" sequence="3"/>
+     		<menuitem action="purchase.action_stock_move_report_po" id="tao_menu_action_stock_move_report_po" parent="base.next_id_73" sequence="8"/>
+	
+		<menuitem id="tao_menu_purchase_config_purchase" name="Configuration"   parent="menu_3" sequence="100"/>
+            <menuitem  id="tao_menu_product_in_config_purchase" name="Product"       parent="tao_menu_purchase_config_purchase" sequence="30"/>
+            	<menuitem   action="product.product_category_action_form" id="tao_menu_product_category_config_purchase"            parent="tao_menu_product_in_config_purchase" sequence="10"/>          
+        		<menuitem   id="tao_menu_purchase_unit_measure_purchase" name="Units of Measure"   parent="tao_menu_product_in_config_purchase"  sequence="20"/>
+        			<menuitem   action="product.product_uom_categ_form_action" id="tao_menu_purchase_uom_categ_form_action"             parent="tao_menu_purchase_unit_measure_purchase" sequence="30"/>
+        			<menuitem   action="product.product_uom_form_action" id="tao_menu_purchase_uom_form_action"             parent="tao_menu_purchase_unit_measure_purchase" sequence="30"/>
+        			
+            <menuitem  id="tao_menu_purchase_config_pricelist" name="Pricelists"     parent="tao_menu_purchase_config_purchase" sequence="50"/>
+            	<menuitem  action="product.product_pricelist_action" id="tao_menu_product_pricelist_action_purhase"    parent="tao_menu_purchase_config_pricelist" sequence="20"/>
+
+        <menuitem action="product.product_pricelist_action2" id="tao_menu_product_pricelist_action2_purchase"  parent="tao_menu_purchase_config_pricelist" sequence="10"/>
+
+            
+	
+     <!-- Menus for PMC -->
+     <menuitem 	icon="terp-stock" id="menu_4"	 name="TAO PMC" sequence="0"/>
+     	<menuitem 		id="menu_4_100"	 name="Sales Order"			parent="menu_4" sequence="10" />
+     		<menuitem 	id="menu_4_101"	 name="Running"				parent="menu_4_100" sequence="100" action="tao_action_order_tree_103" />
+     		<menuitem 	id="menu_4_102"	 name="Upcoming Orders" 	parent="menu_4_100" sequence="100" action="sale.action_order_tree5" />
+     		<menuitem 	id="menu_4_103"	 name="PMC Inbox"			parent="menu_4_100" sequence="100" action="action_order_tree_102" />
+     	<menuitem 		id="menu_4_200"	 name="Logistics"			parent="menu_4" sequence="10" />
+     		<menuitem 	id="menu_4_201"	 name="Incoming Shipments"	parent="menu_4_200" sequence="100" action="stock.action_picking_tree4" />
+     		<menuitem 	id="menu_4_202"	 name="Internal Moves"		parent="menu_4_200" sequence="100" action="stock.action_picking_tree6" />
+     		<menuitem 	id="menu_4_203"	 name="Delivery Orders" 	parent="menu_4_200" sequence="100" action="stock.action_picking_tree" />
+     		<menuitem 	id="menu_4_204"	 name="All Stock Moves" 	parent="menu_4_200" sequence="100" action="stock.action_move_form2" />
+     	<menuitem 		id="menu_4_300"	 name="Inventory Control"	parent="menu_4" sequence="10" />
+     		<menuitem 	id="menu_4_301"	 name="Location Structure"	parent="menu_4_300" sequence="100" action="stock.action_location_tree" />
+     		<menuitem 	id="menu_4_302"	 name="Physical Inventory"	parent="menu_4_300" sequence="100" action="stock.action_inventory_form" />
+     	<menuitem 		id="menu_4_400"	 name="Procurement"			parent="menu_4" sequence="10" />
+     		<menuitem 	id="menu_4_401"	 name="Compute Schedulers" 	parent="menu_4_400" sequence="100" action="procurement.action_compute_schedulers" />
+     		<menuitem 	id="menu_4_402"	 name="Procurement Orders" 	parent="menu_4_400" sequence="100" action="procurement.procurement_exceptions" />
+     		<menuitem 	id="menu_4_403"	 name="Upcoming Procurements" parent="menu_4_400" sequence="100" action="procurement_exceptions_403" />
+     	<menuitem 		id="menu_4_500"	 name="Global Lists"				parent="menu_4" sequence="10" />
+     		<menuitem 	id="menu_4_501"	 name="All Products"		parent="menu_4_500" sequence="100" action="product.product_normal_action" />
+     		<menuitem 	id="menu_4_502"	 name="Products Sellable"	parent="menu_4_500" sequence="100" action="product_SKU_action" />
+     		<menuitem 	id="menu_4_503"	 name="Products Finished"	parent="menu_4_500" sequence="100" action="product_finished_action" />
+     		<menuitem 	id="menu_4_504"	 name="Packaging Sets" 		parent="menu_4_500" sequence="100" action="product_finished_action_302" />
+     		<menuitem 	id="menu_4_505"	 name="Product Components"	parent="menu_4_500" sequence="100" action="product_components_action" />
+     		<menuitem 	id="menu_4_506"	 name="Packaging Components" parent="menu_4_500" sequence="100" action="product_pack_action_303" />
+     <menuitem       	id="stock.next_id_61"        name="Reporting"        parent="menu_4"/>
+     		<menuitem 	id="tao_menu_dashboard_stock" name="Dashboard"  sequence="0" parent="stock.next_id_61"/>
+     			<menuitem action="stock.open_board_warehouse" icon="terp-graph"  id="tao_menu_board_warehouse" parent="tao_menu_dashboard_stock"  />
+     		<menuitem 	id="stock.menu_report_stock_line_date" parent="stock.next_id_61" action="stock.action_stock_line_date"  sequence="2"/>
+        	<menuitem action="stock.action_stock_move_report" id="tao_menu_action_stock_move_report" parent="stock.next_id_61" sequence="3"/>
+        	<menuitem action="stock.action_stock_inventory_report"        id="tao_menu_action_stock_inventory_report"         parent="stock.next_id_61" sequence="4"/>
+        	
+        <menuitem 	id="menu_4_10"	 	name="Sellables, By Categories"				parent="menu_4" sequence="10" />
+        <menuitem 	id="menu_4_20"	 	name="Products, By Categories"				parent="menu_4" sequence="20" />
+        <menuitem 	id="menu_4_30"	 	name="Packaging Sets, By Categories" 		parent="menu_4" sequence="30" />
+        <menuitem 	id="menu_4_40"	 	name="Packagings Components, By Categories"	parent="menu_4" sequence="40" />
+        <menuitem 	id="menu_4_50"	 	name="Product Components, By Categories" 				parent="menu_4" sequence="50" />
+        
+        <menuitem id="tao_menu_stock_configuration" name="Configuration" parent="menu_4" sequence="15"  />
+        	<menuitem id="tao_menu_warehouse_config" name="Warehouse Management" parent="tao_menu_stock_configuration" sequence="1"/>
+        		<menuitem action="stock.action_location_form" id="tao_menu_action_location_form" parent="tao_menu_warehouse_config"/>
+        		<menuitem action="stock.action_warehouse_form" id="tao_menu_action_warehouse_form" parent="tao_menu_warehouse_config"/>
+        		<menuitem action="stock.action_incoterms_tree" id="tao_menu_action_incoterm_open" parent="tao_menu_warehouse_config" sequence="7"/>
+        		<menuitem action="stock.action_stock_journal_form"  id="tao_menu_action_stock_journal_form"  parent="tao_menu_warehouse_config" />
+       		<menuitem name="Products by Category" id="menu_product_by_category_stock_form" action="product.product_category_action"           parent="tao_menu_stock_configuration" sequence="0"/>
+        		
+        	<menuitem   id="tao_menu_stock_unit_measure_stock" name="Units of Measure"   parent="tao_menu_stock_configuration"  sequence="2"/>
+        		<menuitem    action="product.product_uom_categ_form_action" id="tao_menu_stock_uom_categ_form_action"             parent="tao_menu_stock_unit_measure_stock" sequence="0"/>
+         		<menuitem   action="product.product_uom_form_action" id="tao_menu_stock_uom_form_action"    parent="tao_menu_stock_unit_measure_stock" sequence="1"/>
+
+      			
+      				
+        	<menuitem id="tao_menu_stock_procurement" name="Automatic Procurements" parent="tao_menu_stock_configuration" sequence="6"/>
+        		<menuitem action="procurement.action_orderpoint_form" id="tao_menu_stock_order_points" parent="tao_menu_stock_procurement" sequence="10"/>
+
+     
+        
+<!-- Menus for R&D -->
+     <menuitem 	icon="terp-mrp" id="menu_5"	 name="TAO R &amp; D" sequence="0"/>
+     	<menuitem 	id="menu_5_10"	 name="Global Lists" parent="menu_5" sequence="10" />
+     		<menuitem 	id="menu_5_101"	 name="Finished Products"				parent="menu_5_10"	 sequence="10" action="product_finished_action_101" />
+     		<menuitem 	id="menu_5_101b" name="Finished Products, with a BOM"	parent="menu_5_10"	 sequence="10" action="product_finished_action_101_bom" />
+     		<menuitem 	id="menu_5_103"	 name="Product Components All"			parent="menu_5_10"	 sequence="20" action="product_components_action" />
+     		<menuitem 	id="menu_5_107"	 name="Product Components in Development" parent="menu_5_10" sequence="30" action="product_components_action_tao_107" />
+		  	<menuitem   id="menu_5_108"  name="Products by Category"			parent="menu_5_10"	 sequence="40" action="product.product_category_action"/>
+	     	<menuitem 	id="menu_5_109"	 name="Templates and Variants" 			parent="menu_5_10"	 sequence="50" />
+			  	<menuitem   id="menu_5_109_1"  name="Template"  		parent="menu_5_109" sequence="10" action="product.product_template_action_tree"/>
+			  	<menuitem   id="menu_5_109_2"  name="Variants"  		parent="menu_5_109" sequence="20" action="product_variant_multi.product_variant"/>
+     	
+     	<menuitem 	id="menu_5_30"	 name="Sub assemblies" 				parent="menu_5" sequence="10" />
+     	<menuitem 	id="menu_5_40"	 name="Components By Categories" 	parent="menu_5" sequence="10" />
+     		<menuitem 	id="menu_5_401"	 name="Product Components All"			parent="menu_5_40"	 sequence="10" action="product_components_action" />
+     	<menuitem 	id="menu_5_50"	 name="Products By Categories"		parent="menu_5" sequence="10" />
+     		<menuitem 	id="menu_5_501"	 name="Finished Products"				parent="menu_5_50"	 sequence="10" action="product_finished_action_101" />
+     		
+     	
+     	<menuitem 	id="menu_5_20"	 name="BOM" parent="menu_5" sequence="10" />
+     		<menuitem 	id="menu_5_201"	 name="All Bill of Material"		parent="menu_5_20" sequence="100" action="mrp.mrp_bom_form_action"   groups="base.group_extended"/>
+     		<menuitem 	id="menu_5_202"	 name="BOM for Finished Products"	parent="menu_5_20" sequence="100" action="mrp_bom_form_action_202" />
+     		<menuitem 	id="menu_5_203"	 name="BOM for Sub-Assembly"		parent="menu_5_20" sequence="100" action="mrp_bom_form_action_203" />
+     		<menuitem 	id="menu_5_204"	 name="BOM for Products in Dev."	parent="menu_5_20" sequence="100" action="mrp_bom_form_action_204" />
+     		<menuitem 	id="menu_5_205"	 name="Leaf BOMs"					parent="menu_5_20" sequence="100" action="mrp_bom_form_action_205" />
+     		
+        <menuitem id="tao_next_id_77" name="Reporting"    parent="menu_5" sequence="49"/>
+        <menuitem id="tao_menus_dash_mrp" name="Dashboard"            parent="tao_next_id_77" sequence="0"/>
+        	<menuitem  action="mrp.open_board_manufacturing" icon="terp-graph"    id="tao_menu_board_manufacturing" parent="tao_menus_dash_mrp"    />
+
+        
+       <menuitem   id="tao_menu_mrp_configuration"    name="Configuration"    parent="menu_5"       sequence="50" />
+        	<menuitem id="tao_menu_variant_dimension" parent="tao_menu_mrp_configuration" name="Products" />
+           		<menuitem id="tao_menu_variant_dimension_option" parent="tao_menu_variant_dimension" action="product_variant_multi.action_dimension_option" icon="STOCK_JUSTIFY_FILL"/>
+           		<menuitem id="tao_menu_variant_dimension_types"  parent="tao_menu_variant_dimension" action="product_variant_multi.action_dimension_type" icon="STOCK_JUSTIFY_FILL"/>
+		      	<menuitem id="tao_menu_pm_product_config"		 parent="tao_menu_variant_dimension" action="product.product_category_action_form" name="Product Categories"/>
+    
+        	<menuitem id="tao_menu_pm_resources_config" name="Resources" parent="tao_menu_mrp_configuration"/>
+        		<menuitem action="mrp.mrp_workcenter_action" id="tao_menu_view_resource_search_mrp" parent="tao_menu_pm_resources_config" sequence="1"/>
+        		<menuitem action="resource.action_resource_calendar_form" id="tao_menu_view_resource_calendar_search_mrp" parent="tao_menu_pm_resources_config" sequence="2"/>
+        		<menuitem action="resource.action_resource_calendar_leave_tree" id="tao_menu_view_resource_calendar_leaves_search_mrp" parent="tao_menu_pm_resources_config" sequence="3"/>
+
+        <menuitem id="tao_menu_uom_config" name="Units of Measure" parent="tao_menu_mrp_configuration" sequence="50"/>
+	        <menuitem action="product.product_uom_form_action" 			id="menu_product_uom_form_action" 		parent="tao_menu_uom_config"/>
+	        <menuitem action="product.product_uom_categ_form_action" 	id="menu_product_uom_categ_form_action" parent="tao_menu_uom_config" sequence="5"/>
+        
+        	<menuitem name="Master Bill of Materials"    			id="tao_menu_mrp_property"     			parent="tao_menu_mrp_configuration"      sequence="20" />
+        		<menuitem  action="mrp.mrp_property_action"    		id="tao_menu_mrp_property_action"    	parent="tao_menu_mrp_property"/>
+        		<menuitem  action="mrp.mrp_property_group_action"   id="tao_menu_mrp_property_group_action" parent="tao_menu_mrp_property"   />
+        		<menuitem  action="mrp.mrp_routing_action" 			id="tao_menu_mrp_routing_action" 		parent="tao_menu_mrp_property" sequence="30"/>
+            
+       <!-- 
+        <menuitem action="tao_test_action1" 	name="Test Action 1" id="tao_testaction_menu1" parent="tao_menu_mrp_configuration" sequence="5"/>
+        <menuitem action="tao_test_action2" 	name="Test Action 2" id="tao_testaction_menu2" parent="tao_menu_mrp_configuration" sequence="6"/>
+ 	   -->
+ 
+        <!-- Add  menu wareouse/products  by Tuyaoli 20111121  -->
+        <menuitem 	name="Product Components" 		id="menu_warehouse_components"				parent="stock.menu_stock_product" action="product_components_action" sequence="292"/>
+        <!--  
+        <menuitem 	name="Electronic Components"	id="menu_warehouse_electronic_components"	parent="stock.menu_stock_product" action="product_electronic_components_action"  sequence="293"/>
+        <menuitem 	name="Mechanical Components" 	id="menu_warehouse_mechanical_components"	parent="stock.menu_stock_product" action="product_mechanical_components_action"  sequence="294"/>
+        -->
+        <menuitem 	name="Product Sub-Assemblies" 	id="menu_warehouse_subassembly_warehouse"			parent="stock.menu_stock_product" action="product_subassembly_components_action" sequence="296"/>
+        <menuitem 	name="Products Fisnihed" 		id="menu_warehouse_finished_warehouse"				parent="stock.menu_stock_product" action="product_finished_action" 				 sequence="297"/>
+        <menuitem 	name="Packaging Sets"			id="menu_warehouse_packaging_finished_warehouse"	parent="stock.menu_stock_product" action="product_finished_action_302" 			 sequence="299"/>
+        <menuitem 	name="Packaging Components" 	id="menu_warehouse_packaging_components_warehouse"	parent="stock.menu_stock_product" action="product_components_action_tao_202" 	 sequence="298"/>
+        <menuitem 	name="Product Sellables"		id="menu_product_sku_warehouse"						parent="stock.menu_stock_product" action="product_SKU_action"  					 sequence="300"/>
+       
+        <!-- purchase/products  -->
+        <menuitem 	name="Product Components"  		id="menu_purchase_product_components"				parent="purchase.menu_procurement_management_product" action="product_components_action" 			sequence="292"/>
+        <menuitem 	name="Electronic Components" 	id="menu_purchase_electronic_components"			parent="purchase.menu_procurement_management_product" action="product_electronic_components_action" sequence="293"/>
+        <menuitem 	name="Mechanical Components"	id="menu_purchase_mechanical_components"			parent="purchase.menu_procurement_management_product" action="product_mechanical_components_action" sequence="294"/>
+        
+        <menuitem 	name="Product Sub-Assemblies"	id="menu_purchase_subassembly_warehouse"			parent="purchase.menu_procurement_management_product" action="product_subassembly_components_action" sequence="296"/>
+        <menuitem 	name="Products Finished"		id="menu_purchase_finished_warehouse"				parent="purchase.menu_procurement_management_product" action="product_finished_action"  sequence="297"/>
+        <menuitem 	name="Packaging Components"		id="menu_purchase_packaging_components_warehouse"	parent="purchase.menu_procurement_management_product" action="product_components_action_tao_202" sequence="298"/>
+        <menuitem 	name="Packaging Sets"			id="menu_purchase_packaging_finished_warehouse"		parent="purchase.menu_procurement_management_product" action="product_finished_action_302" sequence="299"/>
+        <menuitem 	name="Product Sellables"		id="menu_purchase_sku_warehouse"					parent="purchase.menu_procurement_management_product" action="product_SKU_action" sequence="300"/>
+        
+        <!-- manufacturing/products  -->
+        <menuitem 	name="Products" 				id="menu_product"   				parent="base.menu_mrp_root"/>
+        <menuitem 	name="All Products" 			id="menu_mrp_products"				parent="menu_product"  	    	action="product.product_normal_action"  sequence="292"/>
+        
+        <menuitem 	name="Product Components"		id="menu_mrp_product_components"	parent="menu_product" action="product_components_action" sequence="293"/>
+        <menuitem 	name="Electronic Components" 	id="menu_mrp_electronic_components"	parent="menu_product" action="product_electronic_components_action" sequence="294"/>
+        <menuitem 	name="Mechanical Components" 	id="menu_mrp_mechanical_components"	parent="menu_product" action="product_mechanical_components_action" sequence="295"/>
+        
+        <menuitem 	name="Product Sub-Assemblies"	id="menu_mrp_subassembly_warehouse"	parent="menu_product" action="product_subassembly_components_action" sequence="297"/>
+        <menuitem 	name="Products Finished"		id="menu_mrp_finished_warehouse"	parent="menu_product" action="product_finished_action" sequence="298"/>
+        <menuitem 	name="Packaging Components" 	id="menu_mrp_packaging_components_warehouse"		parent="menu_product" action="product_components_action_tao_202" sequence="299"/>
+        <menuitem 	name="Packaging Sets"			id="menu_mrp_packaging_finished_warehouse"			parent="menu_product" action="product_finished_action_302" sequence="300"/>
+        <menuitem 	name="Product Sellables"		id="menu_mrp_sku_warehouse"			parent="menu_product" action="product_SKU_action" sequence="301"/>
+
+        
+ <!-- Menus for Tao Manufacturing -->
+     <menuitem 	icon="terp-mrp" id="menu_6"	 name="TAO Manufacturing" sequence="0"/>
+     	<menuitem 	id="menu_6_10"	 name="Manufacturing Order" parent="menu_6" sequence="10" />
+     		<menuitem 	name="Manufacturing Orders"  id="menu_6_101"	 parent="menu_6_10" sequence="100" action="mrp.mrp_production_action" />
+		
+        <menuitem id="tao2_next_id_77" name="Reporting"    parent="menu_6" sequence="49"/>
+        <menuitem id="tao2_menus_dash_mrp" name="Dashboard"            parent="tao2_next_id_77" sequence="0"/>
+        	<menuitem  action="mrp.open_board_manufacturing" icon="terp-graph"    id="tao2_menu_board_manufacturing" parent="tao2_menus_dash_mrp"    />
+                <menuitem   name="Configuration"    id="tao2_menu_mrp_configuration"     parent="menu_6"       sequence="50" />
+        	
+        	<menuitem id="tao2_menu_pm_resources_config" name="Resources" parent="tao2_menu_mrp_configuration"/>
+        		<menuitem action="mrp.mrp_workcenter_action" id="tao2_menu_view_resource_search_mrp" parent="tao2_menu_pm_resources_config" sequence="1"/>
+        		<menuitem action="resource.action_resource_calendar_form" id="tao2_menu_view_resource_calendar_search_mrp" parent="tao2_menu_pm_resources_config" sequence="2"/>
+        		<menuitem action="resource.action_resource_calendar_leave_tree" id="tao2_menu_view_resource_calendar_leaves_search_mrp" parent="tao2_menu_pm_resources_config" sequence="3"/>
+
+        
+        	<menuitem name="Master Bill of Materials"    id="tao2_menu_mrp_property"     parent="tao2_menu_mrp_configuration"      sequence="20" />
+        		<menuitem  action="mrp.mrp_property_action"    id="tao2_menu_mrp_property_action"    parent="tao2_menu_mrp_property"/>
+        		<menuitem  action="mrp.mrp_property_group_action"    parent="tao2_menu_mrp_property"   id="tao2_menu_mrp_property_group_action"/>
+        		<menuitem  action="mrp.mrp_routing_action" id="tao2_menu_mrp_routing_action" parent="tao2_menu_mrp_property" sequence="30"/>
+        
+	</data>
+</openerp>

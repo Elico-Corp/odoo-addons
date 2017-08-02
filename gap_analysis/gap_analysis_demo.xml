@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="1">
+        <!--Resource: gap_analysis.functionality.category-->        
+        <record id="gap_analysis_fct_cat1" model="gap_analysis.functionality.category">
+            <field name="name">CRM</field>
+            <field name="sequence">5</field>
+        </record>
+        <record id="gap_analysis_fct_cat2" model="gap_analysis.functionality.category">
+            <field name="name">Sales</field>
+            <field name="sequence">6</field>
+        </record>
+        
+        <!--Resource: gap_analysis.effort-->        
+        <record id="gap_analysis_effort1" model="gap_analysis.effort">
+            <field name="name">1</field>
+            <field name="duration">4</field>
+            <field name="cost">250</field>
+        </record>
+        <record id="gap_analysis_effort2" model="gap_analysis.effort">
+            <field name="name">2</field>
+            <field name="duration">8</field>
+            <field name="cost">250</field>
+        </record>
+        
+        <!--Resource: gap_analysis.functionality-->        
+        <record id="gap_analysis_fct1" model="gap_analysis.functionality">
+            <field name="name">Ability to synchronize OpenERP with Current System</field>
+            <field name="category" ref="gap_analysis_fct_cat1"/>
+        </record>
+        <record id="gap_analysis_fct2" model="gap_analysis.functionality">
+            <field name="name">Ability to translate Lead</field>
+            <field name="category" ref="gap_analysis_fct_cat1"/>
+        </record>
+        <record id="gap_analysis_fct3" model="gap_analysis.functionality">
+            <field name="name">Ability to manage pricelist</field>
+            <field name="category" ref="gap_analysis_fct_cat2"/>
+        </record>
+        
+        <!--Resource: gap_analysis.workload.type-->        
+        <record id="gap_analysis_type1" model="gap_analysis.workload.type">
+            <field name="name">Report (Basic)</field>
+            <field name="sequence">5</field>
+            <field name="cost">350</field>
+            <field name="category">Functional Analysis</field>
+        </record>
+        <record id="gap_analysis_type2" model="gap_analysis.workload.type">
+            <field name="name">Report (Advanced)</field>
+            <field name="sequence">6</field>
+            <field name="cost">550</field>
+            <field name="category">Functional Analysis</field>
+        </record>
+        <record id="gap_analysis_type3" model="gap_analysis.workload.type">
+            <field name="name">Workflow</field>
+            <field name="sequence">7</field>
+            <field name="cost">500</field>
+            <field name="category">Technical Analysis</field>
+        </record>
+
+        <!--Resource: gap_analysis-->
+        <record id="gap_analysis1" model="gap_analysis">
+            <field name="name">Gap Analysis DEMO Data</field>
+            <field name="note">DEMO Data</field>
+            <field name="user_id" ref="base.user_root"/>
+        </record>
+
+        <!--Resource: gap_analysis.line-->        
+        <record id="gap_analysis_line1" model="gap_analysis.line">
+            <field name="gap_id" ref="gap_analysis1"/>
+            <field name="functionality" ref="gap_analysis_fct1"/>
+            <field name="effort" ref="gap_analysis_effort1"/>
+        </record>
+        <record id="gap_analysis_line2" model="gap_analysis.line">
+            <field name="gap_id" ref="gap_analysis1"/>
+            <field name="functionality" ref="gap_analysis_fct2"/>
+            <field name="effort" ref="gap_analysis_effort1"/>
+        </record>
+        <record id="gap_analysis_line3" model="gap_analysis.line">
+            <field name="gap_id" ref="gap_analysis1"/>
+            <field name="functionality" ref="gap_analysis_fct3"/>
+            <field name="effort" ref="gap_analysis_effort2"/>
+        </record>
+
+        <!--Resource: gap_analysis.workload-->        
+        <record id="gap_analysis_workload1" model="gap_analysis.workload">
+            <field name="gap_line_id" ref="gap_analysis_line1"/>
+            <field name="type" ref="gap_analysis_type2"/>
+            <field name="duration">1</field>
+            <field name="cost">600</field>
+        </record>
+        <record id="gap_analysis_workload2" model="gap_analysis.workload">
+            <field name="gap_line_id" ref="gap_analysis_line1"/>
+            <field name="type" ref="gap_analysis_type3"/>
+            <field name="duration">1</field>
+            <field name="cost">500</field>
+        </record>
+        <record id="gap_analysis_workload3" model="gap_analysis.workload">
+            <field name="gap_line_id" ref="gap_analysis_line2"/>
+            <field name="type" ref="gap_analysis_type1"/>
+            <field name="duration">2</field>
+            <field name="cost">350</field>
+        </record>
+        <record id="gap_analysis_workload3" model="gap_analysis.workload">
+            <field name="gap_line_id" ref="gap_analysis_line3"/>
+            <field name="type" ref="gap_analysis_type3"/>
+            <field name="duration">1</field>
+            <field name="cost">500</field>
+        </record>
+    </data>
+</openerp>

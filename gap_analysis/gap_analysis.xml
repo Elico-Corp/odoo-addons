@@ -1,0 +1,449 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <!-- Functionalities -->
+    	<record id="view_gap_analysis_functionality_tree" model="ir.ui.view">
+            <field name="name">gap_analysis.functionality.tree</field>
+            <field name="model">gap_analysis.functionality</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Gap Analysis Functionalities">
+                    <field name="category"/>
+                    <field name="name"/>
+                    <field name="effort" groups="gap_analysis.res_group_gap1"/>
+		            <field name="critical" groups="gap_analysis.res_group_gap1"/>
+		            <field name="openerp_fct" groups="gap_analysis.res_group_gap1"/>
+                </tree>
+            </field>
+        </record>
+		<record id="view_gap_analysis_functionality_form" model="ir.ui.view">
+            <field name="name">gap_analysis.functionality.form</field>
+            <field name="model">gap_analysis.functionality</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Gap Analysis Functionalities">
+                    <field name="category"/>
+                    <field name="name"/>
+                    <field name="is_tmpl"  groups="gap_analysis.res_group_gap1" on_change="onchange_is_tmpl(is_tmpl)"/>
+                    <field name="proposed" attrs="{'invisible':[('is_tmpl','=',True)]}"/>
+                    <newline/>
+
+                    <notebook colspan="4">
+                        <page string="Details">
+                            <separator string="Description" colspan="4"/>
+                            <field name="description" colspan="4" nolabel="1"/>
+                            <newline/>
+                            <group groups="gap_analysis.res_group_gap1" attrs="{'invisible':[('is_tmpl','=',False)]}" colspan="4" col="4">
+		                <separator colspan="4" string="Default Values"/>
+		                <field name="critical"/>
+		                <field name="openerp_fct"/>
+		                <field name="effort" on_change="onchange_effort_id(effort,unknown_wk)"/>
+		                <field name="unknown_wk" invisible="1"/>
+		                    <field name="duration_wk" attrs="{'invisible':[('unknown_wk','=',False)]}"/>
+		                    <field name="testing"/>
+		                <newline/>
+
+		                <separator colspan="4" string="Workloads"/>
+                                    <field colspan="4" name="workloads" nolabel="1" widget="one2many_list">
+                                    <form string="Workloads">
+                                        <field name="type" on_change="onchange_type_id(type)" colspan="4"/>
+                                        <field name="duration"/>
+                                    </form>
+                                    <tree>
+                                        <field name="type"/>
+                                        <field name="duration"/>
+                                    </tree>
+                                </field>
+                                <newline/>
+                            </group>
+                        </page>
+
+                        <page string="Analyses">
+                            <group colspan="4" col="4">
+                                <separator colspan="4" string="Instances"/>
+                                <field colspan="4" name="ga_lines" nolabel="1">
+                                    <tree colors="grey:keep==False;">
+                                        <field name="gap_id" string="Gap Analysis"/>
+                                        <field name="code"/>
+                                        <field name="keep" invisible="1"/>
+                                        <field name="phase"/>
+                                        <field name="critical"/>
+                                        <field name="effort"/>
+                                        <field name="testing"/>
+                                        <field name="duration_wk"/>
+                                        <field name="total_time"/>
+                                        <field name="total_cost"/>
+                                    </tree>
+                                </field>
+                                <button name="open_line_wizard" string="Add to Analysis" type="object" icon="gtk-add" context="{'default_tmpl':False}"/>
+                            </group>
+                            <group attrs="{'invisible':[('is_tmpl','=',False)]}" colspan="4" col="4">
+                                <separator colspan="4" string="Gap Templates"/>
+                                <field colspan="4" name="ga_tmpl_lines" nolabel="1" options="{'deletable': false}">
+                                    <tree colors="grey:keep==False;">
+                                        <field name="gap_id" string="Template"/>
+                                        <field name="code"/>
+                                        <field name="keep" invisible="1"/>
+                                        <field name="phase"/>
+                                        <field name="critical"/>
+                                        <field name="effort"/>
+                                        <field name="testing"/>
+                                        <field name="duration_wk"/>
+                                    </tree>
+                                </field>
+                                <button name="open_line_wizard" string="Add to Template" type="object" icon="gtk-add" context="{'default_tmpl':True}"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_gap_analysis_functionality_filter" model="ir.ui.view">
+            <field name="name">gap_analysis.functionality.search</field>
+            <field name="model">gap_analysis.functionality</field>
+            <field name="type">search</field>
+            <field name="arch" type="xml">
+                <search string="Search Functionality">
+                    <filter string="Template" icon="star-on" domain="[('is_tmpl','=',True)]"/>
+                    <filter string="Regular" icon="star-off" domain="[('is_tmpl','=',False)]"/>
+                    <separator orientation="vertical"/>
+                    <filter string="Proposed" icon="terp-idea" domain="[('proposed','=',True)]"/>
+                    <field name="category"/>
+                    <field name="name" string="Name"/>
+                    <field name="description"/>
+                    <field name="openerp_fct" string="OpenERP Feature"/>
+                    <newline/>
+                    <group expand="0" string="Group By..." colspan="4">
+                        <filter string="Category" icon="terp-stage" context="{'group_by':'category'}"/>
+                        <filter string="Critical Level" icon="terp-gnome-cpu-frequency-applet+" context="{'group_by':'critical'}"/>
+                        <filter string="Effort" icon="terp-project" context="{'group_by':'effort'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+        
+        <!-- Functionality Categories -->
+    	<record id="view_gap_analysis_functionality_category_tree" model="ir.ui.view">
+            <field name="name">gap_analysis.functionality.category.tree</field>
+            <field name="model">gap_analysis.functionality.category</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Gap Analysis Functionality categories">
+                    <field name="sequence"/>
+                    <field name="code"/>
+                    <field name="full_path"/>
+                </tree>
+            </field>
+        </record>
+        <record id="view_gap_analysis_functionality_category_search" model="ir.ui.view">
+            <field name="name">gap_analysis.functionality.category.search</field>
+            <field name="model">gap_analysis.functionality.category</field>
+            <field name="type">search</field>
+            <field name="arch" type="xml">
+                <search string="Gap Analysis Functionality categories">
+                    <field name="parent_id" select="1" widget="selection"/>
+                    <field name="child_id" select="1" widget="selection"/>
+                    <field name="sequence"/>
+                    <field name="full_path"/>
+                    <field name="code"/>
+                </search>
+            </field>
+        </record>
+        <record id="view_gap_analysis_functionality_category_form" model="ir.ui.view">
+            <field name="name">gap_analysis.functionality.category.form</field>
+            <field name="model">gap_analysis.functionality.category</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Gap Analysis Functionality categories">
+                    <field name="name"/>
+                    <field name="code"/>
+                    <field name="parent_id"/>
+                    <field name="sequence"/>
+                    <field name="type" invisible="1"/>
+                </form>
+            </field>
+        </record>
+        
+        <!-- Effort -->
+    	<record id="view_gap_analysis_effort_tree" model="ir.ui.view">
+            <field name="name">gap_analysis.effort.tree</field>
+            <field name="model">gap_analysis.effort</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Gap Analysis Efforts">
+                    <field name="name"/>
+                    <field name="unknown"/>
+                    <field name="duration"/>
+                </tree>
+            </field>
+        </record>
+    	<record id="view_gap_analysis_effort_form" model="ir.ui.view">
+            <field name="name">gap_analysis.effort.form</field>
+            <field name="model">gap_analysis.effort</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Gap Analysis Efforts">
+                    <field name="name" colspan="4"/>
+                    <field name="unknown" on_change="onchange_unknown(unknown)"/>
+                    <field name="duration" attrs="{'invisible':[('unknown','=',True)]}"/>
+                </form>
+            </field>
+        </record>
+        
+    	<!-- Workload Type -->
+    	<record id="view_gap_analysis_workload_type_tree" model="ir.ui.view">
+            <field name="name">gap_analysis.workload.type.tree</field>
+            <field name="model">gap_analysis.workload.type</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Gap Analysis workload type">
+                    <field name="sequence"/>
+                    <field name="category"/>
+                    <field name="code"/>
+                    <field name="name"/>
+                    <field name="duration"/>
+                </tree>
+            </field>
+        </record>
+    	<record id="view_gap_analysis_workload_type_form" model="ir.ui.view">
+            <field name="name">gap_analysis.workload.type.form</field>
+            <field name="model">gap_analysis.workload.type</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <form string="Gap Analysis workload type">
+                    <field name="sequence"/>
+                    <field name="category"/>
+                    <field name="code"/>
+                    <field name="name"/>
+                    <field name="duration"/>
+                </form>
+            </field>
+        </record>
+        
+    	<!-- Gap Analysis -->
+        <record model="ir.ui.view" id="view_gap_analysis_graph">
+            <field name="name">gap_analysis.graph</field>
+            <field name="model">gap_analysis</field>
+            <field name="type">graph</field>
+            <field name="arch" type="xml">
+                <graph string="Gap Analysis" type="bar">
+                    <field name="partner_id"/>
+                    <field name="estimated_cost" operator="+"/>
+                </graph>
+            </field>
+        </record>
+        <record id="view_gap_analysis_tree" model="ir.ui.view">
+            <field name="name">gap_analysis.tree</field>
+            <field name="model">gap_analysis</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Gap Analysis" colors="grey:state=='cancel';blue:state in ('draft');">
+                    <field name="reference"/>
+                    <field name="name"/>
+                    <field name="partner_id"/>
+                    <field name="user_id"/>
+                    <field name="estimated_cost"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+        <record id="view_gap_analysis_form" model="ir.ui.view">
+            <field name="name">gap_analysis.form</field>
+            <field name="model">gap_analysis</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Gap Analysis">
+                	<group col="4" colspan="4">
+                		<field name="reference"/>
+                		<field name="name"/>
+                		<field name="date_create"/>
+                		<field name="date_confirm"/>
+                		<field name="is_tmpl" groups="gap_analysis.res_group_gap1"/>
+                		<field name="user_id"/>
+                		<field name="project_id" on_change="onchange_project_id(project_id)"/>
+                		<field name="partner_id"/>
+                	</group>                	
+                	<notebook colspan="4">
+                        <page string="Functionalities">
+                            <field colspan="4" name="gap_lines" nolabel="1" widget="one2many_list">
+                                <form string="Functionalities">
+	                                <group colspan="4" col="4">
+	                                    <field name="id" invisible="1"/>
+	                                    <field name="dummy_gap_is_tmpl" invisible="1"/>
+	                                    <field name="functionality" on_change="onchange_functionality_id(functionality,parent.id)" colspan="4" domain="[('is_tmpl','=',True)]"/>
+	                                    <field name="category" attrs="{'readonly':[('dummy_gap_is_tmpl','=',True)]}"/>
+	                                    <field name="keep"/>
+	                                    <field name="critical" attrs="{'readonly':[('dummy_gap_is_tmpl','=',True)]}"/>
+	                                    <field name="openerp_fct" attrs="{'readonly':[('dummy_gap_is_tmpl','=',True)]}"/>
+	                                    <field name="contributors"/>
+	                                    <field name="testing" attrs="{'readonly':[('dummy_gap_is_tmpl','=',True)]}"/>
+	                                    <field name="effort" on_change="onchange_effort_id(effort,unknown_wk)" attrs="{'readonly':[('dummy_gap_is_tmpl','=',True)]}"/>
+	                                    <field name="unknown_wk" invisible="1" attrs="{'readonly':[('dummy_gap_is_tmpl','=',True)]}"/>
+			                            <field name="duration_wk" attrs="{'invisible':[('unknown_wk','=',False)],'readonly':[('dummy_gap_is_tmpl','=',True)]}"/>
+	                                    <newline/>
+	                                    <separator colspan="4" string="Workloads"/>
+	                                    <field colspan="4" name="workloads" nolabel="1" widget="one2many_list" attrs="{'readonly':[('dummy_gap_is_tmpl','=',True)]}">
+	                                    	<form string="Workloads">
+	                                        	<field name="type" on_change="onchange_type_id(type)"/>
+			                                    <field name="duration"/>
+	                                        </form>
+			                                <tree string="Workloads">
+			                                    <field name="type"/>
+			                                    <field name="duration"/>
+	                                        </tree>
+                            			</field>
+	                                    <field name="total_cost"/>
+	                                </group>
+                                </form>
+                                <tree string="Functionalities" colors="grey:keep==False;">
+                                	<field name="code"/>
+                                	<field name="keep"/>
+                                	<field name="category"/>
+                                    <field name="functionality"/>
+                                    <field name="total_cost"/>
+                                </tree>
+                            </field>
+                            <group attrs="{'invisible':['|',('state','!=','draft'),('is_tmpl','=',True)]}">
+                                <button name="import_from_tmpl" icon="gtk-execute" type="object" string="Import from Template" />
+                            </group>
+                        </page>
+                        <page string="Pricing" groups="gap_analysis.res_group_gap1">
+                            <field colspan="4" name="func_cost"/>
+                            <field colspan="4" name="tech_cost"/>
+                            <field colspan="4" name="dev_cost"/>
+                        </page>
+                        <page string="Resources" groups="gap_analysis.res_group_gap1">
+                            <field colspan="2" name="user_functional"/>
+                            <field colspan="2" name="user_technical"/>
+                            <field colspan="2" name="user_dev"/>
+                            <field colspan="2" name="user_test"/>
+                        </page>
+                        <page string="Notes">
+                            <field colspan="4" name="note" nolabel="1"/>
+                        </page>
+                    </notebook>
+					<group col="5" colspan="4">
+	                    <field name="estimated_cost"/>                                
+	                    <button name="button_dummy" type="object" string="Compute Price / Code" groups="gap_analysis.res_group_gap0,gap_analysis.res_group_gap1"/>
+	                </group>
+	                <group col="5" colspan="4" attrs="{'invisible':[('is_tmpl','=',True)]}">
+	                    <field name="state" widget="statusbar" statusbar_visible="draft,done,cancel" statusbar_colors='{"cancel":"red"}'/>
+	                    <button name="action_change" states="done,cancel" string="Reactivate" type="object" icon="gtk-convert"/>
+	                    <button name="action_done" states="draft" string="Confirm" type="object" icon="gtk-apply"/>
+	    				<button name="action_cancel" states="draft" string="Cancel" type="object" icon="gtk-cancel"/>
+	                </group>
+                </form>
+            </field>
+        </record>
+        
+        <!-- Actions -->
+        <record id="act_gap_analysis" model="ir.actions.act_window">
+            <field name="name">Gap Analysis</field>
+            <field name="res_model">gap_analysis</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form,graph</field>
+            <field name="domain">[('is_tmpl','=',False)]</field>
+        </record>
+        <record id="act_my_gap" model="ir.actions.act_window">
+            <field name="name">My Gap Analysis</field>
+            <field name="res_model">gap_analysis</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form,graph</field>
+            <field name="domain">[('user_id','=',uid),('state','!=','cancel'),('is_tmpl','=',False)]</field>
+        </record>
+        <record id="act_gap_analysis_tmpl" model="ir.actions.act_window">
+            <field name="name">Gap Analysis Template</field>
+            <field name="res_model">gap_analysis</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form,graph</field>
+            <field name="domain">[('is_tmpl','=',True)]</field>
+        </record>
+        <record id="act_gap_analysis_fct" model="ir.actions.act_window">
+            <field name="name">Functionalities</field>
+            <field name="res_model">gap_analysis.functionality</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view">gap_analysis.view_gap_analysis_functionality_filter</field>
+        </record>
+		<record id="act_gap_analysis_fct_tmpl" model="ir.actions.act_window">
+            <field name="name">Functionality Templates</field>
+            <field name="res_model">gap_analysis.functionality</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('is_tmpl','=',True)]</field>
+        </record>
+		<record id="act_gap_analysis_fct_proposed" model="ir.actions.act_window">
+            <field name="name">Proposed Functionalities</field>
+            <field name="res_model">gap_analysis.functionality</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('proposed','=',True)]</field>
+        </record>
+        <record id="act_gap_analysis_fct_cat" model="ir.actions.act_window">
+            <field name="name">Functionality Categories</field>
+            <field name="res_model">gap_analysis.functionality.category</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <record id="act_gap_analysis_openerp" model="ir.actions.act_window">
+            <field name="name">OpenERP Features</field>
+            <field name="res_model">gap_analysis.openerp</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <record id="act_gap_analysis_workload_type" model="ir.actions.act_window">
+            <field name="name">Workload Type</field>
+            <field name="res_model">gap_analysis.workload.type</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <record id="act_gap_analysis_effort" model="ir.actions.act_window">
+            <field name="name">Effort</field>
+            <field name="res_model">gap_analysis.effort</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        
+        <!-- Board -->
+        <record id="board_gap_form" model="ir.ui.view">
+            <field name="name">board.gap.form</field>
+            <field name="model">board.board</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="My Board">
+                    <hpaned>
+                        <child1>
+                            <action colspan="4"  height="100" name="%(act_my_gap)d" string="My Gap Analysis"/>
+                        </child1>
+                    </hpaned>
+                </form>
+            </field>
+        </record>
+        <record id="act_board_gap" model="ir.actions.act_window">
+            <field name="name">Gap Analysis Dashboard</field>
+            <field name="res_model">board.board</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="usage">menu</field>
+            <field name="view_id" ref="board_gap_form"/>
+        </record>
+        
+        <!-- Menus -->
+        <menuitem web_icon="images/gap.png" web_icon_hover="images/gap-hover.png" id="menu_gap" name="Gap Analysis" groups="gap_analysis.res_group_gap0,gap_analysis.res_group_gap1" action="act_board_gap"/>
+	        <menuitem id="menu_gap_00" 		name="Gap Analysis"      parent="menu_gap"    sequence="1"/>
+				<menuitem id="menu_gap_000" name="Gap Analysis"      parent="menu_gap_00" sequence="1" action="act_gap_analysis"/>
+	        
+	        <menuitem id="menu_gap_01" 		name="Templates" 				parent="menu_gap"    sequence="50" groups="gap_analysis.res_group_gap1"/>
+	        	<menuitem id="menu_gap_010" name="Gap Analysis Templates" 	parent="menu_gap_01" sequence="1"  action="act_gap_analysis_tmpl"/>
+	        	<menuitem id="menu_gap_011" name="Functionality Templates"  parent="menu_gap_01" sequence="10" action="act_gap_analysis_fct_tmpl"/>
+	        	<menuitem id="menu_gap_012" name="Proposed Functionalities" parent="menu_gap_01" sequence="20" action="act_gap_analysis_fct_proposed"/>
+	        
+			<menuitem id="menu_gap_02" 		name="Configuration" 			parent="menu_gap"    sequence="99" groups="gap_analysis.res_group_gap1"/>
+				<menuitem id="menu_gap_020" name="Functionality Categories" parent="menu_gap_02" sequence="1" action="act_gap_analysis_fct_cat" />
+				<menuitem id="menu_gap020b" name="All Functionalities" 		parent="menu_gap_02" sequence="2" action="act_gap_analysis_fct"/>
+	        	<menuitem id="menu_gap_021" name="Workload Types" 			parent="menu_gap_02" sequence="3" action="act_gap_analysis_workload_type" />
+	        	<menuitem id="menu_gap_022" name="Efforts" 					parent="menu_gap_02" sequence="6" action="act_gap_analysis_effort" />
+	        	<menuitem id="menu_gap_023" name="OpenERP Features" 		parent="menu_gap_02" sequence="9" action="act_gap_analysis_openerp" />
+    </data>
+</openerp>

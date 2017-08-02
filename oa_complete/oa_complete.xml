@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+	<data>
+		<!-- Project -->
+        <record id="open_view_project_mine" model="ir.actions.act_window">
+            <field name="name">My Projects</field>
+            <field name="res_model">project.project</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form,gantt</field>
+            <field name="filter" eval="True"/>
+            <field name="context">{'search_default_user_id':uid}</field>
+            <field name="search_view_id" ref="project.view_project_project_filter"/>
+        </record>        
+        <!-- Task -->
+        <record id="action_view_task_mine" model="ir.actions.act_window">
+            <field name="name">My Tasks</field>
+            <field name="res_model">project.task</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form,calendar,graph,kanban</field>
+            <field name="filter" eval="True"/>
+            <field name="context">{'search_default_user_id':uid}</field>
+            <field name="search_view_id" ref="project.view_task_search_form"/>
+        </record>
+        <record id="action_view_task_unassigned" model="ir.actions.act_window">
+            <field name="name">Unassigned</field>
+            <field name="res_model">project.task</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form,calendar,graph,kanban</field>
+            <field name="domain">[('user_id','=',False)]</field>
+            <field name="filter" eval="True"/>
+            <field name="search_view_id" ref="project.view_task_search_form"/>
+        </record>
+        <record id="action_view_task_today" model="ir.actions.act_window">
+            <field name="name">Today</field>
+            <field name="res_model">project.task</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form,calendar,graph,kanban</field>
+            <field name="domain">[('timebox_id','=',1)]</field>
+            <field name="filter" eval="True"/>
+            <field name="context">{'search_default_user_id':uid}</field>
+            <field name="search_view_id" ref="project.view_task_search_form"/>
+        </record>
+        <record id="action_view_task_overpassed_mine" model="ir.actions.act_window">
+            <field name="name">My Overpassed Tasks</field>
+            <field name="res_model">project.task</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form,calendar,graph,kanban</field>
+            <field name="domain">[('date_deadline','&lt;',time.strftime('%Y-%m-%d'))]</field>
+            <field name="filter" eval="True"/>
+            <field name="context">{'search_default_user_id':uid}</field>
+            <field name="search_view_id" ref="project.view_task_search_form"/>
+        </record>
+        <!-- Meeting -->
+	    <record model="ir.actions.act_window" id="crm_case_categ_meet_gantt">
+	        <field name="name">Meetings Gantt</field>
+	        <field name="res_model">crm.meeting</field>
+	        <field name="view_mode">gantt,calendar,tree,form</field>
+	        <field name="search_view_id" ref="crm.view_crm_case_meetings_filter"/>
+	    </record>
+		<!-- Document -->
+	    <record model="ir.actions.act_window" id="action_document_file_mine">
+	        <field name="name">My Documents</field>
+	        <field name="res_model">ir.attachment</field>
+	        <field name="view_type">form</field>
+        	<field name="context">{'search_default_user_id':uid}</field>
+    	</record>
+    	<!-- CRM -->
+	    <record model="ir.actions.act_window" id="crm_case_category_act_leads_mine">
+	        <field name="name">My Leads</field>
+	        <field name="res_model">crm.lead</field>
+	        <field name="view_mode">tree,form</field>
+	        <field name="domain">[('user_id','=',uid), '|', ('type','=','lead'), ('type','=',False)]</field>
+	        <field name="filter" eval="True"/>
+	        <field name="search_view_id" ref="crm.view_crm_case_leads_filter"/>
+	        <field name="context">{'search_default_new':1, 'default_type': 'lead', 'search_default_section_id': section_id, 'stage_type': 'lead'}</field>
+	    </record>
+		<record model="ir.actions.act_window" id="crm_case_category_act_opport_mine">
+		     <field name="name">My Opportunities</field>
+		     <field name="res_model">crm.lead</field>
+		     <field name="view_mode">kanban,tree,form,graph,calendar</field>
+		     <field name="domain">[('user_id','=',uid),('type','=','opportunity')]</field>
+		     <field name="filter" eval="True"/>
+		     <field name="search_view_id" ref="crm.view_crm_case_opportunities_filter"/>
+		     <field name="context">{'search_default_new':1, 'search_default_open':1, 'search_default_section_id':section_id, 'stage_type': 'opportunity', 'default_type': 'opportunity'}</field>
+		</record>
+		<record id="action_order_form_mine" model="ir.actions.act_window">
+            <field name="name">My Sales Orders</field>
+            <field name="res_model">sale.order</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form,calendar,graph</field>
+            <field name="domain">[('user_id','=',uid)]</field>
+	        <field name="filter" eval="True"/>
+            <field name="search_view_id" ref="sale.view_sales_order_filter"/>
+        </record>
+        <record id="action_partner_customer_form_mine" model="ir.actions.act_window">
+            <field name="name">My Customers</field>
+            <field name="res_model">res.partner</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,kanban,form</field>
+            <field name="context">{'search_default_user_id':uid,'search_default_customer':1}</field>
+            <field name="search_view_id" ref="base.view_res_partner_filter"/>
+        </record>
+	
+	
+	
+      <menuitem web_icon="images/perso.png" web_icon_hover="images/perso-hover.png" id="menu_1" name="Personal" sequence="-1" groups="base.group_user" action="project.open_board_project"/>
+        <menuitem id="menu_1_00" name="My Emails" parent="menu_1" sequence="10" />		
+        	<menuitem id="menu_1_001" name="Inbox" parent="menu_1_00" sequence="100" action="poweremail.action_poweremail_inbox_tree" />
+        	<menuitem id="menu_1_002" name="Drafts" parent="menu_1_00" sequence="100" action="poweremail.action_poweremail_drafts_tree" />
+        	<menuitem id="menu_1_003" name="Outbox" parent="menu_1_00" sequence="100" action="poweremail.action_poweremail_outbox_tree" />
+        	<menuitem id="menu_1_004" name="Follow-up" parent="menu_1_00" sequence="100" action="poweremail.action_poweremail_follow_tree" />
+        	<menuitem id="menu_1_005" name="Sent" parent="menu_1_00" sequence="100" action="poweremail.action_poweremail_sent_tree" />
+        	<menuitem id="menu_1_006" name="Trash" parent="menu_1_00" sequence="100" action="poweremail.action_poweremail_trash_tree" />
+        
+		<menuitem id="menu_1_01" name="My CRM" parent="menu_1" sequence="10" groups="base.group_sale_manager,base.group_sale_salesman" />
+			<menuitem id="menu_1_010" name="My Scheduled Calls" parent="menu_1_01" sequence="100" action="crm.crm_case_categ_phone0" />
+        	<menuitem id="menu_1_011" name="My Leads" parent="menu_1_01" sequence="100" action="crm_case_category_act_leads_mine" />
+        	<menuitem id="menu_1_012" name="My Opportunities" parent="menu_1_01" sequence="100" action="crm_case_category_act_opport_mine" />
+        	<menuitem id="menu_1_013" name="My Sales" parent="menu_1_01" sequence="100" action="action_order_form_mine" />
+        	<menuitem id="menu_1_014" name="My Customers" parent="menu_1_01" sequence="100" action="action_partner_customer_form_mine" />
+        	
+        <menuitem id="menu_1_10" name="My Meetings" parent="menu_1" sequence="10" />
+        	<menuitem id="menu_1_101" name="Calendars" parent="menu_1_10" sequence="100" action="crm.crm_case_categ_meet" />
+        	<menuitem id="menu_1_102" name="Gantt Meetings" parent="menu_1_10" sequence="100" action="crm_case_categ_meet_gantt" />
+        	<menuitem id="menu_1_103" name="Meeting Invitations" parent="menu_1_10" sequence="100" action="crm.action_view_attendee_form" />
+
+        <menuitem id="menu_1_20" name="My Tasks" parent="menu_1" sequence="10" groups="project.group_project_manager,project.group_project_user" />
+            <menuitem id="menu_1_201" name="My Tasks" parent="menu_1_20" sequence="100" action="action_view_task_mine" />
+            <menuitem id="menu_1_202" name="Unassigned" parent="menu_1_20" sequence="100" action="action_view_task_unassigned" />
+            <menuitem id="menu_1_203" name="Today" parent="menu_1_20" sequence="100" action="action_view_task_today" />
+            <menuitem id="menu_1_204" name="My Overpassed Tasks" parent="menu_1_20" sequence="100" action="action_view_task_overpassed_mine" />
+
+        <menuitem id="menu_1_30" name="My Projects" parent="menu_1" sequence="10" action="open_view_project_mine" groups="project.group_project_manager,project.group_project_user" />
+            
+        <!--menuitem id="menu_1_40" name="My Timesheet" parent="menu_1" sequence="10" action="project_timesheet.menu_act_project_management_timesheet_sheet_form" /-->
+        <menuitem id="menu_1_40" name="My Timesheet" parent="menu_1" sequence="10" action="hr_timesheet_sheet.action_hr_timesheet_current_open" groups="base.group_hr_user" />
+        
+        <menuitem id="menu_1_50" name="My Documents" parent="menu_1" sequence="10" action="action_document_file_mine" />
+	</data>
+</openerp>

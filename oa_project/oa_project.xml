@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+	<data>
+		<!-- Project -->
+        <record id="open_view_project_mine" model="ir.actions.act_window">
+            <field name="name">My Projects</field>
+            <field name="res_model">project.project</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form,gantt</field>
+            <field name="filter" eval="True"/>
+            <field name="context">{'search_default_user_id':uid}</field>
+            <field name="search_view_id" ref="project.view_project_project_filter"/>
+        </record>        
+        <!-- Task -->
+        <record id="action_view_task_mine" model="ir.actions.act_window">
+            <field name="name">My Tasks</field>
+            <field name="res_model">project.task</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form,calendar,graph,kanban</field>
+            <field name="filter" eval="True"/>
+            <field name="context">{'search_default_user_id':uid}</field>
+            <field name="search_view_id" ref="project.view_task_search_form"/>
+        </record>
+        <record id="action_view_task_unassigned" model="ir.actions.act_window">
+            <field name="name">Unassigned</field>
+            <field name="res_model">project.task</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form,calendar,graph,kanban</field>
+            <field name="domain">[('user_id','=',False)]</field>
+            <field name="filter" eval="True"/>
+            <field name="search_view_id" ref="project.view_task_search_form"/>
+        </record>
+        <record id="action_view_task_today" model="ir.actions.act_window">
+            <field name="name">Today</field>
+            <field name="res_model">project.task</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form,calendar,graph,kanban</field>
+            <field name="domain">[('timebox_id','=',1)]</field>
+            <field name="filter" eval="True"/>
+            <field name="context">{'search_default_user_id':uid}</field>
+            <field name="search_view_id" ref="project.view_task_search_form"/>
+        </record>
+        <record id="action_view_task_overpassed_mine" model="ir.actions.act_window">
+            <field name="name">My Overpassed Tasks</field>
+            <field name="res_model">project.task</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form,calendar,graph,kanban</field>
+            <field name="domain">[('date_deadline','&lt;',time.strftime('%Y-%m-%d'))]</field>
+            <field name="filter" eval="True"/>
+            <field name="context">{'search_default_user_id':uid}</field>
+            <field name="search_view_id" ref="project.view_task_search_form"/>
+        </record>	
+	
+	
+        <menuitem id="menu_1_20" name="My Tasks" parent="oa_base.menu_1" sequence="20" groups="project.group_project_manager,project.group_project_user" />
+            <menuitem id="menu_1_201" name="My Tasks" parent="menu_1_20" sequence="201" action="action_view_task_mine" />
+            <menuitem id="menu_1_202" name="Unassigned" parent="menu_1_20" sequence="202" action="action_view_task_unassigned" />
+            <menuitem id="menu_1_203" name="Today" parent="menu_1_20" sequence="203" action="action_view_task_today" />
+            <menuitem id="menu_1_204" name="My Overpassed Tasks" parent="menu_1_20" sequence="204" action="action_view_task_overpassed_mine" />
+
+        <menuitem id="menu_1_30" name="My Projects" parent="oa_base.menu_1" sequence="30" action="open_view_project_mine" groups="project.group_project_manager,project.group_project_user" />
+	</data>
+</openerp>

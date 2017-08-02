@@ -1,0 +1,134 @@
+# -*- coding: utf-8 -*-
+##############################################################################
+#
+#    OpenERP, Open Source Management Solution
+#    Copyright (C) 2004-2010 Tiny SPRL (<http://tiny.be>).
+#
+#    This program is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU Affero General Public License as
+#    published by the Free Software Foundation, either version 3 of the
+#    License, or (at your option) any later version.
+#
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU Affero General Public License for more details.
+#
+#    You should have received a copy of the GNU Affero General Public License
+#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+##############################################################################
+from osv import fields,osv
+
+class tf_res_partner_mktginfo(osv.osv):
+    _name = "tf_res_partner_mktginfo"
+
+    _std_client_tao_selection           = [('std','Standard'), ('design_client','Designed by client'), ('design_tao','Designed by TAO')]
+    _std_client_selection               = [('std','Standard'), ('design_client','Designed by client')]
+    _no_firsttime_everytime_selection   = [('no','Drop down menu, No validation required'), ('firsttime','Validation needed for new or updated materials'), ('everytime','Validation needed every time')]
+
+    # Make name field translatable
+    _columns = { 
+        'partner_id':           fields.many2one('res.partner', 'Partner', select=True),
+        'brand':                fields.char('Brand', size=34),
+        'file_validation':      fields.selection(_no_firsttime_everytime_selection,      'File Validation'),
+        'mockup_validation':    fields.selection(_no_firsttime_everytime_selection,    'Mockup Validation'),
+        'mockup_qty':           fields.integer('Mockup Qty'),
+        'tao_modification_rights': fields.boolean('Tao Modification Rights'),
+        'batch_use':            fields.boolean('Batch Use'),
+        'batch_format':         fields.char('Batch Format', size=13),
+        'batch_date':           fields.selection([('received','Order received'), ('plannedproduction','Production Planned'), ('actualproduction','Actual Production'), ('ETD','ETD'), ('no_date','NoDate')], 'Batch Date'),
+        'batch_position':       fields.selection([('RP','Rating Plate'), ('EAN','EAN Sticker'), ('colorbox','Colorbox'), ('innerbox','Inner Box'), ('outer','Outer Carton'), ('others','Others')], 'Batch Position'),
+        'padprinting':          fields.selection(_std_client_tao_selection, 'Padprinting'),
+        'rating_plate':         fields.selection(_std_client_tao_selection, 'Rating Plate'),
+        'instruction_sheet':    fields.selection(_std_client_tao_selection, 'Instruction Sheet'),
+        'unit_packaging':       fields.selection(_std_client_tao_selection, 'Unit Packaging'),
+        'inner_box':            fields.selection(_std_client_selection,     'Inner Box'),
+        'shipping_mark_inn':    fields.selection(_std_client_selection,     'Shipping Mark Inn'),
+        'shipping_mark_inn_position': fields.selection([('front','Front'), ('back','Back'), ('right','Right'), ('left','Left'), ('bottom','Bottom'), ('top','Top')], 'Shipping Mark Inn Position'),
+        'outer_carton':         fields.selection(_std_client_selection,     'Outer Carton'),
+        'shipping_mark_out':    fields.selection(_std_client_selection,     'Shipping Mark Out'),
+        'shipping_mark_out_pos':fields.selection([('front','Front'), ('back','Back'), ('right','Right'), ('left','Left'), ('bottom','Bottom'), ('top','Full')], 'Shipping Mark Out Pos'),
+        'display_box':          fields.selection(_std_client_tao_selection, 'Display Box'),
+        'pallet':               fields.selection(_std_client_selection,     'Pallet'),
+        'additional_comments':  fields.text('Additional Comments', size=64),
+        }
+
+
+tf_res_partner_mktginfo()
+
+
+
+
+
+
+
+class tf_res_partner_sourcinginfo(osv.osv):
+    _name = "tf_res_partner_sourcinginfo"
+
+    # Make name field translatable
+    _columns = { 
+        'partner_id':           fields.many2one('res.partner', 'Partner', select=True),
+        'min_qty':              fields.integer('Minimum Quantity'),
+        'max_qty':              fields.integer('Maximum Quantity'),
+        'lead_time':            fields.char('Lead Time in Days', size=12),
+        }
+
+
+
+
+
+tf_res_partner_sourcinginfo()
+
+class tf_res_partner(osv.osv):
+
+    # Make name field translatable
+    _name = "res.partner"
+    _inherit = "res.partner"
+    _columns = { 
+        'name':                 fields.char('Name', size=96, required=True, select=True, translate=True),
+
+        'mktginfo':             fields.one2many('tf_res_partner_mktginfo', 'partner_id', 'Marketing Validation Info'),
+
+        'sourcinginfo':         fields.one2many('tf_res_partner_sourcinginfo', 'partner_id', 'Sourcing Info'),
+        'sourcing_area':                 fields.char('Area', size=12),
+        'sourcing_mc':                   fields.char('MC',    size=96),
+        'sourcing_code_of_business':     fields.char('Code Of Business', size=12),
+        'sourcing_main_products':        fields.char('Main Products',    size=96),
+        'sourcing_monthly_capacity':     fields.char('Monthly Capacity', size=96),
+        'sourcing_comments':             fields.text('Additional Sourcing Comments', size=96),
+        }
+
+
+tf_res_partner()
+
+
+
+
+class tf_res_partner_address(osv.osv):
+    # make name, function fields translatable
+    _name= "res.partner.address"
+    _inherit= "res.partner.address"
+    _columns = {
+        'name': fields.char('Contact Name', size=64, select=1, translate=True),
+        'function': fields.char('Function', size=64, translate=True),
+        'street': fields.char('Street', size=128, translate=True),
+        'street2': fields.char('Street2', size=128, translate=True),
+        'city': fields.char('City', size=128, translate=True),
+   }  
+
+tf_res_partner_address()   
+
+
+
+
+
+class tf_CountryState(osv.osv):
+    _name = 'res.country.state'
+    _inherit = "res.country.state"
+    _columns = {
+        'name': fields.char('State Name', size=64, required=True, translate=True),  
+    }
+
+tf_CountryState()     
+     

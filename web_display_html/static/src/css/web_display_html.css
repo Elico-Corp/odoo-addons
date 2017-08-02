@@ -1,0 +1,7 @@
+.openerp .oe_form_readonly .oe_form_field_text_WYSIWYG div.field_text_WYSIWYG {
+	white-space: inherit;
+	min-height: 100px;
+	height: auto;
+	background-color: white;
+	padding: 3px 2px 2px;
+}

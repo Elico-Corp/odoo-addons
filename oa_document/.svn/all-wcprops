@@ -1,0 +1,89 @@
+K 25
+svn:wc:ra_dav:version-url
+V 45
+/svn/tracsvn/!svn/ver/1275/Impl/trunk/taoutil
+END
+tao_action.xml
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/tracsvn/!svn/ver/1193/Impl/trunk/taoutil/tao_action.xml
+END
+tao_companies.xml
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/tracsvn/!svn/ver/1300/Impl/trunk/taoutil/tao_companies.xml
+END
+tao_PMC.xml
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/tracsvn/!svn/ver/1052/Impl/trunk/taoutil/tao_PMC.xml
+END
+tao_users.ldif
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/tracsvn/!svn/ver/475/Impl/trunk/taoutil/tao_users.ldif
+END
+ldap_dump.ldif
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/tracsvn/!svn/ver/475/Impl/trunk/taoutil/ldap_dump.ldif
+END
+partner.py
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/tracsvn/!svn/ver/1198/Impl/trunk/taoutil/partner.py
+END
+tao_structure.xml
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/tracsvn/!svn/ver/1317/Impl/trunk/taoutil/tao_structure.xml
+END
+tao_users.xml
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/tracsvn/!svn/ver/1198/Impl/trunk/taoutil/tao_users.xml
+END
+__init__.py
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/tracsvn/!svn/ver/806/Impl/trunk/taoutil/__init__.py
+END
+load_users.sh
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/tracsvn/!svn/ver/476/Impl/trunk/taoutil/load_users.sh
+END
+__openerp__.py
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/tracsvn/!svn/ver/1269/Impl/trunk/taoutil/__openerp__.py
+END
+delete_ldap.sh
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/tracsvn/!svn/ver/476/Impl/trunk/taoutil/delete_ldap.sh
+END
+tao_rules.xml
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/tracsvn/!svn/ver/1336/Impl/trunk/taoutil/tao_rules.xml
+END
+dump_ldap.sh
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/tracsvn/!svn/ver/475/Impl/trunk/taoutil/dump_ldap.sh
+END

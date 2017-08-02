@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+	<data>	
+        <menuitem id="menu_1_40" name="My Timesheet" parent="oa_base.menu_1" sequence="40" action="hr_timesheet_sheet.action_hr_timesheet_current_open" groups="base.group_hr_user" />
+	</data>
+</openerp>

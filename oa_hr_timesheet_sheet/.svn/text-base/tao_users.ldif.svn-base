@@ -1,0 +1,293 @@
+dn: dc=TUP, dc=zent01
+changetype: add
+objectClass: domain
+dc: TUP
+
+dn: ou=Users,dc=TUP,dc=zent01
+changetype: add
+objectClass: organizationalUnit
+ou: Users
+
+dn: ou=Groups,dc=TUP,dc=zent01
+changetype: add
+objectClass: organizationalUnit
+ou: Groups
+
+dn: uid=jp,ou=Users,dc=TUP,dc=zent01
+changetype: add
+cn: JP gal
+uid: jp
+sn: gal
+loginShell: /bin/bash
+uidNumber: 2001
+gidNumber: 1901
+homeDirectory: /home/jp
+userPassword: welcome1
+quota: 100
+objectClass: inetOrgPerson
+objectClass: posixAccount
+objectClass: passwordHolder
+objectClass: systemQuotas
+givenName: JP
+
+dn: uid=tangyong,ou=Users,dc=TUP,dc=zent01
+changetype: add
+cn: Tang Yong
+uid: tangyong
+sn: Yong
+loginShell: /bin/bash
+uidNumber: 2002
+gidNumber: 1901
+homeDirectory: /home/tangyong
+userPassword: tangyong
+quota: 100
+objectClass: inetOrgPerson
+objectClass: posixAccount
+objectClass: passwordHolder
+objectClass: systemQuotas
+givenName: Tang
+
+dn: uid=bertrand,ou=Users,dc=TUP,dc=zent01
+changetype: add
+cn: Bertrand Delalande
+uid: bertrand
+sn: Delalande
+loginShell: /bin/bash
+uidNumber: 2003
+gidNumber: 1901
+homeDirectory: /home/bertrand
+userPassword: bertrand
+quota: 100
+objectClass: inetOrgPerson
+objectClass: posixAccount
+objectClass: passwordHolder
+objectClass: systemQuotas
+givenName: Bertrand
+
+dn: uid=eagle,ou=Users,dc=TUP,dc=zent01
+changetype: add
+cn: Eagle Liu 
+uid: eagle
+sn: Liu
+loginShell: /bin/bash
+uidNumber: 2004
+gidNumber: 1901
+homeDirectory: /home/eagle
+userPassword: eagle
+quota: 100
+objectClass: inetOrgPerson
+objectClass: posixAccount
+objectClass: passwordHolder
+objectClass: systemQuotas
+givenName: Eagle
+
+dn: uid=fabien,ou=Users,dc=TUP,dc=zent01
+changetype: add
+cn: Fabien Bubendorff
+uid: fabien
+sn: Bubendorff
+loginShell: /bin/bash
+uidNumber: 2005
+gidNumber: 1901
+homeDirectory: /home/fabien
+userPassword: fabien
+quota: 100
+objectClass: inetOrgPerson
+objectClass: posixAccount
+objectClass: passwordHolder
+objectClass: systemQuotas
+givenName: Fabien
+
+dn: uid=jerome,ou=Users,dc=TUP,dc=zent01
+changetype: add
+cn: Jerome Leroy
+uid: jerome
+sn: Leroy
+userPassword: jerome
+objectClass: inetOrgPerson
+objectClass: passwordHolder
+givenName: Jerome
+
+dn: uid=jean-eudes,ou=Users,dc=TUP,dc=zent01
+changetype: add
+cn: Jean-Eudes Leroy
+uid: jean-eudes
+sn: Leroy
+userPassword: jean-eudes
+objectClass: inetOrgPerson
+objectClass: passwordHolder
+givenName: Jean-Eudes
+
+dn: uid=bruno,ou=Users,dc=TUP,dc=zent01
+changetype: add
+cn: Bruno Couthouis
+uid: bruno
+sn: Couthouis
+loginShell: /bin/bash
+uidNumber: 2006
+gidNumber: 1901
+homeDirectory: /home/bruno
+userPassword: bruno
+quota: 100
+objectClass: inetOrgPerson
+objectClass: posixAccount
+objectClass: passwordHolder
+objectClass: systemQuotas
+givenName: Bruno
+
+dn: uid=john,ou=Users,dc=TUP,dc=zent01
+changetype: add
+cn: John Wu
+uid: john
+sn: Wu
+loginShell: /bin/bash
+uidNumber: 2007
+gidNumber: 1901
+homeDirectory: /home/john
+userPassword: john
+quota: 100
+objectClass: inetOrgPerson
+objectClass: posixAccount
+objectClass: passwordHolder
+objectClass: systemQuotas
+givenName: Wu
+
+dn: uid=esther,ou=Users,dc=TUP,dc=zent01
+changetype: add
+cn: Esther Chan
+uid: esther
+sn: Chan
+userPassword: esther
+objectClass: inetOrgPerson
+objectClass: passwordHolder
+givenName: Esther
+
+
+
+
+
+dn: cn=taoemployee,ou=Groups,dc=TUP,dc=zent01
+changetype: add
+cn: taoemployee
+gidNumber: 2001
+objectClass: posixGroup
+memberUid: jp
+memberUid: tangyong
+memberUid: fabien
+memberUid: bertrand
+memberUid: john
+memberUid: eagle
+memberUid: jerome
+memberUid: jean-eudes
+memberUid: bruno
+memberUid: esther
+
+
+dn: cn=Marketing,ou=Groups,dc=TUP,dc=zent01
+changetype: add
+cn: Marketing
+gidNumber: 2002
+objectClass: posixGroup
+memberUid: jp
+memberUid: fabien
+memberUid: bertrand
+
+dn: cn=Manager,cn=Marketing,ou=Groups,dc=TUP,dc=zent01
+changetype: add
+cn: Marketing / Manager
+gidNumber: 2003
+objectClass: posixGroup
+memberUid: bertrand
+
+
+dn: cn=R&D,ou=Groups,dc=TUP,dc=zent01
+changetype: add
+cn: R&D
+gidNumber: 2004
+objectClass: posixGroup
+memberUid: jp
+memberUid: bertrand
+memberUid: fabien
+
+dn: cn=Manager,cn=R&D,ou=Groups,dc=TUP,dc=zent01
+changetype: add
+cn: R&D / Manager
+gidNumber: 2005
+objectClass: posixGroup
+memberUid: fabien
+
+
+dn: cn=Sourcing,ou=Groups,dc=TUP,dc=zent01
+changetype: add
+cn: Sourcing
+gidNumber: 2006
+objectClass: posixGroup
+memberUid: jp
+memberUid: eagle
+memberUid: john
+
+dn: cn=Manager,cn=Sourcing,ou=Groups,dc=TUP,dc=zent01
+changetype: add
+cn: Sourcing / Manager
+gidNumber: 2007
+objectClass: posixGroup
+memberUid: john
+
+
+dn: cn=Production,ou=Groups,dc=TUP,dc=zent01
+changetype: add
+cn: Production
+gidNumber: 2008
+objectClass: posixGroup
+memberUid: jp
+memberUid: john
+memberUid: eagle
+memberUid: bruno
+
+dn: cn=Manager,cn=Production,ou=Groups,dc=TUP,dc=zent01
+changetype: add
+cn: Production / Manager
+gidNumber: 2009
+objectClass: posixGroup
+memberUid: eagle
+memberUid: bruno
+
+
+dn: cn=PMC,ou=Groups,dc=TUP,dc=zent01
+changetype: add
+cn: PMC
+gidNumber: 2010
+objectClass: posixGroup
+memberUid: jp
+memberUid: john
+memberUid: eagle
+memberUid: bruno
+
+dn: cn=Manager,cn=PMC,ou=Groups,dc=TUP,dc=zent01
+changetype: add
+cn: PMC / Manager
+gidNumber: 2011
+objectClass: posixGroup
+memberUid: eagle
+memberUid: bruno
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

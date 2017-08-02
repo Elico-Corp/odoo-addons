@@ -1,0 +1,59 @@
+# -*- coding: utf-8 -*-
+##############################################################################
+#
+#    Custom Module for Tao Light 
+#    for use in
+#    OpenERP, Open Source Management Solution
+#    Copyright (C) 2004-2010 Tiny SPRL (<http://tiny.be>).
+#
+#    This program is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU Affero General Public License as
+#    published by the Free Software Foundation, either version 3 of the
+#    License, or (at your option) any later version.
+#
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU Affero General Public License for more details.
+#
+#    You should have received a copy of the GNU Affero General Public License
+#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+##############################################################################
+
+{
+   'name': 'TAOUtil Module',
+    'version': '0.1',
+    'category': 'Generic Modules/Others',
+    'description': """
+    All sort of utilities for TAOLight, stuff that does not fit anywhere else
+    """,
+    'author': 'JPeG',
+    'website': 'http://taolight.com',
+    'depends': ['users_ldap', 'sale_delivery', 'multi_company'],
+    'web_depends': [],
+    'init_xml': ['tao_companies.xml',
+                 'tao_action.xml',
+                 'tao_structure.xml',
+                 'tao_users.xml',
+                 'tao_PMC.xml',
+                 'report/tao_add_sale_order.xml',
+                 ],
+    'update_xml': ['tao_rules.xml',
+                   'tao_action.xml',
+                   'access/account/ir.model.access.csv',
+                   'access/base/ir.model.access.csv',
+                   'access/mrp/ir.model.access.csv',
+                   'access/procurement/ir.model.access.csv',
+                   'access/product_variant_multi/ir.model.access.csv',
+                   'access/product/ir.model.access.csv',
+                   'access/stock/ir.model.access.csv',
+                   'access/tao_objects/ir.model.access.csv',
+                   'access/sale/ir.model.access.csv',
+                   'access/sale_delivery/ir.model.access.csv',
+                   ],
+    'demo_xml': [],
+    'test': [],
+    'installable': True,
+    'active': False,
+}
