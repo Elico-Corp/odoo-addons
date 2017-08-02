@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+<!--Packing Report-->        
+		<report auto="False" 
+			id="stock.report_packing_list" 
+			model="stock.picking"
+			name="l10n.cn.packing" 
+			rml="l10n_cn_report_stock/report/packing.rml" 
+ 			string="Packing list"/>
+
+	</data>
+</openerp>

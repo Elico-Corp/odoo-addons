@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+<!--RFQ Form-->        
+		<report auto="False" 
+			id="purchase.report_purchase_quotation" 
+			model="purchase.order"
+			name="l10n.cn.rfq" 
+			rml="l10n_cn_report_purchase/report/rfq.rml" 
+			string="Request for Quotation"/>
+
+<!--PO Form-->        
+		<report auto="False" 
+			id="purchase.report_purchase_order" 
+			model="purchase.order"
+			name="l10n.cn.po" 
+			rml="l10n_cn_report_purchase/report/po.rml" 
+			string="Purchase Order"/>
+
+	</data>
+</openerp>

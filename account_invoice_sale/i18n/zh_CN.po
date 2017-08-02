@@ -1,0 +1,42 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+#	* account_sale_apem
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 6.0.3\n"
+"Report-Msgid-Bugs-To: support@openerp.com\n"
+"POT-Creation-Date: 2012-04-18 04:35+0000\n"
+"PO-Revision-Date: 2012-04-18 04:35+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: account_sale_apem
+#: constraint:stock.move:0
+msgid "You must assign a production lot for this product"
+msgstr "您必须为此产品设置一个批号"
+
+#. module: account_sale_apem
+#: constraint:stock.move:0
+msgid "You try to assign a lot which is not from the same product"
+msgstr "您正将一个非本产品的批号设置给该产品"
+
+#. module: account_sale_apem
+#: field:account.invoice.line,sale_id:0
+msgid "Sale Order"
+msgstr "销售订单"
+
+#. module: account_sale_apem
+#: model:ir.model,name:account_sale_apem.model_account_invoice_line
+msgid "Invoice Line"
+msgstr "发票明细"
+
+#. module: account_sale_apem
+#: model:ir.model,name:account_sale_apem.model_stock_move
+msgid "Stock Move"
+msgstr "库存调拨"
+

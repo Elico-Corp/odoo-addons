@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="view_fiscalyear_close_wizard" model="ir.ui.view">
+            <field name="name">fiscalyear.close.wizard.form</field>
+            <field name="model">year.end.process.fiscalyear.close</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+				<form string=" Close Fiscal Year, Periods and Journal for the selected Fiscal Year.">
+					<separator string="Select Company and Fiscal Year to be closed" colspan="4"/>
+					<field name="company_id"/>  
+					<field name="fy_id" domain="[('state','=','draft'),('company_id','=',company_id)]"/>
+					<separator string="Are you sure you want to close the selected fiscal year?" colspan="4"/>
+					<field name="sure"/>
+					<group col="4" colspan="4">
+						<button icon="gtk-cancel" special="cancel" string="Cancel" colspan="2"/>
+						<button icon="gtk-print" name="close_fiscalyear" string="Close selected Fiscal Year" type="object" colspan="2" default_focus="1"/>
+					</group>
+				</form>
+            </field>
+        </record>
+
+        <record id="action_fiscalyear_close_wizard" model="ir.actions.act_window">
+            <field name="name">Multi-Company Closing Fiscal Year Wizard</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">year.end.process.fiscalyear.close</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_fiscalyear_close_wizard"/>
+            <field name="target">new</field>
+            <field name="help">
+Choose the company (Company must be a child of user's company) and fiscal year to close.&#xD;&#xA;
+Change the states to 'done' for Journals, Periods and Fiscal Year corresponding to the selected fiscal year.
+	    	</field>
+        </record>
+
+       <menuitem icon="STOCK_PRINT"
+            name="Multi-Company Closing Fiscal Year Wizard"
+            action="action_fiscalyear_close_wizard"
+            groups="account.group_account_user,account.group_account_manager"
+            id="menu_fiscalyear_close_wizard"
+			sequence="30"
+            parent="menu_account_end_year_process"/>
+    </data>
+</openerp>

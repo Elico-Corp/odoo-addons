@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="view_period_close_wizard" model="ir.ui.view">
+            <field name="name">period.close.wizard.form</field>
+            <field name="model">year.end.process.period.close</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+		<form string="Multi-Company Closing Period Wizard">
+		    <separator string="Select Company and Fiscal Year" colspan="4"/>
+		   	<field name="company_id"/>  
+			<field name="fiscalyear" domain="[('state','=','draft'),('company_id','=',company_id)]"/>
+
+		    <separator string="Detailed periods to be closed" colspan="4"/>
+			<field name="periods" colspan="4" domain="[('state','=','draft'),('fiscalyear_id','=',fiscalyear)]"/>
+	
+		    <separator string="Details" colspan="4"/>
+			<field name="net_income_acct_id" domain="[('company_id','=',company_id)]"/>
+			<field name="report_journal" domain="[('company_id','=',company_id)]"/>
+			<field name="report_name" colspan="4"/>
+	
+		    <separator string="Are you sure you want to create the closing entries?" colspan="4"/>
+			<field name="sure"/>
+		    <group col="4" colspan="4">
+			<button icon="gtk-cancel" special="cancel" string="Cancel" colspan="2"/>
+			<button icon="gtk-print" name="close_period" string="Close Period(s)" type="object" colspan="2" default_focus="1"/>
+		    </group>
+		</form>
+            </field>
+        </record>
+
+        <record id="action_period_close_wizard" model="ir.actions.act_window">
+            <field name="name">Multi-Company Closing Period Wizard</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">year.end.process.period.close</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_period_close_wizard"/>
+            <field name="target">new</field>
+            <field name="help">
+This wizard allows you to close the periods within the fiscal year and transfer the result to the specified "Net earnings" account.&#xD;&#xA;
+- Choose the company (Company must be a child of user's company) and periods.&#xD;&#xA;
+- If a "net income account" is selected, calculates the result of the selected periods (IMPORTANT: based on income/expense value in level1 setup in user_type)
+	and input in selected "net income account" (nothing is done if no account input).&#xD;&#xA;
+- Change the states to 'done' for journals and periods corresponding to the selected periods.
+	    </field>
+        </record>
+
+       <menuitem icon="STOCK_PRINT"
+            name="Multi-Company Closing Period Wizard"
+            action="action_period_close_wizard"
+            groups="account.group_account_user,account.group_account_manager"
+            id="menu_period_close_wizard"
+			sequence="10"
+            parent="menu_account_end_year_process"/>
+    </data>
+</openerp>

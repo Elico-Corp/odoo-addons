@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+    	<record id="stock_move_memory_tree_internal" model="ir.ui.view">
+            <field name="name">stock.move.memory.tree</field>
+            <field name="model">stock.move.memory.internal</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree editable="bottom" string="Internal Moves">
+                    <field name="product_id" />
+                    <field name="quantity" />
+                    <field name="product_uom" />
+                    <field name="prodlot_id" domain="[('product_id', '=', product_id)]"  groups="base.group_extended" />
+                </tree>
+            </field>
+        </record>
+        
+        <record id="stock_move_memory_form_internal" model="ir.ui.view">
+            <field name="name">stock.move.memory.form</field>
+            <field name="model">stock.move.memory.internel</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form>
+                    <field name="product_id" />
+                    <field name="quantity" />
+                    <field name="product_uom" />
+                    <field name="prodlot_id" domain="[('product_id', '=', product_id)]" groups="base.group_extended" />
+                </form>
+            </field>
+        </record>  
+    </data>
+</openerp>

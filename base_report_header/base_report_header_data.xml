@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <!--
+        Resource: res.header for reporting
+        -->
+        <record id="report_header_default_landscape" model="res.header">
+            <field name="name">default landscape</field>
+            <field name="rml_header">
+            You need to fill in manually rml report header
+			</field>
+            <field name="internal" eval="0"/>
+        </record>
+        <record id="report_header_default_portrait" model="res.header">
+            <field name="name">default portrait</field>
+            <field name="rml_header">
+            You need to fill in manually rml report header 
+ 			</field>
+            <field name="internal" eval="0"/>
+        </record>
+    </data>
+</openerp>
+        

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="product.decimal_account_line" model="decimal.precision">
+			<field name="name">Account Line</field>
+			<field name="digits">4</field>
+		</record>
+
+    </data>
+</openerp>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data noupdate="0">
+
+    <record id="document_security.group_knowledge_only" model="res.groups">
+        <field name="name">Documents / User - Only</field>
+    </record>
+    <record id="document_security.group_knowledge_all" model="res.groups">
+        <field name="name">Documents / User - All</field>
+    </record>
+
+<!-- Multi - User knowledge objects assignation rules -->
+    <record id="attachment_personal_rule" model="ir.rule">
+        <field name="name">Personal Attachments</field>
+        <field ref="base.model_ir_attachment" name="model_id"/>
+        <field name="domain_force">['|','|','|',('partner_id.user_id','=',user.id),('partner_id.user_id','=',False),('user_id','=',user.id),('user_id','=',False)]</field>
+        <field name="groups" eval="[(4, ref('document_security.group_knowledge_only'))]"/>
+    </record>
+	<record id="attachment_all_rule" model="ir.rule">
+        <field name="name">All attachments</field>
+        <field ref="base.model_ir_attachment" name="model_id"/>
+        <field name="domain_force">[(1,'=',1)]</field>
+        <field name="groups" eval="[(4, ref('document_security.group_knowledge_all'))]"/>
+    </record>
+
+</data>
+</openerp>

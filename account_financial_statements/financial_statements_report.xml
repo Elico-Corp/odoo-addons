@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<openerp>
+	<data>
+		<report id="financial_statements_report"
+			string="Financial Statements Report"
+			model="financial.statements.report"
+			name="financial.statements.report"
+			rml="account_financial_statements/report/financial_statements_report.rml"
+			auto="False"
+			menu="False"/>
+		<report id="financial_statements_compared_report"
+			string="Financial Statements Compared Report"
+			model="financial.statements.report"
+			name="financial.statements.compared.report"
+			rml="account_financial_statements/report/financial_statements_compared_report.rml"
+			auto="False"
+			menu="False"/>
+	</data>
+</openerp>

@@ -1,0 +1,231 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+#	* l10n_cn_report_sale
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 6.0.2\n"
+"Report-Msgid-Bugs-To: support@openerp.com\n"
+"POT-Creation-Date: 2011-07-30 07:18+0000\n"
+"PO-Revision-Date: 2011-07-30 07:18+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: l10n_cn_report_sale
+#: report:l10n.cn.contract:0
+msgid "Total/合计:"
+msgstr "Total/合计:"
+
+#. module: l10n_cn_report_sale
+#: report:l10n.cn.contract:0
+msgid "Tel/电话:"
+msgstr "Tel/电话:"
+
+#. module: l10n_cn_report_sale
+#: report:l10n.cn.contract:0
+msgid "Source Document/源文件"
+msgstr "Source Document/源文件"
+
+#. module: l10n_cn_report_sale
+#: report:l10n.cn.contract:0
+msgid "Invoice address/发票地址:"
+msgstr "Invoice address/发票地址:"
+
+#. module: l10n_cn_report_sale
+#: report:l10n.cn.contract:0
+msgid "付款期限"
+msgstr "付款期限"
+
+#. module: l10n_cn_report_sale
+#: report:l10n.cn.contract:0
+msgid "Sales Contract N°/合同号:"
+msgstr "Sales Contract N°/合同号:"
+
+#. module: l10n_cn_report_sale
+#: report:l10n.cn.contract:0
+msgid "Unit Price"
+msgstr "Unit Price"
+
+#. module: l10n_cn_report_sale
+#: report:l10n.cn.contract:0
+msgid "Incoterm/"
+msgstr "Incoterm/"
+
+#. module: l10n_cn_report_sale
+#: report:l10n.cn.contract:0
+msgid "数量（包）"
+msgstr "数量（包）"
+
+#. module: l10n_cn_report_sale
+#: report:l10n.cn.contract:0
+msgid "Account/账户"
+msgstr "Account/账户"
+
+#. module: l10n_cn_report_sale
+#: report:l10n.cn.contract:0
+msgid "VAT/增税:"
+msgstr "VAT/增税:"
+
+#. module: l10n_cn_report_sale
+#: report:l10n.cn.contract:0
+msgid ")"
+msgstr ")"
+
+#. module: l10n_cn_report_sale
+#: report:l10n.cn.contract:0
+msgid "("
+msgstr "("
+
+#. module: l10n_cn_report_sale
+#: report:l10n.cn.contract:0
+msgid "Taxes/税 :"
+msgstr "Taxes/税 :"
+
+#. module: l10n_cn_report_sale
+#: report:l10n.cn.contract:0
+msgid "-"
+msgstr "-"
+
+#. module: l10n_cn_report_sale
+#: report:l10n.cn.contract:0
+msgid "Carrier/承运公司:"
+msgstr "Carrier/承运公司:"
+
+#. module: l10n_cn_report_sale
+#: report:l10n.cn.contract:0
+msgid "Shipping address/"
+msgstr "Shipping address/"
+
+#. module: l10n_cn_report_sale
+#: report:l10n.cn.contract:0
+msgid "Qty (Bag)"
+msgstr "Qty (Bag)"
+
+#. module: l10n_cn_report_sale
+#: report:l10n.cn.contract:0
+msgid "SWIFT"
+msgstr "SWIFT"
+
+#. module: l10n_cn_report_sale
+#: code:addons/l10n_cn_report_sale/report/contract.py:61
+#: code:addons/l10n_cn_report_sale/report/order.py:63
+#, python-format
+msgid "Error in report headers name !"
+msgstr "Error in report headers name !"
+
+#. module: l10n_cn_report_sale
+#: report:l10n.cn.contract:0
+msgid "Account name/账户名"
+msgstr "Account name/账户名"
+
+#. module: l10n_cn_report_sale
+#: code:addons/l10n_cn_report_sale/report/contract.py:61
+#: code:addons/l10n_cn_report_sale/report/order.py:63
+#, python-format
+msgid "No proper reports header defined for the selected report. Check that the report header defined in your report rml_parse line exist in Administration/reporting/Reporting headers."
+msgstr "No proper reports header defined for the selected report. Check that the report header defined in your report rml_parse line exist in Administration/reporting/Reporting headers."
+
+#. module: l10n_cn_report_sale
+#: model:ir.actions.report.xml,name:l10n_cn_report_sale.l10n_cn_report_contract
+msgid "Contract"
+msgstr "Contract"
+
+#. module: l10n_cn_report_sale
+#: report:l10n.cn.contract:0
+msgid "[编号] 说明"
+msgstr "[编号] 说明"
+
+#. module: l10n_cn_report_sale
+#: report:l10n.cn.contract:0
+msgid "内部订单周转号"
+msgstr "内部订单周转号"
+
+#. module: l10n_cn_report_sale
+#: report:l10n.cn.contract:0
+msgid "[Code] Description"
+msgstr "[Code] Description"
+
+#. module: l10n_cn_report_sale
+#: report:l10n.cn.contract:0
+msgid "单价"
+msgstr "单价"
+
+#. module: l10n_cn_report_sale
+#: report:l10n.cn.contract:0
+msgid "累计发货额"
+msgstr "累计发货额"
+
+#. module: l10n_cn_report_sale
+#: report:l10n.cn.contract:0
+msgid "Fax/传真:"
+msgstr "Fax/传真:"
+
+#. module: l10n_cn_report_sale
+#: report:l10n.cn.contract:0
+msgid "VAT"
+msgstr "VAT"
+
+#. module: l10n_cn_report_sale
+#: report:l10n.cn.contract:0
+msgid "Qty (Pce)"
+msgstr "Qty (Pce)"
+
+#. module: l10n_cn_report_sale
+#: report:l10n.cn.contract:0
+msgid "收货地址"
+msgstr "收货地址"
+
+#. module: l10n_cn_report_sale
+#: report:l10n.cn.contract:0
+msgid "增值税"
+msgstr "增值税"
+
+#. module: l10n_cn_report_sale
+#: report:l10n.cn.contract:0
+msgid "数量（只）"
+msgstr "数量（只）"
+
+#. module: l10n_cn_report_sale
+#: report:l10n.cn.contract:0
+msgid "Net Total/净合计:"
+msgstr "Net Total/净合计:"
+
+#. module: l10n_cn_report_sale
+#: report:l10n.cn.contract:0
+msgid "你参考"
+msgstr "你参考"
+
+#. module: l10n_cn_report_sale
+#: report:l10n.cn.contract:0
+msgid "Bank/银行"
+msgstr "Bank/银行"
+
+#. module: l10n_cn_report_sale
+#: report:l10n.cn.contract:0
+msgid "Payment terms/"
+msgstr "Payment terms/"
+
+#. module: l10n_cn_report_sale
+#: report:l10n.cn.contract:0
+msgid "Requested Date/预定日期"
+msgstr "Requested Date/预定日期"
+
+#. module: l10n_cn_report_sale
+#: report:l10n.cn.contract:0
+msgid "Date/报价日期"
+msgstr "Date/报价日期"
+
+#. module: l10n_cn_report_sale
+#: report:l10n.cn.contract:0
+msgid "Total Amount"
+msgstr "Total Amount"
+
+#. module: l10n_cn_report_sale
+#: report:l10n.cn.contract:0
+msgid "Your reference/"
+msgstr "Your reference/"
+

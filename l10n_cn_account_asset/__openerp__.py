@@ -1,0 +1,57 @@
+# -*- encoding: utf-8 -*-
+##############################################################################
+#
+#    OpenERP, Open Source Management Solution
+#    Copyright (C) 2004-2009 Tiny SPRL (<http://tiny.be>).
+#    Copyright (C) 2012-today Elico Corp (eric.caudal@elico-corp.com).
+#
+#    This program is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU Affero General Public License as
+#    published by the Free Software Foundation, either version 3 of the
+#    License, or (at your option) any later version.
+#
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU Affero General Public License for more details.
+#
+#    You should have received a copy of the GNU Affero General Public License
+#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+##############################################################################
+
+{
+    "name" : "Assets Management (backport 6.0)",
+    "version" : "1.0",
+    "depends" : ["account"],
+    "author" : "Elico Corp",
+    "description": """Financial and accounting asset management.
+    This Module manages the assets owned by a company or an individual. It will keep track of depreciation's occurred on
+    those assets. And it allows to create Move's of the depreciation lines.
+    
+    This is a backport of original module from OpenERP sa from 6.1 to 6.0 for the Chinese localization.
+    """,
+    "website" : "http://www.openerp.net.cn",
+    "category" : "Accounting & Finance",
+    "init_xml" : [
+    ],
+    "demo_xml" : [ 
+    ],
+    'test': ['test/account_asset.yml',
+             ],
+    "update_xml" : [
+        "security/account_asset_security.xml",
+        "security/ir.model.access.csv",
+        "account_asset_wizard.xml",
+        "wizard/account_asset_change_duration_view.xml",
+        "wizard/wizard_asset_compute_view.xml",
+        "account_asset_view.xml",
+        "account_asset_invoice_view.xml",
+        "report/account_asset_report_view.xml",
+
+    ],
+    "active": False,
+    "installable": True,
+}
+# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
+

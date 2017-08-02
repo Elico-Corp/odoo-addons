@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="stock.action_picking_tree" model="ir.actions.act_window">
+            <field name="name">Delivery Orders</field>
+            <field name="res_model">stock.picking</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form,calendar</field>
+            <field name="domain">[('type','in',('out','internal'))]</field>
+            <field name="context">{'contact_display': 'partner_address', 'search_default_available': 1}</field>
+            <field name="search_view_id" ref="stock.view_picking_out_search"/>
+            <field name="help">This is the list of all delivery orders and related internal picking that have to be prepared, according to your different sales orders and your logistics rules.</field>
+        </record>
+        
+        <!-- Add 2012-04-12 -->
+        <record id="stock.view_move_search_reception_outcoming_picking_with_waiting" model="ir.ui.view">
+            <field name="name">stock.move.outgoing.search2.with.waiting</field>
+            <field name="inherit_id" ref="stock.view_move_search_reception_outcoming_picking" />
+            <field name="model">stock.move</field>
+            <field name="type">search</field>
+            <field name="arch" type="xml">
+				<data>
+				  <xpath expr="//filter[@name='receive']" position="after">
+				  	<filter icon="terp-folder-yellow" name="waiting" string="Waiting" domain="[('state','=','waiting')]" help="Stock waiting"/>
+				  </xpath>
+				</data>
+      		</field>
+        </record>
+
+    </data>
+</openerp>

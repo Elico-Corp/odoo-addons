@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+<!-- Invoice Report -->
+        <report
+            auto="False"
+            id="account.account_invoices"
+            model="account.invoice"
+            name="l10n.cn.invoice"
+            rml="l10n_cn_report_account/report/invoice.rml"
+            string="Invoices"
+            attachment="(object.state in ('open','paid')) and ('INV'+(object.number or '').replace('/',''))"
+            attachment_use="1"
+            multi="True"
+            menu ="True"/>
+
+	</data>
+</openerp>

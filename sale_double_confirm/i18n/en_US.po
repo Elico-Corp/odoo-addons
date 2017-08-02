@@ -1,0 +1,77 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+#	* sale_confirm_apem
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 6.0.3\n"
+"Report-Msgid-Bugs-To: support@openerp.com\n"
+"POT-Creation-Date: 2012-04-17 08:11+0000\n"
+"PO-Revision-Date: 2012-04-17 08:11+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sale_confirm_apem
+#: view:sale.order:0
+msgid "Are you sure to cacel this sale order?"
+msgstr "Are you sure to cacel this sale order?"
+
+#. module: sale_confirm_apem
+#: view:sale.order:0
+msgid "Ignore Exception"
+msgstr "Ignore Exception"
+
+#. module: sale_confirm_apem
+#: view:sale.order:0
+msgid "Are you sure to recreate the packing for this sale order?"
+msgstr "Are you sure to recreate the packing for this sale order?"
+
+#. module: sale_confirm_apem
+#: view:sale.order:0
+msgid "Are you sure to confirm this sale order?"
+msgstr "Are you sure to confirm this sale order?"
+
+#. module: sale_confirm_apem
+#: view:sale.order:0
+msgid "Recreate Packing"
+msgstr "Recreate Packing"
+
+#. module: sale_confirm_apem
+#: view:sale.order:0
+msgid "Are you sure to ignore the shippment exception?"
+msgstr "Are you sure to ignore the shippment exception?"
+
+#. module: sale_confirm_apem
+#: view:sale.order:0
+msgid "Are you sure to cancel this sale order?"
+msgstr "Are you sure to cancel this sale order?"
+
+#. module: sale_confirm_apem
+#: view:sale.order:0
+msgid "Cancel Order"
+msgstr "Cancel Order"
+
+#. module: sale_confirm_apem
+#: view:sale.order:0
+msgid "Recreate Invoice"
+msgstr "Recreate Invoice"
+
+#. module: sale_confirm_apem
+#: view:sale.order:0
+msgid "Are you sure to ignore the invoice exception?"
+msgstr "Are you sure to ignore the invoice exception?"
+
+#. module: sale_confirm_apem
+#: view:sale.order:0
+msgid "Are you sure to recreate the invoice for this sale order?"
+msgstr "Are you sure to recreate the invoice for this sale order?"
+
+#. module: sale_confirm_apem
+#: view:sale.order:0
+msgid "Confirm Order"
+msgstr "Confirm Order"
+

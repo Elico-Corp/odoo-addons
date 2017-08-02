@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+<!--Shipping Report-->        
+		<report auto="False" 
+			id="delivery.report_shipping" 
+			model="stock.picking"
+			name="l10n.cn.shipping" 
+			rml="l10n_cn_report_delivery/report/shipping.rml" 
+			string="Delivery Order"/>
+
+	</data>
+</openerp>

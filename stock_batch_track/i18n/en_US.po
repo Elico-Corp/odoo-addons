@@ -1,0 +1,177 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+#	* stock_batch_track
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 6.0.3\n"
+"Report-Msgid-Bugs-To: support@openerp.com\n"
+"POT-Creation-Date: 2012-09-14 03:39+0000\n"
+"PO-Revision-Date: 2012-09-14 03:39+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: stock_batch_track
+#: report:shipping.to.subcontractor:0
+msgid "Subcontractor:"
+msgstr "Subcontractor:"
+
+#. module: stock_batch_track
+#: field:stock.batch.track,force_availability:0
+msgid "Force availability if not availble?"
+msgstr "Force availability if not availble?"
+
+#. module: stock_batch_track
+#: report:shipping.to.subcontractor:0
+msgid "Source"
+msgstr "Source"
+
+#. module: stock_batch_track
+#: report:shipping.to.subcontractor:0
+msgid "Lot"
+msgstr "Lot"
+
+#. module: stock_batch_track
+#: field:stock.batch.track,check_availability:0
+msgid "Check availability if not availble?"
+msgstr "Check availability if not availble?"
+
+#. module: stock_batch_track
+#: report:shipping.to.subcontractor:0
+msgid "Address:"
+msgstr "Address:"
+
+#. module: stock_batch_track
+#: model:ir.model,name:stock_batch_track.model_stock_tracking
+msgid "Packs"
+msgstr "Packs"
+
+#. module: stock_batch_track
+#: report:shipping.to.subcontractor:0
+msgid "Print Date:"
+msgstr "Print Date:"
+
+#. module: stock_batch_track
+#: report:shipping.to.subcontractor:0
+msgid "[Code] Description"
+msgstr "[Code] Description"
+
+#. module: stock_batch_track
+#: view:stock.batch.track:0
+msgid "Shoot'em up!"
+msgstr "Shoot'em up!"
+
+#. module: stock_batch_track
+#: report:shipping.to.subcontractor:0
+msgid "]"
+msgstr "]"
+
+#. module: stock_batch_track
+#: model:ir.actions.report.xml,name:stock_batch_track.report_shipping_to_subcontractor
+msgid "Delivery Order to Subcontractor"
+msgstr "Delivery Order to Subcontractor"
+
+#. module: stock_batch_track
+#: report:shipping.to.subcontractor:0
+msgid "Reference:"
+msgstr "Reference:"
+
+#. module: stock_batch_track
+#: code:addons/stock_batch_track/wizard/stock_batch_track.py:53
+#, python-format
+msgid "Please select pickings at first."
+msgstr "Please select pickings at first."
+
+#. module: stock_batch_track
+#: code:addons/stock_batch_track/report/shipping.py:64
+#, python-format
+msgid "Error in report headers name !"
+msgstr "Error in report headers name !"
+
+#. module: stock_batch_track
+#: report:shipping.to.subcontractor:0
+msgid "Delivery Order :"
+msgstr "Delivery Order :"
+
+#. module: stock_batch_track
+#: report:shipping.to.subcontractor:0
+msgid "Tel:"
+msgstr "Tel:"
+
+#. module: stock_batch_track
+#: code:addons/stock_batch_track/report/shipping.py:64
+#, python-format
+msgid "No proper reports header defined for the selected report. Check that the report header defined in your report rml_parse line exist in Administration/reporting/Reporting headers."
+msgstr "No proper reports header defined for the selected report. Check that the report header defined in your report rml_parse line exist in Administration/reporting/Reporting headers."
+
+#. module: stock_batch_track
+#: model:ir.actions.act_window,name:stock_batch_track.action_stock_batch_track
+msgid "Batch Track"
+msgstr "Batch Track"
+
+#. module: stock_batch_track
+#: report:shipping.to.subcontractor:0
+msgid "Contactor:"
+msgstr "Contactor:"
+
+#. module: stock_batch_track
+#: report:shipping.to.subcontractor:0
+msgid "["
+msgstr "["
+
+#. module: stock_batch_track
+#: field:stock.batch.track,auto_process:0
+msgid "Auto Proccess if availble?"
+msgstr "Auto Proccess if availble?"
+
+#. module: stock_batch_track
+#: code:addons/stock_batch_track/wizard/stock_batch_track.py:53
+#, python-format
+msgid "Warning !"
+msgstr "Warning !"
+
+#. module: stock_batch_track
+#: field:stock.batch.track,tracking_id:0
+msgid "Pack"
+msgstr "Pack"
+
+#. module: stock_batch_track
+#: view:stock.batch.track:0
+msgid "Process"
+msgstr "Process"
+
+#. module: stock_batch_track
+#: model:ir.model,name:stock_batch_track.model_stock_batch_track
+msgid "Stock Batch Track"
+msgstr "Stock Batch Track"
+
+#. module: stock_batch_track
+#: field:stock.batch.track,cancel_availability:0
+msgid "Cancel availability if availble?"
+msgstr "Cancel availability if availble?"
+
+#. module: stock_batch_track
+#: report:shipping.to.subcontractor:0
+msgid "Qty."
+msgstr "Qty."
+
+#. module: stock_batch_track
+#: field:stock.batch.track,partner_id:0
+#: field:stock.tracking,partner_id:0
+msgid "Subcontractor"
+msgstr "Subcontractor"
+
+#. module: stock_batch_track
+#: report:shipping.to.subcontractor:0
+msgid "Pack Date:"
+msgstr "Pack Date:"
+
+#. module: stock_batch_track
+#: view:stock.batch.track:0
+msgid "Cancel"
+msgstr "Cancel"
+

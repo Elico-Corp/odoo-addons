@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="stock.trans_confirmed_assigned" model="workflow.transition">
+            <field name="act_from" ref="stock.act_confirmed"/>
+            <field name="act_to" ref="stock.act_assigned"/>
+            <field name="condition">test_assigned()</field>
+<!--            <field name="condition">test_assigned and check_limit()</field> -->
+            <field name="group_id" ref="group_stock_picking_approval"/>
+        </record>
+    </data>
+</openerp>

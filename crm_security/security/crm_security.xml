@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data noupdate="0">
+
+<!-- Multi - users CRM objects assignation rules 
+    <record id="meeting_personal_rule" model="ir.rule">
+        <field name="name">Personal meetings</field>
+        <field ref="crm.model_crm_meeting" name="model_id"/>
+        <field name="domain_force">['|',('user_id','=',user.id),('user_id','=',False)]</field>
+        <field name="groups" eval="[(4, ref('base.group_sale_salesman'))]"/>
+    </record>
+	<record id="meeting_all_rule" model="ir.rule">
+        <field name="name">All meetings</field>
+        <field ref="crm.model_crm_meeting" name="model_id"/>
+        <field name="domain_force">[(1,'=',1)]</field>
+        <field name="groups" eval="[(4, ref('base.group_sale_salesman_all_leads'))]"/>
+    </record>
+-->
+    <record id="crm_rule_group_lead" model="ir.rule">
+        <field name="name">Personal Leads (sales team)</field>
+        <field ref="crm.model_crm_lead" name="model_id"/>
+        <field name="domain_force">['|',('section_id','child_of',[user.context_section_id.id]),('section_id','=',False)]</field>
+        <field name="groups" eval="[(4, ref('base.group_sale_salesman'))]"/>
+    </record>
+
+    <record id="phonecall_personal_rule" model="ir.rule">
+        <field name="name">Personal phonecalls</field>
+        <field ref="crm.model_crm_phonecall" name="model_id"/>
+        <field name="domain_force">['|',('user_id','=',user.id),('user_id','=',False)]</field>
+        <field name="groups" eval="[(4, ref('base.group_sale_salesman'))]"/>
+    </record>
+	<record id="phonecall_all_rule" model="ir.rule">
+        <field name="name">All phonecalls</field>
+        <field ref="crm.model_crm_phonecall" name="model_id"/>
+        <field name="domain_force">[(1,'=',1)]</field>
+        <field name="groups" eval="[(4, ref('base.group_sale_salesman_all_leads'))]"/>
+    </record>
+
+</data>
+</openerp>

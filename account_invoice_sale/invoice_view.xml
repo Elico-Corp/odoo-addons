@@ -1,0 +1,30 @@
+<?xml version="1.0" ?>
+<openerp>
+    <data>
+    	<!-- Added by Andy begin -->
+		<record model="ir.ui.view" id="view_invoice_line_sale_tree">
+			<field name="name">view.invoice.line.tree.sale</field>
+			<field name="model">account.invoice.line</field>
+			<field name="inherit_id" ref="account.view_invoice_line_tree"/>
+			<field name="type">tree</field>
+			<field name="arch" type="xml">
+				<field name="name" position="after">
+					<field name="sale_id" />
+				</field>
+			</field>
+		</record>  
+		<record model="ir.ui.view" id="view_invoice_line_sale_form">
+			<field name="name">view.invoice.line.form.sale</field>
+			<field name="model">account.invoice.line</field>
+			<field name="inherit_id" ref="account.view_invoice_line_form"/>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<field name="name" position="after">
+					<field name="sale_id" />
+				</field>
+			</field>
+		</record>
+
+
+    </data>
+</openerp>

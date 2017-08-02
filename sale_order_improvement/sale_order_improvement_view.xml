@@ -1,0 +1,27 @@
+<?xml version="1.0" ?>
+<openerp>
+<data>
+    <!-- Change the sales order form to a more logical order -->
+    <record model="ir.ui.view" id="view_order_form_inherited1">
+        <field name="name">Order form inherited1</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+             <xpath expr="/form/notebook/page/field[@name='order_line']/form/notebook/page/field[@name='product_uom']" position="replace"/>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="view_order_form_inherited2">
+        <field name="name">Order form inherited2</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <xpath expr="/form/notebook/page/field[@name='order_line']/form/notebook/page/field[@name='product_uom_qty']" position="after">
+                <field name="product_uom"
+                    on_change="product_uom_change(parent.pricelist_id,product_id,product_uom_qty,product_uom,product_uos_qty,product_uos,name,parent.partner_id, 'lang' in context and context['lang'], False, parent.date_order)"/>
+            </xpath>
+        </field>
+    </record>
+</data>
+</openerp>

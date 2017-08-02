@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+<openerp>
+	<data>
+        <!--
+    Headers forms
+    -->
+        <record id="view_report_header_tree" model="ir.ui.view">
+            <field name="name">res.header.tree</field>
+            <field name="model">res.header</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Reporting Headers">
+                    <field name="name"/>
+                    <field name="rml_header"/>
+                    <field name="internal"/>
+                </tree>
+            </field>
+        </record>
+        <record id="view_report_header_form" model="ir.ui.view">
+            <field name="name">res.header.form</field>
+            <field name="model">res.header</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Reporting Headers">
+                    <field name="name"/>
+                    <field colspan="4" name="rml_header"/>
+                    <field name="internal"/>
+                </form>
+            </field>
+        </record>
+        <record id="view_report_header_search" model="ir.ui.view">
+            <field name="name">res.header.search</field>
+            <field name="model">res.header</field>
+            <field name="type">search</field>
+            <field name="arch" type="xml">
+                <search string="Reporting Headers">
+                  <group>
+                    <filter string="Internal" icon="terp-accessories-archiver+" domain="[('internal', '=', False)]"/>
+                    <separator orientation="vertical"/>
+                    <field name="name" />
+                    <field name="rml_header"/>
+                  </group>
+                </search>
+            </field>
+        </record>
+
+
+        <record id="action_report_header_form" model="ir.actions.act_window">
+            <field name="name">Reporting Headers</field>
+            <field name="res_model">res.header</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="view_report_header_search"/>
+            <field name="help">Use this form to create specific RML headers for your own reports</field>
+        </record>
+        <menuitem action="action_report_header_form" 
+        id="menu_action_report_header_form" 
+        parent="base.menu_reporting"/>
+
+<!--Print preview Form-->        
+		<report auto="False" 
+			id="report_header_preview_portrait" 
+			model="res.header"
+			name="header.preview.portrait" 
+			rml="base_report_header/report/report_header_preview_portrait.rml" 
+			string="Preview (portrait)"/>
+
+<!--Print preview Form-->        
+		<report auto="False" 
+			id="report_header_preview_landscape" 
+			model="res.header"
+			name="header.preview.landscape" 
+			rml="base_report_header/report/report_header_preview_landscape.rml" 
+			string="Preview (landscape)"/>
+
+
+	</data>
+</openerp>

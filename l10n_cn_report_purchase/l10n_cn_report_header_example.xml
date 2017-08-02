@@ -1,0 +1,81 @@
+        <!--
+        Header example for 'external landscape'
+        -->
+<header>
+    <pageTemplate>
+        <frame id="first" x1="1cm" y1="1.4cm" height="15.8cm" width="27.7cm"/>
+        <pageGraphics>
+            <setFont name="verasansyuanti_bold" size="13"/>
+            <drawRightString x="28.7cm" y="19.9cm">[[ company.rml_header1 ]]</drawRightString>
+            <lines>1cm 19.7cm 28.7cm 19.7cm</lines>
+            <!-- Your Logo - Change X,Y,Width and Height -->
+            <image x="1.5cm" y="17.5cm" height="60.0">[[ company.logo or removeParentNode('image') ]]</image>
+            <fill color="black"/>
+            <stroke color="black"/>
+
+
+
+            <setFont name="verasansyuanti_bold" size="12"/>
+            <drawString x="7.8cm" y="19.1cm">[[ company.partner_id.name ]]</drawString>
+            <setFont name="verasansyuanti_regular" size="12"/>
+            <drawString x="7.8cm" y="18.4cm">[[ company.partner_id.address and company.partner_id.address[0].street or  "" ]]</drawString>
+            <drawString x="7.8cm" y="17.7cm">[[ company.partner_id.address and company.partner_id.address[0].zip or "" ]] [[ company.partner_id.address and company.partner_id.address[0].city or "" ]] - [[ company.partner_id.address and company.partner_id.address[0].country_id and company.partner_id.address[0].country_id.name  or ""]]</drawString>
+
+            <setFont name="verasansyuanti_regular" size="12"/>
+             <drawString x="19.5cm" y="19.1cm">Contact/联系人:</drawString>
+            <drawRightString x="28.3cm" y="19.1cm"> [[ user.name ]] </drawRightString>
+            <drawString x="19.5cm" y="18.4cm">Phone/电话:</drawString>
+            <drawRightString x="28.3cm" y="18.4cm">[[ company.partner_id.address and company.partner_id.address[0].phone or "" ]]</drawRightString>
+            <drawString x="19.5cm" y="17.7cm">Mail/邮件地址:</drawString>
+            <drawRightString x="28.3cm" y="17.7cm">[[ company.partner_id.address and company.partner_id.address[0].email or "" ]]</drawRightString>
+
+            <lines>1cm 17.2cm 28.7cm 17.2cm</lines>
+            <!--page bottom-->
+            <lines>1cm 1.8cm 28.7cm 1.8cm</lines>
+
+            <setFont name="verasansyuanti_regular" size="7"/>
+            <drawCentredString x="14.8cm" y="1.4cm">[[ company.rml_footer1 ]]</drawCentredString>
+            <drawCentredString x="14.8cm" y="0.95cm">[[ company.rml_footer2 ]]</drawCentredString>
+            <drawCentredString x="14.8cm" y="0.5cm">Page: <pageNumber/></drawCentredString>
+        </pageGraphics>
+    </pageTemplate>
+</header>
+        <!--
+        Header example for 'external portrait'
+        -->
+<header>
+    <pageTemplate>
+        <frame id="first" x1="1.3cm" y1="2.5cm" height="24.6cm" width="19cm"/>
+         <pageGraphics>
+            <setFont name="verasansyuanti_bold" size="10"/>
+            <drawRightString x="20.2cm" y="28.8cm">[[ company.rml_header1 ]]</drawRightString>
+            <lines>0.8cm 28.7cm 20.2cm 28.7cm</lines>
+            <!-- Your Logo - Change X,Y,Width and Height -->
+            <image x="1.2cm" y="26.9cm" height="50.0">[[ company.logo or removeParentNode('image') ]]</image>
+            <fill color="black"/>
+            <stroke color="black"/>
+
+            <setFont name="verasansyuanti_bold" size="8"/>
+            <drawString x="5.8cm" y="28.2cm">[[ company.partner_id.name ]]</drawString>
+            <setFont name="verasansyuanti_regular" size="8"/>
+            <drawString x="5.8cm" y="27.7cm">[[ company.partner_id.address and company.partner_id.address[0].street or  "" ]]</drawString>
+            <drawString x="5.8cm" y="27.2cm">[[ company.partner_id.address and company.partner_id.address[0].zip or "" ]] [[ company.partner_id.address and company.partner_id.address[0].city or "" ]] - [[ company.partner_id.address and company.partner_id.address[0].country_id and company.partner_id.address[0].country_id.name  or ""]]</drawString>
+
+             <drawString x="13cm" y="28.2cm">Contact/联系人:</drawString>
+            <drawRightString x="19.9cm" y="28.2cm"> [[ user.name ]] </drawRightString>
+            <drawString x="13cm" y="27.7cm">Phone/电话:</drawString>
+            <drawRightString x="19.9cm" y="27.7cm">[[ company.partner_id.address and company.partner_id.address[0].phone or "" ]]</drawRightString>
+            <drawString x="13cm" y="27.2cm">Mail/邮件地址:</drawString>
+            <drawRightString x="19.9cm" y="27.2cm">[[ company.partner_id.address and company.partner_id.address[0].email or "" ]]</drawRightString>
+
+            <lines>0.8cm 27cm 20.2cm 27cm</lines>
+            <!--page bottom-->
+            <lines>0.8cm 1.8cm 20.2cm 1.8cm</lines>
+
+            <setFont name="verasansyuanti_regular" size="6"/>
+            <drawCentredString x="10.5cm" y="1.4cm">[[ company.rml_footer1 ]]</drawCentredString>
+            <drawCentredString x="10.5cm" y="0.95cm">[[ company.rml_footer2 ]]</drawCentredString>
+            <drawCentredString x="10.5cm" y="0.5cm">Page: <pageNumber/></drawCentredString>
+        </pageGraphics>
+    </pageTemplate>
+</header>

@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<openerp>
+	<data>
+		<!-- report-related wizards -->
+	        <menuitem id="menu_account_end_year_process"
+            		name="Multi-company year-end Process" parent="account.menu_finance_periodical_processing"
+            		sequence="40"/>
+
+	</data>
+</openerp>

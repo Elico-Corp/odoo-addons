@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+		  <record id="sale_order_confirm_apem" model="ir.ui.view">
+            <field name="name">sale.order.confirm.apem</field>
+            <field name="model">sale.order</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="sale.view_order_form" />
+            <field name="arch" type="xml">
+				<xpath expr="/form/notebook/page/group/button[@name='invoice_recreate']" position="replace">
+                    <button name="invoice_recreate" states="invoice_except" confirm="Are you sure to recreate the invoice for this sale order?" string="Recreate Invoice" icon="gtk-go-forward"/>
+   				</xpath>
+				<xpath expr="/form/notebook/page/group/button[@name='invoice_corrected']" position="replace">
+                    <button name="invoice_corrected" states="invoice_except" confirm="Are you sure to ignore the invoice exception?" string="Ignore Exception" icon="gtk-apply"/>
+   				</xpath>
+				<xpath expr="/form/notebook/page/group/button[@name='ship_recreate']" position="replace">
+                    <button name="ship_recreate" states="shipping_except" confirm="Are you sure to recreate the packing for this sale order?" string="Recreate Packing" icon="gtk-ok"/>
+   				</xpath>
+				<xpath expr="/form/notebook/page/group/button[@name='ship_corrected']" position="replace">
+                    <button name="ship_corrected" states="shipping_except" confirm="Are you sure to ignore the shippment exception?" string="Ignore Exception" icon="gtk-apply"/>
+   				</xpath>
+				<xpath expr="/form/notebook/page/group/button[@name='ship_cancel']" position="replace">
+                    <button name="ship_cancel" states="shipping_except" confirm="Are you sure to cancel this sale order?" string="Cancel Order" icon="gtk-cancel"/>
+   				</xpath>
+				<xpath expr="/form/notebook/page/group/button[@name='invoice_cancel']" position="replace">
+                    <button name="invoice_cancel" states="invoice_except" confirm="Are you sure to cacel this sale order?" string="Cancel Order" icon="gtk-cancel"/>
+   				</xpath>
+				<xpath expr="/form/notebook/page/group/button[@name='order_confirm']" position="replace">
+                    <button name="order_confirm" states="draft" confirm="Are you sure to confirm this sale order?" string="Confirm Order" icon="gtk-apply"/>
+   				</xpath>
+			</field>
+		 </record>          
+    </data>
+</openerp>

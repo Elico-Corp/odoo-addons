@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="stock.trans_move_done" model="workflow.transition">
+            <field name="act_from" ref="stock.act_move"/>
+            <field name="act_to" ref="stock.act_done"/>
+            <field name="condition">test_backorder_finished()</field>
+        </record>
+        <record id="stock.trans_move_confirmed" model="workflow.transition">
+            <field name="act_from" ref="stock.act_move"/>
+            <field name="act_to" ref="stock.act_confirmed"/>
+            <field name="condition">not test_backorder_finished()</field>
+        </record>
+
+    </data>
+</openerp>

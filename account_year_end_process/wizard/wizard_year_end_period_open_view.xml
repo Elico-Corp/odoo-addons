@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="view_period_open_wizard" model="ir.ui.view">
+            <field name="name">period.open.wizard.form</field>
+            <field name="model">year.end.process.period.open</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+				<form string="Multi-Company Opening Period Wizard">
+					<separator string="Select Company" colspan="4"/>
+					<field name="company_id"/>  
+				
+					<separator string="Details for the opening period" colspan="4"/>
+					<field name="ofy_id" domain="[('state','=','draft'),('company_id','=',company_id)]"/>
+					<field name="nfy_id" domain="[('state','=','draft'),('company_id','=',company_id)]"/>
+					<field name="period_id" domain="[('state','=','draft'),('fiscalyear_id','=',nfy_id)]"/>
+					<field name="journal_id" domain="[('company_id','=',company_id)]"/>
+					<field name="report_name" colspan="4"/>
+				
+					<separator string="Write-off Information" colspan="4"/>   
+					<field name="writeoff_acc_id"  domain="[('company_id','=',company_id)]" colspan="4"/>
+					<field name="writeoff_period_id" domain="[('state','=','draft'),('fiscalyear_id','=',nfy_id)]"/>
+					<field name="writeoff_journal_id" domain="[('company_id','=',company_id)]"/>
+
+					<separator string="Are you sure you want to create the opening entries?" colspan="4"/>
+					<field name="sure"/>
+					<group col="4" colspan="4">
+						<button icon="gtk-cancel" special="cancel" string="Cancel" colspan="2"/>
+						<button icon="gtk-print" name="open_period" string="Open Period" type="object" colspan="2" default_focus="1"/>
+					</group>
+				</form>
+            </field>
+        </record>
+
+        <record id="action_period_open_wizard" model="ir.actions.act_window">
+            <field name="name">Multi-Company Opening Period Wizard</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">year.end.process.period.open</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_period_open_wizard"/>
+            <field name="target">new</field>
+            <field name="help">
+This wizard allows you to transfer the transactions from closing fiscal year to the new fiscal year accortind to the deferral methods in account_type field.&#xD;&#xA;
+Choose the company (Company must be a child of user's company), origin and destination fiscal years, initial period and centralized Journal where to record the transactions
+and write-off information for reconciliation. &#xD;&#xA;
+The wizard then:&#xD;&#xA;
+- Creates the new moves in the first period of new fiscal year&#xD;&#xA;
+- Launches "reconcile" for move_line&#xD;&#xA;
+- Updates the "End period journal" field in the closing fiscal year
+	    	</field>
+        </record>
+
+       <menuitem icon="STOCK_PRINT"
+            name="Multi-Company Opening Period Wizard"
+            action="action_period_open_wizard"
+            groups="account.group_account_user,account.group_account_manager"
+            id="menu_period_open_wizard"
+			sequence="20"
+            parent="menu_account_end_year_process"/>
+    </data>
+</openerp>
