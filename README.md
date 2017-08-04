@@ -1,6 +1,3 @@
-[![Build Status](https://travis-ci.org/Elico-Corp/odoo-addons.svg?branch=8.0)](https://travis-ci.org/Elico-Corp/odoo-addons)
-[![Coverage Status](https://coveralls.io/repos/github/Elico-Corp/odoo-addons/badge.svg?branch=8.0)](https://coveralls.io/github/Elico-Corp/odoo-addons?branch=8.0)
+# Odoo Version 7.0
 
-# Odoo Version 8.0
-
-Modules Elico Corp for Odoo version 8.0
+Modules Elico Corp for Odoo version 7.0
