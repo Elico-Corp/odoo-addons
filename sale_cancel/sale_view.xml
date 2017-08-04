@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+	<data>
+		<record id="inherit_sale_order_cancel_form" model="ir.ui.view">
+			<field name="name">Inherit Sale order cancel form</field>
+			<field name="model">sale.order</field>
+			<field name="inherit_id" ref="sale.view_order_form" />
+			<field name="arch" type="xml">
+				<xpath expr="//button[@name='action_cancel']" position="after">
+					<button name="action_cancel_order_with_moves_not_delivered" string="Cancel order and related DO" type="object" states="progress,manual" groups="base.group_sale_manager"/>
+				</xpath>
+			</field>
+		</record>
+	</data>
+</openerp>

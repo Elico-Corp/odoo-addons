@@ -1,0 +1,16 @@
+"id","name","model_id:id","group_id:id","perm_read","perm_write","perm_create","perm_unlink"
+"access_purchase_order","purchase order web","purchase.model_purchase_order","portal_supplier_account.res_portal_supplier_account",1,1,1,1
+"access_purchase_order_line","purchase order line web","purchase.model_purchase_order_line","portal_supplier_account.res_portal_supplier_account",1,1,1,1
+"access_product_product","product product web","product.model_product_product","portal_supplier_account.res_portal_supplier_account",1,1,1,1
+"access_product_category","product category web","product.model_product_category","portal_supplier_account.res_portal_supplier_account",1,1,1,1
+"access_account_invoice","account invoice web","account.model_account_invoice","portal_supplier_account.res_portal_supplier_account",1,1,1,1
+"access_stock_move","stock move web","stock.model_stock_move","portal_supplier_account.res_portal_supplier_account",1,1,1,1
+"access_stock_picking","stock picking web","stock.model_stock_picking","portal_supplier_account.res_portal_supplier_account",1,1,1,1
+"access_stock_picking_in","stock picking in web","stock.model_stock_picking_in","portal_supplier_account.res_portal_supplier_account",1,1,1,1
+"access_product_template","product template web","product.model_product_template","portal_supplier_account.res_portal_supplier_account",1,1,1,1
+"access_product_supplierinfo","product supplierinfo web","product.model_product_supplierinfo","portal_supplier_account.res_portal_supplier_account",1,1,1,1
+"access_stock_warehouse","stock warehouse web","stock.model_stock_warehouse","portal_supplier_account.res_portal_supplier_account",1,1,1,1
+"access_product_packaging","product packaging web","product.model_product_packaging","portal_supplier_account.res_portal_supplier_account",1,1,1,1
+"access_magento_product","magento product web","magentoerpconnect.model_magento_product_product","portal_supplier_account.res_portal_supplier_account",1,1,1,1
+"access_account_tax","account tax web","account.model_account_tax","portal_supplier_account.res_portal_supplier_account",1,1,1,1
+

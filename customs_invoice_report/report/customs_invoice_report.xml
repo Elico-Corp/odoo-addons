@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+<data>
+
+<!--  PO webkit report   jon.chow#elico-corp.com 2013-12-6-->
+<report id="webkiet_customs_invoice_report" 
+		 name="customs_invoice_report" 
+		 auto="False" 
+		 model="account.invoice" 
+		 file="customs_invoice_report/report/customs_invoice_report.mako"  
+        string="Customs Invoice Report" 
+        groups="base.group_system"
+        report_type="webkit"/>
+</data>
+</openerp>

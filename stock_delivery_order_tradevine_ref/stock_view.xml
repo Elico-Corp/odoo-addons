@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+	<data>
+       <record id="stock_picking_out_inherit_client_order_ref" model="ir.ui.view">
+            <field name="name">stock.picking.out.inherit.client.order.ref</field>
+            <field name="model">stock.picking.out</field>
+            <field name="inherit_id" ref="stock.view_picking_form" />
+            <field name="arch" type="xml">
+                <field name="origin" position="after">
+                    <field name="client_order_ref" />
+                </field>
+            </field>
+        </record>
+        <record id="inherit_search_tradevine_ref_view_picking_out" model="ir.ui.view">
+            <field name="name">inherit.search.tradevine.ref.stock.picking.out</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.view_picking_out_search" />
+            <field name="arch" type="xml">
+                <field name="partner_id" position="after">
+                    <field name="client_order_ref" />
+                </field>
+            </field>
+        </record>
+	</data>
+</openerp>

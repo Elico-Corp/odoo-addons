@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <!-- Production -->
+        <record id="prod_trans_draft_ready" model="workflow.transition">
+            <field name="act_from" ref="mrp.prod_act_draft"/>
+            <field name="act_to" ref="mrp.prod_act_ready"/>
+            <field name="signal"></field>
+            <field name="condition">not test_if_product()</field>
+        </record>
+
+        <!-- Procurement -->
+
+        <record id="act_produce_nonstd" model="workflow.activity">
+            <field name="wkf_id" ref="procurement.wkf_procurement"/>
+            <field name="name">produce</field>
+            <field name="kind">subflow</field>
+            <field name="subflow_id" search="[('osv','=','mrp.production')]"/>
+            <field name="action">action_produce_assign_product()</field>
+        </record>
+
+        <record id="trans_confirm_mto_need_production" model="workflow.transition">
+            <field name="act_from" ref="procurement.act_confirm_mto"/>
+            <field name="act_to" ref="act_produce_nonstd"/>
+            <field name="condition">check_produce() and is_product() and not check_bom_exists()</field>
+        </record>
+
+	    <record id="mrp_production_form_nonstd_inherit_view" model="ir.ui.view">
+	        <field name="name">mrp.production.form.nonstd.inherit</field>
+	        <field name="model">mrp.production</field>
+	        <field name="inherit_id" ref="mrp.mrp_production_form_view"/>
+	        <field name="arch" type="xml">
+	            <xpath expr="//field[@name='bom_id']" position="replace">
+	                <field name="bom_id" domain="[('product_id','=',product_id)]" context="{'default_product_id': product_id}" on_change="bom_id_change(bom_id)" required="0"/>
+	            </xpath>
+	            <xpath expr="/form/sheet/group/group/field[@name='product_id']" position="replace">
+					<field name="product_id" on_change="product_id_change(product_id)" domain="[('supply_method','=','produce')]" class="oe_inline" context='{"default_supply_method":"produce", "default_type": "product"}'/>
+	            </xpath>
+	            
+	        </field>
+	    </record>
+    </data>
+</openerp>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record id="view_landed_costs_shipment_po" model="ir.ui.view">
+            <field name="name">Assign Puchase Orders</field>
+            <field name="model">landed.costs.shipment.po</field>
+            <field name="arch" type="xml">
+                <form string="Assign Puchase Orders" version="7.0">
+                    <header>
+                        <button icon="gtk-execute" string="Confirm" name="link_po" type="object" class="oe_highlight" />
+                    </header>
+                    <group>
+                        <label colspan="4" nolabel="1" string="This wizard will link all the selected Purchase orders to the current shipment" />
+                    </group>
+                    <group colspan="4" >
+                        <separator string="Purchase Order" colspan="4"/>
+                        <newline/>
+                        <field name="purchase_ids" nolabel="1"/>
+                    </group>
+               </form>
+            </field>
+        </record>
+
+        <record id="action_landed_costs_shipment_po" model="ir.actions.act_window">
+            <field name="name">Assign Puchase Orders</field>
+            <field name="res_model">landed.costs.shipment.po</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_landed_costs_shipment_po"/>
+            <field name="target">new</field>
+        </record>
+    </data>
+</openerp>

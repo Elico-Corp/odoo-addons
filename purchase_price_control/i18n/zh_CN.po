@@ -1,0 +1,247 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+#	* fc_purchase
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 7.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-02-22 02:46+0000\n"
+"PO-Revision-Date: 2013-02-22 02:46+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: fc_purchase
+#: model:ir.model,name:fc_purchase.model_purchase_order_line
+msgid "Purchase Order Line"
+msgstr "采购明细"
+
+#. module: fc_purchase
+#: model:ir.model,name:fc_purchase.model_stock_partial_move_line
+msgid "stock.partial.move.line"
+msgstr "stock.partial.move.line"
+
+#. module: fc_purchase
+#: field:purchase.config.settings,po_price_modification_limit:0
+msgid "Control on supplier/product PO price"
+msgstr "控制采购价格"
+
+#. module: fc_purchase
+#: field:purchase.order.line,qty_unreceived:0
+msgid "Waiting Qty"
+msgstr "待收货数量"
+
+#. module: fc_purchase
+#: model:ir.actions.act_window,help:fc_purchase.action_purchase_line
+msgid "<p class=\"oe_view_nocontent_create\">\n"
+"                Click to check Purchase Order Line.\n"
+"              </p>\n"
+"            "
+msgstr "<p class=\"oe_view_nocontent_create\">\n"
+"                点击可查询采购明细！\n"
+"              </p>\n"
+"            "
+
+#. module: fc_purchase
+#: view:purchase.order:0
+msgid "Purchase Order Lines"
+msgstr "采购明细"
+
+#. module: fc_purchase
+#: field:purchase.order.line,price_unit_original:0
+msgid "Original Unit Price"
+msgstr "原始单价"
+
+#. module: fc_purchase
+#: model:ir.model,name:fc_purchase.model_stock_picking
+msgid "Picking List"
+msgstr "发货单"
+
+#. module: fc_purchase
+#: model:ir.model,name:fc_purchase.model_purchase_config_settings
+msgid "purchase.config.settings"
+msgstr "purchase.config.settings"
+
+#. module: fc_purchase
+#: view:purchase.order.line:0
+msgid "Today"
+msgstr "今天"
+
+#. module: fc_purchase
+#: field:product.product,po_price_modification_limit:0
+#: field:res.partner,po_price_modification_limit:0
+msgid "No control on PO price"
+msgstr "不控采购单价"
+
+#. module: fc_purchase
+#: view:purchase.order.line:0
+msgid "Orders processed Today or planned for Today"
+msgstr "计划今天处理的单据"
+
+#. module: fc_purchase
+#: help:purchase.config.settings,po_price_modification_limit:0
+msgid "Allows you to change the price in PO, only when the supplier and Product allow it."
+msgstr "只有供应商或者产品允许修改价格时，才可以修改采购价格！"
+
+#. module: fc_purchase
+#: model:ir.model,name:fc_purchase.model_product_product
+msgid "Product"
+msgstr "产品"
+
+#. module: fc_purchase
+#: field:purchase.order.line,qty_received:0
+msgid "Reception Qty"
+msgstr "已收货数量"
+
+#. module: fc_purchase
+#: code:addons/fc_purchase/purchase.py:219
+#, python-format
+msgid "At least one pricelist has no active version !\n"
+"Please create or activate one."
+msgstr "至少有一个价格表没有可用的版本！\n"
+"请创建一个可用版本。"
+
+#. module: fc_purchase
+#: help:purchase.order.line,sequence:0
+#: help:stock.move,sequence:0
+msgid "Sequence for order in view and print report"
+msgstr "用于视图和报表中的序号"
+
+#. module: fc_purchase
+#: field:purchase.order,delivery_id:0
+msgid "Delivery"
+msgstr "收货"
+
+#. module: fc_purchase
+#: model:ir.model,name:fc_purchase.model_stock_partial_picking
+msgid "Partial Picking Processing Wizard"
+msgstr "分部拣货处理向导"
+
+#. module: fc_purchase
+#: model:ir.model,name:fc_purchase.model_product_pricelist
+msgid "Pricelist"
+msgstr "价格表"
+
+#. module: fc_purchase
+#: help:res.partner,po_price_modification_limit:0
+msgid "If checked, allows you to change the price in PO (only when either the Supplier or Product allow it)"
+msgstr "若选择, 允许你在采购上修改单价(在供应商或者产品上设置一个即可)"
+
+#. module: fc_purchase
+#: field:purchase.order,contact_delivery_id:0
+msgid "Delivery Contact"
+msgstr "收货联系"
+
+#. module: fc_purchase
+#: code:addons/fc_purchase/purchase.py:478
+#, python-format
+msgid "You can not modify the price of this product sold by this supplier !"
+msgstr "你不可修改该供应商售出的此产品价格！"
+
+#. module: fc_purchase
+#: model:ir.model,name:fc_purchase.model_stock_partial_picking_line
+msgid "stock.partial.picking.line"
+msgstr "stock.partial.picking.line"
+
+#. module: fc_purchase
+#: field:purchase.order.line,amount_subtotal:0
+msgid "Subtotal(Inc. Tax)"
+msgstr "小计(含税)"
+
+#. module: fc_purchase
+#: field:purchase.order.line,modify_price:0
+msgid "Modify Price"
+msgstr "修改价格"
+
+#. module: fc_purchase
+#: model:ir.model,name:fc_purchase.model_stock_partial_move
+msgid "Partial Move Processing Wizard"
+msgstr "进行部分调拨处理的向导"
+
+#. module: fc_purchase
+#: model:ir.ui.menu,name:fc_purchase.menu_action_stock_move_report_po_underpo
+msgid "Receptions Analysis"
+msgstr "收货分析"
+
+#. module: fc_purchase
+#: code:addons/fc_purchase/purchase.py:478
+#, python-format
+msgid "PO Price"
+msgstr "采购单价"
+
+#. module: fc_purchase
+#: model:ir.model,name:fc_purchase.model_purchase_order
+msgid "Purchase Order"
+msgstr "采购订单"
+
+#. module: fc_purchase
+#: field:purchase.order,contact_partner_id:0
+msgid "Supplier Contact"
+msgstr "供应商联系人"
+
+#. module: fc_purchase
+#: help:product.product,po_price_modification_limit:0
+msgid "If checked, allows you to change the price in PO (only when either the Supplier or Product allow it)."
+msgstr "若选择, 允许你在采购上修改单价(在供应商或者产品上设置一个即可)"
+
+#. module: fc_purchase
+#: code:addons/fc_purchase/purchase.py:132
+#, python-format
+msgid "Fix Price based on UoP"
+msgstr "价格基于采购单位"
+
+#. module: fc_purchase
+#: field:purchase.order.line,sequence:0
+#: field:stock.move,sequence:0
+#: field:stock.partial.move.line,sequence:0
+#: field:stock.partial.picking.line,sequence:0
+msgid "Sequence"
+msgstr "序号"
+
+#. module: fc_purchase
+#: model:ir.model,name:fc_purchase.model_stock_move
+msgid "Stock Move"
+msgstr "库存调拨"
+
+#. module: fc_purchase
+#: model:ir.actions.act_window,name:fc_purchase.action_purchase_line
+#: model:ir.ui.menu,name:fc_purchase.menu_purchase_line
+msgid "PO Line"
+msgstr "采购明细"
+
+#. module: fc_purchase
+#: field:stock.partial.move.line,date_expected:0
+#: field:stock.partial.picking.line,date_expected:0
+msgid "Scheduled Date"
+msgstr "计划日期"
+
+#. module: fc_purchase
+#: field:product.pricelist.item,uom_id:0
+msgid "UoM for Fix Price"
+msgstr "计价单位"
+
+#. module: fc_purchase
+#: code:addons/fc_purchase/purchase.py:219
+#, python-format
+msgid "Warning!"
+msgstr "警告！"
+
+#. module: fc_purchase
+#: model:ir.model,name:fc_purchase.model_res_partner
+msgid "Partner"
+msgstr "业务伙伴"
+
+#. module: fc_purchase
+#: model:ir.model,name:fc_purchase.model_product_pricelist_item
+msgid "Pricelist item"
+msgstr "价格表明细"
+
+#. module: fc_purchase
+#: model:ir.model,name:fc_purchase.model_sale_order
+msgid "Sales Order"
+msgstr "销售订单"
+

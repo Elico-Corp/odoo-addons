@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <!--Delivery to Subcontractor Form-->        
+		<report auto="False" 
+			id="report_shipping_to_subcontractor" 
+			model="stock.tracking"
+			name="shipping.to.subcontractor" 
+			rml="stock_batch_track/report/shipping.rml" 
+			string="Delivery Order to Subcontractor"/>
+
+		<!-- End -->
+	</data>
+</openerp>

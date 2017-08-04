@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="view_sale_confirm_warning" model="ir.ui.view">
+            <field name="name">Confirm Sale Order with warning </field>
+            <field name="model">sale.confirm.warning</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Confirm Warning">
+                    <separator string="Note:" colspan="4"/>
+                    <label string="After you confirmed this order," colspan="4"/>
+                    <label string="Current customer's credit plus this order amount," colspan="4"/>
+                    <label string="will be overlimit." colspan="4"/>
+                    <separator string="" colspan="4" />
+                    <group col="2" colspan="4">
+                        <button special="cancel" string="_Cancel" icon="gtk-cancel"/>
+                        <button name="do_order_confirm" string="_Continue to Confirm Order" type="object" icon="gtk-apply"/>
+                    </group>
+                </form>
+            </field>
+        </record> 
+    </data>
+</openerp>

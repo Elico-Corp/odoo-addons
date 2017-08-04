@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data noupdate="1">
+	
+	    <record id="group_limit_validator" model="res.groups">
+	        <field name="name">Stock / Validator</field>
+	    </record>
+	</data>
+
+    <data>
+        <!-- Adding Validate Info on outgoing picking -->
+
+        <record id="stock_picking_out_inherit_validate" model="ir.ui.view">
+            <field name="name">Outgoing picking validate</field>
+            <field name="model">stock.picking</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="stock.view_picking_out_form"/>
+            <field name="arch" type="xml">
+                <field name="stock_journal_id" position="after">
+                    <field name="validated" on_change="on_change_validate(validated)" groups="partner_credit_limit_warning.group_limit_validator"/>
+                    <field name="validator"  readonly="0" groups="partner_credit_limit_warning.group_limit_validator"/>
+                </field>
+            </field>
+        </record>
+
+    </data>    
+
+    <data>
+        <record id="stock.trans_move_done" model="workflow.transition">
+            <field name="act_from" ref="stock.act_move"/>
+            <field name="act_to" ref="stock.act_done"/>
+            <field name="condition">test_finished() and check_limit()</field>
+        </record>
+    </data>    
+</openerp>

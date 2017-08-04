@@ -1,0 +1,253 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+#	* wms
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 6.1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-10-07 09:45+0000\n"
+"PO-Revision-Date: 2012-10-07 09:45+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: wms
+#: field:stock.location,categ_id:0
+msgid "Category"
+msgstr "Catégorie"
+
+#. module: wms
+#: field:wms.report.stock.available,prodlot_id:0
+msgid "Production lot"
+msgstr "Lot de production"
+
+#. module: wms
+#: help:wms.report.stock.available,usage:0
+msgid "* Supplier Location: Virtual location representing the source location for products coming from your suppliers\n"
+"                       \n"
+"* View: Virtual location used to create a hierarchical structures for your warehouse, aggregating its child locations ; can't directly contain products\n"
+"                       \n"
+"* Internal Location: Physical locations inside your own warehouses,\n"
+"                       \n"
+"* Customer Location: Virtual location representing the destination location for products sent to your customers\n"
+"                       \n"
+"* Inventory: Virtual location serving as counterpart for inventory operations used to correct stock levels (Physical inventories)\n"
+"                       \n"
+"* Procurement: Virtual location serving as temporary counterpart for procurement operations when the source (supplier or production) is not known yet. This location should be empty when the procurement scheduler has finished running.\n"
+"                       \n"
+"* Production: Virtual counterpart location for production operations: this location consumes the raw material and produces finished products\n"
+"                      "
+msgstr "* \"Emplacement Fournisseur\" : emplacement virtuel représentant l'origine des produits reçus d'un fournisseur\n"
+"                       \n"
+"* \"Vue\" : emplacement virtuel servant à donner une vision hiérarchisée de votre entrepôt, en regroupant les produits des emplacements enfants. Ne peut pas contenir de produit directement\n"
+"                       \n"
+"* \"Emplacement interne\" : emplacement physique dans votre entrepôt\n"
+"                       \n"
+"* \"Emplacement client\": emplacement virtuel représentant la destination des produits envoyés à un client\n"
+"                       \n"
+"* \"Inventaire\": emplacement virtuel servant de contrepartie aux mouvements servant à corriger les niveaux des stocks lors des inventaires physiques\n"
+"                       \n"
+"* \"Approvisionnement\" : emplacement virtuel servant de contrepartie temporaire pour les besoins de stock lorsque l'emplacement d'origine (fournisseur ou production interne) n'est pas connu à l'avance. Cet emplacement est normalement vide lorsque le planificateur termine son exécution\n"
+"                       \n"
+"* \"Fabrication\" : emplacement virtuel servant de contrepartie pour les opérations de fabrication : les matières premières y sont consommées et les produits finis y sont créés\n"
+"                      "
+
+#. module: wms
+#: help:stock.location,warehouse_id:0
+msgid "Warehouse where is located this location"
+msgstr "Entrepôt dans lequel est situé l'emplacement"
+
+#. module: wms
+#: model:ir.model,name:wms.model_stock_location_category
+msgid "Category of stock location"
+msgstr "Catégorie d'emplacement de stock"
+
+#. module: wms
+#: model:ir.model,name:wms.model_wms_report_stock_available
+msgid "Stock available"
+msgstr "Stock disponible"
+
+#. module: wms
+#: selection:wms.report.stock.available,usage:0
+msgid "Internal Location"
+msgstr "Emplacement interne"
+
+#. module: wms
+#: view:wms.report.stock.available:0
+msgid "Group By..."
+msgstr "Grouper par..."
+
+#. module: wms
+#: view:wms.report.stock.available:0
+msgid "Internal"
+msgstr "Interne"
+
+#. module: wms
+#: selection:wms.report.stock.available,usage:0
+msgid "Inventory"
+msgstr "Inventaire"
+
+#. module: wms
+#: view:wms.report.stock.available:0
+msgid "Supplier"
+msgstr "Fournisseur"
+
+#. module: wms
+#: view:wms.report.stock.available:0
+#: field:wms.report.stock.available,uom_id:0
+msgid "UOM"
+msgstr "UOM"
+
+#. module: wms
+#: view:wms.report.stock.available:0
+#: field:wms.report.stock.available,product_id:0
+msgid "Product"
+msgstr "Produit"
+
+#. module: wms
+#: help:stock.location.category,name:0
+msgid "Name of the category of stock location"
+msgstr "Nom de la catégorie d'emplacement"
+
+#. module: wms
+#: constraint:stock.location:0
+msgid "Error msg is in raise"
+msgstr "Error msg is in raise"
+
+#. module: wms
+#: field:wms.report.stock.available,product_qty:0
+msgid "Quantity"
+msgstr "Quantité"
+
+#. module: wms
+#: selection:wms.report.stock.available,usage:0
+msgid "Customer Location"
+msgstr "Emplacement client"
+
+#. module: wms
+#: view:wms.report.stock.available:0
+msgid "Internal Locations"
+msgstr "Emplacements interne"
+
+#. module: wms
+#: field:stock.location.category,active:0
+msgid "Active"
+msgstr "Actif"
+
+#. module: wms
+#: view:wms.report.stock.available:0
+msgid "Extended Filters..."
+msgstr "Filtres étendus..."
+
+#. module: wms
+#: help:stock.location.category,active:0
+msgid "This field allows to hide the category without removing it"
+msgstr "Ce champ permet de masquer la catégorie sans la supprimer"
+
+#. module: wms
+#: view:wms.report.stock.available:0
+msgid "Customer"
+msgstr "Client"
+
+#. module: wms
+#: field:wms.report.stock.available,usage:0
+msgid "Location Type"
+msgstr "Types d'Emplacements"
+
+#. module: wms
+#: field:stock.location.category,name:0
+msgid "Name"
+msgstr "Nom"
+
+#. module: wms
+#: view:wms.report.stock.available:0
+msgid "Supplier Locations"
+msgstr "Emplacements fournisseur"
+
+#. module: wms
+#: model:ir.actions.act_window,name:wms.act_open_stock_location_category_view
+#: model:ir.ui.menu,name:wms.menu_stock_location_category
+#: view:stock.location.category:0
+msgid "Stock location category"
+msgstr "Catégorie d'emplacement"
+
+#. module: wms
+#: view:wms.report.stock.available:0
+msgid "Customer Locations"
+msgstr "Emplacements client"
+
+#. module: wms
+#: selection:wms.report.stock.available,usage:0
+msgid "Procurement"
+msgstr "Approvisionnements"
+
+#. module: wms
+#: help:stock.location.category,code:0
+msgid "Code of the category of stock location"
+msgstr "Code de la catégorie d'emplacement"
+
+#. module: wms
+#: selection:wms.report.stock.available,usage:0
+msgid "Supplier Location"
+msgstr "Emplaceemnt fournisseur"
+
+#. module: wms
+#: help:stock.location,categ_id:0
+msgid "Category of this location"
+msgstr "Catégorie de cet emplacement"
+
+#. module: wms
+#: view:wms.report.stock.available:0
+msgid "Production Lot"
+msgstr "Lot de Production"
+
+#. module: wms
+#: field:stock.location.category,code:0
+msgid "Code"
+msgstr "Code"
+
+#. module: wms
+#: selection:wms.report.stock.available,usage:0
+msgid "Transit Location for Inter-Companies Transfers"
+msgstr "Transit Location for Inter-Companies Transfers"
+
+#. module: wms
+#: field:stock.location,warehouse_id:0
+#: view:wms.report.stock.available:0
+#: field:wms.report.stock.available,warehouse_id:0
+msgid "Warehouse"
+msgstr "Entrepôt"
+
+#. module: wms
+#: model:ir.actions.act_window,name:wms.act_open_report_stock_location_available_view
+#: model:ir.ui.menu,name:wms.menu_report_stock_location_available
+#: view:wms.report.stock.available:0
+msgid "Stock Available"
+msgstr "Stock Disponible"
+
+#. module: wms
+#: selection:wms.report.stock.available,usage:0
+msgid "Production"
+msgstr "Production"
+
+#. module: wms
+#: selection:wms.report.stock.available,usage:0
+msgid "View"
+msgstr "Vue"
+
+#. module: wms
+#: view:wms.report.stock.available:0
+msgid "Total"
+msgstr "Total"
+
+#. module: wms
+#: model:ir.model,name:wms.model_stock_location
+#: view:wms.report.stock.available:0
+#: field:wms.report.stock.available,location_id:0
+msgid "Location"
+msgstr "Emplacement"
+

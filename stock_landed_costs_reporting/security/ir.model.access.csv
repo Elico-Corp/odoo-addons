@@ -1,0 +1,2 @@
+"id","name","model_id:id","group_id:id","perm_read","perm_write","perm_create","perm_unlink"
+access_landed_costs_reporting_warehouse_user,landed.costs.reporting,model_landed_costs_reporting,stock.group_stock_user,1,1,1,1

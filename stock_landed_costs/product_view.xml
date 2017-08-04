@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <!-- product view, add duty rules info. -->
+        <record id="inherit_product_duty_rule_product_normal_form_view" model="ir.ui.view">
+            <field name="name">product.product.duty.rule.form</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="product.product_normal_form_view"/>
+            <field name="arch" type="xml">
+                <page string="Procurements" position="after">
+                    <page string="Duty Rules">
+                        <field name="duty_rule_ids" />
+                    </page>
+                </page>
+            </field>
+        </record>
+        <!-- inherit product to add cost prices -->
+        <record id="inherit_product_duty_rule_product_standard_price_form" model="ir.ui.view">
+            <field name="name">product.product.duty.rule.form</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="stock.view_product_standard_price_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='standard_price']/.." position="replace">
+                    <div groups="base.group_user">
+                        <field name="standard_price" attrs="{'readonly':[('cost_method','=','average')]}"/>
+                    </div>
+
+                    <label for="transit_cost" align="1.0" groups="base.group_user"/>
+                    <div groups="base.group_user">
+                        <field name="transit_cost" attrs="{'readonly':[('cost_method','=','average')]}" nolabel="1.0"/>
+                    </div>
+
+                    <label for="duty_free_cost" align="1.0" groups="base.group_user"/>
+                    <div groups="base.group_user">
+                        <field name="duty_free_cost" attrs="{'readonly':[('cost_method','=','average')]}" nolabel="1.0"/>
+                    </div>
+
+                    <label for="duty_paid_cost" align="1.0" groups="base.group_user"/>
+                    <div groups="base.group_user">
+                    <field name="duty_paid_cost" attrs="{'readonly':[('cost_method','=','average')]}"/>
+                    <button name="%(stock.action_view_change_standard_price)d" string="- update"
+                        type="action" attrs="{'invisible':[('cost_method','&lt;&gt;','average')]}"
+                        class="oe_link" groups="product.group_costing_method"/>
+                    </div>
+                </xpath>
+            </field>
+        </record>
+        <record id="tree_product_duty_rule" model="ir.ui.view">
+            <field name="name">tree.product.duty.rule</field>
+            <field name="model">product.duty.rule</field>
+            <field name="arch" type="xml">
+                <tree string="Duty Rules">
+                    <field name="generate_invoice" />
+                    <field name="invoice_total_per_product" />
+                    <field name="name" />
+                    <field name="partner_id" />
+                    <field name="product_id" />
+                    <field name="src_location_id" />
+                    <field name="dest_location_id" />
+                    <field name="note" />
+                </tree>
+            </field>
+        </record>
+        <record id="product_duty_rule_form_view" model="ir.ui.view">
+            <field name="name">product.duty.rule.form.view</field>
+            <field name="model">product.duty.rule</field>
+            <field name="arch" type="xml">
+                <form string="Duty Rules" version="7.0">
+                    <label for="name" class="oe_edit_only"/>
+                    <h1><field name="name"/></h1>
+
+                    <group col="4">
+                       <field name="generate_invoice" />
+                       <field name="invoice_total_per_product" />
+                       <field name="partner_id" />
+                       <field name="product_id" />
+                       <field name="src_location_id" />
+                       <field name="dest_location_id" />
+                       <field name="company_id" widget="selection" groups="base.group_multi_company"/>
+                       <field name="currency_id" />
+                       <field name="distribution_type_id"  widget="selection"/>
+                       <field name="active"/>
+                    </group>
+                    <notebook colspan="6">
+                        <page string="General">
+                            <group col="4">
+                                <separator colspan="4" string="Computation"/>
+                                <field name="amount_select"/><newline/>
+                                <field name="amount_percentage_base" attrs="{'invisible':[('amount_select','&lt;&gt;','percentage')], 'required': [('amount_select','=','percentage')]}"/><newline/>
+                                <field name="quantity" attrs="{'invisible':[('amount_select','=','code')], 'required':[('amount_select','!=','code')]}"/><newline/>
+                                <field name="amount_fix"  attrs="{'invisible':[('amount_select','&lt;&gt;','fix')], 'required':[('amount_select','=','fix')]}"/><newline/>
+                                <field name="amount_percentage" attrs="{'invisible':[('amount_select','&lt;&gt;','percentage')], 'required':[('amount_select','=','percentage')]}"/>
+                                <field colspan="4" name="amount_python_compute" attrs="{'invisible':[('amount_select','&lt;&gt;','code')], 'required':[('amount_select','=','code')]}"/>
+                            </group>
+                        </page>
+                        <page string="Description">
+                            <field name="note"/>
+                        </page>
+                    </notebook>
+                </form>
+            </field>
+        </record>
+        <!-- inherit to make the LC readonly when the PO is confirmed. -->
+        <record id="purchase_order_form" model="ir.ui.view">
+            <field name="name">purchase.order.form</field>
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="purchase_landed_costs_extended.purchase_order_form" />
+            <field name="arch" type="xml" >
+                <field name="landed_cost_line_ids" position="attributes">
+                    <attribute name="attrs">{'readonly': ['|', ('pricelist_id', '=', False), ('state', '!=', 'draft')]}</attribute>
+                </field>
+            </field>
+        </record>
+
+        <!-- reporting part -->
+    <record id="purchase_landed_costs.action_landed_cost_report_all" model="ir.actions.act_window">
+        <field name="name">Landed Costs Analysis</field>
+        <field name="res_model">landed.cost.position</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,graph</field>
+        <field name="help">Landed cost Analysis allows you to easily check and analyse your estimated landed costs.</field>
+        <field name="domain">[('picking_info_id', '!=', False)]</field>
+        <field name="view_id" ref="picking_c2c_landed_cost_tree_stat"></field>
+        <field name="context">{'search_default_group_product_id': 1,'group_by':[]}</field>
+    </record>
+    </data>
+</openerp>

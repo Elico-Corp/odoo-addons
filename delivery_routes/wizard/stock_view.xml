@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="view_arrange_time" model="ir.ui.view">
+            <field name="name">Arrange Time</field>
+            <field name="model">arrange.time</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Arrange Time for Picking" version="7.0">
+                    <group>
+                        <field name="dts_id" />
+                    </group>
+                    <footer>
+                        <button special="cancel" string="Cancel"/>
+                        <button name="confirm_add" string="Confirm" type="object"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <act_window name="Arrange Time"
+            src_model="stock.picking"
+            res_model="arrange.time"
+            id="action_arrange_time"
+            view_mode="form"
+            multi="True"
+            key2="client_action_multi"
+            target="new"/>
+
+    </data>
+</openerp>

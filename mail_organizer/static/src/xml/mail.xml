@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<template>
+    <t t-extend="mail.thread.message">
+        <t t-jquery=".oe_msg_icons span:first-child()" t-operation="after">
+            <span class="oe_assign"><a title="Assign to" class="oe_e">C</a></span>
+        </t>
+    </t>
+</template>

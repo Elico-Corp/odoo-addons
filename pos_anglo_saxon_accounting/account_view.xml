@@ -1,0 +1,196 @@
+<openerp>
+    <data>
+    <!-- inherit the search view of bank bank statements -->
+    <record id="inherit_view_bank_statement_search" model="ir.ui.view">
+        <field name="name">account.bank.statement.search.inherit</field>
+        <field name="model">account.bank.statement</field>
+        <field name="inherit_id" ref="account.view_bank_statement_search" />
+        <field name="arch" type="xml">
+            <filter string="Journal" position="after">
+                <filter string="POS Session" context="{'group_by':'pos_session_id'}" icon="terp-folder-green"/>
+            </filter>
+        </field>
+    </record>
+
+    <record id="inherit_view_account_bank_statement_filter" model="ir.ui.view">
+        <field name="name">account.cash.statement.select.inherit</field>
+        <field name="model">account.bank.statement</field>
+        <field name="inherit_id" ref="account.view_account_bank_statement_filter" />
+        <field name="arch" type="xml">
+            <filter string="Journal" position="after">
+                <filter string="POS Session" context="{'group_by':'pos_session_id'}" icon="terp-folder-green"/>
+            </filter>
+        </field>
+    </record>
+
+    <!-- inherit the form view of bank statements -->
+    <record id="inherit_view_bank_statement_form" model="ir.ui.view">
+        <field name="name">Inherit view bank statment form</field>
+        <field name="model">account.bank.statement</field>
+        <field name="inherit_id" ref="account.view_bank_statement_form" />
+        <field name="arch" type="xml">
+            <button name="button_confirm_bank" position="replace">
+                <button name="button_confirm_bank_2" states="draft,open" string="Confirm" type="object" class="oe_highlight"/>
+            </button>
+            <field name="balance_end_real" position="after">
+                <field name="pos_session_id" attrs="{'invisible': [('pos_session_id', '=', False)]}"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="view_cash_statement_pos_tree" model="ir.ui.view">
+        <field name="name">account.bank.statement.tree</field>
+        <field name="model">account.bank.statement</field>
+        <field name="inherit_id" ref="account.view_cash_statement_tree"/>
+        <field name="arch" type="xml">
+            <field name="journal_id" position="after">
+                <field name="pos_session_id"/>
+            </field>
+        </field>
+    </record>
+
+    <!-- POS Cash Statement -->
+    <record id="view_pos_cash_statement_tree" model="ir.ui.view">
+        <field name="name">account.bank.statement.tree</field>
+        <field name="model">account.bank.statement</field>
+        <field name="arch" type="xml">
+            <tree colors="red:balance_end_real!=balance_end;blue:state=='draft' and (balance_end_real==balance_end);black:state == 'open'" string="Statement">
+                <field name="name"/>
+                <field name="pos_session_id" />
+                <field name="date"/>
+                <field name="period_id"/>
+                <field name="journal_id"/>
+                <field name="user_id" string="Responsible" />
+                <field name="balance_start"/>
+                <field name="balance_end_real"/>
+                <field name="balance_end" invisible="1" />
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- add domain to the bankstatement action -->
+    <record id="account.action_bank_statement_tree" model="ir.actions.act_window">
+        <field name="domain">[('journal_id.type', '=', 'bank'), ('pos_session_id', '=', False)]</field>
+    </record>
+    <record id="account.action_view_bank_statement_tree" model="ir.actions.act_window">
+        <field name="domain">[('journal_id.type', '=', 'cash'),('pos_session_id', '=', False)]</field>
+    </record>
+
+    <!-- new menu for POS bank statment. -->
+    <record id="action_pos_bank_statement_tree" model="ir.actions.act_window">
+        <field name="name">POS Bank Statements</field>
+        <field name="res_model">account.bank.statement</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form,graph</field>
+        <field name="view_id" ref="view_pos_cash_statement_tree" />
+        <field name="domain">[('journal_id.type', '=', 'bank'), ('pos_session_id', '!=', False)]</field>
+        <field name="context">{'journal_type':'bank'}</field>
+        <field name="search_view_id" ref="account.view_bank_statement_search"/>
+        <field name="help" type="html">
+          <p class="oe_view_nocontent_create">
+            Click to register a bank statement.
+          </p><p>
+            A bank statement is a summary of all financial transactions
+            occurring over a given period of time on a bank account. You
+            should receive this periodicaly from your bank.
+          </p><p>
+            OpenERP allows you to reconcile a statement line directly with
+            the related sale or puchase invoices.
+          </p>
+        </field>
+    </record>
+    <menuitem string="POS Bank Statements" action="action_pos_bank_statement_tree" id="menu_pos_bank_statement_tree" parent="account.menu_finance_bank_and_cash" sequence="8"/>
+
+    <!-- add a new menu POS related cash register -->
+    <record id="action_pos_view_bank_statement_tree" model="ir.actions.act_window">
+            <field name="name">POS Cash Registers</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">account.bank.statement</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form,graph</field>
+            <field name="view_id" ref="view_pos_cash_statement_tree"/>
+            <field name="search_view_id" ref="account.view_account_bank_statement_filter"/>
+            <field name="domain">[('journal_id.type', '=', 'cash'), ('pos_session_id', '!=', False)]</field>
+            <field name="context">{'journal_type':'cash'}</field>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to create a new cash log.
+              </p><p>
+                A Cash Register allows you to manage cash entries in your cash
+                journals. This feature provides an easy way to follow up cash
+                payments on a daily basis. You can enter the coins that are in
+                your cash box, and then post entries when money comes in or
+                goes out of the cash box.
+              </p>
+            </field>
+        </record>
+    <menuitem action="action_pos_view_bank_statement_tree" id="journal_pos_cash_move_lines" parent="account.menu_finance_bank_and_cash"/>
+
+    <!-- add fapiao issued field-->
+        <record id="view_move_fapiao_issue_form" model="ir.ui.view">
+            <field name="name">account.move.fapiao.issue</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_move_form"/>
+            <field name="arch" type="xml">
+                <field name="company_id" position="after">
+                    <field name="fapiao_required"/>
+                </field>
+                <xpath expr="//tree[@string='Journal Items']//field[@name='name']" position="after">
+                    <field name="fapiao_required"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_move_fapiao_issue_tree" model="ir.ui.view">
+            <field name="name">account.move.fapiao.issue.tree</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_move_tree"/>
+            <field name="arch" type="xml">
+                <field name="name" position="after">
+                    <field name="fapiao_required"/>
+                </field>
+            </field>
+        </record>
+
+        <record id="view_move_line_fapiao_issue_tree" model="ir.ui.view">
+            <field name="name">account.move.line.fapiao.tree</field>
+            <field name="model">account.move.line</field>
+            <field name="inherit_id" ref="account.view_move_line_tree"/>
+            <field name="arch" type="xml">
+                <field name="name" position="after">
+                    <field name="fapiao_required"/>
+                </field>
+            </field>
+        </record>
+        <!-- add search filter -->
+        <record model="ir.ui.view" id="view_fapiao_move_search_inherit">
+            <field name="name">view.move.fapiao.search.inherit</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_account_move_filter"/>
+            <field name="arch" type="xml">
+            <data>
+                <xpath expr="//filter[@string='To Review']" position="after">
+                    <separator/>
+                    <filter icon="terp-fapiao" string="Fapiao not issued" domain="[('fapiao_required','=',False)]"/>
+                </xpath>
+            </data>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="view_move_line_search_fapiao_inherit">
+            <field name="name">view.move.line.search.fapiao.inherit</field>
+            <field name="model">account.move.line</field>
+            <field name="inherit_id" ref="account.view_account_move_line_filter"/>
+            <field name="arch" type="xml">
+            <data>
+                <xpath expr="//filter[@string='Next Partner to Reconcile']" position="after">
+                    <separator/>
+                    <filter icon="terp-fapiao" string="Fapiao not issued" domain="[('fapiao_required','=',False)]"/>
+                </xpath>
+            </data>
+            </field>
+        </record>
+
+    </data>
+</openerp>
+

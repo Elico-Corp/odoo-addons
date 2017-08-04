@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="view_stock_batch_move" model="ir.ui.view">
+            <field name="name">Stock Batch Move</field>
+            <field name="model">stock.batch.move</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+              <form string="">
+                    <!-- field name="cancel_availability"/ -->
+                    <field name="check_availability"/>
+                    <field name="force_availability"/>
+                    <field name="auto_process"/>
+                    <field name="cancel_move"/>
+				    <group col="2" colspan="4">
+                		<button icon='gtk-cancel' special="cancel"	string="Cancel" />
+					    <button name="process" string="Process" type="object" icon="gtk-ok"/>
+                	</group>
+             </form>
+            </field>
+        </record>
+
+
+        <act_window name="Stock Batch Process"
+            res_model="stock.batch.move"
+            src_model="stock.move"
+            key2="client_action_multi"
+            multi="True"
+            view_mode="form"
+            view_type="form"
+            target="new"
+            id="action_stock_batch_move"/>
+    </data>
+</openerp>

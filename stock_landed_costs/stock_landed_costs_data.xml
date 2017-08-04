@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data noupdate="1">
+        <!-- prepare the three new stock valuation accounts -->
+        <!-- parent account is 1598 -->
+        <record id="account_account_valuation_001" model="account.account">
+            <field name="name" >SH Transit Zone Valuation</field>
+            <field name="code">S125413</field>
+            <field name="parent_id" ref="__export__.account_account_18" />
+            <field name="user_type" ref="__export__.account_account_type_35" />
+            <field name="company_id" ref="base.main_company" />
+        </record>
+        <record id="account_account_valuation_002" model="account.account">
+            <field name="name" >SH Duty Free Zone Valuation</field>
+            <field name="code">S125414</field>
+            <field name="parent_id" ref="__export__.account_account_18" />
+            <field name="user_type" ref="__export__.account_account_type_35" />
+            <field name="company_id" ref="base.main_company" />
+        </record>
+        <record id="account_account_valuation_003" model="account.account">
+            <field name="name" >SH Duty Paid Zone Valuation</field>
+            <field name="code">S125415</field>
+            <field name="parent_id" ref="__export__.account_account_18" />
+            <field name="user_type" ref="__export__.account_account_type_35" />
+            <field name="company_id" ref="base.main_company" />
+        </record>
+
+        <!-- prepare the basic price types for sh company -->
+        <record id="product_price_type_001" model="product.price.type">
+            <field name="name">SH transit cost</field>
+            <field name="field">transit_cost</field>
+            <field name="company_id" ref="base.main_company" />
+            <field name="currency_id" ref="base.CNY"/>
+        </record>
+        <record id="product_price_type_002" model="product.price.type">
+            <field name="name">SH duty free cost</field>
+            <field name="field">duty_free_cost</field>
+            <field name="company_id" ref="base.main_company" />
+            <field name="currency_id" ref="base.CNY"/>
+        </record>
+        <record id="product_price_type_003" model="product.price.type">
+            <field name="name">SH duty paid cost</field>
+            <field name="field">duty_paid_cost</field>
+            <field name="company_id" ref="base.main_company" />
+            <field name="currency_id" ref="base.CNY"/>
+        </record>
+
+        <!-- prepare the basic duty zones for SH company -->
+        <record id="basic_duty_zone_001" model="stock.duty.zone">
+            <field name="name" >SH Duty Transit Zone</field>
+            <field name="val_account_id" ref="account_account_valuation_001" />
+            <field name="price_type_id" ref="product_price_type_001" />
+            <field name="journal_id" ref="__export__.account_journal_3"/>
+            <field name="company_id" ref="base.main_company" />
+        </record>
+
+        <record id="basic_duty_zone_002" model="stock.duty.zone">
+            <field name="name" >SH Duty Free Zone</field>
+            <field name="val_account_id" ref="account_account_valuation_002" />
+            <field name="price_type_id" ref="product_price_type_002" />
+            <field name="journal_id" ref="__export__.account_journal_3"/>
+            <field name="company_id" ref="base.main_company" />
+        </record>
+
+        <record id="basic_duty_zone_003" model="stock.duty.zone">
+            <field name="name" >SH Duty Paid Zone</field>
+            <field name="val_account_id" ref="account_account_valuation_003" />
+            <field name="price_type_id" ref="product_price_type_003" />
+            <field name="journal_id" ref="__export__.account_journal_3"/>
+            <field name="company_id" ref="base.main_company" />
+        </record>
+    </data>
+</openerp>

@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+
+        <!-- Inherit res.partner form view and add customer=False,supplier=False on child_ids's context-->
+        <record id="company_view_partners_form_inherit" model="ir.ui.view">
+                <field name="name">company.view.partners.form.inherit</field>
+                <field name="model">res.partner</field>
+                <field name="inherit_id" ref="base.view_partner_form"/>
+                <field name="arch" type="xml">
+                    <field name="child_ids" position="attributes">
+                        <attribute name="context">{'default_parent_id': active_id, 'default_street': street, 'default_street2': street2, 'default_city': city, 'default_state_id': state_id, 'default_zip': zip, 'default_country_id': country_id,'default_customer':0,'default_supplier':0}</attribute>
+                    </field>
+                    <xpath expr="/form/sheet/notebook/page/field[@name='child_ids']/form/sheet/group/field[@name='email']" position="after">
+                        <field name="customer" invisible="1"/>
+                        <field name="supplier" invisible="1"/>
+                    </xpath>
+                </field>
+        </record>
+        
+        <!-- Inherit make quotation wizard on opprtunity and add default customer and supplier False -->
+        <record id="company_view_crm_make_sale" model="ir.ui.view">
+            <field name="name">company.view.crm.make.sale.inherit</field>
+            <field name="model">crm.make.sale</field>
+            <field name="inherit_id" ref="sale_crm.view_crm_make_sale"/>
+            <field name="arch" type="xml">
+                <field name="partner_id" position="attributes">
+                    <attribute name="context">{'default_customer':0,'default_supplier':0}</attribute>
+                </field>
+            </field>
+        </record>
+        
+        <!-- Inherit opprtunity form view and add default customer and supplier False -->
+        <record id="company_crm_case_form_view_oppor" model="ir.ui.view">
+            <field name="name">company.crm.case.form.view.oppor.inherit</field>
+            <field name="model">crm.lead</field>
+            <field name="inherit_id" ref="crm.crm_case_form_view_oppor"/>
+            <field name="arch" type="xml">
+                <field name="partner_id" position="attributes">
+                    <attribute name="context">{'default_name': partner_name, 'default_email': email_from, 'default_phone': phone, 'default_customer':0, 'default_supplier':0}</attribute>
+                </field>
+            </field>
+        </record>
+
+    </data>
+</openerp>

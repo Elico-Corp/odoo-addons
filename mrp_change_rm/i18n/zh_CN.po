@@ -1,0 +1,166 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+#	* fc_mrp
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 7.0alpha\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-02-18 08:08+0000\n"
+"PO-Revision-Date: 2013-02-18 08:08+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: fc_mrp
+#: code:addons/fc_mrp/stock.py:131
+#, python-format
+msgid "Information"
+msgstr "信息"
+
+#. module: fc_mrp
+#: view:mrp.production:0
+#: view:stock.move.add:0
+msgid "Add Products"
+msgstr "添加产品"
+
+#. module: fc_mrp
+#: code:addons/fc_mrp/stock.py:101
+#, python-format
+msgid "You are moving %.2f %s but only %.2f %s available for this serial number."
+msgstr "你正准备调拨 %.2f %s，但是该批号仅有 %.2f %s 。"
+
+#. module: fc_mrp
+#: code:addons/fc_mrp/stock.py:302
+#, python-format
+msgid "Exception!"
+msgstr "例外!"
+
+#. module: fc_mrp
+#: model:ir.model,name:fc_mrp.model_stock_move_add
+msgid "Add new Move for Production Order"
+msgstr "为生产订单添加新原料"
+
+#. module: fc_mrp
+#: field:stock.move.add,product_uos:0
+msgid "Product UOS"
+msgstr "销售单位"
+
+#. module: fc_mrp
+#: field:stock.move.add,product_uos_qty:0
+msgid "Quantity (UOS)"
+msgstr "数量(销售)"
+
+#. module: fc_mrp
+#: field:stock.move.add,product_uom:0
+msgid "Unit of Measure"
+msgstr "单位"
+
+#. module: fc_mrp
+#: field:stock.move.add,date_expected:0
+msgid "Scheduled Date"
+msgstr "计划日期"
+
+#. module: fc_mrp
+#: view:mrp.production:0
+msgid "Cancel Move"
+msgstr "取消调拨"
+
+#. module: fc_mrp
+#: code:addons/fc_mrp/stock.py:170
+#, python-format
+msgid "By changing the quantity here, you accept the new quantity as complete: OpenERP will not automatically generate a Back Order."
+msgstr "By changing the quantity here, you accept the new quantity as complete: OpenERP will not automatically generate a Back Order."
+
+#. module: fc_mrp
+#: field:stock.move.add,prodlot_id:0
+msgid "Serial Number"
+msgstr "批号"
+
+#. module: fc_mrp
+#: code:addons/fc_mrp/stock.py:302
+#, python-format
+msgid "Can not create the Move related to MO"
+msgstr "不能创建生产订单相关的调拨"
+
+#. module: fc_mrp
+#: field:stock.move.add,product_id:0
+msgid "Product"
+msgstr "产品"
+
+#. module: fc_mrp
+#: field:stock.move.add,product_qty:0
+msgid "Quantity"
+msgstr "数量"
+
+#. module: fc_mrp
+#: code:addons/fc_mrp/stock.py:169
+#, python-format
+msgid "Warning: No Back Order"
+msgstr "警告: No Back Order"
+
+#. module: fc_mrp
+#: code:addons/fc_mrp/stock.py:100
+#, python-format
+msgid "Insufficient Stock for Serial Number !"
+msgstr "该批次库存数量不足 !"
+
+#. module: fc_mrp
+#: field:stock.move.add,location_id:0
+msgid "Source Location"
+msgstr "来源库位"
+
+#. module: fc_mrp
+#: field:stock.move.add,location_dest_id:0
+msgid "Destination Location"
+msgstr "目标库位"
+
+#. module: fc_mrp
+#: model:ir.model,name:fc_mrp.model_stock_move
+msgid "Stock Move"
+msgstr "库存调拨"
+
+#. module: fc_mrp
+#: model:ir.actions.act_window,name:fc_mrp.action_mo_add_product
+msgid "Add  Products"
+msgstr "添加产品"
+
+#. module: fc_mrp
+#: code:addons/fc_mrp/stock.py:132
+#, python-format
+msgid "By changing this quantity here, you accept the new quantity as complete: OpenERP will not automatically generate a back order."
+msgstr "By changing this quantity here, you accept the new quantity as complete: OpenERP will not automatically generate a back order."
+
+#. module: fc_mrp
+#: view:stock.move.add:0
+msgid "Unit Of Measure"
+msgstr "单位"
+
+#. module: fc_mrp
+#: view:stock.move:0
+msgid "_Cancel"
+msgstr "取消(_C)"
+
+#. module: fc_mrp
+#: view:stock.move.add:0
+msgid "Cancel"
+msgstr "取消"
+
+#. module: fc_mrp
+#: view:stock.move.add:0
+msgid "or"
+msgstr "或者"
+
+#. module: fc_mrp
+#: view:stock.move:0
+msgid "Special"
+msgstr "特殊"
+
+#. module: fc_mrp
+#: view:stock.move.add:0
+msgid "Stock Moves"
+msgstr "调拨"
+

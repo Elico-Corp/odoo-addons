@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record id="view_landed_costs_shipment_form" model="ir.ui.view">
+            <field name="name">view.landed.costs.shipment.form</field>
+            <field name="model">landed.costs.shipment</field>
+            <field name="arch" type="xml">
+                <form string="Shipment" version="7.0">
+                    <header>
+                        <button name="%(action_landed_costs_shipment_po)d" string="Add Purchase Order" type="action" class="oe_inline oe_highlight" states="draft"/>
+                        <button name="button_confirm" string="Assign LC to Purchase Orders" type="object" class="oe_inline" states="draft"/>
+                        <field name="state" widget="statusbar" statusbar_visible="draft, done"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_title">
+                            <label for="name" class="oe_edit_only"/>
+                            <h1><field name="name"/></h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="port_of_departure" />
+                                <field name="port_of_arrival" />
+                            </group>
+                            <group>
+                                <field name="departure_date" />
+                                <field name="arrival_date" />
+                                <field name="vessel" />
+                            </group>
+                        </group>
+                        <group string="Landed Cost Templates">
+                            <field name="lc_template_ids" nolabel="1" attrs="{'readonly': [('state', 'in', ('done', 'cancel'))]}"/>
+                        </group>
+                        <newline />
+                        <group string="Purchase Orders">
+                            <field readonly="1" name="po_ids" nolabel="1">
+                                <tree string="Purchase Orders">
+                                    <field name="name" />
+                                    <field name="origin" />
+                                    <field name="partner_id" />
+                                    <field name="date_order" />
+                                    <field name="quantity_total" />
+                                    <field name="volume_total" />
+                                    <field name="amount_untaxed" />
+                                    <field name="pricelist_id" />
+                                    <field name="state" invisible="1" />
+                                </tree>
+                            </field>
+                        </group>
+                        <button name="button_clear_purchase" string="Clear Purchase Orders" type="object" attrs="{'invisible': [('state', '=', 'done')]}" groups="purchase.group_purchase_manager"/>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="tree_landed_costs_shipment" model="ir.ui.view">
+            <field name="name">tree.landed.costs.shipment</field>
+            <field name="model">landed.costs.shipment</field>
+            <field name="arch" type="xml">
+                <tree string="Shipment">
+                    <field name="name" />
+                    <field name="port_of_departure" />
+                    <field name="departure_date" />
+                    <field name="port_of_arrival" />
+                    <field name="arrival_date" />
+                    <field name="vessel" />
+                    <field name="state" />
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_landed_costs_shipment" model="ir.actions.act_window">
+            <field name="name">Shipments</field>
+            <field name="res_model">landed.costs.shipment</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{}</field>
+            <field name="domain">[]</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                Click here to create a new Shipment.
+                </p>
+            </field>
+        </record>
+
+        <!-- landed cost template views-->
+        <record id="landed_cost_position_template_form" model="ir.ui.view">
+            <field name="name">landed.cost.position.template.form</field>
+            <field name="model">landed.cost.position.template</field>
+            <field name="arch" type="xml">
+                <form string="Landing Cost Templates">
+                  <field name="generate_invoice"/>
+                  <field name="product_id" on_change="onchange_product_id(product_id)"/>
+                  <field name="account_id" invisible="1"/>
+                  <field name="partner_id"/>
+                  <field name="amount"/>
+                  <field name="currency_id" />
+                  <field name="distribution_type_id" domain="[('apply_on','=','order')]"  widget="selection"/>
+        </form>
+            </field>
+        </record>
+
+        <record id="tree_landed_cost_position_template" model="ir.ui.view">
+            <field name="name">tree.landed.cost.position.template</field>
+            <field name="model">landed.cost.position.template</field>
+            <field name="arch" type="xml">
+                <tree string="Landed cost template" editable="bottom">
+                    <field name="generate_invoice"/>
+                    <field name="product_id"  on_change="onchange_product_id(product_id)"/>
+                    <field name="account_id" invisible="1"/>
+                    <field name="partner_id"/>
+                    <field name="amount"/>
+                    <field name="currency_id" />
+                    <field name="distribution_type_id" domain="[('apply_on','=','order')]" widget="selection"/>
+                </tree>
+            </field>
+        </record>        
+
+        <!-- menu -->
+        <menuitem name="Shipment" id="landed_costs_shipment" parent="purchase.menu_procurement_management" action="action_landed_costs_shipment" groups="purchase.group_purchase_user"/>
+    </data>
+</openerp>

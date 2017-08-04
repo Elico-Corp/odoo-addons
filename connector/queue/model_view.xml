@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="0">
+
+        <record id="view_queue_worker_form" model="ir.ui.view">
+            <field name="name">queue.worker.form</field>
+            <field name="model">queue.worker</field>
+            <field name="arch" type="xml">
+                <form string="Worker" create="false"
+                        delete="false" edit="false" version="7.0">
+                    <group>
+                        <field name="uuid"/>
+                        <field name="pid"/>
+                    </group>
+                    <group>
+                        <field name="date_start"/>
+                        <field name="date_alive"/>
+                    </group>
+                    <group>
+                        <field name="job_ids"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_queue_worker_tree" model="ir.ui.view">
+            <field name="name">queue.worker.tree</field>
+            <field name="model">queue.worker</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Worker" create="false"
+                        delete="false" edit="false" version="7.0">
+                    <field name="uuid"/>
+                    <field name="pid"/>
+                    <field name="date_start"/>
+                    <field name="date_alive"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_queue_worker" model="ir.actions.act_window">
+            <field name="name">Workers</field>
+            <field name="res_model">queue.worker</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{}</field>
+            <field name="view_id" ref="view_queue_worker_tree"/>
+        </record>
+
+        <record id="view_queue_job_form" model="ir.ui.view">
+            <field name="name">queue.job.form</field>
+            <field name="model">queue.job</field>
+            <field name="arch" type="xml">
+                <form string="Jobs" create="false"
+                        delete="false" version="7.0">
+                    <header>
+                        <button name="requeue"
+                            states="failed"
+                            class="oe_highlight"
+                            string="Requeue Job"
+                            type="object"
+                            groups="connector.group_connector_manager"/>
+                        <button name="button_done"
+                            states="pending,enqueued,failed"
+                            class="oe_highlight"
+                            string="Set to 'Done'"
+                            type="object"
+                            groups="connector.group_connector_manager"/>
+                        <field name="state"
+                            widget="statusbar"
+                            statusbar_visible="pending,enqueued,started,done"
+                            statusbar_colors='{"failed":"red","done":"green"}'/>
+                    </header>
+                    <sheet>
+                        <h1>
+                            <field name="name" class="oe_inline"/>
+                        </h1>
+                        <group>
+                            <field name="uuid"/>
+                            <field name="func_string"/>
+                            <field name="priority"/>
+                            <field name="eta"/>
+                            <field name="user_id"/>
+                            <field name="date_created"/>
+                            <field name="date_enqueued"/>
+                            <field name="date_started"/>
+                            <field name="date_done"/>
+                            <field name="worker_id"/>
+                        </group>
+                        <group colspan="4">
+                            <div>
+                                <label for="retry" string="Current try / max. retries" />
+                                <field name="retry" class="oe_inline"/> /
+                                <field name="max_retries" class="oe_inline"/>
+                                <span class="oe_grey oe_inline"> If the max. retries is 0, the number of retries is infinite.</span>
+                            </div>
+                        </group>
+                        <group name="result" string="Result" attrs="{'invisible': [('result', '=', False)]}">
+                            <field nolabel="1" name="result"/>
+                        </group>
+                        <group name="exc_info" string="Exception Information" attrs="{'invisible': [('exc_info', '=', False)]}">
+                            <field nolabel="1" name="exc_info"/>
+                        </group>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_queue_job_tree" model="ir.ui.view">
+            <field name="name">queue.job.tree</field>
+            <field name="model">queue.job</field>
+            <field name="arch" type="xml">
+                <tree string="Jobs" create="false"
+                        delete="false"
+                        colors="red:state == 'failed';gray:state == 'done'">
+                    <field name="uuid"/>
+                    <field name="name"/>
+                    <field name="state"/>
+                    <field name="eta"/>
+                    <field name="date_created"/>
+                    <field name="date_done"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_queue_job_search" model="ir.ui.view">
+            <field name="name">queue.job.search</field>
+            <field name="model">queue.job</field>
+            <field name="arch" type="xml">
+                <search string="Jobs">
+                    <field name="uuid"/>
+                    <field name="name"/>
+                    <field name="func_string"/>
+                    <filter name="pending" string="Pending"
+                        domain="[('state', '=', 'pending')]"/>
+                    <filter name="enqueued" string="Enqueued"
+                        domain="[('state', '=', 'enqueued')]"/>
+                    <filter name="started" string="Started"
+                        domain="[('state', '=', 'started')]"/>
+                    <filter name="done" string="Done"
+                        domain="[('state', '=', 'done')]"/>
+                    <filter name="failed" string="Failed"
+                        domain="[('state', '=', 'failed')]"/>
+                </search>
+            </field>
+        </record>
+
+        <record id="action_queue_job" model="ir.actions.act_window">
+            <field name="name">Jobs</field>
+            <field name="res_model">queue.job</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{'search_default_pending': 1,
+                                   'search_default_enqueued': 1,
+                                   'search_default_started': 1,
+                                   'search_default_failed': 1}</field>
+            <field name="view_id" ref="view_queue_job_tree"/>
+            <field name="search_view_id" ref="view_queue_job_search"/>
+        </record>
+
+
+        <record id="view_requeue_job" model="ir.ui.view">
+            <field name="name">Requeue Jobs</field>
+            <field name="model">queue.requeue.job</field>
+            <field name="arch" type="xml">
+                <form string="Requeue Jobs" version="7.0">
+                    <group string="The selected jobs will be requeued.">
+                        <field name="job_ids" nolabel="1"/>
+                    </group>
+                    <footer>
+                        <button name="requeue" string="Requeue" type="object" class="oe_highlight"/>
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_requeue_job" model="ir.actions.act_window">
+            <field name="name">Requeue Jobs</field>
+            <field name="res_model">queue.requeue.job</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_requeue_job"/>
+            <field name="target">new</field>
+        </record>
+
+        <record id="action_requeue_job_values" model="ir.values">
+            <field name="model_id" ref="model_queue_job" />
+            <field name="name">Requeue Jobs</field>
+            <field name="key2">client_action_multi</field>
+            <field name="value" eval="'ir.actions.act_window,' + str(ref('action_requeue_job'))"/>
+            <field name="key">action</field>
+            <field name="model">queue.job</field>
+        </record>
+
+    </data>
+</openerp>

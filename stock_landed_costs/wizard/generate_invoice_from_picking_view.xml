@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <!--  Make the invoice-->
+
+        <record id="inherit_view_landed_cost_position_invoice" model="ir.ui.view">
+            <field name="name">Create invoices</field>
+            <field name="model">landed.cost.position.invoice</field>
+            <field name="inherit_id" ref="purchase_landed_costs_extended.view_landed_cost_position_invoice" />
+            <field name="arch" type="xml">
+                    <label position="after">
+                        <newline />
+                        <group>
+                            <field name="journal_id" />
+                            <field name="group_by_supplier" on_change="onchange_group_by_supplier(group_by_supplier, context)" />
+                            <field name="group_by_picking" attrs="{'invisible': [('group_by_supplier', '=', False)]}" />
+                            <field name="invoice_date" />
+                        </group>
+                    </label>
+            </field>
+        </record>
+    </data>
+</openerp>

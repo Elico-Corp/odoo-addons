@@ -1,0 +1,117 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+#	* product_price_search
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 6.0.3\n"
+"Report-Msgid-Bugs-To: support@openerp.com\n"
+"POT-Creation-Date: 2013-08-21 03:33+0000\n"
+"PO-Revision-Date: 2013-08-21 03:33+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: product_price_search
+#: model:ir.model,name:product_price_search.model_product_search_line
+msgid "Product Search Line"
+msgstr "产品价格"
+
+#. module: product_price_search
+#: field:product.search,product_id:0
+#: field:product.search.line,product_id:0
+msgid "Product"
+msgstr "产品"
+
+#. module: product_price_search
+#: sql_constraint:product.search:0
+msgid "Order Reference must be unique !"
+msgstr "Order Reference must be unique !"
+
+#. module: product_price_search
+#: field:product.pricelist,visible:0
+msgid "Visible in Pricelist inquiry form"
+msgstr "价格查询可见"
+
+#. module: product_price_search
+#: model:ir.actions.act_window,name:product_price_search.action_product_price_search_action_form
+#: model:ir.model,name:product_price_search.model_product_search
+#: model:ir.ui.menu,name:product_price_search.menu_product_price_search_action_form
+msgid "Product Price Search"
+msgstr "价格查询"
+
+#. module: product_price_search
+#: view:product.search:0
+msgid "Product Price Search Line"
+msgstr "产品价格"
+
+#. module: product_price_search
+#: view:product.search:0
+msgid "Search"
+msgstr "查询"
+
+#. module: product_price_search
+#: field:product.search,qty:0
+#: field:product.search.line,qty:0
+msgid "Product Qty"
+msgstr "产品数量"
+
+#. module: product_price_search
+#: field:product.search.line,search_id:0
+msgid "Search Reference"
+msgstr "Search Reference"
+
+#. module: product_price_search
+#: code:addons/product_price_search/price_search.py:64
+#, python-format
+msgid "Please check your product qty input is correct"
+msgstr "请确保产品数量格式输入正确！！"
+
+#. module: product_price_search
+#: field:product.search,search_line:0
+msgid "Search Lines"
+msgstr "Search Lines"
+
+#. module: product_price_search
+#: field:product.search,name:0
+msgid "Order Reference"
+msgstr "Order Reference"
+
+#. module: product_price_search
+#: code:addons/product_price_search/price_search.py:64
+#, python-format
+msgid "Error Input"
+msgstr "输入错误"
+
+#. module: product_price_search
+#: model:ir.model,name:product_price_search.model_product_pricelist
+#: field:product.search,pricelist_id:0
+#: field:product.search.line,pricelist_id:0
+msgid "Pricelist"
+msgstr "价格表"
+
+#. module: product_price_search
+#: view:product.search:0
+msgid "Sales Order"
+msgstr "Sales Order"
+
+#. module: product_price_search
+#: help:product.search,qty:0
+msgid "Comma separated values of quantity. eg:100,1000,5000,10000"
+msgstr "产品数量用','分开. 例如:100,1000,5000,10000"
+
+#. module: product_price_search
+#: field:product.search,price_unit:0
+#: field:product.search.line,price_unit:0
+msgid "Price Unit"
+msgstr "单价"
+
+#. module: product_price_search
+#: help:product.search,pricelist_id:0
+#: help:product.search.line,pricelist_id:0
+msgid "Pricelist for current sales order."
+msgstr "Pricelist for current sales order."
+

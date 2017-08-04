@@ -1,0 +1,375 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+        <!-- mall Report Configuration -->
+        <record id="pos_mall_report_config_form_view" model="ir.ui.view">
+            <field name="name">pos.mall.report.config.form</field>
+            <field name="model">pos.mall.report.config</field>
+            <field name="arch" type="xml">
+                <form string="POS Report Configuration" version="7.0">
+                    <sheet>
+                        <div class="oe_title">
+                            <label for="name" class="oe_edit_only"/>
+                            <h1><field name="name" class="oe_inline"/></h1>
+                        </div>
+                        <group>
+                            <field name="active" />
+                            <field name="cron"/>
+                        </group>
+                        <notebook>
+                            <page string="General">
+                                <group>
+                                    <field name="saving_path" />
+                                    <field name="pos_config_id"/>
+                                </group>
+                                <h3>CSV Informations</h3>
+                                <group>
+                                    <field name="filename" />
+                                    <field name="file_extension" />
+                                    <field name="file_encoding" />
+                                    <field name="csv_delimiter" />
+                                    <field name="csv_quotechar" />
+                                </group>
+                            </page>
+                            <page string="FTP">
+                                <group>
+                                    <field name="ftp_server"/>
+                                    <field name="ftp_user"/>
+                                    <field name="ftp_password" password="True"/>
+                                </group>
+                            </page>
+                            <page string="Payment methods">
+                                <field name="payment_method_ids">
+                                    <tree string="Payment methods" editable="bottom">
+                                        <field name="payment_method" />
+                                        <field name="journal_id" />
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Template">
+                                <field name="tmpl_lines">
+                                    <tree editable="bottom">
+                                        <field name="sequence" widget="handle"/>
+                                        <field name="type" />
+                                        <field name="model_id" invisible="True" attrs="{'required': [('type', '=', 'field_id')]}"/>
+                                        <field name="field_id" attrs="{'readonly': [('type', '!=', 'field_id')], 'required': [('type', '=', 'field_id')]}"/>
+                                        <field name="python_code" attrs="{'readonly': [('type', '!=', 'python_code')], 'required': [('type', '=', 'python_code')]}" />
+                                        <field name="value" attrs="{'readonly': [('type', '!=', 'value')], 'required': [('type', '=', 'value')]}"/>
+                                    </tree>
+                                </field>
+                                <group string="Python available variable" col="1">
+                                    <label string="line (pos.mall.report.lines)" />
+                                    <label string="txdate (field date)" />
+                                    <label string="datetime (datetime.datetime)" />
+                                </group>
+                                <group string="Python Example" col="2">
+                                    <label string="txdate (yyyymmdd):" />
+                                    <label string="txdate.strftime('%%Y%%m%%d')" />
+                                    <label string="txtime (Hhmmss):" />
+                                    <label string="txdate.strftime('%%H%%M%%S')" /> q
+                                </group>
+                                <group col="3" string="Legend for datetime">
+                                    <table>
+                                         <thead>
+                                              <tr>
+                                                   <th style="width:10%%"><label string="Directive" /></th>
+                                                   <th style="width:50%%"><label string="Meaning" /></th>
+                                                   <th style="width:40%%"><label string="Example" /></th>
+                                              </tr>
+                                         </thead>
+                                         <tbody>
+                                              <tr>
+                                                   <td style="padding: 10px 0;"><label colspan="1" string="%%a"/></td>
+                                                   <td style="padding: 10px 0;"><label colspan="3" string="Weekday as locale’s abbreviated name."/></td>
+                                                   <td style="padding: 10px 0;"><label colspan="2" string="Sun, Mon, ..., Sat"/></td>
+                                              </tr>
+                                              <tr>
+                                                   <td style="padding: 10px 0;"><label colspan="1" string="%%A"/></td>
+                                                   <td style="padding: 10px 0;"><label colspan="3" string="Weekday as locale’s full name."/></td>
+                                                   <td style="padding: 10px 0;"><label colspan="2" string="Sunday, Monday, ...,Saturday"/></td>
+                                              </tr>
+                                              <tr>
+                                                   <td style="padding: 10px 0;"><label colspan="1" string="%%w"/></td>
+                                                   <td style="padding: 10px 0;"><label colspan="3" string="Weekday as a decimal number, where 0 is Sunday and 6 is Saturday."/></td>
+                                                   <td style="padding: 10px 0;"><label colspan="2" string="0, 1, ..., 6"/></td>
+                                              </tr>
+                                              <tr>
+                                                   <td style="padding: 10px 0;"><label colspan="1" string="%%d"/></td>
+                                                   <td style="padding: 10px 0;"><label colspan="3" string="Day of the month as a zero-padded decimal number."/></td>
+                                                   <td style="padding: 10px 0;"><label colspan="2" string="01, 02, ..., 31"/></td>
+                                              </tr>
+                                              <tr>
+                                                   <td style="padding: 10px 0;"><label colspan="1" string="%%b"/></td>
+                                                   <td style="padding: 10px 0;"><label colspan="3" string="Month as locale’s abbreviated name."/></td>
+                                                   <td style="padding: 10px 0;"><label colspan="2" string="Jan, Feb, ..., Dec"/></td>
+                                              </tr>
+                                              <tr>
+                                                   <td style="padding: 10px 0;"><label colspan="1" string="%%B"/></td>
+                                                   <td style="padding: 10px 0;"><label colspan="3" string="Month as locale’s full name."/></td>
+                                                   <td style="padding: 10px 0;"><label colspan="2" string="January, February, ..., December "/></td>
+                                              </tr>
+                                              <tr>
+                                                   <td style="padding: 10px 0;"><label colspan="1" string="%%m"/></td>
+                                                   <td style="padding: 10px 0;"><label colspan="3" string="Month as a zero-padded decimal number."/></td>
+                                                   <td style="padding: 10px 0;"><label colspan="2" string="01, 02, ..., 12"/></td>
+                                              </tr>
+                                              <tr>
+                                                   <td style="padding: 10px 0;"><label colspan="1" string="%%y"/></td>
+                                                   <td style="padding: 10px 0;"><label colspan="3" string="Year without century as a zero-padded decimal number."/></td>
+                                                   <td style="padding: 10px 0;"><label colspan="2" string="00, 01, ..., 99"/></td>
+                                              </tr>
+                                              <tr>
+                                                   <td style="padding: 10px 0;"><label colspan="1" string="%%Y"/></td>
+                                                   <td style="padding: 10px 0;"><label colspan="3" string="Year with century as a decimal number."/></td>
+                                                   <td style="padding: 10px 0;"><label colspan="2" string="1970, 1988, 2001, 2013"/></td>
+                                              </tr>
+                                              <tr>
+                                                   <td style="padding: 10px 0;"><label colspan="1" string="%%H"/></td>
+                                                   <td style="padding: 10px 0;"><label colspan="3" string="Hour (24-hour clock) as a zero-padded decimal number."/></td>
+                                                   <td style="padding: 10px 0;"><label colspan="2" string="00, 01, ..., 23"/></td>
+                                              </tr>
+                                              <tr>
+                                                   <td style="padding: 10px 0;"><label colspan="1" string="%%I"/></td>
+                                                   <td style="padding: 10px 0;"><label colspan="3" string="Hour (12-hour clock) as a zero-padded decimal number."/></td>
+                                                   <td style="padding: 10px 0;"><label colspan="2" string="01, 02, ..., 12"/></td>
+                                              </tr>
+                                              <tr>
+                                                   <td style="padding: 10px 0;"><label colspan="1" string="%%p"/></td>
+                                                   <td style="padding: 10px 0;"><label colspan="3" string="Locale’s equivalent of either AM or PM."/></td>
+                                                   <td style="padding: 10px 0;"><label colspan="2" string="AM, PM"/></td>
+                                              </tr>
+                                              <tr>
+                                                   <td style="padding: 10px 0;"><label colspan="1" string="%%M"/></td>
+                                                   <td style="padding: 10px 0;"><label colspan="3" string="Minute as a zero-padded decimal number."/></td>
+                                                   <td style="padding: 10px 0;"><label colspan="2" string="00, 01, ..., 59"/></td>
+                                              </tr>
+                                              <tr>
+                                                   <td style="padding: 10px 0;"><label colspan="1" string="%%S"/></td>
+                                                   <td style="padding: 10px 0;"><label colspan="3" string="Second as a zero-padded decimal number."/></td>
+                                                   <td style="padding: 10px 0;"><label colspan="2" string="00, 01, ..., 59"/></td>
+                                              </tr>
+                                              <tr>
+                                                   <td style="padding: 10px 0;"><label colspan="1" string="%%f"/></td>
+                                                   <td style="padding: 10px 0;"><label colspan="3" string="Microsecond as a decimal number, zero-padded on the left."/></td>
+                                                   <td style="padding: 10px 0;"><label colspan="2" string="000000, 000001, ..., 999999"/></td>
+                                              </tr>
+                                              <tr>
+                                                   <td style="padding: 10px 0;"><label colspan="1" string="%%z"/></td>
+                                                   <td style="padding: 10px 0;"><label colspan="3" string="UTC offset in the form +HHMM or -HHMM (empty string if the the object is naive)."/></td>
+                                                   <td style="padding: 10px 0;"><label colspan="2" string="(empty), +0000, -0400, +1030"/></td>
+                                              </tr>
+                                              <tr>
+                                                   <td style="padding: 10px 0;"><label colspan="1" string="%%Z"/></td>
+                                                   <td style="padding: 10px 0;"><label colspan="3" string="Time zone name (empty string if the object is naive)."/></td>
+                                                   <td style="padding: 10px 0;"><label colspan="2" string="(empty), +0000, -0400, +1030"/></td>
+                                              </tr>
+                                              <tr>
+                                                   <td style="padding: 10px 0;"><label colspan="1" string="%%j"/></td>
+                                                   <td style="padding: 10px 0;"><label colspan="3" string="Day of the year as a zero-padded decimal number."/></td>
+                                                   <td style="padding: 10px 0;"><label colspan="2" string="001, 002, ..., 366"/></td>
+                                              </tr>
+                                              <tr>
+                                                   <td style="padding: 10px 0;"><label colspan="1" string="%%U"/></td>
+                                                   <td style="padding: 10px 0;"><label colspan="3" string="Week number of the year (Sunday as the first day of the week) as a zero padded decimal number. All days in a new year preceding the first Sunday are considered to be in week 0."/></td>
+                                                   <td style="padding: 10px 0;"><label colspan="2" string="00, 01, ..., 53"/></td>
+                                              </tr>
+                                              <tr>
+                                                   <td style="padding: 10px 0;"><label colspan="1" string="%%W"/></td>
+                                                   <td style="padding: 10px 0;"><label colspan="3" string="Week number of the year (Monday as the first day of the week) as a decimal number. All days in a new year preceding the first Monday are considered to be in week 0."/></td>
+                                                   <td style="padding: 10px 0;"><label colspan="2" string="00, 01, ..., 53"/></td>
+                                              </tr>
+                                              <tr>
+                                                   <td style="padding: 10px 0;"><label colspan="1" string="%%c"/></td>
+                                                   <td style="padding: 10px 0;"><label colspan="3" string="Locale’s appropriate date and time representation."/></td>
+                                                   <td style="padding: 10px 0;"><label colspan="2" string="Tue Aug 16 21:30:00 1988"/></td>
+                                              </tr>
+                                              <tr>
+                                                   <td style="padding: 10px 0;"><label colspan="1" string="%%x"/></td>
+                                                   <td style="padding: 10px 0;"><label colspan="3" string="Locale’s appropriate date representation."/></td>
+                                                   <td style="padding: 10px 0;"><label colspan="2" string="08/16/88 (None); 08/16/1988 (en_US)"/></td>
+                                              </tr>
+                                              <tr>
+                                                   <td style="padding: 10px 0;"><label colspan="1" string="%%X"/></td>
+                                                   <td style="padding: 10px 0;"><label colspan="3" string="Locale’s appropriate time representation."/></td>
+                                                   <td style="padding: 10px 0;"><label colspan="2" string="21:30:00 (en_US)"/></td>
+                                              </tr>
+                                              <tr>
+                                                   <td style="padding: 10px 0;"><label colspan="1" string="%%%%"/></td>
+                                                   <td style="padding: 10px 0;"><label colspan="3" string="A literal '%%' character."/></td>
+                                                   <td style="padding: 10px 0;"><label colspan="2" string="%%"/></td>
+                                              </tr>
+                                         </tbody>
+                                    </table>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="pos_mall_report_config_tree_view" model="ir.ui.view">
+            <field name="name">pos.mall.report.config.tree</field>
+            <field name="model">pos.mall.report.config</field>
+            <field name="arch" type="xml">
+                <tree string="POS Report Configuration">
+                    <field name="name" />
+                    <field name="ftp_server"/>
+                    <field name="ftp_user"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="pos_mall_report_config_action" model="ir.actions.act_window">
+            <field name="name">POS Report Configuration</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">pos.mall.report.config</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        
+        <menuitem
+            parent="point_of_sale.menu_point_config_product"
+            action="pos_mall_report_config_action"
+            id="menu_pos_config_pos"
+            groups="point_of_sale.group_pos_manager" sequence="100"/>
+
+        <!-- mall report-->
+
+        <record id="pos_mall_report_form_view" model="ir.ui.view">
+            <field name="name">pos.mall.report.form</field>
+            <field name="model">pos.mall.report</field>
+            <field name="arch" type="xml">
+                <form string="POS Report Mall" version="7.0">
+                    <header>
+                        <button name="generate_mall_report_line" type="object" states="draft" string="Generate Report" groups="point_of_sale.group_pos_user"/>
+                        <button name="transfer_report" type="object" states="report,manual" string="Transfer" groups="point_of_sale.group_pos_user"/>
+                        <!--button name="upload_manually" type="action" action=%(action_upload_manual_mall)d states="report" string="Upload Manually" groups="point_of_sale.group_pos_manager"/-->
+                        <button name="%(action_upload_manual_mall)d" string="Upload Manually" type="action" states="report"/>
+                        <button name="action_cancel_draft" states="report,error,manual,transferred" string="Reset to Draft" type="object" groups="base.group_user"/>
+                        <field name="state" widget="statusbar" type="object" statusbar_visible="draft,report,transferred"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_title">
+                            <label for="name" class="oe_edit_only"/>
+                            <h1><field name="name" required="1" class="oe_inline"/></h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="config_id" required="1"/>
+                                <field name="report_file" filename="report_file_short_fname"/>
+                                <field name="report_file_short_fname" invisible="1"/>
+                                <field name="report_file_fname" invisible="1"/>
+                            </group>
+                            <group>
+                                <field name="date" required="1"/>
+                                <field name="manual_report" groups="point_of_sale.group_pos_manager"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Mall Lines">
+                                <field name="line_ids">
+                                    <form string="Sales Order Lines" version="7.0">
+                                        <group>
+                                            <group>
+                                                <field name="no_of_transation"/>
+                                                <field name="qty" />
+                                                <field name="tdldiscount"/>
+                                                <field name="ch_amount"/>
+                                                <field name="ci_amount"/>
+                                                <field name="co_amount"/>
+                                                <field name="ot_amount"/>
+                                                <field name="payment_method" />
+                                            </group>
+                                            <group>
+                                                <field name="date"/>
+                                                <field name="netamount"/>
+                                                <field name="cz_amount"/>
+                                                <field name="xy_amount"/>
+                                                <field name="zp_amount"/>
+                                            </group>
+                                        </group>
+                                    </form>
+                                    <tree>
+                                        <field name="no_of_transation"/>
+                                        <field name="date"/>
+                                        <field name="tdldiscount"/>
+                                        <field name="netamount"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+
+        <record id="pos_mall_report_template_form_view" model="ir.ui.view">
+            <field name="name">pos.mall.report.payment.method.form</field>
+            <field name="model">pos.mall.report.payment.method</field>
+            <field name="arch" type="xml">
+                <form string="POS Report Mall" version="7.0">
+                    <sheet>
+                        <group>
+                            <field name="payment_method" />
+                            <field name="journal_id" />
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="pos_mall_report_template_line_form_view" model="ir.ui.view">
+            <field name="name">pos.mall.report.template.line.form</field>
+            <field name="model">pos.mall.report.template.line</field>
+            <field name="arch" type="xml">
+                <form string="POS Report Mall" version="7.0">
+                    <sheet>
+                        <field name="config_id" class="oe_inline" />
+                        <group>
+                            <field name="type" />
+                            <field name="model_id" invisible="True" attrs="{'required': [('type', '=', 'field_id')]}"/>
+                            <field name="field_id" attrs="{'invisible': [('type', '!=', 'field_id')], 'required': [('type', '=', 'field_id')]}"/>
+                            <field name="python_code" attrs="{'invisible': [('type', '!=', 'python_code')], 'required': [('type', '=', 'python_code')]}" />
+                            <field name="value" attrs="{'invisible': [('type', '!=', 'value')], 'required': [('type', '=', 'value')]}"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="pos_mall_report_tree_view" model="ir.ui.view">
+            <field name="name">pos.mall.report.tree</field>
+            <field name="model">pos.mall.report</field>
+            <field name="arch" type="xml">
+                <tree string="POS Report Mall">
+                    <field name="name"/>
+                    <field name="date"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="pos_mall_report_action" model="ir.actions.act_window">
+            <field name="name">POS Report Mall</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">pos.mall.report</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        
+        <menuitem name="POS Report" id="menu_pos_mall_report" parent="point_of_sale.menu_point_root" sequence="12"/>
+
+        <menuitem
+            parent="menu_pos_mall_report"
+            action="pos_mall_report_action"
+            id="menu_pos_mall"
+            groups="point_of_sale.group_pos_user" sequence="100"/>
+
+    </data>
+</openerp>

@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record model='ir.ui.view' id='delivery_routes_picking_form_view2'>
+            <field name='name'>Delivery Routes Picking Form Inherit2</field>
+            <field name='model'>stock.picking</field>
+            <field name='inherit_id' ref='sale_stock.stock_picking_inherit_sale'/>
+            <field name='arch' type='xml'>
+                <xpath expr="//field[@name='sale_id']" position="replace">
+                </xpath>
+                <xpath expr="//field[@name='invoice_state']" position="after">
+                    <field name="delivery_state" readonly="1"/>
+                    <field name="sale_id"/>
+                </xpath>
+            </field>
+        </record>
+		
+        <record id="action_picking_get_order" model="ir.actions.server">
+            <field name="name">Get Sale/Purchase Order</field>
+            <field name="model_id" ref="stock.model_stock_picking"/>
+            <field name="state">code</field>
+            <field name="code">action = obj.action_pop_order(context=context)</field>
+        </record>
+        
+        <record id="delivery_routes_picking_tree_view" model="ir.ui.view">
+            <field name="name">stock.picking.tree</field>
+            <field name="model">stock.picking</field>
+            <field name="arch" type="xml">
+                <tree colors="blue:state == 'draft';grey:state == 'cancel';red:state not in ('cancel', 'done') and date &lt; current_date" string="Picking list">
+                    <field name="name"/>
+                    <field name="origin"/>
+                    <field name="partner_id"/>
+                    <field name="street"/>
+                    <field name="purchase_id" invisible="1"/>
+                    <field name="sale_id" invisible="1"/>
+                    <field name="dts_id"/>
+                    <field name="date"/>
+                    <field name="state"/>
+                    <field name="delivery_state"/>
+                    <button name="%(action_picking_get_order)d"
+                       string="Related Order" type="action"
+                       icon="terp-mail-forward"
+                       attrs="{'invisible': [('purchase_id','=',None),('sale_id','=',None)]}"
+                       groups="base.group_user"/>
+                </tree>
+            </field>
+        </record>
+        
+        <record id="view_delivery_picking_search" model="ir.ui.view">
+            <field name="name">Delivery Route Picking Search</field>
+            <field name="model">stock.picking</field>
+            <field name="arch" type="xml">
+                <search string="Delivery Picking List">
+                    <field name="name" string="Picking List" filter_domain="['|',('name','ilike', self),('origin','ilike',self)]"/>
+                    <filter icon="terp-dialog-close" name="no_time" string="No Time Assigned" domain="[('dts_id','=',None)]" help="picking without time"/>
+                    <filter icon="terp-check" name="available" string="Ready" domain="[('state','=','assigned')]" help="Assigned Internal Moves"/>
+                    <filter icon="terp-camera_test" name="confirmed" string="Waiting" domain="[('state','=','confirmed')]" help="Confirmed Internal Moves"/>
+                    <filter icon="terp-dialog-close" name="done" string="Done" domain="[('state','=','done')]" help="Pickings already processed"/>
+                    <field name="partner_id"/>
+                    <field name="dts_id" context="{'domain':[('type','=','dts')]}"/>
+                    <field name="origin"/>
+                    <field name="product_id"/>                    
+                    <group expand="0" string="Group By...">
+                        <filter string="Status" icon="terp-stock_effects-object-colorize" domain="[]" context="{'group_by':'state'}"/>
+                        <filter string="Order Date" icon="terp-go-month" domain="[]"  context="{'group_by':'date'}"/>
+                        <filter string="Origin" icon="terp-gtk-jump-to-rtl" domain="[]" context="{'group_by':'origin'}"/>
+                        <filter string="Delivery Time" icon="terp-folder-orange" domain="[]" context="{'group_by':'dts_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="action_delivery_routes_picking" model="ir.actions.act_window">
+            <field name="name">Delivery Picking</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">stock.picking</field>
+            <field name="view_type">form</field>
+            <field name="view_id" ref="delivery_routes_picking_tree_view"/>
+            <field name="view_mode">tree,form</field>
+            <!--field name="domain">[('type','!=','internal'),('return','=','none'),('state','!=','cancel')]</field-->
+            <field name="domain">[('type','!=','internal'),('state','!=','cancel')]</field>
+            <field name="search_view_id" ref="view_delivery_picking_search"/>
+            <field name="context">{'contact_display': 'partner_address'}</field>
+        </record>
+
+        <menuitem action="action_delivery_routes_picking" id="menu_action_delivery_picking" parent="menu_delivery_delivery"/>
+
+
+        <!-- stock dts, pts, search-->
+        <!-- Add Today filter in Picking Search view by Andy -->
+        <record id="view_picking_internal_search_today_dts" model="ir.ui.view">
+            <field name="name">stock.picking.search.today.dts</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.view_picking_internal_search"/>
+            <field name="arch" type="xml">
+                <xpath expr="/search/filter[@name='done']" position="after">
+                    <separator/>
+                    <field name="pts_id" context="{'domain':[('type','=','pts')]}"/>
+                    <field name="dts_id" context="{'domain':[('type','=','dts')]}"/>
+                </xpath>
+                <xpath expr="/search/group/filter[@string='Journal']" position="after">
+                    <filter string="Return Reason" name="groupby_return_reason" icon="terp-gtk-jump-to-ltr" domain="[]" context="{'group_by':'return_reason_id'}"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_picking_out_search_today_dts" model="ir.ui.view">
+            <field name="name">stock.picking.out.search.today.dts</field>
+            <field name="model">stock.picking.out</field>
+            <field name="inherit_id" ref="stock.view_picking_out_search"/>
+            <field name="arch" type="xml">
+                <xpath expr="/search/filter[@name='done']" position="after">
+                    <separator/>
+                    <field name="pts_id" context="{'domain':[('type','=','pts')]}"/>
+                    <field name="dts_id" context="{'domain':[('type','=','dts')]}"/>
+                </xpath>
+                <xpath expr="/search/group/filter[@string='Journal']" position="after">
+                    <filter string="Preparation Time" icon="terp-folder-orange" domain="[]" context="{'group_by':'pts_id'}"/>
+                    <filter string="Delivery Time" icon="terp-folder-orange" domain="[]" context="{'group_by':'dts_id'}"/>
+                </xpath>
+            </field>
+        </record>
+        <record id="view_picking_in_search_today_dts" model="ir.ui.view">
+            <field name="name">stock.picking.in.search.today.dts</field>
+            <field name="model">stock.picking.in</field>
+            <field name="inherit_id" ref="stock.view_picking_in_search"/>
+            <field name="arch" type="xml">
+                <xpath expr="/search/filter[@name='done']" position="after">
+                    <separator/>
+                    <field name="pts_id" context="{'domain':[('type','=','pts')]}"/>
+                    <field name="dts_id" context="{'domain':[('type','=','dts')]}"/>
+                </xpath>
+                <xpath expr="/search/group/filter[@string='Journal']" position="after">
+                    <filter string="Preparation Time" icon="terp-folder-orange" domain="[]" context="{'group_by':'pts_id'}"/>
+                    <filter string="Delivery Time" icon="terp-folder-orange" domain="[]" context="{'group_by':'dts_id'}"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_picking_out_ret_search_today" model="ir.ui.view">
+            <field name="name">stock.picking.return.search.today</field>
+            <field name="model">stock.picking.in</field>
+            <field name="inherit_id" ref="stock.view_picking_out_search"/>
+            <field name="arch" type="xml">
+                <xpath expr="/search/filter[@name='done']" position="after">
+                    <field name="pts_id" context="{'domain':[('type','=','pts')]}"/>
+                    <field name="dts_id" context="{'domain':[('type','=','dts')]}"/>
+                    <separator/>
+                </xpath>
+                <xpath expr="/search/group/filter[@string='Journal']" position="after">
+                    <filter string="Preparation Time" icon="terp-folder-orange" domain="[]" context="{'group_by':'pts_id'}"/>
+                    <filter string="Delivery Time" icon="terp-folder-orange" domain="[]" context="{'group_by':'dts_id'}"/>
+                </xpath>
+            </field>
+        </record>
+        <record id="view_picking_in_ret_search_today_dts" model="ir.ui.view">
+            <field name="name">stock.picking.retrun.search.today.dts</field>
+            <field name="model">stock.picking.out</field>
+            <field name="inherit_id" ref="stock.view_picking_in_search"/>
+            <field name="arch" type="xml">
+                <xpath expr="/search/filter[@name='done']" position="after">
+                    <field name="pts_id" context="{'domain':[('type','=','pts')]}"/>
+                    <field name="dts_id" context="{'domain':[('type','=','dts')]}"/>
+                </xpath>
+                <xpath expr="/search/group/filter[@string='Journal']" position="after">
+                    <filter string="Preparation Time" icon="terp-folder-orange" domain="[]" context="{'group_by':'pts_id'}"/>
+                    <filter string="Delivery Time" icon="terp-folder-orange" domain="[]" context="{'group_by':'dts_id'}"/>
+                </xpath>
+            </field>
+        </record>
+        <record id="view_picking_int_ret_search_today_dts" model="ir.ui.view">
+            <field name="name">stock.picking.retrun.search.today.dts</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.view_picking_in_search"/>
+            <field name="arch" type="xml">
+                <xpath expr="/search/filter[@name='done']" position="after">
+                    <field name="pts_id" context="{'domain':[('type','=','pts')]}"/>
+                    <field name="dts_id" context="{'domain':[('type','=','dts')]}"/>
+                    <separator/>
+                    <filter icon="terp-go-today" string="DTS Today" name="dts_today" domain="[('dts_id.start_date','&lt;=',time.strftime('%%Y-%%m-%%d 23:59:59')),('dts_id.start_date','&gt;=',time.strftime('%%Y-%%m-%%d 00:00:00'))]" help="DTS planned for Today"/>
+                </xpath>
+                <xpath expr="/search/group/filter[@string='Journal']" position="after">
+                    <filter string="Preparation Time" icon="terp-folder-orange" domain="[]" context="{'group_by':'pts_id'}"/>
+                    <filter string="Delivery Time" icon="terp-folder-orange" domain="[]" context="{'group_by':'dts_id'}"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_move_search_dts" model="ir.ui.view">
+            <field name="name">stock.move.search_dts</field>
+            <field name="model">stock.move</field>
+            <field name="inherit_id" ref="stock.view_move_search"/>
+            <field name="arch" type="xml">
+                <xpath expr="/search/group/filter[@name='groupby_location_id']" position="before">
+                    <field name="pts_id" context="{'domain':[('type','=','pts')]}"/>
+                    <field name="dts_id" context="{'domain':[('type','=','dts')]}"/>
+                    <filter string="Preparation Time" icon="terp-folder-orange" domain="[]" context="{'group_by':'pts_id'}"/>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</openerp>

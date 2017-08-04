@@ -1,0 +1,21 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_icops_sale_order_manager,icops sale order manager,base_intercompany_sale.model_icops_sale_order,base.group_sale_manager,1,1,1,1
+access_icops_sale_order_user,icops sale order user,base_intercompany_sale.model_icops_sale_order,base.group_sale_salesman,1,1,1,1
+access_icops_sale_order_line_manager,icops sale order line manager,base_intercompany_sale.model_icops_sale_order_line,base.group_sale_manager,1,1,1,1
+access_icops_sale_order_line_user,icops sale order line user,base_intercompany_sale.model_icops_sale_order_line,base.group_sale_salesman,1,1,1,1
+access_icops_backend_manager,icops backend manager,base_intercompany.model_icops_backend,base.group_sale_manager,1,1,1,1
+access_icops_backend_user,icops backend user,base_intercompany.model_icops_backend,base.group_sale_salesman,1,1,1,1
+access_res_intercompany_manager,res intercompany manager,base_intercompany.model_res_intercompany,base.group_sale_manager,1,1,1,1
+access_res_intercompany_user,res intercompany user,base_intercompany.model_res_intercompany,base.group_sale_salesman,1,1,1,1
+access_icops_record_manager,icops record manager,base_intercompany.model_icops_record,base.group_sale_manager,1,1,1,1
+access_icops_record_user,icops record user,base_intercompany.model_icops_record,base.group_sale_salesman,1,1,1,1
+access_icops_purchase_order_manager,icops purchase order manager,base_intercompany_sale.model_icops_purchase_order,purchase.group_purchase_manager,1,1,1,1
+access_icops_purchase_order_user,icops purchase order user,base_intercompany_sale.model_icops_purchase_order,purchase.group_purchase_user,1,1,1,1
+access_icops_purchase_order_line_manager,icops purchase order line manager,base_intercompany_sale.model_icops_purchase_order_line,purchase.group_purchase_manager,1,1,1,1
+access_icops_purchase_order_line_user,icops purchase order line user,base_intercompany_sale.model_icops_purchase_order_line,purchase.group_purchase_user,1,1,1,1
+access_icops_backend_manager,icops backend manager,base_intercompany.model_icops_backend,purchase.group_purchase_manager,1,1,1,1
+access_icops_backend_user,icops backend user,base_intercompany.model_icops_backend,purchase.group_purchase_user,1,1,1,1
+access_res_intercompany_manager,res intercompany manager,base_intercompany.model_res_intercompany,purchase.group_purchase_manager,1,1,1,1
+access_res_intercompany_user,res intercompany user,base_intercompany.model_res_intercompany,purchase.group_purchase_user,1,1,1,1
+access_icops_record_manager,icops record manager,base_intercompany.model_icops_record,purchase.group_purchase_manager,1,1,1,1
+access_icops_record_user,icops record user,base_intercompany.model_icops_record,purchase.group_purchase_user,1,1,1,1

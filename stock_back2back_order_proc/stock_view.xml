@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+		<record model="ir.ui.view" id="view_location_form1">
+		    <field name="name">stock.location.form.inherit1</field>
+            <field name="model">stock.location</field>
+		    <field name="inherit_id" ref="stock.view_location_form"/>
+		    <field name="priority" eval="15"/>
+		    <field name="arch" type="xml">
+		    	<field name="location_id" position="after">
+		        	<field name="retention_mode" />
+		        </field>
+		    </field>
+		</record>
+        <record model="ir.ui.view" id="stock_view_picking_hide_form">
+            <field name="name">stock.view.hide.form.inherit</field>
+            <field name="model">stock.picking.in</field>
+            <field name="inherit_id" ref="stock.view_picking_form"/>
+            <field name="arch" type="xml">
+                <field name="origin" position="replace">
+                    <field name="origin" placeholder="e.g. PO0032" class="oe_inline" attrs="{'readonly':[('state', 'in', ['cancel'])]}"/>
+                </field>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="stock_view_picking_hide_tree">
+            <field name="name">stock.view.hide.tree.inherit</field>
+            <field name="model">stock.picking.in</field>
+            <field name="inherit_id" ref="stock.view_picking_in_tree"/>
+            <field name="arch" type="xml">
+                <field name="date" position="after">
+                    <field name="date_done"/>
+                </field>
+            </field>
+        </record>
+    </data>
+</openerp>
+

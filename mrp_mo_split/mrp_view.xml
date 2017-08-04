@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+		
+<!--     <record id="mrp_production_form_inh_pickingin_view" model="ir.ui.view">
+	    <field name="name">mrp.production.form.pickingin</field>
+	    <field name="model">mrp.production</field>
+	    <field name="type">form</field>
+	    <field name="inherit_id" ref="mrp.mrp_production_form_view"/>
+	    <field name="arch" type="xml">
+           <button name="button_confirm" position="before">
+                <button name="%(action_manufactoring_split_order)d" type="action" string="Split" class="oe_highlight" />
+           </button>
+	    </field>
+    </record> -->
+		
+    <record id="view_mrp_production_filter_draft" model="ir.ui.view">
+	    <field name="name">mrp.production.search.pickingin</field>
+	    <field name="model">mrp.production</field>
+	    <field name="type">search</field>
+	    <field name="inherit_id" ref="mrp.view_mrp_production_filter"/>
+	    <field name="arch" type="xml">
+	       <filter name='pending' position="before">
+               <filter icon="terp-document-new" string="Draft" name="draft"
+                   domain="[('state','=','draft')]"/>
+               <separator orientation="vertical"/>
+	       </filter>
+	    </field>
+    </record>
+    
+<!--         <record id="mrp.prod_act_picking" model="workflow.activity">
+            <field name="wkf_id" ref="mrp.wkf_prod"/>
+            <field name="name">picking</field>
+            <field name="kind">function</field>
+            <field name="subflow_id" eval="False"/>
+            <field name="action">action_confirm()</field>
+        </record>    
+        <record id="mrp.prod_trans_picking_ready" model="workflow.transition">
+            <field name="act_from" ref="mrp.prod_act_picking"/>
+            <field name="act_to" ref="mrp.prod_act_ready"/>
+            <field name="signal"></field>
+            <field name="condition">test_production_ready()</field>
+        </record>
+        <record id="mrp.prod_trans_picking_picking_exception" model="workflow.transition">
+            <field name="act_from" ref="mrp.prod_act_picking"/>
+            <field name="act_to" ref="mrp.prod_act_picking_exception"/>
+            <field name="signal" eval="False"/>
+            <field name="condition">test_picking_exception()</field>
+        </record> -->
+</data>
+</openerp>

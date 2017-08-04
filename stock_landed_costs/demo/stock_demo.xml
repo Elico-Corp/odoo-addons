@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="1">
+
+        <!-- account journal for duty free zone -->
+        <record forcecreate="1" id="duty_free_zone_stock_journal" model="account.journal">
+            <field name="name">Duty Free Zone Journal</field>
+            <field name="code">DFZSTJ</field>
+            <field name="type">general</field>
+            <field name="sequence_id" ref="account.stock_journal_sequence"/>
+            <field name="user_id" ref="base.user_root"/>
+        </record>
+
+        <!-- account journal for duty paid zone -->
+        <record forcecreate="1" id="duty_paid_zone_stock_journal" model="account.journal">
+            <field name="name">Duty Paid Zone Journal</field>
+            <field name="code">DPZSTJ</field>
+            <field name="type">general</field>
+            <field name="sequence_id" ref="account.stock_journal_sequence"/>
+            <field name="user_id" ref="base.user_root"/>
+        </record>
+
+        <!-- stock.duty.zone -->
+        <record id="stock_duty_zone_001" model="stock.duty.zone">
+            <field name="name">Transit Zone</field>
+            <field name="company_id" ref="base.main_company" />
+            <field name="journal_id" ref="duty_free_zone_stock_journal"/>
+            <field name="location_ids" eval="[(6, 0, [ref('stock_location_transit')])]" />
+        </record>
+        <record id="stock_duty_zone_002" model="stock.duty.zone">
+            <field name="name">Duty Free Zone</field>
+            <field name="company_id" ref="base.main_company" />
+            <field name="journal_id" ref="duty_paid_zone_stock_journal"/>
+            <field name="location_ids" eval="[(6, 0, [ref('stock_location_duty_free_zone_001')])]" />
+        </record>
+        <record id="stock_duty_zone_003" model="stock.duty.zone">
+            <field name="name">Duty Paid Zone</field>
+            <field name="company_id" ref="base.main_company" />
+            <field name="journal_id" ref="stock.stock_journal"/>
+            <field name="location_ids" eval="[(6, 0, [ref('stock_location_duty_paid_zone_001')])]" />
+        </record>
+
+        
+        <!-- internal location: three kinds: duty free/paid zone, transit.-->
+        <record id="stock_location_transit" model="stock.location">
+            <field name="name">trasit</field>
+            <field name="usage">internal</field>
+            <field name="location_id" ref="stock.stock_location_locations" />
+            <field name="company_id" ref="base.main_company"/>
+        </record>
+
+        <record id="stock_location_duty_free_zone_001" model="stock.location">
+            <field name="name">Duty Free Location</field>
+            <field name="usage">internal</field>
+            <field name="location_id" ref="stock.stock_location_locations"/>
+            <field name="company_id" ref="base.main_company"/>
+        </record>
+        <record id="stock_location_duty_paid_zone_001" model="stock.location">
+            <field name="name">Duty paid Location</field>
+            <field name="usage">internal</field>
+            <field name="location_id" ref="stock.stock_location_locations"/>
+            <field name="company_id" ref="base.main_company"/>
+        </record>
+
+        <!-- prepare service product for landed cost: per_unit -->
+        <record id="product.product_product_consultant" model="product.product">
+            <field name="landed_cost_type">per_unit</field>
+        </record>
+
+        <!-- prepare base stock moves and link to the pickings -->
+        <!-- qty is 10 -->
+<!--         <record id="stock_move_001" model="stock.move">
+            <field name="product_id" ref="product.product_product_39" />
+            <field name="company_id" ref="base.main_company"/>
+            <field name="product_qty" eval="10" />
+            <field name="name" >This move is for testing landed cost and duty rule</field>
+        </record> -->
+        <!-- qty is 20 -->
+<!--         <record id="stock_move_001" model="stock.move">
+            <field name="product_id" ref="product.product_product_38" />
+            <field name="product_qty" eval="20" />
+            <field name="company_id" ref="base.main_company"/>
+            <field name="name" >This move is for testing landed cost and duty rule</field>
+        </record> -->
+
+        <!-- prepare base picking -->
+        <!-- <record id="stock_picking_001" model="stock.picking">
+            <field name="move_type">direct</field>
+            <field name="company_id" ref="base.main_company"/>
+        </record> -->
+
+    </data>
+</openerp>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="product_bundle_product_form_view" model="ir.ui.view">
+            <field name="name">product_bundle.product_form_view</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="product.product_normal_form_view" />
+            <field eval="16" name="priority"/>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <xpath expr="//page[@string='Sales']" position="after">
+                    <page string="Bundle" attrs="{'invisible':[('supply_method','!=','bundle')]}">
+                        <field name="item_ids" nolabel="1">
+	                        <tree string="Items" editable="bottom">
+	                            <field name="sequence" widget="handle"/>
+	                            <field name="item_id" on_change="onchange_item_id(item_id, context)"/>
+	                            <field name="qty_uom"/>
+	                            <field name="uom_id"/>
+	                            <field name="revenue"/>
+	                            <field name="editable"/>
+	                        </tree>
+                        </field>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</openerp>
+

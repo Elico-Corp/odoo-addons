@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record id="view_mro_mo_split" model="ir.ui.view">
+            <field name="name">Split Manufacturing Order Form</field>
+            <field name="model">mro.mo.split</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+               <form string="Merge Partner Invoice">
+                    <group col="4" colspan="2">
+                        <label string="
+                            This process will split selected production order into two.
+                            Please specify the quantity you want to leave in the current production order."
+                            colspan="4"
+                         />
+                        <field name="quantity" colspan="4" />
+                        <button special="cancel" string="Cancel" icon="gtk-cancel" />
+                        <button name="split" string="Split" type="object" icon="gtk-convert" /> 
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_manufactoring_split_order" model="ir.actions.act_window">
+               <field name="name">Split Manufacturing Order</field>
+               <field name="type">ir.actions.act_window</field>
+               <field name="res_model">mro.mo.split</field>
+               <field name="view_type">form</field>
+               <field name="view_mode">form</field>
+               <field name="context">{'active_id' : active_id}</field>
+               <field name="target">new</field>
+        </record>
+
+                        
+    </data>
+</openerp>

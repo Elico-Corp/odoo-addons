@@ -1,0 +1,75 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+#	* mrp_mo_nopicking
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 7.0alpha\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-01-15 07:24+0000\n"
+"PO-Revision-Date: 2013-01-15 07:24+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: mrp_mo_nopicking
+#: report:mrp.production.orderlist:0
+msgid "Ready Production Order List"
+msgstr "材料已齐套生产订单列表"
+
+#. module: mrp_mo_nopicking
+#: code:addons/mrp_mo_nopicking/procurement.py:52
+#, python-format
+msgid "No BoM defined for this product !"
+msgstr "该产品没有定义BoM !"
+
+#. module: mrp_mo_nopicking
+#: model:ir.actions.report.xml,name:mrp_mo_nopicking.report_mrp_production_list_report
+msgid "Ready Production Order"
+msgstr "材料已齐套生产订单"
+
+#. module: mrp_mo_nopicking
+#: report:mrp.production.orderlist:0
+msgid "Quantity(UoM)"
+msgstr "数量(单位)"
+
+#. module: mrp_mo_nopicking
+#: report:mrp.production.orderlist:0
+msgid "Scheduled Date"
+msgstr "计划日期"
+
+#. module: mrp_mo_nopicking
+#: model:ir.model,name:mrp_mo_nopicking.model_mrp_production
+msgid "Manufacturing Order"
+msgstr "生产订单"
+
+#. module: mrp_mo_nopicking
+#: report:mrp.production.orderlist:0
+msgid "MO"
+msgstr "生产订单"
+
+#. module: mrp_mo_nopicking
+#: report:mrp.production.orderlist:0
+msgid "Product"
+msgstr "产品"
+
+#. module: mrp_mo_nopicking
+#: code:addons/mrp_mo_nopicking/procurement.py:126
+#, python-format
+msgid "Manufacturing Order <em>%s</em> created."
+msgstr "生产订单 <em>%s</em> 已创建."
+
+#. module: mrp_mo_nopicking
+#: report:mrp.production.orderlist:0
+msgid "MO:Sale Order"
+msgstr "生产订单:销售订单"
+
+#. module: mrp_mo_nopicking
+#: code:addons/mrp_mo_nopicking/procurement.py:54
+#, python-format
+msgid "Procurement '%s' has an exception: 'No BoM defined for this product !'"
+msgstr "需求计划 '%s' 出错: '该产品未定义BoM !'"
+

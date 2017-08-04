@@ -1,0 +1,956 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+#	* fc_stock
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 7.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-05-17 07:12+0000\n"
+"PO-Revision-Date: 2013-05-17 07:12+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: fc_stock
+#: view:stock.picking:0
+msgid "PO + SO"
+msgstr "采购 + 销售"
+
+#. module: fc_stock
+#: selection:fc_big_scheduler.stop,action:0
+msgid "Stop"
+msgstr "停止"
+
+#. module: fc_stock
+#: field:stock.batch.move,auto_process:0
+msgid "Auto Process if available?"
+msgstr "自动计算?"
+
+#. module: fc_stock
+#: view:stock.picking:0
+msgid "Group By..."
+msgstr "分组..."
+
+#. module: fc_stock
+#: field:stock.batch.move,check_availability:0
+msgid "Check availability if not available?"
+msgstr "不可用时检查可用?"
+
+#. module: fc_stock
+#: view:stock.move:0
+#: view:stock.picking.in:0
+msgid "Supplier"
+msgstr "供应商"
+
+#. module: fc_stock
+#: view:stock.move:0
+#: view:stock.picking:0
+#: view:stock.picking.in:0
+#: view:stock.picking.out:0
+msgid "Normal Return"
+msgstr "普通退货"
+
+#. module: fc_stock
+#: view:stock.picking:0
+#: view:stock.picking.in:0
+#: view:stock.picking.out:0
+msgid "Today"
+msgstr "今天"
+
+#. module: fc_stock
+#: view:stock.picking:0
+#: view:stock.picking.in:0
+#: view:stock.picking.out:0
+msgid "Orders processed Today or planned for Today"
+msgstr "安排于今日处理的订单"
+
+#. module: fc_stock
+#: model:ir.model,name:fc_stock.model_fc_big_scheduler
+msgid "FC Big scheduler"
+msgstr "FC全需求计算"
+
+#. module: fc_stock
+#: view:stock.picking.in:0
+#: field:stock.picking.in,amount_to_receive:0
+msgid "Amount To Receive"
+msgstr "待收金额"
+
+#. module: fc_stock
+#: model:ir.actions.act_window,name:fc_stock.action_stock_batch_move
+msgid "Stock Batch Process"
+msgstr "调拨批量处理"
+
+#. module: fc_stock
+#: code:addons/fc_stock/wizard/scheduler.py:42
+#: field:fc_big_scheduler,auto_mo:0
+#: field:product.product,auto_mo:0
+#, python-format
+msgid "Validate Automatic MO ?"
+msgstr "验证自动生产 ?"
+
+#. module: fc_stock
+#: view:stock.move:0
+msgid "Unit of Measure"
+msgstr "计量单位"
+
+#. module: fc_stock
+#: field:stock.batch.move,force_availability:0
+msgid "Force availability if not available?"
+msgstr "不可用时强制可用?"
+
+#. module: fc_stock
+#: field:stock.move.scrap,note:0
+msgid "Return reason"
+msgstr "退货原因"
+
+#. module: fc_stock
+#: view:stock.picking:0
+msgid "DTS Today+Past"
+msgstr "DTS 今天及之前"
+
+#. module: fc_stock
+#: field:stock.picking,create_uid:0
+#: field:stock.picking.in,create_uid:0
+#: field:stock.picking.out,create_uid:0
+msgid "Created by"
+msgstr "Created by"
+
+#. module: fc_stock
+#: model:ir.actions.act_window,help:fc_stock.action_IS_move_list
+msgid "<p class=\"oe_view_nocontent_create\">\n"
+"                Create a product reception first. \n"
+"              </p><p>\n"
+"                Here you can check all the incoming moves with values.\n"
+"              </p>\n"
+"            "
+msgstr "<p class=\"oe_view_nocontent_create\">\n"
+"                Create a product reception first. \n"
+"              </p><p>\n"
+"                Here you can check all the incoming moves with values.\n"
+"              </p>\n"
+"            "
+
+#. module: fc_stock
+#: field:fc_big_scheduler,run_check:0
+msgid "Check Picking Availability?"
+msgstr "检查可用?"
+
+#. module: fc_stock
+#: model:ir.model,name:fc_stock.model_stock_move_scrap
+msgid "Scrap Products"
+msgstr "报废产品"
+
+#. module: fc_stock
+#: field:stock.move,amount_total:0
+msgid "Subtotal"
+msgstr "小计"
+
+#. module: fc_stock
+#: field:fc_big_scheduler,shop_id:0
+#: field:mrp.production.scheduler,shop:0
+msgid "Shop"
+msgstr "商店"
+
+#. module: fc_stock
+#: model:ir.model,name:fc_stock.model_fc_big_scheduler_stop
+msgid "Stop/Kill FC Big scheduler"
+msgstr "停止/中止 需求计算"
+
+#. module: fc_stock
+#: field:stock.return.picking,note:0
+msgid "Notes"
+msgstr "备注"
+
+#. module: fc_stock
+#: field:stock.move,product_supply_method:0
+msgid "Product Supply Method"
+msgstr "产品供应方式"
+
+#. module: fc_stock
+#: view:stock.picking:0
+msgid "Products"
+msgstr "产品"
+
+#. module: fc_stock
+#: code:addons/fc_stock/wizard/stock_batch_move.py:54
+#, python-format
+msgid "Please select stock moves at first."
+msgstr "请先选择调拨。"
+
+#. module: fc_stock
+#: view:fc_big_scheduler.stop:0
+#: model:ir.actions.act_window,name:fc_stock.action_stop_fc_scheduler
+#: model:ir.ui.menu,name:fc_stock.menu_stop_fc_scheduler
+msgid "Stop Preparation Scheduler"
+msgstr "停止需求计算"
+
+#. module: fc_stock
+#: code:addons/fc_stock/wizard/stock_batch_move.py:54
+#, python-format
+msgid "Warning !"
+msgstr "警告 !"
+
+#. module: fc_stock
+#: view:stock.picking:0
+msgid "DTS planned for Today"
+msgstr "安排在今天的DTS"
+
+#. module: fc_stock
+#: model:ir.actions.act_window,name:fc_stock.action_check_availability_wizard
+#: model:ir.ui.menu,name:fc_stock.menu_stock_check_availability_wizard
+#: view:stock.picking.check_availability:0
+msgid "Check Availability Batch"
+msgstr "批量检查可用"
+
+#. module: fc_stock
+#: view:stock.move:0
+msgid "Origin"
+msgstr "来源单据"
+
+#. module: fc_stock
+#: field:mrp.production,last_exception:0
+msgid "Last Exception"
+msgstr "上次例外"
+
+#. module: fc_stock
+#: view:stock.move:0
+msgid "Reference"
+msgstr "相关单号"
+
+#. module: fc_stock
+#: model:ir.model,name:fc_stock.model_stock_move
+msgid "Stock Move"
+msgstr "库存调拨"
+
+#. module: fc_stock
+#: view:stock.picking:0
+msgid "Return Reason"
+msgstr "退货原因"
+
+#. module: fc_stock
+#: selection:fc_big_scheduler.stop,action:0
+msgid "Kill"
+msgstr "强制中止"
+
+#. module: fc_stock
+#: code:addons/fc_stock/stock.py:408
+#: code:addons/fc_stock/stock.py:725
+#, python-format
+msgid "Warning!"
+msgstr "警告!"
+
+#. module: fc_stock
+#: view:stock.picking:0
+#: view:stock.picking.in:0
+#: view:stock.picking.out:0
+msgid "Delivery Time"
+msgstr "发货时间"
+
+#. module: fc_stock
+#: view:stock.picking.in:0
+msgid "(update)"
+msgstr "(更新)"
+
+#. module: fc_stock
+#: view:stock.move:0
+msgid "Partner"
+msgstr "业务伙伴"
+
+#. module: fc_stock
+#: model:ir.model,name:fc_stock.model_stock_picking_out
+msgid "Delivery Orders"
+msgstr "送货单"
+
+#. module: fc_stock
+#: field:fc_big_scheduler,pts_id:0
+#: field:mrp.production.scheduler,pts_id:0
+#: view:stock.move:0
+#: view:stock.picking:0
+#: field:stock.picking.check_availability,pts_id:0
+#: view:stock.picking.in:0
+#: view:stock.picking.out:0
+msgid "Preparation Time"
+msgstr "拣货时间"
+
+#. module: fc_stock
+#: view:stock.picking:0
+msgid "Additional Info"
+msgstr "附加信息"
+
+#. module: fc_stock
+#: model:ir.model,name:fc_stock.model_stock_batch_move
+msgid "Stock Batch Move"
+msgstr "批量调拨"
+
+#. module: fc_stock
+#: view:stock.move:0
+msgid "SKU"
+msgstr "SKU"
+
+#. module: fc_stock
+#: view:fc_big_scheduler:0
+#: view:mrp.production.scheduler:0
+msgid "Run Scheduler"
+msgstr "需求计算"
+
+#. module: fc_stock
+#: view:stock.picking:0
+msgid "Incoming Shipments already processed"
+msgstr "入库已完成"
+
+#. module: fc_stock
+#: view:fc_big_scheduler.stop:0
+#: view:stock.picking:0
+msgid "Confirm"
+msgstr "确认"
+
+#. module: fc_stock
+#: view:stock.picking:0
+msgid "Invoice Control"
+msgstr "发票管理"
+
+#. module: fc_stock
+#: view:stock.picking.check_availability:0
+msgid "Check Availability"
+msgstr "检查可用"
+
+#. module: fc_stock
+#: view:stock.picking:0
+msgid "Incoming Shipments Available"
+msgstr "入库可用"
+
+#. module: fc_stock
+#: view:stock.picking:0
+msgid "DTS Today"
+msgstr "今天的DTS"
+
+#. module: fc_stock
+#: model:ir.ui.menu,name:fc_stock.menu_return_reason_config
+#: view:stock.move:0
+#: field:stock.move,return_reason_id:0
+#: field:stock.picking,return_reason_id:0
+#: view:stock.picking.in:0
+#: field:stock.picking.in,return_reason_id:0
+#: view:stock.picking.out:0
+#: field:stock.picking.out,return_reason_id:0
+#: field:stock.return.picking,return_reason_id:0
+msgid "Return Reason"
+msgstr "退货原因"
+
+#. module: fc_stock
+#: view:stock.move:0
+#: view:stock.picking.in:0
+msgid "Related MO"
+msgstr "相关生产订单"
+
+#. module: fc_stock
+#: model:ir.model,name:fc_stock.model_stock_picking_check_availability
+msgid "Stock Picking Check Availability Batch"
+msgstr "批量检查可用"
+
+#. module: fc_stock
+#: model:ir.model,name:fc_stock.model_stock_location
+#: field:stock.return.picking,location_id:0
+msgid "Location"
+msgstr "库位"
+
+#. module: fc_stock
+#: model:ir.model,name:fc_stock.model_stock_picking
+msgid "Picking List"
+msgstr "分拣单"
+
+#. module: fc_stock
+#: model:ir.model,name:fc_stock.model_stock_warehouse
+#: model:mail.group,name:fc_stock.mail_group_warehouse
+msgid "Warehouse"
+msgstr "仓库"
+
+#. module: fc_stock
+#: view:stock.move:0
+#: field:stock.picking,return:0
+#: view:stock.picking.in:0
+#: field:stock.picking.in,return:0
+#: field:stock.picking.out,return:0
+#: field:stock.return.picking,return_type:0
+msgid "Type"
+msgstr "类型"
+
+#. module: fc_stock
+#: field:stock.picking,write_uid:0
+#: field:stock.picking.in,write_uid:0
+#: field:stock.picking.out,write_uid:0
+msgid "Updated by"
+msgstr "Updated by"
+
+#. module: fc_stock
+#: view:stock.picking:0
+msgid "Expected Date"
+msgstr "预计日期"
+
+#. module: fc_stock
+#: field:stock.move,product_categ_id:0
+msgid "Product Category"
+msgstr "产品种类"
+
+#. module: fc_stock
+#: field:stock.picking,write_date:0
+#: field:stock.picking.in,write_date:0
+#: field:stock.picking.out,write_date:0
+msgid "Last Modification"
+msgstr "最后修改"
+
+#. module: fc_stock
+#: field:stock.picking,create_date:0
+#: field:stock.picking.in,create_date:0
+#: field:stock.picking.out,create_date:0
+msgid "Creation Date"
+msgstr "创建时间"
+
+#. module: fc_stock
+#: view:stock.picking:0
+msgid "To Invoice"
+msgstr "待开票"
+
+#. module: fc_stock
+#: model:ir.actions.act_window,help:fc_stock.action_stock_return_reason
+msgid "<p class=\"oe_view_nocontent_create\">\n"
+"                Click to add a Reason Type.\n"
+"              </p>\n"
+"            "
+msgstr "<p class=\"oe_view_nocontent_create\">\n"
+"                点击新建一个退货原因.\n"
+"              </p>\n"
+"            "
+
+#. module: fc_stock
+#: model:ir.actions.act_window,name:fc_stock.action_stock_return_reason
+#: model:ir.model,name:fc_stock.model_stock_return_reason
+msgid "Stock Return Reason"
+msgstr "退货原因"
+
+#. module: fc_stock
+#: model:ir.actions.act_window,name:fc_stock.action_internal_location_form
+#: model:ir.ui.menu,name:fc_stock.menu_action_internal_location_form
+msgid "Internal Locations"
+msgstr "内部库位"
+
+#. module: fc_stock
+#: field:stock.move,qty_available:0
+msgid "Quantity Available"
+msgstr "可用数量"
+
+#. module: fc_stock
+#: view:stock.move:0
+msgid "Scrap Reason"
+msgstr "报废原因"
+
+#. module: fc_stock
+#: view:stock.picking:0
+msgid "_Cancel"
+msgstr "取消(_C)"
+
+#. module: fc_stock
+#: field:stock.batch.move,cancel_move:0
+msgid "Cancel the move?"
+msgstr "Cancel the move?"
+
+#. module: fc_stock
+#: view:stock.picking:0
+msgid "Order Date"
+msgstr "订单日期"
+
+#. module: fc_stock
+#: code:addons/fc_stock/stock.py:362
+#, python-format
+msgid "%s-%s-return"
+msgstr "%s-%s-退"
+
+#. module: fc_stock
+#: view:stock.location:0
+msgid "Parent Location"
+msgstr "上级库位"
+
+#. module: fc_stock
+#: view:stock.picking:0
+msgid "Edit..."
+msgstr "编辑..."
+
+#. module: fc_stock
+#: view:stock.move:0
+msgid "Stock Type"
+msgstr "储藏类型"
+
+#. module: fc_stock
+#: code:addons/fc_stock/stock.py:725
+#, python-format
+msgid "Please provide a positive quantity to scrap."
+msgstr "报废数量需大于零."
+
+#. module: fc_stock
+#: field:stock.move,picking_return:0
+msgid "Picking Return"
+msgstr "退货种类"
+
+#. module: fc_stock
+#: view:stock.picking:0
+msgid "Force Availability"
+msgstr "强制可用"
+
+#. module: fc_stock
+#: model:ir.actions.act_window,name:fc_stock.action_compute_mo_scheduler
+#: model:ir.ui.menu,name:fc_stock.menu_stock_mo_scheduler
+#: view:mrp.production.scheduler:0
+msgid "Auto MO Scheduler"
+msgstr "自动生产计划"
+
+#. module: fc_stock
+#: view:stock.picking:0
+msgid "Delete"
+msgstr "删除"
+
+#. module: fc_stock
+#: model:ir.model,name:fc_stock.model_procurement_order
+msgid "Procurement"
+msgstr "需求单"
+
+#. module: fc_stock
+#: view:stock.picking.in:0
+#: field:stock.picking.in,amount_received:0
+msgid "Amount Received"
+msgstr "已收金额"
+
+#. module: fc_stock
+#: view:stock.picking.out:0
+msgid "Deliver Available"
+msgstr "发货可用"
+
+#. module: fc_stock
+#: code:addons/fc_stock/stock.py:425
+#, python-format
+msgid "Returned Picking"
+msgstr "退货单"
+
+#. module: fc_stock
+#: field:stock.warehouse,lot_return_id:0
+msgid "Location For Return"
+msgstr "退货库位"
+
+#. module: fc_stock
+#: view:stock.picking.in:0
+#: field:stock.picking.in,amount_total:0
+msgid "Amount Total"
+msgstr "总额"
+
+#. module: fc_stock
+#: field:fc_big_scheduler,automatic:0
+msgid "Automatic Order Points?"
+msgstr "自动订货点?"
+
+#. module: fc_stock
+#: view:stock.picking:0
+msgid "Is a Back Order"
+msgstr "是相关单据"
+
+#. module: fc_stock
+#: view:fc_big_scheduler:0
+#: view:fc_big_scheduler.stop:0
+#: view:mrp.production.scheduler:0
+#: view:stock.picking.check_availability:0
+msgid "or"
+msgstr "或者"
+
+#. module: fc_stock
+#: field:stock.move,partner_ref:0
+msgid "Partner Ref"
+msgstr "伙伴代码"
+
+#. module: fc_stock
+#: field:fc_big_scheduler,po_merge:0
+msgid "Merge PO?"
+msgstr "合并采购单?"
+
+#. module: fc_stock
+#: code:addons/fc_stock/wizard/scheduler.py:44
+#: field:product.product,mpq:0
+#, python-format
+msgid "Minimum Produce Quantity"
+msgstr "最新生产数量"
+
+#. module: fc_stock
+#: model:ir.actions.server,name:fc_stock.action_move_get_mo
+#: model:ir.model,name:fc_stock.model_mrp_production
+msgid "Manufacturing Order"
+msgstr "生产订单"
+
+#. module: fc_stock
+#: help:stock.picking,return:0
+#: help:stock.picking.in,return:0
+#: help:stock.picking.out,return:0
+#: help:stock.return.picking,return_type:0
+msgid "Type specifies whether the Picking has been returned or not."
+msgstr "指定库存单据是否是退货单据."
+
+#. module: fc_stock
+#: view:fc_big_scheduler:0
+#: model:ir.actions.act_window,name:fc_stock.action_compute_fc_scheduler
+#: model:ir.ui.menu,name:fc_stock.menu_stock_fc_scheduler
+msgid "Preparation Scheduler"
+msgstr "FC拣货计划运行"
+
+#. module: fc_stock
+#: view:stock.picking:0
+msgid "Status"
+msgstr "状态"
+
+#. module: fc_stock
+#: view:stock.picking:0
+msgid "Back Orders"
+msgstr "子单"
+
+#. module: fc_stock
+#: model:ir.actions.act_window,name:fc_stock.action_IS_move_list
+#: model:ir.ui.menu,name:fc_stock.menu_action_IS_move_list_fc
+#: view:stock.move:0
+msgid "Incoming Moves"
+msgstr "入库明细"
+
+#. module: fc_stock
+#: view:stock.picking:0
+msgid "í"
+msgstr "í"
+
+#. module: fc_stock
+#: selection:stock.picking,return:0
+#: selection:stock.picking.in,return:0
+#: selection:stock.picking.out,return:0
+#: selection:stock.return.picking,return_type:0
+msgid "Normal"
+msgstr "正常"
+
+#. module: fc_stock
+#: view:stock.move:0
+msgid "Subtotal(Inc. Tax)"
+msgstr "小计(含税)"
+
+#. module: fc_stock
+#: code:addons/fc_stock/stock.py:408
+#, python-format
+msgid "Please specify at least one non-zero quantity."
+msgstr "请指定至少一个非零的数量."
+
+#. module: fc_stock
+#: model:ir.actions.act_window,name:fc_stock.action_picking_inout_kanban
+#: model:ir.ui.menu,name:fc_stock.menu_action_picking_inout_kanban
+msgid "PO + SO / DTS"
+msgstr "采购+销售 / DTS"
+
+#. module: fc_stock
+#: field:stock.batch.move,cancel_availability:0
+msgid "Cancel availability if available?"
+msgstr "可用时取消可用?"
+
+#. module: fc_stock
+#: model:ir.model,name:fc_stock.model_procurement_order_compute_all
+msgid "Compute all schedulers"
+msgstr "计算所有排程"
+
+#. module: fc_stock
+#: code:addons/fc_stock/wizard/scheduler.py:748
+#, python-format
+msgid "Automatic OP: %s"
+msgstr "自动订货点: %s"
+
+#. module: fc_stock
+#: view:stock.move:0
+msgid "Scrap Moves"
+msgstr "报废调拨"
+
+#. module: fc_stock
+#: field:stock.move,product_code:0
+msgid "Product Reference"
+msgstr "产品代码"
+
+#. module: fc_stock
+#: view:stock.move:0
+msgid "Subotal"
+msgstr "小计"
+
+#. module: fc_stock
+#: model:ir.model,name:fc_stock.model_stock_partial_picking
+msgid "Partial Picking Processing Wizard"
+msgstr "部分拣货处理向导"
+
+#. module: fc_stock
+#: code:addons/fc_stock/stock.py:931
+#: field:stock.location,location_return:0
+#, python-format
+msgid "For Return ?"
+msgstr "退货库位 ?"
+
+#. module: fc_stock
+#: code:addons/fc_stock/wizard/scheduler.py:362
+#: code:addons/fc_stock/wizard/scheduler.py:1012
+#, python-format
+msgid "Error"
+msgstr "错误"
+
+#. module: fc_stock
+#: field:fc_big_scheduler.stop,action:0
+msgid "Action"
+msgstr "动作"
+
+#. module: fc_stock
+#: view:stock.picking:0
+msgid "DTS planned Today or before"
+msgstr "DTS安排在今天及之前"
+
+#. module: fc_stock
+#: field:stock.return.reason,code:0
+msgid "Code"
+msgstr "代码"
+
+#. module: fc_stock
+#: model:ir.ui.menu,name:fc_stock.menu_action_picking_tree4_picking_to_invoice_fc
+msgid "On Incoming Shipments FC"
+msgstr "FC入库单"
+
+#. module: fc_stock
+#: model:ir.actions.act_window,name:fc_stock.action_move_return_supplier
+#: model:ir.actions.act_window,name:fc_stock.action_picking_return_supplier
+#: model:ir.ui.menu,name:fc_stock.menu_action_picking_return_supplier
+#: selection:stock.picking,return:0
+#: selection:stock.picking.in,return:0
+#: selection:stock.picking.out,return:0
+#: selection:stock.return.picking,return_type:0
+msgid "Return to Supplier"
+msgstr "采购退货"
+
+#. module: fc_stock
+#: view:stock.batch.move:0
+msgid "Process"
+msgstr "处理"
+
+#. module: fc_stock
+#: help:fc_big_scheduler,automatic:0
+msgid "Create procurement of virtual stock < 0"
+msgstr "在单量小于0时创建需求单"
+
+#. module: fc_stock
+#: code:addons/fc_stock/stock.py:747
+#, python-format
+msgid "%s %s %s has been <b>moved to</b> scrap."
+msgstr "%s %s %s 已经 <b>报废到</b> ."
+
+#. module: fc_stock
+#: model:ir.actions.act_window,name:fc_stock.action_picking_quick
+#: model:ir.ui.menu,name:fc_stock.menu_action_picking_quick
+#: view:stock.picking:0
+msgid "Quick Internal move Entry"
+msgstr "内部调拨单"
+
+#. module: fc_stock
+#: view:stock.picking:0
+msgid "Done"
+msgstr "完成"
+
+#. module: fc_stock
+#: view:fc_big_scheduler:0
+#: view:fc_big_scheduler.stop:0
+#: view:mrp.production.scheduler:0
+#: view:stock.batch.move:0
+#: view:stock.picking.check_availability:0
+msgid "Cancel"
+msgstr "取消"
+
+#. module: fc_stock
+#: model:ir.model,name:fc_stock.model_stock_return_picking
+msgid "Return Picking"
+msgstr "退货单"
+
+#. module: fc_stock
+#: field:procurement.order.compute.all,cancel_mo:0
+msgid "Cancel generated MO ?"
+msgstr "作废已生成的生产单 ?"
+
+#. module: fc_stock
+#: view:stock.return.reason:0
+msgid "Push List"
+msgstr "Push List"
+
+#. module: fc_stock
+#: model:ir.model,name:fc_stock.model_stock_picking_in
+#: view:stock.picking:0
+msgid "Incoming Shipments"
+msgstr "入库"
+
+#. module: fc_stock
+#: view:stock.location:0
+msgid "Stock Locations"
+msgstr "库存库位"
+
+#. module: fc_stock
+#: code:addons/fc_stock/stock.py:526
+#, python-format
+msgid "Related Manufacturing Order"
+msgstr "相关生产订单"
+
+#. module: fc_stock
+#: model:ir.model,name:fc_stock.model_report_stock_inventory
+msgid "Stock Statistics"
+msgstr "库存统计"
+
+#. module: fc_stock
+#: model:ir.model,name:fc_stock.model_mrp_production_scheduler
+msgid "Compute auto MO scheduler"
+msgstr "自动生产类需求计算"
+
+#. module: fc_stock
+#: model:ir.model,name:fc_stock.model_product_product
+msgid "Product"
+msgstr "产品"
+
+#. module: fc_stock
+#: view:stock.picking:0
+msgid "Reverse Transfer"
+msgstr "取消调拨"
+
+#. module: fc_stock
+#: view:stock.return.reason:0
+msgid "Retrun Reason"
+msgstr "退货原因"
+
+#. module: fc_stock
+#: view:stock.picking:0
+msgid "Journal"
+msgstr "账簿"
+
+#. module: fc_stock
+#: help:product.product,force_mo:0
+msgid "Indicates whether the MO for this product are automatically processed regardless of the Raw Materials quantities."
+msgstr "Indicates whether the MO for this product are automatically processed regardless of the Raw Materials quantities."
+
+#. module: fc_stock
+#: view:stock.picking.out:0
+msgid "Deliver"
+msgstr "送货"
+
+#. module: fc_stock
+#: code:addons/fc_stock/wizard/scheduler.py:43
+#: field:product.product,force_mo:0
+#, python-format
+msgid "Force Availability MO ?"
+msgstr "强制生产单可用 ?"
+
+#. module: fc_stock
+#: model:ir.actions.act_window,name:fc_stock.action_move_return
+#: model:ir.ui.menu,name:fc_stock.menu_action_move_return
+msgid "Return Moves"
+msgstr "退货调拨"
+
+#. module: fc_stock
+#: model:ir.actions.act_window,name:fc_stock.action_scrap_moves
+#: model:ir.ui.menu,name:fc_stock.menu_action_scrap_moves
+msgid "Scrap Stock Moves"
+msgstr "报废调拨"
+
+#. module: fc_stock
+#: model:ir.actions.act_window,help:fc_stock.action_internal_location_form
+msgid "<p class=\"oe_view_nocontent_create\">\n"
+"                Click to add a location.\n"
+"              </p><p>\n"
+"                Display internal locations only.\n"
+"              </p>\n"
+"            "
+msgstr "<p class=\"oe_view_nocontent_create\">\n"
+"                点击增加一个库位.\n"
+"              </p><p>\n"
+"                只显示内部库位.\n"
+"              </p>\n"
+"            "
+
+#. module: fc_stock
+#: field:stock.return.reason,name:0
+msgid "Name"
+msgstr "名字"
+
+#. module: fc_stock
+#: code:addons/fc_stock/wizard/scheduler.py:362
+#: code:addons/fc_stock/wizard/scheduler.py:1012
+#, python-format
+msgid "the Preparation Scheduler is already RUNNING !"
+msgstr "需求计算正在运行!"
+
+#. module: fc_stock
+#: view:stock.picking:0
+msgid "Confirm & Transfer"
+msgstr "确认并调拨"
+
+#. module: fc_stock
+#: model:ir.actions.act_window,name:fc_stock.action_move_return_customer
+#: model:ir.actions.act_window,name:fc_stock.action_picking_return_customer
+#: model:ir.ui.menu,name:fc_stock.menu_action_move_return_customer
+#: model:ir.ui.menu,name:fc_stock.menu_action_picking_return_customer
+#: selection:stock.picking,return:0
+#: selection:stock.picking.in,return:0
+#: selection:stock.picking.out,return:0
+#: selection:stock.return.picking,return_type:0
+msgid "Return from Customer"
+msgstr "销售退货"
+
+#. module: fc_stock
+#: view:stock.picking:0
+msgid "Create Invoice/Refund"
+msgstr "开票/退款"
+
+#. module: fc_stock
+#: help:product.product,auto_mo:0
+msgid "Indicates whether the MO for this product are automatically processed when Raw Materials quantities are enough."
+msgstr "Indicates whether the MO for this product are automatically processed when Raw Materials quantities are enough."
+
+#. module: fc_stock
+#: model:ir.ui.menu,name:fc_stock.menu_action_move_return_supplier
+msgid "Return To Supplier"
+msgstr "采购退货"
+
+#. module: fc_stock
+#: field:stock.move,po_price:0
+msgid "Purchase Price"
+msgstr "采购价格"
+
+#. module: fc_stock
+#: field:stock.move,not_cancelable:0
+msgid "Stock Move Not Cancelable"
+msgstr "调拨不能取消"
+
+#. module: fc_stock
+#: code:addons/fc_stock/stock.py:931
+#: help:stock.location,location_return:0
+#, python-format
+msgid "This location is for return goods?"
+msgstr "退货库位 ?"
+
+#. module: fc_stock
+#: code:addons/fc_stock/wizard/scheduler.py:749
+#, python-format
+msgid "SCHEDULER"
+msgstr "计划"
+
+#. module: fc_stock
+#: help:stock.return.picking,location_id:0
+msgid "If a location is chosen the destination location for customer return (or origin for supplier return) is forced for all moves."
+msgstr "若退货给客户(或者供应商)，将强制所有调拨使用该目标库位。"
+
+#. module: fc_stock
+#: field:stock.return.reason,active:0
+msgid "Active ?"
+msgstr "有效 ?"
+
+#. module: fc_stock
+#: view:stock.picking:0
+msgid "Ready to Process"
+msgstr "待处理"
+

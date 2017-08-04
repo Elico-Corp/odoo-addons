@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="view_product_licensor_report_tree" model="ir.ui.view">
+            <field name="name">product.licensor.report.tree</field>
+            <field name="model">product.licensor.report</field>
+            <field name="arch" type="xml">
+                <tree string="Product Licensor Statistics" create="false">
+                    <field name="licensor_id" />
+                    <field name="product_id" />
+                    <field name="qty" />
+                    <field name="product_uom" />
+                    <field name="date" />
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_product_licensor_report_search" model="ir.ui.view">
+        <field name="name">report.product.licensor.report.search</field>
+        <field name="model">product.licensor.report</field>
+        <field name="arch" type="xml">
+            <search string="Product Licensor">
+                <field name="licensor_id"/>
+                <field name="product_id"/>
+                <newline/>
+                <group expand="1" string="Group By...">
+                    <filter name="group_licensor_id" string="Licensor" icon="terp-accessories-archiver" context="{'group_by':'licensor_id'}"/>
+                    <filter string="Product" name="group_product_id" icon="terp-accessories-archiver" context="{'group_by':'product_id'}"/>
+                    <filter string="Year" name="group_year" icon="terp-accessories-archiver" context="{'group_by':'year'}"/>
+                    <filter string="Month" name="group_month" icon="terp-accessories-archiver" context="{'group_by':'month'}"/>
+                    <filter string="Day" name="group_day" icon="terp-accessories-archiver" context="{'group_by':'day'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+    
+    <record id="action_product_licensor_report_all" model="ir.actions.act_window">
+        <field name="name">Product Licensor Analysis</field>
+        <field name="res_model">product.licensor.report</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="view_product_licensor_report_tree"></field>
+        <field name="search_view_id" ref="view_product_licensor_report_search"/>
+        <field name="context">{'search_default_group_licensor_id': True,'search_default_group_product_id': 1}</field>
+        <field name="help">Product Licensor Analysis allows you to easily check and analyse different licensors' received product quantity.</field>
+    </record>
+
+    <menuitem action="action_product_licensor_report_all" id="product_licensor.menu_product_licensor_report" parent="base.next_id_73" sequence="4" groups="group_licensor_manager"/>
+
+    </data>
+</openerp>

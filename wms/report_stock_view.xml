@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        ##############################################################################
+        #
+        #    wms module for OpenERP, This module allows to manage crossdocking in warehouses
+        #    Copyright (C) 2011 SYLEAM ([http://www.syleam.fr/])
+        #              Christophe CHAUVET [christophe.chauvet@syleam.fr]
+        #              Sebastien LANGE [sebastien.lange@syleam.fr]
+        #	       Elico Corp (port to 7) [contact@elico-corp.com]
+        #    This file is a part of wms
+        #
+        #    wms is free software: you can redistribute it and/or modify
+        #    it under the terms of the GNU Affero General Public License as published by
+        #    the Free Software Foundation, either version 3 of the License, or
+        #    (at your option) any later version.
+        #
+        #    wms is distributed in the hope that it will be useful,
+        #    but WITHOUT ANY WARRANTY; without even the implied warranty of
+        #    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+        #    GNU Affero General Public License for more details.
+        #
+        #    You should have received a copy of the GNU Affero General Public License
+        #    along with this program.  If not, see [http://www.gnu.org/licenses/].
+        #
+        ##############################################################################
+
+        <record id="view_wms_report_stock_available_tree" model="ir.ui.view">
+            <field name="name">wms.report.stock.available.tree</field>
+            <field name="model">wms.report.stock.available</field>
+            <field name="type">tree</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <tree string="Stock Available">
+                 <!--   <field name="warehouse_id"/>  -->
+                    <field name="location_id"/>
+                    <field name="usage" invisible="1"/>
+                    <field name="product_id"/>
+                    <field name="product_qty" sum="Total"/>
+                    <field name="uom_id"/>
+			<!--    <field name="prodlot_id"/> -->
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_wms_report_stock_available_form" model="ir.ui.view">
+            <field name="name">wms.report.stock.available.form</field>
+            <field name="model">wms.report.stock.available</field>
+            <field name="type">form</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <form string="Stock Available">
+                    <field name="product_id"/>
+                    <field name="uom_id"/>
+               <!-- <field name="prodlot_id"/> -->
+               <!-- <field name="warehouse_id"/> -->
+                    <field name="location_id"/>
+                    <field name="product_qty"/>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_wms_report_stock_available_search" model="ir.ui.view">
+            <field name="name">wms.report.stock.available.search</field>
+            <field name="model">wms.report.stock.available</field>
+            <field name="type">search</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <search string="Stock Available">
+                    <filter icon="terp-go-home" name="in_location"
+                        string="Internal" domain="[('usage', '=', 'internal')]" help="Internal Locations" />
+                    <filter icon="terp-personal" name="customer"
+                        string="Customer" domain="[('usage', '=', 'customer')]" help="Customer Locations" />
+                    <filter icon="terp-personal" name="supplier"
+                        string="Supplier" domain="[('usage', '=', 'supplier')]" help="Supplier Locations" />
+                    <separator orientation="vertical"/>
+                    <field name="product_id"/>
+                    <field name="location_id"/>
+                    <field name="prodlot_id"/>
+                    <newline/>
+                    <group expand="0" string="Extended Filters...">
+                        <field name="uom_id" widget="selection"/>
+                        <field name="warehouse_id" widget="selection"/>
+                        <field name="product_qty"/>
+                    </group>
+                    <newline/>
+                    <group expand="1" string="Group By..." colspan="4" col="20">
+                        <filter string="Warehouse" name="group_warehouse_id" icon="terp-go-home" domain="[]" context="{'group_by':'warehouse_id'}"/>
+                        <separator orientation="vertical"/>
+                        <filter string="Location" name="group_location_id" icon="terp-folder-violet" domain="[]" context="{'group_by':'location_id'}"/>
+                        <separator orientation="vertical"/>
+                        <filter string="Product" name="group_product_id" icon="terp-accessories-archiver" domain="[]" context="{'group_by':'product_id'}"/>
+                        <filter string="UOM" name="group_uom_id" icon="terp-mrp" domain="[]" context="{'group_by':'uom_id'}"/>
+                        <separator orientation="vertical"/>
+                        <filter string="Production Lot" name="group_prodlot_id" icon="terp-stock_effects-object-colorize" domain="[]" context="{'group_by':'prodlot_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="act_open_report_stock_location_available_view">
+            <field name="name">Stock Available</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">wms.report.stock.available</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree</field>
+            <field name="search_view_id" ref="view_wms_report_stock_available_search"/>
+            <field name="domain">[]</field>
+            
+            <!--JON add search_default_group_product_id -->
+            <field name="context">{'search_default_in_location':1,}</field>
+        </record>
+
+        <record model="ir.actions.act_window.view" id="act_open_report_stock_location_available_view_tree">
+            <field name="act_window_id" ref="act_open_report_stock_location_available_view"/>
+            <field name="sequence" eval="10"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="view_wms_report_stock_available_tree"/>
+        </record>
+
+        <menuitem id="menu_report_stock_location_available"
+            parent="stock.next_id_61"
+            sequence="40"
+            action="act_open_report_stock_location_available_view"/>
+            
+            
+    <!--jon  add a menu  Stock Available befor the Warhouse->Location Structure -->_
+    <record id="menu_report_stock_location_available_1" model="ir.ui.menu">
+      <field name="name">Stock Available</field>
+      <field name="sequence" eval="1"/>
+      <field name="action" ref="wms.act_open_report_stock_location_available_view"/>
+      <field name="parent_id" ref="stock.menu_stock_inventory_control"/>
+	  <field name="groups_id" eval="[(4, ref('base.group_sale_manager'))]"/>
+    </record>
+        
+    <!--jon copy menu group  "Warhouse::Stock Available" to  befor  "Sales::Product::Stock Available"   -->
+    <record id="menu_report_stock_location_available_2" model="ir.ui.menu">
+      <field name="name">Stock Available</field>
+      <field name="sequence" eval="10"/>
+      <field name="action" ref="wms.act_open_report_stock_location_available_view"/>
+      <field name="parent_id" ref="base.menu_product"/>
+    </record>
+	
+    <!--jon copy menu group  "Warhouse::Stock Available" to  befor  "Sales::Product::Stock Available"   -->
+    <record id="menu_report_stock_location_available_3" model="ir.ui.menu">
+      <field name="name">Stock Available</field>
+      <field name="sequence" eval="10"/>
+      <field name="action" ref="wms.act_open_report_stock_location_available_view"/>
+      <field name="parent_id" ref="purchase.menu_procurement_management_product"/>
+    </record>
+
+    </data>
+</openerp>

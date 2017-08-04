@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+
+        <record model="ir.ui.view" id="view_wizard_category_manager_form">
+            <field name="name">product.category.manager.form</field>
+            <field name="model">wizard.category.manager</field>
+            <field name="arch" type="xml">
+                <form string="SOL split Wizard" version="7.0">
+                    <group  cols="4" colspan="2">
+                        <field name="categ_from" />
+                        <field name="categ_to" />
+                    </group>
+                    <button name="assign" string="Assign" type="object" />
+                    <button name="remove_all" string="Remove all" type="object" confirm="Are you sure that you want to remove all the categories for the selected products?" />
+                </form>
+            </field>
+        </record>
+
+        <act_window id="action_wizard_order_split_2" 
+            name="Manage categories" 
+            multi="True"
+            res_model="wizard.category.manager" 
+            src_model="product.product" 
+            view_id="view_wizard_category_manager_form"
+            target="new" 
+            view_mode="tree,form" 
+            view_type="form"/>
+    </data>
+</openerp>

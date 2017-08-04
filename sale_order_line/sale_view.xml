@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+      	<!-- Cart SO line  -->  
+      	<record id="inherit_view_order_line_tree" model="ir.ui.view">
+          	<field name="name">sale.order.line.tree</field>
+            <field name="model">sale.order.line</field>
+            <field name="inherit_id" eval="False"/>
+            <field name="arch" type="xml">
+                <tree string="Sales Order Lines" editable="top" create="0" colors="red:state=='draft';green:state=='confirmed';grey:state=='done'">
+                    <field name="product_id" 			/>
+                    <field name ="product_default_code" invisible="1"/>
+                    <field name="order_id" 				readonly="1"/>
+                    <button name="link_to_order" 		string="SO" type="object" icon="oe_m2o_open"/>
+                    <field name="order_partner_id" 		readonly="1"/>
+                    <field name="name" 					invisible="1"/>
+                	<field name="price_unit" 			groups="base.group_system"/>
+                	<field name="discount" 				groups="base.group_system"/>
+                    <field name="product_uom_qty" 		string="Qty" sum="Total"/>
+                    <field name="product_uom" 			string="Unit of Measure" groups="product.group_uom"/>
+                    <field name="salesman_id" 			invisible="1"/>
+                    <field name="price_subtotal"  		groups="base.group_system" sum="Total"/>
+                    <field name="state"/>
+                    <field name="invoiced" 				groups="base.group_system"/>
+                    <field name="product_mmx_type"/>
+                    <field name="sequence" invisible="1"/>
+                </tree>
+            </field>
+        </record>
+        
+      	<!-- Sale by Product,no cart -->  
+      	<record id="inherit_view_order_line_tree_no_cart" model="ir.ui.view">
+          	<field name="name">sale.order.line.tree</field>
+            <field name="model">sale.order.line</field>
+            <field name="inherit_id" eval="False"/>
+            <field name="arch" type="xml">
+                <tree string="Sales Order Lines" editable="top" create="0" colors="red:state=='draft';green:state=='confirmed';grey:state=='done'">
+                    <field name="product_id" 			readonly="1"/>
+                    <field name ="product_default_code" invisible="1"/>
+                    <field name="order_id" 				readonly="1"/>
+                    <button name="link_to_order" 		string="SO" type="object" icon="oe_m2o_open"/>
+                    <field name="order_partner_id" 		readonly="1"/>
+                    <field name="name" 					invisible="1"/>
+                    <field name="price_unit" 			groups="base.group_system" readonly="1" invisible="1"/>
+                	   <field name="discount" 				groups="base.group_system" readonly="1" invisible="1"/>
+                    <field name="product_uom_qty" 		string="Qty" sum="Total" readonly="1"/>
+                    
+                    <field name="product_uom" 			string="Unit of Measure" groups="product.group_uom" readonly="1"/>
+                    <field name="qty_available"  readonly="1"/>
+                    <field name="virtual_available"  readonly="1"/>
+                    
+                    <field name="salesman_id" 			invisible="1" readonly="1"/>
+                    <field name="price_subtotal"  		groups="base.group_system" sum="Total" readonly="1" invisible="1"/>
+                    
+                    <field name="invoiced" 				groups="base.group_system" readonly="1" invisible="1"/>
+                    <field name="product_mmx_type"  invisible="1" readonly="1"/>
+                    <field name="state" readonly="1"/>
+                    <field name="sequence" readonly="1" invisible="1"/>
+
+                </tree>
+            </field>
+        </record>
+        
+        
+        <record model="ir.ui.view" id="inherit_view_sales_order_line_filter">
+            <field name="name">sale.order.line.select</field>
+            <field name="model">sale.order.line</field>
+            <field name="inherit_id" ref="sale.view_sales_order_uninvoiced_line_filter"/>
+            <field name="arch" type="xml">
+            	<xpath expr="//search/filter[@name='sale order']" position="before">
+            		<filter icon="terp-gtk-go-back-rtl" string="Quotation" domain="[('state','=','draft')]" name="sol_draft" help="Draft sales order lines"/>
+            		<filter icon="terp-gtk-go-back-rtl" string="No Cancel" domain="[('state','!=','cancel')]" name="sol_cancel" help="Cancel sales order lines"/>
+            	</xpath>
+            	<xpath expr="//search/filter[@name='sale order']" position="attributes">
+            		<attribute name="string">Sales Order by Product</attribute>
+            	</xpath>
+            	<xpath expr="//search/group[@string='Group By...']" position="inside">
+            		<filter name="group_pdt_code" string="Product Code" icon="terp-accessories-archiver" domain="[]" context="{'group_by':'product_default_code'}"/>
+            		<filter string="Product Type" 						icon="terp-accessories-archiver" domain="[]" context="{'group_by':'product_mmx_type'}"/>
+            	</xpath>
+            	<xpath expr="//search/group[@string='Group By...']/filter[@string='Product']" position="attributes">
+            		<attribute name="name">group_by_product</attribute>
+            	</xpath>
+            </field>
+        </record>
+        
+             
+		
+		<record id="action_sale_order_line" model="ir.actions.act_window">
+            <field name="name">Sales Order line"</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">sale.order.line</field>
+            <field name="context">{'search_default_sol_cancel':1}</field>
+       <!--     <field name="domain">[('order_id.state','!=','cart')]</field>  -->
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="inherit_view_order_line_tree_no_cart"/>
+            <field name="search_view_id" ref="sale.view_sales_order_uninvoiced_line_filter"/>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to check Sale Order Line.
+              </p>
+            </field>
+        </record>
+    	<menuitem id="menu_sale_line" name="Sales Order line" parent="base.menu_sales" action="action_sale_order_line" groups="base.group_sale_salesman,base.group_sale_manager" sequence="23"/>
+		
+		
+		<record id="action_validate_solines" model="ir.actions.act_window">
+            <field name="name">Validate SO lines</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">sale.order.line</field>
+            <field name="context">{}</field>
+            <field name="domain">['|', ('order_id.state','in',['draft','sent', 'wishlist']), ('state', 'in', ['wishlist'])]</field>  
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="inherit_view_order_line_tree_no_cart"/>
+            <field name="search_view_id" ref="sale.view_sales_order_uninvoiced_line_filter"/>
+        </record>
+    	<menuitem id="menu_validate_solines" name="Validate SOL" parent="sale_menu.menu_sales_operations" action="action_validate_solines" groups="base.group_sale_salesman,base.group_sale_manager" sequence="24"/>
+		
+		<record id="action_sale_order_line_cart" model="ir.actions.act_window">
+            <field name="name">Cart Order by Product</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">sale.order.line</field>
+            <field name="context">{}</field>
+            <field name="domain">[('order_id.state','=','cart')]</field>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="inherit_view_order_line_tree"/>
+            <field name="search_view_id" ref="sale.view_sales_order_uninvoiced_line_filter"/>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to check Sale Order Line.
+              </p>
+            </field>
+        </record>
+		
+ <!--   	<menuitem id="menu_sale_line_cart" name="Cart SO Line" parent="base.menu_sales" action="action_sale_order_line_cart" groups="base.group_sale_salesman,base.group_sale_manager" sequence="24"/>   -->
+		
+	    
+	   	<!--  jon.chow#elico-corp.com Jul 16, 2013-->     
+        <record id="inherit_product_warning_form_view" model="ir.ui.view">
+            <field name="name">product.warning.form.inherit</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="product.product_normal_form_view"/>
+            <field name="arch" type="xml">
+                <notebook position="inside">
+                    <page string="Warnings">
+                        <group string="Warning when Selling this Product">
+                            <field name="sale_line_warn"/>
+                            <field name="sale_line_warn_msg" attrs="{'required':[('sale_line_warn','!=','no-message')],'readonly':[('sale_line_warn','=','no-message')]}"/>
+                        </group>
+                        <group string="Warning when Purchasing this Product">
+                            <field name="purchase_line_warn"/>
+                            <field name="purchase_line_warn_msg" attrs="{'required':[('purchase_line_warn','!=','no-message')],'readonly':[('purchase_line_warn','=','no-message')]}"/>
+                        </group>
+                    </page>
+                </notebook>
+            </field>
+        </record>
+        
+        <!-- Sale Order menu, filter cart  -->
+        
+        
+        
+    </data>
+</openerp>

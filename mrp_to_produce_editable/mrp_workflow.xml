@@ -1,0 +1,20 @@
+<openerp>
+    <data>
+        <!-- change from subflow to function -->
+        <record id="mrp.prod_act_picking" model="workflow.activity">
+            <field name="wkf_id" ref="mrp.wkf_prod"/>
+            <field name="name">picking</field>
+            <field name="kind">function</field>
+            <field name="subflow_id" search="[('osv','=','stock.picking')]"/>
+            <field name="action">action_confirm()</field>
+        </record>
+
+        <!-- change the confition. -->
+        <record id="mrp.prod_trans_picking_ready" model="workflow.transition">
+            <field name="act_from" ref="mrp.prod_act_picking"/>
+            <field name="act_to" ref="mrp.prod_act_ready"/>
+            <field name="signal"></field>
+            <field name="condition">picking_id and (picking_id.state in ('done', 'assigned'))</field>
+        </record>
+    </data>
+</openerp>

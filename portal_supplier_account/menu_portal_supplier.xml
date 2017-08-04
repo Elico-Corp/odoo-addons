@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <menuitem name="Portal"
+            id="portal.portal_menu"
+            groups="portal.group_portal,portal.group_anonymous,res_portal_supplier_account"
+            sequence="15"/>
+        <menuitem name="Messaging" id="portal.portal_messages" parent="portal.portal_menu" sequence="10" groups="portal.group_portal,res_portal_supplier_account"/>
+        <menuitem name="Inbox" id="portal.portal_inbox" parent="portal.portal_messages"
+            action="portal.action_mail_inbox_feeds_portal" sequence="10" groups="portal.group_portal,res_portal_supplier_account"/>
+        <menuitem name="Archives" id="portal.portal_mail_archivesfeeds" parent="portal.portal_messages"
+            action="portal.action_mail_archives_feeds_portal" sequence="30" groups="portal.group_portal,res_portal_supplier_account"/>
+        <menuitem name="To-do" id="portal.portal_mail_starfeeds" parent="portal.portal_messages"
+            action="portal.action_mail_star_feeds_portal" sequence="20" groups="base.group_no_one,res_portal_supplier_account"/>
+        <menuitem name="Purchases"
+            id="base.menu_purchase_root"
+            groups="purchase.group_purchase_manager,purchase.group_purchase_user,res_portal_supplier_account"
+            sequence="60"/>
+        <menuitem id="purchase.menu_procurement_management_product" name="Products"
+          parent="base.menu_purchase_root" sequence="8"/>
+        <menuitem id="purchase.menu_procurement_management" name="Purchase"
+            parent="base.menu_purchase_root" sequence="1" />
+    </data>
+</openerp>

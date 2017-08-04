@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+       
+        <!--report auto="False" id="purchase.report_purchase_quotation" model="purchase.order" 
+                name="purchase.order.requisition.fc" rml="fc_reports/report/fc_po_requisition.rml"
+                string="Request for Quotation"/>
+        <report auto="False" id="purchase.report_purchase_order" model="purchase.order"
+                name="purchase.order.fc" rml="fc_reports/report/fc_po.rml"
+                usage="default" string="Purchase Order"/>
+
+        <report id="stock.report_picking_list" 		model="stock.picking" 		name="stock.picking.int.list.fc" 				string="Internal move" 						rml="fc_reports/report/fc_picking_int.rml"/>
+        <report id="stock.report_picking_list_in" 	model="stock.picking.in" 	name="stock.picking.in.list.fc" 				string="Receipt slip" 							rml="fc_reports/report/fc_picking_in.rml"/>
+        <report id="report_picking_list_in_price" 	model="stock.picking.in" 	name="stock.picking.in.price.list.fc" 		string="Receipt slip (Price)" 				rml="fc_reports/report/fc_picking_in_price.rml"/>
+        <report id="stock.report_picking_list_out" 	model="stock.picking.out" name="stock.picking.out.list.fc" 			string="Delivery Slip" 						rml="fc_reports/report/fc_picking_out.rml"/>
+        <report id="report_picking_list_in_return" 	model="stock.picking.out" name="stock.picking.in.return.list.fc" 	string="Return from customer slip" 	rml="fc_reports/report/fc_picking_in_return.rml"/>
+        <report id="report_picking_list_out_return" model="stock.picking.in" 	name="stock.picking.out.return.list.fc" 	string="Return to Supplier Slip" 			rml="fc_reports/report/fc_picking_out_return.rml"/>
+        <report id="account.account_invoices" 		model="account.invoice" 	name="invoice.fc" 								string="Invoices" 								rml="fc_reports/report/fc_invoice.rml"/-->
+
+        <report id="stock.report_picking_list_out" 	model="stock.picking.out" name="stock.picking.out.list.elico1" 			string="Delivery Slip" 						rml="l10n_cn_report_stock/report/elico_picking_out.rml"/>
+        <report id="stock.report_picking_list_in" 	model="stock.picking.in" 	name="stock.picking.in.list.elico1" 				string="Receipt Slip" 							rml="l10n_cn_report_stock/report/elico_picking_in.rml"/>
+
+    </data>
+</openerp>

@@ -1,0 +1,132 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+#	* partner_credit_limit_warning
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 6.0.3\n"
+"Report-Msgid-Bugs-To: support@openerp.com\n"
+"POT-Creation-Date: 2012-06-27 11:25+0000\n"
+"PO-Revision-Date: 2012-06-27 11:25+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: partner_credit_limit_warning
+#: view:sale.confirm.warning:0
+msgid "Note:"
+msgstr "注意："
+
+#. module: partner_credit_limit_warning
+#: field:sale.confirm.warning,amount_total:0
+msgid "Order Amount"
+msgstr "订单金额"
+
+#. module: partner_credit_limit_warning
+#: view:sale.confirm.warning:0
+msgid "After you confirmed this order,"
+msgstr "在你确认该订单后，"
+
+#. module: partner_credit_limit_warning
+#: model:ir.model,name:partner_credit_limit_warning.model_sale_order
+msgid "Sales Order"
+msgstr "销售订单"
+
+#. module: partner_credit_limit_warning
+#: code:addons/partner_credit_limit_warning/sale.py:47
+#, python-format
+msgid "Warning"
+msgstr "警告"
+
+#. module: partner_credit_limit_warning
+#: view:sale.confirm.warning:0
+msgid "will be overlimit."
+msgstr "将超过该客户的信用额度。"
+
+#. module: partner_credit_limit_warning
+#: field:sale.confirm.warning,name:0
+msgid "Sale Order"
+msgstr "销售订单"
+
+#. module: partner_credit_limit_warning
+#: field:sale.confirm.warning,credit:0
+msgid "Total Receivable"
+msgstr "应收合计"
+
+#. module: partner_credit_limit_warning
+#: field:sale.confirm.warning,debit:0
+msgid "Total Payable"
+msgstr "应付合计"
+
+#. module: partner_credit_limit_warning
+#: view:sale.confirm.warning:0
+msgid "_Continue to Confirm Order"
+msgstr "继续确认订单"
+
+#. module: partner_credit_limit_warning
+#: field:stock.picking,validated:0
+msgid "Delivery"
+msgstr "发货"
+
+#. module: partner_credit_limit_warning
+#: sql_constraint:sale.order:0
+msgid "Order Reference must be unique !"
+msgstr "订单号必须唯一！"
+
+#. module: partner_credit_limit_warning
+#: field:sale.confirm.warning,credit_limit:0
+msgid "Receivable Limit"
+msgstr "应收限制"
+
+#. module: partner_credit_limit_warning
+#: view:sale.confirm.warning:0
+msgid "Current customer's credit plus this order amount,"
+msgstr "当前客户其应收款加上该订单金额"
+
+#. module: partner_credit_limit_warning
+#: code:addons/partner_credit_limit_warning/stock.py:72
+#, python-format
+msgid "Can not confirm picking move, Total mature due Amount %s as on %s !"
+"\nCheck Partner Accounts or Credit Limits !"
+msgstr "该客户应收款为%s，在%s日已经超过其信用额度！"
+"因此不可处理该发货单，请检查客户的应收账款或者信用额度！"
+
+#. module: partner_credit_limit_warning
+#: code:addons/partner_credit_limit_warning/stock.py:73
+#, python-format
+msgid "Credit Over Limits !"
+msgstr "应收款超过信用额度！"
+
+#. module: partner_credit_limit_warning
+#: model:ir.model,name:partner_credit_limit_warning.model_sale_confirm_warning
+msgid "Confirm Check"
+msgstr "确认检查"
+
+#. module: partner_credit_limit_warning
+#: view:sale.confirm.warning:0
+msgid "_Cancel"
+msgstr "取消"
+
+#. module: partner_credit_limit_warning
+#: model:ir.model,name:partner_credit_limit_warning.model_stock_picking
+msgid "Picking List"
+msgstr "库存交易"
+
+#. module: partner_credit_limit_warning
+#: view:sale.confirm.warning:0
+msgid "Confirm Warning"
+msgstr "警告"
+
+#. module: partner_credit_limit_warning
+#: view:sale.order:0
+msgid "Confirm Order(W)"
+msgstr "确认"
+
+#. module: partner_credit_limit_warning
+#: field:stock.picking,validator:0
+msgid "Validated by"
+msgstr "授权人"
+

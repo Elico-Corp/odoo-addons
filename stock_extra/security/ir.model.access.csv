@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+stock_return_reason_manager,stock_return_reason_manager qm,stock_extra.model_stock_return_reason,stock.group_stock_manager,1,1,1,1

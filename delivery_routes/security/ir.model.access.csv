@@ -1,0 +1,15 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_delivery_time_slot_fc,delivery.time.slot.fc,model_delivery_time_slot,base.group_user,1,0,0,0
+access_delivery_time_slot,delivery.time.slot,model_delivery_time_slot,delivery_routes.group_delivery_user,1,1,1,0
+access_delivery_time_fc,delivery.time.fc,model_delivery_time,base.group_user,1,0,1,0
+access_delivery_time,delivery.time,model_delivery_time,delivery_routes.group_delivery_user,1,1,1,1
+access_delivery_route_line,delivery.route.line,model_delivery_route_line,delivery_routes.group_delivery_user,1,1,1,0
+access_delivery_route_line_cs,delivery.route.line_cs,model_delivery_route_line,delivery_routes.group_customer_service_user,1,1,0,0
+access_delivery_route_line_fc,delivery.route.line_fc,model_delivery_route_line,account.group_account_user,1,1,0,0
+access_delivery_route,delivery.route,model_delivery_route,delivery_routes.group_delivery_user,1,1,1,0
+access_delivery_route_cs,delivery.route_cs,model_delivery_route,delivery_routes.group_customer_service_user,1,1,0,0
+access_delivery_route_fc,delivery.route_fc,model_delivery_route,account.group_account_user,1,1,0,0
+access_delivery_route_tmp_fc,delivery.route_temp_fc,model_delivery_route_tmp,delivery_routes.group_delivery_user,1,1,1,1
+access_delivery_route_tmp_cs,delivery.route_temp_cs,model_delivery_route_tmp,delivery_routes.group_customer_service_user,1,1,0,0
+access_delivery_driver_fc,delivery.driver.fc,model_delivery_driver,delivery_routes.group_delivery_user,1,1,1,1
+access_delivery_driver_cs,delivery.driver.cs,model_delivery_driver,delivery_routes.group_customer_service_user,1,1,0,0

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="1">
+
+        <record id="base_intercompany.user_origin" model="res.users">
+            <field name="groups_id" eval="[(4, ref('base.group_sale_manager')), (4, ref('purchase.group_purchase_manager')), (4, ref('stock.group_stock_manager')), (4, ref('stock.group_locations'))]"/>
+        </record>
+
+        <record id="base_intercompany.user_destination" model="res.users">
+            <field name="groups_id" eval="[(4, ref('base.group_sale_manager')), (4, ref('purchase.group_purchase_manager')), (4, ref('stock.group_stock_manager')), (4, ref('stock.group_locations'))]"/>
+        </record>
+
+        <record id="warehouse_origin" model="stock.warehouse">
+            <field name="name">Warehouse Origin</field>
+            <field name="company_id" ref="base_intercompany.company_origin" />
+        </record>
+
+        <record id="warehouse_destination" model="stock.warehouse">
+            <field name="name">Warehouse Destination</field>
+            <field name="company_id" ref="base_intercompany.company_destination" />
+        </record>
+
+        <record id="shop_origin" model="sale.shop">
+            <field name="name">Shop Origin</field>
+            <field name="warehouse_id" ref="warehouse_origin" />
+            <field name="payment_default_id" ref="account.account_payment_term_immediate" />
+            <field name="company_id" ref="base_intercompany.company_origin" />
+        </record>
+
+        <record id="shop_destination" model="sale.shop">
+            <field name="name">Shop Destination</field>
+            <field name="warehouse_id" ref="warehouse_destination" />
+            <field name="payment_default_id" ref="account.account_payment_term_immediate" />
+            <field name="company_id" ref="base_intercompany.company_destination" />
+        </record>
+
+        <!-- ICOPS Setup -->
+        <record id="base_intercompany.backend_origin" model="icops.backend">
+            <field name="icops_shop_id" ref="shop_origin" />
+            <field name="icops_ids" eval="[(0, 0, {'concept': 'so2po', 'backend_to': ref('base_intercompany.backend_destination'), 'on_create': True, 'on_write': True, 'on_unlink': True, 'on_confirm': True, 'on_cancel': True})]" />
+        </record>
+
+        <record id="base_intercompany.backend_destination" model="icops.backend">
+            <field name="icops_shop_id" ref="shop_destination" />
+        </record>
+
+        <!-- Remove company_id from stock -->
+        <function model="stock.location" name="write">
+             <function eval="[[]]" model="stock.location" name="search"/>
+             <value eval="{'company_id': None}" />
+        </function>
+    </data>
+</openerp>

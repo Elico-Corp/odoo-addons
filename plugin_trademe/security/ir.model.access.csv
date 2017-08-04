@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_tm_members,tm.members,model_tm_members,group_plugin_manager,1,1,1,1
+access_tm_listing,tm.listing,model_tm_listing,group_plugin_manager,1,1,1,1
+access_tm_questions,tm.questions,model_tm_questions,group_plugin_manager,1,1,1,1
+access_tm_run,tm.run,model_tm_run,group_plugin_manager,1,1,1,1
+access_tm_questions,tm.questions,model_tm_questions,group_plugin_user,1,1,0,0

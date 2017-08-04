@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+<!-- Reports -->
+        <report auto="False" id="stock.report_location_overview" model="stock.location" name="lot.stock.overview2" string="Location Inventory Overview" rml="stock_location_reports/report/lot_overview.rml"/>
+        <report id="stock.report_location_overview_all" model="stock.location" name="lot.stock.overview_all2" string="Location Content" rml="stock_location_reports/report/lot_overview_all.rml"/>
+        <!-- Inventory Report by LY 0426 -->
+        <report id="stock.report_stock_inventory_elico"
+        	model="stock.inventory" name="stock.inventory.elico" string="Inventory Report " rml="stock_location_reports/report/stock_inventory_move.rml"/>
+    </data>
+</openerp>

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        
+        <!-- Stock Picking -->        
+        <record id="picking_quick_form" model="ir.ui.view">
+            <field name="name">stock.picking.form</field>
+            <field name="model">stock.picking</field>
+            <field name="arch" type="xml">
+                <form string="Quick Internal move Entry" version="7.0">
+                <header>
+                    <button name="draft_force_assign" states="draft" string="Confirm" type="object" class="oe_highlight" groups="base.group_user"/>
+                    <button name="draft_validate" states="draft" string="Confirm &amp; Transfer" type="object" class="oe_highlight" groups="base.group_user"/>
+                    <!-- <button name="action_assign" states="confirmed" string="Check Availability" type="object"/> -->
+                    <button name="force_assign" states="confirmed" string="Force Availability" type="object" class="oe_highlight" groups="base.group_user"/>
+                    <button name="action_process" states="assigned" string="Confirm &amp; Transfer" groups="stock.group_stock_user" type="object" class="oe_highlight"/>
+                    <button name="%(stock.action_stock_invoice_onshipping)d" string="Create Invoice/Refund"  attrs="{'invisible': ['|','|',('state','&lt;&gt;','done'),('invoice_state','=','invoiced'),('invoice_state','=','none')]}"  type="action" class="oe_highlight" groups="base.group_user"/>
+                    <button name="%(stock.act_stock_return_picking)d" string="Reverse Transfer" states="done" type="action" groups="base.group_user"/>
+                    <button name="button_cancel" states="assigned,confirmed,draft" string="_Cancel" groups="base.group_user"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,assigned,done" statusbar_colors='{"shipping_except":"red","invoice_except":"red","waiting_date":"blue"}'/>
+                </header>
+                <sheet>
+                    <h1>
+                        <field name="name" class="oe_inline" attrs="{'invisible': [('name','=','/')]}" readonly="1"/>
+                    </h1>
+                    <group>
+                        <group>
+                            <field name="partner_id" on_change="onchange_partner_in(partner_id)" groups="base.group_system"/>
+                            <field name="stock_journal_id" widget="selection" groups="account.group_account_user"/>
+                            <field name="invoice_state" string="Invoice Control" groups="account.group_account_invoice" invisible="1"/>
+                            <field name="location_id" required='1'  string="From Location" widget="selection" domain="[('name','ilike','stock'),('usage','=','internal')]"/>
+                            <field name="location_dest_id" required='1' widget="selection" domain="[('name','ilike','stock'),('usage','=','internal')]"/>
+                        </group>
+                        <group>
+                            <field name="date"/>
+                            <field name="min_date" required='1'/>
+                            <field name="origin" placeholder="e.g. PO0032" class="oe_inline"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Products">
+                            <field name="move_lines">
+                                <tree editable="bottom">
+                                    <field name="state" invisible="1"/>
+                                    <field name="product_id" on_change="product_id_change(product_id, parent.location_id, parent.location_dest_id, parent.min_date, context)"/>
+                                    <field name="product_qty"/>
+                                    <field name="product_uom" groups="base.group_system"/>
+                                    <field name="location_id"  groups="base.group_system" string="From Location" widget="selection" domain="[('name','ilike','stock'),('usage','=','internal')]"/>
+                                    <field name="location_dest_id"  groups="base.group_system"  widget="selection" domain="[('name','ilike','stock'),('usage','=','internal')]"/>
+                                    <field name="date_expected" groups="base.group_system"/>
+                                    <field name="product_uos" groups="product.group_uos" invisible="1"/>
+                                    <field name="scrapped" invisible="1"/>
+                                    <field name="prodlot_id" groups="stock.group_production_lot" invisible="1"/>
+                                    <field groups="stock.group_tracking_lot" name="tracking_id" invisible="1"/>
+                                    <field name="name" invisible="1"/>                                    
+                                </tree>
+                            </field>
+                            <field name="note" placeholder="Add an internal note..." class="oe_inline"/>
+                        </page>
+                        <page string="Additional Info">
+                            <group>
+                                <group>
+                                    <field name="move_type"/>
+                                    <field name="type" invisible="1"/>
+                                    <field name="auto_picking" groups="base.group_user"/>
+                                </group>
+                                <group>
+                                    <field name="company_id" groups="base.group_multi_company" widget="selection"/>
+                                    <field name="date_done" groups="base.group_no_one"/>
+                                </group>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_picking_quick" model="ir.actions.act_window">
+            <field name="name">Quick Internal Move</field>
+            <field name="res_model">stock.picking</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('type','=','internal')]</field>
+            <field name="context">{'contact_display': 'partner_address'}</field>
+        </record>
+        <record id="action_picking_quick_form" model="ir.actions.act_window.view">
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="picking_quick_form"/>
+            <field name="act_window_id" ref="action_picking_quick"/>
+        </record>
+        <menuitem action="action_picking_quick" id="menu_action_picking_quick" parent="stock.menu_stock_warehouse_mgmt" sequence="2"/>
+        
+        <!--? why cant set gourps ,    del muenu internal move of standard OE   jon.chow#elico-corp.com Jun 20, 2013-->
+        <record id="stock.menu_action_picking_tree6" model="ir.ui.menu">
+        	<field name='groups_id' eval="[(6,0,[ref('base.group_user'),])]"/>
+        </record>
+   
+        <!--  
+        <menuitem action="action_picking_tree6" id="menu_action_picking_tree6" parent="menu_stock_warehouse_mgmt" sequence="2" groups="stock.group_locations"/>
+        -->
+        
+        
+    </data>
+</openerp>

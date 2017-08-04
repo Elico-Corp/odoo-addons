@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+	<data>
+		<record id="view_prepay_wizard_form" model="ir.ui.view">
+			<field name="name">view.prepay_wizard.form</field>
+			<field name="model">sale.prepayment</field>
+			<field name="arch" type="xml">
+				<form string="Prepayment" version="7.0">
+					<group>
+						<group>							
+							<field name="journal_id" />
+							<field name="amount" />
+							<field name="is_prepayment" />
+						</group>
+					</group>
+					<button name="act_prepayment" string="Prepay"
+						class="oe_highlight" type="object"/>
+					<button name="cancel" string="Cancel" special="cancel"/>
+				</form>
+			</field>
+		</record>
+
+		<record id="act_prepayment_wizard" model="ir.actions.act_window">
+			<field name="name">Prepayment</field>
+			<field name="res_model">sale.prepayment</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">form</field>
+			<field name="view_id" ref="view_prepay_wizard_form" />
+			<field name="target">new</field>
+		</record>
+
+	</data>
+</openerp>

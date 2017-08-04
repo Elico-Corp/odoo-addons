@@ -1,0 +1,603 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+#	* delivery_routes
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 6.1-20120221-001859\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-05-16 19:21+0000\n"
+"PO-Revision-Date: 2012-05-16 19:21+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: delivery_routes
+#: view:delivery.route:0
+msgid "Fill Pickings"
+msgstr "Fill Pickings"
+
+#. module: delivery_routes
+#: field:stock.picking,delivered:0
+msgid "Is Delivered"
+msgstr "Is Delivered"
+
+#. module: delivery_routes
+#: report:delivery.route.print:0
+msgid "Referencia :"
+msgstr "Referencia :"
+
+#. module: delivery_routes
+#: selection:delivery.time,end_minute:0
+#: selection:delivery.time,start_minute:0
+msgid "25"
+msgstr "25"
+
+#. module: delivery_routes
+#: selection:delivery.time,end_hour:0
+#: selection:delivery.time,end_minute:0
+#: selection:delivery.time,start_hour:0
+#: selection:delivery.time,start_minute:0
+msgid "20"
+msgstr "20"
+
+#. module: delivery_routes
+#: selection:delivery.time,end_hour:0
+#: selection:delivery.time,start_hour:0
+msgid "21"
+msgstr "21"
+
+#. module: delivery_routes
+#: selection:delivery.time,end_hour:0
+#: selection:delivery.time,start_hour:0
+msgid "22"
+msgstr "22"
+
+#. module: delivery_routes
+#: selection:delivery.time,end_hour:0
+#: selection:delivery.time,start_hour:0
+msgid "23"
+msgstr "23"
+
+#. module: delivery_routes
+#: report:delivery.route.print:0
+msgid "Dirección de Entrega"
+msgstr "Dirección de Entrega"
+
+#. module: delivery_routes
+#: report:delivery.route.print:0
+msgid ","
+msgstr ","
+
+#. module: delivery_routes
+#: model:ir.actions.act_window,name:delivery_routes.action_fill_picking
+msgid "Find Picking"
+msgstr "Find Picking"
+
+#. module: delivery_routes
+#: selection:delivery.time,end_hour:0
+#: selection:delivery.time,end_minute:0
+#: selection:delivery.time,start_hour:0
+#: selection:delivery.time,start_minute:0
+msgid "0"
+msgstr "0"
+
+#. module: delivery_routes
+#: selection:delivery.time,end_hour:0
+#: selection:delivery.time,start_hour:0
+msgid "4"
+msgstr "4"
+
+#. module: delivery_routes
+#: selection:delivery.time,end_hour:0
+#: selection:delivery.time,start_hour:0
+msgid "8"
+msgstr "8"
+
+#. module: delivery_routes
+#: help:delivery.driver,employee_id:0
+msgid "Fill this if the driver is a employee of the company"
+msgstr "Fill this if the driver is a employee of the company"
+
+#. module: delivery_routes
+#: view:delivery.route.line:0
+#: selection:delivery.route.line,state:0
+msgid "Received"
+msgstr "Received"
+
+#. module: delivery_routes
+#: help:delivery.route.line,visit_note:0
+msgid "Fill field with the name of the person that receive the delivery or the reason for doesn't receive it."
+msgstr "Fill field with the name of the person that receive the delivery or the reason for doesn't receive it."
+
+#. module: delivery_routes
+#: view:delivery.route.line:0
+#: field:delivery.route.line,note:0
+msgid "Notes"
+msgstr "Notes"
+
+#. module: delivery_routes
+#: field:delivery.route,arrive_date:0
+msgid "Arrive Date"
+msgstr "Arrive Date"
+
+#. module: delivery_routes
+#: help:stock.picking,dts_id:0
+msgid "Delivery time or turn to receive"
+msgstr "Delivery time or turn to receive"
+
+#. module: delivery_routes
+#: report:delivery.route.print:0
+msgid "Hora de Salida:"
+msgstr "Hora de Salida:"
+
+#. module: delivery_routes
+#: field:delivery.carrier,driver_ids:0
+#: view:delivery.driver:0
+msgid "Delivery Drivers"
+msgstr "Delivery Drivers"
+
+#. module: delivery_routes
+#: field:delivery.route,name:0
+msgid "Reference"
+msgstr "Reference"
+
+#. module: delivery_routes
+#: selection:delivery.time,end_hour:0
+#: selection:delivery.time,end_minute:0
+#: selection:delivery.time,start_hour:0
+#: selection:delivery.time,start_minute:0
+msgid "--"
+msgstr "--"
+
+#. module: delivery_routes
+#: model:ir.model,name:delivery_routes.model_delivery_driver
+msgid "delivery.driver"
+msgstr "delivery.driver"
+
+#. module: delivery_routes
+#: selection:delivery.time,end_minute:0
+#: selection:delivery.time,start_minute:0
+msgid "50"
+msgstr "50"
+
+#. module: delivery_routes
+#: field:delivery.route,departure_date:0
+msgid "Departure Date"
+msgstr "Departure Date"
+
+#. module: delivery_routes
+#: selection:delivery.time,end_minute:0
+#: selection:delivery.time,start_minute:0
+msgid "55"
+msgstr "55"
+
+#. module: delivery_routes
+#: field:delivery.time,start_hour:0
+msgid "Start Hour"
+msgstr "Start Hour"
+
+#. module: delivery_routes
+#: field:delivery.route,dts_id:0
+#: view:delivery.time:0
+#: model:ir.actions.act_window,name:delivery_routes.action_delivery_time_form
+#: model:ir.ui.menu,name:delivery_routes.menu_action_delivery_time_form
+#: field:stock.picking,dts_id:0
+msgid "Delivery Time"
+msgstr "Delivery Time"
+
+#. module: delivery_routes
+#: field:delivery.driver,partner_id:0
+msgid "Partner"
+msgstr "Partner"
+
+#. module: delivery_routes
+#: model:ir.model,name:delivery_routes.model_delivery_time
+msgid "delivery.time"
+msgstr "delivery.time"
+
+#. module: delivery_routes
+#: field:delivery.time,end_minute:0
+msgid "End Minute"
+msgstr "End Minute"
+
+#. module: delivery_routes
+#: view:delivery.driver:0
+#: field:delivery.route,driver_id:0
+#: model:ir.actions.act_window,name:delivery_routes.action_delivery_driver_form
+#: model:ir.ui.menu,name:delivery_routes.menu_action_delivery_driver_form
+msgid "Delivery Driver"
+msgstr "Delivery Driver"
+
+#. module: delivery_routes
+#: field:delivery.route,state:0
+#: field:delivery.route.line,state:0
+msgid "State"
+msgstr "State"
+
+#. module: delivery_routes
+#: field:stock.picking,route_state:0
+msgid "Route State"
+msgstr "Route State"
+
+#. module: delivery_routes
+#: model:ir.model,name:delivery_routes.model_stock_picking
+msgid "Picking List"
+msgstr "Albarán"
+
+#. module: delivery_routes
+#: field:delivery.driver,employee_id:0
+msgid "Employee"
+msgstr "Employee"
+
+#. module: delivery_routes
+#: model:ir.model,name:delivery_routes.model_delivery_route_line
+msgid "delivery.route.line"
+msgstr "delivery.route.line"
+
+#. module: delivery_routes
+#: model:ir.actions.report.xml,name:delivery_routes.report_delivery_route_print
+msgid "Delivery Route Print"
+msgstr "Delivery Route Print"
+
+#. module: delivery_routes
+#: report:delivery.route.print:0
+msgid "- Horario:"
+msgstr "- Horario:"
+
+#. module: delivery_routes
+#: report:delivery.route.print:0
+#: field:stock.picking,pos_order_id:0
+msgid "POS Order"
+msgstr "POS Order"
+
+#. module: delivery_routes
+#: report:delivery.route.print:0
+msgid "/"
+msgstr "/"
+
+#. module: delivery_routes
+#: selection:delivery.time,end_hour:0
+#: selection:delivery.time,start_hour:0
+msgid "3"
+msgstr "3"
+
+#. module: delivery_routes
+#: selection:delivery.time,end_hour:0
+#: selection:delivery.time,start_hour:0
+msgid "7"
+msgstr "7"
+
+#. module: delivery_routes
+#: model:ir.model,name:delivery_routes.model_delivery_route
+msgid "delivery.route"
+msgstr "delivery.route"
+
+#. module: delivery_routes
+#: field:delivery.route.line,visit_date:0
+msgid "Visit Date"
+msgstr "Visit Date"
+
+#. module: delivery_routes
+#: view:delivery.route:0
+#: selection:delivery.route,state:0
+msgid "Departure"
+msgstr "Departure"
+
+#. module: delivery_routes
+#: report:delivery.route.print:0
+msgid "Fecha:"
+msgstr "Fecha:"
+
+#. module: delivery_routes
+#: field:delivery.driver,route_ids:0
+#: view:delivery.route:0
+msgid "Delivery Routes"
+msgstr "Delivery Routes"
+
+#. module: delivery_routes
+#: report:delivery.route.print:0
+msgid "Hora de Visita"
+msgstr "Hora de Visita"
+
+#. module: delivery_routes
+#: field:stock.picking,delivery_date:0
+msgid "Delivery Date"
+msgstr "Delivery Date"
+
+#. module: delivery_routes
+#: selection:delivery.time,end_minute:0
+#: selection:delivery.time,start_minute:0
+msgid "30"
+msgstr "30"
+
+#. module: delivery_routes
+#: help:delivery.driver,partner_id:0
+msgid "Fill this field if the driver is a outsourcing of the company"
+msgstr "Fill this field if the driver is a outsourcing of the company"
+
+#. module: delivery_routes
+#: selection:delivery.time,end_minute:0
+#: selection:delivery.time,start_minute:0
+msgid "35"
+msgstr "35"
+
+#. module: delivery_routes
+#: report:delivery.route.print:0
+msgid "("
+msgstr "("
+
+#. module: delivery_routes
+#: view:delivery.route:0
+#: field:delivery.route.line,route_id:0
+#: model:ir.actions.act_window,name:delivery_routes.action_delivery_route_form
+#: model:ir.ui.menu,name:delivery_routes.menu_action_delivery_route_form
+#: field:stock.picking,route_id:0
+msgid "Delivery Route"
+msgstr "Delivery Route"
+
+#. module: delivery_routes
+#: report:delivery.route.print:0
+msgid "Destinatario"
+msgstr "Destinatario"
+
+#. module: delivery_routes
+#: report:delivery.route.print:0
+msgid "Detalle de Visita"
+msgstr "Detalle de Visita"
+
+#. module: delivery_routes
+#: view:delivery.route:0
+#: selection:delivery.route,state:0
+#: view:delivery.route.line:0
+#: selection:delivery.route.line,state:0
+msgid "Draft"
+msgstr "Draft"
+
+#. module: delivery_routes
+#: report:delivery.route.print:0
+msgid "Seq"
+msgstr "Seq"
+
+#. module: delivery_routes
+#: field:delivery.time,end_hour:0
+msgid "End Hour"
+msgstr "End Hour"
+
+#. module: delivery_routes
+#: field:delivery.time,start_minute:0
+msgid "Start Minute"
+msgstr "Start Minute"
+
+#. module: delivery_routes
+#: selection:delivery.time,end_hour:0
+#: selection:delivery.time,start_hour:0
+msgid "2"
+msgstr "2"
+
+#. module: delivery_routes
+#: selection:delivery.time,end_hour:0
+#: selection:delivery.time,start_hour:0
+msgid "6"
+msgstr "6"
+
+#. module: delivery_routes
+#: field:delivery.time,active:0
+msgid "Active"
+msgstr "Active"
+
+#. module: delivery_routes
+#: view:delivery.route.line:0
+msgid "Delivery Route Lines"
+msgstr "Delivery Route Lines"
+
+#. module: delivery_routes
+#: model:ir.model,name:delivery_routes.model_delivery_route_fill_picking
+msgid "Fill Pickings in Delivery Route"
+msgstr "Fill Pickings in Delivery Route"
+
+#. module: delivery_routes
+#: field:delivery.route,date:0
+msgid "Date"
+msgstr "Date"
+
+#. module: delivery_routes
+#: sql_constraint:stock.picking:0
+msgid "Reference must be unique per Company!"
+msgstr "Reference must be unique per Company!"
+
+#. module: delivery_routes
+#: selection:delivery.time,end_hour:0
+#: selection:delivery.time,start_hour:0
+msgid "11"
+msgstr "11"
+
+#. module: delivery_routes
+#: selection:delivery.time,end_hour:0
+#: selection:delivery.time,end_minute:0
+#: selection:delivery.time,start_hour:0
+#: selection:delivery.time,start_minute:0
+msgid "10"
+msgstr "10"
+
+#. module: delivery_routes
+#: selection:delivery.time,end_hour:0
+#: selection:delivery.time,start_hour:0
+msgid "13"
+msgstr "13"
+
+#. module: delivery_routes
+#: selection:delivery.time,end_hour:0
+#: selection:delivery.time,start_hour:0
+msgid "12"
+msgstr "12"
+
+#. module: delivery_routes
+#: selection:delivery.time,end_hour:0
+#: selection:delivery.time,end_minute:0
+#: selection:delivery.time,start_hour:0
+#: selection:delivery.time,start_minute:0
+msgid "15"
+msgstr "15"
+
+#. module: delivery_routes
+#: selection:delivery.time,end_hour:0
+#: selection:delivery.time,start_hour:0
+msgid "14"
+msgstr "14"
+
+#. module: delivery_routes
+#: selection:delivery.time,end_hour:0
+#: selection:delivery.time,start_hour:0
+msgid "17"
+msgstr "17"
+
+#. module: delivery_routes
+#: selection:delivery.time,end_hour:0
+#: selection:delivery.time,start_hour:0
+msgid "16"
+msgstr "16"
+
+#. module: delivery_routes
+#: selection:delivery.time,end_hour:0
+#: selection:delivery.time,start_hour:0
+msgid "19"
+msgstr "19"
+
+#. module: delivery_routes
+#: selection:delivery.time,end_hour:0
+#: selection:delivery.time,start_hour:0
+msgid "18"
+msgstr "18"
+
+#. module: delivery_routes
+#: view:delivery.route:0
+#: selection:delivery.route,state:0
+msgid "Done"
+msgstr "Done"
+
+#. module: delivery_routes
+#: view:delivery.route:0
+#: selection:delivery.route,state:0
+#: view:delivery.route.fill.picking:0
+#: view:delivery.route.line:0
+#: selection:delivery.route.line,state:0
+msgid "Cancel"
+msgstr "Cancel"
+
+#. module: delivery_routes
+#: report:delivery.route.print:0
+msgid "Conductor:"
+msgstr "Conductor:"
+
+#. module: delivery_routes
+#: view:delivery.route.line:0
+#: selection:delivery.route.line,state:0
+msgid "Delivered"
+msgstr "Delivered"
+
+#. module: delivery_routes
+#: field:delivery.driver,outsourcing:0
+msgid "Outsourcing"
+msgstr "Outsourcing"
+
+#. module: delivery_routes
+#: view:delivery.route.line:0
+#: selection:delivery.route.line,state:0
+msgid "Returned"
+msgstr "Returned"
+
+#. module: delivery_routes
+#: report:delivery.route.print:0
+msgid ")"
+msgstr ")"
+
+#. module: delivery_routes
+#: selection:delivery.time,end_minute:0
+#: selection:delivery.time,start_minute:0
+msgid "45"
+msgstr "45"
+
+#. module: delivery_routes
+#: selection:delivery.time,end_minute:0
+#: selection:delivery.time,start_minute:0
+msgid "40"
+msgstr "40"
+
+#. module: delivery_routes
+#: selection:delivery.time,end_hour:0
+#: selection:delivery.time,start_hour:0
+msgid "1"
+msgstr "1"
+
+#. module: delivery_routes
+#: selection:delivery.time,end_hour:0
+#: selection:delivery.time,end_minute:0
+#: selection:delivery.time,start_hour:0
+#: selection:delivery.time,start_minute:0
+msgid "5"
+msgstr "5"
+
+#. module: delivery_routes
+#: selection:delivery.time,end_hour:0
+#: selection:delivery.time,start_hour:0
+msgid "9"
+msgstr "9"
+
+#. module: delivery_routes
+#: report:delivery.route.print:0
+msgid "Hora de Llegada:"
+msgstr "Hora de Llegada:"
+
+#. module: delivery_routes
+#: field:delivery.route.line,picking_id:0
+msgid "Picking"
+msgstr "Picking"
+
+#. module: delivery_routes
+#: field:delivery.driver,name:0
+#: field:delivery.time,name:0
+msgid "Name"
+msgstr "Name"
+
+#. module: delivery_routes
+#: view:delivery.route.fill.picking:0
+msgid "Find Pickings"
+msgstr "Find Pickings"
+
+#. module: delivery_routes
+#: field:delivery.route,line_ids:0
+msgid "Lines"
+msgstr "Lines"
+
+#. module: delivery_routes
+#: field:delivery.driver,carrier_id:0
+#: model:ir.model,name:delivery_routes.model_delivery_carrier
+msgid "Carrier"
+msgstr "Carrier"
+
+#. module: delivery_routes
+#: view:delivery.route:0
+#: selection:delivery.route,state:0
+msgid "Arrive"
+msgstr "Arrive"
+
+#. module: delivery_routes
+#: view:delivery.route.line:0
+#: field:stock.picking,route_line_id:0
+msgid "Delivery Route Line"
+msgstr "Delivery Route Line"
+
+#. module: delivery_routes
+#: field:delivery.time,sequence:0
+msgid "Sequence"
+msgstr "Sequence"
+
+#. module: delivery_routes
+#: field:delivery.route.line,visit_note:0
+msgid "Visit Note"
+msgstr "Visit Note"
+

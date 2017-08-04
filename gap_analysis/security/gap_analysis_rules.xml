@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="1">
+    	<record id="res_group_gap0" model="res.groups">
+			<field name="name">Gap Analysis / User</field>
+		</record>
+		<record id="res_group_gap1" model="res.groups">
+			<field name="name">Gap Analysis / Manager</field>
+		</record>
+    </data>
+
+    <data noupdate="1">
+		<record id="ir_rule_write_gap_user" model="ir.rule">
+			<field name="model_id" ref="gap_analysis.model_gap_analysis"/>
+			<field name="domain_force">[('user_id','=',user.id)]</field>
+			<field name="name">Write own Gap Analysis</field>
+			<field eval="0" name="global"/>
+			<field eval="[(6,0,[ref('gap_analysis.res_group_gap0')])]" name="groups"/>
+			<field eval="0" name="perm_unlink"/>
+			<field eval="1" name="perm_write"/>
+			<field eval="0" name="perm_read"/>
+			<field eval="0" name="perm_create"/>
+		</record>
+		<record id="ir_rule_delete_gap_manager" model="ir.rule">
+			<field name="model_id" ref="gap_analysis.model_gap_analysis"/>
+			<field name="domain_force">[('state','in',['draft','cancel'])]</field>
+			<field name="name">Delete Draft Gap Analysis</field>
+			<field eval="0" name="global"/>
+			<field eval="[(6,0,[ref('gap_analysis.res_group_gap1')])]" name="groups"/>
+			<field eval="1" name="perm_unlink"/>
+			<field eval="0" name="perm_write"/>
+			<field eval="0" name="perm_read"/>
+			<field eval="0" name="perm_create"/>
+		</record>
+    </data>
+</openerp>

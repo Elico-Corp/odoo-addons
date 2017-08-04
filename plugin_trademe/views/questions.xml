@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="questions_form_view" model="ir.ui.view">
+            <field name="name">tmerp.questions.form</field>
+            <field name="model">tmerp.questions</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Questions Form" create="false">
+                    <field name="comment" readonly="1" rowspan="2"/>
+                    <field name="member" readonly="1"/>
+                    <field name="listing" readonly="1"/>
+                    <field name="asking_member_name" readonly="1" />
+                    <field name="is_replied" readonly="1"/>
+                    <field name="reply"/>
+				</form>
+            </field>
+        </record>
+
+        <record id="questions_list_view" model="ir.ui.view">
+            <field name="name">tmerp.questions.list.view</field>
+            <field name="model">tmerp.questions</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Members List" create="false">
+                    <field name="comment"/>
+                    <field name="member"/>
+                    <field name="asking_member_name"/>
+                    <field name="listing"/>
+                    <field name="is_replied"/>
+					<field name="reply"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="questions_action_list_and_form" model="ir.actions.act_window">
+            <field name="name">Trademe Leads</field>
+            <field name="res_model">tmerp.questions</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem id="tmerp_menu_questions" action="questions_action_list_and_form" 
+        		parent="base.menu_sales" groups="group_plugin_user,group_plugin_manager"/>
+    </data>
+</openerp>

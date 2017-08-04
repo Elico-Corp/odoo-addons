@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+	<data>
+		<record model="ir.ui.view" id="financial_tree_view">
+			<field name="name">financial.tree</field>
+			<field name="model">product.product</field>
+			<field name="type">tree</field>
+			<field name="arch" type="xml">
+				<tree string="Financial Tree" editable="bottom">
+					<field name="name"/>
+					<field name="code"/>
+					<field name="list_price"/>
+					<field name="standard_price"/>
+					<field name="qty_available" />
+					<field name="kits_qty_available" />
+					<field name="property_account_income"/>
+					<field name="property_account_expense"/>
+					<field name="taxes_id"/>
+					<field name="supplier_taxes_id"/>
+					<field name="active"/>
+				</tree>
+			</field>
+		</record>
+		<record model="ir.ui.view" id="logistic_tree_view">
+			<field name="name">logistic.tree</field>
+			<field name="model">product.product</field>
+			<field name="type">tree</field>
+			<field name="arch" type="xml">
+				<tree string="Logistic Tree" editable="bottom">
+						<field name="name"/>
+						<field name="code"/>
+						<field name="ean13"/>
+						<field name="produce_delay"/>
+						<field name="qty_available"/>
+						<field name="kits_qty_available" />
+						<field name="kits_sale_quotation_qty" />
+						<field name="virtual_available"/>
+						<field name="procure_method"/>
+						<field name="supply_method"/>
+						<field name="sale_delay"/>
+						<field name="type"/>
+						<field name="active"/>
+				</tree>
+			</field>
+		</record>
+	</data>
+</openerp>

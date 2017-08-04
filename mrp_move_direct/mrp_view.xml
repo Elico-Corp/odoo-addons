@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <!-- Production Order -->
+        
+        <record id="view_mo_add_product_form" model="ir.ui.view">
+            <field name="name">Mo Add Product form</field>
+            <field name="model">stock.move.add</field>
+            <field name="arch" type="xml">
+            <form string="Stock Moves" version="7.0">
+                <group>
+                    <group>
+                        <field name="product_id" on_change="onchange_product_id(product_id)"/>
+                        <label for="product_qty"/>
+                        <div>
+                            <field name="product_qty" on_change="onchange_quantity(product_id, product_qty, product_uom, product_uos)" class="oe_inline"/>
+                            <field name="product_uom" string="Unit Of Measure" groups="product.group_uom" class="oe_inline"/>
+                        </div>
+                            <label for="product_uos_qty" groups="product.group_uos"/>
+                            <div groups="product.group_uos">
+                                <field name="product_uos_qty" on_change="onchange_uos_quantity(product_id, product_uos_qty, product_uos, product_uom)" class="oe_inline"/>
+                                <field name="product_uos" on_change="onchange_quantity(product_id, product_qty, product_uom, product_uos)" class="oe_inline"/>
+                            </div>
+                    </group>
+                    <group>                                
+                        <field name="date_expected"/>
+
+                        <field name="location_id" domain="[('usage','=','internal')]"/>
+                        <field name="location_dest_id" domain="[('usage','=','production')]" groups="stock.group_locations"/>
+                        
+                        <label for="prodlot_id"/>
+                        <div>
+                        	<field name="prodlot_id" groups="stock.group_production_lot"
+                                context="{'location_id':location_id, 'product_id':product_id}"
+                                domain="[('product_id','=?',product_id)]"
+                                on_change="onchange_lot_id(prodlot_id,product_qty, location_id, product_id, product_uom)" class="oe_inline"/>
+                        </div>
+                    </group>
+                </group>
+                <footer>
+                    <button name="add_mo_product" string="Add Products" type="object" class="oe_highlight"/>
+	                 or
+	                <button string="Cancel" class="oe_link" special="cancel" />
+                </footer>
+            </form>
+            </field>
+        </record>
+        
+        <record id="action_mo_add_product" model="ir.actions.act_window">
+            <field name="name">Add  Products</field>
+            <field name="res_model">stock.move.add</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="domain">[]</field>
+            <field name="target">new</field>
+            <field name="view_id" ref="view_mo_add_product_form"/>
+            <field name="context">{}</field>
+        </record>
+
+        <record id="ir_mo_add_product" model="ir.values">
+            <field name="key2">tree_but_action</field>
+            <field name="model">stock.move.add</field>
+            <field name="name">Add Products</field>
+            <field eval="'ir.actions.act_window,'+str(action_mo_add_product)" name="value"/>
+        </record>
+
+	<!-- Production Order -->
+        <record id="mrp_move_direct_production_form_view" model="ir.ui.view">
+            <field name="name">mrp.production.form</field>
+            <field name="model">mrp.production</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="mrp.mrp_production_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='move_lines']/tree/button[@string='Scrap Products']" position="after">
+	                	<button name="action_consume_cancel"
+                                        string="Cancel Move" type="object"
+                                        icon="gtk-stop" states="draft,waiting,confirmed,assigned"/>
+	            </xpath>
+	            <xpath expr="//field[@name='move_lines']" position="after">
+	                	<button name="%(mrp_move_direct.action_mo_add_product)d"
+                            string="Add Products" type="action" icon="gtk-justify-fill" states="ready,in_production,confirmed" 
+                            context="{'mo_id': active_id, 'location_id': location_src_id}" colspan="2"/>
+	            </xpath>
+            </field>
+	    </record>
+
+        <!-- record id="view_move_form_mrp_direct" model="ir.ui.view">
+            <field name="name">stock.move.form.mrp.direct</field>
+            <field name="model">stock.move</field>
+            <field name="inherit_id" ref="stock.view_move_form"/>
+            <field name="arch" type="xml">
+            	<xpath expr="//group[@name='destination_grp']" position="after">
+                	<group name="cancel_4mrp" string="Special" groups="mrp.group_mrp_manager">
+	                	<button name="action_cancel" states="draft,waiting,assigned,confirmed" string="_Cancel" type="object"/>
+                    </group>
+	            </xpath>
+            </field>
+	    </record -->	    
+	        
+	    
+       <record id="view_scrap_move_wizard" model="ir.ui.view">
+            <field name="name">Move Scrap Directly</field>
+            <field name="model">move.scrap.directly</field>
+            <field name="arch" type="xml">
+                <form string="Move Scrap Directly" version="7.0">
+                    <separator string="Move Scrap Directly"/>
+                    <group>
+                        <field name="product_id"  readonly="1"/>
+                        <label for="product_qty"/>
+                        <div>
+                            <field name="product_qty" class="oe_inline" readonly="1"/>
+                            <field name="product_uom" class="oe_inline" readonly="1" groups="product.group_uom"/>
+                        </div>
+                        <field name="location_id" string="Scrap Location" widget="selection"
+                            domain="[('usage','!=','view'),('scrap_location','=',True)]" groups="stock.group_locations"/>
+                    </group>
+                    <footer>
+                        <button name="move_scrap_dir" string="Ok" type="object" class="oe_highlight"  />
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="move_scrap_dir" model="ir.actions.act_window">
+            <field name="name">Move Scrap Directly</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">move.scrap.directly</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+        
+        <record id="view_move_form_dirscrap" model="ir.ui.view">
+            <field name="name">stock.move.form.dirscrap</field>
+            <field name="model">stock.move</field>
+            <field name="inherit_id" ref="stock.view_move_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="/form/sheet//button[@string='Scrap']" position="after">
+                    <button name="%(mrp_move_direct.move_scrap_dir)d"
+                        string="Scrap Directly" type="action"
+                        icon="terp-gtk-jump-to-ltr" context="{'scrap': True}"
+                        states="draft,waiting,confirmed,assigned"/>
+                </xpath>
+            </field>
+        </record>
+        
+        <!--record id="view_move_picking_form_dirscrap" model="ir.ui.view">
+            <field name="name">stock.move.picking.form.discrap</field>
+            <field name="model">stock.move</field>
+            <field name="inherit_id" ref="stock.view_move_picking_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//button[@string='Scrap']" position="replace">
+                	<button name="%(mrp_move_direct.move_scrap_dir)d"
+                        string="Scrap Directly" type="action"
+                        icon="terp-gtk-jump-to-ltr" context="{'scrap': True}"
+                        states="draft,waiting,confirmed,assigned" />
+                </xpath>
+            </field>
+        </record-->
+
+        <record id="view_move_tree_dirscrap" model="ir.ui.view">
+            <field name="name">stock.move.tree.discrap</field>
+            <field name="model">stock.move</field>
+            <field name="inherit_id" ref="stock.view_move_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='tracking_id']" position="before">
+                    <button name="%(mrp_move_direct.move_scrap_dir)d"
+                        string="Scrap Directly" type="action"
+                        icon="terp-gtk-jump-to-ltr" context="{'scrap': True}"
+                        states="draft,waiting,confirmed,assigned"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_move_tree_reception_picking_dirscrap" model="ir.ui.view">
+            <field name="name">stock.move.tree.reception.discrap</field>
+            <field name="model">stock.move</field>
+            <field name="inherit_id" ref="stock.view_move_tree_reception_picking"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='tracking_id']" position="before">
+                    <button name="%(mrp_move_direct.move_scrap_dir)d"
+                        string="Scrap Directly" type="action"
+                        icon="terp-gtk-jump-to-ltr" context="{'scrap': True}"
+                        states="draft,waiting,confirmed,assigned"/>
+                </xpath>
+            </field>
+        </record>
+        
+        	        
+	    
+       <record id="view_scrap_return_move_wizard" model="ir.ui.view">
+            <field name="name">Scrap Return Move Directly</field>
+            <field name="model">return.scrap.directly</field>
+            <field name="arch" type="xml">
+                <form string="Move Return Scrap Directly" version="7.0">
+                    <separator string="If you click Ok button, return Moves will be Scraped directly."/>                    
+                    <group>
+                        <field name="return_comment" readonly="1"/>
+                        <field name="not_comment" readonly="1"/>
+                        <field name="location_id" string="Scrap Location" widget="selection"
+                            domain="[('usage','!=','view'),('scrap_location','=',True)]" groups="stock.group_locations"/>
+                    </group>
+                    <separator string="Are you sure scrap these return moves? "/>
+                    <footer>
+                        <button name="move_scrap_dir" string="Ok" type="object" class="oe_highlight"  />
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <act_window name="Return Move Scrap Directly"
+            res_model="return.scrap.directly"
+            src_model="stock.move"
+            key2="client_action_multi"
+            multi="True"
+            view_mode="form"
+            view_type="form"
+            target="new"
+            id="return_move_scrap_dir"/>
+
+    </data>
+</openerp>

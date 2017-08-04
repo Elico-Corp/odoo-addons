@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+
+        <record id="view_picking_internal_tree_step1" model="ir.ui.view">
+            <field name="name">stock.picking.step1</field>
+            <field name="model">stock.picking</field>
+            <field name="arch" type="xml">
+                <tree colors="blue:state == 'draft';grey:state == 'cancel';red:state not in ('cancel', 'done') and min_date &lt; current_date" string="Delivery Orders">
+                    <field name="name"/>
+                    <field name="partner_id" string="Customer"/>
+                    <field name="origin"/>
+                    <field name="min_date"/>
+                    <field name="date"/>
+                    <field name="backorder_id"/>
+                    <field name="stock_journal_id"/>
+                    <field name="invoice_state"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_picking_internal_with_sales" model="ir.actions.act_window">
+            <field name="name">Delivery Order – Step 1</field>
+            <field name="res_model">stock.picking</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_picking_internal_tree_step1"/>
+            <field name="domain">[('type','=','internal'),('sale_id','!=',False)]</field>
+        </record>
+        <menuitem action="action_picking_internal_with_sales" id="menu_action_picking_internal1" parent="stock.menu_stock_warehouse_mgmt" sequence="2"/>
+
+    </data>
+</openerp>

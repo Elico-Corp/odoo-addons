@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>	    
+	    <!-- Added by Andy -->	    
+	    <record id="account_pl_report_view_level" model="ir.ui.view">
+            <field name="name">Profit and Loss(Level)</field>
+            <field name="model">account.pl.report</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="account.account_pl_report_view" />
+            <field name="arch" type="xml">
+            <data>
+	            <xpath expr="//field[@name='target_move']" position="after">
+	                <field name="level"/>
+	            </xpath>
+            </data>
+            </field>
+        </record>
+        
+        <record id="account_bs_report_view_level" model="ir.ui.view">
+            <field name="name">Account Balance Sheet(Level)</field>
+            <field name="model">account.bs.report</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="account.account_bs_report_view" />
+            <field name="arch" type="xml">
+            <data>
+	            <xpath expr="//field[@name='target_move']" position="after">
+		            <field name="level"/>
+	            </xpath>
+            </data>
+            </field>
+        </record>
+
+        <report id="account.account_balance_sheet"
+            string="Balance Sheet"
+            model="account.account"
+            name="account.balancesheet.level"
+            rml="account/report/account_balance_sheet.rml"
+            auto="False"
+            menu="False"/>
+
+        <report id="account.account_balance_sheet_horizontal"
+            string="Balance Sheet Horizontal"
+            model="account.account"
+            name="account.balancesheet.horizontal.level"
+            rml="account/report/account_balance_sheet_horizontal.rml"
+            auto="False"
+            menu="False"/>
+
+        <record id="account_report_balance_view_level" model="ir.ui.view">
+            <field name="name">Trial Balance(Level)</field>
+            <field name="model">account.balance.report</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="account.account_report_balance_view" />
+            <field name="arch" type="xml">
+            <data>
+	            <xpath expr="//field[@name='target_move']" position="after">
+		            <field name="level"/>
+	            </xpath>
+            </data>
+            </field>
+        </record>
+
+        <report auto="False" id="account.account_account_balance" menu="False" model="account.account" name="account.account.balance.level" rml="account_report_level/report/account_balance.rml" string="Trial Balance"/>
+        
+		<!-- End -->
+	</data>
+</openerp>

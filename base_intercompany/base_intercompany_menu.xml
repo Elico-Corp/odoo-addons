@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data>
+    <menuitem id="menu_icops_root"
+        parent="connector.menu_connector_root"
+        name="ICOPS"
+        sequence="10"
+        groups="connector.group_connector_manager"/>
+
+    <menuitem id="menu_icops_backend"
+        name="Backends"
+        parent="menu_icops_root"
+        action="action_icops_backend"/>
+
+    <menuitem id="menu_server_root"
+        parent="connector.menu_connector_root"
+        name="Server"
+        sequence="20"
+        groups="connector.group_connector_manager"/>
+
+  </data>
+</openerp>

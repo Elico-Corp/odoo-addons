@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="inherit_view_change_standard_price" model="ir.ui.view">
+            <field name="name">Inherit Change Standard Price</field>
+            <field name="model">stock.change.standard.price</field>
+            <field name="inherit_id" ref="stock.view_change_standard_price" />
+            <field name="arch" type="xml">
+              <xpath expr="//field[@name='new_price']/.." position="before">
+                <group>
+                  <field name="price_select" />
+                </group>
+              </xpath>
+            </field>
+        </record>
+
+      <!-- stock.set.locations.duty.zone form view -->
+
+        <record id="view_set_location_duty_zone" model="ir.ui.view">
+            <field name="name">Assign Locations</field>
+            <field name="model">stock.set.locations.duty.zone</field>
+            <field name="arch" type="xml">
+                <form string="Assign Locations" version="7.0">
+                    <header>
+                        <button icon="gtk-execute" string="Confirm" name="assign_locations" type="object" class="oe_highlight" />
+                    </header>
+                    <group>
+                        <label colspan="4" nolabel="1" string="This wizard will assign the selected locations to the duty zone. One location can only belong to one duty zone." />
+                    </group>
+                    <group colspan="4" >
+                        <separator string="Locations" colspan="4"/>
+                        <newline/>
+                        <field name="location_ids" nolabel="1"/>
+                    </group>
+               </form>
+            </field>
+        </record>
+
+        <record id="action_view_set_location_duty_zone" model="ir.actions.act_window">
+            <field name="name">Assign Locations</field>
+            <field name="res_model">stock.set.locations.duty.zone</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_set_location_duty_zone"/>
+            <field name="target">new</field>
+        </record>
+    </data>
+</openerp>
+

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        ##############################################################################
+        #
+        #    wms module for OpenERP, This module allows to manage crossdocking in warehouses
+        #    Copyright (C) 2011 SYLEAM Info Services ([http://www.Syleam.fr/]) 
+        #              Sylvain Garancher [sylvain.garancher@syleam.fr]
+        #
+        #    This file is a part of wms
+        #
+        #    wms is free software: you can redistribute it and/or modify
+        #    it under the terms of the GNU General Public License as published by
+        #    the Free Software Foundation, either version 3 of the License, or
+        #    (at your option) any later version.
+        #
+        #    wms is distributed in the hope that it will be useful,
+        #    but WITHOUT ANY WARRANTY; without even the implied warranty of
+        #    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+        #    GNU General Public License for more details.
+        #
+        #    You should have received a copy of the GNU General Public License
+        #    along with this program.  If not, see [http://www.gnu.org/licenses/].
+        #
+        ##############################################################################
+
+        <record id="view_stock_location_category_tree" model="ir.ui.view">
+            <field name="name">stock.location.category.tree</field>
+            <field name="model">stock.location.category</field>
+            <field name="type">tree</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <tree string="Stock location category">
+                    <field name="name"/>
+                    <field name="code"/>
+                    <field name="active"/>
+                </tree>
+            </field>
+        </record>
+        <record id="view_stock_location_category_form" model="ir.ui.view">
+            <field name="name">stock.location.category.form</field>
+            <field name="model">stock.location.category</field>
+            <field name="type">form</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <form string="Stock location category">
+                    <field name="name" select="1"/>
+                    <field name="code" select="1"/>
+                    <field name="active" select="1"/>
+                </form>
+            </field>
+        </record>
+        <record model="ir.actions.act_window" id="act_open_stock_location_category_view">
+            <field name="name">Stock location category</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">stock.location.category</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[]</field>
+            <field name="context">{}</field>
+        </record>
+        <record model="ir.actions.act_window.view" id="act_open_stock_location_category_view_form">
+            <field name="act_window_id" ref="act_open_stock_location_category_view"/>
+            <field name="sequence" eval="20"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_stock_location_category_form"/>
+        </record>
+        <record model="ir.actions.act_window.view" id="act_open_stock_location_category_view_tree">
+            <field name="act_window_id" ref="act_open_stock_location_category_view"/>
+            <field name="sequence" eval="10"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="view_stock_location_category_tree"/>
+        </record>
+        <menuitem id="menu_stock_location_category" parent="stock.menu_warehouse_config" sequence="20" action="act_open_stock_location_category_view"/>
+
+        <record id="view_stock_location_form" model="ir.ui.view">
+            <field name="name">stock.location.form</field>
+            <field name="model">stock.location</field>
+            <field name="type">form</field>
+            <field name="priority" eval="8"/>
+            <field name="inherit_id" ref="stock.view_location_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="/form/group/field[@name='location_id']" position="after">
+                    <field name="warehouse_id"/>
+                    <field name="categ_id"/>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</openerp>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <report auto="False" id="purchase.report_purchase_order" model="purchase.order"
+                name="purchase.order.elico" rml="l10n_cn_report_purchase/report/purchase_order.rml"
+                usage="default" string="Purchase Order"/>
+        <report auto="False" id="purchase.report_purchase_quotation" model="purchase.order" 
+                name="purchase.order.requisition.elico" rml="l10n_cn_report_purchase/report/purchase_po_requisition.rml"
+                string="Request for Quotation"/>
+    </data>
+</openerp>

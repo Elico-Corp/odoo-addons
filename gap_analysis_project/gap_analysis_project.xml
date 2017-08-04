@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="view_gap_analysis_form_project_inherit" model="ir.ui.view">
+            <field name="name">gap_analysis.project.form</field>
+            <field name="model">gap_analysis</field>
+            <field name="inherit_id" ref="gap_analysis.view_gap_analysis_form"/>
+             <field name="priority" eval="9"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='functionality']" position="after">
+	            	<field name="to_project"/>
+                </xpath>
+                <xpath expr="//button[@name='action_cancel']" position="after">
+	            	<button string="Generate New Project" icon="gtk-go-forward" name="generate_project" type="object" groups="gap_analysis.res_group_gap0,gap_analysis.res_group_gap1" attrs="{'invisible': [('state','!=','done')]}"/>
+                </xpath>
+            </field>
+        </record>
+        
+        <record id="edit_project_gap_inherit" model="ir.ui.view">
+            <field name="name">project.project.form</field>
+            <field name="model">project.project</field>
+            <field name="inherit_id" ref="project.edit_project"/>
+             <field name="priority" eval="2"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='date']" position='after'>
+                    <field name="gap_analysis_id" />
+                </xpath>
+            </field>
+        </record>
+        <record id="view_task_form_gap_inherit" model="ir.ui.view">
+            <field name="name">project.task.form</field>
+            <field name="model">project.task</field>
+            <field name="inherit_id" ref="project.view_task_form2"/>
+             <field name="priority" eval="2"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='planned_hours']" position="before">
+                    <field name="org_planned_hours" widget="float_time" attrs="{'readonly':[('state','!=','draft')]}"/>
+                    <field name="child_org_planned_hours" readonly="1" attrs="{'invisible':[('child_org_planned_hours','=',0)]}"/>
+                </xpath>
+                <xpath expr="//field[@name='planned_hours']" position="after">
+            		<field name="child_planned_hours" readonly="1" attrs="{'invisible':[('child_planned_hours','=',0)]}"/>
+            	</xpath>
+            	<xpath expr="//field[@name='remaining_hours']" position="after">
+            		<field name="child_remaining_hours" readonly="1" attrs="{'invisible':[('child_planned_hours','=',0)]}"/>
+                </xpath>
+                <xpath expr="/form/sheet/notebook/page[@string='Extra Info']/group/group[@string='Gantt View']" position="after">
+                    <group string="Gap Analysis">
+                        <field name="gap_category_id" readonly="1"/>
+                        <field name="parent_category" readonly="1"/>
+                        <field name="gap_line_id" readonly="1"/>
+                        <field name="code_gap" groups="gap_analysis.res_group_gap1"/>
+                        <field name="module_id" groups="gap_analysis.res_group_gap1"/>
+                        <field name="to_report" groups="gap_analysis.res_group_gap1"/>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+        <record id="view_task_search_form_gap" model="ir.ui.view">
+            <field name="name">project.task.search.form.gap</field>
+            <field name="model">project.task</field>
+            <field name="inherit_id" ref="project.view_task_search_form"/>
+            <field name="arch" type="xml">
+               <xpath expr="//filter[@name='group_user_id']" position="after">
+                   <separator orientation="vertical"/>
+                   <filter string="Gap Category" name="group_gap_category_id" icon="terp-stock_symbol-selection" domain="[]" context="{'group_by':'gap_category_id'}"/>
+                   <filter string="Gap Parent Category" name="group_parent_category" icon="terp-stock_symbol-selection" domain="[]" context="{'group_by':'parent_category'}"/>
+                   <filter string="Module" name="group_module_id" icon="terp-stock_symbol-selection" domain="[]" context="{'group_by':'module_id'}"/>
+                </xpath>
+            </field>
+        </record>
+	    <record id="view_task_tree_gap_inherit" model="ir.ui.view">
+	        <field name="name">project.task.tree.gap</field>
+	        <field name="model">project.task</field>
+	        <field name="inherit_id" ref="project.view_task_tree2" />
+	        <field name="arch" type="xml">
+	            <field name="remaining_hours" position="before">
+	                <field name="gap_category_id"/>
+                    <field name="parent_category" invisible="1"/>
+	            </field>
+	        </field>
+	    </record>
+        
+        
+        <record id="openerp_module_form" model="ir.ui.view">
+            <field name="name">openerp_module.form</field>
+            <field name="model">openerp_module</field>
+            <field name="arch" type="xml">
+                <form string="Modules" version="7.0">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name" colspan="2"/>
+                            </group>
+                            <group>
+                                <field name="version" colspan="2"/>
+                            </group>
+                        </group>
+                        <group string="Notes">
+                            <field name="note" nolabel="1"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="openerp_module_tree" model="ir.ui.view">
+            <field name="name">openerp_module.tree</field>
+            <field name="model">openerp_module</field>
+            <field name="arch" type="xml">
+                <tree string="Modules">
+                    <field name="name" />
+                    <field name="version" />
+                </tree>
+            </field>
+        </record>
+        
+        <record id="act_gap_analysis_modules" model="ir.actions.act_window">
+            <field name="name">Modules</field>
+            <field name="res_model">openerp_module</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <menuitem id="menu_gap_024" name="Modules" parent="gap_analysis.menu_gap_02" sequence="12" action="act_gap_analysis_modules" />
+    </data>
+</openerp>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+    	<!-- pact list report webkeit  jon.chow#elico-corp.com Jun 25, 2013 -->
+        <report id="webkit_strock_tracking" 
+            	name="webkit_stock_tracking" 
+		        model="stock.tracking" 
+		        auto="False" 
+		        file="stock_pack_wizard/report/stock_trackling_list.mako" 
+		        string="Pack List webkit" 
+		        report_type="webkit"/>
+		        
+		<!-- pact list report rml   jon.chow#elico-corp.com Jun 25, 2013 -->
+        <report id="report_stock_tracking" 
+		        name="rml_stock_tracking" 
+		        model="stock.tracking" 
+		        auto="False" 
+		        file="stock_pack_wizard/report/stock_trackling_list.rml" 
+		        string="Pack List rml" 
+		        report_type="pdf"/>
+
+		
+    </data>
+</openerp>

@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="view_picking_in_tree_cost" model="ir.ui.view">
+            <field name="name">stock.picking.in.tree_cost</field>
+            <field name="model">stock.picking.in</field>
+            <field name="inherit_id" ref="stock_extra.view_picking_in_tree_elico"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='stock_journal_id']" position="before">
+                    <field name="amount_to_receive" readonly="1" sum='Amount To Receive' groups='account.group_account_user'/>
+                    <field name="amount_received" readonly="1" sum='Amount Received' groups='account.group_account_user'/>
+                    <field name="amount_total" readonly="1" sum='Amount Total' groups='account.group_account_user'/>
+               </xpath>
+            </field>
+        </record>
+
+        <record id="view_move_picking_tree_cost" model="ir.ui.view">
+            <field name="name">stock.move.picking.tree_cost</field>
+            <field name="model">stock.move</field>
+            <field name="inherit_id" ref="stock.view_move_picking_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='product_uos']" position="before">
+                    <field name="po_price" groups="account.group_account_user"/>
+                    <field name="amount_total" groups="account.group_account_user"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_picking_in_form_cost" model="ir.ui.view">
+            <field name="name">stock.picking.in.form_cost</field>
+            <field name="model">stock.picking.in</field>
+            <field name="inherit_id" ref="stock_extra.view_picking_in_form_elico"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='move_lines']" position="replace">
+                    <field name="move_lines" context="{'address_in_id': partner_id, 'picking_type': 'in', 'form_view_ref':'view_move_form_cost', 'tree_view_ref':'view_move_tree_reception_picking_cost'}"/>
+                    <group class="oe_subtotal_footer oe_right" colspan="2" name="sale_total" groups="account.group_account_user">
+                        <div class="oe_inline">
+                            <label for="amount_to_receive" />
+                            <button name="button_dummy"
+                                string="(update)" type="object" class="oe_edit_only oe_link"/>
+                        </div>
+                        <field name="amount_to_receive" nolabel="1" widget='monetary' options="{'currency_field': 'currency_id'}"/>
+                        <field name="amount_received" widget='monetary' options="{'currency_field': 'currency_id'}"/>
+                        <field name="amount_total" class="oe_subtotal_footer_separator" widget='monetary' options="{'currency_field': 'currency_id'}"/>
+                    </group>
+                </xpath>
+                <!--  Stock Picking In LY-->
+                <!--xpath expr="//field[@name='move_lines']" position="after">
+                    <group class="oe_subtotal_footer oe_right" colspan="2" name="sale_total" groups="account.group_account_user">
+                        <div class="oe_inline">
+                            <label for="amount_to_receive" />
+                            <button name="button_dummy"
+                                string="(update)" type="object" class="oe_edit_only oe_link"/>
+                        </div>
+                        <field name="amount_to_receive" nolabel="1" widget='monetary' options="{'currency_field': 'currency_id'}"/>
+                        <field name="amount_received" widget='monetary' options="{'currency_field': 'currency_id'}"/>
+                        <field name="amount_total" class="oe_subtotal_footer_separator" widget='monetary' options="{'currency_field': 'currency_id'}"/>
+                    </group>
+               </xpath-->
+            </field>
+        </record>
+        <record id="stock.action_invoice_tree5_view1" model="ir.actions.act_window.view">
+            <field eval="1" name="sequence"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="view_picking_in_tree_cost"/>
+            <field name="act_window_id" ref="stock.action_picking_tree4"/>
+        </record>
+        <record id="stock.action_invoice_tree5_view2" model="ir.actions.act_window.view">
+            <field eval="2" name="sequence"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_picking_in_form_cost"/>
+            <field name="act_window_id" ref="stock.action_picking_tree4"/>
+        </record>
+
+        <!-- stock move elico LY 46-->
+        <record id="view_move_form_cost" model="ir.ui.view">
+            <field name="name">stock.move.form.cost</field>
+            <field name="model">stock.move</field>
+            <field name="inherit_id" ref="stock.view_move_form" />
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='product_qty']" position="after">
+                    <field name="po_price" groups="account.group_account_user"/>
+                    <field name="amount_total" groups="account.group_account_user"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_move_tree_cost" model="ir.ui.view">
+            <field name="name">stock.move.cost</field>
+            <field name="model">stock.move</field>
+            <field name="inherit_id" ref="stock.view_move_tree" />
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='date']" position="after">
+                    <field name="po_price" groups="account.group_account_user"/>
+                    <field name="amount_total" groups="account.group_account_user"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_move_tree_reception_picking_cost" model="ir.ui.view">
+            <field name="name">stock.move.tree2_cost</field>
+            <field name="model">stock.move</field>
+            <field name="priority" eval="7"/>
+            <field name="inherit_id" ref="stock.view_move_tree_reception_picking" />
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='product_uom']" position="after">
+                    <field name="po_price" groups='account.group_account_user'/>
+                    <field name="amount_total" groups="account.group_account_user"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_incoming_move_tree_cost" model="ir.ui.view">
+            <field name="name">stock.move.incoming.tree2_cost</field>
+            <field name="model">stock.move</field>
+            <field name="priority" eval="7"/>
+            <field name="inherit_id" ref="stock_extra.view_incoming_move_tree_elico" />
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='product_id']" position="after">
+                    <field name="po_price" groups='account.group_account_user'/>
+                </xpath>
+                <xpath expr="//field[@name='tracking_id']" position="after">
+                    <field name="amount_total" groups='account.group_account_user' string="Subtotal(Inc. Tax)" sum="Subtotal"/>
+                </xpath>
+                
+            </field>
+        </record>
+        
+    </data>
+</openerp>

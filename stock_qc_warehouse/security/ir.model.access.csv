@@ -1,0 +1,18 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_stock_location_qc_user,stock.location qu,stock.model_stock_location,fc_qc.group_qc_user,1,0,0,0
+access_stock_warehouse_qc_user,stock.warehouse qu,stock.model_stock_warehouse,fc_qc.group_qc_user,1,0,0,0
+access_stock_picking_qc_user,stock.picking qu,stock.model_stock_picking,fc_qc.group_qc_user,1,1,1,0
+access_stock_picking_in_qc_user,stock.picking.in qu,stock.model_stock_picking_in,fc_qc.group_qc_user,1,1,1,0
+access_stock_move_qc_user,stock.move qu,stock.model_stock_move,fc_qc.group_qc_user,1,1,1,0
+access_stock_tracking_qc_user,stock.tracking qu,stock.model_stock_tracking,fc_qc.group_qc_user,1,1,1,0
+access_stock_production_lot_qc_user,stock.production.lot qu,stock.model_stock_production_lot,fc_qc.group_qc_user,1,0,0,0
+access_stock_production_lot_revision_qc_user,stock.production.lot.revision qu,stock.model_stock_production_lot_revision,fc_qc.group_qc_user,1,0,0,0
+
+access_stock_location_qc_manager,stock.location qm,stock.model_stock_location,fc_qc.group_qc_manager,1,0,0,0
+access_stock_warehouse_qc_manager,stock.warehouse qm,stock.model_stock_warehouse,fc_qc.group_qc_manager,1,0,0,0
+access_stock_picking_qc_manager,stock.picking qm,stock.model_stock_picking,fc_qc.group_qc_manager,1,1,1,0
+access_stock_picking_in_qc_manager,stock.picking.in qm,stock.model_stock_picking_in,fc_qc.group_qc_manager,1,1,1,0
+access_stock_move_qc_manager,stock.move qm,stock.model_stock_move,fc_qc.group_qc_manager,1,1,1,0
+access_stock_tracking_qc_manager,stock.tracking qm,stock.model_stock_tracking,fc_qc.group_qc_manager,1,1,1,0
+access_stock_production_lot_qc_manager,stock.production.lot qm,stock.model_stock_production_lot,fc_qc.group_qc_manager,1,0,0,0
+access_stock_production_lot_revision_qc_manager,stock.production.lot.revision qm,stock.model_stock_production_lot_revision,fc_qc.group_qc_manager,1,0,0,0

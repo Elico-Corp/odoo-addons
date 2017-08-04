@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="0">
+        <record forcecreate="True" id="ir_cron_pts_scheduler_0500_action" model="ir.cron">
+            <field name="name">Scheduler PTS 05:00~09:00</field>
+            <field eval="False" name="active"/>
+            <field name="user_id" ref="base.user_root"/>
+            <field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+            <field name="numbercall">-1</field>
+            <field eval="False" name="doall"/>
+            <field name="nextcall">2013-03-15 21:00:00</field>
+            <field eval="'procurement.order'" name="model"/>
+            <field eval="'_cron_scheduler'" name="function"/>
+            <field name="args">('05:00',)</field>
+        </record>
+        <record forcecreate="True" id="ir_cron_pts_scheduler_0830_action" model="ir.cron">
+            <field name="name">Scheduler PTS 08:30~10:00</field>
+            <field eval="False" name="active"/>
+            <field name="user_id" ref="base.user_root"/>
+            <field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+            <field name="numbercall">-1</field>
+            <field eval="False" name="doall"/>
+            <field name="nextcall">2013-03-16 00:30:00</field>
+            <field eval="'procurement.order'" name="model"/>
+            <field eval="'_cron_scheduler'" name="function"/>
+            <field name="args">('08:30',)</field>
+        </record>
+        <record forcecreate="True" id="ir_cron_pts_scheduler_1000_action" model="ir.cron">
+            <field name="name">Scheduler PTS 10:00~12:00</field>
+            <field eval="False" name="active"/>
+            <field name="user_id" ref="base.user_root"/>
+            <field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+            <field name="numbercall">-1</field>
+            <field eval="False" name="doall"/>
+            <field name="nextcall">2013-03-16 02:00:00</field>
+            <field eval="'procurement.order'" name="model"/>
+            <field eval="'_cron_scheduler'" name="function"/>
+            <field name="args">('10:00',)</field>
+        </record>
+        <record forcecreate="True" id="ir_cron_pts_scheduler_1200_action" model="ir.cron">
+            <field name="name">Scheduler PTS 12:00~12:30</field>
+            <field eval="False" name="active"/>
+            <field name="user_id" ref="base.user_root"/>
+            <field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+            <field name="numbercall">-1</field>
+            <field eval="False" name="doall"/>
+            <field name="nextcall">2013-03-16 04:00:00</field>
+            <field eval="'procurement.order'" name="model"/>
+            <field eval="'_cron_scheduler'" name="function"/>
+            <field name="args">('12:00',)</field>
+        </record>
+        <record forcecreate="True" id="ir_cron_pts_scheduler_1230_action" model="ir.cron">
+            <field name="name">Scheduler PTS 12:30~13:00</field>
+            <field eval="False" name="active"/>
+            <field name="user_id" ref="base.user_root"/>
+            <field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+            <field name="numbercall">-1</field>
+            <field eval="False" name="doall"/>
+            <field name="nextcall">2013-03-16 04:30:00</field>
+            <field eval="'procurement.order'" name="model"/>
+            <field eval="'_cron_scheduler'" name="function"/>
+            <field name="args">('12:30',)</field>
+        </record>
+        <record forcecreate="True" id="ir_cron_pts_scheduler_1300_action" model="ir.cron">
+            <field name="name">Scheduler PTS 13:00~14:30</field>
+            <field eval="False" name="active"/>
+            <field name="user_id" ref="base.user_root"/>
+            <field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+            <field name="numbercall">-1</field>
+            <field eval="False" name="doall"/>
+            <field name="nextcall">2013-03-16 05:00:00</field>
+            <field eval="'procurement.order'" name="model"/>
+            <field eval="'_cron_scheduler'" name="function"/>
+            <field name="args">('13:00',)</field>
+        </record>
+        <record forcecreate="True" id="ir_cron_pts_scheduler_1430_action" model="ir.cron">
+            <field name="name">Scheduler PTS 14:30~15:30</field>
+            <field eval="False" name="active"/>
+            <field name="user_id" ref="base.user_root"/>
+            <field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+            <field name="numbercall">-1</field>
+            <field eval="False" name="doall"/>
+            <field name="nextcall">2013-03-16 06:30:00</field>
+            <field eval="'procurement.order'" name="model"/>
+            <field eval="'_cron_scheduler'" name="function"/>
+            <field name="args">('14:30',)</field>
+        </record>
+        <record forcecreate="True" id="ir_cron_pts_scheduler_1530_action" model="ir.cron">
+            <field name="name">Scheduler PTS 15:30~16:00</field>
+            <field eval="False" name="active"/>
+            <field name="user_id" ref="base.user_root"/>
+            <field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+            <field name="numbercall">-1</field>
+            <field eval="False" name="doall"/>
+            <field name="nextcall">2013-03-16 07:30:00</field>
+            <field eval="'procurement.order'" name="model"/>
+            <field eval="'_cron_scheduler'" name="function"/>
+            <field name="args">('15:30',)</field>
+        </record>
+        <record forcecreate="True" id="ir_cron_pts_scheduler_1600_action" model="ir.cron">
+            <field name="name">Scheduler PTS 16:00~16:30</field>
+            <field eval="False" name="active"/>
+            <field name="user_id" ref="base.user_root"/>
+            <field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+            <field name="numbercall">-1</field>
+            <field eval="False" name="doall"/>
+            <field name="nextcall">2013-03-16 08:00:00</field>
+            <field eval="'procurement.order'" name="model"/>
+            <field eval="'_cron_scheduler'" name="function"/>
+            <field name="args">('16:00',)</field>
+        </record>
+    </data>
+    <data noupdate="0">
+        <record id="mail_group_warehouse" model="mail.group">
+			<field name="name">Warehouse</field>
+			<field name="description">Group for Warehouse users.</field>
+			<field name="public">groups</field>
+			<field name="group_public_id" ref="stock.group_stock_user"/>
+		</record>
+    </data>
+    <data>
+        <record id="view_compute_mo_scheduler" model="ir.ui.view">
+            <field name="name">Auto MO Scheduler</field>
+            <field name="model">mrp.production.scheduler</field>
+            <field name="arch" type="xml">
+                <form string="Auto MO Scheduler" version="7.0">
+                    <group>
+                        <field name="shop"/>
+                        <field name="pts_id" domain="[('type','=','pts'),('active','=',True)]"/>
+                    </group>
+                    <footer>
+                        <button name="run_mo_scheduler" string="Run Scheduler" type="object"  class="oe_highlight"  />
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+         <act_window name="Auto MO Scheduler"
+            res_model="mrp.production.scheduler"
+            view_mode="form"
+            target="new"
+            id="action_compute_mo_scheduler"/>         
+         
+         <menuitem action="action_compute_mo_scheduler" id="menu_stock_mo_scheduler" parent="procurement.menu_stock_sched" sequence="35" groups="stock.group_stock_manager"/>
+
+         
+        <record id="view_compute_scheduler" model="ir.ui.view">
+            <field name="name">Preparation Scheduler</field>
+            <field name="model">big_scheduler</field>
+            <field name="arch" type="xml">
+                <form string="Preparation Scheduler" version="7.0">
+                    <group colspan="2" col="4">
+                        <field name="shop_id"/>
+                        <field name="pts_id" domain="[('type','=','pts'),('active','=',True)]"/>
+                        <field name="auto_mo"/>
+                        <field name="run_check"/>
+                        <field name="automatic"/>
+                        <field name="po_merge" invisible="1"/>
+                    </group>
+                    <footer>
+                        <button name="run_scheduler" string="Run Scheduler" type="object"  class="oe_highlight"  />
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+         <act_window name="Preparation Scheduler"
+            res_model="big_scheduler"
+            view_mode="form"
+            target="new"
+            id="action_compute_scheduler"/>         
+         
+         <menuitem action="action_compute_scheduler" id="menu_stock_scheduler" parent="procurement.menu_stock_sched" sequence="35" groups="stock.group_stock_manager"/>
+
+        <record id="view_stop_scheduler" model="ir.ui.view">
+            <field name="name">Stop Preparation Scheduler</field>
+            <field name="model">big_scheduler.stop</field>
+            <field name="arch" type="xml">
+                <form string="Stop Preparation Scheduler" version="7.0">
+                    <field name="action"/>
+                    <footer>
+                        <button name="stop_scheduler" string="Confirm" type="object" class="oe_highlight"/>
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+         <act_window name="Stop Preparation Scheduler"
+            res_model="big_scheduler.stop"
+            view_mode="form"
+            target="new"
+            id="action_stop_scheduler"/>         
+         
+         <menuitem action="action_stop_scheduler" id="menu_stop_scheduler" parent="procurement.menu_stock_sched" sequence="36" groups="stock.group_stock_manager"/>
+         
+        <record id="view_check_availability_wizard_big" model="ir.ui.view">
+            <field name="name">Check Availability Batch</field>
+            <field name="model">stock.picking.check_availability</field>
+            <field name="arch" type="xml">
+                <form string="Check Availability Batch" version="7.0">
+                    <field name="pts_id" domain="[('type','=','pts'),('active','=',True)]"/>
+                    <footer>
+                        <button name="run_scheduler" string="Check Availability" type="object"  class="oe_highlight"  />
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+         <act_window name="Check Availability Batch"
+            res_model="stock.picking.check_availability"
+            view_mode="form"
+            target="new"
+            id="action_check_availability_wizard"/>         
+         
+         <menuitem action="action_check_availability_wizard" id="menu_stock_check_availability_wizard" parent="procurement.menu_stock_sched" sequence="3" groups="stock.group_stock_manager"/>
+         
+        <!-- PO Scheduler -->
+        <record id="procurement.view_compute_schedulers_wizard" model="ir.ui.view">
+            <field name="name">Run Schedulers</field>
+            <field name="model">procurement.order.compute.all</field>
+            <field name="arch" type="xml">
+                <form string="Scheduler Parameters" version="7.0">
+                    <group>
+                        <field name="automatic"/>
+                        <field name="cancel_mo"/>
+                    </group>
+                    <footer>
+                        <button name="procure_calculation" string="Run Schedulers" type="object"  class="oe_highlight"  />
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record> 
+         
+        <!-- Product -->
+		<record model="ir.ui.view" id="product_normal_form_view_auto_mo">
+			<field name="name">product.form_normal_view_auto_mo</field>
+			<field name="model">product.product</field>
+			<field name="inherit_id" ref="procurement.product_form_view_procurement_button" />
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<xpath expr="//field[@name='supply_method']" position="after">
+					<field name="auto_mo" attrs="{'invisible':[('supply_method','!=','produce')]}"/>
+					<field name="force_mo" attrs="{'invisible':[('auto_mo','=',False)]}"/>
+					<field name="mpq" attrs="{'invisible':[('auto_mo','=',False)]}"/>
+				</xpath>
+			</field>
+		</record>
+    </data>
+</openerp>

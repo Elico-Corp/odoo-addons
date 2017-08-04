@@ -1,0 +1,9 @@
+"id","name","model_id:id","group_id:id","perm_read","perm_write","perm_create","perm_unlink"
+"access_res_partner_portal","res partner portal","base.model_res_partner","portal.group_portal",1,0,0,0
+"access_product_product","product product web","product.model_product_product","portal.group_portal",1,1,1,1
+"access_product_category","product category web","product.model_product_category","portal.group_portal",1,1,0,0
+"access_product_template","product template web","product.model_product_template","portal.group_portal",1,1,1,1
+"access_product_supplierinfo","product supplierinfo web","product.model_product_supplierinfo","portal.group_portal",1,1,1,1group_portal",1,1,1,0
+"access_product_packaging","product packaging web","product.model_product_packaging","portal.group_portal",1,1,1,1
+"access_magento_product","magento product web","magentoerpconnect.model_magento_product_product","portal.group_portal",1,1,1,1
+

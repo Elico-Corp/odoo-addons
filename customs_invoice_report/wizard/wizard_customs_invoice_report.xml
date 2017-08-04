@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+<data>
+
+<record model="ir.ui.view" id="wizard_customs_invoice_report_view_form">
+    <field name="name">wizard.customs.invoice.report.form</field>
+    <field name="model">wizard.customs.invoice.report</field>
+    <field name="arch" type="xml">
+         <form string='Customs Invoice Report' version='7.0'>
+                <group>
+                		<field name='customs_total'/>
+                		<button name='action_print' type='object' string='Print' class='oe_highlight'/>
+                </group>
+         </form>  
+    </field>
+</record>
+
+
+<act_window id="action_wizard_customs_invoice_report"
+    multi="True"
+    key2="client_action_multi" name="Customs Invoice Report"
+    res_model="wizard.customs.invoice.report" src_model="account.invoice"
+    view_mode="form" target="new" view_type="form" />
+    
+
+
+
+    
+</data>
+</openerp>

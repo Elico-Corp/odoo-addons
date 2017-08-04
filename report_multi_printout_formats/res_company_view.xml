@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+<!-- a new group called report_noone -->
+    <record id="group_report_no_one" model="res.groups">
+        <field name="name">Report No One</field>
+        <field name="category_id" ref="base.module_category_hidden"/>
+    </record>
+        
+        <record id="inherit_base_view_company_tree" model="ir.ui.view">
+            <field name="name">inherit.base.view.company.tree</field>
+            <field name="model">res.company</field>
+            <field name="inherit_id" ref="base.view_company_tree"/>
+            <field name="arch" type="xml">
+                <field name="partner_id" position="after">
+                    <field name="alt_language" />
+                </field>
+            </field>
+        </record>
+
+        <record id="inherit_base_view_company_form" model="ir.ui.view">
+            <field name="name">inherit.base.view_company_form</field>
+            <field name="model">res.company</field>
+            <field name="inherit_id" ref="base.view_company_form" />
+            <field name="arch" type="xml">
+                <field name="website" position="after">
+                    <field name="alt_language" />
+                </field>
+            </field>
+        </record>
+
+        <record id="wine_product_product_form_view_inherit" model="ir.ui.view">
+            <field name="name">wine.product.product.form.inherit</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="wine.product_wine_from"/>
+            <field name="arch" type="xml">
+                <field name="name_cn" position="after">
+                    <field name="has_alt_lang" invisible="1"/>
+                    <field name="alt_name" attrs="{'invisible':[('has_alt_lang','=',False)]}"/>
+                </field>
+              <field name="name_cn" position="attributes">
+                <attribute name="invisible">1</attribute>
+              </field>
+            </field>
+        </record>
+    </data>
+</openerp>

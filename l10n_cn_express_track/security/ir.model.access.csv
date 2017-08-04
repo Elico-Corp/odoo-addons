@@ -1,0 +1,2 @@
+"id","name","model_id:id","group_id:id","perm_read","perm_write","perm_create","perm_unlink"
+"access_express_employee","HR Employee Express","l10n_cn_express_track.model_stock_picking_express","base.group_user",1,1,1,1

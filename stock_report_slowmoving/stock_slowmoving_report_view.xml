@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <!--Stock Slow Moving-->   
+        <report auto="False" id="report_stock_slowmove" model="stock.slowmove" name="stock.slowmove" header="True" file="stock_report_slowmoving/report/slowmoving_webkit.mako" string="Slow Moving" report_type="webkit" />
+		<!-- End -->
+	</data>
+</openerp>

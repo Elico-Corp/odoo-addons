@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="view_picking_in_form_qc" model="ir.ui.view">
+            <field name="name">stock.picking.in.form.qc</field>
+            <field name="model">stock.picking.in</field>
+            <field name="inherit_id" ref="stock.view_picking_in_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//button[@name='action_process']" position="replace">
+                    <button name="action_process" states="assigned" string="Receive" type="object" class="oe_highlight" groups="fc_qc.group_qc_user"/>
+                </xpath>
+            </field>
+        </record>
+        
+        <record id="view_picking_out_form_qc" model="ir.ui.view">
+            <field name="name">stock.picking.out.form.qc</field>
+            <field name="model">stock.picking.out</field>
+            <field name="inherit_id" ref="stock.view_picking_out_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="/form/header//button[@name='action_process']" position="replace">
+                    <button name="action_process" states="assigned" string="Deliver" type="object" class="oe_highlight" groups="fc_qc.group_qc_user"/>
+                </xpath>
+            </field>
+        </record>
+        
+        <record id="view_move_form_qc" model="ir.ui.view">
+            <field name="name">stock.move.form.qc</field>
+            <field name="model">stock.move</field>
+            <field name="inherit_id" ref="stock.view_move_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="/form/sheet//button[@string='Scrap']" position="replace">
+                    <button name="280" string="Scrap" type="action" icon="terp-gtk-jump-to-ltr" context="{'scrap': True}" states="draft,waiting,confirmed,assigned" colspan="1" groups="fc_qc.group_qc_user"/>
+                </xpath>
+            </field>
+        </record>
+        
+        <record id="view_move_picking_form_qc" model="ir.ui.view">
+            <field name="name">stock.move.picking.form.qc</field>
+            <field name="model">stock.move</field>
+            <field name="inherit_id" ref="stock.view_move_picking_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//button[@string='Scrap']" position="replace">
+                	<button name="280" string="Scrap" type="action" icon="terp-gtk-jump-to-ltr" context="{'scrap': True}" states="draft,waiting,confirmed,assigned" groups="fc_qc.group_qc_user"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</openerp>

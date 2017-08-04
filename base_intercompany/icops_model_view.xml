@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="view_icops_backend_form" model="ir.ui.view">
+            <field name="name">icops.backend.form</field>
+            <field name="model">icops.backend</field>
+            <field name="arch" type="xml">
+                <form string="ICOPS Backend" version="7.0">
+                    <sheet>
+                        <label for="name" class="oe_edit_only"/>
+                        <h1>
+                            <field name="name" class="oe_inline" />
+                        </h1>
+                        <group name="icops" string="ICOPS Configuration">
+                            <group colspan="4" col="4">
+                                <field name="version" cols="4" />
+                                <field name="company_id" cols="2" />
+                                <field name="icops_uid" cols="2" />
+                            </group>
+                        </group>
+                        <field name="icops_ids" context="{'active_id': active_id}">
+                            <tree editable="bottom">
+                                <field name="concept"/> 
+                                <field name="model" invisible="1" /> 
+                                <field name="backend_id" invisible="1" />
+                                <field name="backend_to" />
+                                <field name='icops_uid' invisible="1" />
+                                <field name="on_create" />
+                                <field name="on_write" />
+                                <field name="on_unlink" />
+                                <field name="on_confirm" />
+                                <field name="on_cancel" />
+                            </tree>
+                        </field>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_icops_backend_tree" model="ir.ui.view">
+            <field name="name">icops.backend.tree</field>
+            <field name="model">icops.backend</field>
+            <field name="arch" type="xml">
+                <tree string="ICOPS Backend" version="7.0">
+                    <field name="name"/>
+                    <field name="company_id" />
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_icops_backend" model="ir.actions.act_window">
+            <field name="name">ICOPS Backends</field>
+            <field name="res_model">icops.backend</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_icops_backend_tree"/>
+        </record>
+    </data>
+</openerp>

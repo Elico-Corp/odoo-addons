@@ -1,0 +1,676 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+#	* sale_quotation
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 6.0.3\n"
+"Report-Msgid-Bugs-To: support@openerp.com\n"
+"POT-Creation-Date: 2013-04-01 07:05+0000\n"
+"PO-Revision-Date: 2013-04-01 07:05+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sale_quotation
+#: model:ir.model,name:sale_quotation.model_sale_lost_quotation
+msgid "Lost an Order"
+msgstr "报价丢失"
+
+#. module: sale_quotation
+#: model:ir.model,name:sale_quotation.model_sale_quotation_reason
+msgid "Make Quotation Reason"
+msgstr "报价原因"
+
+#. module: sale_quotation
+#: model:ir.model,name:sale_quotation.model_sale_cancel_order
+msgid "Cancel an Order"
+msgstr "取消"
+
+#. module: sale_quotation
+#: view:sale.order:0
+#: view:sale.report2:0
+msgid "Group By..."
+msgstr "分组于..."
+
+#. module: sale_quotation
+#: model:ir.model,name:sale_quotation.model_sale_project
+#: field:sale.order,sale_project_id:0
+msgid "Sales Project"
+msgstr "销售项目"
+
+#. module: sale_quotation
+#: view:sale.order:0
+msgid "Recreate Invoice"
+msgstr "重建发票"
+
+#. module: sale_quotation
+#: code:addons/sale_quotation/sale_quotation.py:128
+#: code:addons/sale_quotation/sale_quotation.py:142
+#: code:addons/sale_quotation/wizard/make_quotation.py:198
+#: code:addons/sale_quotation/wizard/make_quotation.py:209
+#: model:ir.actions.act_window,name:sale_quotation.action_quotation_form
+#: model:ir.ui.menu,name:sale_quotation.menu_sale_quotation
+#: view:sale.order:0
+#, python-format
+msgid "Sales Quotations"
+msgstr "销售报价"
+
+#. module: sale_quotation
+#: view:crm.lead:0
+msgid "Mark Lost"
+msgstr "失去标记"
+
+#. module: sale_quotation
+#: sql_constraint:sale.order:0
+msgid "Order Reference must be unique !"
+msgstr "订单号必须唯一！"
+
+#. module: sale_quotation
+#: view:sale.report2:0
+msgid "Company"
+msgstr "公司"
+
+#. module: sale_quotation
+#: view:sale.order:0
+msgid "Order date"
+msgstr "订单日期"
+
+#. module: sale_quotation
+#: field:crm.lost.opportunity,reason_code:0
+#: field:sale.cancel.order,reason_code:0
+#: field:sale.lost.quotation,reason_code:0
+#: field:sale.make.quotation,reason_code:0
+#: field:sale.order,reason_code:0
+msgid "Reason"
+msgstr "原因"
+
+#. module: sale_quotation
+#: field:crm.make.sale,stage_id:0
+msgid "Set Stage"
+msgstr "设置阶段"
+
+#. module: sale_quotation
+#: view:sale.report2:0
+msgid "Day"
+msgstr "天"
+
+#. module: sale_quotation
+#: view:sale.cancel.order:0
+#: view:sale.lost.quotation:0
+#: view:sale.order:0
+msgid "Cancel Order"
+msgstr "取消订单"
+
+#. module: sale_quotation
+#: view:sale.order:0
+msgid "Modify Quotation"
+msgstr "更改报价"
+
+#. module: sale_quotation
+#: model:ir.actions.act_window,name:sale_quotation.action_make_quotation
+msgid "Make Quotation"
+msgstr "建立报价"
+
+#. module: sale_quotation
+#: code:addons/sale_quotation/sale_quotation.py:108
+#, python-format
+msgid "Converted to Sales Quotation(name: %s).Version:%d,Reason:%s,note:%s"
+msgstr "已转化为订单报价(单号: %s).版本:%d, 原因:%s,备注:%s"
+
+#. module: sale_quotation
+#: code:addons/sale_quotation/wizard/make_quotation.py:162
+#, python-format
+msgid "Opportunity: %s"
+msgstr "商机: %s"
+
+#. module: sale_quotation
+#: help:sale.project,property_product_pricelist:0
+msgid "This pricelist will be used, instead of the default one, for sales to the current partner"
+msgstr "对当前客户的销售，请使用此价格表，而不是默认价格表。"
+
+#. module: sale_quotation
+#: code:addons/sale_quotation/sale_quotation.py:223
+#, python-format
+msgid "Sales Order Cancelled(name: %s).Reason:%s,note:%s"
+msgstr "销售订单(名单: %s). 原因:%s,备注:%s"
+
+#. module: sale_quotation
+#: view:sale.report2:0
+msgid "Shop"
+msgstr "商店"
+
+#. module: sale_quotation
+#: view:sale.report2:0
+msgid "   Month   "
+msgstr "   月份   "
+
+#. module: sale_quotation
+#: view:sale.report2:0
+msgid "Analytic Account"
+msgstr "辅助核算项"
+
+#. module: sale_quotation
+#: view:sale.report2:0
+msgid "# of Lines"
+msgstr "# 明细"
+
+#. module: sale_quotation
+#: code:addons/sale_quotation/sale_quotation.py:80
+#, python-format
+msgid "Warning"
+msgstr "警告"
+
+#. module: sale_quotation
+#: view:sale.project:0
+#: view:sale.report2:0
+msgid "Partner"
+msgstr "客户"
+
+#. module: sale_quotation
+#: model:ir.model,name:sale_quotation.model_sale_order
+msgid "Sales Order"
+msgstr "销售订单"
+
+#. module: sale_quotation
+#: model:ir.model,name:sale_quotation.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "销售订单明细"
+
+#. module: sale_quotation
+#: view:sale.cancel.order:0
+msgid "Confirm"
+msgstr "确认"
+
+#. module: sale_quotation
+#: field:sale.order,quotation_version:0
+msgid "Quotation Version"
+msgstr "报价版本"
+
+#. module: sale_quotation
+#: view:sale.order:0
+#: view:sale.report2:0
+msgid "State"
+msgstr "状态"
+
+#. module: sale_quotation
+#: view:crm.lead:0
+msgid "Version"
+msgstr "版本"
+
+#. module: sale_quotation
+#: code:addons/sale_quotation/wizard/make_quotation.py:159
+#, python-format
+msgid "Data Insufficient!"
+msgstr "数据不全!"
+
+#. module: sale_quotation
+#: view:crm.lead:0
+msgid "Quotation Order"
+msgstr "报价单 订单"
+
+#. module: sale_quotation
+#: view:sale.make.quotation:0
+msgid "New"
+msgstr "新建"
+
+#. module: sale_quotation
+#: field:sale.project,project_partner:0
+msgid "End User"
+msgstr "最终用户"
+
+#. module: sale_quotation
+#: view:sale.report2:0
+msgid "Total Price"
+msgstr "总价"
+
+#. module: sale_quotation
+#: code:addons/sale_quotation/wizard/make_quotation.py:188
+#, python-format
+msgid "Create from Opportunity"
+msgstr "由商机创建"
+
+#. module: sale_quotation
+#: field:sale.order,originated_from:0
+msgid "Originated From"
+msgstr "来源"
+
+#. module: sale_quotation
+#: view:sale.order:0
+msgid "Confirm Order"
+msgstr "确认订单"
+
+#. module: sale_quotation
+#: view:sale.report2:0
+msgid "My Sales"
+msgstr "我的销售订单"
+
+#. module: sale_quotation
+#: field:sale.project,property_product_pricelist:0
+msgid "Pricelist"
+msgstr "价格表"
+
+#. module: sale_quotation
+#: view:sale.report2:0
+msgid "# of Qty"
+msgstr "数量#"
+
+#. module: sale_quotation
+#: model:ir.model,name:sale_quotation.model_crm_make_sale
+msgid "Make sales"
+msgstr "生成销售订单"
+
+#. module: sale_quotation
+#: view:sale.report2:0
+msgid "    Month-1    "
+msgstr "    上月    "
+
+#. module: sale_quotation
+#: code:addons/sale_quotation/wizard/make_quotation.py:180
+#, python-format
+msgid "Opportunity "
+msgstr "商机"
+
+#. module: sale_quotation
+#: view:sale.order:0
+msgid "Order Date"
+msgstr "订单日期"
+
+#. module: sale_quotation
+#: field:sale.project,name:0
+msgid "Full Name"
+msgstr "完整名称"
+
+#. module: sale_quotation
+#: view:sale.order:0
+msgid "Recreate Packing"
+msgstr "重建发货"
+
+#. module: sale_quotation
+#: field:crm.lead,nao_name:0
+msgid "NAO Reference"
+msgstr "NAO 参考"
+
+#. module: sale_quotation
+#: view:sale.report2:0
+msgid "Month"
+msgstr "月份"
+
+#. module: sale_quotation
+#: model:ir.actions.act_window,name:sale_quotation.action_order_line_tree
+#: model:ir.ui.menu,name:sale_quotation.menu_sale_order_line
+msgid "Sales Orders Lines"
+msgstr "销售明细"
+
+#. module: sale_quotation
+#: view:sale.report2:0
+msgid "Currency"
+msgstr "币别"
+
+#. module: sale_quotation
+#: view:sale.report2:0
+msgid "Category of Product"
+msgstr "产品类别"
+
+#. module: sale_quotation
+#: view:sale.project:0
+msgid "Product-partner related fields"
+msgstr "产品-客户相关字段"
+
+#. module: sale_quotation
+#: view:sale.order:0
+#: field:sale.project,user_id:0
+#: view:sale.report2:0
+msgid "Salesman"
+msgstr "业务员"
+
+#. module: sale_quotation
+#: view:sale.report2:0
+msgid "  Year  "
+msgstr "  年  "
+
+#. module: sale_quotation
+#: view:sale.report2:0
+msgid "Reference UoM"
+msgstr "计量单位"
+
+#. module: sale_quotation
+#: code:addons/sale_quotation/sale_quotation.py:241
+#, python-format
+msgid "Sales Quotation Lost(name: %s).Reason:%s,note:%s"
+msgstr "销售报价失败(单号: %s). 原因:%s, 备注:%s"
+
+#. module: sale_quotation
+#: view:sale.make.quotation:0
+msgid "Convert to Quotation"
+msgstr "转化为报价"
+
+#. module: sale_quotation
+#: code:addons/sale_quotation/crm.py:71
+#: field:crm.lost.opportunity,notes:0
+#: field:sale.cancel.order,notes:0
+#: field:sale.lost.quotation,notes:0
+#: field:sale.make.quotation,notes:0
+#: field:sale.order,notes:0
+#, python-format
+msgid "Note"
+msgstr "备注"
+
+#. module: sale_quotation
+#: view:sale.order:0
+msgid "Reset To Draft"
+msgstr "返回报价"
+
+#. module: sale_quotation
+#: view:sale.order:0
+msgid "Set to Draft"
+msgstr "设为报价"
+
+#. module: sale_quotation
+#: view:sale.order:0
+msgid "Quotation Lost"
+msgstr "报价失效"
+
+#. module: sale_quotation
+#: model:ir.actions.act_window,name:sale_quotation.action_order_form_quotation
+msgid "Sales Orders"
+msgstr "销售订单"
+
+#. module: sale_quotation
+#: view:crm.lead:0
+msgid "Communication & History"
+msgstr "沟通&日志"
+
+#. module: sale_quotation
+#: field:sale.order.line,project_name:0
+#: field:sale.project,project_name:0
+msgid "Project Name"
+msgstr "项目名称"
+
+#. module: sale_quotation
+#: view:sale.order:0
+msgid "Create Final Invoice"
+msgstr "生成最终发票"
+
+#. module: sale_quotation
+#: code:addons/sale_quotation/sale_quotation.py:80
+#, python-format
+msgid "You cannot create sale order directly, please create order from opportunity!"
+msgstr "你不能直接创建销售订单, 请通过商机生成订单!"
+
+#. module: sale_quotation
+#: model:ir.actions.act_window,name:sale_quotation.action_sale_project_tree
+#: model:ir.ui.menu,name:sale_quotation.menu_sale_project
+#: view:sale.project:0
+msgid "Customer Project"
+msgstr "客户项目"
+
+#. module: sale_quotation
+#: model:ir.actions.act_window,name:sale_quotation.action_order_report_all2
+#: view:sale.report2:0
+msgid "Sales Analysis"
+msgstr "销售分析表"
+
+#. module: sale_quotation
+#: model:ir.model,name:sale_quotation.model_sale_report2
+msgid "Sales Orders Statistics"
+msgstr "销售订单统"
+
+#. module: sale_quotation
+#: view:sale.report2:0
+msgid "Extended Filters..."
+msgstr "增加筛选条件"
+
+#. module: sale_quotation
+#: view:sale.report2:0
+msgid "Shipped Qty"
+msgstr "交货数量"
+
+#. module: sale_quotation
+#: code:addons/sale_quotation/crm.py:70
+#, python-format
+msgid "Opportunity Lost(name: %s).Reason:%s,note:%s"
+msgstr "商机丢失(商机: %s)。原因:%s， 备注:%s"
+
+#. module: sale_quotation
+#: view:sale.report2:0
+msgid "Categ 2"
+msgstr "产品类2"
+
+#. module: sale_quotation
+#: view:sale.report2:0
+msgid "Categ 1"
+msgstr "产品类1"
+
+#. module: sale_quotation
+#: view:sale.order:0
+msgid "Converted"
+msgstr "已转换"
+
+#. module: sale_quotation
+#: model:ir.actions.act_window,name:sale_quotation.action_cancle_order
+msgid "Cancel  Order Note"
+msgstr "取消订单备注"
+
+#. module: sale_quotation
+#: view:crm.lost.opportunity:0
+msgid "Lost opportunity"
+msgstr "商机丢失"
+
+#. module: sale_quotation
+#: view:sale.report2:0
+msgid "Commitment Delay"
+msgstr "承诺延迟"
+
+#. module: sale_quotation
+#: view:sale.order:0
+#: view:sale.report2:0
+msgid "Quotations"
+msgstr "报价单"
+
+#. module: sale_quotation
+#: code:addons/sale_quotation/sale_quotation.py:171
+#, python-format
+msgid "Converted to Sales Order(name: %s)."
+msgstr "转化为销售订单(单号: %s)."
+
+#. module: sale_quotation
+#: model:ir.actions.act_window,name:sale_quotation.action_lost_quotation
+msgid "Lost Quotation Note"
+msgstr "报价失败备注"
+
+#. module: sale_quotation
+#: view:sale.order:0
+#: view:sale.report2:0
+msgid "Sales"
+msgstr "销售"
+
+#. module: sale_quotation
+#: view:sale.order:0
+msgid "Done"
+msgstr "已完成"
+
+#. module: sale_quotation
+#: view:crm.lost.opportunity:0
+#: view:sale.cancel.order:0
+#: view:sale.lost.quotation:0
+#: view:sale.make.quotation:0
+msgid "Cancel"
+msgstr "取消"
+
+#. module: sale_quotation
+#: field:crm.lead,order_ids:0
+msgid "Sale Orders"
+msgstr "销售订单"
+
+#. module: sale_quotation
+#: code:addons/sale_quotation/wizard/make_quotation.py:184
+#, python-format
+msgid "Converted to Sales Quotation(name: %s)."
+msgstr "已转化报价单(单号: %s)."
+
+#. module: sale_quotation
+#: model:ir.model,name:sale_quotation.model_sale_make_quotation
+msgid "Make Quotation Wizard"
+msgstr "报价向导"
+
+#. module: sale_quotation
+#: view:sale.order:0
+msgid "In Progress"
+msgstr "进行中"
+
+#. module: sale_quotation
+#: field:crm.lead,project_id:0
+#: field:sale.order.line,sale_project_id:0
+msgid "Sale Project"
+msgstr "销售项目"
+
+#. module: sale_quotation
+#: view:sale.report2:0
+msgid "Level 1"
+msgstr "伙伴类1"
+
+#. module: sale_quotation
+#: view:sale.report2:0
+msgid "Level 2"
+msgstr "伙伴类2"
+
+#. module: sale_quotation
+#: code:addons/sale_quotation/wizard/make_quotation.py:180
+#, python-format
+msgid "is converted to Quotation."
+msgstr "已转化为报价。"
+
+#. module: sale_quotation
+#: code:addons/sale_quotation/wizard/make_quotation.py:159
+#, python-format
+msgid "Customer has no addresses defined!"
+msgstr "客户没有定义地址!"
+
+#. module: sale_quotation
+#: view:sale.order:0
+msgid "Total Tax Excluded"
+msgstr "不含税总金额"
+
+#. module: sale_quotation
+#: view:sale.report2:0
+msgid "Product"
+msgstr "产品"
+
+#. module: sale_quotation
+#: view:sale.order:0
+msgid "Search Sales Quotation"
+msgstr "搜索销售报价"
+
+#. module: sale_quotation
+#: field:sale.order,thread:0
+msgid "Thread"
+msgstr "报价分支"
+
+#. module: sale_quotation
+#: model:ir.actions.act_window,name:sale_quotation.action_quotation_reason_tree
+#: model:ir.ui.menu,name:sale_quotation.menu_sale_quotation_reason
+#: view:sale.quotation.reason:0
+msgid "Quotation Reason"
+msgstr "原因"
+
+#. module: sale_quotation
+#: view:sale.project:0
+msgid "Group by..."
+msgstr "分组..."
+
+#. module: sale_quotation
+#: model:ir.actions.act_window,name:sale_quotation.action_lost_opportunity
+msgid "Lost opportunity Note"
+msgstr "备注"
+
+#. module: sale_quotation
+#: model:ir.model,name:sale_quotation.model_crm_lost_opportunity
+msgid "Lost an opportunity"
+msgstr "丢失商机"
+
+#. module: sale_quotation
+#: field:sale.project,lead_ids:0
+msgid "Opportunity"
+msgstr "商机"
+
+#. module: sale_quotation
+#: view:sale.order:0
+#: field:sale.order,file_number:0
+#: view:sale.report2:0
+#: field:sale.report2,file_number:0
+msgid "File Number"
+msgstr "档案号"
+
+#. module: sale_quotation
+#: view:sale.order:0
+#: field:sale.project,partner_id:0
+msgid "Customer"
+msgstr "客户"
+
+#. module: sale_quotation
+#: view:sale.report2:0
+msgid "SO#"
+msgstr "SO#"
+
+#. module: sale_quotation
+#: field:sale.quotation.reason,name:0
+msgid "Name"
+msgstr "名称"
+
+#. module: sale_quotation
+#: view:crm.lost.opportunity:0
+#: view:sale.lost.quotation:0
+#: view:sale.order:0
+msgid "Lost"
+msgstr "丢失"
+
+#. module: sale_quotation
+#: model:ir.actions.act_window,help:sale_quotation.action_order_form_quotation
+msgid "Sales Orders help you manage quotations and orders from your customers. OpenERP suggests that you start by creating a quotation. Once it is confirmed, the quotation will be converted into a Sales Order. OpenERP can handle several types of products so that a sales order may trigger tasks, delivery orders, manufacturing orders, purchases and so on. Based on the configuration of the sales order, a draft invoice will be generated so that you just have to confirm it when you want to bill your customer."
+msgstr "销售订单管理能帮助你管理报价单和客户订单。 OpenERP建议你先创建报价单， 一旦报价单被确认后，系统会自动把报价单转换成销售订单。OpenERP能处理多种类型产品使一个销售订单可能触发任务，发货单，生产订单，采购等。r\n"
+"根据销售订单的设置，将会产生一张发票草稿以便当你需要向客户开票的时候，你只需要确认一下即可。"
+
+#. module: sale_quotation
+#: model:ir.model,name:sale_quotation.model_crm_lead
+msgid "crm.lead"
+msgstr "crm.lead"
+
+#. module: sale_quotation
+#: field:sale.order,reset:0
+msgid "Reseted"
+msgstr "已被重置"
+
+#. module: sale_quotation
+#: view:sale.order:0
+msgid "Ignore Exception"
+msgstr "忽略例外"
+
+#. module: sale_quotation
+#: model:ir.actions.act_window,help:sale_quotation.action_order_report_all2
+msgid "This report performs analysis on your quotations and sales orders. Analysis check your sales revenues and sort it by different group criteria (salesman, partner, product, etc.) Use this report to perform analysis on sales not having invoiced yet. If you want to analyse your turnover, you should use the Invoice Analysis report in the Accounting application."
+msgstr "这个报表会对你的报价单和销售订单进行分析。分析报告会检查你的销售收入，并且按照不同的分组标准（业务员，合作伙伴，产品等）进行培训。用这个报表对还没有开票的销售订单进行分析。 如果你想分析你的营业额，你应该使用会计应用程序里面的发票分析报表。"
+
+#. module: sale_quotation
+#: view:sale.report2:0
+msgid "Picked"
+msgstr "已领料/退货"
+
+#. module: sale_quotation
+#: view:sale.report2:0
+msgid "Year"
+msgstr "年"
+
+#. module: sale_quotation
+#: view:sale.order:0
+msgid "Total Tax Included"
+msgstr "含税总金额"
+
+#. module: sale_quotation
+#: view:crm.lead:0
+msgid "Orders"
+msgstr "订单"
+

@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        
+      
+		<!-- Invoice Line by LY-->
+
+		<record id="account_invoice_line_tree" model="ir.ui.view">
+            <field name="name">account_invoice_line_tree</field>
+            <field name="model">account.invoice.line</field>
+            <field name="inherit_id" ref="account.view_invoice_line_tree"/>
+            <field name="arch" type="xml">
+            
+            	<xpath expr="/tree" position="attributes">
+            		<attribute name="create">0</attribute>
+            		<attribute name="delete">0</attribute>
+            	</xpath>  
+            	<xpath expr="/tree/field[@name='name']" position="before">
+            		<field name="partner_ref"/>
+            		<field name="partner_id"/>
+            		<field name="supplier_invoice_number"/>
+            		<field name="number"/>
+                    <field name="fapiao_date"/>
+            		<field name="date_invoice"/>
+            		<field name="invoice_id" invisible='1'/>
+            		<field name="origin"/>
+                </xpath>
+                <xpath expr="/tree/field[@name='quantity']" position="replace">
+            		<field name="product_id"/>
+            		<field name="quantity" sum="Quantity"/>
+                </xpath>
+                <xpath expr="//field[@name='price_subtotal']" position="replace">
+                	<field name="amount_subtotal" sum="Amount"/>
+					<field name="amount_subtotal" sum="Amount(Inc.Tax)"/>
+					<field name="state"/>
+					<field name="reference" string='Reference'/>
+		        </xpath>
+            </field>
+        </record>
+		<record id="account_invoice_line_search" model="ir.ui.view">
+            <field name="name">account.invoice.line.search.elico</field>
+            <field name="model">account.invoice.line</field>
+            <field name="arch" type="xml">
+            	<search string="Search Invoice">
+            		<field name="number" string="Number" filter_domain="['|','|',('number','ilike',self),('supplier_invoice_number','ilike',self),('origin','ilike',self)]"/>
+            		<field name="supplier_invoice_number" string="Supplier Invoice Number" />
+            		<field name="partner_id" string="Partner"/>
+            		<field name="partner_ref" string="Partner ref"/>
+            		<field name="product_id" string="Product" />
+            		<filter icon="terp-go-today" string="Draft" domain="[('state','=','draft')]" help="draft"/>
+            		<filter icon="terp-go-today" string="Open" domain="[('state','not in',('done','draft','cancel'))]" help="draft"/>
+            		<filter icon="terp-go-today" string="Paid" domain="[('state','=','done')]" help="Paid"/>
+            		<filter icon="terp-go-today" string="Cancel" domain="[('state','=','cancel')]" help="Cancel"/>
+                    <separator/>
+                    <filter icon="terp-go-today" string="Today" domain="[('date_invoice','&lt;=',time.strftime('%%Y-%%m-%%d 23:59:59')),('date_invoice','&gt;=',time.strftime('%%Y-%%m-%%d 00:00:00'))]" help="Orders processed Today or planned for Today"/>
+                    <group expand="0" string="Group By...">
+                    	<filter icon="terp-partner" string="Partner" domain="[]" context="{'group_by':'partner_id'}"/>
+                    	<filter icon="terp-product" string="Product" domain="[]" context="{'group_by':'product_id'}"/>
+                    	<filter icon="terp-invoice" string="Invoice" domain="[]" context="{'group_by':'invoice_id'}"/>
+                    	<filter icon="terp-state" string="State" domain="[]" context="{'group_by':'state'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+		
+		<record id="action_supplier_invoice_line" model="ir.actions.act_window">
+            <field name="name">Invoice Line</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">account.invoice.line</field>
+            <field name="context">{}</field>
+            <field name="domain">[('type','=','in_invoice')]</field>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="account.view_invoice_line_tree"/>
+            <field name="search_view_id" ref="account_invoice_line_search"/>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to check Invoice Line.
+              </p>
+            </field>
+        </record>
+		<menuitem id="suppler_invoice_line" name="Supplier Invoice Line" parent="account.menu_finance_payables" action="action_supplier_invoice_line" sequence="13"/>
+
+		
+		<record id="action_customer_invoice_line" model="ir.actions.act_window">
+            <field name="name">Invoice Line</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">account.invoice.line</field>
+            <field name="context">{}</field>
+            <field name="domain">[('type','=','out_invoice')]</field>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="account.view_invoice_line_tree"/>
+            <field name="search_view_id" ref="account_invoice_line_search"/>
+            <field name="help" type="html">
+        
+              <p class="oe_view_nocontent_create">
+                Click to check Invoice Line.
+              </p>
+            </field>
+        </record>
+		<menuitem id="customer_invoice_line" name="Customer Invoice Line" parent="account.menu_finance_receivables" action="action_customer_invoice_line" sequence="13"/>
+
+
+        <!--
+        Account Invoice
+        -->
+        <record model="ir.ui.view" id="invoice_ait_tree">
+            <field name="name">account.invoice.ait.tree</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_tree" />
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='partner_id']" position="before">
+                    <field name="partner_ref"/>
+                </xpath>
+                <xpath expr="//field[@name='partner_id']" position="after">
+                    <field name="supplier_invoice_number"/>
+                    <field name="fapiao_date"/>
+                </xpath>
+                <xpath expr="//field[@name='state']" position="before">
+                    <field name="account_invoice_type"/>
+                    <field name="reference"/>
+                    <field name="type" invisible="1"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="invoice_supplier_ait_form">
+            <field name="name">account.invoice.supplier.ait.form</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_supplier_form" />
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='supplier_invoice_number']" position="after">
+                    <field name="fapiao_date"/>
+                </xpath>            
+                <xpath expr="//field[@name='journal_id']" position="after">
+                    <field name="account_invoice_type"/>
+                </xpath>            
+                <xpath expr="//field[@name='price_subtotal']" position="after">
+                    <field name="amount_subtotal"/>
+                </xpath>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="invoice_ait_form">
+            <field name="name">account.invoice.ait.form</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_form" />
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='account_id']" position="after">
+                    <field name="supplier_invoice_number"/>
+                    <field name="fapiao_date"/>
+                </xpath>
+                <xpath expr="//field[@name='fiscal_position']" position="after">
+                    <field name="account_invoice_type"/>
+                </xpath>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="view_account_invoice_ait_filter">
+            <field name="name">account.invoice.ait.select</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.view_account_invoice_filter" />
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='user_id']" position="after">
+                    <field name="partner_ref"/>
+                    <field name="supplier_invoice_number"/>
+                    <field name="account_invoice_type"/>
+                    
+                    <filter string="Invoice" icon="terp-partner" domain="[('type','=','in_invoice')]"/>
+                    <filter string="Refund" icon="terp-partner" domain="[('type','=','in_refund')]"/>
+                    <separator/>
+                </xpath>
+                <xpath expr="//filter[@string='Journal']" position="after">
+                    <filter string="Tax Type" icon="terp-partner" domain="[]" context="{'group_by':'account_invoice_type'}"/>
+                    <filter string="Partner Ref" icon="terp-partner" domain="[]" context="{'group_by':'partner_ref'}"/>
+                    <filter string="Type" icon="terp-partner" domain="[]" context="{'group_by':'type'}"/>
+                </xpath>
+            </field>
+        </record>
+        
+
+        <!--
+        Account Invoice Tax Type
+        -->        
+        <record id="view_account_invoice_type" model="ir.ui.view">
+            <field name="name">account.invoice.type.view</field>
+            <field name="model">account.invoice.type</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="invoice type" editable="top">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_account_invoice_type" model="ir.actions.act_window">
+            <field name="name">Account Invoice Type</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">account.invoice.type</field>
+            <field name="view_id" ref="view_account_invoice_type"/>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree</field>
+        </record>
+        <!-- Menu -->
+        <menuitem action="action_account_invoice_type" id="menu_account_invoice_type" sequence="4" parent="account.menu_finance_configuration" />
+
+    </data>
+
+     <data noupdate="1">
+        <record id="ait_normal" model="account.invoice.type">
+            <field name="name">Normal</field>
+        </record>
+        <record id="ait_13" model="account.invoice.type">
+            <field name="name">13%</field>
+        </record>
+        <record id="ait_17" model="account.invoice.type">
+            <field name="name">17%</field>
+        </record>
+        <record id="ait_none" model="account.invoice.type">
+            <field name="name">None</field>
+        </record>
+    </data>
+</openerp>

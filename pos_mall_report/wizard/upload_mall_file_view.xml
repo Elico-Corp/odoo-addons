@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+<data>
+    
+    <record model="ir.ui.view" id="upload_manual_mall_file_form">
+        <field name="name">upload_manual_mall_file_form</field>
+        <field name="model">upload.manual.mall.file</field>
+        <field name="arch" type="xml">
+            <form string="Upload Manual" version="7.0">
+                <group>
+                    <field name="report_file" filename="report_file_fname"/>
+                    <field name="report_file_fname" invisible="1"/>
+                </group>
+                <footer>
+                    <button name="change_mall_file" string="Confirm" type="object" class="oe_highlight"/>
+                    or
+                    <button string="Cancel" class="oe_link" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_upload_manual_mall" model="ir.actions.act_window">
+        <field name="name">Upload Mall File</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">upload.manual.mall.file</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="upload_manual_mall_file_form"/>
+        <field name="context">{}</field>
+        <field name="target">new</field>
+    </record>
+
+</data>
+</openerp>

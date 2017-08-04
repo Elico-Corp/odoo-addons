@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="view_gap_analysis_form_project_long_term_inherit" model="ir.ui.view">
+            <field name="name">gap_analysis.project_long_term.form</field>
+            <field name="model">gap_analysis</field>
+            <field name="inherit_id" ref="gap_analysis_project.view_gap_analysis_form_project_inherit"/>
+             <field name="priority" eval="5"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='to_project']" position="before">
+	            	<field name="phase"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</openerp>

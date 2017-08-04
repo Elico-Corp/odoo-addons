@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+
+    <report auto="False" id="stock_print_delivery_note_internal" model="stock.picking" name="print.delivery.note.internal" string="Delivery Note" rml="stock_report_with_sale_price/report/delivery_note.rml"/>
+
+        <report auto="False" id="stock_print_delivery_note_out" model="stock.picking.out" name="print.delivery.note.out" string="Delivery Note" rml="stock_report_with_sale_price/report/delivery_note.rml"/>
+    </data>
+</openerp>

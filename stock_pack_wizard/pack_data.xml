@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+	<data>
+		<!-- group pack_manager jon.chow#elico-corp.com Jun 24, 2013-->
+	    <record id="pack_manager" model="res.groups">
+	        <field name="name">Pack Manager</field>
+	        <field name="users" eval="[(4, ref('base.user_root'))]"/>
+	        <field name="implied_ids" eval="[(6,0, [ref('stock.group_tracking_lot'),])]"/>
+	    </record>
+	    <!--menu packs only  "group trackling lot"  jon.chow#elico-corp.com Jun 24, 2013-->
+	    <record id="stock.menu_action_tracking_form" model="ir.ui.menu">
+	        <field name="groups_id" eval="[(6,0, [ref('stock.group_tracking_lot'),])]"/>
+	    </record>
+	</data>
+</openerp>

@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_delivery_return_reason_fc,delivery.return.reason.fc,delivery_plan.model_delivery_return_reason,delivery_routes.group_delivery_user,1,1,1,1
+access_delivery_return_reason_cs,delivery.return.reason.cs,delivery_plan.model_delivery_return_reason,delivery_routes.group_customer_service_user,1,1,0,0

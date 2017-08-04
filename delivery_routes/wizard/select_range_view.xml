@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="view_select_line_range" model="ir.ui.view">
+            <field name="name">Select Delivery Time</field>
+            <field name="model">select.line.range</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Select Delivery Time" version="7.0">
+                    <group>
+                        <field name="dts_id" />
+                    </group>
+                    <footer>
+                        <button special="cancel" string="Cancel"/>
+                        <button name="show" string="Confirm" type="object"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_select_line_range" model="ir.actions.act_window">
+            <field name="name">Select Delivery Time</field>
+            <field name="res_model">select.line.range</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_select_line_range"/>
+            <field name="target">new</field>
+        </record>
+
+    </data>
+</openerp>

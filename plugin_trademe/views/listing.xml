@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="listing_form_view" model="ir.ui.view">
+            <field name="name">tmerp.listing.form</field>
+            <field name="model">tmerp.listing</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Listing Form" edit="false" create="false">
+                    <field name="name" readonly="1" colspan="4"/>
+                    <field name="listing_id" readonly="1" colspan="4"/>
+                    <field name="listing_url" readonly="1" colspan="4" widget="url"/>
+                    <field name="member" readonly="1" colspan="4"/>
+                </form>
+            </field>
+        </record>
+
+        <record id="listing_list_view" model="ir.ui.view">
+            <field name="name">tmerp.listing.list.view</field>
+            <field name="model">tmerp.listing</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="All Listings" create="false">
+                    <field name="listing_id"/>
+                    <field name="name"/>
+                    <field name="member"/>
+                    <field name="listing_url" readonly="1" colspan="4" widget="url"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="listing_action_list_and_form" model="ir.actions.act_window">
+            <field name="name">Trademe Listings</field>
+            <field name="res_model">tmerp.listing</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem id="tmerp_menu_listing" action="listing_action_list_and_form" parent="Trademe"/>
+    </data>
+</openerp>

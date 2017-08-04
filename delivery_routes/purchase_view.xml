@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+	<data>
+        <record model='ir.ui.view' id='delivery_routes_purchase_order_form'>
+            <field name='name'>Delivery Routes Purchase Order Form</field>
+            <field name='model'>purchase.order</field>
+            <field name='inherit_id' ref='purchase.purchase_order_form'/>
+            <field name='arch' type='xml'>
+                <field name="origin" position="after">
+                    <field name="carrier_id" invisible="1"/>
+                    <field name="is_collected"/>
+                    <field name="dts_id" domain="[('type','=','dts'),('active','=',True)]"/>
+                </field>
+            </field>
+        </record>
+        
+        <record model='ir.ui.view' id='delivery_routes_purchase_order_tree'>
+            <field name='name'>Delivery Routes Purchase Order Tree</field>
+            <field name='model'>purchase.order</field>
+            <field name='inherit_id' ref='purchase.purchase_order_tree'/>
+            <field name='arch' type='xml'>
+                <field name="origin" position="after">
+                    <field name="is_collected"/>
+                    <field name="dts_id"/>
+                </field>
+            </field>
+        </record>
+        
+        <record model='ir.ui.view' id='delivery_routes_purchase_order_tree'>
+            <field name='name'>Delivery Routes Purchase Order Tree</field>
+            <field name='model'>purchase.order</field>
+            <field name='inherit_id' ref='purchase.purchase_order_tree'/>
+            <field name='arch' type='xml'>
+                <field name="origin" position="after">
+                    <field name="is_collected"/>
+                    <field name="dts_id"/>
+                </field>
+            </field>
+        </record>
+        
+        <record id="purchase_order_search_dts" model="ir.ui.view">
+            <field name="name">purchase.order.search.dts</field>
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="purchase.view_purchase_order_filter"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='name']" position="before">
+                	<field name="dts_id" context="{'domain':[('type','=','dts')]}"/>
+                </xpath>
+                <xpath expr="//filter[@string='Supplier']" position="before">
+                    <filter string="Delivery Time" icon="terp-folder-orange" domain="[]" context="{'group_by':'dts_id'}"/>
+                </xpath>
+            </field>
+        </record>
+        <record id="purchase_quotation_search_dts" model="ir.ui.view">
+            <field name="name">purchase.quotation.search.dts</field>
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="purchase.view_request_for_quotation_filter"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='name']" position="before">
+                	<field name="dts_id" context="{'domain':[('type','=','dts')]}"/>
+                </xpath>
+                <xpath expr="//filter[@string='Supplier']" position="before">
+                    <filter string="Delivery Time" icon="terp-folder-orange" domain="[]" context="{'group_by':'dts_id'}"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</openerp>

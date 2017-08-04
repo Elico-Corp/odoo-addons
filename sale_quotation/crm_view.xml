@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record model="ir.ui.view" id="crm_case_form_view_oppor" >
+            <field name="name">CRM - Opportunities - Quote -Order Inherit</field>
+            <field name="model">crm.lead</field>
+            <field name="inherit_id" ref="crm.crm_case_form_view_oppor"/>
+            <field name="arch" type="xml">
+                
+                <field name="categ_ids" position="after">
+                    <field name="nao_name" readonly="1" />
+                    <field name="sale_project_id" />
+                </field>
+                <page string="Lead" position="after">
+                    <page string="Orders">
+                        
+                        <field name="order_ids" colspan="4" readonly="1" nolabel="1" />
+                        
+                        <field colspan="4"  name="order_ids" nolabel="1" widget="one2many_list">
+                            <tree string="Quotation Order">
+                                <field name="thread" />
+                                <field name="quotation_version" string="Version" />
+                                <field name="name" />
+                                <field name="date_order" />
+                                <field name="state" />
+                                <field name="reason_code" />
+                            </tree>
+                        </field>
+                    </page>
+                </page>
+            </field>
+        </record>
+
+    <record model="ir.ui.view" id="crm_case_tree_view_oppor_nao">
+        <field name="name">Leads NAO</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.crm_case_tree_view_oppor" />
+        <field name="arch" type="xml">
+            <field name="date_deadline" position="before">
+                <field name="nao_name" />
+            </field>
+        </field>
+    </record>
+    </data>
+</openerp>

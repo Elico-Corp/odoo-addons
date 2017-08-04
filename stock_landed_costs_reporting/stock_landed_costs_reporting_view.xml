@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record id="view_stock_landed_costs_reporting_tree" model="ir.ui.view">
+            <field name="name">stock.landed.costs.reporting.tree</field>
+            <field name="model">landed.costs.reporting</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Landed costs reporting" create='false'>
+                    <field name="main_product_id" />
+                    <field name="product_id" />
+                    <field name="partner_id" />
+                    <field name="date" />
+                    <field name="period_id" />
+                    <field name="picking_info_id" />
+                    <field name="purchase_order_info_id" />
+                    <field name="purchase_price" />
+                    <field name="purchase_price_currency" />
+                    <field name="purchase_price_in_reporting_currency" />
+                    <field name="line_volume" />
+                    <field name="total_value" />
+                    <field name="total_quantity" />
+                    <field name="amount_currency" />
+                    <field name="currency_id" />
+                    <field name="amount" string="Amount (Reporting Currency)"/>
+                    <field name="amount_total_2" string="Amount Total (Reporting currency)" />
+                    <field name="default_currency_id" string="Reporting Currency"/>
+                    <field name="distribution_type_id" />
+                    <field name="duty_zone_id" />
+                    <field name="shipment_id" />
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_stock_landed_costs_reporting_search" model="ir.ui.view">
+            <field name="name">stock.landed.costs.reporting.search</field>
+            <field name="model">landed.costs.reporting</field>
+            <field name="type">search</field>
+            <field name="arch" type="xml">
+                <search string="Stock Landed Costs Reporting">
+                    <field name="partner_id" />
+                    <field name="picking_info_id" />
+                    <field name="purchase_order_info_id" />
+                    <field name="product_id" />
+                    <field name="shipment_id" />
+                    <group expand="0" string="Group By...">
+                        <filter string="Product" icon="terp-stock_effects-object-colorize" domain="[]" context="{'group_by':'main_product_id'}"/>
+                        <filter string="LC Product" icon="terp-stock_effects-object-colorize" domain="[]" context="{'group_by':'product_id'}"/>
+                        <filter string="Picking" icon="terp-stock_effects-object-colorize" domain="[]" context="{'group_by':'picking_info_id'}"/>
+                        <filter string="Purchase" icon="terp-stock_effects-object-colorize" domain="[]" context="{'group_by':'purchase_order_info_id'}"/>
+                        <filter string="Supplier" icon="terp-stock_effects-object-colorize" domain="[]" context="{'group_by':'partner_id'}"/>
+                        <filter string="Period" icon="terp-stock_effects-object-colorize" domain="[]" context="{'group_by':'period_id'}"/>
+                        <filter string="Shipment" icon="terp-stock_effects-object-colorize" domain="[]" context="{'group_by':'shipment_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="action_stock_landed_costs_reporting_tree" model="ir.actions.act_window">
+            <field name="name">Stock Landed Costs Reporting</field>
+            <field name="res_model">landed.costs.reporting</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree</field>
+            <field name="search_view_id" ref="view_stock_landed_costs_reporting_search"/>
+        </record>
+
+        <menuitem
+            id="menu_stock_landed_costs_reporting"
+            parent="stock.next_id_61"
+            action="action_stock_landed_costs_reporting_tree"
+            sequence = "100"
+            string="Landed Costs Reporting"/>
+    </data>
+</openerp>

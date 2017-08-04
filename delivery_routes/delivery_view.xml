@@ -1,0 +1,499 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+	<data noupdate="0">
+	    <record id="time_slot_dts_0930_1230" model="delivery.time.slot">
+			<field name="sequence">5</field>
+			<field name="name">A 09:30~12:30</field>
+			<field name="max_time">12:30</field>
+			<field name="start_time">09:30</field>
+			<field name="end_time">12:30</field>
+			<field name="type">dts</field>
+		</record>
+		<record id="time_slot_dts_1400_1800" model="delivery.time.slot">
+			<field name="sequence">15</field>
+			<field name="name">B 14:00~18:00</field>
+			<field name="max_time">16:29</field>
+			<field name="start_time">14:00</field>
+			<field name="end_time">18:00</field>
+			<field name="type">dts</field>
+		</record>
+		<record id="time_slot_dts_1630_2000" model="delivery.time.slot">
+			<field name="sequence">40</field>
+			<field name="name">C 16:30~20:00</field>
+			<field name="max_time">20:00</field>
+			<field name="start_time">16:30</field>
+			<field name="end_time">20:00</field>
+			<field name="type">dts</field>
+		</record>
+		
+		<record id="time_slot_pts_0500_0900" model="delivery.time.slot">
+			<field name="sequence">10</field>
+			<field name="name">A ~00:00</field>
+			<field name="max_time">00:00</field>
+			<field name="start_time">05:00</field>
+			<field name="end_time">09:00</field>
+			<field name="type">pts</field>
+			<field name="dts_id" ref="time_slot_dts_0930_1230"/>
+		</record>
+		<record id="time_slot_pts_0500_2359" model="delivery.time.slot">
+			<field name="sequence">11</field>
+			<field name="name">A 00:00~</field>
+			<field name="max_time">23:59</field>
+			<field name="start_time">05:00</field>
+			<field name="end_time">09:00</field>
+			<field name="type">pts</field>
+			<field name="dts_id" ref="time_slot_dts_0930_1230"/>
+		</record>
+		
+		<record id="time_slot_pts_0830_1000" model="delivery.time.slot">
+			<field name="sequence">20</field>
+			<field name="name">B ~08:30</field>
+			<field name="max_time">08:30</field>
+			<field name="start_time">08:30</field>
+			<field name="end_time">10:00</field>
+			<field name="type">pts</field>
+			<field name="dts_id" ref="time_slot_dts_1400_1800"/>
+		</record>
+		<record id="time_slot_pts_1000_1200" model="delivery.time.slot">
+			<field name="sequence">25</field>
+			<field name="name">B 08:30~10:00</field>
+			<field name="max_time">10:00</field>
+			<field name="start_time">10:00</field>
+			<field name="end_time">12:00</field>
+			<field name="type">pts</field>
+			<field name="dts_id" ref="time_slot_dts_1400_1800"/>
+		</record>
+		<record id="time_slot_pts_1200_1230" model="delivery.time.slot">
+			<field name="sequence">30</field>
+			<field name="name">B 10:00~12:00</field>
+			<field name="max_time">12:00</field>
+			<field name="start_time">12:00</field>
+			<field name="end_time">12:30</field>
+			<field name="type">pts</field>
+			<field name="dts_id" ref="time_slot_dts_1400_1800"/>
+		</record>
+		
+		<record id="time_slot_pts_1300_1430" model="delivery.time.slot">
+			<field name="sequence">45</field>
+			<field name="name">C ~13:00</field>
+			<field name="max_time">13:00</field>
+			<field name="start_time">13:00</field>
+			<field name="end_time">14:30</field>
+			<field name="type">pts</field>
+			<field name="dts_id" ref="time_slot_dts_1630_2000"/>
+		</record>
+		<record id="time_slot_pts_1430_1530" model="delivery.time.slot">
+			<field name="sequence">50</field>
+			<field name="name">C 13:00~14:30</field>
+			<field name="max_time">14:30</field>
+			<field name="start_time">14:30</field>
+			<field name="end_time">15:30</field>
+			<field name="type">pts</field>
+			<field name="dts_id" ref="time_slot_dts_1630_2000"/>
+		</record>
+	</data>
+	<data>
+
+        <record id="view_delivery_route_tree" model="ir.ui.view">
+            <field name="name">delivery.route.tree</field>
+            <field name="model">delivery.route</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Delivery Routes">
+                    <field name="name"/>
+                    <field name="date"/>
+                    <field name="dts_id"/>
+                    <field name="driver_id"/>
+                    <field name="picker_id"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_delivery_route_form" model="ir.ui.view">
+            <field name="name">delivery.route.form</field>
+            <field name="model">delivery.route</field>
+            <field name="arch" type="xml">
+                <form string="Delivery Route" version="7.0">
+                <header>
+                    <button name="action_draft" string="Draft" type="object" states="cancel" groups="delivery_routes.group_delivery_user"/>
+                    <button name="%(action_fill_picking)d" string="Fill Pickings" type="action" states="draft" groups="delivery_routes.group_delivery_user"/>
+                    <button name="action_confirm" string="Confirm" type="object" class="oe_highlight" states="draft" groups="delivery_routes.group_delivery_user"/>
+                    <button name="action_departure" string="Departure" type="object" class="oe_highlight" states="confirm" groups="delivery_routes.group_delivery_manager"/>
+                    <button name="action_done" string="Done" type="object" class="oe_highlight" states="departure" groups="account.group_account_user"/>
+                    <button name="action_cancel" string="Cancel" type="object" states="confirm" groups="delivery_routes.group_delivery_user"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,confirm,departure,done,cancel" statusbar_colors='{"done":"green","cancel":"red","departure":"blue"}'/>
+                </header>
+                <sheet>
+                    <group colspan="4" col="4">
+                        <field name="name"/>
+                        <field name="date"/>
+                        <field name="departure_date"/>
+                        <field name="arrive_date"/>
+                        <field name="dts_id"/>
+                        <newline />
+                        <field name="driver_id"/>
+                        <field name="picker_id"/>
+                        <field name="confirm_cs" groups="delivery_routes.group_customer_service_user" attrs="{'readonly':[('state','not in',['confirm','draft'])]}"/>
+                        <newline />
+                        <field name="line_ids" colspan="4" nolabel="1">
+                            <tree>
+                                <field name="sequence"/>
+                                <field name="origin"/>
+                                <field name="picking_id"/>
+                                <field name="address_id" string="Partner"/>
+                                <field name="street"/>
+                                <field name="visit_date"/>
+                                <field name="note"/>
+                                <field name="complete_state"/>
+                                <field name="state" invisible="1"/>
+                                <button name="action_received" icon="terp-camera_test" string="Received" type="object" attrs="{'invisible':[('state','!=','delivered')]}" groups="delivery_routes.group_delivery_manager"/>
+                                <button name="action_received_exp" icon="gtk-dialog-warning" string="Received with exception" type="object" attrs="{'invisible':[('state','!=','delivered')]}" groups="delivery_routes.group_delivery_manager"/>
+                                <button name="action_returned" icon="gtk-refresh" string="Returned" type="object" attrs="{'invisible':[('state','!=','delivered')]}" groups="delivery_routes.group_delivery_manager"/>
+                                <button name="action_returned_exp" icon="gtk-ok" string="Returned, no Delivery" type="object" attrs="{'invisible':[('state','!=','delivered')]}" groups="delivery_routes.group_delivery_manager"/>
+                            </tree>
+                        </field>
+                    </group>
+                </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="view_delivery_search" model="ir.ui.view">
+            <field name="name">delivery.route.search</field>
+            <field name="model">delivery.route</field>
+            <field name="arch" type="xml">
+                <search string="Delivery Route"> 
+                    <field name="dts_id" context="{'domain':[('type','=','dts')]}"/>
+                    <field name="date" />
+                    <filter icon="terp-go-today" string="Today" domain="[('date','=',time.strftime('%%Y-%%m-%%d'))]" help="Delivery Route for Today" name="today"/>
+                    <group expand="0" string="Group By...">
+                        <filter string="Driver" icon="terp-folder-orange" domain="[]" context="{'group_by':'driver_id'}"/>
+                        <filter string="Picker" icon="terp-folder-orange" domain="[]" context="{'group_by':'picker_id'}"/>
+                        <filter string="Delivery Time" icon="terp-folder-orange" domain="[]" context="{'group_by':'dts_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+        <record id="action_delivery_route_form" model="ir.actions.act_window">
+            <field name="name">Delivery Route</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">delivery.route</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{'active_test':False,'search_default_today': True}</field>
+            <field name="search_view_id" ref="view_delivery_search"/>
+        </record>
+        <record id="action_delivery_route_form_tree" model="ir.actions.act_window.view">
+            <field name="view_mode">tree</field>
+            <field name="sequence">1</field>
+            <field name="view_id" ref="view_delivery_route_tree"/>
+            <field name="act_window_id" ref="action_delivery_route_form"/>
+        </record>
+        <record id="action_delivery_route_form_form" model="ir.actions.act_window.view">
+            <field name="view_mode">form</field>
+            <field name="sequence">2</field>
+            <field name="view_id" ref="view_delivery_route_form"/>
+            <field name="act_window_id" ref="action_delivery_route_form"/>
+        </record> 
+
+
+        <menuitem name="Delivery"
+            id="menu_delivery_root"
+            groups="delivery_routes.group_delivery_user"
+            action="action_delivery_route_form"
+            sequence="75"/>
+
+        <menuitem name="Delivery"
+            id="menu_delivery_delivery"
+            parent="menu_delivery_root"
+            sequence="1"/>
+
+        <menuitem name="Time Slot"
+            id="menu_delivery_slot"
+            parent="menu_delivery_root"
+            sequence="70"/>
+        
+        <menuitem name="Configuration"
+            id="menu_delivery_config"
+            parent="menu_delivery_root"
+            sequence="75"/>
+               
+        <menuitem action="action_delivery_route_form" id="menu_action_delivery_route_form" parent="menu_delivery_delivery" sequence="0"/>
+
+		<record model='ir.ui.view' id='delivery_routes_carrier_form_view'>
+			<field name='name'>Delivery Routes Carrier Form Inherit</field>
+			<field name='model'>delivery.carrier</field>
+			<field name='inherit_id' ref='delivery.view_delivery_carrier_form'/>
+			<field name='type'>form</field>
+			<field name='arch' type='xml'>
+				<xpath expr="/form/field[@name='pricelist_ids']" position="after">
+					<field name="driver_ids" nolabel="1" colspan="4"/>
+				</xpath>
+			</field>
+		</record>
+
+        <!-- Delivery Driver -->
+        <record id="view_delivery_driver_tree" model="ir.ui.view">
+            <field name="name">delivery.driver.tree</field>
+            <field name="model">delivery.driver</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Delivery Drivers">
+                    <field name="name"/>
+                    <field name="carrier_id"/>
+                    <field name="is_driver"/>
+                    <field name="is_picker"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_delivery_driver_form" model="ir.ui.view">
+            <field name="name">delivery.driver.form</field>
+            <field name="model">delivery.driver</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Delivery Driver">
+                    <field name="name"/>
+                    <field name="active"/>
+                    <field name="carrier_id"/>
+		    		<field name="outsourcing"/>
+		    		<field name="is_driver"/>
+                    <field name="is_picker"/>
+				    <group colspan="2" col="4">
+					    <field name="employee_id" attrs="{'invisible':[('outsourcing','=',True)]}"/>
+					    <field name="partner_id" attrs="{'invisible':[('outsourcing','=',False)]}"/>
+				    </group>
+                </form>
+            </field>
+        </record>
+
+		<record id="action_delivery_driver_form" model="ir.actions.act_window">
+            <field name="name">Delivery Driver</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">delivery.driver</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <menuitem action="action_delivery_driver_form" id="menu_action_delivery_driver_form" parent="menu_delivery_config" />
+
+        <!-- Delivery Time Slot -->
+        <record id="view_delivery_time_slot_tree" model="ir.ui.view">
+            <field name="name">delivery.time.slot.tree</field>
+            <field name="model">delivery.time.slot</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Time Slot">
+                    <field name="type"/>
+                    <field name="name"/>
+                    <field name="start_time"/>
+                    <field name="end_time"/>
+                    <field name="max_time"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_delivery_time_slot_form" model="ir.ui.view">
+            <field name="name">delivery.time.slot.form</field>
+            <field name="model">delivery.time.slot</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Time Slot">
+                    <field name="name"/>
+                    <field name="sequence"/>
+                    <field name="type"/>
+                    <field name="shop_id"/>
+                    <field name="max_time"/>
+                    <newline />
+                    <field name="start_time"/>
+                    <field name="end_time"/>
+                    <field name="parent_id" domain="[('type','=',type)]"/>
+                    <field name="dts_id" attrs="{'invisible':[('type','=','dts')]}"/>
+                </form>
+            </field>
+        </record>
+
+		<record id="action_delivery_time_slot_form" model="ir.actions.act_window">
+            <field name="name">Time Slot</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">delivery.time.slot</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <menuitem action="action_delivery_time_slot_form" id="menu_action_delivery_time_slot_form" parent="menu_delivery_config"/>
+
+        <!-- Delivery Time -->
+        <record id="view_delivery_time_tree" model="ir.ui.view">
+            <field name="name">delivery.time.tree</field>
+            <field name="model">delivery.time</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Delivery/Preparation Time">
+                    <field name="name"/>
+                    <field name="start_date"/>
+                    <field name="end_date"/>
+                    <field name="type"/>
+                    <field name="slot_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_delivery_time_form" model="ir.ui.view">
+            <field name="name">delivery.time.form</field>
+            <field name="model">delivery.time</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Delivery/Preparation Time">
+                    <field name="name"/>
+                    <field name="sequence"/>
+                    <field name="start_date"/>
+                    <field name="end_date"/>
+                    <field name="active"/>
+                    <field name="type"/>
+                    <field name="dts_id" domain="[('type','=','dts')]" attrs="{'invisible':[('type','=','dts')]}"/>
+                    <field name="slot_id" domain="[('type','=',type)]"/>
+                </form>
+            </field>
+        </record>
+
+		<record id="action_delivery_time_form" model="ir.actions.act_window">
+            <field name="name">Delivery Time</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">delivery.time</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('type','=','dts')]</field>
+        </record>
+        <menuitem action="action_delivery_time_form" id="menu_action_delivery_time_form" parent="menu_delivery_slot" />
+        
+        <record id="action_preparation_time_form" model="ir.actions.act_window">
+            <field name="name">Preparation Time</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">delivery.time</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('type','=','pts')]</field>
+        </record>
+        <menuitem action="action_preparation_time_form" id="menu_action_preparation_time_form" parent="menu_delivery_slot" />
+
+        <!-- Delivery Route -->
+        <record id="view_delivery_route_line_tree" model="ir.ui.view">
+            <field name="name">delivery.route.line.tree</field>
+            <field name="model">delivery.route.line</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Delivery Route Lines">
+                    <field name="origin"/>
+                    <field name="route_id" invisible="1"/>
+                    <field name="picking_id" invisible="1"/>
+                    <field name="address_id" string="Partner"/>
+                    <field name="street"/>
+                    <field name="picker"/>
+                    <field name="driver"/>
+                    <field name="driver_phone" string="Phone"/>
+                    <field name="visit_date"/>
+                    <field name="note"/>
+                    <field name="complete_state"/>
+                    <field name="state" invisible="1"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_delivery_route_line_form" model="ir.ui.view">
+            <field name="name">delivery.route.line.form</field>
+            <field name="model">delivery.route.line</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Delivery Route Line">
+                    <field name="sequence"/>
+                    <field name="route_id"/>
+                    <field name="address_id"/>
+                    <field name="picking_id"/>
+                    <field name="visit_date"/>
+                    <newline />
+                    <separator string="Notes" colspan="4"/>
+                    <field name="note" nolabel="1" colspan="4"/>
+                    <field name="state"/>
+                    <group colspan="2" col="5">
+                        <button name="action_draft" string="Draft" type="object" states="cancel"/>
+                        <button name="action_delivered" string="Delivered" type="object" states="draft"/>
+                        <button name="action_received" string="Received" type="object" states="delivered"/>
+                        <button name="action_returned" string="Returned" type="object" states="delivered"/>
+                        <button name="action_cancel" string="Cancel" type="object" states="received,returned,delivered"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+
+        <!-- Delivery route kanban view -->
+        <record model="ir.ui.view" id="delivery_route_line_kanban_view">
+            <field name="name">delivery.route.line.kanban.old</field>
+            <field name="model">delivery.route.line</field>
+            <field name="arch" type="xml">
+                <kanban version="7.0" default_group_by="route_id">
+                    <field name="picking_id"/>
+                    <field name="route_id"/>
+                    <field name="address_id"/>
+                    <field name="note"/>
+                    <field name="sequence"/>
+                    <templates>
+                        <!--
+                        <button name="action_delivered_do_line" string="WaKa" type="object"/>
+                        -->
+                    <t t-name="kanban-box">
+                        <div t-attf-class="oe_kanban_card oe_kanban_global_click">
+                            <div class="oe_dropdown_toggle oe_dropdown_kanban" groups="base.group_user">
+                                <span class="oe_e">í</span>
+                                <ul class="oe_dropdown_menu">
+                                    <t t-if="widget.view.is_action_enabled('edit')"><li><a type="edit">Edit...</a></li></t>
+                                    <t t-if="widget.view.is_action_enabled('delete')"><li><a type="delete">Delete</a></li></t>
+                                </ul>
+                            </div>
+                            <div class="oe_kanban_content">
+                                <div><b><field name="picking_id"/></b></div>
+                                <div>
+                                    <field name="address_id"/><br/>
+                                    <div class="oe_ellipsis"><t t-raw="record.note.value"/></div>
+                                </div>
+                            </div>
+                            <div class="oe_clear"></div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+        <record id="view_delivery_line_search" model="ir.ui.view">
+            <field name="name">delivery.line.search</field>
+            <field name="model">delivery.route.line</field>
+            <field name="arch" type="xml">
+                <search string="Delivery Line"> 
+                    <field name="picking_id" />
+                    <field name="address_id" />
+                    <field name="origin" />
+                    <filter name="no_route" string="no route" domain="[('route_id','=',None)]" help="line without route" />
+                </search>
+            </field>
+        </record>
+        
+        <record id="action_delivery_route_line" model="ir.actions.act_window">
+            <field name="name">Delivery Route Line</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">delivery.route.line</field>
+            <field name="view_type">form</field>
+            <field name="context">{'active_test':False,'search_default_today': True}</field>
+            <field name="view_mode">tree,form,kanban</field>
+            <field name="search_view_id" ref="view_delivery_line_search"/>
+        </record>
+        <record id="action_delivery_line_form_tree_cs" model="ir.actions.act_window.view">
+            <field name="view_mode">tree</field>
+            <field name="sequence">1</field>
+            <field name="view_id" ref="view_delivery_route_line_tree"/>
+            <field name="act_window_id" ref="action_delivery_route_line"/>
+        </record>
+
+        <menuitem action="action_delivery_route_line" id="menu_action_delivery_route_line" parent="menu_delivery_delivery" sequence="12"/>
+        <!--menuitem action="delivery_routes.action_select_line_range" name="Delivery Arrangement"  id="menu_action_select_line_range" parent="menu_delivery_delivery" sequence="13"/-->
+    </data>
+</openerp>

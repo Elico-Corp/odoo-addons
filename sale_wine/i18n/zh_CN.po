@@ -1,0 +1,157 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+# 	* wine
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 7.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-11-04 04:27+0000\n"
+"PO-Revision-Date: 2013-11-04 12:34+0800\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"X-Generator: Poedit 1.5.7\n"
+
+#. module: wine
+#: model:ir.model.fields,field_description:wine.field_product_product_grape_id
+#: field:product.product,grape_id:0
+msgid "Main Grape"
+msgstr "主要品种"
+
+#. module: wine
+#: view:product.product:0
+msgid "Information"
+msgstr "信息"
+
+#. module: wine
+#: model:ir.model.fields,field_description:wine.field_product_product_capacity_id
+#: field:product.product,capacity_id:0
+msgid "Capacity"
+msgstr "容量"
+
+#. module: wine
+#: model:ir.model.fields,field_description:wine.field_wine_grape_name_en
+#: field:wine.grape,name_en:0
+msgid "Name EN"
+msgstr "英文名称"
+
+#. module: wine
+#: selection:product.product,wine_type:0
+msgid "Champagne"
+msgstr "香槟"
+
+#. module: wine
+#: selection:product.product,wine_type:0
+msgid "Sparkling Wine"
+msgstr "起泡酒"
+
+#. module: wine
+#: model:ir.model,name:wine.model_product_product view:wine.grape:0
+msgid "Product"
+msgstr "产品"
+
+#. module: wine
+#: selection:product.product,wine_type:0
+msgid "White Wine"
+msgstr "白葡萄酒"
+
+#. module: wine
+#: sql_constraint:wine.grape:0
+msgid "The English name of the field has to be unique !"
+msgstr "该字段的英文名称必须唯一！"
+
+#. module: wine
+#: view:wine.grape:0
+msgid "English name"
+msgstr "英文名称"
+
+#. module: wine
+#: model:ir.model.fields,field_description:wine.field_product_product_country_id
+#: field:product.product,country_id:0
+msgid "Country"
+msgstr "国家"
+
+#. module: wine
+#: model:ir.model.fields,field_description:wine.field_product_product_state_id
+#: field:product.product,state_id:0
+msgid "Region"
+msgstr "地区"
+
+#. module: wine
+#: model:ir.model,name:wine.model_wine_grape
+msgid "wine.grape"
+msgstr "wine.grape"
+
+#. module: wine
+#: model:ir.model,name:wine.model_product_template
+msgid "Product Template"
+msgstr "产品模板"
+
+#. module: wine
+#: selection:product.product,wine_type:0
+msgid "Red Wine"
+msgstr "红葡萄酒"
+
+#. module: wine
+#: sql_constraint:wine.grape:0
+msgid "The chinese name of the field has to be unique !"
+msgstr "该字段的中文名称必须唯一！"
+
+#. module: wine
+#: view:wine.grape:0
+msgid "Chinese name"
+msgstr "中文名称"
+
+#. module: wine
+#: model:ir.actions.act_window,name:wine.wine_grape_normal_action_tree
+#: model:ir.ui.menu,name:wine.menu_wine_grape
+msgid "Wine Grape"
+msgstr "葡萄酒品种"
+
+#. module: wine
+#: selection:product.product,wine_type:0
+msgid "Sweet Wine"
+msgstr "甜酒"
+
+#. module: wine
+#: view:product.product:0
+msgid "Wine"
+msgstr "葡萄酒"
+
+#. module: wine
+#: model:ir.model.fields,field_description:wine.field_product_product_producer_id
+#: field:product.product,producer_id:0
+msgid "Producer"
+msgstr "生产商"
+
+#. module: wine
+#: model:ir.model.fields,field_description:wine.field_product_product_wine_type
+#: field:product.product,wine_type:0
+msgid "Wine Type"
+msgstr "葡萄酒类型"
+
+#. module: wine
+#: model:ir.model.fields,field_description:wine.field_product_product_name_cn
+#: model:ir.model.fields,field_description:wine.field_wine_grape_name_cn
+#: field:product.product,name_cn:0 field:wine.grape,name_cn:0
+msgid "Name CN"
+msgstr "中文名称"
+
+#. module: wine
+#: selection:product.product,wine_type:0
+msgid "Rosé Wine"
+msgstr "桃红葡萄酒"
+
+#. module: wine
+#: view:wine.grape:0
+msgid "Wine Grapes"
+msgstr "葡萄酒品种"
+
+#. module: wine
+#: model:ir.model,name:wine.model_res_country_state
+msgid "Country state"
+msgstr "国家的州"

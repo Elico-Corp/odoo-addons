@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="1">
+        <record id="customer_origin" model="res.partner">
+            <field name="name">Company Origin</field>
+        </record>
+
+        <record id="supplier_destination" model="res.partner">
+            <field name="name">Company Destination</field>
+            <field name="supplier" eval="True" />
+        </record>
+
+        <record id="company_origin" model="res.company">
+            <field name="name">Company Origin</field>
+            <field name="parent_id" ref="base.main_company"/>
+            <field name="partner_id" ref="customer_origin" />
+        </record>
+
+        <record id="company_destination" model="res.company">
+            <field name="name">Company Destination</field>
+            <field name="parent_id" ref="base.main_company"/>
+            <field name="partner_id" ref="supplier_destination" />
+        </record>
+
+        <record id="customer_origin" model="res.partner">
+            <field name="company_id"></field>
+        </record>
+
+        <record id="supplier_destination" model="res.partner">
+            <field name="company_id"></field>
+        </record>
+
+        <record id="partner_origin" model="res.partner">
+            <field name="name">User Origin</field>
+            <field name="company_id" ref="company_origin"/>
+            <field name="customer" eval="False"/>
+        </record>
+
+        <record id="user_origin" model="res.users">
+            <field name="partner_id" ref="partner_origin"/>
+            <field name="login">user.origin</field>
+            <field name="password">user.origin</field>
+            <field name="company_id" ref="company_origin"/>
+            <field name="company_ids" eval="[(6,0,[ref('company_origin')])]" />
+            <field name="groups_id" eval="[(6,0,[ref('base.group_user'), ref('base.group_partner_manager')])]"/>
+        </record>
+
+        <record id="partner_destination" model="res.partner">
+            <field name="name">User Destination</field>
+            <field name="company_id" ref="company_destination"/>
+            <field name="customer" eval="False"/>
+        </record>
+
+        <record id="user_destination" model="res.users">
+            <field name="partner_id" ref="partner_destination"/>
+            <field name="login">user.destination</field>
+            <field name="password">user.destination</field>
+            <field name="company_id" ref="company_destination"/>
+            <field name="company_ids" eval="[(6,0,[ref('company_destination')])]" />
+            <field name="groups_id" eval="[(6,0,[ref('base.group_user'), ref('base.group_partner_manager')])]"/>
+        </record>
+        
+        <!-- ICOPS Setup -->
+        <record id="backend_origin" model="icops.backend">
+            <field name="name">Backend Origin</field>
+            <field name="company_id" ref="company_origin" />
+            <field name="icops_uid" ref="user_origin" />
+        </record>
+
+        <record id="backend_destination" model="icops.backend">
+            <field name="name">Backend Destination</field>
+            <field name="company_id" ref="company_destination" />
+            <field name="icops_uid" ref="user_destination" />
+        </record>
+    </data>
+</openerp>

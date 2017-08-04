@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<record id="extra_product_form_view" model="ir.ui.view">
+		<field name="name">extra.product.form_extra</field>
+		<field name="model">product.product</field>
+		<field name="inherit_id" ref="product.product_normal_form_view"/>
+		<field name="arch" type="xml">
+			<xpath expr="//field[@name='list_price']" position="after">
+				<field name="minimum_price"/>
+			</xpath>
+		</field>
+		</record>
+		        
+		<record id="sale_bottom_form_view_inherit_sample" model="ir.ui.view">
+			<field name="name">sale.bottom.form_extra_sample</field>
+			<field name="model">sale.order</field>
+			<field name="inherit_id" ref="sale.view_order_form"/>
+			<field name="arch" type="xml">
+				<!-- add sample field onto sale order line tree view -->
+				<xpath expr="//tree/field[@name='product_id']" position="before">
+					<field name="sample" on_change="product_id_change(parent.pricelist_id,product_id,product_uom_qty,product_uom,product_uos_qty,product_uos,name,parent.partner_id, False, False, parent.date_order, product_packaging, parent.fiscal_position, False, context)"
+						context="{'partner_id':parent.partner_id, 'quantity':product_uom_qty, 'pricelist':parent.pricelist_id, 'shop':parent.shop_id, 'uom':product_uom, 'sample': sample}"/>
+		       </xpath>
+		       <!-- add discount field onto sale order line tree view -->
+				<xpath expr="//tree/field[@name='discount']" position="replace">
+					<field name="discount_dummy" groups="sale.group_discount_per_so_line"
+					     on_change="discount_dummy_change(original_price,discount_dummy,price_unit,sample,context)" context="{'default_discount_dummy': discount_dummy}"/>
+					<field name="price_unit" on_change="price_unit_change(original_price,discount_dummy,price_unit,sample,context)" context="{'default_price_unit': price_unit}" invisible="0"/>
+				</xpath>
+		       <!-- add price_unit field onto sale order line tree view -->
+				<xpath expr="//tree/field[@name='price_unit']" position="replace">
+					<field name="original_price"/>
+				</xpath>
+
+				<!-- add price_unit, discount_dummy, original_price onto sale order line form -->
+				<xpath expr="//label[@for='discount']" position="replace">
+                    <label for="discount_dummy" groups="sale.group_discount_per_so_line"/>
+				</xpath>
+				<xpath expr="//form/sheet/notebook/page/field[@name='order_line']/form/group/group/div[@name='discount']" position="replace">
+		            <div name="discount_dummy" groups="sale.group_discount_per_so_line">
+		                <field name="discount_dummy" class="oe_inline" on_change="discount_dummy_change(original_price,discount_dummy,price_unit,sample,context)" context="{'default_discount_dummy': discount_dummy}"/> %%
+		            </div>
+					<field name="original_price" invisible="1"/>
+                    <field name="original_price_2"/>
+			        <field name="price_unit" on_change="price_unit_change(original_price,discount_dummy,price_unit,sample,context)" context="{'default_price_unit': price_unit}"/>
+				</xpath>
+				<xpath expr="//field[@name='order_line']/form//field[@name='price_unit']" position="attributes">
+					<attribute name='invisible'>True</attribute>
+				</xpath>
+			</field>
+		</record>
+
+<!-- inherit invoice line views to replace the field: discount with discount_dummy -->
+        <record id="inherit_view_invoice_line_tree" model="ir.ui.view">
+            <field name="name">inherit.account.invoice.line.tree</field>
+            <field name="model">account.invoice.line</field>
+            <field name="inherit_id" ref="account.view_invoice_line_tree" />
+            <field name="arch" type="xml">
+            	<field name="discount" position="replace">
+                    <field name="original_price" />
+                    <field name="discount_dummy" readonly="1" groups="sale.group_discount_per_so_line"/>
+            	</field>
+                <field name="uos_id" position="attributes">
+                    <attribute name="string">UoM</attribute>
+                </field>
+                <field name="quantity" position="attributes">
+                    <attribute name="string">Qty</attribute>
+                </field>
+            </field>
+        </record>
+
+        <record id="inherit_view_invoice_line_form" model="ir.ui.view">
+            <field name="name">inherit.account.invoice.line.form</field>
+            <field name="model">account.invoice.line</field>
+            <field name="inherit_id" ref="account.view_invoice_line_form" />
+            <field name="arch" type="xml">
+            	<field name="price_unit" position="before">
+                    <field name="original_price" />
+                    <field name="discount_dummy" readonly="1" groups="sale.group_discount_per_so_line"/>
+            	</field>
+            </field>
+        </record>
+
+        <record id="inherit_invoice_form" model="ir.ui.view">
+            <field name="name">inherit.account.invoice.line.form</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_form" />
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='invoice_line']/tree//field[@name='price_unit']" position="before">
+                    <field name="original_price" />
+                    <field name="discount_dummy" readonly="1" groups="sale.group_discount_per_so_line"/>
+                </xpath>
+                <xpath expr="//field[@name='invoice_line']/tree//field[@name='uos_id']" position="attributes">
+                    <attribute name="string">UoM</attribute>
+                </xpath>
+                <xpath expr="//field[@name='invoice_line']/tree//field[@name='quantity']" position="attributes">
+                    <attribute name="string">Qty</attribute>
+                </xpath>
+            </field>
+        </record>
+	</data>
+</openerp>

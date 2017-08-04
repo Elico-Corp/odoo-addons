@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+	<data>
+		<record id="inherit_delivery_stock_picking_form_view" model="ir.ui.view">
+			<field name="name">inherit.delivery.stock.picking.form.view</field>
+			<field name="model">stock.picking.out</field>
+			<field name="inherit_id" ref="delivery.view_picking_withcarrier_out_form" />
+			<field name="arch" type="xml">
+				<field name="carrier_id" position="after">
+					<field name="carrier_website" widget='url' readonly="1"/>
+					<field name="tracking_website" widget='url' readonly="1"/>
+				</field>
+			</field>
+		</record>
+
+		<record id="inherit_delivery_carrier_form_view" model="ir.ui.view">
+			<field name="name">inherit.delivery.stock.picking.form.view</field>
+			<field name="model">delivery.carrier</field>
+			<field name="inherit_id" ref="delivery.view_delivery_carrier_form" />
+			<field name="arch" type="xml">
+				<field name="product_id" position="after">
+					<field name="tracking_website" widget='url'/>
+				</field>
+			</field>
+		</record>
+		
+	</data>
+</openerp>

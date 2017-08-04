@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="wizard_import_from_tmpl" model="ir.ui.view">
+            <field name="name">Import Gap from Template</field>
+            <field name="model">gap_analysis.import_from_tmpl</field>
+            <field name="arch" type="xml">
+				<form string="Import from Template" version="7.0">
+                    <group>
+                        <button icon="gtk-print" name="go_import" string="Import from Template" type="object" class="oe_highlight" attrs="{'invisible':[('template','=',False)]}"/>
+                    </group>
+				    <group>
+                        <field name="template" domain="[('is_tmpl','=',True)]"/>
+				    </group>
+				</form>
+            </field>
+        </record>
+	</data>
+	
+    <data>
+		<record id="gap_analysis_imp_xls_view" model="ir.ui.view">
+            <field name="name">Gap Analysis: Import from Excel</field>
+            <field name="model">gap_analysis.import_xls</field>
+            <field name="arch" type="xml">
+               <form string="Gap Analysis: Import from Excel" version="7.0">
+                    <group>
+                        <button name="import_xls" string="Import" type="object" class="oe_highlight" icon="gtk-convert"/>
+                    </group>
+                    <group>
+                        <field name="import_file"/>
+	                </group>
+                </form>
+            </field>
+        </record>
+		<record id="gap_analysis_imp_fct_view" model="ir.ui.view">
+            <field name="name">Gap Analysis: Import Functionalities from Excel</field>
+            <field name="model">gap_analysis.import_fct_xls</field>
+            <field name="arch" type="xml">
+               <form string="Functionalities: Import from Excel" version="7.0">
+                    <group>
+                        <button name="import_xls" string="Import" type="object" class="oe_highlight" icon="gtk-convert"/>
+                    </group>
+                    <group>
+                        <field name="import_file"/>
+	                </group>
+                </form>
+            </field>
+        </record>
+        
+        <record id="act_gap_analysis_imp_xls" model="ir.actions.act_window">
+             <field name="name">Gap Analysis: Import from Excel</field>
+             <field name="res_model">gap_analysis.import_xls</field>
+             <field name="type">ir.actions.act_window</field>
+             <field name="view_type">form</field>
+             <field name="view_mode">form</field>
+             <field name="view_id" ref="gap_analysis_imp_xls_view"/>
+             <field name="target">new</field>
+        </record>
+        <record id="act_gap_analysis_imp_fct" model="ir.actions.act_window">
+             <field name="name">Gap Analysis: Import Functionalities from Excel</field>
+             <field name="res_model">gap_analysis.import_fct_xls</field>
+             <field name="type">ir.actions.act_window</field>
+             <field name="view_type">form</field>
+             <field name="view_mode">form</field>
+             <field name="view_id" ref="gap_analysis_imp_fct_view"/>
+             <field name="target">new</field>
+        </record>
+        
+        <menuitem id="menu_gap_002" name="Import Gap from Excel" parent="menu_gap_00" sequence="10" action="act_gap_analysis_imp_xls" groups="gap_analysis.res_group_gap1"/>
+        <menuitem id="menu_gap_026" name="Import Functionalities from Excel" parent="menu_gap_00" sequence="11" action="act_gap_analysis_imp_fct" groups="gap_analysis.res_group_gap1"/>
+    </data>
+</openerp>

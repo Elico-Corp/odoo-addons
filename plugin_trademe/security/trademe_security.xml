@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+
+	    <record id="group_plugin_manager" model="res.groups">
+	        <field name="name">Trademe Manager</field>
+	        <field name="category_id" ref="base.module_category_hidden"/>
+	    </record>
+	    
+	    <record id="portal.group_portal" model="res.groups">
+	        <field name="implied_ids" eval="[(4,ref('group_plugin_manager'))]"/>
+        </record>
+
+	    <record id="group_plugin_user" model="res.groups">
+	        <field name="name">Trademe User</field>
+	        <field name="category_id" ref="base.module_category_hidden"/>
+	    </record>
+	    
+	    <record id="portal.group_portal" model="res.groups">
+	        <field name="implied_ids" eval="[(4,ref('group_plugin_user'))]"/>
+        </record>
+	        
+	</data>
+</openerp>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+    	
+        <record id="view_partner_form_joomla1" model="ir.ui.view">
+            <field name="name">res.partner.form.FC</field>
+            <field name="model">res.partner</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="base.view_partner_form" />
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='customer']" position="after">
+                    <field name="supplier_product_limit" attrs="{'invisible':[('supplier','!=',True)]}"/>
+                </xpath>
+            </field>
+        </record>
+
+
+
+        <!-- Purchase Order -->
+        <record id="purchase_order_form_fc" model="ir.ui.view">
+            <field name="name">purchase.order.form_FC</field>
+            <field name="model">purchase.order</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="purchase.purchase_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='order_line']/tree/field['product_id']" position="replace">
+                    
+                            <field name="product_id" on_change="onchange_product_id(parent.pricelist_id,product_id,0,product_uom,parent.partner_id, parent.date_order,parent.fiscal_position,date_planned,name,price_unit,context)" context="{'supplier_id': parent.partner_id}"/>
+
+                </xpath>
+            </field>
+        </record>
+        <record id="purchase_order_line_form_fc" model="ir.ui.view">
+            <field name="name">purchase.order.line.form_FC</field>W
+            <field name="model">purchase.order.line</field>
+            <field name="inherit_id" ref="purchase.purchase_order_line_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field['product_id']" position="attributes">
+                     <attribute name="context">{'supplier_id': parent.partner_id}</attribute>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</openerp>

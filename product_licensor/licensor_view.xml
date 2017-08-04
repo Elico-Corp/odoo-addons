@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <!-- new tree view for licensor -->
+        <record id="view_licensors_list" model="ir.ui.view">
+            <field name="name">view.licensors.list</field>
+            <field name="model">res.partner</field>
+            <!-- we have a low sequence to not been chosen by other action. -->
+            <field name="arch" type="xml" >
+                <tree string="Licensors">
+                    <field name="id" string="Licensor ID"/>
+                    <field name="name"/>
+                    <field name="street" />
+                    <field name="street2" />
+                    <field name="city" />
+                    <field name="state_id" />
+                    <field name="phone"/>
+                    <field name="contract_number" />
+                    <field name="number_of_samples" />
+                    <field name="field_percentage" />
+                    <field name="is_licensor" invisible="1" />
+                </tree>
+            </field>
+        </record>
+
+        <!-- inherit existing partner view: add a new tab for licensors -->
+        <record id="view_licensor_form" model="ir.ui.view">
+            <field name="name">res.licensor.inherit</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='ref']/.." position="after">
+                    <group>
+                        <field name="is_licensor" groups="product_licensor.group_licensor_manager"/>
+                    </group>
+                </xpath>
+                <page string="History" position="before">
+                    <page string="Licensors" col="4" name="licensors" groups="product_licensor.group_licensor_manager" attrs="{'invisible': [('is_licensor', '=', False)]}">
+                        <group>
+                            <group>
+                                <field name="contract_number" />
+                                <field name="number_of_samples" />
+                                <field name="field_percentage" />
+                                <field name="licensed_product_ids" />
+                            </group>
+                        </group>
+                    </page>
+                </page>
+            </field>
+        </record>
+
+        <!-- new action window for licensor -->
+        <record id="action_licensor_form" model="ir.actions.act_window">
+            <field name="name">Licensors</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">res.partner</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">kanban,tree,form</field>
+            <field name="view_id" ref="view_licensors_list"/>
+            <field name="domain">[('is_licensor','=',1)]</field>
+            <field name="context">{"default_is_licensor":1}</field>
+            <field name="search_view_id" ref="base.view_res_partner_filter"/>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to add a licensor in your address book.
+              </p><p>
+                OpenERP helps you easily track all activities related to
+                a customer; discussions, history of business opportunities,
+                documents, etc.
+              </p>
+            </field>
+        </record>
+
+        <!-- new menu for view Licensor -->
+        <menuitem action="action_licensor_form" id="menu_licensor_form" parent="purchase.menu_procurement_management" sequence="16"
+            groups="group_licensor_manager"/>
+
+    </data>
+</openerp>

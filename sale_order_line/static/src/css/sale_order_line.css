@@ -1,0 +1,28 @@
+/*
+how to temporary  change the  css stype:  oe_list_group_name
+but not impact other model group ?
+
+.openerp .oe_list_group_name {
+  white-space: nowrap;
+}
+
+*/
+
+.openerp .oe_list_group_name {
+	white-space: pre-wrap;
+	word-break:break-all;
+	width:400px;
+	align:left;
+}
+
+
+.openerp .oe_list_group_name_product {
+	white-space: pre-wrap;
+	word-break:break-all;
+	width:400px;
+	align:left;
+}
+
+
+
+

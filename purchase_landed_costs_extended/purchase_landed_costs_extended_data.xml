@@ -1,0 +1,29 @@
+<openerp>
+    <data noupdate="0">
+        <record forcecreate="True" id="dist_volume" model="landed.cost.distribution.type">
+            <field name="name">Distributed by Volume</field>
+            <field name="landed_cost_type">volume</field>
+            <field name="apply_on">order</field>
+        </record>
+        <record forcecreate="True" id="per_volume" model="landed.cost.distribution.type">
+            <field name="name">Multiplied by Volume</field>
+            <field name="landed_cost_type">volume</field>
+            <field name="apply_on">line</field>
+        </record>
+    </data>
+    <data noupdate="1">
+        <record forcecreate="True" id="volume_factor_precision" model="decimal.precision">
+            <field name="name">Volume Factor</field>
+            <field name="">2</field>
+        </record>
+        <record id="sequence_landed_costs_shipment" model="ir.sequence">
+            <field name="name">Landed costs shipment</field>
+            <field eval="4" name="padding"/>
+            <field name="prefix">SHP/%(year)s/</field>
+        </record>
+        <record id="sequence_reconcile" model="ir.sequence.type">
+            <field name="name">Landed costs shipment</field>
+            <field name="code">landed.costs.shipment</field>
+        </record>
+    </data>
+</openerp>

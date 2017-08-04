@@ -1,0 +1,397 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <!-- stock duty zone form view -->
+        <record id="view_duty_zone_form" model="ir.ui.view">
+            <field name="name">stock.duty.zone.form.view</field>
+            <field name="model">stock.duty.zone</field>
+            <field name="arch" type="xml">
+                <form string="Duty Zones" version="7.0">
+                    <sheet>
+                        <h1 class="oe_title">
+                            <field name="name" />
+                        </h1>
+                        <group>
+                            <group>
+                                <field name="price_type_id" />
+                                <field name="val_account_id" />
+                                <field name="journal_id" />
+                                <field name="company_id" />
+                            </group>
+                        </group>
+                        <group>
+                            <label for="location_ids" />
+                            <div>
+                                <button name="%(action_view_set_location_duty_zone)d" string="Add" class="oe_button oe_list_add oe_highlight" type="action"/>
+                                <field name="location_ids" readonly="1" >
+                                    <tree string="Locations">
+                                        <field name="complete_name" />
+                                        <field name="usage" />
+                                        <field name="partner_id" />
+                                        <button name="button_delete_location" type="object" icon="gtk-delete" />
+                                    </tree>
+                                </field>
+                            </div>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- stock duty zone tree view -->
+        <record id="view_stock_duty_zone_tree" model="ir.ui.view">
+            <field name="name">stock.duty.zone.tree</field>
+            <field name="model">stock.duty.zone</field>
+            <field name="arch" type="xml">
+                <tree string="Duty Zones">
+                    <field name="name"/>
+                    <field name="price_type_id" />
+                    <field name="val_account_id" />
+                    <field name="journal_id" />
+                    <field name="company_id" />
+                </tree>
+            </field>
+        </record>
+
+        <!-- action window for stock duty zone -->
+        <record id="action_duty_zone_form" model="ir.actions.act_window">
+            <field name="name">Duty Zone</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">stock.duty.zone</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_stock_duty_zone_tree"/>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to define a new duty zone.
+              </p>
+            </field>
+        </record>
+
+        <!-- menu to view duty zones -->
+        <menuitem action="action_duty_zone_form" id="menu_action_duty_zone_form" parent="stock.menu_stock_configuration" sequence="6" groups="stock.group_locations"/>
+
+        <!-- stock location form view. add duty zone information -->
+        <record id="view_duty_zone_stock_location_form" model="ir.ui.view">
+            <field name="name">stock.duty.zone.stock.location.form.view</field>
+            <field name="model">stock.location</field>
+            <field name="inherit_id" ref="stock.view_location_form"/>
+            <field name="arch" type="xml">
+                <group string="Localization" position="after">
+                    <group name="duty_group" string="Duty Zone Info" attrs="{'invisible': [('usage', 'in', ('customer', 'inventory', 'supplier', 'procurement', 'production', 'transit'))]}" >
+                        <field name="duty_zone_id" nolabel="0" />
+                        <!-- <field name="isduty_zone" attrs="{'readonly': [('usage', '&lt;&gt;', 'view')]}"/>
+                        <field name="price_type_id" attrs="{'required': [('isduty_zone', '=', True)], 'invisible': [('isduty_zone', '=', False)], 'readonly': [('usage', '&lt;&gt;', 'view')]}" />
+                        <field name="in_account_id" attrs="{'required': [('isduty_zone', '=', True)], 'readonly': [('usage', '&lt;&gt;', 'view')]}" />
+                        <field name="out_account_id" attrs="{'required': [('isduty_zone', '=', True)], 'readonly': [('usage', '&lt;&gt;', 'view')]}" /> -->
+                    </group>
+                </group>
+            </field>
+        </record>
+
+        <!-- stock location search view -->
+        <record id="inherit_view_location_search" model="ir.ui.view">
+            <field name="name">inherit.stock.location.search</field>
+            <field name="model">stock.location</field>
+            <field name="inherit_id" ref="stock.view_location_search" />
+            <field name="arch" type="xml">
+                <field name="location_id" position="after">
+                    <group expand="0" string="Group by..">
+                      <filter name="groupby_duty_zone" context="{'group_by' : 'duty_zone_id'}" string="Duty Zone"/>
+                    </group>
+                </field>
+                <field name="location_id" position="before">
+                    <filter name="duty_zone_id" string="No duty zone assigned" domain="[('usage', '=', 'internal'), ('duty_zone_id', '=', False)]"/>
+                </field>
+            </field>
+        </record>
+
+        <!-- stock move views, add landed costs information -->
+        <record id="view_landed_cost_internal_move_form" model="ir.ui.view">
+            <field name="name">stock.landed.cost.internal.move.form.view</field>
+            <field name="model">stock.move</field>
+            <field name="inherit_id" ref="stock.view_move_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//sheet/group[last()]" position="after">
+                    <notebook>
+                    <page string="Landing Costs" >
+                        <group colspan="2" col="2"> 
+                          <field name="landing_costs"/>
+                          <field name="landing_costs_order"/>
+                          <field name="landed_costs"/>
+                          <field name="landed_cost_line_ids" colspan="4" nolabel="1"  widget="one2many_list"  attrs="{'readonly': [('state', 'in', ('done', 'cancel'))]}" >
+                            <tree string="Landing Costs" editable="bottom">
+                                <field name="generate_invoice"/>
+                                <field name="invoice_total_per_product" />
+                                <field name="product_id"  on_change="onchange_product_id_picking(product_id,partner_id,parent.id)"/>
+                                <field name="account_id" invisible="1"/>
+                                <field name="partner_id"/>
+                                <field name="amount_currency" on_change="onchange_amount_currency_picking(amount_currency, currency_id, date_po, context)" />
+                                <field name="currency_id" on_change="onchange_amount_currency_picking(amount_currency, currency_id, date_po, context)" /> 
+                                <field name="amount"/>
+                                <field name="invoice_id" readonly="True" />
+                                <button name="open_invoice" type="object" attrs="{'invisible': [('invoice_id', '=', False)]}" string="Invoice" icon="gtk-open" />
+                              
+                              <field name="date_po" invisible="True" /> 
+                                <field name="distribution_type_id" domain="[('apply_on','=','line')]" widget="selection"/>
+                            </tree>
+                        </field>
+                      </group> 
+                     </page>  
+                    </notebook>
+                </xpath>
+            </field>
+        </record>
+
+        <!-- create new tree for picking landed costs -->
+      <record model="ir.ui.view" id="picking_c2c_landed_cost_tree_stat">
+        <field name="name">picking.c2clanded.cost.tree</field>
+        <field name="model">landed.cost.position</field>
+        <field name="priority">20</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+          <tree string="Landing Costs" create="false" editable="bottom">
+                <field name="purchase_order_info_id" readonly="1"/>
+                <field name="picking_info_id" readonly="1"/>
+                <field name="generate_invoice" attrs="{'readonly': [('invoice_id', '!=', False)]}"/>
+                <field name="invoice_total_per_product" attrs="{'readonly': [('invoice_id', '!=', False)]}"/>
+                <field name="partner_id" attrs="{'readonly': [('invoice_id', '!=', False)]}"/>
+                <field name="product_id" attrs="{'readonly': [('invoice_id', '!=', False)]}"/>
+                <field name="amount_currency" attrs="{'readonly': [('invoice_id', '!=', False)]}"/>
+                <field name="currency_id" attrs="{'readonly': [('invoice_id', '!=', False)]}"/>
+                <field name="amount" attrs="{'readonly': [('invoice_id', '!=', False)]}"/>
+                <field name="amount_total_2" sum="Total amounts" attrs="{'readonly': [('invoice_id', '!=', False)]}"/>
+                <field name="distribution_type_id"  widget="selection"  attrs="{'readonly': [('invoice_id', '!=', False)]}"/>
+                <field name="invoice_id" readonly="1"/>
+                <button name="open_invoice" type="object" attrs="{'invisible': [('invoice_id', '=', False)]}" string="Invoice" icon="gtk-open" />
+          </tree>
+        </field>
+      </record>
+
+      <!-- inherit to add domain -->
+        <record id="purchase_landed_costs.act_po_2_landed_costs" model="ir.actions.act_window">
+            <field name="domain">['|', ('purchase_order_id', '!=', False), ('purchase_order_line_id', '!=', False)]</field>    
+        </record>
+        <!-- action to open all landed costs for the picking -->
+        <record id="act_picking_2_landed_costs" model="ir.actions.act_window">
+            <field name="name">Related Landed Costs</field>
+            <field name="res_model">landed.cost.position</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{'search_default_picking_info_id': active_id}</field>
+            <field name="domain">['|', ('picking_id', '!=', False), ('move_id', '!=', False)]</field>        
+            <field name="view_id" ref="picking_c2c_landed_cost_tree_stat"/>
+        </record>
+
+        <!-- landed cost position inherit search view -->
+        <record id="inherit_view_landed_cost_search" model="ir.ui.view">
+        <field name="name">inherit.landed.cost.position.search</field>
+        <field name="model">landed.cost.position</field>
+        <field name="inherit_id" ref="purchase_landed_costs.view_landed_cost_search" />
+        <field name="arch" type="xml">
+            <field name="purchase_order_id" position="after">
+                <field name="picking_info_id" />
+                <field name="move_id" />
+                <field name="origin" />
+            </field>
+            <filter string="Purchase" position="before">
+                <filter string="Picking" context="{'group_by': 'picking_info_id'}"/>
+                <filter string="Stock Move" context="{'group_by': 'move_id'}"/>
+                <filter string="Currency" context="{'group_by': 'currency_id'}"/>
+            </filter>
+            <filter string="Purchase" position="replace">
+                <filter string="Purchase" icon="terp-stock_effects-object-colorize" context="{'group_by':'purchase_order_info_id'}"/>
+            </filter>
+            <filter string="Purchase Line" position="replace">
+            </filter>
+            <group string="Group By..." position="after">
+                <filter name="To be invoiced" string="To be invoiced" domain="[('invoice_id','=', False), ('generate_invoice', '=', True)]" help="Draft Invoices"/>
+                <filter name="Invoiced" string="Invoiced" domain="[('invoice_id','!=', False)]" help="Draft Invoices"/>
+            </group>
+        </field>
+    </record>
+
+        <!-- landed cost form view: add landed costs related fields -->
+        <record id="view_landed_cost_form" model="ir.ui.view">
+            <field name="name">view.landed.cost.form</field>
+            <field name="model">landed.cost.position</field>
+            <field name="priority" eval="0" />
+            <field name="arch" type="xml">
+                <form string="Landed Costs" version="7.0">
+                        <group>
+                            <group string="Information">
+                                <field name="product_id"/>
+                                <field name="partner_id" />
+                                <field name="generate_invoice" />
+                                <field name="invoice_total_per_product" />
+                                <field name="invoice_id"/>
+                                <button name="open_invoice" type="object" attrs="{'invisible': [('invoice_id', '=', False)]}" string="Invoice" icon="gtk-open" />
+                                <field name="distribution_type_id" />
+                            </group>
+                            <group string="Amounts">
+                                <label for="amount_currency" class="oe_inline" />
+                                <div>
+                                    <field name="amount_currency" class="oe_inline" nolabel="0"/> -
+                                    <field name="currency_id" nolabel="1" class="oe_inline"/>
+                                </div>
+                                <newline />
+                                <label for="amount" class="oe_inline" />
+                                <div>
+                                    <field name="amount" class="oe_inline" nolabel="0"/> -
+                                    <field name="default_currency_id" nolabel="1" class="oe_inline"/>
+                                </div>
+                            </group>
+                        </group>
+                </form>
+            </field>
+        </record>
+        <!-- inherit landed cost list view on purchase order and purchase order line -->
+        <record id="c2c_purchase_order_landed_cost_view_inherit" model="ir.ui.view">
+            <field name="name">purchase.order.landed.cost.form.view.inherit</field>
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="purchase_landed_costs.c2c_purchase_order_landed_cost_view"/>
+            <field name="arch" type="xml">
+                <field name="generate_invoice" position="after">
+                    <field name="invoice_total_per_product" />
+                </field>
+                <button string="Open All Landed costs" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </button>
+            </field>
+        </record>
+        <!-- Landed costs Purchase Line Form-->
+        <record model="ir.ui.view" id="c2c_landed_cost_tree_inherit">
+          <field name="name">c2clanded.cost.tree.inherit</field>
+          <field name="model">landed.cost.position</field>
+          <field name="inherit_id" ref="purchase_landed_costs.c2c_landed_cost_tree" />
+          <field name="priority">1</field>
+          <field name="type">tree</field>
+          <field name="arch" type="xml">
+            <field name="generate_invoice" position="after">
+                <field name="invoice_total_per_product" />
+            </field>
+          </field>
+        </record>
+
+        <!-- stock picking form view: add landed costs related fields -->
+        <record id="inherit_view_landed_cost_stock_picking_form" model="ir.ui.view">
+            <field name="name">view.landed.cost.stock.picking.form</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.view_picking_form"/>
+            <field name="arch" type="xml">
+                <notebook position="inside">
+                  <page string="Landing Costs" attrs="{'readonly':[('state','=','done')]}">
+                    <group>
+                      <group>
+                        <field name="currency_id" />
+                        <field name="quantity_total"/>
+                        <field name="volume_total"/>
+                        <field name="landed_cost_base_quantity" />
+                        <field name="landed_cost_base_value" />
+                        <field name="landed_cost_base_volume" />
+                      </group>
+                      <group> 
+                        <field name="landing_cost_lines"/>
+                        <field name="landed_cost"/>
+                        <!-- refactory notes: this action need to be rewritten. -->
+                        <button name="%(act_picking_2_landed_costs)d" type="action"
+                          string="Open All Landed costs"/>
+
+                      </group>
+                     </group>
+                     <field name="landed_cost_line_ids" colspan="4" nolabel="1" context="{'landed_cost_type':'per_unit'}" widget="one2many_list" attrs="{'readonly': [('state', 'in', ('done', 'cancel'))]}">
+                      <tree string="Landing Costs" editable="bottom">
+                          <field name="generate_invoice"/>
+                            <field name="invoice_total_per_product" />
+                          <field name="product_id"  on_change="onchange_product_id_picking(product_id,partner_id,parent.id)"/>
+                          <field name="account_id" invisible="1"/>
+                          <field name="partner_id"/>
+                          <field name="amount_currency" on_change="onchange_amount_currency_picking(amount_currency, currency_id, date_po, context)" />
+                          <field name="currency_id" on_change="onchange_amount_currency_picking(amount_currency, currency_id, date_po, context)" /> 
+                          <field name="amount"/>
+                          <field name="invoice_id" readonly="True" />
+                          <button name="open_invoice" type="object" attrs="{'invisible': [('invoice_id', '=', False)]}" string="Invoice" icon="gtk-open" />
+                        
+                        <field name="date_po" invisible="True" /> 
+                          <field name="distribution_type_id" domain="[('apply_on','=','order')]" widget="selection"/>
+                      </tree>
+                    </field>
+                  </page>
+                </notebook>
+            </field>
+        </record>
+        <!-- stock picking in form view: add landed costs related fields -->
+        <record id="inherit_view_landed_cost_stock_picking_in_form" model="ir.ui.view">
+            <field name="name">view.landed.cost.stock.picking.form</field>
+            <field name="model">stock.picking.in</field>
+            <field name="inherit_id" ref="stock.view_picking_form"/>
+            <field name="arch" type="xml">
+                <notebook position="inside">
+                  <page string="Landing Costs" attrs="{'readonly':[('state','=','done')]}">
+                    <group>
+                      <group>
+                        <field name="currency_id" />
+                        <field name="quantity_total"/>
+                        <field name="volume_total"/>
+                        <field name="landed_cost_base_quantity" />
+                        <field name="landed_cost_base_value" />
+                        <field name="landed_cost_base_volume" />
+                      </group>
+                      <group> 
+                        <field name="landing_cost_lines"/>
+                        <field name="landed_cost"/>
+                        <!-- refactory notes: this action need to be rewritten. -->
+                        <button name="%(act_picking_2_landed_costs)d" type="action"
+                          string="Open All Landed costs"/>
+
+                      </group>
+                     </group>
+                     <field name="landed_cost_line_ids" colspan="4" nolabel="1" context="{'landed_cost_type':'per_unit'}" widget="one2many_list" attrs="{'readonly': [('state', 'in', ('done', 'cancel'))]}">
+                      <tree string="Landing Costs" editable="bottom">
+                          <field name="generate_invoice"/>
+                            <field name="invoice_total_per_product" />
+                          <field name="product_id"  on_change="onchange_product_id_picking(product_id,partner_id,parent.id)"/>
+                          <field name="account_id" invisible="1"/>
+                          <field name="partner_id"/>
+                          <field name="amount_currency" on_change="onchange_amount_currency_picking(amount_currency, currency_id, date_po, context)" />
+                          <field name="currency_id" on_change="onchange_amount_currency_picking(amount_currency, currency_id, date_po, context)" /> 
+                          <field name="amount"/>
+                          <field name="invoice_id" readonly="True" />
+                          <button name="open_invoice" type="object" attrs="{'invisible': [('invoice_id', '=', False)]}" string="Invoice" icon="gtk-open" />
+                        
+                        <field name="date_po" invisible="True" /> 
+                          <field name="distribution_type_id" domain="[('apply_on','=','order')]" widget="selection"/>
+                      </tree>
+                    </field>
+                  </page>
+                </notebook>
+            </field>
+        </record>
+
+<!-- inherit company view to add a new field -->
+        <record id="inherit_base_view_company_form_lc" model="ir.ui.view">
+              <field name="name">inherit.base.view_company_form.lc</field>
+              <field name="model">res.company</field>
+              <field name="inherit_id" ref="purchase.mrp_company" />
+              <field name="arch" type="xml">
+                  <field name="po_lead" position="after">
+                      <field name="support_duty_zone" string="Mandatory DZ" />
+                  </field>
+              </field>
+          </record>
+
+<!-- hide the menu of landed cost on purchase order -->
+<delete id="purchase_landed_costs_extended.menu_action_landed_cost" model="ir.ui.menu"/>
+<!-- a new menu under warehouse -->
+        <!-- action to open all landed costs for the picking -->
+        <record id="act_picking_2_landed_costs_menu" model="ir.actions.act_window">
+            <field name="name">Landed Costs</field>
+            <field name="res_model">landed.cost.position</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">['|', ('picking_id', '!=', False), ('move_id', '!=', False)]</field>        
+            <field name="view_id" ref="picking_c2c_landed_cost_tree_stat"/>
+        </record>
+<menuitem action="act_picking_2_landed_costs_menu" id="stock_menu_action_landed_cost" parent="stock.menu_stock_product" sequence="100" />
+    </data>
+</openerp>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="view_delivery_route_fill_picking" model="ir.ui.view">
+            <field name="name">Find Pickings</field>
+            <field name="model">delivery.route.fill.picking</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Find Pickings">
+                    <field name="delivery_date"/>
+                    <field name="dts_id"/>
+                    <field name="country_id"/>
+                    <field name="state_id"/>
+                    <field name="carrier_id"/>
+                    <field name="stock_journal_id"/>
+                    <field name="wo_route"/>
+                    <group colspan="2">
+                        <button icon="gtk-stop" special="cancel" string="Cancel"/>
+                        <button name="fill_picking" string="Find Pickings" type="object" icon="gtk-apply"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+        <record id="action_fill_picking" model="ir.actions.act_window">
+            <field name="name">Find Picking</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">delivery.route.fill.picking</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+    </data>
+</openerp>

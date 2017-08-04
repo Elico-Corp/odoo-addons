@@ -1,0 +1,150 @@
+<openerp>
+   <data>
+
+        <!-- quotation make view -->
+
+       <record id="view_make_quotation" model="ir.ui.view">
+          <field name="name">sale.make.quotation</field>
+          <field name="model">sale.make.quotation</field>
+          <field name="type">form</field>
+          <field name="arch" type="xml">
+            <form string="Convert to Quotation" >
+                <group colspan="4">
+                    <field name="reason_code" required="1" widget="selection"/>
+                    <field name="notes" required="0"/>
+                </group>
+                <newline/>
+                <separator colspan="4"/>
+                <group col="4" colspan="4">
+                    <label string="" colspan="2"/>
+                    <button special="cancel" string="Cancel" icon="gtk-cancel"/>
+                    <button name="confirm" string="New" type="object" icon='gtk-go-forward'/>
+                </group>
+            </form>
+          </field>
+       </record>
+
+       <!-- crm make sale's  action -->
+
+       <record id="action_make_quotation" model="ir.actions.act_window">
+          <field name="name">Make Quotation</field>
+          <field name="type">ir.actions.act_window</field>
+          <field name="res_model">sale.make.quotation</field>
+          <field name="view_type">form</field>
+          <field name="view_mode">form</field>
+          <field name="target">new</field>
+       </record>
+
+        <!-- cancel an order wizde 's view -->
+
+       <record id="view_cancel_order" model="ir.ui.view">
+          <field name="name">sale.cancel.order</field>
+          <field name="model">sale.cancel.order</field>
+          <field name="type">form</field>
+          <field name="arch" type="xml">
+            <form string="Cancel Order" >
+                <group colspan="4">
+                    <field name="reason_code" required="1" widget="selection"/>
+                    <field name="notes" required="0"/>
+                </group>
+                <newline/>
+                <separator colspan="4"/>
+                <group col="4" colspan="4">
+                    <label string="" colspan="2"/>
+                    <button special="cancel" string="Cancel" icon="gtk-cancel"/>
+                    <button name="confirm" string="Confirm" type="object" icon='gtk-go-forward'/>
+                </group>
+            </form>
+          </field>
+       </record>
+
+       <!-- cancel an order's  action -->
+       <record id="action_cancle_order" model="ir.actions.act_window">
+          <field name="name">Cancel Order Note</field>
+          <field name="type">ir.actions.act_window</field>
+          <field name="res_model">sale.cancel.order</field>
+          <field name="view_type">form</field>
+          <field name="view_mode">form</field>
+          <field name="target">new</field>
+       </record>
+
+       <!-- lost an quotation's  view-->
+
+       <record id="view_lost_quotation" model="ir.ui.view">
+          <field name="name">sale.lost.quotation</field>
+          <field name="model">sale.lost.quotation</field>
+          <field name="type">form</field>
+          <field name="arch" type="xml">
+            <form string="Cancel Order" >
+                <group colspan="4">
+                    <field name="reason_code" required="1" widget="selection"/>
+                    <field name="notes" required="0"/>
+                </group>
+                <newline/>
+                <separator colspan="4"/>
+                <group col="4" colspan="4">
+                    <label string="" colspan="2"/>
+                    <button special="cancel" string="Cancel" icon="gtk-cancel"/>
+                    <button name="confirm" string="Lost" type="object" icon='gtk-go-forward'/>
+                </group>
+            </form>
+          </field>
+       </record>
+
+       <!-- lost an quotation's  action -->
+       <record id="action_lost_quotation" model="ir.actions.act_window">
+          <field name="name">Lost Quotation Note</field>
+          <field name="type">ir.actions.act_window</field>
+          <field name="res_model">sale.lost.quotation</field>
+          <field name="view_type">form</field>
+          <field name="view_mode">form</field>
+          <field name="target">new</field>
+       </record>
+
+        <!-- crm make sale's view -->
+
+       <record id="view_crm_make_sale_stage" model="ir.ui.view">
+          <field name="name">crm.make.sale.form</field>
+          <field name="model">crm.make.sale</field>
+          <field name="type">form</field>
+          <field name="inherit_id" ref="sale_crm.view_crm_make_sale" />
+          <field name="arch" type="xml">
+              <field name="close" position="replace">
+                  <field name="stage_id" widget="selection" />
+              </field>
+          </field>
+       </record>
+       
+       <!-- lost an opportunity's  view-->
+       <record id="view_lost_opportunity" model="ir.ui.view">
+          <field name="name">crm.lost.opportunity</field>
+          <field name="model">crm.lost.opportunity</field>
+          <field name="type">form</field>
+          <field name="arch" type="xml">
+            <form string="Lost opportunity" >
+                <group colspan="4">
+                    <field name="reason_code" required="1" widget="selection"/>
+                    <field name="notes" required="0"/>
+                </group>
+                <newline/>
+                <separator colspan="4"/>
+                <group col="4" colspan="4">
+                    <label string="" colspan="2"/>
+                    <button special="cancel" string="Cancel" icon="gtk-cancel"/>
+                    <button name="confirm" string="Lost" type="object" icon='gtk-go-forward'/>
+                </group>
+            </form>
+          </field>
+       </record>
+
+       <!-- lost an opportunity's  action -->
+       <record id="action_lost_opportunity" model="ir.actions.act_window">
+          <field name="name">Lost opportunity Note</field>
+          <field name="type">ir.actions.act_window</field>
+          <field name="res_model">crm.lost.opportunity</field>
+          <field name="view_type">form</field>
+          <field name="view_mode">form</field>
+          <field name="target">new</field>
+       </record>
+   </data>
+</openerp>

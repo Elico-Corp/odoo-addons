@@ -1,0 +1,8 @@
+"id","name","model_id:id","group_id:id","perm_read","perm_write","perm_create","perm_unlink"
+access_stock_duty_zone_base_user,stock.duty.zone,model_stock_duty_zone,base.group_user,1,0,0,0
+access_stock_duty_zone_warehouse_manager,stock.duty.zone,model_stock_duty_zone,stock.group_stock_manager,1,1,1,1
+
+access_product_duty_rule_base_user,stock.duty.zone,model_product_duty_rule,base.group_user,1,0,0,0
+access_product_duty_rule_warehouse_manager,stock.duty.zone,model_product_duty_rule,stock.group_stock_manager,1,1,1,1
+
+access_landed_cost_warehouse_user,landed.cost.position,model_landed_cost_position,stock.group_stock_user,1,1,1,1

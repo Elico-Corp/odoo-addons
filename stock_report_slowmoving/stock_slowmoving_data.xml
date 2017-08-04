@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="view_stock_slowmove_tree" model="ir.ui.view">
+            <field name="name">stock.slowmove.tree</field>
+            <field name="model">stock.slowmove</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Stock Slow Moving">
+                	<field name="category_id"/>
+                    <field name="product_id"/>
+                    <field name="onhand_qty"/>
+                    <field name="lasts_date"/>
+                    <field name="lasts_qty"/>
+                    <field name="lastp_date"/>
+                    <field name="lastp_qty"/>
+                    <field name="lastm_date"/>
+                    <field name="lastm_qty"/>
+                    <field name="product_lastq_qty"/>
+                    <field name="product_lasty_qty"/>
+                    <field name="rotation_rate"/>
+                    <field name="date"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_stock_slowmove_search" model="ir.ui.view">
+            <field name="name">stock.slowmove.search</field>
+            <field name="model">stock.slowmove</field>
+            <field name="type">search</field>
+            <field name="arch" type="xml">
+                <search string="Stock Slow Moving">
+                	<field name="category_id"/>
+                    <field name="product_id"/>
+                    <field name="onhand_qty"/>
+                    <field name="product_lastq_qty"/>
+                </search>
+            </field>
+        </record>
+
+        <record id="action_stock_slowmove_tree" model="ir.actions.act_window">
+            <field name="name">Stock Slow Moving</field>
+            <field name="res_model">stock.slowmove</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree</field>
+            <field name="search_view_id" ref="view_stock_slowmove_search"/>
+            <field name="limit">60</field>
+        </record>
+
+        <menuitem
+            id="menu_stock_slowmove"
+            parent="stock.next_id_61"
+            action="action_stock_slowmove_tree"
+            sequence = "100"/>
+
+        <record forcecreate="True" id="ir_cron_product_slowmove_action" model="ir.cron">
+            <field name="name">Product Slow Move</field>
+            <field eval="False" name="active"/>
+            <field name="user_id" ref="base.user_root"/>
+            <field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+            <field name="numbercall">-1</field>
+            <field eval="False" name="doall"/>
+            <field eval="'stock.slowmove'" name="model"/>
+            <field eval="'process_slowmove'" name="function"/>
+        </record>
+    </data>
+</openerp>

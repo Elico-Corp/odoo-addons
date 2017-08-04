@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+
+<data noupdate="1">
+    <record id="stock_duty_zone_rule" model="ir.rule">
+        <field name="name">Duty zone</field>
+        <field name="model_id" ref="model_stock_duty_zone"/>
+        <field name="global" eval="True"/>
+        <field name="domain_force">['|',('company_id','=',False),('company_id','child_of',[user.company_id.id])]</field>
+    </record>
+    <record id="product_duty_rule" model="ir.rule">
+        <field name="name">Pruduct duty rules</field>
+        <field name="model_id" ref="model_product_duty_rule"/>
+        <field name="global" eval="True"/>
+        <field name="domain_force">['|',('company_id','=',False),('company_id','child_of',[user.company_id.id])]</field>
+    </record>
+    <record id="landed_costs_rule" model="ir.rule">
+        <field name="name">Landed costs rules</field>
+        <field name="model_id" ref="model_landed_cost_position"/>
+        <field name="global" eval="True"/>
+        <field name="domain_force">['|',('company_id','=',False),('company_id','child_of',[user.company_id.id])]</field>
+    </record>
+    
+</data>
+</openerp>

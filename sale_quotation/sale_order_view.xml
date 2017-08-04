@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="view_sales_order_filter_quotation" model="ir.ui.view">
+            <field name="name">sale.order.list.select.quotation</field>
+            <field name="model">sale.order</field>
+            <field name="type">search</field>
+            <field name="inherit_id" ref="sale.view_sales_order_filter" />
+            <field name="arch" type="xml">
+                    <filter string="Quotations" position="replace" >
+                        <filter name="done" icon="terp-check" string="Done" domain="[('state','=','done')]"/>
+                    </filter>
+                    <filter string="Sales" position="replace" >
+                        <filter string="In Progress" icon="terp-check" name="in_progress" domain="[('state','!=','done')]"/>
+                    </filter>
+                    <filter string="Order Date" position="after">
+                        <separator orientation="vertical"/>
+                        <filter string="File Number" name="group_file_number" icon="terp-go-month" domain="[]" context="{'group_by':'file_number'}"/>
+                    </filter>
+                    <field name="name" position="after">
+                        <field name="sale_project_id" />
+                        <field name="file_number" />
+                    </field>
+            </field>
+        </record>
+
+        <record id="action_order_form_quotation" model="ir.actions.act_window">
+            <field name="name">Sales Orders</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">sale.order</field>
+            <field name="priority">18</field>
+            <field name="view_type">form</field>
+            <field name="view_id" ref="sale.view_order_tree"/>
+            <field name="view_mode">tree,form,calendar,graph</field>
+            <field name="domain">[('state','not in',('draft','sent', 'converted','q_lost','q_converted','cancel'))]</field>
+            <field name="search_view_id" ref="view_sales_order_filter_quotation"/>
+            <field name="context">{"search_default_user_id":uid,"search_default_in_progress":1}</field>
+            <field name="help">Sales Orders help you manage quotations and orders from your customers. OpenERP suggests that you start by creating a quotation. Once it is confirmed, the quotation will be converted into a Sales Order. OpenERP can handle several types of products so that a sales order may trigger tasks, delivery orders, manufacturing orders, purchases and so on. Based on the configuration of the sales order, a draft invoice will be generated so that you just have to confirm it when you want to bill your customer.</field>
+        </record>
+        <menuitem action="action_order_form_quotation" id="sale.menu_sale_order" parent="base.menu_sales" sequence="4" groups="base.group_sale_salesman,base.group_sale_manager"/>
+        <!--
+        -->
+        <record id="view_order_line_tree_project" model="ir.ui.view">
+            <field name="name">sale.order.tree.project</field>
+            <field name="model">sale.order.line</field>
+            <field name="type">tree</field>
+            <field name="inherit_id" ref="sale.view_order_line_tree" />
+            <field name="arch" type="xml">
+                    <field name="product_id" position="before">
+                        <field name="project_name" />
+                    </field>
+            </field>
+        </record>        
+        
+        <record id="view_order_line_filter_project" model="ir.ui.view">
+            <field name="name">sale.order.fliter.project</field>
+            <field name="model">sale.order.line</field>
+            <field name="type">search</field>
+            <field name="inherit_id" ref="sale.view_sales_order_line_filter" />
+            <field name="arch" type="xml">
+                    <field name="product_id" position="before">
+                        <field name="project_name" />
+                    </field>
+            </field>
+        </record>
+        
+        <record id="action_order_line_tree" model="ir.actions.act_window">
+            <field name="name">Sales Orders Lines</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">sale.order.line</field>
+            <field name="priority">18</field>
+            <field name="view_type">form</field>
+            <field name="view_id" ref="sale.view_order_line_tree"/>
+            <field name="view_mode">tree</field>
+            <field name="domain">[]</field>
+            <field name="search_view_id" ref="sale.view_sales_order_line_filter"/>
+            <field name="context">{}</field>
+        </record>
+        <menuitem action="action_order_line_tree" id="menu_sale_order_line" parent="base.menu_sales" sequence="90"/>
+        
+    </data>
+</openerp>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+           <record id="view_stock_slowing_move" model="ir.ui.view">
+            <field name="name">Compute Slowing Move</field>
+            <field name="model">stock.slowing.move</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+              <form string="Compute Slowing Move">
+                    <separator string="Compute Slowing Move based on current stock moves" colspan="4" />
+                    <separator string="" colspan="4" />
+                    <button special="cancel" string="_Cancel" icon='gtk-cancel'/>
+                    <button name="compute_slowingmove" string="Compute Slowing Move" type="object" icon="gtk-ok"/>
+             </form>
+            </field>
+        </record>
+
+         <act_window name="Compute Slowing Move"            
+            res_model="stock.slowing.move"
+            view_mode="form"
+            target="new"
+            context="{}"  
+            id="action_stock_slowing_move"/>
+
+        <menuitem
+            id="menu_stock_slowing_move"
+            parent="stock.next_id_61"
+            action="action_stock_slowing_move"
+            sequence = "90"/>
+    </data>
+</openerp>

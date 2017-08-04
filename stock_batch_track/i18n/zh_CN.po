@@ -1,0 +1,176 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+#	* stock_batch_track
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 6.0.3\n"
+"Report-Msgid-Bugs-To: support@openerp.com\n"
+"POT-Creation-Date: 2012-09-12 03:52+0000\n"
+"PO-Revision-Date: 2012-09-12 03:52+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: stock_batch_track
+#: report:shipping.to.subcontractor:0
+msgid "Reference:"
+msgstr "附加单号："
+
+#. module: stock_batch_track
+#: field:stock.batch.track,force_availability:0
+msgid "Force availability if not availble?"
+msgstr "强制可用(不可用时)"
+
+#. module: stock_batch_track
+#: report:shipping.to.subcontractor:0
+msgid "Qty."
+msgstr "数量"
+
+#. module: stock_batch_track
+#: report:shipping.to.subcontractor:0
+msgid "Pack Date:"
+msgstr "包装日期："
+
+#. module: stock_batch_track
+#: report:shipping.to.subcontractor:0
+msgid "Contactor:"
+msgstr "收货："
+
+#. module: stock_batch_track
+#: field:stock.batch.track,check_availability:0
+msgid "Check availability if not availble?"
+msgstr "检查可用(不可用时)"
+
+#. module: stock_batch_track
+#: model:ir.model,name:stock_batch_track.model_stock_tracking
+msgid "Packs"
+msgstr "包装"
+
+#. module: stock_batch_track
+#: code:addons/stock_batch_track/wizard/stock_batch_track.py:54
+#, python-format
+msgid "Warning !"
+msgstr "警告 !"
+
+#. module: stock_batch_track
+#: view:stock.batch.track:0
+msgid "Shoot'em up!"
+msgstr "处理!"
+
+#. module: stock_batch_track
+#: report:shipping.to.subcontractor:0
+msgid "Print Date:"
+msgstr "打印日期："
+
+#. module: stock_batch_track
+#: model:ir.actions.report.xml,name:stock_batch_track.report_shipping_to_subcontractor
+msgid "Delivery Order to Subcontractor"
+msgstr "发货单(托盘)"
+
+#: report:shipping.to.subcontractor:0
+msgid "Address:"
+msgstr "送货地址："
+
+#. module: stock_batch_track
+#: code:addons/stock_batch_track/wizard/stock_batch_track.py:54
+#, python-format
+msgid "Please select pickings at first."
+msgstr "请先选择发货单."
+
+#. module: stock_batch_track
+#: code:addons/stock_batch_track/report/shipping.py:64
+#, python-format
+msgid "Error in report headers name !"
+msgstr "报表头错误 !"
+
+#. module: stock_batch_track
+#: code:addons/stock_batch_track/report/shipping.py:64
+#, python-format
+msgid "No proper reports header defined for the selected report. Check that the report header defined in your report rml_parse line exist in Administration/reporting/Reporting headers."
+msgstr "选择的报表没有定义报表头。请到“系统管理”相关菜单下检查报表定义。"
+
+#. module: stock_batch_track
+#: view:stock.batch.track:0
+msgid "Cancel"
+msgstr "取消"
+
+#. module: stock_batch_track
+#: report:shipping.to.subcontractor:0
+msgid "["
+msgstr "["
+
+#. module: stock_batch_track
+#: field:stock.batch.track,auto_process:0
+msgid "Auto Proccess if availble?"
+msgstr "自动处理(可用时)"
+
+#. module: stock_batch_track
+#: report:shipping.to.subcontractor:0
+msgid "]"
+msgstr "]"
+
+#. module: stock_batch_track
+#: report:shipping.to.subcontractor:0
+msgid "Lot"
+msgstr "生产批次"
+
+#. module: stock_batch_track
+#: field:stock.batch.track,tracking_id:0
+msgid "Pack"
+msgstr "包装"
+
+#. module: stock_batch_track
+#: view:stock.batch.track:0
+msgid "Process"
+msgstr "处理"
+
+#. module: stock_batch_track
+#: model:ir.actions.act_window,name:stock_batch_track.action_stock_batch_track
+msgid "Stock Batch Process"
+msgstr "批量处理"
+
+#. module: stock_batch_track
+#: model:ir.model,name:stock_batch_track.model_stock_batch_track
+msgid "Stock Batch Track"
+msgstr "批量处理"
+
+#. module: stock_batch_track
+#: field:stock.batch.track,cancel_availability:0
+msgid "Cancel availability if availble?"
+msgstr "取消可用(可用时)"
+
+#. module: stock_batch_track
+#: field:stock.batch.track,partner_id:0
+#: field:stock.tracking,partner_id:0
+msgid "Subcontractor"
+msgstr "单位名称"
+
+#. module: stock_batch_track
+#: report:shipping.to.subcontractor:0
+msgid "Source"
+msgstr "来源"
+
+#. module: stock_batch_track
+#: report:shipping.to.subcontractor:0
+msgid "Subcontractor:"
+msgstr "单位名称："
+
+#. module: stock_batch_track
+#: report:shipping.to.subcontractor:0
+msgid "[Code] Description"
+msgstr "[编号] 说明"
+
+#. module: stock_batch_track
+#: report:shipping.to.subcontractor:0
+msgid "Delivery Order :"
+msgstr "送货单 :"
+
+#. module: stock_batch_track
+#: report:shipping.to.subcontractor:0
+msgid "Tel:"
+msgstr "电话："
+

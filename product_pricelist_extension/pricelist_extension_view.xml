@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="pricelist_item_tree_view" model="ir.ui.view">
+            <field name="name">pricelist.item.tree</field>
+            <field name="model">product.pricelist.item</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Pricelists Items">
+	                <field name="company_id"/>
+	                <field name="price_version_id"/>
+                    <!-- add a new option to disable draggable of sequence.
+                    depends on module:web_m2x_options_customized -->
+                    <field name="sequence" options='disdraggable'/>
+                    <field colspan="4" name="name" select="1"/>
+                    <field name="categ_id" select="1"/>
+                    <field name="product_tmpl_id" select="1"/>
+                    <field name="product_id" select="1"/>
+                    <field name="min_quantity"/>
+                    <field name="base"/>
+                </tree>
+            </field>
+        </record>
+<!-- Andy removed the comment -->
+	<record model="ir.ui.view" id="pricelist_item_form_view_inherit">
+            <field name="name">pricelist.item.form</field>
+            <field name="model">product.pricelist.item</field>
+		<field name="inherit_id" ref="product.product_pricelist_item_form_view" />
+		<field name="type">form</field>
+		<field name="arch" type="xml">
+			<field name="base" position="after">
+			    <separator colspan="4" string="Pricelists"/>
+			        <field colspan="4"  name="price_version_id"/>
+			    <newline/>
+
+			</field>
+		</field>
+	</record>
+<!-- Andy removed the comment -->
+
+        <record model="ir.ui.view" id="pricelist_item_view_search">
+            <field name="name">pricelist.item.search</field>
+            <field name="model">product.pricelist.item</field>
+            <field name="type">search</field>
+            <field name="arch" type="xml">
+                <search string="Pricelist item Search">
+                    <field name="price_version_id"/>
+                    <field name="name"/>
+                    <field name="product_id"/>
+				    <newline/>
+				    <group expand="0" string="Extended Filters...">
+		                <field name="product_tmpl_id"/>
+		                <field name="categ_id"/>
+		                <field name="company_id"/>
+				    </group>
+				    <newline/>
+				    <group expand="0" string="Group By..." colspan="12" col="10">
+				        <filter string="Company" icon="terp-accessories-archiver-minus" domain="[]" context="{'group_by':'company_id'}"/>
+				        <filter string="Version" icon="terp-accessories-archiver+" domain="[]" context="{'group_by':'price_version_id'}"/>
+				        <separator orientation="vertical"/>
+				        <filter string="Category"  icon="terp-accessories-archiver+" context="{'group_by':'categ_id'}"/>
+				        <filter string="Template" icon="terp-accessories-archiver+" domain="[]" context="{'group_by':'product_tmpl_id'}"/>
+				        <separator orientation="vertical"/>
+				    </group>
+
+                </search>
+            </field>
+        </record>
+
+        <record id="pricelist_item_action" model="ir.actions.act_window">
+            <field name="name">Pricelist items</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">product.pricelist.item</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="pricelist_item_tree_view"/>
+            <field name="search_view_id" ref="pricelist_item_view_search"/>
+                <field name="help">This form allows you to directly filter and alter the pricelists rules in the pricelists versions.</field>
+        </record>
+        <menuitem id="base.menu_sale_config_sales" name="Sales"
+            parent="base.menu_base_config" sequence="0" />
+        <menuitem id="product.menu_product_pricelist_main" name="Pricelists" parent="base.menu_base_config" sequence="50"/>
+        <menuitem action="pricelist_item_action" id="menu_pricelist_item_action" parent="product.menu_product_pricelist_main" sequence="2"/>
+
+    </data>
+</openerp>

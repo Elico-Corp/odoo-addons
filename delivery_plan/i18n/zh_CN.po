@@ -1,0 +1,703 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+#	* fc_delivery_plan
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 7.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-03-11 10:05+0000\n"
+"PO-Revision-Date: 2013-03-11 10:05+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: fc_delivery_plan
+#: field:delivery.route.line,to_be_received:0
+msgid "To be Received"
+msgstr "待收"
+
+#. module: fc_delivery_plan
+#: field:delivery.route.line,account_checked:0
+msgid "Checked"
+msgstr "已检查"
+
+#. module: fc_delivery_plan
+#: code:addons/fc_delivery_plan/sale.py:648
+#: code:addons/fc_delivery_plan/sale.py:657
+#, python-format
+msgid "Error"
+msgstr "错误"
+
+#. module: fc_delivery_plan
+#: view:stock.picking:0
+msgid "Orders planned for the Past"
+msgstr "已安排订单"
+
+#. module: fc_delivery_plan
+#: view:delivery.route:0
+#: view:delivery.route.line:0
+#: view:stock.picking:0
+msgid "Group By..."
+msgstr "分组..."
+
+#. module: fc_delivery_plan
+#: view:delivery.route:0
+#: view:delivery.route.line:0
+#: view:stock.picking:0
+msgid "Today"
+msgstr "今天"
+
+#. module: fc_delivery_plan
+#: code:addons/fc_delivery_plan/sale.py:799
+#: field:delivery.route.line,customer_date:0
+#, python-format
+msgid "Customer Delivery Time"
+msgstr "客户发货时间"
+
+#. module: fc_delivery_plan
+#: view:delivery.route.line:0
+msgid "Delivery for Today"
+msgstr "今日配送"
+
+#. module: fc_delivery_plan
+#: view:delivery.change.dts:0
+msgid "Update"
+msgstr "更新"
+
+#. module: fc_delivery_plan
+#: field:delivery.route.line,cs_remark:0
+msgid "CS Remark"
+msgstr "CS备注"
+
+#. module: fc_delivery_plan
+#: view:stock.picking:0
+msgid "Picking without batch"
+msgstr "未设分拣批次"
+
+#. module: fc_delivery_plan
+#: view:stock.picking:0
+msgid "Picking list"
+msgstr "发货单"
+
+#. module: fc_delivery_plan
+#: code:addons/fc_delivery_plan/sale.py:546
+#, python-format
+msgid "Latest error"
+msgstr "上次错误"
+
+#. module: fc_delivery_plan
+#: field:delivery.route.line,picking_note:0
+msgid "DO Notes"
+msgstr "发货单备注"
+
+#. module: fc_delivery_plan
+#: field:delivery.route.line,delivered_cpt:0
+msgid "Delivered x times"
+msgstr "已发货 x 次"
+
+#. module: fc_delivery_plan
+#: selection:delivery.change.dts,action:0
+msgid "Blank DTS/PTS"
+msgstr "未设DTS/PTS"
+
+#. module: fc_delivery_plan
+#: view:stock.picking:0
+msgid "Batch"
+msgstr "批次"
+
+#. module: fc_delivery_plan
+#: code:addons/fc_delivery_plan/sale.py:657
+#, python-format
+msgid "The Route Line %s (origin: %s) is confirmed. You can not change it."
+msgstr "路线 %s (来源: %s) 已经确认. 不可修改."
+
+#. module: fc_delivery_plan
+#: field:stock.tracking,ul_id:0
+msgid "Picking Box"
+msgstr "移库单Box"
+
+#. module: fc_delivery_plan
+#: field:delivery.route.line,origin:0
+#: view:stock.picking:0
+msgid "Origin"
+msgstr "来源"
+
+#. module: fc_delivery_plan
+#: help:stock.picking.in,dts_id:0
+msgid "Delivery time or turn to receive"
+msgstr "配送时间(收货)"
+
+#. module: fc_delivery_plan
+#: field:delivery.route.line,exceptions:0
+msgid "Received with exceptions"
+msgstr "收货例外"
+
+#. module: fc_delivery_plan
+#: model:ir.model,name:fc_delivery_plan.model_stock_move
+msgid "Stock Move"
+msgstr "库存调拨"
+
+#. module: fc_delivery_plan
+#: model:ir.model,name:fc_delivery_plan.model_delivery_dts_to_vans
+msgid "delivery.dts_to_vans"
+msgstr "delivery.dts_to_vans"
+
+#. module: fc_delivery_plan
+#: field:delivery.change.dts,dts_id:0
+#: field:delivery.driver_for_routes,dts_id:0
+#: field:delivery.dts_to_routes,dts_id:0
+#: field:delivery.dts_to_vans,dts_id:0
+#: view:delivery.route:0
+#: view:delivery.route.line:0
+#: field:delivery.route.line,dts_id:0
+#: view:sale.order:0
+#: field:sale.order,dts_id:0
+#: field:stock.move,dts_id:0
+#: view:stock.picking:0
+#: field:stock.picking.in,dts_id:0
+#: field:stock.picking.in,route_line_id:0
+#: field:stock.picking.out,route_line_id:0
+msgid "Delivery Time"
+msgstr "发货时间"
+
+#. module: fc_delivery_plan
+#: view:stock.picking:0
+msgid "Ready"
+msgstr "就绪"
+
+#. module: fc_delivery_plan
+#: view:delivery.driver:0
+#: view:delivery.route:0
+#: view:delivery.route.line:0
+msgid "Edit..."
+msgstr "编辑..."
+
+#. module: fc_delivery_plan
+#: field:delivery.route.line,adjustment:0
+msgid "Adjustment"
+msgstr "调整"
+
+#. module: fc_delivery_plan
+#: model:ir.model,name:fc_delivery_plan.model_stock_picking_out
+msgid "Delivery Orders"
+msgstr "送货单"
+
+#. module: fc_delivery_plan
+#: field:delivery.change.dts,pts_id:0
+#: field:mrp.production,pts_id:0
+#: field:procurement.order,pts_id:0
+#: view:sale.order:0
+#: view:stock.picking:0
+#: field:stock.picking.in,pts_id:0
+msgid "Preparation Time"
+msgstr "拣货时间"
+
+#. module: fc_delivery_plan
+#: model:ir.ui.menu,name:fc_delivery_plan.menu_delivery_delivery_payment
+msgid "Delivery Payments"
+msgstr "发货支付"
+
+#. module: fc_delivery_plan
+#: field:delivery.route.line,vip:0
+msgid "is VIP ?"
+msgstr "是否 VIP ?"
+
+#. module: fc_delivery_plan
+#: view:delivery.driver_for_routes:0
+#: view:delivery.dts_to_routes:0
+#: view:delivery.dts_to_vans:0
+msgid "Confirm"
+msgstr "确认"
+
+#. module: fc_delivery_plan
+#: view:stock.picking:0
+msgid "Internal Picking List"
+msgstr "内部分拣单"
+
+#. module: fc_delivery_plan
+#: view:delivery.route.line:0
+msgid "State"
+msgstr "状态"
+
+#. module: fc_delivery_plan
+#: model:ir.model,name:fc_delivery_plan.model_stock_picking
+msgid "Picking List"
+msgstr "发货单"
+
+#. module: fc_delivery_plan
+#: model:ir.model,name:fc_delivery_plan.model_delivery_dts_to_routes
+msgid "delivery.dts_to_routes"
+msgstr "delivery.dts_to_routes"
+
+#. module: fc_delivery_plan
+#: field:delivery.return.reason,type:0
+#: field:delivery.time,type:0
+msgid "Type"
+msgstr "类型"
+
+#. module: fc_delivery_plan
+#: view:stock.picking:0
+msgid "Expected Date"
+msgstr "预计日期"
+
+#. module: fc_delivery_plan
+#: selection:stock.picking.in,delivery_state:0
+msgid "Delivered with exception"
+msgstr "发货例外"
+
+#. module: fc_delivery_plan
+#: model:ir.model,name:fc_delivery_plan.model_delivery_route_line
+msgid "delivery.route.line"
+msgstr "delivery.route.line"
+
+#. module: fc_delivery_plan
+#: selection:delivery.route.line,complete_state:0
+msgid "Not planned"
+msgstr "未计划"
+
+#. module: fc_delivery_plan
+#: field:delivery.route.line,partner_phone:0
+msgid "Partner Phone"
+msgstr "客户电话"
+
+#. module: fc_delivery_plan
+#: view:stock.picking:0
+msgid "Related Order"
+msgstr "相关单据"
+
+#. module: fc_delivery_plan
+#: view:stock.picking:0
+msgid "Confirmed Internal Moves"
+msgstr "确认内部调拨"
+
+#. module: fc_delivery_plan
+#: selection:delivery.route.line,complete_state:0
+msgid "No redelivery"
+msgstr "未重新发货"
+
+#. module: fc_delivery_plan
+#: view:stock.picking:0
+msgid "Order Date"
+msgstr "订单日期"
+
+#. module: fc_delivery_plan
+#: model:ir.model,name:fc_delivery_plan.model_procurement_order
+msgid "Procurement"
+msgstr "需求单"
+
+#. module: fc_delivery_plan
+#: view:stock.picking:0
+msgid "Orders planned for the Future"
+msgstr "已计划订单"
+
+#. module: fc_delivery_plan
+#: selection:delivery.route.line,complete_state:0
+msgid "Planned"
+msgstr "已计划"
+
+#. module: fc_delivery_plan
+#: view:delivery.route:0
+msgid "Delivery Routes"
+msgstr "配送车次"
+
+#. module: fc_delivery_plan
+#: view:delivery.driver:0
+#: view:delivery.route:0
+#: view:delivery.route.line:0
+msgid "Delete"
+msgstr "删除"
+
+#. module: fc_delivery_plan
+#: field:delivery.route.line,return_reasons:0
+msgid "Return Reasons"
+msgstr "退货原因"
+
+#. module: fc_delivery_plan
+#: code:addons/fc_delivery_plan/sale.py:800
+#: field:delivery.route.line,neighborhood:0
+#, python-format
+msgid "Neighborhood"
+msgstr "邻居"
+
+#. module: fc_delivery_plan
+#: model:ir.actions.act_window,name:fc_delivery_plan.action_delivery_route_form_cs
+#: model:ir.ui.menu,name:fc_delivery_plan.menu_action_delivery_route_form_cs
+msgid "Delivery Route CS"
+msgstr "发送路线 CS"
+
+#. module: fc_delivery_plan
+#: model:ir.model,name:fc_delivery_plan.model_delivery_time
+msgid "delivery.time"
+msgstr "delivery.time"
+
+#. module: fc_delivery_plan
+#: view:stock.picking:0
+msgid "Past"
+msgstr "过去"
+
+#. module: fc_delivery_plan
+#: view:stock.picking:0
+msgid "Future"
+msgstr "未来"
+
+#. module: fc_delivery_plan
+#: selection:stock.picking.in,delivery_state:0
+msgid "Returned, no delivery"
+msgstr "退回, 未发货"
+
+#. module: fc_delivery_plan
+#: field:delivery.route.line,amount_received:0
+msgid "Received"
+msgstr "已收"
+
+#. module: fc_delivery_plan
+#: view:delivery.route:0
+#: view:delivery.route.line:0
+#: model:ir.actions.report.xml,name:fc_delivery_plan.report_delivery_route_print
+msgid "Delivery Route"
+msgstr "配送车次"
+
+#. module: fc_delivery_plan
+#: view:delivery.change.dts:0
+#: view:delivery.driver_for_routes:0
+#: view:delivery.dts_to_routes:0
+#: view:delivery.dts_to_vans:0
+msgid "or"
+msgstr "或者"
+
+#. module: fc_delivery_plan
+#: view:stock.picking:0
+msgid "Picking already processed"
+msgstr "分拣已处理"
+
+#. module: fc_delivery_plan
+#: field:res.users,dts_id:0
+msgid "Last Used Delivery Time"
+msgstr "上次配送时间"
+
+#. module: fc_delivery_plan
+#: code:addons/fc_delivery_plan/sale.py:648
+#, python-format
+msgid "The Route %s is confirmed, you can not add lines to it."
+msgstr "路线 %s 已经确认, 不可增加新的明细."
+
+#. module: fc_delivery_plan
+#: model:ir.model,name:fc_delivery_plan.model_mrp_production
+msgid "Manufacturing Order"
+msgstr "生产订单"
+
+#. module: fc_delivery_plan
+#: model:ir.ui.menu,name:fc_delivery_plan.menu_delivery_wizard
+msgid "Prepare Delivery Routes"
+msgstr "准备配送路线"
+
+#. module: fc_delivery_plan
+#: view:stock.picking:0
+msgid "Status"
+msgstr "状态"
+
+#. module: fc_delivery_plan
+#: model:ir.model,name:fc_delivery_plan.model_sale_order
+msgid "Sales Order"
+msgstr "销售订单"
+
+#. module: fc_delivery_plan
+#: view:delivery.driver:0
+#: view:delivery.route:0
+#: view:delivery.route.line:0
+msgid "í"
+msgstr "í"
+
+#. module: fc_delivery_plan
+#: model:ir.model,name:fc_delivery_plan.model_stock_tracking
+msgid "Packs"
+msgstr "包装"
+
+#. module: fc_delivery_plan
+#: model:ir.actions.act_window,name:fc_delivery_plan.action_delivery_line_form_cs
+#: model:ir.ui.menu,name:fc_delivery_plan.menu_action_delivery_line_form_cs
+msgid "Delivery Route Line CS"
+msgstr "路线明细 CS"
+
+#. module: fc_delivery_plan
+#: code:addons/fc_delivery_plan/sale.py:824
+#: view:delivery.dts_to_vans:0
+#: model:ir.actions.act_window,name:fc_delivery_plan.action_dts_to_vans
+#: model:ir.ui.menu,name:fc_delivery_plan.menu_action_dts_to_vans
+#, python-format
+msgid "Prepare Vans for DTS"
+msgstr "根据配送时间 Vans拣货"
+
+#. module: fc_delivery_plan
+#: selection:delivery.route.line,complete_state:0
+#: view:stock.picking:0
+#: selection:stock.picking.in,delivery_state:0
+msgid "In delivery"
+msgstr "配送中"
+
+#. module: fc_delivery_plan
+#: field:picking.batch,active:0
+msgid "Active"
+msgstr "可用"
+
+#. module: fc_delivery_plan
+#: model:ir.actions.act_window,name:fc_delivery_plan.action_picking_batch
+#: view:picking.batch:0
+#: field:stock.picking,batch_id:0
+#: field:stock.picking.in,batch_id:0
+#: field:stock.picking.out,batch_id:0
+msgid "Picking Batch"
+msgstr "拣货批次"
+
+#. module: fc_delivery_plan
+#: selection:stock.picking.in,delivery_state:0
+msgid "Not yet planned for delivery"
+msgstr "还未计划配送"
+
+#. module: fc_delivery_plan
+#: selection:delivery.route.line,complete_state:0
+msgid "Exception"
+msgstr "例外"
+
+#. module: fc_delivery_plan
+#: view:delivery.route.line:0
+msgid "Delivery Route Lines"
+msgstr "配送车次清单"
+
+#. module: fc_delivery_plan
+#: selection:delivery.time,type:0
+msgid "Preparation"
+msgstr "拣货"
+
+#. module: fc_delivery_plan
+#: field:delivery.route.line,amount_unpaid:0
+msgid "Unpaid"
+msgstr "未付"
+
+#. module: fc_delivery_plan
+#: field:stock.tracking,picking_id:0
+msgid "Picking Related"
+msgstr "相关分拣"
+
+#. module: fc_delivery_plan
+#: field:delivery.change.dts,action:0
+msgid "Action"
+msgstr "动作"
+
+#. module: fc_delivery_plan
+#: field:delivery.route.line,box_type:0
+msgid "Box Type"
+msgstr "Box 类型"
+
+#. module: fc_delivery_plan
+#: view:delivery.route:0
+#: view:delivery.route.line:0
+msgid "Delivery Route for Today"
+msgstr "今日配送路线"
+
+#. module: fc_delivery_plan
+#: code:addons/fc_delivery_plan/sale.py:840
+#: view:delivery.dts_to_routes:0
+#: model:ir.actions.act_window,name:fc_delivery_plan.action_dts_to_routes
+#: model:ir.ui.menu,name:fc_delivery_plan.menu_action_dts_to_routes
+#, python-format
+msgid "Prepare Routes for DTS"
+msgstr "根据配送时间 预备路线"
+
+#. module: fc_delivery_plan
+#: field:delivery.route.line,driver_phone:0
+msgid "Driver Phone"
+msgstr "司机电话"
+
+#. module: fc_delivery_plan
+#: view:stock.picking:0
+msgid "Orders planned for Today"
+msgstr "今日安排订单"
+
+#. module: fc_delivery_plan
+#: view:delivery.route:0
+#: view:stock.picking:0
+msgid "Done"
+msgstr "完成"
+
+#. module: fc_delivery_plan
+#: view:delivery.change.dts:0
+#: view:delivery.driver_for_routes:0
+#: view:delivery.dts_to_routes:0
+#: view:delivery.dts_to_vans:0
+#: selection:delivery.route.line,complete_state:0
+msgid "Cancel"
+msgstr "取消"
+
+#. module: fc_delivery_plan
+#: selection:stock.picking.in,delivery_state:0
+msgid "Planned for delivery"
+msgstr "配送计划"
+
+#. module: fc_delivery_plan
+#: selection:delivery.route.line,complete_state:0
+#: view:stock.picking:0
+#: selection:stock.picking.in,delivery_state:0
+msgid "Delivered"
+msgstr "已配送"
+
+#. module: fc_delivery_plan
+#: code:addons/fc_delivery_plan/sale.py:856
+#: view:delivery.driver_for_routes:0
+#: model:ir.actions.act_window,name:fc_delivery_plan.action_driver_for_routes
+#: model:ir.ui.menu,name:fc_delivery_plan.menu_action_driver_for_routes
+#, python-format
+msgid "Choose Driver / Deliver for DTS"
+msgstr "根据配送时间 选择司机 / 送货"
+
+#. module: fc_delivery_plan
+#: model:ir.actions.act_window,name:fc_delivery_plan.action_delivery_return_type
+#: model:ir.ui.menu,name:fc_delivery_plan.menu_action_delivery_return_type
+msgid "Return Reason Type"
+msgstr "退货原因类型"
+
+#. module: fc_delivery_plan
+#: model:ir.model,name:fc_delivery_plan.model_stock_picking_in
+msgid "Incoming Shipments"
+msgstr "入库"
+
+#. module: fc_delivery_plan
+#: field:picking.batch,picking_ids:0
+msgid "Contains"
+msgstr "包含"
+
+#. module: fc_delivery_plan
+#: field:delivery.route.line,complete_state:0
+#: view:stock.picking:0
+#: field:stock.picking.in,delivery_state:0
+msgid "Delivery State"
+msgstr "配送状态"
+
+#. module: fc_delivery_plan
+#: model:ir.model,name:fc_delivery_plan.model_picking_batch
+msgid "picking.batch"
+msgstr "拣货批次"
+
+#. module: fc_delivery_plan
+#: field:delivery.route.line,so_payment_method:0
+msgid "Payment Method"
+msgstr "付款方式"
+
+#. module: fc_delivery_plan
+#: selection:delivery.route.line,complete_state:0
+msgid "Returned"
+msgstr "已退货"
+
+#. module: fc_delivery_plan
+#: view:stock.picking:0
+msgid "Assigned Internal Moves"
+msgstr "指定的内部调拨"
+
+#. module: fc_delivery_plan
+#: view:stock.picking:0
+msgid "Journal"
+msgstr "账簿"
+
+#. module: fc_delivery_plan
+#: model:ir.actions.act_window,name:fc_delivery_plan.action_delivery_route_driver_kanban
+msgid "Delivery Route Driver Kanban"
+msgstr "配送路线司机看板"
+
+#. module: fc_delivery_plan
+#: selection:delivery.time,type:0
+msgid "Delivery"
+msgstr "配送"
+
+#. module: fc_delivery_plan
+#: model:ir.model,name:fc_delivery_plan.model_delivery_driver_for_routes
+msgid "delivery.driver_for_routes"
+msgstr "delivery.driver_for_routes"
+
+#. module: fc_delivery_plan
+#: view:stock.picking:0
+msgid "Waiting"
+msgstr "正在等待"
+
+#. module: fc_delivery_plan
+#: selection:delivery.change.dts,action:0
+msgid "Change DTS/PTS"
+msgstr "变更 DTS/PTS"
+
+#. module: fc_delivery_plan
+#: field:delivery.return.reason,reason:0
+#: field:delivery.return.type,name:0
+#: field:picking.batch,name:0
+msgid "Name"
+msgstr "名称"
+
+#. module: fc_delivery_plan
+#: view:stock.picking:0
+msgid "Not Planned"
+msgstr "未计划"
+
+#. module: fc_delivery_plan
+#: view:delivery.route.line:0
+msgid "Route"
+msgstr "路线"
+
+#. module: fc_delivery_plan
+#: selection:stock.picking.in,delivery_state:0
+msgid "Delivered and returned"
+msgstr "已配送和已退回"
+
+#. module: fc_delivery_plan
+#: field:stock.picking.in,carrier_id:0
+msgid "Carrier"
+msgstr "运输工具"
+
+#. module: fc_delivery_plan
+#: view:delivery.change.dts:0
+#: model:ir.actions.act_window,name:fc_delivery_plan.action_stock_change_dts_wizard
+#: model:ir.model,name:fc_delivery_plan.model_delivery_change_dts
+msgid "Change DTS / PTS"
+msgstr "变更 DTS / PTS"
+
+#. module: fc_delivery_plan
+#: field:delivery.return.reason,route_line_id:0
+msgid "Delivery Route Line"
+msgstr "配送路线明细"
+
+#. module: fc_delivery_plan
+#: model:ir.model,name:fc_delivery_plan.model_res_users
+msgid "Users"
+msgstr "用户"
+
+#. module: fc_delivery_plan
+#: model:ir.model,name:fc_delivery_plan.model_delivery_return_reason
+msgid "delivery.return.reason"
+msgstr "delivery.return.reason"
+
+#. module: fc_delivery_plan
+#: field:delivery.return.type,sequence:0
+msgid "Sequence"
+msgstr "序号"
+
+#. module: fc_delivery_plan
+#: model:ir.model,name:fc_delivery_plan.model_delivery_return_type
+msgid "delivery.return.type"
+msgstr "delivery.return.type"
+
+#. module: fc_delivery_plan
+#: view:stock.picking:0
+msgid "No batch"
+msgstr "未设批次"
+
+#. module: fc_delivery_plan
+#: field:delivery.route.line,amount_total:0
+msgid "Total"
+msgstr "合计"
+
+#. module: fc_delivery_plan
+#: field:delivery.route.line,account_remark:0
+msgid "Remark Accounting"
+msgstr "财务备注"
+

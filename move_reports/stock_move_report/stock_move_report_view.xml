@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+    	<record id="wizard_run_stock_move_form" model="ir.ui.view">
+            <field name="name">Stock Move Report Wizard</field>
+            <field name="model">stock.move.report.wizard</field>
+            <field name="arch" type="xml">
+            	<form string="Generate Incoming Move Report">
+                    <separator string="Generate Incoming Moves based on stock moves" colspan="4" />
+                    <field name="start_date"/>
+                    <field name="end_date"/>
+                    <field name="type"/>
+                    <newline/>
+                    <button special="cancel" string="_Cancel" icon='gtk-cancel' colspan="2" />
+                    <button name="generate_report" string="Generate" type="object" icon="gtk-ok" colspan="2" />
+            	</form>
+            </field>
+        </record>
+    
+    	<act_window name="Run Stock Move Report"            
+            res_model="stock.move.report.wizard"
+            view_mode="form"
+            target="new"
+            context="{}"  
+            id="action_run_stock_move_wizard"/>
+    
+    	<menuitem
+            id="menu_run_stock_move_wizard"
+            name="Run Moves Report"
+            parent="stock.next_id_61"
+            action="action_run_stock_move_wizard"
+            sequence = "98"/>
+        
+        <record id="view_move_report_tree" model="ir.ui.view">
+            <field name="name">stock.move.report.tree</field>
+            <field name="model">stock.move.report</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Moves Report" delete="false" create="false" colors="red:amount_total &lt; 0.0" >
+                    <field name="date" widget="date"/>
+                    <field name="origin"/>
+                    <field name="picking_id"/>
+                    <field name="partner_ref"/>
+                    <field name="partner_id"/>
+                    <!-- <field name="stock_type_id"/> -->
+                	<field name="category_id"/>
+                    <field name="product_id"/>
+                    <field name="product_qty" sum='Prod Qty'/>
+                    <field name="move_qty" sum='Move Qty'/>
+                    <field name="loc_name"/>
+                    <field name="loc_dest_name"/>
+                    <field name="uom_id" sum='Quantity'/>
+                    <field name="product_price"/>
+                    <field name="price_unit" string="Cost"/>
+                    <field name="cost_total" string="Total" sum='Cost Total'/>
+                    <field name="po_price"/>
+                    <field name="amount_total" sum='Po Total'/>
+                    <field name="type"/>
+                    <field name="pick_return"/>
+                    <field name="return_reason"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_move_stat_report_search" model="ir.ui.view">
+            <field name="name">stock.move.report.search</field>
+            <field name="model">stock.move.report</field>
+            <field name="type">search</field>
+            <field name="arch" type="xml">
+                <search string="Product Inventory">
+                    <field name="partner_id"/>
+                    <field name="origin"/>
+                    <field name="picking_id"/>
+                    <field name="stock_type_id"/>
+                    <field name="category_id"/>
+                    <field name="product_id"/>
+                    <field name="loc_name"/>
+                    <field name="loc_dest_name"/>
+                    <filter string='Incoming' icon="terp-mrp" domain="[('pick_return','=','none')]"/>
+                    <filter string='Return' icon="terp-mrp" domain="[('pick_return','=','supplier')]"/>
+                   	<group  expand='0' string='Group by...'>
+                   		<filter string='Origin' icon="terp-partner" domain="[]" context="{'group_by' : 'origin'}"/>
+                   		<filter string='Date' icon="terp-partner" domain="[]" context="{'group_by' : 'date'}"/>
+                   		<filter string='Picking' icon="terp-partner" domain="[]" context="{'group_by' : 'picking_id'}"/>
+                   		<filter string='Partner' icon="terp-partner" domain="[]" context="{'group_by' : 'partner_id'}"/>
+                       	<filter string='Category' icon="terp-stock_symbol-selection" domain="[]" context="{'group_by' : 'category_id'}"/>
+                       	<filter string='product_id' icon="terp-stock_symbol-selection" domain="[]" context="{'group_by' : 'product_id'}"/>
+                       	<filter string='Stock Type' icon="terp-mrp" domain="[]" context="{'group_by' : 'stock_type_id'}"/>
+                       	<filter string='Source Location' icon="terp-mrp" domain="[]" context="{'group_by' : 'loc_name'}"/>
+                       	<filter string='Dest Location' icon="terp-mrp" domain="[]" context="{'group_by' : 'loc_dest_name'}"/>
+                       
+                   	</group>
+                </search>
+            </field>
+        </record>
+
+        <record id="action_stat_move_tree" model="ir.actions.act_window">
+            <field name="name">Moves Report</field>
+            <field name="res_model">stock.move.report</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree</field>
+            <field name="search_view_id" ref="view_move_stat_report_search"/>
+            <field name="limit">60</field>
+        </record>
+
+        <menuitem
+            id="menu_action_move_tree"
+            parent="stock.next_id_61"
+            action="action_stat_move_tree"
+            sequence = "99"/>
+            
+    </data>
+</openerp>

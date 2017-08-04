@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record id="view_icops_backend_form" model="ir.ui.view">
+            <field name="name">icops.backend.form</field>
+            <field name="model">icops.backend</field>
+            <field name="inherit_id" ref="base_intercompany.view_icops_backend_form" />
+            <field name="arch" type="xml">
+                <field name="icops_uid" position="after">
+                    <field name="icops_shop_id" cols="2" />
+                </field>
+            </field>
+        </record>
+    </data>
+</openerp>

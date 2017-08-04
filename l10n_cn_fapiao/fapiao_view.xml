@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<record id="view_fapiao_tree" model="ir.ui.view">
+            <field name="name">fapiao.tree</field>
+            <field name="model">fapiao</field>
+            <field name="arch" type="xml">
+                <tree string="Fapiao Line">
+                    <field name="partner_id"/>
+                    <field name="fapiao_date" />
+                    <field name="fapiao_number"/>
+                    <field name="amount_with_taxes" />
+                </tree>
+            </field>
+        </record>
+        <record id="view_fapiao_form" model="ir.ui.view">
+            <field name="name">fapiao.line.form</field>
+            <field name="model">fapiao</field>
+            <field name="arch" type="xml">
+                <form string="Fapiao Line" version="7.0">
+                	<sheet string="Fapiao">	
+                		<group>
+                			<group>
+                                <field name="fapiao_number" />
+                                <field name="tag_ids" widget="many2many_tags" placeholder="Tags..." />
+                                <field name="fapiao_type" />  
+                            </group>
+                            <group>
+                                <field name="partner_id" />
+                                <field name="fapiao_date" />
+                            	<field name="amount_with_taxes" />
+                            </group>
+                        </group>
+                        <field name="invoice_ids" />
+                    </sheet>
+                    <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+        <record id="view_fapiao_filter" model="ir.ui.view">
+            <field name="name">fapiao.select</field>
+            <field name="model">fapiao</field>
+            <field name="arch" type="xml">
+                <search string="Search Fapiao">
+                    <field name="fapiao_number" />
+                    <field name="partner_id" string="Fapiao" filter_domain="[('partner_id', 'child_of', self)]"/>
+                    <field name="fapiao_date" />
+                    <field name="tag_ids" />
+                    <separator/>
+                 
+                    <group expand="0" string="Group By...">
+                        <filter string="Partner" icon="terp-partner" domain="[]" context="{'group_by':'partner_id'}"/>
+                        <filter string="Fapiao Date" icon="terp-go-month" domain="[]"  context="{'group_by':'fapiao_date'}"/>
+                        <filter string="Fapiao Number" icon="" domain="[]"  context="{'group_by':'fapiao_number'}"/>
+                    </group>
+               </search>
+            </field>
+        </record>
+
+       <record id="action_fapiao_tree" model="ir.actions.act_window">
+            <field name="name">Customer Fapiao</field>
+            <field name="res_model">fapiao</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="view_fapiao_filter" />
+        </record>
+        <menuitem id="menu_fapiao" name="Fapiao" parent="account.menu_finance" sequence="3"/>
+        <menuitem action="action_fapiao_tree" id="fapiao_tree_lines"
+            parent="menu_fapiao"/>
+	</data>
+</openerp>

@@ -1,0 +1,35 @@
+<openerp>
+<data>
+<!-- Product View -->
+
+        <record id="product_cubic_form_view_inherit" model="ir.ui.view">
+            <field name="name">product.form</field>
+            <field name="model">product.product</field>
+	        <field name="inherit_id" ref="product.product_normal_form_view"/>
+            <field name="arch" type="xml">
+		<field name="volume" position='replace'>
+			<field name="volume" string="Volume (m3)"/>
+		</field>
+            	<group name="Weights" position="after">
+					<group name="cubic_weight" string="Cubic Weight">
+						<field name="height" on_change="onchange_hwl(height, width, length)"/>
+						<field name="width" on_change="onchange_hwl(height, width, length)"/>
+						<field name="length" on_change="onchange_hwl(height, width, length)"/>
+						<field name="cubic_weight"/>
+					</group>
+                </group>
+			</field>
+		</record>
+
+        <record id="tree_inherit_product_tree_view" model="ir.ui.view">
+            <field name="name">tree.inherit.product.tree.view</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="product.product_product_tree_view" />
+            <field name="arch" type="xml">
+                <field name="virtual_available" position="after">
+                    <field name="volume" string="Total Volume"/>
+                </field>
+            </field>
+        </record>
+	</data>	
+</openerp>

@@ -1,0 +1,694 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+		<record id="procurement_form_view_pts_elico" model="ir.ui.view">
+			<field name="name">procurement_form_view_pts_elico</field>
+			<field name="model">procurement.order</field>
+			<field name="inherit_id" ref="procurement.procurement_form_view" />
+			<field name="arch" type="xml">
+				<xpath expr="//field[@name='origin']" position="after">
+				    <field name="pts_id" attrs="{'readonly': [('state','!=','draft')]}" domain="[('type','=','pts'),('active','=',True)]"/>
+				</xpath>
+			</field>
+		</record>
+		<record id="procurement_tree_view_pts_elico" model="ir.ui.view">
+			<field name="name">procurement_tree_view_pts_elico</field>
+			<field name="model">procurement.order</field>
+			<field name="inherit_id" ref="procurement.procurement_tree_view" />
+			<field name="arch" type="xml">
+				<xpath expr="//field[@name='origin']" position="before">
+				    <field name="pts_id" domain="[('type','=','pts')]"/>
+				</xpath>
+			</field>
+		</record>
+		
+		<record id="mrp_production_search_view_pts_elico" model="ir.ui.view">
+			<field name="name">mrp_production_search_view_pts_elico</field>
+			<field name="model">mrp.production</field>
+			<field name="inherit_id" ref="mrp.view_mrp_production_filter" />
+			<field name="arch" type="xml">
+				<xpath expr="//field[@string='Production']" position="after">
+                    <field name="pts_id" context="{'domain':[('type','=','pts')]}"/>
+                </xpath>
+                <xpath expr="//filter[@string='Date']" position="after">
+                    <filter string="Preparation Time" icon="terp-folder-orange" domain="[]" context="{'group_by':'pts_id'}"/>
+                </xpath>
+			</field>
+		</record>
+		<record id="mrp_production_form_view_pts_elico" model="ir.ui.view">
+			<field name="name">mrp_production_form_view_pts_elico</field>
+			<field name="model">mrp.production</field>
+			<field name="inherit_id" ref="mrp.mrp_production_form_view" />
+			<field name="arch" type="xml">
+				<xpath expr="//field[@name='date_planned']" position="after">
+				    <field name="pts_id" readonly="1" domain="[('type','=','pts'),('active','=',True)]"/>
+				</xpath>
+			</field>
+		</record>
+		<record id="mrp_production_tree_view_pts_elico" model="ir.ui.view">
+			<field name="name">mrp_production_tree_view_pts_elico</field>
+			<field name="model">mrp.production</field>
+			<field name="inherit_id" ref="mrp.mrp_production_tree_view" />
+			<field name="arch" type="xml">
+				<xpath expr="//field[@name='date_planned']" position="after">
+				    <field name="pts_id" domain="[('type','=','pts')]"/>
+				</xpath>
+			</field>
+		</record>
+		
+        <record id="view_picking_out_pts_form_elico" model="ir.ui.view">
+            <field name="name">stock.picking.out.form_pts_elico</field>
+            <field name="model">stock.picking.out</field>
+            <field name="inherit_id" ref="stock.view_picking_out_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='partner_id']" position="after">
+                    <field name="dts_id" readonly="1"/>
+                    <field name="pts_id" on_change="pts_id_change(pts_id, context)" attrs="{'readonly': [('state','in',['cancel','done'])]}" domain="[('type','=','pts'),('active','=',True)]"/>
+                    <field name="sale_id"/>
+                </xpath>
+            </field>
+        </record>
+        
+        <record id="view_picking_out_pts_tree_elico" model="ir.ui.view">
+            <field name="name">stock.picking.out.tree_pts_elico</field>
+            <field name="model">stock.picking.out</field>
+            <field name="inherit_id" ref="stock.view_picking_out_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='partner_id']" position="after">
+                    <field name="dts_id" domain="[('type','=','dts')]"/>
+                    <field name="pts_id" domain="[('type','=','pts')]"/>
+                </xpath>
+            </field>
+        </record>
+        <record id="view_picking_pts_form_elico" model="ir.ui.view">
+            <field name="name">stock.picking.form_pts_elico</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.view_picking_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='partner_id']" position="after">
+                    <field name="dts_id" readonly="1"/>
+                    <field name="pts_id" on_change="pts_id_change(pts_id, context)" attrs="{'readonly': [('state','in',['cancel','done'])]}" domain="[('type','=','pts'),('active','=',True)]"/>
+               </xpath>
+            </field>
+        </record>
+        <record id="view_picking_pts_tree_elico" model="ir.ui.view">
+            <field name="name">stock.picking.tree_pts_elico</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.vpicktree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='min_date']" position="after">
+                    <field name="dts_id" domain="[('type','=','dts')]"/>
+                    <field name="pts_id" domain="[('type','=','pts')]"/>
+                </xpath>
+            </field>
+        </record>
+        <record id="view_picking_in_pts_form_elico" model="ir.ui.view">
+            <field name="name">stock.picking.in.form_pts_elico</field>
+            <field name="model">stock.picking.in</field>
+            <field name="inherit_id" ref="stock.view_picking_in_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='partner_id']" position="after">
+                    <field name="dts_id" domain="[('type','=','dts'),('active','=',True)]" attrs="{'readonly': [('state','in',['cancel','done'])]}"/>
+                    <field name="pts_id" invisible="1" on_change="pts_id_change(pts_id, context)" attrs="{'readonly': [('state','in',['cancel','done'])]}" domain="[('type','=','pts'),('active','=',True)]"/>
+                </xpath>
+            </field>
+        </record>
+        <record id="view_picking_in_pts_tree_elico" model="ir.ui.view">
+            <field name="name">stock.picking.in.tree_pts_elico</field>
+            <field name="model">stock.picking.in</field>
+            <field name="inherit_id" ref="stock.view_picking_in_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='partner_id']" position="after">
+                    <field name="dts_id" domain="[('type','=','dts')]"/>
+                    <!--field name="pts_id" invisible="1"/-->
+                </xpath>
+            </field>
+        </record>
+        
+        <record id="view_order_pts_form_elico" model="ir.ui.view">
+            <field name="name">sale.order.form_pts_elico</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='date_order']" position="after">
+                    <field name="dts_id" domain="[('type','=','dts')]"/>
+                    <field name="pts_id" domain="[('type','=','pts')]"/>
+                    <field name="start_date" />
+                    <field name="end_date" />
+                    <field name="so_payment_method"/>
+                </xpath>
+            </field>
+        </record>
+        <record id="view_order_pts_tree_elico" model="ir.ui.view">
+            <field name="name">sale.order.tree_pts_elico</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='date_order']" position="after">
+                    <field name="dts_id" domain="[('type','=','dts')]"/>
+                    <field name="pts_id" domain="[('type','=','pts')]"/>
+                </xpath>
+            </field>
+        </record>
+        <record id="view_quotation_pts_tree_elico" model="ir.ui.view">
+            <field name="name">sale.quotation.tree_pts_elico</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_quotation_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='date_order']" position="after">
+                    <field name="dts_id" invisible="1"/>
+                    <field name="pts_id" invisible="1"/>
+                </xpath>
+            </field>
+        </record>
+        <record id="view_order_pts_search_elico" model="ir.ui.view">
+            <field name="name">sale.order.search_pts_elico</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_sales_order_filter"/>
+            <field name="arch" type="xml">
+				<xpath expr="/search/group/filter[@string='Order Date']" position="after">
+                    <field name="pts_id" context="{'domain':[('type','=','pts')]}"/>
+                    <field name="dts_id" context="{'domain':[('type','=','dts')]}"/>
+                    <filter string="Preparation Time" icon="terp-folder-orange" domain="[]" context="{'group_by':'pts_id'}"/>
+                    <filter string="Delivery Time" icon="terp-folder-orange" domain="[]" context="{'group_by':'dts_id'}"/>
+                </xpath>
+            </field>
+        </record>
+        
+        <!-- Delivery Picking Tree -->
+        <record id="delivery_picking_tree" model="ir.ui.view">
+            <field name="name">stock.picking.tree</field>
+            <field name="model">stock.picking</field>
+            <field name="arch" type="xml">
+                <tree colors="blue:state == 'draft';grey:state == 'cancel';red:state not in ('cancel', 'done') and min_date &lt; current_date" string="Picking list">
+                    <field name="name"/>
+                    <field name="origin"/>
+                    <field name="partner_id"/>
+                    <field name="street"/>
+                    <field name="pts_id" invisible="1"/>
+                    <field name="purchase_id" invisible="1"/>
+                    <field name="sale_id" invisible="1"/>
+                    <field name="dts_id"/>
+                    <field name="min_date"/>
+                    <field name="type"/>
+                    <field name="state"/>
+                    <field name="delivery_state"/>
+                    <button name="%(delivery_routes.action_picking_get_order)d"
+                       string="Related Order" type="action"
+                       icon="terp-mail-forward"
+                       attrs="{'invisible': [('purchase_id','=',None),('sale_id','=',None)]}"
+                       groups="base.group_user"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Delivery Picking Search -->
+        <record id="view_picking_internal_search_extend" model="ir.ui.view">
+            <field name="name">stock.picking.internal.search.extend</field>
+            <field name="model">stock.picking</field>
+            <field name="arch" type="xml">
+                <search string="Internal Picking List">
+                    <field name="name" string="Internal Picking List" filter_domain="['|',('name','ilike', self),('origin','ilike',self)]"/>
+                    <filter icon="terp-go-today" name="for_past" string="Past" domain="[('min_date','&lt;=',time.strftime('%%Y-%%m-%%d 00:00:00'))]" help="Orders planned for the Past"/>
+                    <filter icon="terp-go-today" name="for_today" string="Today" domain="[('min_date','&lt;=',time.strftime('%%Y-%%m-%%d 23:59:59')),('min_date','&gt;=',time.strftime('%%Y-%%m-%%d 00:00:00'))]" help="Orders planned for Today"/>
+                    <filter icon="terp-go-today" name="for_future" string="Future" domain="[('min_date','&gt;=',time.strftime('%%Y-%%m-%%d 23:59:59'))]" help="Orders planned for the Future"/>
+                    <separator/>
+                    <filter icon="terp-check" name="not_planned" string="Not Planned" domain="[('delivery_state','=','not_planned')]"/>
+                    <filter icon="terp-check" name="delivery" string="In delivery" domain="[('delivery_state','=',['del_rt','in_del','in_del','in_del','planned'])]"/>
+                    <filter icon="terp-check" name="delivered" string="Delivered" domain="[('delivery_state','=',['del_ok','del_ex','del_rt_exp'])]"/>
+                    <separator/>
+                    <filter icon="terp-check" name="available" string="Ready" domain="[('state','=','assigned')]" help="Assigned Internal Moves"/>
+                    <filter icon="terp-camera_test" name="confirmed" string="Waiting" domain="[('state','=','confirmed')]" help="Confirmed Internal Moves"/>
+                    <filter icon="terp-dialog-close" name="done" string="Done" domain="[('state','=','done')]" help="Picking already processed"/>
+                    <filter icon="terp-dialog-close" name="no_batch" string="No batch" domain="[('batch_id','=',None)]" help="Picking without batch"/>
+                    <field name="partner_id"/>
+                    <field name="batch_id"/>
+                    <field name="product_id"/>
+                    <field name="origin"/>
+                    <field name="stock_journal_id"/>
+                    <field name="pts_id" context="{'domain':[('type','=','pts')]}"/>
+                    <field name="dts_id" context="{'domain':[('type','=','dts')]}"/>
+                    <group expand="0" string="Group By...">
+                        <filter string="Status" icon="terp-stock_effects-object-colorize" domain="[]" context="{'group_by':'state'}"/>
+                        <filter string="Order Date" icon="terp-go-month" domain="[]"  context="{'group_by':'date'}"/>
+                        <filter string="Expected Date" icon="terp-go-month" domain="[]"  context="{'group_by':'min_date'}"/>
+                        <filter string="Origin" icon="terp-gtk-jump-to-rtl" domain="[]" context="{'group_by':'origin'}"/>
+                        <filter string="Batch" domain="[]" context="{'group_by':'batch_id'}"/>
+                        <filter string="Journal" icon="terp-folder-orange" domain="[]" context="{'group_by':'stock_journal_id'}"/>
+                        <filter string="Preparation Time" icon="terp-folder-orange" domain="[]" context="{'group_by':'pts_id'}"/>
+                        <filter string="Delivery Time" icon="terp-folder-orange" domain="[]" context="{'group_by':'dts_id'}"/>
+                        <filter string="Delivery State" icon="terp-folder-orange" domain="[]" context="{'group_by':'delivery_state'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="delivery_routes.action_delivery_routes_picking" model="ir.actions.act_window">
+            <field name="name">Delivery Pickings</field>
+            <field name="res_model">stock.picking</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_type">form</field>
+            <field name="view_id" ref="delivery_picking_tree"/>
+            <field name="view_mode">tree,form,calendar</field>
+            <field name="domain">[('type','in',['out','in']),('return','=','none'),('state','!=','cancel')]</field>
+            <field name="context">{'default_type': 'out', 'search_default_for_today':1, 'contact_display': 'partner_address'}</field>
+            <field name="search_view_id" ref="view_picking_internal_search_extend"/>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create"> 
+              </p><p>
+                Pack selected delivery notes
+              </p>
+            </field>
+        </record>
+
+        <!-- picking batch Form view -->
+        <record id="picking_batch_view" model="ir.ui.view">
+            <field name="name">picking.batch.form</field>
+            <field name="model">picking.batch</field>
+            <field name="type">form</field>  
+            <field name="arch" type="xml">
+                <form string="Picking Batch" version="7.0">
+                    <group>
+                        <field name="name"/>
+                        <field name="active"/>
+                    </group>
+                    <field name="picking_ids"/>
+                </form>
+            </field>
+        </record>
+
+        <!-- picking batch Tree view -->
+        <record id="picking_batch_tree_view" model="ir.ui.view">
+            <field name="name">picking.batch.tree</field>
+            <field name="model">picking.batch</field>
+            <field name="arch" type="xml">
+                <tree string="Picking Batch">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- picking batch action -->
+        <record id="action_picking_batch" model="ir.actions.act_window">
+            <field name="name">Picking Batch</field>
+            <field name="res_model">picking.batch</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>        
+        
+        <!-- Delivery route kanban view -->
+        <record model="ir.ui.view" id="delivery_routes.delivery_route_line_kanban_view">
+            <field name="name">delivery.route.line.kanban</field>
+            <field name="model">delivery.route.line</field>
+            <field name="arch" type="xml">
+                <kanban version="7.0" default_group_by="route_id" quick_creatable="false">
+                    <field name="dts_id"/>
+                    <field name="picking_id"/>
+                    <field name="route_id"/>
+                    <field name="address_id"/>
+                    <field name="customer_date"/>
+                    <field name="street"/>
+                    <field name="note"/>
+                    <field name="vip"/>
+                    <field name="sequence"/>
+                    <field name="color"/>
+                    <field name="state"/>
+                    <templates>
+                    <t t-name="kanban-box">                        
+                        <div t-if="record.state.raw_value != 'draft'" t-attf-class="oe_kanban_color_#{kanban_getcolor(record.color.raw_value)} oe_kanban_card oe_kanban_global_click not_dragable">
+                            <div class="oe_kanban_content">
+                                <div>
+                                    <b><field name="origin"/></b> (<field name="delivered_cpt"/>)
+                                    <a t-if="record.vip.raw_value == 1" type="object" name="set_not_vip" class="oe_e oe_star_on">7</a>
+                                    <a t-if="record.vip.raw_value != 1" type="object" name="set_vip" class="oe_e oe_star_off">7</a>
+                                </div>
+                                <div>
+                                    <field name="address_id"/><br/>
+                                    <field name="street"/><br/>
+                                    <field name="customer_date"/><br/>
+                                    <div class="oe_ellipsis"><t t-raw="record.note.value"/></div>
+                                </div>
+                            </div>
+                            <div class="oe_clear"></div>
+                        </div>
+                        <div t-if="record.state.raw_value == 'draft'" t-attf-class="oe_kanban_color_#{kanban_getcolor(record.color.raw_value)} oe_kanban_card oe_kanban_global_click">
+                            <div class="oe_dropdown_toggle oe_dropdown_kanban" groups="base.group_user">
+                                <span class="oe_e">í</span>
+                                <ul class="oe_dropdown_menu">
+                                    <t t-if="widget.view.is_action_enabled('edit')"><li><a type="edit">Edit...</a></li></t>
+                                </ul>
+                            </div>
+                            <div class="oe_kanban_content">
+                                <div>
+                                    <b><field name="origin"/></b> (<field name="delivered_cpt"/>)
+                                    <a t-if="record.vip.raw_value == 1" type="object" name="set_not_vip" class="oe_e oe_star_on">7</a>
+                                    <a t-if="record.vip.raw_value != 1" type="object" name="set_vip" class="oe_e oe_star_off">7</a>
+                                </div>
+                                <div>
+                                    <field name="address_id"/><br/>
+                                    <field name="street"/><br/>
+                                    <field name="customer_date"/>
+                                    <div class="oe_ellipsis"><t t-raw="record.note.value"/></div>
+                                </div>
+                            </div>
+                            <div class="oe_clear"></div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>     
+        
+        <record id="delivery_routes.view_delivery_route_line_form" model="ir.ui.view">
+            <field name="name">delivery.route.line.form</field>
+            <field name="model">delivery.route.line</field>
+            <field name="arch" type="xml">
+                <form string="Delivery Route Line" version="7.0">
+	                <header>
+	                    <!--button name="action_draft" string="Draft" type="object" states="cancel"/-->
+	                    <!--button name="action_confirm" string="Confirm" class="oe_highlight" type="object" states="draft"/-->
+	                    <!--button name="action_delivered" string="In delivery" type="object" class="oe_highlight" states="confirm"/-->
+	                    <button name="action_received" string="Received" type="object" class="oe_highlight" states="delivered" groups="delivery_routes.group_delivery_manager"/>
+	                    <button name="action_received_exp" string="Received with exception" type="object" states="delivered" groups="delivery_routes.group_delivery_manager"/>
+	                    <button name="action_returned" string="Returned" type="object" states="delivered" groups="delivery_routes.group_delivery_manager"/>
+	                    <button name="action_returned_exp" string="Returned, no Delivery" type="object" states="delivered" groups="delivery_routes.group_delivery_manager"/>
+	                    <button name="action_cancel" string="Cancel" type="object" states="confirm" groups="delivery_routes.group_delivery_user"/>
+	                    <field name="state" widget="statusbar" statusbar_visible="draft,confirm,delivered,received,returned,cancel" statusbar_colors='{"received":"green","returned":"red","delivered":"blue"}'/>
+	                </header>
+	                <sheet>
+	                    <group colspan="4" col="4">
+		                    <field name="sequence" attrs="{'readonly':[('state','not in',['draft'])]}"/>
+		                    <field name="route_id" attrs="{'readonly':[('state','not in',['draft'])]}"/>
+		                    <field name="address_id" readonly="1"/>
+		                    <field name="dts_id" domain="[('type','=','dts')]"/>
+		                    <!--field name="origin"/-->
+		                    <field name="street" readonly="1"/>
+		                    <field name="picking_id" domain="[('return','=','none'),('delivery_state','in',['not_planned','del_rt']),('type','in',['in','out']),('state','!=','cancel')]"/>
+		                    <field name="so_payment_method" readonly="1"/>
+		                    <field name="box_type"/>
+		                    <field name="visit_date"/>
+		                    <field name="driver" readonly="1"/>
+		                    <field name="purchase_id" attrs="{'invisible':[('purchase_id','=',False)]}"/>
+		                    <field name="sale_order_id" attrs="{'invisible':[('sale_order_id','=',False)]}"/>
+		                    <field name="exceptions" invisible="1"/>
+		                    <group colspan="4" col="1" attrs="{'invisible':[('exceptions','=',False),('state','not in',['returned'])]}">
+		                    	<separator string="Return Reasons"/>
+		                    	<field name="return_reasons" nolabel="1">
+	                                <tree editable="bottom">
+	                                    <field name="type"/>
+	                                    <field name="reason"/>                                    
+	                                </tree>
+	                            </field>
+		                    </group>
+		                    <group colspan="4" col="2">
+		                    	<separator string="Notes"/>
+		                    	<separator string="DO Notes"/>
+		                    </group>
+		                    <group colspan="4" col="2">
+		                    	<field name="note" nolabel="1"/>
+		                    	<field name="picking_note" nolabel="1" readonly="1"/>
+		                    </group>
+	                   </group>
+	                </sheet>
+                </form>
+            </field>
+        </record>
+        
+        <record id="view_delivery_route_line_tree_elico" model="ir.ui.view">
+            <field name="name">delivery.route.line.tree_elico</field>
+            <field name="model">delivery.route.line</field>
+        	<field name="inherit_id" ref="delivery_routes.view_delivery_route_line_tree"/>
+			<field name="arch" type="xml">
+				<xpath expr="//field[@name='origin']" position="after">
+                    <field name="dts_id"/>
+                    <field name="dts_name" invisible="1"/>
+                    <field name="customer_date"/>
+                </xpath>
+                <xpath expr="//field[@name='note']" position="after">
+                    <field name="amount_received" groups="account.group_account_user" sum="Total Received"/>
+                    <field name="account_checked" string="OK" groups="account.group_account_user"/>
+                   	<field name="account_remark"  string="Acc. Notes" groups="account.group_account_user"/>
+                </xpath>
+            </field>
+        </record>
+        <record id="delivery_routes.view_delivery_line_search" model="ir.ui.view">
+            <field name="name">delivery.route.line.search_elico</field>
+            <field name="model">delivery.route.line</field>
+			<field name="arch" type="xml">
+			    <search string="Delivery Line"> 
+                    <field name="picking_id" />
+                    <field name="address_id" />
+                    <field name="origin" />
+                    <filter name="no_route" string="no route" domain="[('route_id','=',None)]" help="line without route" />
+				    <filter icon="terp-go-today" string="Today" domain="[('route_id.date','=',time.strftime('%%Y-%%m-%%d'))]" help="Delivery for Today" name="today"/>
+                    <group expand="0" string="Group By...">
+	                    <filter string="Route" icon="terp-folder-orange" domain="[]" context="{'group_by':'route_id'}"/>
+	                    <filter string="Delivery Time" icon="terp-folder-orange" domain="[]" context="{'group_by':'dts_name'}"/>
+	                    <filter string="State" icon="terp-folder-orange" domain="[]" context="{'group_by':'state'}"/>
+	                </group>
+                </search>
+            </field>
+        </record>
+        
+        <!--record model="ir.ui.view" id="delivery_route_address_kanban_view">
+            <field name="name">delivery.route.address.kanban</field>
+            <field name="model">delivery.route.line</field>
+            <field name="arch" type="xml">
+                <kanban version="7.0">
+                    <field name="dts_id"/>
+                    <field name="picking_id"/>
+                    <field name="route_id"/>
+                    <field name="address_id"/>
+                    <field name="note"/>
+                    <field name="sequence"/>
+                    <templates>
+                    <t t-name="kanban-box">
+                        <div t-attf-class="oe_kanban_card oe_kanban_global_click">
+                            <div class="oe_dropdown_toggle oe_dropdown_kanban" groups="base.group_user">
+                                <span class="oe_e">í</span>
+                                <ul class="oe_dropdown_menu">
+                                    <t t-if="widget.view.is_action_enabled('edit')"><li><a type="edit">Edit...</a></li></t>
+                                    <t t-if="widget.view.is_action_enabled('delete')"><li><a type="delete">Delete</a></li></t>
+                                </ul>
+                            </div>
+                            <div class="oe_kanban_content">
+                                <div><b><field name="street"/></b></div>
+                            </div>
+                            <div class="oe_clear"></div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record-->
+        
+        
+    	<record id="action_delivery_return_type" model="ir.actions.act_window">
+            <field name="name">Return Reason Type</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">delivery.return.type</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <menuitem action="action_delivery_return_type" id="menu_action_delivery_return_type" parent="delivery_routes.menu_delivery_config" sequence="99"/>
+        
+        
+        <menuitem name="Delivery Payments"
+            id="menu_delivery_delivery_payment"
+            parent="delivery_routes.menu_delivery_root"
+            groups="delivery_routes.group_customer_service_user,account.group_account_user"
+            sequence="5"/>
+        
+        
+        <record id="view_delivery_route_form_cs" model="ir.ui.view">
+            <field name="name">delivery.route.form_CS</field>
+            <field name="model">delivery.route</field>
+            <field name="priority">17</field>
+            <field name="arch" type="xml">
+                <form string="Delivery Route" version="7.0">
+                <header>
+                    <button name="set_confirm_cs" string="Confirm CS" type="object" class="oe_highlight" groups="delivery_routes.group_customer_service_user" attrs="{'invisible':[('confirm_cs','=',True)]}"/>
+                    <button name="action_done" string="Done" type="object" class="oe_highlight" states="departure" groups="account.group_account_user"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,confirm,departure,done,cancel" statusbar_colors='{"done":"green","cancel":"red","departure":"blue"}'/>
+                </header>
+                <sheet>
+                    <group colspan="4" col="4">
+	                    <field name="name" readonly="1"/>
+	                    <field name="date" readonly="1"/>
+	                    <field name="departure_date" readonly="1"/>
+	                    <field name="arrive_date"/>
+	                    <field name="dts_id" readonly="1"/>
+	                    <newline />
+	                    <field name="driver_id" readonly="1"/>
+	                    <field name="picker_id" readonly="1"/>
+	                    <field name="confirm_cs" groups="delivery_routes.group_customer_service_user" attrs="{'readonly':[('state','not in',['confirm','draft'])]}"/>
+	                    <newline />
+                    	<field name="line_ids" colspan="4" nolabel="1">
+                    		<tree editable="bottom" create="false" delete="false">
+                    		    <field name="origin"/>
+                    		    <field name="amount_total" sum="Total"/>
+                    		    <field name="amount_unpaid" sum="Total Unpaid"/>
+                    		    <field name="adjustment" groups="delivery_routes.group_customer_service_user" attrs="{'readonly':[('confirm_cs','=',True)]}" sum="Total Adjustment"/>
+                    		    <field name="cs_remark"  string="CS Notes" groups="delivery_routes.group_customer_service_user" attrs="{'readonly':[('confirm_cs','=',True)]}"/>
+                    		    <field name="to_be_received" sum="Total to be received" string="To be Rec."/>
+                    		    <field name="amount_received" groups="account.group_account_user" attrs="{'readonly':[('state','not in',['received','returned'])]}" sum="Total Received"/>
+                    		    <field name="account_checked" string="OK" groups="account.group_account_user" attrs="{'readonly':[('state','not in',['received','returned'])]}"/>
+                    		    <field name="account_remark"  string="Acc. Notes" groups="account.group_account_user" attrs="{'readonly':[('state','not in',['received','returned'])]}"/>
+                    		    <field name="complete_state"  string="State" readonly="1"/>
+                    		    <field name="state" invisible="1"/>
+                    		    <field name="confirm_cs" invisible="1"/>
+                    		</tree>
+                    	</field>
+                    </group>
+                </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="view_delivery_route_tree_cs" model="ir.ui.view">
+            <field name="name">delivery.route.tree_cs</field>
+            <field name="model">delivery.route</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Delivery Routes">
+                    <field name="name"/>
+                    <field name="date"/>
+                    <field name="dts_id"/>
+                    <field name="departure_date"/>
+        			<field name="arrive_date"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+        <record id="view_delivery_search_cs" model="ir.ui.view">
+            <field name="name">delivery.route.search_cs</field>
+            <field name="model">delivery.route</field>
+            <field name="arch" type="xml">
+                <search string="Delivery Route"> 
+                    <field name="dts_id" context="{'domain':[('type','=','dts')]}"/>
+                    <field name="date"/>
+                    <filter icon="terp-go-today" string="Today" domain="[('date','=',time.strftime('%%Y-%%m-%%d'))]" help="Delivery Route for Today" name="today"/>
+	                <group expand="0" string="Group By...">
+	                    <filter string="Delivery Time" icon="terp-folder-orange" domain="[]" context="{'group_by':'dts_id'}"/>
+	                </group>
+                </search>
+            </field>
+        </record>
+        <record id="action_delivery_route_form_cs" model="ir.actions.act_window">
+            <field name="name">Delivery Route CS</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">delivery.route</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{'active_test':False,'search_default_today':True,'force_update':True}</field>
+            <field name="search_view_id" ref="view_delivery_search_cs"/>
+        </record>
+        <record id="action_delivery_route_form_form_cs" model="ir.actions.act_window.view">
+            <field name="view_mode">form</field>
+            <field name="sequence">2</field>
+            <field name="view_id" ref="view_delivery_route_form_cs"/>
+            <field name="act_window_id" ref="action_delivery_route_form_cs"/>
+        </record>
+        <record id="action_delivery_route_form_tree_cs" model="ir.actions.act_window.view">
+            <field name="view_mode">tree</field>
+            <field name="sequence">1</field>
+            <field name="view_id" ref="view_delivery_route_tree_cs"/>
+            <field name="act_window_id" ref="action_delivery_route_form_cs"/>
+        </record>
+        <menuitem action="action_delivery_route_form_cs" id="menu_action_delivery_route_form_cs" parent="menu_delivery_delivery_payment" sequence="1" groups="delivery_routes.group_customer_service_user,account.group_account_user"/>
+        
+        <record id="view_delivery_line_tree_cs" model="ir.ui.view">
+            <field name="name">delivery.route.line.tree_cs</field>
+            <field name="model">delivery.route.line</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Delivery Route Lines" editable="bottom" create="false" delete="false">
+                    <field name="origin" readonly="1"/>
+                    <field name="dts_id" readonly="1"/>
+                    <field name="dts_name" invisible="1"/>
+        			<field name="route_id" invisible="1"/>
+        			<field name="address_id" readonly="1"/>
+					<field name="amount_total" sum="Total"/>
+           		    <field name="amount_unpaid" sum="Total Unpaid"/>
+           		    <field name="adjustment" groups="delivery_routes.group_customer_service_user" attrs="{'readonly':[('confirm_cs','=',True)]}" sum="Total Adjustment"/>
+                    <field name="cs_remark" groups="delivery_routes.group_customer_service_user" attrs="{'readonly':[('confirm_cs','=',True)]}"/>
+           		    <field name="to_be_received" sum="Total to be received"/>
+           		    <field name="amount_received" groups="account.group_account_user" attrs="{'readonly':[('state','not in',['received','returned'])]}" sum="Total Received"/>
+           		    <field name="account_checked" groups="account.group_account_user" attrs="{'readonly':[('state','not in',['received','returned'])]}"/>
+           		    <field name="account_remark" groups="account.group_account_user" attrs="{'readonly':[('state','not in',['received','returned'])]}"/>
+                    <field name="complete_state" readonly="1"/>
+                    <field name="state" invisible="1"/>
+                    <field name="confirm_cs" invisible="1"/>
+                </tree>
+            </field>
+        </record>
+        <record id="view_delivery_line_search_cs" model="ir.ui.view">
+            <field name="name">delivery.route.search_cs</field>
+            <field name="model">delivery.route.line</field>
+            <field name="arch" type="xml">
+                <search string="Delivery Route"> 
+                    <field name="dts_id" context="{'domain':[('type','=','dts')]}"/>
+                    <field name="origin"/>
+                    <filter icon="terp-go-today" string="Today" domain="[('route_id.date','=',time.strftime('%%Y-%%m-%%d'))]" help="Delivery Route for Today" name="today"/>
+	                <group expand="0" string="Group By...">
+	                    <filter string="Delivery Time" icon="terp-folder-orange" domain="[]" context="{'group_by':'dts_name'}"/>
+	                </group>
+                </search>
+            </field>
+        </record>
+        <record id="action_delivery_line_form_cs" model="ir.actions.act_window">
+            <field name="name">Delivery Route Line CS</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">delivery.route.line</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree</field>
+            <field name="context">{'active_test':False,'search_default_today':True,'force_update':True}</field>
+            <field name="search_view_id" ref="view_delivery_line_search_cs"/>
+        </record>
+        <record id="action_delivery_line_form_tree_cs" model="ir.actions.act_window.view">
+            <field name="view_mode">tree</field>
+            <field name="sequence">1</field>
+            <field name="view_id" ref="view_delivery_line_tree_cs"/>
+            <field name="act_window_id" ref="action_delivery_line_form_cs"/>
+        </record>
+        <menuitem action="action_delivery_line_form_cs" id="menu_action_delivery_line_form_cs" parent="menu_delivery_delivery_payment" sequence="99" groups="delivery_routes.group_customer_service_user,account.group_account_user"/>
+        
+        
+        
+        
+        
+        
+        <!-- Menu -->
+        <!--
+        <menuitem action="action_picking_batch" name="Picking Batch" 
+            id="menu_action_picking_batch"
+            parent="delivery_routes.menu_delivery_delivery" sequence="9"/>
+            -->
+
+        <!-- picking Form view -->
+                    <!--
+        <record model='ir.ui.view' id='picking_batch_form_view'>
+            <field name='name'>Delivery Routes Picking Form Inherit</field>
+            <field name='model'>stock.picking</field>
+            <field name='inherit_id' ref='stock.view_picking_form'/>
+            <field name='type'>form</field>
+            <field name="priority" eval="2"/>
+            <field name='arch' type='xml'>
+                <field name="move_type" position="after">
+                    <field name="batch_id" />
+                    <field name="pts_id" domain="[('type','=','pts'),('active','=',True)]"/>
+                    <field name="route_line_id"/>
+                    <field name="delivery_date"/>
+                    <field name="route_state"/>
+                    <field name="delivered"/>
+                </field>
+            </field>
+        </record>
+        <menuitem action="action_picking_pack_tree" name="Delivery Picking" 
+            id="menu_action_picking_pack"
+            parent="delivery_routes.menu_delivery_delivery" sequence="10"/>
+                    -->
+        <!-- Menu -->
+    </data>
+</openerp>

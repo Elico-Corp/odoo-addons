@@ -1,0 +1,315 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+#	* fc_product
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 7.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-05-17 08:19+0000\n"
+"PO-Revision-Date: 2013-05-17 08:19+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: fc_product
+#: view:product.inventory:0
+#: field:product.inventory,category_id:0
+#: view:product.inventory.dates:0
+#: field:product.inventory.dates,category_id:0
+msgid "Category"
+msgstr "种类"
+
+#. module: fc_product
+#: field:product.inventory,code:0
+#: field:product.inventory.dates,code:0
+msgid "SKU"
+msgstr "SKU"
+
+#. module: fc_product
+#: field:run.product.inventory.dates,from_date:0
+msgid "From"
+msgstr "开始"
+
+#. module: fc_product
+#: field:product.inventory.dates,produce_qty:0
+msgid "Production Quantity"
+msgstr "生产数量"
+
+#. module: fc_product
+#: model:ir.model,name:fc_product.model_run_product_inventory_dates
+msgid "Compute Product Inventory betweend dates"
+msgstr "根据时间生成产品粗困报表"
+
+#. module: fc_product
+#: field:run.product.inventory.dates,to_date:0
+msgid "To"
+msgstr "到"
+
+#. module: fc_product
+#: field:product.inventory.dates,start_value:0
+msgid "Start Value"
+msgstr "起初金额"
+
+#. module: fc_product
+#: field:product.inventory,ondraft_qty:0
+msgid "Not Confirm Quantity"
+msgstr "未审核采购数"
+
+#. module: fc_product
+#: field:product.inventory.dates,end_qty:0
+msgid "End Quantity"
+msgstr "期末数量"
+
+#. module: fc_product
+#: model:ir.model,name:fc_product.model_run_product_inventory
+#: view:run.product.inventory:0
+msgid "Compute Product Inventory"
+msgstr "计算产品库存"
+
+#. module: fc_product
+#: field:product.inventory.dates,consume_qty:0
+msgid "Consumption Quantity"
+msgstr "消耗数量"
+
+#. module: fc_product
+#: code:addons/fc_product/wizard/product_sfc.py:61
+#: code:addons/fc_product/wizard/sale_compare_wizard.py:61
+#: model:ir.actions.act_window,name:fc_product.action_product_inventory_dates_tree
+#: model:ir.model,name:fc_product.model_product_inventory_dates
+#: model:ir.ui.menu,name:fc_product.menu_action_product_inventory_dates_tree
+#: view:product.inventory.dates:0
+#, python-format
+msgid "Product Inventory between dates"
+msgstr "期间产品库存"
+
+#. module: fc_product
+#: field:product.inventory,onorder_qty:0
+msgid "Future Quantity"
+msgstr "预测数量"
+
+#. module: fc_product
+#: code:addons/fc_product/product.py:104
+#: code:addons/fc_product/product.py:106
+#: field:product.inventory,name_en:0
+#: field:product.inventory,name_sort_en:0
+#, python-format
+msgid "Name EN"
+msgstr "英文名"
+
+#. module: fc_product
+#: field:product.inventory.dates,start_qty:0
+msgid "Beginning Quantity"
+msgstr "起初数量"
+
+#. module: fc_product
+#: view:product.inventory:0
+#: field:product.inventory,stock_type_id:0
+#: view:product.inventory.dates:0
+#: field:product.inventory.dates,stock_type_id:0
+msgid "Stock Type"
+msgstr "仓储种类"
+
+#. module: fc_product
+#: field:product.inventory,date:0
+msgid "Creation Date"
+msgstr "创建时间"
+
+#. module: fc_product
+#: code:addons/fc_product/wizard/product_qty.py:55
+#: model:ir.model,name:fc_product.model_product_inventory
+#: view:product.inventory:0
+#, python-format
+msgid "Product Inventory"
+msgstr "产品库存"
+
+#. module: fc_product
+#: field:product.inventory.dates,produce_value:0
+msgid "Production Value"
+msgstr "生产金额"
+
+#. module: fc_product
+#: field:product.inventory,product_safe_qty:0
+#: field:product.product,product_safe_qty:0
+msgid "Minimum stock warning Quantity"
+msgstr "最小库存数量"
+
+#. module: fc_product
+#: code:addons/fc_product/sale_compare.py:63
+#, python-format
+msgid "ERP sub total"
+msgstr "ERP sub total"
+
+#. module: fc_product
+#: field:product.inventory.dates,consume_value:0
+msgid "Consumption Value"
+msgstr "消耗金额"
+
+#. module: fc_product
+#: code:addons/fc_product/product.py:101
+#: field:product.inventory,joomla_unit_cn:0
+#, python-format
+msgid "Website Product Unit in CN"
+msgstr "中文采购单位"
+
+#. module: fc_product
+#: field:product.inventory,onhand_qty:0
+msgid "Onhand Quantity"
+msgstr "在手数量"
+
+#. module: fc_product
+#: field:product.inventory,uom_id:0
+#: field:product.inventory.dates,uom_id:0
+msgid "UoM"
+msgstr "单位"
+
+#. module: fc_product
+#: field:product.inventory.dates,scrap_value:0
+msgid "Scrap Value"
+msgstr "报废金额"
+
+#. module: fc_product
+#: field:product.inventory.dates,to_date:0
+msgid "End Date"
+msgstr "结束时间"
+
+#. module: fc_product
+#: view:run.product.inventory:0
+#: view:run.product.inventory.dates:0
+msgid "Compute"
+msgstr "计算"
+
+#. module: fc_product
+#: view:run.product.inventory.dates:0
+msgid "Compute Product Inventory based on current stock moves and dates"
+msgstr "根据当前调拨和日期计算产品库存"
+
+#. module: fc_product
+#: view:run.product.inventory:0
+msgid "Compute Product Inventory based on current stock moves"
+msgstr "根据库存调拨计算产品数量"
+
+#. module: fc_product
+#: model:ir.actions.act_window,name:fc_product.action_product_inventory_tree
+#: model:ir.ui.menu,name:fc_product.menu_action_product_inventory_tree
+msgid "Product Inventory Warning"
+msgstr "最小库存报警"
+
+#. module: fc_product
+#: model:ir.model,name:fc_product.model_product_product
+#: view:product.inventory:0
+#: view:product.inventory.dates:0
+#: field:product.inventory.dates,product_id:0
+msgid "Product"
+msgstr "产品"
+
+#. module: fc_product
+#: model:ir.actions.act_window,name:fc_product.action_run_product_inventory
+#: model:ir.ui.menu,name:fc_product.menu_action_run_product_inventory
+msgid "Compute Product Inventory Warning"
+msgstr "计算最小库存报警"
+
+#. module: fc_product
+#: field:product.inventory.dates,end_price:0
+msgid "End Price"
+msgstr "期末价格"
+
+#. module: fc_product
+#: field:product.inventory,product_id:0
+msgid "Products"
+msgstr "产品"
+
+#. module: fc_product
+#: code:addons/fc_product/product.py:100
+#: field:product.inventory,joomla_unit:0
+#, python-format
+msgid "Website Product Unit"
+msgstr "产品单位中文"
+
+#. module: fc_product
+#: field:product.inventory.dates,sale_value:0
+msgid "Sale Value"
+msgstr "销售金额"
+
+#. module: fc_product
+#: field:product.inventory.dates,sale_qty:0
+msgid "Sale Quantity"
+msgstr "销售数量"
+
+#. module: fc_product
+#: model:ir.actions.act_window,name:fc_product.action_run_product_inventory_dates
+#: model:ir.ui.menu,name:fc_product.menu_action_run_product_inventory_dates
+#: view:run.product.inventory.dates:0
+msgid "Compute Product Inventory between dates"
+msgstr "根据日期计算产品库存"
+
+#. module: fc_product
+#: field:product.inventory.dates,buy_value:0
+msgid "Purchase Value"
+msgstr "采购金额"
+
+#. module: fc_product
+#: view:product.inventory:0
+msgid "Out of Stock"
+msgstr "缺货产品"
+
+#. module: fc_product
+#: model:ir.model,name:fc_product.model_product_template
+#: field:product.inventory.dates,product_tmpl_id:0
+msgid "Product Template"
+msgstr "产品模板"
+
+#. module: fc_product
+#: field:product.inventory.dates,scrap_qty:0
+msgid "Scrap Quantity"
+msgstr "Scrap Quantity"
+
+#. module: fc_product
+#: field:product.inventory,out_stock:0
+msgid "Out Stock"
+msgstr "Out Stock"
+
+#. module: fc_product
+#: view:product.inventory:0
+#: view:product.inventory.dates:0
+msgid "Group by..."
+msgstr "分组..."
+
+#. module: fc_product
+#: field:product.inventory.dates,end_value:0
+msgid "End Value"
+msgstr "期末金额"
+
+#. module: fc_product
+#: view:run.product.inventory:0
+#: view:run.product.inventory.dates:0
+msgid "_Cancel"
+msgstr "_取消"
+
+#. module: fc_product
+#: code:addons/fc_product/product.py:105
+#: code:addons/fc_product/product.py:107
+#: field:product.inventory,name_cn:0
+#: field:product.inventory,name_sort_cn:0
+#, python-format
+msgid "Name CN"
+msgstr "中文名"
+
+#. module: fc_product
+#: field:product.inventory.dates,from_date:0
+msgid "Start Date"
+msgstr "开始时间"
+
+#. module: fc_product
+#: field:product.inventory.dates,start_price:0
+msgid "Start Price"
+msgstr "开始价格"
+
+#. module: fc_product
+#: field:product.inventory.dates,buy_qty:0
+msgid "Purchase Quantity"
+msgstr "采购数量"
+

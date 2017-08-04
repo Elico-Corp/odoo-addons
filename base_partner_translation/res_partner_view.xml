@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+        <record model="ir.ui.view" id="account_report_copmany_partner_tree_view">
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="account_report_company.account_report_copmany_partner_tree_view"/>
+            <field name="arch" type="xml">
+                <field name="display_name" position="replace">
+                    <field name="name"/>
+                </field>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="account_report_copmany_partner_kanban_view">
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="account_report_company.account_report_copmany_partner_kanban_view"/>
+            <field name="arch" type="xml">
+                <field name="display_name" position="replace">
+                    <field name="name"/>
+                </field>
+            </field>
+        </record>
+    </data>
+</openerp>

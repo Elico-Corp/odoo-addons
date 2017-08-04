@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data>
+    <!-- the product tree view to add different cost prices -->
+    <record id="LC_view_product_price_history" model="ir.ui.view">
+      <field name="name">LC.product.product.price.history.tree</field>
+      <field name="model">product.product</field>
+      <field name="arch" type="xml">
+         <tree string="Product Historic Prices" create="false">
+          <field name="default_code"/>
+          <field name="name"/>
+          <field name="categ_id" invisible="1"/>
+          <field name="variants" groups="product.group_product_variant"/>
+          <field name="type"/>
+          <field name="state" groups="base.group_extended"/>
+          <field name="qty_available" sum="Total Stock"/>
+          <field name="list_price"/>
+            <field name="standard_price"  invisible="not (context.get('cost_type', 'standard_price') == 'standard_price')" />
+            <field name="transit_cost" invisible="not (context.get('cost_type', 'standard_price') == 'transit_cost')" />
+            <field name="duty_free_cost" invisible="not (context.get('cost_type', 'standard_price') == 'duty_free_cost')" />
+            <field name="duty_paid_cost" invisible="not (context.get('cost_type', 'standard_price') == 'duty_paid_cost')" />
+          <field name="value_available" sum="Total Value"/>
+          <field name="company_id" groups="base.group_multi_company" invisible="1"/>
+        </tree>
+      </field>
+    </record>
+
+
+<!--     <record id="inherit_view_historical_prices" model="ir.ui.view">
+      <field name="name">historic.prices.form.inherit</field>
+      <field name="model">historic.prices</field>
+      <field name="inherit_id" ref="product_price_history.view_historical_prices" />
+      <field name="arch" type="xml">
+            <field name="location_id"/>
+            <button name="action_open_window" string="Ok" type="object" icon="gtk-execute" class="oe_highlight"/>
+            or
+            <button string="Cancel" class="oe_link" special="cancel" />
+        </form>
+      </field>
+    </record> -->
+
+  </data>
+</openerp>

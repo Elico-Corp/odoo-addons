@@ -1,0 +1,214 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+#	* fc_qc
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 7.0alpha\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-01-15 06:59+0000\n"
+"PO-Revision-Date: 2013-01-15 06:59+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: fc_qc
+#: model:ir.ui.menu,name:fc_qc.menu_qc_order_todo
+msgid "QC Orders"
+msgstr "检验单据"
+
+#. module: fc_qc
+#: model:ir.model,name:fc_qc.model_stock_location_path
+msgid "Pushed Flows"
+msgstr "推式流"
+
+#. module: fc_qc
+#: model:ir.actions.act_window,name:fc_qc.action_move_qc_form2
+#: model:ir.ui.menu,name:fc_qc.menu_action_move_form2_qc
+msgid "QC Moves"
+msgstr "待检调拨"
+
+#. module: fc_qc
+#: model:ir.ui.menu,name:fc_qc.menu_action_picking_qc_tree6
+msgid "QC todo Pickings"
+msgstr "待检单据"
+
+#. module: fc_qc
+#: view:stock.move:0
+msgid "Put in a new pack"
+msgstr "放入新包装"
+
+#. module: fc_qc
+#: code:addons/fc_qc/wizard/change_production_qty.py:83
+#: code:addons/fc_qc/wizard/change_production_qty.py:88
+#, python-format
+msgid "Cannot find bill of material for this product."
+msgstr "该产品没有定义BoM."
+
+#. module: fc_qc
+#: model:ir.model,name:fc_qc.model_stock_picking
+msgid "Picking List"
+msgstr "分拣单"
+
+#. module: fc_qc
+#: model:res.groups,name:fc_qc.group_qc_manager
+msgid "QC Manager"
+msgstr "检验经理"
+
+#. module: fc_qc
+#: code:addons/fc_qc/stock.py:127
+#: code:addons/fc_qc/stock.py:138
+#, python-format
+msgid "You can not process this move!"
+msgstr "你没有权限处理此调拨!"
+
+#. module: fc_qc
+#: model:ir.actions.act_window,help:fc_qc.action_move_qc_form2
+msgid "<p class=\"oe_view_nocontent_create\">\n"
+"                Click to create a stock movement.\n"
+"              </p><p>\n"
+"                This menu gives qc user to process the product moves when the product is checked.\n"
+"              </p>\n"
+"            "
+msgstr "<p class=\"oe_view_nocontent_create\">\n"
+"                点击创建库存调拨.\n"
+"              </p><p>\n"
+"                该菜单用于检验人员在检验合格后处理。\n"
+"              </p>\n"
+"            "
+
+#. module: fc_qc
+#: view:stock.move:0
+msgid "Unit of Measure"
+msgstr "计量单位"
+
+#. module: fc_qc
+#: model:ir.ui.menu,name:fc_qc.menu_qc_root
+msgid "QC"
+msgstr "检验"
+
+#. module: fc_qc
+#: view:stock.move:0
+msgid "Put in current pack"
+msgstr "放入当前包装"
+
+#. module: fc_qc
+#: view:stock.move:0
+msgid "Scrap Products"
+msgstr "产品报废"
+
+#. module: fc_qc
+#: code:addons/fc_qc/stock.py:127
+#: code:addons/fc_qc/stock.py:138
+#, python-format
+msgid "This move from QC location, must be processed by QC Manager!"
+msgstr "该调拨来自检验库位，必须由检验经理来处理！"
+
+#. module: fc_qc
+#: model:res.groups,name:fc_qc.group_qc_user
+msgid "QC User"
+msgstr "检验员"
+
+#. module: fc_qc
+#: model:ir.actions.act_window,name:fc_qc.action_picking_qc_tree6
+msgid "QC Pickings"
+msgstr "检验单"
+
+#. module: fc_qc
+#: code:addons/fc_qc/stock.py:113
+#, python-format
+msgid "You can not process this order!"
+msgstr "你没有权限处理此单据!"
+
+#. module: fc_qc
+#: model:ir.actions.act_window,help:fc_qc.action_picking_qc_tree6
+msgid "<p class=\"oe_view_nocontent_create\"> \n"
+"              </p><p>\n"
+"                Operations are prepared automatically by QC.\n"
+"              </p>\n"
+"            "
+msgstr "<p class=\"oe_view_nocontent_create\"> \n"
+"              </p><p>\n"
+"                为检验准备的操作.\n"
+"              </p>\n"
+"            "
+
+#. module: fc_qc
+#: code:addons/fc_qc/stock.py:43
+#: code:addons/fc_qc/stock.py:58
+#: code:addons/fc_qc/stock.py:62
+#: code:addons/fc_qc/stock.py:78
+#: code:addons/fc_qc/stock.py:86
+#, python-format
+msgid "Error"
+msgstr "错误"
+
+#. module: fc_qc
+#: field:stock.picking,qc_picking:0
+msgid "From QC Location"
+msgstr "来自检验库位"
+
+#. module: fc_qc
+#: code:addons/fc_qc/stock.py:44
+#: code:addons/fc_qc/stock.py:59
+#: code:addons/fc_qc/stock.py:63
+#: code:addons/fc_qc/stock.py:79
+#: code:addons/fc_qc/stock.py:87
+#, python-format
+msgid "QC Location must be chained in manual."
+msgstr "检验库位在链式库中，只能手动处理."
+
+#. module: fc_qc
+#: model:ir.model,name:fc_qc.model_stock_location
+msgid "Location"
+msgstr "库位"
+
+#. module: fc_qc
+#: view:stock.move:0
+msgid "Reference"
+msgstr "单号"
+
+#. module: fc_qc
+#: field:stock.location,qc_location:0
+msgid "QC Location"
+msgstr "检验库位"
+
+#. module: fc_qc
+#: model:ir.model,name:fc_qc.model_stock_move
+msgid "Stock Move"
+msgstr "库存调拨"
+
+#. module: fc_qc
+#: view:stock.move:0
+#: view:stock.picking:0
+msgid "Process"
+msgstr "处理"
+
+#. module: fc_qc
+#: model:ir.ui.menu,name:fc_qc.menu_qc_product_todo
+msgid "QC Products"
+msgstr "待检产品"
+
+#. module: fc_qc
+#: code:addons/fc_qc/stock.py:113
+#, python-format
+msgid "This order has move from QC location, must be processed by QC Manager!"
+msgstr "该单据来自检验库位，必须由检验经理处理!"
+
+#. module: fc_qc
+#: view:stock.move:0
+msgid "Done"
+msgstr "完成"
+
+#. module: fc_qc
+#: view:stock.move:0
+msgid "Split in Serial Numbers"
+msgstr "拆分批号"
+
+#. module: fc_qc
+#: view:stock.move:0
+msgid "Moves"
+msgstr "调拨"

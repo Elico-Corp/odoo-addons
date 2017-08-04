@@ -1,0 +1,50 @@
+-
+    29. Picking cancelling
+-
+    # Create the product
+    !record {model: product.product, id: wms_product_product_test29}:
+        name: WMS Test 29
+-
+    # Create the picking out
+    !record {model: stock.picking, id: wms_stock_picking_test29_picking_out}:
+        name: 'WMS Test 29 - Picking out'
+        type: out
+        partner_id: base.main_partner
+        address_id: base.main_address
+-
+    # Create the move in the picking out
+    !record {model: stock.move, id: wms_stock_move_test29_move_out}:
+        name: 'WMS Test 29 - Move out'
+        date: '2011-06-30 00:00:00'
+        picking_id: wms_stock_picking_test29_picking_out
+        product_id: wms_product_product_test29
+        product_uom: product.product_uom_unit
+        product_qty: 1
+        location_id: stock.stock_location_stock
+        location_dest_id: stock.stock_location_output
+-
+    # Create the move in the picking in
+    !record {model: stock.move, id: wms_stock_move_test29_move_in}:
+        name: 'WMS Test 29 - Move in'
+        product_id: wms_product_product_test29
+        product_uom: product.product_uom_unit
+        product_qty: 1
+        location_id: stock.stock_location_stock
+        location_dest_id: stock.stock_location_stock
+        move_dest_id: wms_stock_move_test29_move_out
+        state: done
+-
+    # Confirm the picking out
+    !workflow {model: stock.picking, action: button_confirm, ref: wms_stock_picking_test29_picking_out}
+-
+    # Check the move in before cancel
+    !assert {model: stock.move, id: wms_stock_move_test29_move_in, string: Quantity on move in}:
+        - move_dest_id.id == ref('wms_stock_move_test29_move_out')
+-
+    # Cancel the picking out
+    !workflow {model: stock.picking, action: button_cancel, ref: wms_stock_picking_test29_picking_out}
+-
+    # Check the move in after cancel
+    !assert {model: stock.move, id: wms_stock_move_test29_move_in, string: Quantity on move in}:
+        - move_dest_id.id == False
+

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record model="ir.ui.view" id="wizard_mail_organizer_form">
+            <field name="name">wizard_mail_organizer.form</field>
+            <field name="model">wizard.mail.organizer</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Wizard Mail Organizer" version="7.0">
+                    <header>
+                        <h2 class="oe_title">Assign email to another resource</h2>
+                    </header>
+                    <field name="message_id" invisible="True" on_change="onchange_message_id(message_id)" />
+                    <field name="is_domain_visible" invisible="True" />
+                    <field name="email_from" invisible="True" />
+                    <group col="4" colspan="2">
+                        <field name="author_id" />
+                        <field name="subject" />
+                        <field name="model" />
+                        <field name="res" />
+                        <field name="new_model" colspan="2" on_change="onchange_new_model(new_model, has_domain, author_id)" />
+                        <field name="new_res_id"
+                               colspan="2"
+                               widget="polymorphic"
+                               polymorphic="new_model"
+                        />
+                        <field name="has_domain"
+                               on_change="onchange_new_model(new_model, has_domain, author_id)"
+                               attrs="{'invisible':[('is_domain_visible', '=', False)]}" />
+                    </group>
+                    <footer>
+                        <button name="confirm" string="Assign" type="object"  class="oe_highlight" />
+                        <button string="Cancel" class="oe_link" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+    </data>
+</openerp>

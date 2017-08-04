@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+		  <record id="purchase_order_confirm_apem" model="ir.ui.view">
+            <field name="name">purchase.order.confirm.apem</field>
+            <field name="model">purchase.order</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="purchase.purchase_order_form" />
+            <field name="arch" type="xml">
+                <button name="action_cancel" position="replace">
+                            <button name="action_cancel" states="approved,except_picking,except_invoice,wait" confirm="Are you sure to cancel this purchase order?" string="Cancel Purchase Order" type="object" icon="gtk-cancel"/>
+                	</button>
+                <button name='picking_ok' position="replace">
+                    <button name="picking_ok" states="except_picking" confirm="Are you sure the reception of current purchase order is ok?" string="Manually Corrected" icon="gtk-convert"/>
+                </button>
+                <button name="invoice_ok" position="replace">
+                        <button name="invoice_ok" states="except_invoice" confirm="Are you sure the invoice of current purchase order is ok?" string="Manually Corrected" icon="gtk-convert"/>
+                </button>
+                <button name='purchase_confirm' position="replace">
+                    <button name="purchase_confirm" states="draft" confirm="Please make sure you have specify a warehouse for this order.
+                        Are you sure to confirm this purchase order?" string="Convert to Purchase Order" icon="gtk-go-forward"/>
+                </button>
+      			</field>
+		 </record>
+
+    </data>
+</openerp>

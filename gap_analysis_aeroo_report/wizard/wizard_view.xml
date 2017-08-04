@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="gap_analysis_aeroo_wizard_view" model="ir.ui.view">
+            <field name="name">Gap Analysis Report Wizard</field>
+            <field name="model">gap_analysis.gap_analysis_wizard</field>
+            <field name="arch" type="xml">
+				<form string="Gap Analysis Report Wizard">
+					<newline/>
+					<group col="4" colspan="4">
+						<button icon="gtk-cancel" special="cancel" string="Cancel" colspan="1"/>
+						<button icon="gtk-print" name="print_xls" string="Generate XLS" type="object" colspan="1" default_focus="1" />
+					</group>
+				</form>
+            </field>
+        </record>
+        <record id="tasks_list_aeroo_wizard_view" model="ir.ui.view">
+            <field name="name">Tasks List</field>
+            <field name="model">gap_analysis.tasks_list</field>
+            <field name="arch" type="xml">
+				<form string="Tasks List">
+					<newline/>
+					<group col="4" colspan="4">
+						<button icon="gtk-cancel" special="cancel" string="Cancel" colspan="1"/>
+						<button icon="gtk-print" name="print_xls" string="Generate XLS" type="object" colspan="1" default_focus="1" />
+					</group>
+				</form>
+            </field>
+        </record>
+        
+		<!-- Aeroo Report -->
+		<record id="report_aeroo_gap_analysis" model="ir.actions.report.xml">
+		    <field name="name">Export Full Gap Analysis</field>
+		    <field name="type">ir.actions.report.xml</field>
+		    <field name="model">gap_analysis</field>
+		    <field name="report_name">gap_analysis</field>
+		    <field name="report_type">aeroo</field>
+		    <field name="in_format">oo-ods</field>
+		    <field name="out_format">2</field>
+		    <field name="parser_loc">gap_analysis_aeroo_report/report/gap_analysis_report.py</field>
+		    <field name="report_rml">gap_analysis_aeroo_report/report/gap_analysis_report.ods</field>
+		    <field name="parser_state">loc</field>
+		    <field name="tml_source">file</field>
+		</record>
+		<record id="report_aeroo_tasks_list" model="ir.actions.report.xml">
+		    <field name="name">Export Tasks List</field>
+		    <field name="type">ir.actions.report.xml</field>
+		    <field name="model">project.task</field>
+		    <field name="report_name">tasks_list</field>
+		    <field name="report_type">aeroo</field>
+		    <field name="in_format">oo-ods</field>
+		    <field name="out_format">2</field>
+		    <field name="parser_loc">gap_analysis_aeroo_report/report/tasks_list_report.py</field>
+		    <field name="report_rml">gap_analysis_aeroo_report/report/tasks_list_report.ods</field>
+		    <field name="parser_state">loc</field>
+		    <field name="tml_source">file</field>
+		</record>
+		
+		<act_window id="action_report_aeroo_gap_analysis"
+		    name="Export Full Gap Analysis"
+		    src_model="gap_analysis"            
+            res_model="gap_analysis.gap_analysis_wizard"
+            view_mode="form"
+            target="new"
+            key2="client_action_multi" />
+		
+		<act_window id="action_report_aeroo_tasks_list"
+		    name="Export Tasks List"
+		    src_model="project.project"            
+            res_model="gap_analysis.tasks_list"
+            view_mode="form"
+            target="new"
+            key2="client_action_multi" />
+    </data>
+</openerp>

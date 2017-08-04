@@ -1,0 +1,156 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+#	* stock_report_slowmoving
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 6.0.3\n"
+"Report-Msgid-Bugs-To: support@openerp.com\n"
+"POT-Creation-Date: 2012-10-22 05:19+0000\n"
+"PO-Revision-Date: 2012-10-22 05:19+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: stock_report_slowmoving
+#: report:addons/stock_report_slowmoving/report/slowmoving_webkit.mako:40
+#: field:stock.slowmove,lastm_qty:0
+msgid "Last Production Quantity"
+msgstr "上次生产数量"
+
+#. module: stock_report_slowmoving
+#: report:addons/stock_report_slowmoving/report/slowmoving_webkit.mako:32
+msgid "Product Code"
+msgstr "产品编号"
+
+#. module: stock_report_slowmoving
+#: model:ir.actions.act_window,name:stock_report_slowmoving.action_stock_slowing_move
+#: model:ir.model,name:stock_report_slowmoving.model_stock_slowing_move
+#: model:ir.ui.menu,name:stock_report_slowmoving.menu_stock_slowing_move
+#: view:stock.slowing.move:0
+msgid "Compute Slowing Move"
+msgstr "计算销售周转"
+
+#. module: stock_report_slowmoving
+#: field:stock.slowmove,category_id:0
+msgid "Product Category"
+msgstr "产品分类"
+
+#. module: stock_report_slowmoving
+#: report:addons/stock_report_slowmoving/report/slowmoving_webkit.mako:44
+#: field:stock.slowmove,date:0
+msgid "Creation Date"
+msgstr "创建日期"
+
+#. module: stock_report_slowmoving
+#: view:stock.slowing.move:0
+msgid "Compute Slowing Move based on current stock moves"
+msgstr "基于当前调拨计算销售周转！"
+
+#. module: stock_report_slowmoving
+#: model:ir.actions.report.xml,name:stock_report_slowmoving.report_stock_slowmove
+msgid "Slow Moving"
+msgstr "销售周转"
+
+#. module: stock_report_slowmoving
+#: report:addons/stock_report_slowmoving/report/slowmoving_webkit.mako:34
+#: field:stock.slowmove,onhand_qty:0
+msgid "Onhand Quantity"
+msgstr "可用数量"
+
+#. module: stock_report_slowmoving
+#: report:addons/stock_report_slowmoving/report/slowmoving_webkit.mako:33
+msgid "Product Name"
+msgstr "产品名称"
+
+#. module: stock_report_slowmoving
+#: report:addons/stock_report_slowmoving/report/slowmoving_webkit.mako:42
+#: field:stock.slowmove,product_lasty_qty:0
+msgid "Last Year Quantity"
+msgstr "过去一年销售数量"
+
+#. module: stock_report_slowmoving
+#: field:stock.slowmove,mo_id:0
+msgid "Last Production"
+msgstr "上次生产"
+
+#. module: stock_report_slowmoving
+#: report:addons/stock_report_slowmoving/report/slowmoving_webkit.mako:41
+#: field:stock.slowmove,product_lastq_qty:0
+msgid "Last 6-Month Quantity"
+msgstr "过去六月销售数量"
+
+#. module: stock_report_slowmoving
+#: field:stock.slowmove,po_line_id:0
+msgid "Last Purchase Line"
+msgstr "上次采购"
+
+#. module: stock_report_slowmoving
+#: field:stock.slowmove,product_id:0
+msgid "Products"
+msgstr "产品"
+
+#. module: stock_report_slowmoving
+#: field:stock.slowmove,so_line_id:0
+msgid "Last Sale Line"
+msgstr "上次销售"
+
+#. module: stock_report_slowmoving
+#: report:addons/stock_report_slowmoving/report/slowmoving_webkit.mako:38
+#: field:stock.slowmove,lastp_qty:0
+msgid "Last Purchase Quantity"
+msgstr "上次采购数量"
+
+#. module: stock_report_slowmoving
+#: report:addons/stock_report_slowmoving/report/slowmoving_webkit.mako:36
+#: field:stock.slowmove,lasts_qty:0
+msgid "Last Sale Quantity"
+msgstr "上次销售数量"
+
+#. module: stock_report_slowmoving
+#: report:addons/stock_report_slowmoving/report/slowmoving_webkit.mako:35
+#: field:stock.slowmove,lasts_date:0
+msgid "Last Sale Date"
+msgstr "上次销售日期"
+
+#. module: stock_report_slowmoving
+#: report:addons/stock_report_slowmoving/report/slowmoving_webkit.mako:39
+#: field:stock.slowmove,lastm_date:0
+msgid "Last Production Date"
+msgstr "上次生产日期"
+
+#. module: stock_report_slowmoving
+#: report:addons/stock_report_slowmoving/report/slowmoving_webkit.mako:43
+msgid "Sale Rotation"
+msgstr "销售周转"
+
+#. module: stock_report_slowmoving
+#: report:addons/stock_report_slowmoving/report/slowmoving_webkit.mako:29
+#: code:addons/stock_report_slowmoving/wizard/stock_slowing_move.py:54
+#: model:ir.actions.act_window,name:stock_report_slowmoving.action_stock_slowmove_tree
+#: model:ir.model,name:stock_report_slowmoving.model_stock_slowmove
+#: model:ir.ui.menu,name:stock_report_slowmoving.menu_stock_slowmove
+#: view:stock.slowmove:0
+#, python-format
+msgid "Stock Slow Moving"
+msgstr "销售周转"
+
+#. module: stock_report_slowmoving
+#: field:stock.slowmove,rotation_rate:0
+msgid "Sale Rotation(Month)"
+msgstr "销售周转(月)"
+
+#. module: stock_report_slowmoving
+#: view:stock.slowing.move:0
+msgid "_Cancel"
+msgstr "取消"
+
+#. module: stock_report_slowmoving
+#: report:addons/stock_report_slowmoving/report/slowmoving_webkit.mako:37
+#: field:stock.slowmove,lastp_date:0
+msgid "Last Purchase Date"
+msgstr "上次采购日期"
+

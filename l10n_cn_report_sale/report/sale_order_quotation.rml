@@ -1,0 +1,368 @@
+<?xml version="1.0"?>
+<document filename="test.pdf">
+  <template pageSize="(595.0,842.0)" title="Test" author="Martin Simon" allowSplitting="20">
+    <pageTemplate id="first">
+      <frame id="first" x1="36.0" y1="42.0" width="518" height="758"/>
+    </pageTemplate>
+  </template>
+  <stylesheet>
+    <blockTableStyle id="Standard_Outline">
+      <blockAlignment value="LEFT"/>
+      <blockValign value="TOP"/>
+    </blockTableStyle>
+    <blockTableStyle id="Table_Header_Pur_ord_Line">
+      <blockAlignment value="LEFT"/>
+      <blockValign value="TOP"/>
+      <lineStyle kind="LINEBEFORE" colorName="#b3b3b3" start="0,0" stop="0,-1"/>
+      <lineStyle kind="LINEABOVE" colorName="#b3b3b3" start="0,0" stop="0,0"/>
+      <lineStyle kind="LINEBELOW" colorName="#b3b3b3" start="0,-1" stop="0,-1"/>
+      <lineStyle kind="LINEBEFORE" colorName="#b3b3b3" start="1,0" stop="1,-1"/>
+      <lineStyle kind="LINEABOVE" colorName="#b3b3b3" start="1,0" stop="1,0"/>
+      <lineStyle kind="LINEBELOW" colorName="#b3b3b3" start="1,-1" stop="1,-1"/>
+      <lineStyle kind="LINEBEFORE" colorName="#b3b3b3" start="2,0" stop="2,-1"/>
+      <lineStyle kind="LINEABOVE" colorName="#b3b3b3" start="2,0" stop="2,0"/>
+      <lineStyle kind="LINEBELOW" colorName="#b3b3b3" start="2,-1" stop="2,-1"/>
+      <lineStyle kind="LINEBEFORE" colorName="#b3b3b3" start="3,0" stop="3,-1"/>
+      <lineStyle kind="LINEABOVE" colorName="#b3b3b3" start="3,0" stop="3,0"/>
+      <lineStyle kind="LINEBELOW" colorName="#b3b3b3" start="3,-1" stop="3,-1"/>
+      <lineStyle kind="LINEBEFORE" colorName="#b3b3b3" start="4,0" stop="4,-1"/>
+      <lineStyle kind="LINEABOVE" colorName="#b3b3b3" start="4,0" stop="4,0"/>
+      <lineStyle kind="LINEBELOW" colorName="#b3b3b3" start="4,-1" stop="4,-1"/>
+      <lineStyle kind="LINEBEFORE" colorName="#b3b3b3" start="5,0" stop="5,-1"/>
+      <lineStyle kind="LINEABOVE" colorName="#b3b3b3" start="5,0" stop="5,0"/>
+      <lineStyle kind="LINEBELOW" colorName="#b3b3b3" start="5,-1" stop="5,-1"/>
+      <lineStyle kind="LINEBEFORE" colorName="#b3b3b3" start="6,0" stop="6,-1"/>
+      <lineStyle kind="LINEAFTER" colorName="#b3b3b3" start="6,0" stop="6,-1"/>
+      <lineStyle kind="LINEABOVE" colorName="#b3b3b3" start="6,0" stop="6,0"/>
+      <lineStyle kind="LINEBELOW" colorName="#b3b3b3" start="6,-1" stop="6,-1"/>
+      <blockBackground colorName="#e6e6e6" start="0,0" stop="0,-1"/>
+      <blockBackground colorName="#e6e6e6" start="1,0" stop="1,-1"/>
+      <blockBackground colorName="#e6e6e6" start="2,0" stop="2,-1"/>
+      <blockBackground colorName="#e6e6e6" start="3,0" stop="3,-1"/>
+      <blockBackground colorName="#e6e6e6" start="4,0" stop="4,-1"/>
+      <blockBackground colorName="#e6e6e6" start="5,0" stop="5,-1"/>
+      <blockBackground colorName="#e6e6e6" start="6,0" stop="6,-1"/>
+    </blockTableStyle>
+    <blockTableStyle id="Table_Order_Pur_line_Content">
+      <blockAlignment value="LEFT"/>
+      <blockValign value="TOP"/>
+      <lineStyle kind="LINEBEFORE" colorName="#e6e6e6" start="0,0" stop="0,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#e6e6e6" start="0,-1" stop="0,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#e6e6e6" start="1,-1" stop="1,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#e6e6e6" start="2,-1" stop="2,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#e6e6e6" start="3,-1" stop="3,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#e6e6e6" start="4,-1" stop="4,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#e6e6e6" start="5,-1" stop="5,-1"/>
+      <lineStyle kind="LINEAFTER" colorName="#e6e6e6" start="6,0" stop="6,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#e6e6e6" start="6,-1" stop="6,-1"/>
+    </blockTableStyle>
+    <blockTableStyle id="Table_All_Total_Detail">
+      <blockAlignment value="LEFT"/>
+      <blockValign value="TOP"/>
+      <lineStyle kind="LINEABOVE" colorName="#000000" start="1,0" stop="1,0"/>
+      <lineStyle kind="LINEABOVE" colorName="#000000" start="2,0" stop="2,0"/>
+      <lineStyle kind="LINEABOVE" colorName="#000000" start="1,2" stop="1,2"/>
+      <lineStyle kind="LINEABOVE" colorName="#000000" start="2,2" stop="2,2"/>
+    </blockTableStyle>
+    <blockTableStyle id="Table4">
+      <blockAlignment value="LEFT"/>
+      <blockValign value="TOP"/>
+      <lineStyle kind="LINEBEFORE" colorName="#c0c0c0" start="0,0" stop="0,-1"/>
+      <lineStyle kind="LINEAFTER" colorName="#c0c0c0" start="0,0" stop="0,-1"/>
+      <lineStyle kind="LINEABOVE" colorName="#c0c0c0" start="0,0" stop="0,0"/>
+      <lineStyle kind="LINEBELOW" colorName="#c0c0c0" start="0,-1" stop="0,-1"/>
+    </blockTableStyle>
+    <blockTableStyle id="Table5">
+      <blockAlignment value="LEFT"/>
+      <blockValign value="TOP"/>
+      <lineStyle kind="LINEBEFORE" colorName="#c0c0c0" start="0,0" stop="0,-1"/>
+      <lineStyle kind="LINEAFTER" colorName="#c0c0c0" start="0,0" stop="0,-1"/>
+      <lineStyle kind="LINEABOVE" colorName="#c0c0c0" start="0,0" stop="0,0"/>
+      <lineStyle kind="LINEBELOW" colorName="#c0c0c0" start="0,-1" stop="0,-1"/>
+    </blockTableStyle>
+    <blockTableStyle id="Table7">
+      <blockAlignment value="LEFT"/>
+      <blockValign value="TOP"/>
+    </blockTableStyle>
+    <blockTableStyle id="Table8">
+      <blockAlignment value="LEFT"/>
+      <blockValign value="TOP"/>
+    </blockTableStyle>
+    <blockTableStyle id="Table10">
+      <blockAlignment value="LEFT"/>
+      <blockValign value="TOP"/>
+    </blockTableStyle>
+    <initialize>
+      <paraStyle name="all" alignment="justify"/>
+    </initialize>
+    <paraStyle name="P1" fontName="Helvetica-Bold" fontSize="9.0" leading="11" alignment="CENTER" spaceBefore="0.0" spaceAfter="0.0"/>
+    <paraStyle name="P2" fontName="Helvetica-Bold" fontSize="9.0" leading="11" alignment="LEFT" spaceBefore="0.0" spaceAfter="0.0"/>
+    <paraStyle name="P3" fontName="Helvetica-Bold" fontSize="9.0" leading="11" alignment="CENTER" spaceBefore="0.0" spaceAfter="0.0"/>
+    <paraStyle name="P4" fontName="Helvetica-Bold" fontSize="9.0" leading="11" alignment="CENTER" spaceBefore="0.0" spaceAfter="0.0"/>
+    <paraStyle name="P5" fontName="Helvetica-Bold" fontSize="9.0" leading="11" alignment="CENTER" spaceBefore="0.0" spaceAfter="0.0"/>
+    <paraStyle name="P6" fontName="Helvetica" fontSize="8.0" leading="10" alignment="LEFT" spaceBefore="0.0" spaceAfter="0.0"/>
+    <paraStyle name="P7" fontName="Helvetica-Bold" fontSize="12.0" leading="15" alignment="CENTER" spaceBefore="0.0" spaceAfter="0.0"/>
+    <paraStyle name="P8" fontName="Helvetica-Bold" fontSize="6.0" leading="8" alignment="LEFT" spaceBefore="0.0" spaceAfter="0.0"/>
+    <paraStyle name="P9" fontName="Helvetica" fontSize="8.0" leading="10" alignment="CENTER" spaceBefore="0.0" spaceAfter="0.0"/>
+    <paraStyle name="P10" fontName="Helvetica" fontSize="9.0" leading="11" alignment="LEFT" spaceBefore="0.0" spaceAfter="0.0"/>
+    <paraStyle name="P11" fontName="Helvetica" fontSize="9.0" leading="11" alignment="LEFT" spaceBefore="0.0" spaceAfter="0.0"/>
+    <paraStyle name="P12" fontName="Helvetica" fontSize="9.0" leading="11" alignment="LEFT" spaceBefore="0.0" spaceAfter="0.0"/>
+    <paraStyle name="P13" fontName="Helvetica-Bold" fontSize="8.0" leading="10" alignment="RIGHT" spaceBefore="3.0" spaceAfter="3.0"/>
+    <paraStyle name="P14" fontName="Helvetica" fontSize="8.0" leading="10" alignment="RIGHT" spaceBefore="3.0" spaceAfter="3.0"/>
+    <paraStyle name="P15" fontName="Helvetica" fontSize="8.0" leading="10" alignment="CENTER" spaceBefore="0.0" spaceAfter="0.0"/>
+    <paraStyle name="P16" rightIndent="0.0" leftIndent="0.0" fontName="Helvetica" fontSize="8.0" leading="10" alignment="RIGHT" spaceBefore="3.0" spaceAfter="3.0"/>
+    <paraStyle name="P17" fontName="Helvetica" fontSize="8.0" leading="10" alignment="RIGHT" spaceBefore="0.0" spaceAfter="0.0"/>
+    <paraStyle name="P18" fontName="Helvetica" fontSize="8.0" leading="10" alignment="RIGHT" spaceBefore="0.0" spaceAfter="0.0"/>
+    <paraStyle name="P19" fontName="Helvetica" fontSize="8.0" leading="10" alignment="CENTER" spaceBefore="0.0" spaceAfter="0.0"/>
+    <paraStyle name="P20" fontName="Helvetica-Bold" fontSize="8.0" leading="10" alignment="RIGHT" spaceBefore="0.0" spaceAfter="0.0"/>
+    <paraStyle name="P21" fontName="Helvetica" fontSize="9.0" leading="11" alignment="LEFT" spaceBefore="3.0" spaceAfter="0.0"/>
+    <paraStyle name="P22" rightIndent="0.0" leftIndent="-71.0" fontName="Helvetica-Bold" fontSize="9.0" leading="11" alignment="RIGHT" spaceBefore="0.0" spaceAfter="0.0"/>
+    <paraStyle name="P23" fontName="Helvetica-Bold" fontSize="16.0" leading="20" alignment="CENTER" spaceBefore="6.0" spaceAfter="6.0"/>
+    <paraStyle name="P24" fontName="Helvetica-Bold" fontSize="9.0" leading="11" alignment="CENTER" spaceBefore="0.0" spaceAfter="0.0"/>
+    <paraStyle name="P25" fontName="Helvetica" fontSize="9.0" leading="11" alignment="LEFT" spaceBefore="0.0" spaceAfter="0.0"/>
+    <paraStyle name="P26" fontName="Helvetica" fontSize="9.0" leading="11" alignment="LEFT" spaceBefore="0.0" spaceAfter="0.0"/>
+    <paraStyle name="P27" fontName="Helvetica-Bold" fontSize="12.0" leading="15" alignment="CENTER" spaceBefore="0.0" spaceAfter="0.0"/>
+    <paraStyle name="P28" fontName="Helvetica-Bold" fontSize="12.0" leading="15" alignment="LEFT" spaceBefore="0.0" spaceAfter="0.0"/>
+    <paraStyle name="P29" fontName="Helvetica-Bold" fontSize="9.0" leading="11" alignment="LEFT" spaceBefore="3.0" spaceAfter="0.0"/>
+    <paraStyle name="P30" fontName="Helvetica" fontSize="9.0" leading="11" alignment="LEFT" spaceBefore="3.0" spaceAfter="0.0"/>
+    <paraStyle name="Standard" fontName="Helvetica"/>
+    <paraStyle name="Text body" fontName="Helvetica" spaceBefore="0.0" spaceAfter="6.0"/>
+    <paraStyle name="Heading" fontName="Helvetica" fontSize="14.0" leading="17" spaceBefore="12.0" spaceAfter="6.0"/>
+    <paraStyle name="List" fontName="Helvetica" spaceBefore="0.0" spaceAfter="6.0"/>
+    <paraStyle name="Table Contents" fontName="Helvetica"/>
+    <paraStyle name="Table Heading" fontName="Helvetica" alignment="CENTER"/>
+    <paraStyle name="Caption" fontName="Helvetica" fontSize="12.0" leading="15" spaceBefore="6.0" spaceAfter="6.0"/>
+    <paraStyle name="Index" fontName="Helvetica"/>
+    <paraStyle name="Footer" fontName="Helvetica"/>
+    <paraStyle name="Horizontal Line" fontName="Helvetica" fontSize="6.0" leading="8" spaceBefore="0.0" spaceAfter="14.0"/>
+    <paraStyle name="terp_header" fontName="Helvetica-Bold" fontSize="12.0" leading="15" alignment="LEFT" spaceBefore="12.0" spaceAfter="6.0"/>
+    <paraStyle name="Heading 9" fontName="Helvetica-Bold" fontSize="75%" leading="NaN" spaceBefore="12.0" spaceAfter="6.0"/>
+    <paraStyle name="terp_tblheader_General" fontName="Helvetica-Bold" fontSize="8.0" leading="10" alignment="LEFT" spaceBefore="6.0" spaceAfter="6.0"/>
+    <paraStyle name="terp_tblheader_Details" fontName="Helvetica-Bold" fontSize="9.0" leading="11" alignment="LEFT" spaceBefore="6.0" spaceAfter="6.0"/>
+    <paraStyle name="terp_default_8" fontName="Helvetica" fontSize="8.0" leading="10" alignment="LEFT" spaceBefore="0.0" spaceAfter="0.0"/>
+    <paraStyle name="terp_default_Bold_8" fontName="Helvetica-Bold" fontSize="8.0" leading="10" alignment="LEFT" spaceBefore="0.0" spaceAfter="0.0"/>
+    <paraStyle name="terp_tblheader_General_Centre" fontName="Helvetica-Bold" fontSize="8.0" leading="10" alignment="CENTER" spaceBefore="6.0" spaceAfter="6.0"/>
+    <paraStyle name="terp_tblheader_General_Right" fontName="Helvetica-Bold" fontSize="8.0" leading="10" alignment="RIGHT" spaceBefore="6.0" spaceAfter="6.0"/>
+    <paraStyle name="terp_tblheader_Details_Centre" fontName="Helvetica-Bold" fontSize="9.0" leading="11" alignment="CENTER" spaceBefore="6.0" spaceAfter="6.0"/>
+    <paraStyle name="terp_tblheader_Details_Right" fontName="Helvetica-Bold" fontSize="9.0" leading="11" alignment="RIGHT" spaceBefore="6.0" spaceAfter="6.0"/>
+    <paraStyle name="terp_default_Right_8" fontName="Helvetica" fontSize="8.0" leading="10" alignment="RIGHT" spaceBefore="0.0" spaceAfter="0.0"/>
+    <paraStyle name="terp_default_Centre_8" fontName="Helvetica" fontSize="8.0" leading="10" alignment="CENTER" spaceBefore="0.0" spaceAfter="0.0"/>
+    <paraStyle name="terp_header_Right" fontName="Helvetica-Bold" fontSize="15.0" leading="19" alignment="LEFT" spaceBefore="12.0" spaceAfter="6.0"/>
+    <paraStyle name="terp_header_Centre" fontName="Helvetica-Bold" fontSize="12.0" leading="15" alignment="CENTER" spaceBefore="12.0" spaceAfter="6.0"/>
+    <paraStyle name="terp_default_address" fontName="Helvetica" fontSize="10.0" leading="13" alignment="LEFT" spaceBefore="0.0" spaceAfter="0.0"/>
+    <paraStyle name="terp_default_9" fontName="Helvetica" fontSize="9.0" leading="11" alignment="LEFT" spaceBefore="0.0" spaceAfter="0.0"/>
+    <paraStyle name="terp_default_Bold_9" fontName="Helvetica-Bold" fontSize="9.0" leading="11" alignment="LEFT" spaceBefore="0.0" spaceAfter="0.0"/>
+    <paraStyle name="terp_default_Centre_9" fontName="Helvetica" fontSize="9.0" leading="11" alignment="CENTER" spaceBefore="0.0" spaceAfter="0.0"/>
+    <paraStyle name="terp_default_Right_9" fontName="Helvetica" fontSize="9.0" leading="11" alignment="RIGHT" spaceBefore="0.0" spaceAfter="0.0"/>
+    <paraStyle name="terp_default_Bold_9_Right" fontName="Helvetica-Bold" fontSize="9.0" leading="11" alignment="RIGHT" spaceBefore="0.0" spaceAfter="0.0"/>
+    <paraStyle name="terp_default_8_Italic" fontName="Helvetica-Oblique" fontSize="8.0" leading="10" alignment="LEFT" spaceBefore="0.0" spaceAfter="0.0"/>
+    <paraStyle name="terp_default_2" fontName="Helvetica" fontSize="2.0" leading="3" alignment="LEFT" spaceBefore="0.0" spaceAfter="0.0"/>
+    <images/>
+  </stylesheet>
+  <story>
+    <para style="terp_default_8">[[repeatIn(objects,'o')]]</para>
+    <para style="terp_default_8">[[ setLang( 'en_US') ]]</para>
+    <para style="terp_default_8">
+      <font color="white"> </font>
+    </para>
+    <para style="P23">[[ (o.state=='draft' or o.state=='sent') and removeParentNode('para') ]] <font face="Helvetica">Sale</font> Order /销售订单： [[ o.name ]]</para>
+    <para style="P23">[[ o.state&lt;&gt;'draft' and o.state&lt;&gt;'sent' and removeParentNode('para') ]] <font face="Helvetica">Sale</font> Order /销售订 单： [[ o.name ]]</para>
+    <para style="P7">[[ (o.state=='draft' or o.state=='sent') and removeParentNode('para') ]] <font face="Helvetica">S</font>O Date/销售订单日期： [[ formatLang(o.date_order,date = True) ]]</para>
+    <para style="P7">[[ o.state&lt;&gt;'draft' and o.state&lt;&gt;'sent' and removeParentNode('para') ]] <font face="Helvetica">S</font>O Date/销售订单日期： [[ formatLang(o.date_order,date = True) ]]</para>
+    <para style="P28"><font face="Helvetica">Customer</font>/ 客户</para>
+    <para style="P30">Name/名称：[[ (o.partner_id and o.partner_id.name) or '' ]]</para>
+    <para style="P30">City/城市：[[ (o.partner_id and o.partner_id.state_id and o.partner_id.state_id.name) or '']] - [[ (o.partner_id and o.partner_id.city) or '' ]] - [[ (o.partner_id and o.partner_id.zip) or '' ]] </para>
+    <para style="P30">Add/地址:[[ (o.partner_id and o.partner_id.street) or '']]</para>
+    <para style="P30">Phone/电话: [[ (o.partner_id and o.partner_id.phone) or '']]</para>
+    <para style="P30">Fax/传真: [[ (o.partner_id and o.partner_id.fax) or '']]</para>
+    <para style="P30">Contact/联系人：[[ o.contact_partner_id and o.contact_partner_id.name or '']]</para>
+    <para style="P30">Mobile/手机：[[ o.contact_partner_id and o.contact_partner_id.phone or '']]</para>
+    <para style="P29">Mail/邮件：[[ o.contact_partner_id and o.contact_partner_id.email or '']]</para>
+    <para style="P8">
+      <font color="white"> </font>
+    </para>
+    <para style="P8">
+      <font color="white"> </font>
+    </para>
+    <para style="terp_default_9">
+      <font color="white"> </font>
+    </para>
+    <blockTable colWidths="20.0,184.0,86.0,56.0,57.0,44.0,71.0" repeatRows="1" style="Table_Header_Pur_ord_Line">
+      <tr>
+        <td>
+          <para style="P3">#</para>
+        </td>
+        <td>
+          <para style="P2">[编号] 产品描述</para>
+          <para style="P2">[Part number] Product Description</para>
+        </td>
+        <td>
+          <para style="P4">预定日期</para>
+          <para style="P4"><font face="Helvetica">Req.</font> Date</para>
+        </td>
+        <td>
+          <para style="P1">数量</para>
+          <para style="P1">Quantity</para>
+        </td>
+        <td>
+          <para style="P5">单价</para>
+          <para style="P5">Unit Price</para>
+        </td>
+        <td>
+          <para style="P1">增值税</para>
+          <para style="P1">VAT</para>
+        </td>
+        <td>
+          <para style="P22">累计发货额</para>
+          <para style="P22">Total Amount</para>
+        </td>
+      </tr>
+    </blockTable>
+    <section>
+      <para style="terp_default_8">[[repeatIn(o.order_line,'line')]]</para>
+      <blockTable colWidths="20.0,185.0,86.0,56.0,57.0,44.0,71.0" style="Table_Order_Pur_line_Content">
+        <tr>
+          <td>
+            <para style="P10">[[ o.order_line.index(line) + 1 ]]</para>
+          </td>
+          <td>
+            <para style="P10">[[ get_product_desc(line) or removeParentNode('para') ]]</para>
+            <para style="P10">[[ get_product_desc_en(line) or removeParentNode('para') ]]</para>
+          </td>
+          <td>
+            <para style="P15">[[ formatLang( line.date_planned, date=True) ]]</para>
+          </td>
+          <td>
+            <para style="P19">[[ formatLang(line.product_uom_qty, digits=get_digits(dp='Product UoM') ) ]] [[ get_product_unit(line)]]</para>
+          </td>
+          <td>
+            <para style="P19">[[ formatLang(line.price_unit, digits=get_digits(dp='Purchase Price') ) ]][[ o.pricelist_id.currency_id. symbol ]]</para>
+          </td>
+          <td>
+            <para style="P9">[[ ', '.join(map(lambda x: x.name, line.tax_id)) ]]</para>
+          </td>
+          <td>
+            <para style="P18">[[ formatLang(multiply(line.product_uom_qty,line.price_unit), digits=get_digits(dp='Account') ) ]][[ o.pricelist_id.currency_id. symbol ]]</para>
+          </td>
+        </tr>
+      </blockTable>
+    </section>
+    <blockTable colWidths="289.0,114.0,115.0" style="Table_All_Total_Detail">
+      <tr>
+        <td>
+          <para style="P6">
+            <font color="white"> </font>
+          </para>
+        </td>
+        <td>
+          <para style="P14">Net Total/净合计:</para>
+        </td>
+        <td>
+          <para style="P17">[[ formatLang(o.amount_untaxed, digits=get_digits(dp='Account') ) ]] [[ o.pricelist_id.currency_id. symbol ]]</para>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <para style="P6">
+            <font color="white"> </font>
+          </para>
+        </td>
+        <td>
+          <para style="P16">Taxes/税 :</para>
+        </td>
+        <td>
+          <para style="P17">[[ formatLang(o.amount_tax, digits=get_digits(dp='Account')) ]] [[ o.pricelist_id.currency_id. symbol ]]</para>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <para style="P6">
+            <font color="white"> </font>
+          </para>
+        </td>
+        <td>
+          <para style="P13">Total/合计:</para>
+        </td>
+        <td>
+          <para style="P20">[[ formatLang(o.amount_total, digits=get_digits(dp='Account') ) ]] [[ o.pricelist_id.currency_id. symbol ]]</para>
+        </td>
+      </tr>
+    </blockTable>
+    <section>
+      <para style="terp_default_2">
+        <font color="white"> </font>
+      </para>
+    </section>
+    <para style="terp_default_9">
+      <font color="white"> </font>
+    </para>
+    <blockTable colWidths="518.0" style="Table4">
+      <tr>
+        <td>
+          <para style="terp_default_9"><font face="Helvetica">Notes/备注： </font>[[ format(o.notes or '') ]]</para>
+          <para style="terp_default_9">
+            <font color="white"> </font>
+          </para>
+        </td>
+      </tr>
+    </blockTable>
+    <blockTable colWidths="518.0" style="Table5">
+      <tr>
+        <td>
+          <para style="terp_default_9">Conditions/细则：<font face="Helvetica">此采购订单中未尽事宜，请依据采购合同执行。</font></para>
+          <para style="terp_default_9">
+            <font color="white"> </font>
+          </para>
+        </td>
+      </tr>
+    </blockTable>
+    <para style="Text body">
+      <font color="white"> </font>
+    </para>
+    <blockTable colWidths="259.0,259.0" style="Table7">
+      <tr>
+        <td>
+          <para style="P12">[[ (o.partner_id and o.partner_id.name) or '' ]]</para>
+        </td>
+        <td>
+          <para style="P25">[[(o.location_id.partner_id and o.location_id.partner_id.name) or '' ]]<font color="white"> .........</font></para>
+          <para style="P11">
+            <font color="white"> </font>
+          </para>
+        </td>
+      </tr>
+    </blockTable>
+    <blockTable colWidths="259.0,259.0" repeatRows="1" style="Table8">
+      <tr>
+        <td>
+          <para style="P12">
+            <font color="white"> </font>
+          </para>
+          <para style="P12">___________________________________________</para>
+          <para style="P12">授权代表签名及公司印章 <font color="white"> .........</font></para>
+        </td>
+        <td>
+          <para style="P12">
+            <font color="white"> </font>
+          </para>
+          <para style="P12">___________________________________________</para>
+          <para style="P12">授权代表签名及公司印章</para>
+        </td>
+      </tr>
+    </blockTable>
+    <blockTable colWidths="259.0,259.0" style="Table10">
+      <tr>
+        <td>
+          <para style="P12">日期</para>
+        </td>
+        <td>
+          <para style="P12">日期</para>
+        </td>
+      </tr>
+    </blockTable>
+    <para style="terp_default_9">
+      <font color="white"> </font>
+    </para>
+  </story>
+</document>
+

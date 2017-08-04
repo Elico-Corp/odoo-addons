@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_res_intercompany_manager,res intercompany manager,base_intercompany.model_res_intercompany,connector.group_connector_manager,1,1,1,1
+access_icops_backend_manager,icops backend manager,base_intercompany.model_icops_backend,connector.group_connector_manager,1,1,1,1

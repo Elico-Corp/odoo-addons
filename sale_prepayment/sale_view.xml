@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+	<data>
+		<!-- INHERITED VIEW FOR THE OBJECT : sale_order -->
+
+        <record id="view_sale_prepay_form" model="ir.ui.view">
+            <field name="name">sale.order.view.form</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale_payment_method.sale_order_view_form" />
+            <field name="arch" type="xml">
+            	<field name="payment_method_id" position="before">
+            		<field name="has_prepaid" />
+            	</field>
+			<field name="name" position="after">
+                	<div class="oe_right oe_button_box" name="buttons">
+                		<button name="%(act_prepayment_wizard)d" type="action" string="Prepay"/>
+                	</div>
+                </field>
+                <field name="amount_total" position="after">
+                    <field name="amount_paid" />
+                </field>
+
+                <xpath expr="//field[@name='payment_method_id']/../.." position="after">
+                	<page string="Payment" attrs="{'invisible':[('has_prepaid', '=', False)]}">
+                		<field name="payment_ids">
+                			<tree string="payments" editable="bottom">
+                				<field name="journal_id"  readonly="1"/>
+	                			<field name="period_id"  readonly="1"/>
+	                			<field name="date"  readonly="1"/>
+	                			<field name="name"  readonly="1"/>
+	                			<field name="ref"  readonly="1"/>
+	                			<field name="account_id"  readonly="1"/>
+	                			<field name="move_id"  readonly="1"/>
+	                			<field name="debit" sum="Total" readonly="1"/>
+	                			<field name="credit" sum="Total" readonly="1"/>
+	                			<field name="reconcile"  readonly="1"/>
+                			</tree>
+                		</field>
+                	</page>
+			</xpath>
+            </field>
+        </record>
+	</data>
+</openerp>

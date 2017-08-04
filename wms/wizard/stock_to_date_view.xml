@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        ##############################################################################
+        #
+        #    wms module for OpenERP, Agro-Business Specific extensions
+        #    Copyright (C) 2012 SYLEAM Info Services ([http://www.syleam.fr/]) 
+        #              Sebastien LANGE [sebastien.lange@syleam.fr]
+        #
+        #    This file is a part of wms
+        #
+        #    wms is free software: you can redistribute it and/or modify
+        #    it under the terms of the GNU Affero General Public License as published by
+        #    the Free Software Foundation, either version 3 of the License, or
+        #    (at your option) any later version.
+        #
+        #    wms is distributed in the hope that it will be useful,
+        #    but WITHOUT ANY WARRANTY; without even the implied warranty of
+        #    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+        #    GNU Affero General Public License for more details.
+        #
+        #    You should have received a copy of the GNU Affero General Public License
+        #    along with this program.  If not, see [http://www.gnu.org/licenses/].
+        #
+        ##############################################################################
+
+        <record id="view_stock_to_date_form" model="ir.ui.view">
+            <field name="name">stock.to.date.form</field>
+            <field name="model">stock.to.date</field>
+            <field name="type">form</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <form string="Stock To Date" col="8">
+                    <group col="2" colspan="2">
+                        <field name="product_id"/>
+                        <field name="uom_id" readonly="1"/>
+                        <field name="date_from"/>
+                        <field name="date_to"/>
+                        <field name="warehouse_id" widget="selection"/>
+                        <button string="Compute" icon="gtk-execute" type="object" name="compute_stock_to_date" colspan="2"/>
+                    </group>
+                    <group colspan="6">
+                        <notebook colspan="4">
+                            <page string="Stock To Date">
+                                <field name="stock_to_date_line_ids" colspan="4" nolabel="1" height="500">
+                                    <tree string="Lines" colors="blue:color">
+                                        <field name="date"/>
+                                        <field name="incoming_qty" sum="Incoming"/>
+                                        <field name="outgoing_qty" sum="Outgoing"/>
+                                        <field name="virtual_available" string="Stock"/>
+                                        <field name="empty"/>
+                                        <field name="color" invisible="1"/>
+                                    </tree>
+                                    <form string="Lines">
+                                    </form>
+                                </field>
+                            </page>
+                            <page string="Stock Available">
+                                <field name="report_stock_ids" nolabel="1" readonly="1"/>
+                            </page>
+                            <page string="Stock Orderpoint">
+                                <field name="orderpoint_ids" nolabel="1" readonly="1"/>
+                            </page>
+                        </notebook>
+                    </group>
+                </form>
+            </field>
+        </record>
+        <record id="view_stock_to_date_tree" model="ir.ui.view">
+            <field name="name">stock.to.date.tree</field>
+            <field name="model">stock.to.date</field>
+            <field name="type">tree</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <tree string="">
+                    <field name="product_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_stock_to_date_view">
+            <field name="name">Stock To Date</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">stock.to.date</field>
+            <field name="src_model">product.product</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="domain">[]</field>
+            <field name="context">{'default_product_id': active_id}</field>
+            <field name="target">current</field>
+            <!--field name="groups_id" eval="[(6,0,[ref('group_link_product_2_stock_to_date')])]"/-->
+        </record>
+
+        <record model="ir.values" id="wizard_stock_to_date">
+            <field name="name">Stock To Date</field>
+            <field name="object" eval="1"/>
+            <field name="key">action</field>
+            <field name="key2">client_action_relate</field>
+            <field name="model">product.product</field>
+            <field name="value" eval="'ir.actions.act_window,' + str(ref('action_stock_to_date_view'))" />
+        </record>
+        <record id="action_stock_to_date_form_view" model="ir.actions.act_window">
+            <field name="name">Stock To Date</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">stock.to.date</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+        </record>
+
+    </data>
+</openerp>

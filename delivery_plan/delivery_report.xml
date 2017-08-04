@@ -1,0 +1,73 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+        <record id="ir_header_webkit_delivery_routes" model="ir.header_webkit">
+            <field eval="&quot;&quot;&quot;Portrait&quot;&quot;&quot;" name="orientation"/>
+            <field eval="&quot;&quot;&quot;A4&quot;&quot;&quot;" name="format"/>
+            <field eval="&quot;&quot;&quot;DeliveryRoutes&quot;&quot;&quot;" name="name"/>
+            <field eval="15.0" name="margin_top"/>
+            <field name="footer_html"><![CDATA[<html>
+    <head>
+        <meta content="text/html; charset=UTF-8" http-equiv="content-type"/>
+        <script>
+            function subst() {
+            var vars={};
+            var x=document.location.search.substring(1).split('&');
+            for(var i in x) {var z=x[i].split('=',2);vars[z[0]] = unescape(z[1]);}
+            var x=['frompage','topage','page','webpage','section','subsection','subsubsection'];
+            for(var i in x) {
+            var y = document.getElementsByClassName(x[i]);
+            for(var j=0; j<y.length; ++j) y[j].textContent = vars[x[i]];
+                }
+            }
+        </script>
+    </head>
+    <body style="border:0; margin: 0;" onload="subst()">
+        <table style="border-top: 1px solid black; font-size:8px; width: 100%; position:absolute;">
+            <tr>
+		    <td width="10%"><b>备注</b></td><td width="80%">1.拿货前请先确认是否有以下货物并勾选(干货蔬果，冰冻货物，熟食，饼房).     2.支付方式简写 现金 C，刷卡 P，不收钱 NC，券 Q（配送结束时填写）</td>
+		</tr>
+		<tr>
+		    <td width="10%"></td><td width="80%">3.配送结果有以下几种：1：配送成功。2：没有收钱。3：部分退货.4：改时间送。（配送结束时填写）</td>
+		</tr>
+        </table>
+    </body>
+</html>]]></field>
+                        <field name="html"><![CDATA[<html>
+    <head>
+        <meta content="text/html; charset=UTF-8" http-equiv="content-type"/>
+        <script>
+            function subst() {
+            var vars={};
+            var x=document.location.search.substring(1).split('&');
+            for(var i in x) {var z=x[i].split('=',2);vars[z[0]] = unescape(z[1]);}
+            var x=['frompage','topage','page','webpage','section','subsection','subsubsection'];
+            for(var i in x) {
+            var y = document.getElementsByClassName(x[i]);
+            for(var j=0; j<y.length; ++j) y[j].textContent = vars[x[i]];
+                }
+            }
+        </script>
+        <style type="text/css">
+            ${css}
+        </style>
+    </head>
+    <body style="border:0; margin: 0;" onload="subst()">
+    ${_debug or ''|n} </body>        
+</html>]]>
+</field>
+
+                        <field name="css" ><![CDATA[
+body { font-family:Helvetica; font-size:12px; }
+.title { font-size:16px; font-weight: bold; text-align: center; }
+.basic_table{ text-align:center; border-collapse: collapse; }
+.basic_table td { border:1px solid lightGrey; font-size:12px; }
+td { padding: 0 3px; text-align:left; font-size: 12px; }
+table.noborder, table.noborder tr, table.noborder tr td, tr.noborder, tr.noborder td, td.noborder { border: none; }
+.dontcutme { page-break-inside: avoid; }]]> </field>
+        </record>
+
+        <report id="report_delivery_route_print" name="delivery.route.print" string="Delivery Route" model="delivery.route" 
+            file="fc_delivery_plan/report/delivery_route_print.mako" report_type="webkit" auto="False" header = "True" menu="True" webkit_header="ir_header_webkit_delivery_routes"/>
+    </data>
+</openerp>

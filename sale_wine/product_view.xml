@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf8"?>
+<openerp>
+  <data>
+  	    <record id="product_wine_from" model="ir.ui.view">
+            <field name="name">product.wine.view</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="product.product_normal_form_view"/>
+            <field name="arch" type="xml">
+              <field name="name" position="after">
+                <field name="name_cn" />
+              </field>
+            	<page string="Information" position="after">
+            		<page string="Wine">
+            		    <group>
+            			    <group>
+		             		    <field name="producer_id" />
+		             		    <field name="country_id" on_change="onchange_country_id(country_id)"/> 
+                        <field name="wine_type" />
+                      </group>
+                      <group>
+                        <field name="state_id" />
+                        <field name="capacity_id" />
+                        <field name="grape_id" /> 
+	             		    </group>
+	             	    </group>
+	              </page>
+             	</page>
+                <field  name='default_code' position="attributes">
+                    <attribute name="required">1</attribute>
+                </field>
+            </field>
+        </record>
+        <record id="wine_product_product_tree_view" model="ir.ui.view">
+            <field name="name">wine.product.product.tree</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="product.product_product_tree_view"/>
+            <field name="arch" type="xml">
+              <field name="name" position="after">
+                <field name="name_cn" />
+              </field>
+              <field name="company_id" position="after">
+                <field name="state_id" />
+                <field name="wine_type" />
+              </field>
+            </field>
+        </record>
+        
+        <!-- Wine Producer -->
+        <record id="wine_producer_form_view" model="ir.ui.view">
+            <field name="name">wine.producer.form</field>
+            <field name="model">wine.producer</field>
+            <field name="arch" type="xml">
+                <form string="Wine Producer" version="7.0">
+                    <sheet>
+                        <div class="oe_edit_only">
+                            <label for="name_en" string="English name"/>
+                        </div>
+                        <h1>
+                            <field name="name_en" />
+                        </h1>
+                        <div class="oe_edit_only">
+                            <label for="name_cn" string="Chinese name"/>
+                        </div>
+                        <h2>
+                            <field name="name_cn" />
+                        </h2>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="wine_producer_tree_view" model="ir.ui.view">
+            <field name="name">wine.producer.tree</field>
+            <field name="model">wine.producer</field>
+            <field name="arch" type="xml">
+                <tree string="Wine Producer">
+                    <field name="name_en" />
+                    <field name="name_cn" />
+                </tree>
+            </field>
+        </record>
+
+        <record id="wine_producer_normal_action_tree" model="ir.actions.act_window">
+            <field name="name">Wine Producer</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">wine.producer</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <menuitem action="wine_producer_normal_action_tree" id="menu_wine_producer" parent="base.menu_product" sequence="100" />
+  </data>
+</openerp>
+ 

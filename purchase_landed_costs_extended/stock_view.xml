@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record id="inherit_stock_view_location_form" model="ir.ui.view">
+            <field name="name">inherit.stock.view_location_form</field>
+            <field name="model">stock.location</field>
+            <field name="inherit_id" ref="stock.view_location_form" />
+            <field name="arch" type="xml">
+                <field name="active" position="before">
+                    <field name="is_in_average" attrs="{'invisible':[('usage', '!=', 'internal')]}" groups="account.group_account_manager"/>
+                </field>
+            </field>
+        </record>
+
+        <!-- add volume_factor to product uom form -->
+        <record id="product_uom_form_view_inherit" model="ir.ui.view">
+            <field name="name">product.uom.form.view.inherit</field>
+            <field name="model">product.uom</field>
+            <field name="inherit_id" ref="product.product_uom_form_view" />
+            <field name="arch" type="xml">
+                <field name="rounding" position="before">
+                    <field name="volume_factor" />
+                </field>
+            </field>
+        </record>
+    </data>
+</openerp>

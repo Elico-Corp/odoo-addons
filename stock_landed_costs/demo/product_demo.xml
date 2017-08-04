@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="1">
+        <record id="product_duty_rule_001" model="product.duty.rule">
+            <field name="name">Profit and Loss</field>
+            <field name="sign" eval="-1" />
+            <field name="type">sum</field>
+        </record>
+    </data>
+</openerp>

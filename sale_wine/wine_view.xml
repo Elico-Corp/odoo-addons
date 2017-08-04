@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+
+        <record id="wine_grape_form_view" model="ir.ui.view">
+            <field name="name">wine.grape.form</field>
+            <field name="model">wine.grape</field>
+            <field eval="7" name="priority"/>
+            <field name="arch" type="xml">
+                <form string="Product" version="7.0">
+                    <sheet>
+                        <div class="oe_edit_only">
+                            <label for="name_en" string="English name"/>
+                        </div>
+                        <h1>
+                            <field name="name_en" />
+                        </h1>
+                        <div class="oe_edit_only">
+                            <label for="name_cn" string="Chinese name"/>
+                        </div>
+                        <h2>
+                            <field name="name_cn" />
+                        </h2>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="wine_grape_tree_view" model="ir.ui.view">
+            <field name="name">wine.grape.tree</field>
+            <field name="model">wine.grape</field>
+            <field eval="7" name="priority" />
+            <field name="arch" type="xml">
+                <tree string="Wine Grapes">
+                    <field name="name_en" />
+                    <field name="name_cn" />
+                </tree>
+            </field>
+        </record>
+
+        <record id="wine_grape_normal_action_tree" model="ir.actions.act_window">
+            <field name="name">Wine Grape</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">wine.grape</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form,kanban</field>
+        </record>
+        <menuitem action="wine.wine_grape_normal_action_tree" id="wine.menu_wine_grape" parent="base.menu_product" sequence="100" />
+    </data>
+</openerp>

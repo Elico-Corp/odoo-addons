@@ -1,0 +1,463 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="view_dts_to_routes" model="ir.ui.view">
+            <field name="name">Prepare Routes for DTS</field>
+            <field name="model">delivery.dts_to_routes</field>
+            <field name="arch" type="xml">
+                <form string="Prepare Routes for DTS" version="7.0">
+                    <field name="dts_id"/>
+                    <footer>
+                        <button name="generate_routes" string="Confirm" type="object" class="oe_highlight"/>
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+        <record id="view_dts_to_vans" model="ir.ui.view">
+            <field name="name">Prepare Vans for DTS</field>
+            <field name="model">delivery.dts_to_vans</field>
+            <field name="arch" type="xml">
+                <form string="Prepare Vans for DTS" version="7.0">
+                    <field name="dts_id"/>
+                    <footer>
+                        <button name="open_kanban" string="Confirm" type="object" class="oe_highlight"/>
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+		<act_window name="Prepare Routes for DTS"
+            res_model="delivery.dts_to_routes"
+            view_mode="form"
+            target="new"
+            id="action_dts_to_routes"/>
+		
+		<act_window name="Prepare Vans for DTS"
+            res_model="delivery.dts_to_vans"
+            view_mode="form"
+            target="new"
+            id="action_dts_to_vans"/>
+        
+		<menuitem name="Prepare Delivery Routes" id="menu_delivery_wizard" parent="delivery_routes.menu_delivery_root" sequence="0"/>
+		<menuitem action="action_dts_to_vans" name="Prepare Vans for DTS" id="menu_action_dts_to_vans" parent="menu_delivery_wizard" sequence="10"/>
+        <menuitem action="action_dts_to_routes" name="Prepare Routes for DTS" id="menu_action_dts_to_routes" parent="menu_delivery_wizard" sequence="15"/>
+        
+        
+        
+        <record id="view_driver_for_routes" model="ir.ui.view">
+            <field name="name">Choose Driver / Deliver for DTS</field>
+            <field name="model">delivery.driver_for_routes</field>
+            <field name="arch" type="xml">
+                <form string="Choose Driver / Deliver for DTS" version="7.0">
+                    <group colspan="2" col="4">
+                        <field name="dts_id"/>
+                        <!--field name="action"/-->
+                    </group>
+                    <footer>
+                        <button name="open_kanban" string="Confirm" type="object" class="oe_highlight"/>
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+        
+		<act_window name="Choose Driver / Deliver for DTS"
+            res_model="delivery.driver_for_routes"
+            view_mode="form"
+            target="new"
+            id="action_driver_for_routes"/>
+        <menuitem action="action_driver_for_routes" name="Choose Driver / Deliver for DTS" id="menu_action_driver_for_routes" parent="menu_delivery_wizard" sequence="25"/>
+        
+        
+        
+        <record model="ir.ui.view" id="delivery_route_driver_kanban_view">
+            <field name="name">delivery.route.driver.kanban</field>
+            <field name="model">delivery.route</field>
+            <field name="arch" type="xml">
+                <kanban version="7.0">
+                    <field name="dts_id"/>
+                    <field name="driver_id"/>
+                    <field name="picker_id"/>
+                    <field name="state"/>
+                    <templates>
+                    <t t-name="kanban-box">
+                        <div t-attf-class="oe_kanban_card oe_kanban_global_click">
+                            <div class="oe_dropdown_toggle oe_dropdown_kanban" groups="base.group_user">
+                                <span class="oe_e">í</span>
+                                <ul class="oe_dropdown_menu">
+                                    <t t-if="widget.view.is_action_enabled('edit')"><li><a type="edit">Edit...</a></li></t>
+                                </ul>
+                            </div>
+                            <div class="oe_kanban_content">
+                                <div><b><field name="name"/></b></div>
+                                <div>
+                                    <field name="date"/><br />
+                                    <field name="state"/>
+                                </div>
+                            </div>
+                            <div class="oe_clear"></div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+	<record id="action_delivery_route_driver_kanban" model="ir.actions.act_window">
+	    <field name="name">Delivery Route Driver Kanban</field>
+	    <field name="type">ir.actions.act_window</field>
+	    <field name="res_model">delivery.route</field>
+	    <field name="view_type">tree</field>
+	    <field name="view_mode">kanban,form</field>
+    </record>
+        
+        
+        <record model="ir.ui.view" id="delivery_route_line_kanban_view_fc">
+            <field name="name">delivery.route.line.kanban_fc</field>
+            <field name="model">delivery.route.line</field>
+            <field name="arch" type="xml">
+                <kanban version="7.0">
+                    <field name="picking_id"/>
+                    <field name="route_id"/>
+                    <field name="address_id"/>
+                    <field name="note"/>
+                    <field name="sequence"/>
+                    <field name="color"/>
+                    <field name="neighborhood"/>
+                    <field name="state"/>
+                    <field name="customer_date"/>
+                    <templates>
+                    <t t-name="kanban-box">
+                        <div style="width:175px;" t-attf-class="oe_kanban_color_#{kanban_getcolor(record.color.raw_value)} oe_kanban_card oe_kanban_global_click oe_kanban_no_auto_height">
+                            <div class="oe_dropdown_toggle oe_dropdown_kanban" groups="base.group_user">
+                                <span class="oe_e">í</span>
+                                <ul class="oe_dropdown_menu">
+                                    <t t-if="widget.view.is_action_enabled('edit')"><li><a type="edit">Edit...</a></li></t>
+                                    <t t-if="record.state.raw_value == 'draft'"><li><ul class="oe_kanban_colorpicker" data-field="color"/></li></t>
+                                </ul>
+                            </div>
+                            <div class="oe_kanban_content">
+                                <div>
+                                    <field name="color"/> - 
+                                    <span t-if="record.neighborhood.raw_value != null"><field name="neighborhood"/> - </span>
+                                    <field name="street"/>
+                                    <div t-if="record.customer_date.raw_value != null"><field name="customer_date"/></div>
+                                </div>
+	                            <!--div class="oe_kanban_bottom_right">
+		                            <a name="set_van_0" type="object" class="oe_kanban_color_0 oe_kanban_button">No</a>
+		                            <a name="set_van_1" type="object" class="oe_kanban_color_1 oe_kanban_button">1</a>
+		                            <a name="set_van_2" type="object" class="oe_kanban_color_2 oe_kanban_button">2</a>
+		                            <a name="set_van_3" type="object" class="oe_kanban_color_3 oe_kanban_button">3</a>
+		                            <a name="set_van_4" type="object" class="oe_kanban_color_4 oe_kanban_button">4</a>
+		                            <a name="set_van_5" type="object" class="oe_kanban_color_5 oe_kanban_button">5</a>
+		                            <a name="set_van_6" type="object" class="oe_kanban_color_6 oe_kanban_button">6</a>
+		                            <a name="set_van_7" type="object" class="oe_kanban_color_7 oe_kanban_button">7</a>
+		                            <a name="set_van_8" type="object" class="oe_kanban_color_8 oe_kanban_button">8</a>
+		                            <a name="set_van_9" type="object" class="oe_kanban_color_9 oe_kanban_button">9</a>
+		                        </div-->
+		                        <div class="oe_clear"></div>
+                            </div>
+                            <div class="oe_clear"></div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+        
+        
+        <record id="view_stock_change_dts_wizard" model="ir.ui.view">
+            <field name="name">Change DTS / PTS</field>
+            <field name="model">delivery.change.dts</field>
+            <field name="arch" type="xml">
+                <form string="Change DTS / PTS" version="7.0">
+                    <group>
+                        <field name="action"/>
+                        <field name="dts_id" on_change="dts_id_change(dts_id, pts_id, context)" attrs="{'invisible':[('action','=','cleanup')]}"/>
+                        <field name="pts_id" domain="[('dts_id','=',dts_id)]" attrs="{'invisible':[('action','=','cleanup')]}"/>
+                    </group>
+                    <footer>
+                        <button name="change_dts" string="Update" type="object" class="oe_highlight"/>
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+        
+        <act_window name="Change DTS / PTS"
+            res_model="delivery.change.dts"
+            src_model="stock.picking"
+            view_mode="form"
+            target="new"
+            key2="client_action_multi"
+            multi="True"
+            id="action_stock_change_dts_wizard"/>
+
+
+
+		<record model="ir.ui.view" id="delivery_driver_kanban_view">
+            <field name="name">delivery.driver.kanban</field>
+            <field name="model">delivery.driver</field>
+            <field name="arch" type="xml">
+                <kanban version="7.0" default_group_by="tmp_route_id">
+                    <field name="tmp_route_id"/>
+                    <field name="is_driver"/>
+                    <field name="is_picker"/>
+                    <field name="color"/>
+                    <templates>
+                    <t t-name="kanban-box">
+                        <div t-attf-class="oe_kanban_color_#{kanban_getcolor(record.color.raw_value)} oe_kanban_card oe_kanban_global_click oe_kanban_no_auto_height">
+                            <div class="oe_dropdown_toggle oe_dropdown_kanban" groups="base.group_user">
+                                <span class="oe_e">í</span>
+                                <ul class="oe_dropdown_menu">
+                                    <t t-if="widget.view.is_action_enabled('edit')"><li><a type="edit">Edit...</a></li></t>
+                                </ul>
+                            </div>
+                            <div class="oe_kanban_content">
+                                <div><b><field name="name"/></b></div>
+                            </div>
+                            <div class="oe_clear"></div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+        
+        <!--record id="view_add_picking_pack" model="ir.ui.view">
+            <field name="name">Add Picking to Pack</field>
+            <field name="model">add.picking.pack</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Pack Delivery notes">
+                    <separator string="Pack the selected Delivery notes ?"/>
+                    <newline/>
+                    <button special="cancel" string="Cancel"/>
+                    <button name="confirm_add" string="Confirm" type="object"/>
+                </form>
+            </field>
+        </record>
+
+        <act_window name="Add Picking to Pack"
+            src_model="stock.picking"
+            res_model="add.picking.pack"
+            id="action_add_picking_pack_wizard"
+            view_mode="form"
+            multi="True"
+            key2="client_action_multi"
+            target="new"/-->
+           
+        <record id="view_to_be_deleted_soon" model="ir.ui.view">
+            <field name="name">TO BE DELETED SOON</field>
+            <field name="model">delivery.reset</field>
+            <field name="arch" type="xml">
+                <form string="RESET ALL DELIVERY" version="7.0">
+                    <footer>
+                        <button name="go" string="Confirm" type="object" class="oe_highlight"/>
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+		<act_window name="RESET ALL DELIVERY"
+            res_model="delivery.reset"
+            view_mode="form"
+            target="new"
+            id="action_resetall"/>
+        <menuitem action="action_resetall" name="RESET ALL DELIVERY" id="menu_action_resetall" parent="delivery_routes.menu_delivery_config" sequence="125"/>
+
+
+        
+        <!-- kanban view for stock picking with delivery-->
+        <record model="ir.ui.view" id="stock_picking_inout_kanban_elico">
+            <field name="name">stock.picking.out.kanban</field>
+            <field name="model">stock.picking</field>
+            <field name="arch" type="xml">
+                <kanban version="7.0" default_group_by="dts_id">
+                    <field name="dts_id"/>
+                    <field name="min_date"/>
+                    <field name="origin"/>
+                    <field name="partner_id"/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div t-attf-class="oe_kanban_card oe_kanban_global_click">
+                                <div class="oe_dropdown_toggle oe_dropdown_kanban" groups="base.group_user">
+                                    <span class="oe_e">í</span>
+                                    <ul class="oe_dropdown_menu">
+                                        <t t-if="widget.view.is_action_enabled('edit')"><li><a type="edit">Edit...</a></li></t>
+                                        <t t-if="widget.view.is_action_enabled('delete')"><li><a type="delete">Delete</a></li></t>
+                                    </ul>
+                                </div>
+                                <div class="oe_kanban_content">
+                                    <div><b><field name="origin"/></b></div>
+                                    <div>
+                                        <field name="street"/><br />
+                                        <field name="min_date"/>
+                                    </div>
+                                </div>
+                                <div class="oe_clear"></div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+        
+        <record id="view_picking_search_kanban" model="ir.ui.view">
+            <field name="name">stock.picking.search.kanban</field>
+            <field name="model">stock.picking</field>
+            <field name="arch" type="xml">
+                <search string="PO + SO">
+                    <field name="name" string="Incoming Shipments" filter_domain="['|',('name','ilike',self),('origin','ilike',self)]"/>
+                    <filter icon="terp-check" name="available" string="Ready to Process" domain="[('state','=','assigned')]" help="Incoming Shipments Available"/>
+                    <filter icon="terp-dialog-close" name="done" string="Done" domain="[('state','=','done')]" help="Incoming Shipments already processed"/>
+                    <separator/>
+                    <filter icon="terp-accessories-archiver-minus" string="Back Orders" domain="[('backorder_id', '!=', False)]" help="Is a Back Order"/>
+                    <separator/>
+                    <filter string="To Invoice" name="to_invoice" icon="terp-dolar" domain="[('invoice_state', '=', '2binvoiced')]"/>
+                    <field name="stock_journal_id"/>
+                    <field name="product_id"/>
+                    <group expand="0" string="Group By...">
+                        <filter icon="terp-stock_effects-object-colorize" name="state" string="Status" domain="[]" context="{'group_by':'state'}"/>
+                        <filter string="Order Date" icon="terp-go-month" domain="[]" context="{'group_by':'date'}"/>
+                        <filter string="Expected Date" icon="terp-go-month" domain="[]" context="{'group_by':'min_date'}"/>
+                        <filter string="Journal" icon="terp-folder-orange" domain="[]" context="{'group_by':'stock_journal_id'}"/>
+                        <filter icon="terp-go-today" string="DTS Today" name="dts_today" domain="[('dts_id.start_date','&lt;=',time.strftime('%%Y-%%m-%%d 23:59:59')),('dts_id.start_date','&gt;=',time.strftime('%%Y-%%m-%%d 00:00:00'))]" help="DTS planned for Today"/>
+                        <filter icon="terp-go-today" string="DTS Today+Past" name="dts_min_today" domain="['|',('dts_id.start_date','&lt;=',time.strftime('%%Y-%%m-%%d 23:59:59')),('dts_id','=',None)]" help="DTS planned Today or before"/>
+                        <filter icon="terp-go-today" string="Today" domain="[('min_date','&lt;=',time.strftime('%%Y-%%m-%%d 23:59:59')),('min_date','&gt;=',time.strftime('%%Y-%%m-%%d 00:00:00'))]" help="Orders processed Today or planned for Today"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+        <record id="action_picking_inout_kanban" model="ir.actions.act_window">
+            <field name="name">PO + SO / DTS</field>
+            <field name="res_model">stock.picking</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_type">tree</field>
+            <field name="view_mode">kanban,form</field>
+            <field name="domain">['&amp;','|','&amp;',('type','=','in'),'&amp;',('state','=','assigned'),("is_collected","=",True),'&amp;',('type','=','out'),("state","not in",["cancel"]),("delivery_state","in",['','not_planned','del_rt'])]</field>
+            <field name="context">{'contact_display': 'partner_address', 'update_pts':1, 'search_default_dts_min_today': 1}</field>
+            <field name="search_view_id" ref="view_picking_search_kanban"/>
+        </record>
+        <menuitem action="action_picking_inout_kanban" id="menu_action_picking_inout_kanban" parent="delivery_plan.menu_delivery_wizard" sequence="1"/>
+        <!-- stock picking with delivery end -->
+        
+
+
+
+        <!-- kanban view for stock picking with delivery-->
+        <record model="ir.ui.view" id="stock_picking_inout_kanban_elico">
+            <field name="name">stock.picking.out.kanban</field>
+            <field name="model">stock.picking</field>
+            <field name="arch" type="xml">
+                <kanban version="7.0" default_group_by="dts_id">
+                    <field name="dts_id"/>
+                    <field name="min_date"/>
+                    <field name="origin"/>
+                    <field name="partner_id"/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div t-attf-class="oe_kanban_card oe_kanban_global_click">
+                                <div class="oe_dropdown_toggle oe_dropdown_kanban" groups="base.group_user">
+                                    <span class="oe_e">í</span>
+                                    <ul class="oe_dropdown_menu">
+                                        <t t-if="widget.view.is_action_enabled('edit')"><li><a type="edit">Edit...</a></li></t>
+                                        <t t-if="widget.view.is_action_enabled('delete')"><li><a type="delete">Delete</a></li></t>
+                                    </ul>
+                                </div>
+                                <div class="oe_kanban_content">
+                                    <div><b><field name="origin"/></b></div>
+                                    <div>
+                                        <field name="street"/><br />
+                                        <field name="min_date"/>
+                                    </div>
+                                </div>
+                                <div class="oe_clear"></div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+        <!--record model="ir.ui.view" id="stock_picking_in_kanban_elico">
+            <field name="name">stock.picking.in.kanban</field>
+            <field name="model">stock.picking.in</field>
+            <field name="arch" type="xml">
+                <kanban version="7.0" default_group_by="dts_id">
+                    <field name="dts_id"/>
+                    <field name="min_date"/>
+                    <field name="origin"/>
+                    <field name="partner_id"/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div t-attf-class="oe_kanban_card oe_kanban_global_click">
+                                <div class="oe_dropdown_toggle oe_dropdown_kanban" groups="base.group_user">
+                                    <span class="oe_e">í</span>
+                                    <ul class="oe_dropdown_menu">
+                                        <t t-if="widget.view.is_action_enabled('edit')"><li><a type="edit">Edit...</a></li></t>
+                                        <t t-if="widget.view.is_action_enabled('delete')"><li><a type="delete">Delete</a></li></t>
+                                    </ul>
+                                </div>
+                                <div class="oe_kanban_content">
+                                    <div><b><field name="origin"/></b></div>
+                                    <div>
+                                        (<field name="name"/>)<br />
+                                        <field name="partner_id"/><br />
+                                        <field name="min_date"/>
+                                    </div>
+                                </div>
+                                <div class="oe_clear"></div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record-->
+        
+        <record id="view_picking_search_kanban" model="ir.ui.view">
+            <field name="name">stock.picking.search.kanban</field>
+            <field name="model">stock.picking</field>
+            <field name="arch" type="xml">
+                <search string="PO + SO">
+                    <field name="name" string="Incoming Shipments" filter_domain="['|',('name','ilike',self),('origin','ilike',self)]"/>
+                    <filter icon="terp-check" name="available" string="Ready to Process" domain="[('state','=','assigned')]" help="Incoming Shipments Available"/>
+                    <filter icon="terp-dialog-close" name="done" string="Done" domain="[('state','=','done')]" help="Incoming Shipments already processed"/>
+                    <separator/>
+                    <filter icon="terp-accessories-archiver-minus" string="Back Orders" domain="[('backorder_id', '!=', False)]" help="Is a Back Order"/>
+                    <separator/>
+                    <filter string="To Invoice" name="to_invoice" icon="terp-dolar" domain="[('invoice_state', '=', '2binvoiced')]"/>
+                    <field name="stock_journal_id"/>
+                    <field name="product_id"/>
+                    <group expand="0" string="Group By...">
+                        <filter icon="terp-stock_effects-object-colorize" name="state" string="Status" domain="[]" context="{'group_by':'state'}"/>
+                        <filter string="Order Date" icon="terp-go-month" domain="[]" context="{'group_by':'date'}"/>
+                        <filter string="Expected Date" icon="terp-go-month" domain="[]" context="{'group_by':'min_date'}"/>
+                        <filter string="Journal" icon="terp-folder-orange" domain="[]" context="{'group_by':'stock_journal_id'}"/>
+                        <filter icon="terp-go-today" string="DTS Today" name="dts_today" domain="[('dts_id.start_date','&lt;=',time.strftime('%%Y-%%m-%%d 23:59:59')),('dts_id.start_date','&gt;=',time.strftime('%%Y-%%m-%%d 00:00:00'))]" help="DTS planned for Today"/>
+                        <filter icon="terp-go-today" string="DTS Today+Past" name="dts_min_today" domain="['|',('dts_id.start_date','&lt;=',time.strftime('%%Y-%%m-%%d 23:59:59')),('dts_id','=',None)]" help="DTS planned Today or before"/>
+                        <filter icon="terp-go-today" string="Today" domain="[('min_date','&lt;=',time.strftime('%%Y-%%m-%%d 23:59:59')),('min_date','&gt;=',time.strftime('%%Y-%%m-%%d 00:00:00'))]" help="Orders processed Today or planned for Today"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+        <record id="action_picking_inout_kanban" model="ir.actions.act_window">
+            <field name="name">PO + SO / DTS</field>
+            <field name="res_model">stock.picking</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_type">tree</field>
+            <field name="view_mode">kanban,form</field>
+            <field name="domain">['&amp;','|','&amp;',('type','=','in'),'&amp;',('state','=','assigned'),("is_collected","=",True),'&amp;',('type','=','out'),("state","not in",["cancel"]),("delivery_state","in",['','not_planned','del_rt'])]</field>
+            <field name="context">{'contact_display': 'partner_address', 'update_pts':1, 'search_default_dts_min_today': 1}</field>
+            <field name="search_view_id" ref="view_picking_search_kanban"/>
+        </record>
+        <menuitem action="action_picking_inout_kanban" id="menu_action_picking_inout_kanban" parent="delivery_plan.menu_delivery_wizard" sequence="1"/>
+        <!-- stock picking with delivery end -->
+        
+    </data>
+</openerp>

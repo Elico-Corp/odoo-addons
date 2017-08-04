@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="view_product_product_tree" model="ir.ui.view">
+            <field name="name">product.product.portal.product.tree</field>
+            <field name="model">product.product</field>
+            <field name="arch" type="xml">
+                <tree colors="red:virtual_available&lt;0;blue:virtual_available&gt;=0 and state in ('draft', 'end', 'obsolete');black:virtual_available&gt;=0 and state not in ('draft', 'end', 'obsolete')" string="Products">
+                    <field name="default_code"/>
+                    <field name="name"/>
+                    <field name="categ_id" invisible="1"/>
+                    <field name="type" invisible="1"/>
+                    <field name="variants" groups="product.group_product_variant"/>
+                    <field name="uom_id" string="Unit of Measure" groups="product.group_uom"/>
+                    <field name="list_price"/>
+                    <field name="price" invisible="not context.get('pricelist',False)"/>
+                    <field name="state"/>
+                    <field name="company_id" groups="base.group_multi_company" invisible="1"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_portal_product_tree" model="ir.ui.view">
+            <field name="name">product.product.portal.product.tree</field>
+            <field name="model">product.product</field>
+            <field name="arch" type="xml">
+                <tree colors="blue:state not in ('draft');black:state in ('end', 'obsolete')" string="Products">
+                    <field name="default_code"/>
+                    <field name="name"/>
+                    <field name="categ_id" invisible="1"/>
+                    <field name="type" invisible="1"/>
+                    <field name="variants" groups="product.group_product_variant"/>
+                    <field name="uom_id" string="Unit of Measure" groups="product.group_uom"/>
+                    <field name="lst_price"/>
+                    <field name="price" invisible="not context.get('pricelist',False)"/>
+                    <field name="state"/>
+                    <field name="company_id" groups="base.group_multi_company" invisible="1"/>
+                </tree>
+            </field>
+        </record>
+
+
+        <record id="view_portal_product_form" model="ir.ui.view">
+            <field name="name">product.product.portal.product.tree</field>
+            <field name="model">product.product</field>
+            <field name="arch" type="xml">
+                <form string="Product" version="7.0">
+                    <header>
+                        <field name="state" widget="statusbar"/>
+                    </header>
+                    <sheet>
+                        <field name="image_medium" widget="image" class="oe_avatar oe_left"/>
+                        <div class="oe_title">
+                            <div class="oe_edit_only">
+                                <label for="name" string="Product Name"/>
+                            </div>
+                            <h1>
+                                <field name="name"/>
+                            </h1>
+                            <label for="categ_id" class="oe_edit_only"/>
+                            <h2><field name="categ_id"/></h2>
+                        </div>
+                        <div class="oe_right oe_button_box" name="buttons">
+                        </div>
+                        <notebook>
+                            <page string="Information">
+                                <group>
+                                    <field name="default_code"/>
+                                    <field name="list_price"/>
+                                    <field name="product_manager" readonly="1"/>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_product_portal" model="ir.actions.act_window">
+            <field name="name">Portal Products</field>
+            <field name="res_model">product.product</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('product_manager', '=', uid)]</field>
+            <field name="context">{'default_product_manager': uid, 'default_state':'draft'}</field>
+            <field name="view_id" ref="view_portal_product_tree"/>
+        </record>
+        <record id="action_partner_tree_view0" model="ir.actions.act_window.view">
+            <field eval="0" name="sequence"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="view_portal_product_tree"/>
+            <field name="act_window_id" ref="action_product_portal"/>
+        </record>
+        <record id="action_product_portal_form_view1" model="ir.actions.act_window.view">
+            <field eval="1" name="sequence"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_portal_product_form"/>
+            <field name="act_window_id" ref="action_product_portal"/>
+        </record>
+    </data>
+</openerp>

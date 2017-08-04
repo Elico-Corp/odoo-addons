@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	
+	
+	<data> 
+		<!-- Edit product views: Form,     -->  
+		<record id="inherit_minimax_product_normal_form_view" model="ir.ui.view">
+		    <field name="name">product.form_normal_view_triple_price</field>
+			<field name="model">product.product</field>
+			<field name="inherit_id" ref="product.product_normal_form_view"/>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+			    <xpath expr="//group[@string='Sale Conditions']" position="after">
+			        <group string="Price" col="4">
+			            <field name="list_price" colspan="2"/>
+	                    <field name="list_price_label" nolabel="1" clospan="1" class="oe_left"/>
+	                    <label string="     " colspan="1"/>
+	                    <newline/>
+	                    <field name="list2_price"/>
+	                    <field name="list2_price_label" nolabel="1" clospan="1"/>
+	                    <label string="     " colspan="1"/>
+	                    <newline/>
+	                    <field name="list3_price"/>
+	                    <field name="list3_price_label" nolabel="1" clospan="1"/>
+	                    <label string="     " colspan="1"/>
+	                    <newline/>
+		            </group>
+                </xpath>
+            </field>
+        </record>
+		
+		<!-- Add company_id field in Price Type form view -->
+        <record id="product_price_type_view_triple" model="ir.ui.view">
+            <field name="name">product.price.type.form.triple</field>
+            <field name="model">product.price.type</field>
+            <field name="inherit_id" ref="product.product_price_type_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='currency_id']" position="after">
+                    <field name="company_id"/>
+            	</xpath>
+            </field>
+        </record>
+		
+		<!-- Add rule for multicompany access to price types -->        
+        <record id="ir_rule_own_price_type" model="ir.rule">
+            <field name="name">price_type: access for own price type</field>
+            <field name="active" eval="True"/>
+            <field name="model_id" ref="product.model_product_price_type"/>
+            <field name="domain_force">['|',('company_id', '=', user.company_id.id),('company_id', '=', False)]</field> 
+            <field name="groups" eval="[(4, ref('base.group_sale_salesman'))]"/>
+        </record>
+        
+		<!-- price type  tree jon.chow#elico-corp.com May 30, 2013-->
+        <record id="product_price_type_tree_view" model="ir.ui.view">
+            <field name="name">product.price.type.tree</field>
+            <field name="model">product.price.type</field>
+            <field name="arch" type="xml">
+                <tree string="Products Price Type">
+                    <field name="name"/>
+	                <field name="field"/>
+	                <field name="company_id"/>
+	                <field name="currency_id"/>
+                </tree>
+            </field>
+        </record>
+		
+        <record id="product_price_type_search_view" model="ir.ui.view">
+            <field name="name">product.price.type.search</field>
+            <field name="model">product.price.type</field>
+            <field name="arch" type="xml">
+                <search string="Search product price type">
+                    <field name="name" string="Name"/>
+                 	<group expand="0" string="Group By...">
+                 	    <filter string="Field"   icon="terp-personal" domain="[]" context="{'group_by':'field'}"/>
+                 		<filter string="Company" icon="terp-personal" domain="[]" context="{'group_by':'company_id'}"/>
+                 	</group>
+                </search>
+            </field>
+        </record>
+	</data>
+</openerp>

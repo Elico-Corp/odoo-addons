@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <menuitem name="Stock"
+            id="menu_portal_stock_root"
+            parent="portal.portal_menu"
+            groups="portal.group_portal"
+            sequence="70"/>
+        <menuitem id="menu_portal_delivery_order_management" name="Delivery Order"
+            parent="menu_portal_stock_root" sequence="10"
+            action="action_portal_stock_picking"/>
+    </data>
+</openerp>
+

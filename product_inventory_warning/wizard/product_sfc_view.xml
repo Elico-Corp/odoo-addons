@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="view_run_product_inventory" model="ir.ui.view">
+            <field name="name">Compute Product Inventory</field>
+            <field name="model">run.product.inventory</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+              <form string="Compute Product Inventory">
+                    <separator string="Compute Product Inventory based on current stock moves" colspan="4" />
+                    <separator string="" colspan="4" />
+                    <button special="cancel" string="_Cancel" icon='gtk-cancel'/>
+                    <button name="compute_inventory" string="Compute" type="object" icon="gtk-ok"/>
+             </form>
+            </field>
+        </record>
+
+        <act_window name="Compute Product Inventory Warning"            
+            res_model="run.product.inventory"
+            view_mode="form"
+            target="new"
+            context="{}"  
+            id="action_run_product_inventory"/>
+
+        <menuitem
+            id="menu_action_run_product_inventory"
+            parent="purchase.menu_procurement_management_product"
+            action="action_run_product_inventory"
+            sequence = "90"/>
+            
+
+        <record id="view_run_product_inventory_dates" model="ir.ui.view">
+            <field name="name">Compute Product Inventory between dates</field>
+            <field name="model">run.product.inventory.dates</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+              <form string="Compute Product Inventory between dates">
+                    <separator string="Compute Product Inventory based on current stock moves and dates" colspan="4" />
+                    <field name="from_date"/>
+                    <field name="to_date"/>
+                    <separator string="" colspan="4" />
+                    <button special="cancel" string="_Cancel" icon='gtk-cancel'/>
+                    <button name="compute_inventory" string="Compute" type="object" icon="gtk-ok"/>
+             </form>
+            </field>
+        </record>
+
+        <act_window name="Compute Product Inventory between dates"            
+            res_model="run.product.inventory.dates"
+            view_mode="form"
+            target="new"
+            context="{}"  
+            id="action_run_product_inventory_dates"/>
+
+        <menuitem
+            id="menu_action_run_product_inventory_dates"
+            parent="purchase.menu_procurement_management_product"
+            action="action_run_product_inventory_dates"
+            sequence = "96"/>            
+    </data>
+</openerp>

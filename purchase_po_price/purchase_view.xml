@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+
+        <record id="view_partner_form_po_control" model="ir.ui.view">
+            <field name="name">res.partner.form.po.control</field>
+            <field name="model">res.partner</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="base.view_partner_form" />
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='customer']" position="after">
+                    <field name="po_price_modification_limit" attrs="{'invisible':[('supplier','!=',True)]}"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="product_normal_form_view_FC" model="ir.ui.view">
+            <field name="name">product.normal.form.FC</field>
+            <field name="model">product.product</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="product.product_normal_form_view" />
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='uom_po_id']" position="after">
+                    <field name="po_price_modification_limit"/>
+                </xpath>
+            </field>
+        </record>
+
+        <!-- Purchase Order -->
+        <record id="purchase_order_form_price_control" model="ir.ui.view">
+            <field name="name">purchase.order.form_price_control</field>
+            <field name="model">purchase.order</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="purchase.purchase_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='order_line']" position="replace">
+                    <field name="order_line">
+                        <tree string="Purchase Order Lines" editable="bottom">
+
+                            <!-- field name="sequence"/>< by Andy-->
+                            <field name="modify_price" invisible="1"/>
+                            <field name="product_id" on_change="onchange_product_id(parent.pricelist_id,product_id,0,product_uom,parent.partner_id, parent.date_order,parent.fiscal_position,date_planned,name,price_unit,context)" context="{'supplier_id': parent.partner_id}"/>
+                            <field name="name"/>
+                            <field name="date_planned"/>
+                            <field name="company_id" groups="base.group_multi_company" widget="selection"/>
+                            <field name="account_analytic_id" groups="purchase.group_analytic_accounting" domain="[('parent_id','!=',False)]"/>
+                            <field name="product_qty" on_change="onchange_product_id(parent.pricelist_id,product_id,product_qty,product_uom,parent.partner_id,parent.date_order,parent.fiscal_position,date_planned,name,price_unit,context)"/>
+                            <field name="product_uom" groups="product.group_uom" on_change="onchange_product_uom(parent.pricelist_id,product_id,product_qty,product_uom,parent.partner_id, parent.date_order,parent.fiscal_position,date_planned,name,price_unit,context)"/>
+                            <!--field name="price_unit" attrs="{'readonly':[('modify_price','=',True)]}"/-->
+                            <field name="price_unit_original" invisible="1"/>
+                            <field name="price_unit" on_change="onchange_price_unit(parent.partner_id,product_id,price_unit_original,price_unit,context)"/>
+                            <field name="taxes_id" widget="many2many_tags" domain="[('parent_id','=',False),('type_tax_use','!=','sale')]"/>
+                            <field name="price_unit_exclude_tax"/>
+                            <field name="price_subtotal" invisible="1"/>
+                            <field name="amount_subtotal"/><!-- by Andy-->
+
+                        </tree>
+                    </field>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</openerp>

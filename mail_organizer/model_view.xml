@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record id="view_model_form" model="ir.ui.view">
+            <field name="name">ir.model.form</field>
+            <field name="model">ir.model</field>
+            <field name="inherit_id" ref="base.view_model_form" />
+            <field name="arch" type="xml" >
+                <field name="modules" position="after">
+                    <field name="mail_organizer" />
+                </field>
+            </field>
+        </record>
+
+        <record id="view_model_tree_editable" model="ir.ui.view">
+            <field name="name">Ir Model editable tree</field>
+            <field name="model">ir.model</field>
+            <field name="arch" type="xml" >
+                <tree string="Mail Organizer" editable="bottom">
+                    <field name="name" readonly="1" />
+                    <field name="model" readonly="1" />
+                    <field name="mail_organizer" />
+                </tree>
+            </field>
+        </record>
+
+
+        <record model="ir.actions.act_window" id="action_mail_organizer">
+            <field name="name">Mail organizer</field>
+            <field name="view_id" ref="view_model_tree_editable"/>
+            <field name="res_model">ir.model</field>
+            <field name="view_type">form</field>
+            <field name="usage">menu</field>
+        </record>
+
+        <menuitem id="menu_email_organizer"
+            name="Mail Organizer"
+            action="action_mail_organizer"
+            parent="base.menu_email" />
+    </data>
+</openerp>

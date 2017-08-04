@@ -1,0 +1,89 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+#	* purchase_po_price
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 7.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-08-14 09:02+0000\n"
+"PO-Revision-Date: 2013-08-14 09:02+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: purchase_po_price
+#: code:addons/purchase_po_price/purchase.py:105
+#, python-format
+msgid "You can not modify the price of this product sold by this supplier !"
+msgstr "You can not modify the price of this product sold by this supplier !"
+
+#. module: purchase_po_price
+#: model:ir.model,name:purchase_po_price.model_purchase_order_line
+msgid "Purchase Order Line"
+msgstr "采购订单明细"
+
+#. module: purchase_po_price
+#: field:purchase.order.line,amount_subtotal:0
+msgid "Subtotal(Inc. Tax)"
+msgstr "小计(含税)"
+
+#. module: purchase_po_price
+#: field:purchase.order.line,modify_price:0
+msgid "Modify Price"
+msgstr "修改价格"
+
+#. module: purchase_po_price
+#: field:purchase.order.line,qty_received:0
+msgid "Reception Qty"
+msgstr "已收货数量"
+
+#. module: purchase_po_price
+#: field:purchase.order.line,sequence:0
+msgid "Sequence"
+msgstr "序号"
+
+#. module: purchase_po_price
+#: code:addons/purchase_po_price/purchase.py:105
+#, python-format
+msgid "PO Price"
+msgstr "PO Price"
+
+#. module: purchase_po_price
+#: field:purchase.order.line,qty_unreceived:0
+msgid "Waiting Qty"
+msgstr "待收货数量"
+
+#. module: purchase_po_price
+#: view:purchase.order:0
+msgid "Purchase Order Lines"
+msgstr "采购订单明细"
+
+#. module: purchase_po_price
+#: field:purchase.order.line,price_unit_original:0
+msgid "Original Unit Price"
+msgstr "原始单价"
+
+#. module: purchase_po_price
+#: model:ir.model,name:purchase_po_price.model_res_partner
+msgid "Partner"
+msgstr "业务伙伴"
+
+#. module: purchase_po_price
+#: help:res.partner,po_price_modification_limit:0
+msgid "If checked, allows you to change the price in PO (only when either the Supplier or Product allow it)"
+msgstr "若选择, 允许你在采购上修改单价(在供应商或者产品上设置一个即可)"
+
+#. module: purchase_po_price
+#: help:purchase.order.line,sequence:0
+msgid "Sequence for order in view and print report"
+msgstr "用于视图和报表中的序号"
+
+#. module: purchase_po_price
+#: field:res.partner,po_price_modification_limit:0
+msgid "No control on PO price"
+msgstr "不控采购单价"
+

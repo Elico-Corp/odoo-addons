@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_openerp_module_user,openerp_module base user,gap_analysis_project.model_openerp_module,base.group_user,1,0,0,0
+access_openerp_module_Guser,openerp_module user,gap_analysis_project.model_openerp_module,gap_analysis.res_group_gap0,1,1,1,0
+access_openerp_module_manager,openerp_module manager,gap_analysis_project.model_openerp_module,gap_analysis.res_group_gap1,1,1,1,1

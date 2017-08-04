@@ -1,0 +1,118 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+#	* product_pricelist_extension
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 6.0.2\n"
+"Report-Msgid-Bugs-To: support@openerp.com\n"
+"POT-Creation-Date: 2011-08-07 06:16+0000\n"
+"PO-Revision-Date: 2011-08-07 14:25+0800\n"
+"Last-Translator: Eric caudal <eric.caudal@elico-corp.com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+
+#. module: product_pricelist_extension
+#: view:product.pricelist.item:0
+msgid "Category"
+msgstr "分类"
+
+#. module: product_pricelist_extension
+#: view:product.pricelist.item:0
+msgid "Max. Margin"
+msgstr "最大利润"
+
+#. module: product_pricelist_extension
+#: view:product.pricelist.item:0
+msgid "Base Price"
+msgstr "基本价格"
+
+#. module: product_pricelist_extension
+#: view:product.pricelist.item:0
+msgid "Price Computation"
+msgstr "价格计算"
+
+#. module: product_pricelist_extension
+#: view:product.pricelist.item:0
+msgid "Min. Margin"
+msgstr "最小上浮金额"
+
+#. module: product_pricelist_extension
+#: view:product.pricelist.item:0
+msgid "* ( 1 + "
+msgstr "* ( 1 + "
+
+#. module: product_pricelist_extension
+#: view:product.pricelist.item:0
+msgid "Pricelists"
+msgstr "价格表"
+
+#. module: product_pricelist_extension
+#: view:product.pricelist.item:0
+msgid "Company"
+msgstr "公司"
+
+#. module: product_pricelist_extension
+#: view:product.pricelist.item:0
+msgid " ) + "
+msgstr " ) + "
+
+#. module: product_pricelist_extension
+#: view:product.pricelist.item:0
+msgid "Pricelists Items"
+msgstr "价格表明细"
+
+#. module: product_pricelist_extension
+#: view:product.pricelist.item:0
+msgid "Group By..."
+msgstr "分组..."
+
+#. module: product_pricelist_extension
+#: model:ir.actions.act_window,help:product_pricelist_extension.pricelist_item_action
+msgid "This form allows you to directly filter and alter the pricelists rules in the pricelists versions."
+msgstr " 在这个表单里面可以改变价格表明细和版本"
+
+#. module: product_pricelist_extension
+#: view:product.pricelist.item:0
+msgid "Version"
+msgstr "版本"
+
+#. module: product_pricelist_extension
+#: view:product.pricelist.item:0
+msgid "Rounding Method"
+msgstr "舍入方法"
+
+#. module: product_pricelist_extension
+#: view:product.pricelist.item:0
+msgid "Template"
+msgstr "模板"
+
+#. module: product_pricelist_extension
+#: view:product.pricelist.item:0
+msgid "New Price ="
+msgstr "新价格 ="
+
+#. module: product_pricelist_extension
+#: view:product.pricelist.item:0
+msgid "Rules Test Match"
+msgstr "定价规则"
+
+#. module: product_pricelist_extension
+#: view:product.pricelist.item:0
+msgid "Extended Filters..."
+msgstr "扩展过滤器..."
+
+#. module: product_pricelist_extension
+#: view:product.pricelist.item:0
+msgid "Pricelist item Search"
+msgstr "搜索价格表明细"
+
+#. module: product_pricelist_extension
+#: model:ir.actions.act_window,name:product_pricelist_extension.pricelist_item_action
+#: model:ir.ui.menu,name:product_pricelist_extension.menu_pricelist_item_action
+msgid "Pricelist items"
+msgstr "价格表明细"
+

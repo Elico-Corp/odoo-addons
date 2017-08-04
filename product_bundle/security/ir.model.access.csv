@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_product_item_bundle_sales_manager,product.item su,product_bundle.model_product_item,base.group_sale_manager,1,1,1,1

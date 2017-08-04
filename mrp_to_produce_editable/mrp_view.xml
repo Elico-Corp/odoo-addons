@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record id="inherit_mrp_production_form_view" model="ir.ui.view">
+            <field name="name">inherit.mrp.mrp_production_form_view</field>
+            <field name="model">mrp.production</field>
+            <field name="inherit_id" ref = "mrp.mrp_production_form_view" />
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='move_created_ids']/tree/button[@name='357']" position="before">
+                    <button name="action_done" states="confirmed,assigned" string="Process" type="object" icon="gtk-go-forward" help="Done"/>
+                </xpath>
+                <field name="picking_id" position="after">
+                    <field name="picking_finished_id" />
+                </field>
+                <field name="date_start" position="replace">
+                    <field name="date_start" />
+                </field>
+                <field name="date_finished" position="replace">
+                    <field name="date_finished" />
+                </field>
+                <!-- should not display the component boms. -->
+                <field name="bom_id" position="attributes">
+                    <attribute name="domain">[('product_id','=',product_id),('bom_id','=',False)]</attribute>
+                </field>
+            </field>
+        </record>
+
+<!-- make the name searchful -->
+        <record id="inherit_stock_view_move_search" model="ir.ui.view">
+            <field name="name">inherit.stock.view_move_search</field>
+            <field name="model">stock.move</field>
+            <field name="inherit_id" ref="stock.view_move_search" />
+            <field name="arch" type="xml">
+                <field name="product_id">
+                    <field name="name" />
+                </field>
+            </field>
+        </record>
+    </data>
+</openerp>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record model="ir.ui.view" id="stock_picking_out_event_tree">
+            <field name="name">stock.picking.out.event.tree</field>
+            <field name="model">stock.picking.out</field>
+            <field name="inherit_id" ref="stock.view_picking_out_tree" />
+            <field name="arch" type="xml">
+                <tree position="attributes">
+                    <attribute name="create">false</attribute>
+                    <attribute name="delete">false</attribute>
+                </tree>
+                <field name="state" position="before">
+                    <field name="sales_man"/>
+                </field>
+            </field>
+        </record>
+        <record id="view_picking_out_portal_form_inherit" model="ir.ui.view">
+            <field name="name">view.picking.sale.form</field>
+            <field name="model">stock.picking.out</field>
+            <!-- can not inherit from odoo standard sale_stock.stock_picking_out_inherit_sale-->
+            <field name="inherit_id" ref="magentoerpconnect.view_stock_picking_out_magento_form"/>
+            <field name="arch" type="xml">
+                <form position="attributes" version="7.0">
+                    <attribute name="create">false</attribute>
+                    <attribute name="delete">false</attribute>
+                </form>
+                <field name="auto_picking" position="after">
+                    <field name="sales_man"/>
+                </field>
+                <field name="partner_id" position="attributes">
+                    <attribute name="readonly">1</attribute>
+                </field>
+            </field>
+        </record>
+
+        <record id="action_portal_stock_picking" model="ir.actions.act_window">
+            <field name="name">Portal Picking</field>
+            <field name="res_model">stock.picking.out</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('sales_man', '=', uid)]</field>
+            <field name="context">{'default_sales_man': uid}</field>
+            <field name="view_id" ref="stock_picking_out_event_tree"/>
+        </record>
+        <record id="action_stock_picking_out_portal_tree_view0" model="ir.actions.act_window.view">
+            <field eval="0" name="sequence"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="stock_picking_out_event_tree"/>
+            <field name="act_window_id" ref="action_portal_stock_picking"/>
+        </record>
+        <record id="action_stock_picking_out_form_view1" model="ir.actions.act_window.view">
+            <field eval="1" name="sequence"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_picking_out_portal_form_inherit"/>
+            <field name="act_window_id" ref="action_portal_stock_picking"/>
+        </record>
+    </data>
+</openerp>

@@ -1,0 +1,122 @@
+-
+    12. Test name
+-
+    # Create the warehouse
+    !record {model: stock.warehouse, id: wms_stock_warehouse_test12}:
+        name: WMS Test 12
+        lot_input_id: stock.stock_location_stock
+        lot_output_id: stock.stock_location_output
+        lot_stock_id: stock.stock_location_stock
+        force_reserve: True
+-
+    # Create the first location
+    !record {model: stock.location, id: wms_stock_location_test12_location1}:
+        name: 'WMS Test 12 - Location 1'
+        warehouse_id: wms_stock_warehouse_test12
+-
+    # Create the second location
+    !record {model: stock.location, id: wms_stock_location_test12_location2}:
+        name: 'WMS Test 12 - Location 2'
+        warehouse_id: wms_stock_warehouse_test12
+        categ_id: wms.stock_location_cat_crossdock
+-
+    # Put the crossdock location on the warehouse
+    !record {model: stock.warehouse, id: wms_stock_warehouse_test12}:
+        crossdock_location_id: wms_stock_location_test12_location2
+-
+    # Create the product
+    !record {model: product.product, id: wms_product_product_test12}:
+        name: WMS Test 12
+        location_type: crossdock
+-
+    # Create the picking out
+    !record {model: stock.picking, id: wms_stock_picking_test12_picking_out}:
+        name: 'WMS Test 12 - Picking out'
+        type: out
+        partner_id: base.main_partner
+        address_id: base.main_address
+-
+    # Create the move in the picking out
+    !record {model: stock.move, id: wms_stock_move_test12_move_out}:
+        name: 'WMS Test 12 - Move out'
+        date: '2011-06-30 00:00:00'
+        picking_id: wms_stock_picking_test12_picking_out
+        product_id: wms_product_product_test12
+        product_uom: product.product_uom_unit
+        product_qty: 1
+        location_id: wms_stock_location_test12_location1
+        location_dest_id: wms_stock_location_test12_location1
+-
+    # Create the picking in
+    !record {model: stock.picking, id: wms_stock_picking_test12_picking_in}:
+        name: 'WMS Test 12 - Picking in'
+        type: in
+        partner_id: base.main_partner
+        address_id: base.main_address
+-
+    # Create the move in the picking in
+    !record {model: stock.move, id: wms_stock_move_test12_move_in}:
+        name: 'WMS Test 12 - Move in'
+        picking_id: wms_stock_picking_test12_picking_in
+        product_id: wms_product_product_test12
+        product_uom: product.product_uom_unit
+        product_qty: 2
+        location_id: wms_stock_location_test12_location1
+        location_dest_id: wms_stock_location_test12_location1
+-
+    # Confirm the picking out
+    !workflow {model: stock.picking, action: button_confirm, ref: wms_stock_picking_test12_picking_out}
+-
+    # Confirm the picking in
+    !workflow {model: stock.picking, action: button_confirm, ref: wms_stock_picking_test12_picking_in}
+-
+    # Check availability
+    !function {model: stock.picking, name: action_assign}:
+        - [!ref {model: stock.picking, id: wms_stock_picking_test12_picking_in}]
+-
+    # Start the wizard to receipt products
+    !record {model: stock.partial.picking, id: wms_stock_partial_picking_test12}:
+        date: '2011-06-29 00:00:00'
+        product_moves_in:
+            -
+                product_id: wms_product_product_test12
+                quantity: 2
+                product_uom: product.product_uom_unit
+                move_id: wms_stock_move_test12_move_in
+        product_moves_out:
+            -
+                product_id: wms_product_product_test12
+                quantity: 2
+                product_uom: product.product_uom_unit
+                move_id: wms_stock_move_test12_move_in
+-
+    # Receipt the products
+    !function {model: stock.partial.picking, name: do_partial}:
+        - [!ref {model: stock.partial.picking, id: wms_stock_partial_picking_test12}]
+        - eval: "{'active_ids': [ref(\"wms_stock_picking_test12_picking_in\")], 'active_id': ref(\"wms_stock_picking_test12_picking_in\")}"
+-
+    # Check the move out
+    !assert {model: stock.move, id: wms_stock_move_test12_move_out, string: Quantity on move out}:
+        - product_qty == 1
+        - location_id.id == ref('wms_stock_location_test12_location2')
+-
+    # Check the move in
+    !assert {model: stock.move, id: wms_stock_move_test12_move_in, string: Quantity on move in}:
+        - product_qty == 1
+        - location_dest_id.id == ref('wms_stock_location_test12_location1')
+        - move_dest_id.id == False
+-
+    # Check the lines number of the picking out
+    !assert {model: stock.picking, id: wms_stock_picking_test12_picking_out, string: Number of out moves}:
+        - len(move_lines) == 1
+-
+    # Check the lines number of the picking in
+    !assert {model: stock.picking, id: wms_stock_picking_test12_picking_in, string: Number of in moves}:
+        - len(move_lines) == 2
+-
+    # Check the new line of the picking in
+    !assert {model: stock.move, search: "[('picking_id', '=', ref(\"wms_stock_picking_test12_picking_in\")), ('id', '!=', ref(\"wms_stock_move_test12_move_in\"))]", string: Quantity of new in move}:
+        - product_qty == 1
+        - location_dest_id.id == ref('wms_stock_location_test12_location2')
+        - move_dest_id.id == ref('wms_stock_move_test12_move_out')
+

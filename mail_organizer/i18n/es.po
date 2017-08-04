@@ -1,0 +1,118 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+# 	* mail_organizer
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 7.0-20140401-231338\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-04-09 08:43+0000\n"
+"PO-Revision-Date: 2014-04-09 10:50+0100\n"
+"Last-Translator: Jairo Llopis <yajo.sk8@gmail.com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"X-Generator: Poedit 1.5.4\n"
+
+#. module: mail_organizer
+#: view:ir.model:0 model:ir.ui.menu,name:mail_organizer.menu_email_organizer
+msgid "Mail Organizer"
+msgstr "Organizador de correo"
+
+#. module: mail_organizer
+#: model:ir.actions.act_window,name:mail_organizer.action_mail_organizer
+msgid "Mail organizer"
+msgstr "Organizador de correo"
+
+#. module: mail_organizer
+#: field:ir.model,mail_organizer:0
+msgid "Use in Mail Organizer"
+msgstr "Usar en el organizador de correo"
+
+#. module: mail_organizer
+#: field:mail.message,name:0
+msgid "Name"
+msgstr "Nombre"
+
+#. module: mail_organizer
+#: field:wizard.mail.organizer,author_id:0
+msgid "Author"
+msgstr "Autor"
+
+#. module: mail_organizer
+#: model:ir.model,name:mail_organizer.model_ir_model
+msgid "Models"
+msgstr "Modelos"
+
+#. module: mail_organizer
+#: model:ir.model,name:mail_organizer.model_mail_message
+#: field:wizard.mail.organizer,message_id:0
+msgid "Message"
+msgstr "Mensaje"
+
+#. module: mail_organizer
+#: field:wizard.mail.organizer,new_res_id:0
+msgid "New resource"
+msgstr "Nuevo recurso"
+
+#. module: mail_organizer
+#: field:wizard.mail.organizer,model:0
+msgid "Model"
+msgstr "Modelo"
+
+#. module: mail_organizer
+#: field:wizard.mail.organizer,res:0
+msgid "Ressource"
+msgstr "Recurso"
+
+#. module: mail_organizer
+#: field:wizard.mail.organizer,email_from:0
+msgid "Email"
+msgstr "Correo electrónico"
+
+#. module: mail_organizer
+#: view:wizard.mail.organizer:0
+msgid "Assign email to another resource"
+msgstr "Reasignar correo electrónico a otro recurso"
+
+#. module: mail_organizer
+#: field:wizard.mail.organizer,new_model:0
+msgid "New model"
+msgstr "Nuevo modelo"
+
+#. module: mail_organizer
+#: view:wizard.mail.organizer:0
+msgid "Cancel"
+msgstr "Cancelar"
+
+#. module: mail_organizer
+#: model:ir.model,name:mail_organizer.model_wizard_mail_organizer
+msgid "wizard.mail.organizer"
+msgstr "wizard.mail.organizer"
+
+#. module: mail_organizer
+#: field:wizard.mail.organizer,has_domain:0
+msgid "Filter by partner"
+msgstr "Filtrar por empresa"
+
+#. module: mail_organizer
+#: field:wizard.mail.organizer,is_domain_visible:0
+msgid "Is domain visible"
+msgstr "¿Dominio visible?"
+
+#. module: mail_organizer
+#: view:wizard.mail.organizer:0
+msgid "Assign"
+msgstr "Reasignar"
+
+#. module: mail_organizer
+#: view:wizard.mail.organizer:0
+msgid "Wizard Mail Organizer"
+msgstr "Asistente de organización de correo"
+
+#. module: mail_organizer
+#: field:wizard.mail.organizer,subject:0
+msgid "Subject"
+msgstr "Asunto"

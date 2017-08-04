@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <!-- Product View -->
+        <record id="product_normal_form_view_add_type" model="ir.ui.view">
+            <field name="name">product.normal.form</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="product.product_normal_form_view"/>
+            <field name="type">form</field>
+            <field eval="8" name="priority"/>
+            <field name="arch" type="xml">
+                <field name="type" position="after">
+                    <field name="stock_type_id"/>
+                    <field name="deliver_in"/>
+                    <field name="packing_sequence"/>
+                </field>
+                <xpath expr="//field[@name='name']" position="replace">
+                    <label for="name_cn" string="Product Chinese Name" style="font-size:12px;"/>
+                    <field name="name_cn" placeholder="Name in Chinese"/>
+                    <label for="name_en" string="Product English Name" style="font-size:12px;"/>
+                    <field name="name_en" placeholder="Name" on_change="onchange_name_en(name_en)" />
+                </xpath>
+            </field>
+        </record>
+
+		<record id="product_stock_type_tree" model="ir.ui.view">
+            <field name="name">product.stock.type.tree</field>
+            <field name="model">product.stock_type</field>
+            <field name="arch" type="xml">
+            	<tree string="Product Stock type">
+                    <field name="code"/>
+                	<field name="name"/>
+                </tree>                
+            </field>
+        </record>
+        <record id="product_stock_type_form" model="ir.ui.view">
+            <field name="name">product.stock.type.form</field>
+            <field name="model">product.stock_type</field>
+            <field name="type">form</field>  
+            <field eval="7" name="priority"/>
+            <field name="arch" type="xml">
+                <form string="Product Stock Type">
+                    <field name="code"/>
+                    <field name="name"/>
+                </form>
+            </field>
+        </record>
+        <record id="action_product_stock_type_form" model="ir.actions.act_window">
+            <field name="name">Product Stock Type</field>
+            <field name="res_model">product.stock_type</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="product_stock_type.product_stock_type_form"/>
+            <field name="help" type="html">
+              <p>
+                Display Stock Type.
+              </p>
+            </field>
+        </record>
+        <record model="ir.actions.act_window.view" id="menu_product_stock_type_tree_view">
+            <field name="sequence" eval="1"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="product_stock_type.product_stock_type_tree"/>
+            <field name="act_window_id" ref="action_product_stock_type_form"/>
+        </record>
+		<record model="ir.actions.act_window.view" id="menu_product_stock_type_form_view">
+            <field name="sequence" eval="2"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="product_stock_type.product_stock_type_form"/>
+            <field name="act_window_id" ref="action_product_stock_type_form"/>
+        </record>
+        <menuitem action="action_product_stock_type_form" id="menu_action_product_stock_type_form" groups="base.group_no_one"
+            parent="product.prod_config_main" sequence="103"/>
+    </data>
+</openerp>

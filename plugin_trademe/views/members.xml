@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="members_form_view" model="ir.ui.view">
+            <field name="name">tmerp.members.form</field>
+            <field name="model">tmerp.members</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Members Form">
+					<field name="name" colspan="4" readonly="1"/>
+					<field name="consumer_key"/>
+					<field name="consumer_secret"/>
+					<field name="access_key"/>
+					<field name="access_secret"/>
+					<field name="member_id" readonly="1"/>
+					<field name="member_url" readonly="1" widget="url"/>
+                    <field name="is_enabled"/>
+                    <field name="test"/>
+                </form>
+            </field>
+        </record>
+
+        <record id="members_list_view" model="ir.ui.view">
+            <field name="name">tmerp.members.list.view</field>
+            <field name="model">tmerp.members</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Members List">
+                    <field name="name"/>
+					<field name="member_id"/>
+					<field name="member_url"/>
+                    <field name="consumer_key"/>
+                    <field name="is_enabled"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="members_action_list_and_form" model="ir.actions.act_window">
+            <field name="name">Trademe Members</field>
+            <field name="res_model">tmerp.members</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem id="tmerp_menu_members" action="members_action_list_and_form" parent="Trademe"/>
+    </data>
+</openerp>

@@ -1,0 +1,33 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+#	* purchase_price_list_item
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 7.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-08-14 09:03+0000\n"
+"PO-Revision-Date: 2013-08-14 09:03+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: purchase_price_list_item
+#: code:addons/purchase_price_list_item/purchase.py:34
+#, python-format
+msgid "Fix Price based on UoP"
+msgstr ""
+
+#. module: purchase_price_list_item
+#: model:ir.model,name:purchase_price_list_item.model_product_pricelist_item
+msgid "Pricelist item"
+msgstr ""
+
+#. module: purchase_price_list_item
+#: field:product.pricelist.item,uom_id:0
+msgid "UoM for Fix Price"
+msgstr ""
+

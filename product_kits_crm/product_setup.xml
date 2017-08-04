@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+	<data>
+		<record model="ir.actions.act_window" id="financial_list_action">
+			<field name="name">Product</field>
+			<field name="res_model">product.product</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="view_id" ref="financial_tree_view"/>
+		</record>
+		<record model="ir.actions.act_window" id="logistic_list_action">
+			<field name="name">Product</field>
+			<field name="res_model">product.product</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="view_id" ref="logistic_tree_view"/>
+		</record>
+		<menuitem id="product_menu" name="Product" parent="account.menu_finance" />
+		<menuitem id="financial_menu" name="Financial setup" parent="product_menu" action="financial_list_action" />
+		<menuitem id="logistic_menu" name="Logistic setup" parent="product_menu" action="logistic_list_action" />
+	</data>
+</openerp>
