@@ -5,7 +5,7 @@
 from openerp import models, api, fields, tools
 
 
-class TimesheetReport(models.TransientModel):
+class TimesheetReport(models.Model):
     """
         Timesheet Activities Report.
     """
