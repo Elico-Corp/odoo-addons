@@ -50,12 +50,12 @@ class TimesheetReport(models.Model):
             'project.project.category',
             'Project Cat.', readonly=True, help="Project Category")
 
-    def init(self):
+    def init(self, cr):
         """
             Timesheet Activities Report.
         """
         tools.drop_view_if_exists(cr, 'timesheet_activity_report')
-        self.env.cr.execute("""
+        cr.execute("""
             CREATE OR REPLACE VIEW timesheet_activity_report AS (
                 SELECT
                     ts.id,
