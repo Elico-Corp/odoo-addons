@@ -90,8 +90,6 @@ class TimesheetReport(models.Model):
                     COALESCE(a.id, al.account_id) AS account_id,
                     COALESCE(t.id, i.id) AS activity_id,
                     COALESCE(t.name, i.name) AS activity_name,
-                    -- The hours are null in case the timesheet
-                    -- is not linked to a task
                     b.id AS br_id,
                     a.partner_id,
                     p.project_categ_id
