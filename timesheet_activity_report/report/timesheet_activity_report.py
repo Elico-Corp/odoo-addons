@@ -41,6 +41,9 @@ class TimesheetReport(models.Model):
             'Activity id', readonly=True, help="Task id or Issue id")
     activity_name = fields.Char(
             'Activity name', readonly=True, help="Task name or Issue name")
+    categ_id = fields.Many2one(
+            'project.category.main', 'Task Cat.',
+            readonly=True, help="Task Category")
     br_id = fields.Many2one(
             'business.requirement', 'Bus. requ.',
             readonly=True, help="Business requirement")
@@ -90,6 +93,7 @@ class TimesheetReport(models.Model):
                     COALESCE(a.id, al.account_id) AS account_id,
                     COALESCE(t.id, i.id) AS activity_id,
                     COALESCE(t.name, i.name) AS activity_name,
+                    t.categ_id,
                     b.id AS br_id,
                     a.partner_id,
                     p.project_categ_id
