@@ -2,7 +2,7 @@
 # © 2015 Elico corp (www.elico-corp.com)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from openerp import models, api, fields, tools
+from openerp import models, fields, tools
 
 
 class TimesheetReport(models.Model):
@@ -10,9 +10,11 @@ class TimesheetReport(models.Model):
         Timesheet Activities Report.
     """
     _name = "timesheet.activity.report"
-    _auto = False # Database table should not be created, use init() instead
+    # Database table should not be created, use init() instead
+    _auto = False
     _description = "Timesheet Activities Report"
-    _rec_name = 'activity_name' # Field used for the Name
+    # Field used for the Name
+    _rec_name = 'activity_name'
 
     id = fields.Integer('Id', readonly=True)
     activity_type = fields.Selection(
@@ -21,8 +23,8 @@ class TimesheetReport(models.Model):
             ('issue', 'Issue'),
             ('timesheet', 'Timesheet'),
         ], 'Type', readonly=True,
-        help="Type is used to separate Tasks, Issues and " \
-            "Timesheets input directly")
+        help="Type is used to separate Tasks, Issues and "
+             "Timesheets input directly")
     description = fields.Char('Description', readonly=True)
     hours = fields.Float(
         'Time spent', digits=(16, 2), readonly=True,
@@ -36,22 +38,22 @@ class TimesheetReport(models.Model):
         'project.task.type', 'Stage',
         readonly=True, help="Activity Stage")
     account_id = fields.Many2one(
-            'account.analytic.account', 'Analytic account', readonly=True)
+        'account.analytic.account', 'Analytic account', readonly=True)
     activity_id = fields.Char(
-            'Activity id', readonly=True, help="Task id or Issue id")
+        'Activity id', readonly=True, help="Task id or Issue id")
     activity_name = fields.Char(
-            'Activity name', readonly=True, help="Task name or Issue name")
+        'Activity name', readonly=True, help="Task name or Issue name")
     categ_id = fields.Many2one(
-            'project.category.main', 'Task Cat.',
-            readonly=True, help="Task Category")
+        'project.category.main', 'Task Cat.',
+        readonly=True, help="Task Category")
     br_id = fields.Many2one(
-            'business.requirement', 'Bus. requ.',
-            readonly=True, help="Business requirement")
+        'business.requirement', 'Bus. requ.',
+        readonly=True, help="Business requirement")
     partner_id = fields.Many2one(
-            'res.partner', 'Customer', readonly=True)
+        'res.partner', 'Customer', readonly=True)
     project_categ_id = fields.Many2one(
-            'project.project.category',
-            'Project Cat.', readonly=True, help="Project Category")
+        'project.project.category',
+        'Project Cat.', readonly=True, help="Project Category")
 
     def init(self, cr):
         """
