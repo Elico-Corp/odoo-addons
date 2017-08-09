@@ -9,7 +9,8 @@
         'project_timesheet',
         'project_issue_sheet',
         'business_requirement',
-        'business_requirement_deliverable_project'
+        'business_requirement_deliverable_project',
+        'project_task_category'
     ],
     'author': 'Elico Corp',
     'license': 'AGPL-3',
