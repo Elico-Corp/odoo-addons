@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data>
+    <record model="ir.ui.view" id="server_linux_form_view">
+        <field name="name">server.linux.form</field>
+        <field name="model">server.linux</field>
+        <field name="arch" type="xml">
+           <form string="Server Maintain Form"  version="7.0">
+                <group col="2">
+                    <h1 colspan="2"><field name="name" string="Machine Name"/>
+                    </h1> 
+                </group>
+                <group colspan="2" col="4">
+                    <field name="partner_id"/>
+                    <field name="login"/>
+                    <field name="public_ip"/>           
+                    <field name="password" password="1"/>
+                    <field name="port"/>
+                    <field name="responsible_id" /> 
+                </group>
+                <notebook>
+                    <page string="General Information">
+                       <group colspan="2" col="4">         
+                            <field name="ubuntu_version"/>
+                            <field name="cpu"/>
+                            <field name="Memory"/>
+                            <field name="private_id"/>
+                        </group>
+                        <separator string="Disk Partition" colspan="4"/>                    
+                        <field name="disk_ids" nolabel="1" colspan="4">
+                            <tree string="Disk Space" editable="bottom">
+                                <field name="parameter"/>
+                                <field name="space"/>
+                            </tree>
+                       </field>
+                              <group>
+                            <field name="ssh"/>
+                       </group>                    
+                    </page>
+                    <page string="System Information">
+                       <separator string="Service Directories" colspan="4"/>                       
+                       <field name="system_ids" nolabel="1" colspan="4">
+                            <tree string="Disk Space" editable="bottom">
+                                <field name="parameter" widget="selection"/>
+                                <field name="source"/>
+                                <field name="conf"/>
+                                <field name="log"/>                             
+                            </tree>
+                       </field>   
+                    </page>
+                    <page string="OpenERP Information">
+                        <group colspan="2" col="6">
+                            <button name="action_connection" context="{'server_version':'trunk'}" string="Restart OpenERP Trunk Server" type="object" class="oe_highlight"/>                      
+                            <button name="action_connection" context="{'server_version':'stable'}" string="Restart OpenERP Stable Server" type="object" class="oe_highlight"/>
+                            <button name="action_connection" context="{'server_version':'release'}" string="Restart OpenERP Release Server" type="object" class="oe_highlight"/>
+                        </group>                   
+                        <separator string="General Information" colspan="4"/>                       
+                        <field name="erp_ids" nolabel="1" colspan="4">
+                            <tree string="Disk Space" editable="bottom">
+                                <field name="parameter" widget="selection"/>
+                                <field name="production"/>
+                                <field name="trunk"/>
+                                <field name="release"/>                             
+                            </tree>
+                       </field>
+                    </page>
+                    <page string="Postgres Information">
+                        <button name="action_connection" context="{'server_version':'posgtres'}" string="Restart OpenERP Release Server" type="object" class="oe_highlight"/>              
+                        <group colspan="2" col="4">
+                            <field name="postgres_version"/>                               
+                            <field name="postgres_source"/>
+                            <field name="postgres_conf"/>
+                            <field name="postgres_port"/>
+                            <field name="linux_user"/>
+                            <field name="tools"/>                           
+                        </group>
+                        <separator string="Postgres Servers" colspan="4"/>                      
+                        <field name="pg_servers" nolabel="1" colspan="4">
+                        </field>   
+                    </page>
+                    <page string="Other Information">
+                        <group>         
+                            <field name="http"/>
+                            <field name="https"/>
+                            <field name="ssl"/>
+                       </group>                 
+                       <separator string="Web Server" colspan="4"/>                    
+                       <field name="web_ids" nolabel="1" colspan="4">
+                            <tree string="Web Server" editable="bottom">
+                                <field name="name" widget="selection"/>
+                                <field name="user"/>
+                                <field name="version"/>
+                                <field name="log_path"/>
+                                <field name="error_path"/>                              
+                                <field name="domian"/>                              
+                                <field name="port"/>
+                            </tree>
+                       </field>    
+                       <separator string="Backup Information" colspan="4"/>                    
+                        <group colspan="2" col="4">         
+                            <field name="pg_scripts"/>
+                            <field name="backup_path"/>
+                            <field name="backup_log"/>
+                            <field name="pg_port"/>                         
+                            <field name="pg_host"/>                         
+                            <field name="pg_user"/>
+                       </group>
+                </page>
+                  <page string="Notes">
+                      <group col="4" colspan="4">
+                       <separator string="Notes" colspan="4"/>
+                             <field name="notes" colspan="4" nolabel="1"/>
+                    </group>
+                    </page>
+                    <page string="Baazar">
+                        <!-- <field name="oe_module_ids"  >
+                            <tree string="Modules" editable="bottom">
+                                <field name="name" />
+                                <field name="dir_path" />
+                                <field name="version" />
+                                <field name="state" />
+                                <field name="description" />
+                                <field name="server_ids" />
+                            </tree>
+                        </field> -->
+                    </page>
+                    <page string="SSH Key">
+                        <field name="ssh_key_ids"  >
+                            <tree string="SSH Keys" editable="bottom">
+                                <field name="name" />
+                                <field name="user" />
+                                <field name="active" />
+                            </tree>
+                        </field>
+                    </page>
+              </notebook>
+              <div class="oe_chatter">
+                  <field name="message_follower_ids" widget="mail_followers"/>
+                  <field name="message_ids"            widget="mail_thread"/>
+              </div>              
+           </form>
+        </field>
+    </record>
+
+  <record id="action_server_linux" model="ir.actions.act_window">
+       <field name="name">Server Linux</field>
+       <field name="type">ir.actions.act_window</field>
+       <field name="res_model">server.linux</field>
+       <field name="view_type">form</field>
+       <field name="view_mode">tree,form</field>
+    </record> 
+  
+  <record id="action_service_name_cof" model="ir.actions.act_window">
+       <field name="name">service Name</field>
+       <field name="type">ir.actions.act_window</field>
+       <field name="res_model">maintain.system</field>
+       <field name="view_type">form</field>
+       <field name="view_mode">tree,form</field>
+    </record>    
+
+  <record id="action_erp_cof" model="ir.actions.act_window">
+       <field name="name">OpenERP Parameter</field>
+       <field name="type">ir.actions.act_window</field>
+       <field name="res_model">erp.parameter</field>
+       <field name="view_type">form</field>
+       <field name="view_mode">tree,form</field>
+    </record>    
+
+  <record id="action_dbuser_cof" model="ir.actions.act_window">
+       <field name="name">Server User</field>
+       <field name="type">ir.actions.act_window</field>
+       <field name="res_model">server.user</field>
+       <field name="view_type">form</field>
+       <field name="view_mode">tree,form</field>
+    </record>    
+
+    <record id="action_webserver_cof" model="ir.actions.act_window">
+       <field name="name">Web Server</field>
+       <field name="type">ir.actions.act_window</field>
+       <field name="res_model">maintain.webserver_parameter</field>
+       <field name="view_type">form</field>
+       <field name="view_mode">tree,form</field>
+    </record>  
+
+    <record id="view_ssh_key_tree" model="ir.ui.view">
+        <field name="name">ssh.key.tree</field>
+        <field name="model">ssh.key</field>
+        <field name="arch" type="xml">
+            <tree string="SSH Key Line">
+                <field name="name"/>
+                <field name="user"/>
+            </tree>
+        </field>
+    </record>
+    <record id="view_ssh_key_form" model="ir.ui.view">
+        <field name="name">ssh.key.form</field>
+        <field name="model">ssh.key</field>
+        <field name="arch" type="xml">
+            <form string="SSH Key Form" version="7.0">
+                <sheet string="SSH Key"> 
+                    <group>
+                        <group>
+                            <field name="name"  />
+                        </group>
+                        <group>
+                            <field name="user" />
+                            <field name="active" />
+                        </group>
+                    </group>
+                    <notebook>
+                      <page string="Key">
+                        <group colsapn="2" col="2">
+                            <field name="id_rsa" />
+                            <field name="id_rsa.pub" />
+                        </group>
+                      </page>
+                      <page string="Servers">
+                            <field name="server_ids"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="action_ssh_key_tree" model="ir.actions.act_window">
+        <field name="name">SSH keys</field>
+        <field name="res_model">ssh.key</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Server Postgres-->
+    <record id="view_server_postres_tree" model="ir.ui.view">
+        <field name="name">server.postgres.tree</field>
+        <field name="model">server.postgres</field>
+        <field name="arch" type="xml">
+            <tree string="Server Postgres Tree">
+                <field name="name"/>
+                <field name="type"/>
+            </tree>
+        </field>
+    </record>
+    <record id="view_server_postgres_form" model="ir.ui.view">
+        <field name="name">server.postgres.form</field>
+        <field name="model">server.postgres</field>
+        <field name="arch" type="xml">
+            <form string="Server Postgres Form" version="7.0">
+                <header>
+                    <field name='state' widget='statusbar' clickable='1'/>
+                </header>
+                <sheet> 
+                    <h1>
+                        <field name='name'/>
+                    </h1>
+                    <group>
+                        <group>
+                            <field name='type'/>
+                            <field name='server_id'/>
+                            <field name='public_ip'/>
+                            <field name='port'/>
+                        </group>
+                        <group>
+                            <field name='version'/>
+                            <field name='path_data'/>
+                            <field name='path_conf'/>
+                            <field name='path_log'/>
+                        </group>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+    <record id="action_server_postgres_tree" model="ir.actions.act_window">
+        <field name="name">Server Postgres</field>
+        <field name="res_model">server.postgres</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Server Tags-->
+    <record id="view_server_tags_tree" model="ir.ui.view">
+        <field name="name">server.tags.tree</field>
+        <field name="model">server.tags</field>
+        <field name="arch" type="xml">
+            <tree string="Server Tags Line">
+                <field name="name"/>
+                <field name="type"/>
+            </tree>
+        </field>
+    </record>
+    <record id="view_server_tags_form" model="ir.ui.view">
+        <field name="name">server.tags.form</field>
+        <field name="model">server.tags</field>
+        <field name="arch" type="xml">
+            <form string="Server TagsForm" version="7.0">
+                <sheet> 
+                    <group>
+                        <field name='name'/>
+                        <field name='type'/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="action_server_tags_tree" model="ir.actions.act_window">
+        <field name="name">Server Tags</field>
+        <field name="res_model">server.tags</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+    </record>    
+  </data>
+</openerp>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<!--Server Report-->
+		<report auto="False" 
+			id="report_server" 
+			model="server.maintian"
+			name="report.server" 
+			rml="server_maintain/report/server_report.rml" 
+			string="Server Report"/>
+	</data>
+</openerp>

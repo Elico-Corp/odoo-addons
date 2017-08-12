@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="view_mod_tree" model="ir.ui.view">
+            <field name="name">module.tree</field>
+            <field name="model">oe.modules</field>
+            <field name="arch" type="xml">
+                <tree string="Module Line">
+                    <field name="name"/>
+                    <field name="dir_path" />
+                    <field name="version"/>
+                    <field name="state" />
+                    <field name="description" /> 
+                    <field name="server_ids" />
+                </tree>
+            </field>
+        </record>
+        <record id="view_mod_form" model="ir.ui.view">
+            <field name="name">module.form</field>
+            <field name="model">oe.modules</field>
+            <field name="arch" type="xml">
+                <form string="Module Line" version="7.0">
+                    <header>
+                        <field name='state' widget='statusbar' clickable='1'/>
+                    </header>
+                    <sheet string="Module"> 
+                        <h1>
+                            <field name="name"  />
+                        </h1>
+                        <h4>
+                            <field name="version" />
+                        </h4>
+                        <group cols='4'>
+                            <group>
+                                <field name="developer_id" />
+                                <field name="dir_path" />
+                            </group>
+                            <field name="description" colspan='4'/>
+                        </group>
+                        <field name="server_ids" />
+                    </sheet>
+                    <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_mod_tree" model="ir.actions.act_window">
+           <field name="name">Modules</field>
+           <field name="res_model">oe.modules</field>
+           <field name="view_type">form</field>
+           <field name="view_mode">tree,form</field>
+        </record>
+
+    </data>
+</openerp>
