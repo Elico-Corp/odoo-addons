@@ -117,5 +117,5 @@ class TimesheetReport(models.Model):
                         ON a.id = p.analytic_account_id
                     -- Link with the BR
                     LEFT OUTER JOIN business_requirement b
-                        ON b.linked_project = p.id
+                        ON b.id = p.business_requirement_id
             )""")
