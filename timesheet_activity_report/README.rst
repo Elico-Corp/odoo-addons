@@ -13,9 +13,12 @@ You can use this report to communicate the timesheet analysis to the project mem
 Installation
 ============
 
-To install this module, you need to:
+To install this module, you need to have basic modules installed:
 
-#. Have basic modules installed (hr_timesheet, project_timesheet, project_issue_sheet)
+* project_timesheet
+* project_issue_sheet
+* business_requirement_deliverable_project
+* project_task_category
 
 Bug Tracker
 ===========
