@@ -23,8 +23,8 @@ class TimesheetReport(models.Model):
             ('issue', 'Issue'),
             ('timesheet', 'Timesheet'),
         ], 'Type', readonly=True,
-        help="Type is used to separate Tasks, Issues and "
-             "Timesheets input directly")
+        help="Type is based on the origin of the input (Task, Issue or "
+             "Timesheet Activities)")
     description = fields.Char('Description', readonly=True)
     hours = fields.Float(
         'Time spent', digits=(16, 2), readonly=True,
