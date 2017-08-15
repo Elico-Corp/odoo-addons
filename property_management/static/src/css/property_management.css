@@ -1,0 +1,14 @@
+.highcharts-container {
+    height: 600px !important;
+}
+
+
+.openerp .oe_kanban_view .oe_fold_column .oe_kanban_group_length {
+  position: absolute;
+  top: -1px;
+  right: -14px;
+  float: right;
+  display: none !important;;
+}
+
+.my_class [data-id="book_property"]{width: 2px;} [data-id="Avalbl_property"]{width: 4px;}

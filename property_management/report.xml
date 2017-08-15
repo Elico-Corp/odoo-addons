@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<openerp>
+    <data>
+
+        <report id="report_property_room" model="property" name="report.property.room" string="Property Room" rml="property_management/report/room_property.rml"/>
+        <report id="report_pending_rent" model="tenancy.rent.schedule" name="report.pending.rent" string="Pending Rent" rml="property_management/report/pending_rent.rml"/>
+        <menuitem name="Reporting" id="menu_report_sub" parent="menu_property_main" sequence="2" />
+        <menuitem name="Tenancy Contract Expiry" id="menu_contract_expiry" parent="menu_report_sub" action="action_contract_expiry" />
+        <menuitem name="Income Expenditure" id="menu_income_expenditure" parent="menu_report_sub" action="action_income_expenditure"/>
+        <menuitem name="Safety Certificate Expiry" id="menu_safety_certificate" parent="menu_report_sub" action="action_safety_certificate_expiry"/>
+        <menuitem name="Tenancy By Tenant" id="menu_tenancy_tenant" parent="menu_report_sub" action="action_tenant_report_tenancy"/>
+        <menuitem name="Tenancy By Property" id="menu_tenancy_property" parent="menu_report_sub" action="action_property_report_tenancy"/>
+        <menuitem name="Document Expiry" id="menu_document_expiry" parent="menu_report_sub" action="action_document_expiry"/>
+        <menuitem name="Properties Per Location" id="menu_properties_per_location" parent="menu_report_sub" action="action_property_per_location"/>
+
+        <report id="property_per_location_12" 
+                string="QWEB Demo" 
+                model="property" 
+                name="property_management.report_property_per_location1"
+                report_type="qweb-pdf"/>
+
+    </data>
+</openerp>

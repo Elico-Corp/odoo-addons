@@ -1,0 +1,79 @@
+==========================================================================
+    Maintaining the changelog of the website_pms module for each commit.
+==========================================================================
+
+1.25: Kazim Mirza - Serpent Consulting Services Pvt Ltd. : Oct 30, 2015
+    * Added Google Map Nearby-Places.
+
+1.24: Nilesh Galoriya - Serpent Consulting Services Pvt Ltd. : Oct 9, 2015
+    * Added functionality to demand a property when there is no record after 
+      applying filters.
+
+1.23: Mohit V Kotak - Serpent Consulting Services Pvt Ltd. : Sep 10, 2015
+    * Added border line right side and format code, added icon on home page.
+
+1.22: Mohit V Kotak - Serpent Consulting Services Pvt Ltd. : Sep 9, 2015
+    * Optimize code and format code, and make responsive home page.
+
+1.21: Mohit V Kotak - Serpent Consulting Services Pvt Ltd. : Sep 8, 2015
+    * Added counter on homepage and added javascript code for Google Map and added favicon icon, added video.
+
+1.20: Maitree Trivedi - Serpent Consulting Services Pvt Ltd. : Sep 3, 2015
+    * Made method which display favourite property of user from My favourite menu.
+
+1.19: Maitree Trivedi - Serpent Consulting Services Pvt Ltd. : Sep 1, 2015
+    * Improved create user method and made js method for form validation.
+
+1.18: Mohit V Kotak - Serpent Consulting Services Pvt Ltd. : Aug 31, 2015
+    * Modified code of bedroom,bathroom and price slider and changed js and css code for responsive output.
+
+1.17: Maitree Trivedi - Serpent Consulting Services Pvt Ltd. : Aug 31, 2015
+     *Improved search method of property from sidebar.
+
+1.16: Maitree Trivedi - Serpent Consulting Services Pvt Ltd. : Aug 27, 2015
+     *Made method in which while click on favourite button property added in m2m filed.
+
+1.15: Mohit V Kotak - Serpent Consulting Services Pvt Ltd. : Aug 27, 2015
+     * modified slider js and css and template view.
+
+1.14: Mohit V Kotak - Serpent Consulting Services Pvt Ltd. : Aug 21, 2015
+     * Added code of filter of bedroom and bathroom and toggle button.
+
+1.13: Maitree Trivedi - Serpent Consulting Services Pvt Ltd. : Aug 26, 2015
+     *Added many2many field in res.partner and inherited form view of res.partner.
+
+1.12: Maitree Trivedi - Serpent Consulting Services Pvt Ltd. : Aug 25, 2015
+     * Created lead from modal and form submit,added fields in crm.lead.
+
+1.11: Maitree Trivedi - Serpent Consulting Services Pvt Ltd. : Aug 20, 2015
+     * Added demo data of sub property.
+
+1.10: Maitree Trivedi - Serpent Consulting Services Pvt Ltd. : Aug 19, 2015
+     * Added method which set value on slider dynamically.
+
+1.09: Mohit V Kotak - Serpent Consulting Services Pvt Ltd. : Aug 19, 2015
+     * Added button of search in mobile screen, added vertical and horizontal scroll.
+
+1.08: Maitree Trivedi - Serpent Consulting Services Pvt Ltd. : Aug 19, 2015
+     * Added images and demo data for property.
+
+1.07: Mohit V Kotak - Serpent Consulting Services Pvt Ltd. : Aug 18, 2015
+    * Added price_list filter code, currency code, city, postal code, Area wise filter, added css code for responsive design view.
+
+1.06: Mohit V Kotak - Serpent Consulting Services Pvt Ltd. : Aug 17, 2015
+    * Added Near by place, dynamic filter, new search, dynamic slider, paging, slider, gallery in nav tab panel.
+    
+1.05: Mohit V Kotak - Serpent Consulting Services Pvt Ltd. : Aug 14, 2015
+    * Added form view, changed design view of grid, added sub property.
+
+1.04: Mohit V Kotak - Serpent Consulting Services Pvt Ltd. : Aug 11, 2015
+    * Added list view button and created list view, added modal on contact agent button, added form view and added panel in nav tab view
+
+1.03 : Chirag Patel - Serpent Consulting Services Pvt Ltd. : Aug 11, 2015
+    * Added Homepage.
+
+1.02 : Mohit V Kotak - Serpent Consulting Services Pvt Ltd. : Aug 7, 2015
+    * Added Controller,data,css and property_list view.
+
+1.01 : Mohit V Kotak - Serpent Consulting Services Pvt Ltd. : Aug 7, 2015
+    * Added website_pms Module.

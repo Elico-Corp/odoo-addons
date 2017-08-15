@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<openerp>
+<data noupdate="1">
+	#
+	# Sequences for property
+	#
+
+	<record model="ir.sequence.type" id="seq_type_property">
+		<field name="name">Property</field>
+		<field name="code">property</field>
+	</record>
+	<record model="ir.sequence" id="seq_property">
+		<field name="name">Property</field>
+		<field name="code">property</field>
+		<field name="prefix">P/</field>
+		<field name="padding">5</field>
+	</record>
+</data>
+</openerp>

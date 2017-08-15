@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+            <!-- Inherited form view of Sale Order -->
+        <record id="sale_order_inherit_property" model="ir.ui.view">
+            <field name="name">sale.order.inherit.property</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='order_line']/tree/field[@name='product_id']" position="after">
+                    <field name="property_id"/>
+                </xpath>
+                <xpath expr="//field[@name='order_line']/form/group/group/field[@name='product_id']" position="after">
+                    <field name="property_id"/>
+                </xpath>
+            </field>
+        </record>
+
+            <!-- Top menu item -->
+        <menuitem name="Portal"
+            id="portal.portal_menu"
+            groups="base.group_portal"
+            sequence="10" />
+
+    </data>
+</openerp>

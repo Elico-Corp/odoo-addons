@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	
+    <data noupdate="1">
+    
+        <record id="sequence_tenancy" model="ir.sequence.type">
+            <field name="name">Tenancy Number</field>
+            <field name="code">property.analytic.number</field>
+        </record>
+        <record id="sequence_tenancy_number" model="ir.sequence">
+            <field name="name">Tenancy Number</field>
+            <field name="code">property.analytic.number</field>
+            <field name="prefix">T</field>
+            <field name="padding" eval="7"/>
+        </record>
+    </data>
+</openerp>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding='UTF-8'?>
+<openerp>
+	<data>
+
+			<!--Email template -->
+		<record id="property_email_template" model="email.template">
+			<field name="name">Property Payment Mail</field>
+			<field name="email_from">${(object.user_id.email or '')|safe}</field>
+			<field name="subject">Property - ${object.name or 'n/a' }</field>
+			<field name="email_to">${(object.tenant_id.email or '')|safe}</field>
+			<field name="model_id" ref="property_management.model_account_analytic_account"/>
+				<field name="auto_delete" eval="True"/>
+				<field name="body_html"><![CDATA[
+					<div style="font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: #FFF; ">
+					
+					<p>Hello Hello Mr/Mrs/Miss ${object.tenant_id.name },</p>
+					<br/>
+					<p style=" margin-left: 10px;">Your payment will be due in next 7 days. </p>
+					<p></p>
+					<p></p>
+					<p style=" margin-left: 10px;"> Kindly proceed the payment </p>
+					<p></p><p></p><br/>
+					<p style="border-left: 1px solid #8e0000; margin-left: 5px;">Best Regards</p>
+					<p>${(object.user_id.name)} </p>
+					</div>
+					]]></field>
+		</record>
+
+		<record model="ir.cron" id="property_tenancy_cron">
+			<field name="name">property payment reminder</field>
+			<field name="interval_number">1</field>
+			<field name="interval_type">months</field>
+			<field name="numbercall">-1</field>
+			<field name="doall" eval="False"/>
+			<field name="model" eval="'account.analytic.account'"/>
+			<field name="function" eval="'cron_property_tenancy'"/>
+			<field name="args" eval="'()'" />
+		</record>
+
+	</data>
+</openerp>

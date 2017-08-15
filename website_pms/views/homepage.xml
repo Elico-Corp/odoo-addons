@@ -1,0 +1,115 @@
+<openerp>
+    <data>
+
+        <template name= "PMS-Homepage" id= "website.homepage">
+            <t t-call="website.layout">
+                <div class="col-md-12" id = "searchBelowLinks">
+                     <h2 style="text-align:center;">
+                         Find Somewhere Fantastic to Live
+                     </h2>
+                     <h4 style="text-align:center;">
+                         Here We help to find your dream !
+                     </h4>
+                </div>
+                <div class="col-md-12" id="container">
+                    <div class="jumbotron container1">
+                        <div class="row">
+                            <div class="form-login col-md-8 col-md-offset-2">
+                                <form id="search_form" action="/property_list" class="" method="post">
+                                    <t t-if="error">
+                                        <div class="alert alert-danger">
+                                            <t t-esc="error"/>
+                                        </div>
+                                    </t>
+                                    <div class = "col-md-12">
+                                     <p class = "customh4">Search  <span class="counter"><t t-esc="total_prop"/> </span> Properties </p>
+                                        <div class = "input-group col-md-6 col-md-offset-3">
+                                            <input type="text" class="form-control input-lg" id="postcode" name="postcode" placeholder="Post Code"/>
+                                            <span class="input-group-addon">
+                                                <i class="fa fa-search"></i>
+                                            </span>
+                                        </div><br/>
+                                        <div class = "input-group col-md-6" style="float: left;">
+                                            <input type="text" class="form-control input-lg" id="area" name="area" placeholder="Area"/>
+                                            <span class="input-group-addon">
+                                                <i class="fa fa-paper-plane"></i>
+                                            </span>
+                                        </div>
+                                        <div class = "input-group col-md-6" style="float: left;padding-left: 2%;">
+                                            <input type="text" class="form-control input-lg" id="city" name="city" placeholder="City" />
+                                            <span class="input-group-addon">
+                                                <i class="fa fa-map-marker"></i>
+                                            </span>
+                                        </div>
+                                        <div class = "">
+                                            <div style="text-align:left;" class="col-md-8">Min<input type="hidden" name="min_range" id="min_property_range_id"/></div>
+                                             <div style="text-align:right;"  class="col-md-4">Max<input type="hidden" name="max_range" id="max_property_range_id"/></div>
+                                             <div style="text-align:center;" class="price-slider col-md-12 ">
+                                                <input type="text" id="amount" readonly='true' style="border:0; color:#c0392b; font-weight:bold; background-color: #f5f5f5;"/>
+                                             </div>
+                                        </div>
+                                        <!-- Price Slider -->
+                                        <div class="form-group price-slider col-md-12 ">
+                                            <div id="slider_range">
+                                                <input type="hidden" name="min_max_range"/>
+                                            </div>
+                                        </div>
+                                        <div style="text-align:center;" class = "form-group col-md-12">
+                                            <a  class = "btn btn-primary1 btn-lg rent_btn_id" name="rent_btn_name" id="rent_btn_id">
+                                                <span class="fa fa-key" aria-hidden="true"></span> Rent
+                                            </a>
+                                            <a class = "btn btn-primary1 btn-lg sale_btn_id" name="sale_btn_name" id="sale_btn_id">
+                                                <span class="fa fa-home" aria-hidden="true"></span> Buy
+                                            </a>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class = "searchBelowLinksList"></div>
+                        </div>
+                    </div>
+                </div>
+
+                 <div class="col-md-12" id = "searchBelowLinks">
+	                <div class = "col-md-12 text-center customh4">
+	                    <h2>Partners</h2> 
+	                </div>
+                    <div class="footer_img col-md-12">
+                        <div class = "col-md-2 bottom_img">
+                                <img src= "/website_pms/static/src/img/brand (1).gif" class = "img-thumbnail img img-responsive"/>
+                        </div>
+                        <div class = "col-md-2 bottom_img">
+                                <img src= "/website_pms/static/src/img/135.jpg" class = "img-thumbnail img img-responsive"/>
+                        </div>
+                        <div class = "col-md-2 bottom_img">
+                                <img src= "/website_pms/static/src/img/brand.gif" class = "img-thumbnail img img-responsive"/>
+                        </div>
+                        <div class = "col-md-2 bottom_img">
+                                <img src= "/website_pms/static/src/img/maclead-real-estate.jpg" class = "img-thumbnail img img-responsive"/>
+                        </div>
+                        <div class = "col-md-2 bottom_img">
+                                <img src= "/website_pms/static/src/img/naked-real-estate2.jpg" class = "img-thumbnail img img-responsive"/>
+                        </div>
+                        <div class = "col-md-2 bottom_img">
+                                <img src= "/website_pms/static/src/img/thumbPhoenix.png" class = "img-thumbnail img img-responsive"/>           
+                        </div>
+                    </div>
+                </div>
+
+                <!--homepage popup banner -->
+                <!-- <div class="container-fluid"><div class="modal fade" id="popmodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static">
+                    <div class="modal-dialog modal-lg"><div class="modal-content" style="background-color:transparent">
+                        <div class = "modal-body"><t t-foreach="media" t-as="m">
+                            <span itemprop="image" t-field="m.name" t-field-options='{"widget": "image"}' style="position:relative;"/>
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true" style="opacity: 20;z-index=0;position:absolute;top: 15px;right: 18px;">&amp;times;</button>
+                                </t>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> -->
+            </t>
+        </template>
+
+    </data>
+</openerp>

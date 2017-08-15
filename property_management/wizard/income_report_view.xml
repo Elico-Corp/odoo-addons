@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+     <data>
+     	<record id="income_expenditure_report" model="ir.ui.view">
+            <field name="name">Income Expenditure Report</field>
+            <field name="model">income.report</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+              <form string="Income Expenditure Report">
+            	<separator string = "Income Expenditure Report" colspan="4"/>
+            	<group>
+	            	<field name="start_date" />
+	            	<field name="end_date" />
+            	</group>
+            	<footer>
+	            	<button special="cancel" string="Cancel" icon="gtk-cancel" class="oe_highlight"/>
+	               	<button name="print_report" string="Print" type="object" icon="gtk-print" class="oe_highlight"/>
+            	</footer>
+	       	</form>
+           </field>
+        </record>
+        
+        <act_window name="Income Expenditure Report"
+            res_model="income.report"
+            view_mode="form"
+            target="new"
+            key2="client_action_multi"
+            id="action_income_expenditure" />
+     </data>
+</openerp>

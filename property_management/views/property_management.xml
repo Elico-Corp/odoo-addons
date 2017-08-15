@@ -1,0 +1,10 @@
+<openerp>
+    <data>
+         <!-- Action for Property Graph -->
+        <record id="action_property_graph" model="ir.actions.client">
+              <field name="name">Bar Graph</field>
+              <field name="tag">property.graph</field>  
+        </record>
+        <menuitem id="menu_property_graph" name="Financial Performance" parent="property_management.menu_report_sub" action="action_property_graph"/>
+    </data>
+</openerp>

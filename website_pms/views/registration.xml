@@ -1,0 +1,200 @@
+<openerp>
+    <data>
+
+        <template id = "website_pms.user_registration" name = "Registration">
+            <t t-call = "website.layout">
+                <div class = "wrap oe_structure">
+                    <div id = "searchBelowLinks">
+                        <div class = "container text-center">
+                            <h2>
+                                Find Somewhere Fantastic to Live
+                            </h2>
+                            <h4>
+                                Here We help to find your dream !
+                            </h4>
+                        </div>
+                    </div>
+                    <div id="container">
+                        <div class="jumbotron container1">
+                            <div class="row">
+                                <div class="form-login col-md-8 col-md-offset-2">
+                                    <form id="user_info" action="/user_create" class="form-horizontal mt32" method="post">
+                                        <div class="col-md-12">
+                                            <t t-if="error">
+                                                <div  class="alert alert-danger" >
+                                                    <t t-esc="error"/>
+                                                </div>
+                                            </t>
+                                            <input type="text" class="alert alert-danger pass_match col-md-12" name="pass_match" id="pass_match_id" value="Password and Confirmpassword does not match."/>
+                                            <input type="text" class="alert alert-danger email_valid col-md-12" name="email_valid" id="email_valid_id" value="Please enter valid Email ID."/>
+                                            <div class = "col-md-12">
+                                                <h3 class = "customh4">Registration</h3>
+                                                <div class = "form-group">
+                                                    <label class="col-md-3 col-sm-4 control-label" for="name">Name</label>
+                                                    <div class="col-md-7 col-sm-4">
+                                                        <input class="form-control" id="u_name" name="name" type="text" t-att-value="login" required="required" autofocus="autofocus"/>
+                                                    </div>
+                                                </div>
+                                                <div class = "form-group">
+                                                    <label class="col-md-3 col-sm-4 control-label" for="phone">Phone</label>
+                                                    <div class="col-md-7 col-sm-8">
+                                                        <input class="form-control" id="u_phone" name="phone" type="number" required="required"/>
+                                                    </div>
+                                                </div>
+                                                <div class = "form-group">
+                                                    <label class="col-md-3 col-sm-4 control-label" for="email">Email</label>
+                                                    <div class="col-md-7 col-sm-8">
+                                                        <input class="form-control" id="u_email" name="email" type="text" required="required"/>
+                                                    </div>
+                                                </div>
+                                                <div class = "form-group">
+                                                    <label class="col-md-3 col-sm-4 control-label" for="password">Password</label>
+                                                    <div class="col-md-7 col-sm-8">
+                                                        <input class="form-control" id="u_pass1" name="password" type="password" required="required"/>
+                                                    </div>
+                                                </div>
+                                                <div class = "form-group">
+                                                    <label class="col-md-3 col-sm-4 control-label" for="confirm password">Confirm Password</label>
+                                                    <div class="col-md-7 col-sm-8">
+                                                        <input class="form-control" id="u_pass2" name="confirmpassword" type="password" required="required"/>
+                                                    </div>
+                                                </div>
+                                                <div class = "form-group">
+                                                    <label class="col-md-3 col-sm-4 control-label" for="country">Country</label>
+                                                    <div class="col-md-7 col-sm-8">
+                                                        <select class="form-control" id="country_id" name="Country" type="text" required="required"/>
+                                                    </div>
+                                                </div>
+                                                <div class = "form-group">
+                                                    <label class="col-md-3 col-sm-4 control-label" for="state">State</label>
+                                                    <div class="col-md-7 col-sm-8">
+                                                        <select class="form-control" id="state_id" name="State" type="text" required="required"/>
+                                                    </div>
+                                                </div>
+                                                <div class = "form-group">
+                                                    <label class="col-md-3 col-sm-4 control-label" for="street">Street</label>
+                                                    <div class="col-md-7 col-sm-8">
+                                                        <input class="form-control" id="street_id" name="Street" type="text" required="required"/>
+                                                    </div>
+                                                </div>
+                                                <div class = "form-group">
+                                                    <label class="col-md-3 col-sm-4 control-label" for="city">City</label>
+                                                    <div class="col-md-7 col-sm-8">
+                                                        <input class="form-control" id="city_id" name="City" type="text" required="required"/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <center>
+                                                <div id="notifications"></div>
+                                                <button type="submit" onclick="" class="btn btn-primary1 btn-lg" id="form_submit" >Submit</button>
+                                                <button id="submit_details" type="submit" style="display:None"/>
+                                                <button type="reset" onclick="" class="btn btn-primary1 btn-lg" id="form_reset" >Reset</button>
+                                            </center>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </t>
+        </template>
+
+        <template id="web.login" name="Login">
+            <t t-call="website.layout">
+                <t t-set="head">
+                    <script type="text/javascript" src="/web/static/lib/jquery/jquery.js" />
+                    <script type="text/javascript" src="/website_pms/static/src/js/country_fetch.js" />
+                    <script type="text/javascript" src="/website_pms/static/src/js/homepage.js"></script>
+                    <script type="text/javascript" src="/website_pms/static/src/js/country_fetch.js"></script>
+                    <link rel='stylesheet' href='/website_pms/static/src/css/homepage.css'/>
+                    <script type="text/javascript" src="/web/static/lib/jquery/jquery.js" />
+                    <script type="text/javascript">
+                    $(document).ready(function(){
+                    if(($('#login').attr('value') != '') &amp;&amp; ($('#password').attr('value') != '') &amp;&amp;
+                    ($('#id_got_values').attr('value') == 'true')){
+                    $('#id_submit').click();
+                    $('.oe_login_form').addClass('hidden');
+                    $('.oe_form_binary_progress').removeClass('hidden');
+                    }
+                    });
+                </script>
+                </t>
+                <div id = "searchBelowLinks">
+                    <div class = "container text-center">
+                        <h2>
+                               Find Somewhere Fantastic to Live
+                        </h2>
+                        <h4>
+                               Here We help to find your dream !
+                        </h4>
+                    </div>
+                </div>
+                <input type="hidden" id="id_got_values" t-att-value="got_values" />
+                <div class="oe_form_binary_progress hidden">
+                    <img src='/web/static/src/img/throbber-large.gif' width="50"
+                        height="50" />
+                    <b>Loading ...</b>
+                </div>
+                <div class="container-fluid jumbotron login_bg">
+                    <div class="">
+                        <div class="form-login col-md-5" style="">
+                            <form class="oe_login_form" role="form"
+                    t-attf-action="/web/login{{ '?debug' if debug else '' }}" method="post"
+                    onsubmit="this.action = this.action + location.hash">
+                                <!--<t t-call="web.database_select" /-->
+                                <div class="form-group field-login">
+                                    <label for="login" class="control-label">Email</label>
+                                    <input type="text" name="login" t-att-value="login" id="login"
+                            class="form-control" required="required" autofocus="autofocus" />
+                                </div>
+                                <div class="form-group field-password">
+                                    <label for="password" class="control-label">Password</label>
+                                    <input type="password" name="password" id="password"
+                            t-att-value='password' class="form-control" required="required"
+                            t-att-autofocus="'autofocus' if login else None" />
+                                </div>
+                                <p class="alert alert-danger" t-if="error">
+                                    <t t-esc="error" />
+                                </p>
+                                <p class="alert alert-success" t-if="message">
+                                    <t t-esc="message" />
+                                </p>
+                                <input type="hidden" name="redirect" t-att-value="redirect" />
+                                <div class="clearfix oe_login_buttons">
+                                    <center>
+                                        <button type="submit" id='id_submit' class="btn btn-primary1 btn-lg">Log in</button>
+                                    </center>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class = "col-md-2"></div>
+                    <div class="">
+                        <div class="">
+                            <div class="form-login col-md-5" style="">
+                                <form id="user_login" action="/page/website_pms.user_registration" class="form-horizontal mt32" method="" >
+                                    <div class="col-md-12">
+                                        <t t-if="error">
+                                            <!--  <div  class="alert alert-danger" ><t t-esc="error"/></div>   -->
+                                        </t>
+                                        <div class = "col-md-12">
+                                            <h3 class = "customh4">Not a user ?</h3>
+                                            <h4 class = "customh4">Please Register here !</h4>
+                                        </div>
+                                        <center>
+                                            <div id="notifications"></div>
+                                            <button id="login_detail" type="submit" style="display:None"/>
+                                            <button type="submit" onclick="" class="btn btn-primary1 btn-lg" id="login_submit" >Register Now</button>
+                                        </center>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </t>
+        </template>
+
+    </data>
+</openerp>

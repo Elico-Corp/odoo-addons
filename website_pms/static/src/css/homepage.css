@@ -1,0 +1,144 @@
+
+.btn:hover, .btn:focus {
+    color: white;
+    text-decoration: none;
+}
+
+.btn-primary1 {
+    color: #fff;
+    background-color: #c0392b;
+    border-color: #c0392b;
+}
+.bottom_img{
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
+.footer_img{
+   background-color:#626264;
+}
+.searchBelowLinksList{
+    background-color: grey;
+    background-image: url("/website_pms/static/src/img/bg.png");
+}
+#searchBelowLinks {
+    background-color: grey;
+    background-image: url("/website_pms/static/src/img/bg.png");
+    filter: alpha(opacity=80)\9;
+    //background: #282f38;
+    //background: rgba(40,47,56,0.8);
+    color: rgba(255,255,2550,1);
+    width: 100%;
+    bottom: 0;
+}
+
+@media screen and (max-width: 1366px){
+    
+}
+.login_bg{
+    background-image: url("/website_pms/static/src/img/login_bg.jpg");
+    background-attachment: scroll;
+    background-position: -185px 0px;
+//    background-repeat: no-repeat;
+//    width:100%;
+    height:auto;
+    margin-bottom: 0%;
+}
+
+.container1 {
+    background-image: url("/website_pms/static/src/img/House background light.jpg");
+    background-attachment: scroll;
+    background-position: 0px 0px;
+//    background-repeat: no-repeat;
+    width:100%;
+    height:auto;
+    margin-bottom: 0%;
+}
+.bg_img_reg {
+    background-image: url("/website_pms/static/src/img/3D-House-Sketch-ArchIdeas.jpg");
+    background-attachment: scroll;
+    background-position: 0px 0px;
+//    background-repeat: no-repeat;
+    width:100%;
+    height:auto;
+}
+.bgimg_size{
+    width:100%
+}
+.heading2{
+    color:grey;
+}
+.form-login {
+    background-color: #f5f5f5;
+    padding-top: 10px;
+    padding-bottom: 20px;
+    padding-left: 33px;
+    padding-right: 46px;
+//    border-radius: 15px;
+    border-color:#d2d2d2;
+    border-width: 5px;
+    box-shadow:5px 9px 9px 5px #cfcfcf;
+    margin-bottom: 27px;
+    opacity:0.9;
+    margin-top: 27px;
+}
+
+.customh4 { 
+    border:0 solid #fff; 
+    border-bottom-width:1px;
+    padding-bottom:10px;
+    text-align: center;
+}
+
+.form-control-radius {
+    border-radius: 10px;
+}
+
+.wrapper {
+    text-align: center;
+}
+
+.price-box {
+    margin: 0 auto;
+    background: #E9E9E9;
+    border-radius: 10px;
+    padding: 40px 15px;
+    width: 500px;
+}
+.price, .lead p {
+    font-weight: 600;
+    font-size: 32px;
+    display: inline-block;
+    line-height: 60px;
+}
+
+.ui-corner-all {
+   border-radius: 30px !important;
+}
+.ui-state-default,
+.ui-widget-content .ui-state-default {
+    border: 1px solid #f9f9f9 !important;
+    background: #c0392b !important;
+}
+
+.ui-slider .ui-slider-handle .glyphicon {
+    color: #FFF !important;
+    font-size: 13px !important;
+    margin:3px !important;
+}
+
+.ui-slider .ui-slider-handle {
+    position: absolute ;
+    z-index: 2;
+    width: 2.2em !important;
+    height: 2.2em!important;
+    cursor: default;
+//    margin: 0 -40px auto !important;
+    text-align: center; 
+    line-height: 30px;
+    color: #FFFFFF;
+    font-size: 13px;
+}
+.ui-slider-horizontal .ui-slider-handle {
+    top: -0.7em!important;
+}
+
