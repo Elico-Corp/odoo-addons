@@ -3,4 +3,4 @@
 
 # Odoo Version 8.0
 
-Modules Elico Corp for Odoo version 8.0
+Elico Corp Modules for Odoo version v8.0
