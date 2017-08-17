@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+  <data>
+    <template id="index" name="Events">
+      <t t-call="website.layout">
+        <div id="wrap">
+          <div class="oe_structure"/>
+          <div class="container">
+            <form action="/competition" method="post" class="form-horizontal mt32" enctype="multipart/form-data">
+              <div t-attf-class="form-group #{error and 'serial_id' in error and 'has-error' or ''}">
+                <label class="col-md-3 col-sm-4 control-label" for="serial_id">Serial (16 digits) *</label>
+                <div class="col-md-7 col-sm-8">
+                  <input type="text" class="form-control" name="serial_id" required="True" t-attf-value="#{serial_id or ''}"/>
+                  <span style="color:red">This serial key is incorrect, already used or expired</span>
+                </div>
+              </div>
+              <div t-attf-class="form-group #{error and 'name' in error and 'has-error' or ''}">
+                <label class="col-md-3 col-sm-4 control-label" for="name">Child's full name *</label>
+                <div class="col-md-7 col-sm-8">
+                  <input type="text" class="form-control" name="name" required="True" t-attf-value="#{name or ''}"/>
+                </div>
+              </div>
+              <div t-attf-class="form-group #{error and 'guardian_name' in error and 'has-error' or ''}">
+                <label class="col-md-3 col-sm-4 control-label" for="guardian_name">Legal guardian's full name *</label>
+                <div class="col-md-7 col-sm-8">
+                  <input type="text" class="form-control" name="guardian_name" required="True" t-attf-value="#{guardian_name or ''}"/>
+                </div>
+              </div>
+              <div t-attf-class="form-group #{error and 'phone' in error and 'has-error' or ''}">
+                <label class="col-md-3 col-sm-4 control-label" for="phone">Phone Number *</label>
+                <div class="col-md-7 col-sm-8">
+                  <input type="text" class="form-control" name="phone" required="True" t-attf-value="#{phone or ''}"/>
+                </div>
+              </div>
+              <div name="email_from_container" t-attf-class="form-group #{error and 'email' in error and 'has-error' or ''}">
+                <label class="col-md-3 col-sm-4 control-label" for="email">Email *</label>
+                <div class="col-md-7 col-sm-8">
+                  <input type="email" class="form-control" name="email" required="True" t-attf-value="#{email or ''}"/>
+                </div>
+              </div>
+              <div t-attf-class="form-group #{error and 'address' in error and 'has-error' or ''}">
+                <label class="col-md-3 col-sm-4 control-label" for="address">Address *</label>
+                <div class="col-md-7 col-sm-8">
+                  <textarea class="form-control" name="address" required="True"><t t-esc="address or ''"/></textarea>
+                </div>
+              </div>
+              <div t-attf-class="form-group #{error and 'attachment' in error and 'has-error' or ''}">
+                <label class="col-md-3 col-sm-4 control-label" for="attachment">Drawing *</label>
+                <div class="col-md-7 col-sm-8">
+                  <input type="file" class="form-control" name="attachment" required="True" />
+                </div>
+              </div>
+              <div class="col-md-3 col-sm-4"></div>
+              <div class="form-group col-md-7 col-sm-8">
+                <div class="radio">
+                  <label>
+                    <input type="radio" name="available" value="1" required="True"/>
+                    You are available on Sep 18-21 *
+                  </label>
+                </div>
+              </div>
+              <div class="col-md-3 col-sm-4"></div>
+              <div class="form-group col-md-7 col-sm-8">
+                <div class="radio">
+                  <label>
+                    <input type="radio" name="available" value="0" required="True"/>
+                    You are not available on Sep 18-21 *
+                  </label>
+                </div>
+              </div>
+              <div class="col-md-3 col-sm-4"></div>
+              <div class="form-group col-md-7 col-sm-8">
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox" name="terms" required="True" />
+                    You accept the legal terms and conditions. <a href="/page/legal" target="_blank">(read)</a> *
+                  </label>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="col-md-offset-3 col-sm-offset-4 col-sm-8 col-md-7">
+                  <button class="btn btn-primary btn-lg">Send</button>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="oe_structure"/>
+        </div>
+      </t>
+    </template>
+
+    <template id="success" name="Events Sucess">
+      <t t-call="website.layout">
+        <div id="wrap" t-if="registration">
+          <div class="oe_structure">
+            <section class="jumbotron mt16 mb16">
+              <div class="container">
+                <h1>Congratulations <t t-esc="registration.name" /></h1>
+                <p>We have received your creation</p>
+              </div>
+            </section>
+            <section>
+              <div class="container">
+                <div class="row">
+                  <div class="col-md-6 mt16">
+                    <img class="img img-responsive shadow mb16" t-att-src="website.image_url(registration, 'attachment')" style=""/>
+                  </div>
+                  <div class="col-md-6 mt16">
+                    <h3>Informations</h3>
+                    <ul>
+                      <li><strong>Name:</strong> <t t-esc="registration.name" /></li>
+                      <li><strong>Legal guardian's name:</strong> <t t-esc="registration.guardian_name" /></li>
+                      <li><strong>Email:</strong> <t t-esc="registration.email" /></li>
+                      <li><strong>Phone:</strong> <t t-esc="registration.phone" /></li>
+                      <li><strong>Address:</strong> <t t-esc="registration.address" /></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </div>
+        </div>
+      </t>
+    </template>
+  </data>
+</openerp>
