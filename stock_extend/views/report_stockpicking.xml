@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <template id="report_move_barcode">
+            <t t-foreach="docs" t-as="o">
+                    <div class="page">
+                        <table>
+                            <tbody>
+                                <tr >
+                                    <td style="width:80px;"><span style="font-size:16;">产品名: </span></td>
+                                    <td style="width:320px;"><span t-field="o.product_id" style="font-size:16;word-break: break-all;"/></td>
+                                </tr>
+                                <tr/>
+                                <tr style="margin-top:10px;">
+                                    <td style="width:80px;"><span style="font-size:16;">序列号: </span></td>
+                                    <td><span t-field="o.restrict_lot_id" style="font-size:16;"/></td>
+                                </tr>
+                                <tr/>
+                                <tr style="margin-top:10px;">
+                                    <td style="width:80px;"><span style="font-size:16;">厂商号: </span></td>
+                                    <td><span t-field="o.supplier_seiral_no" style="font-size:16;"/></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td><img t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('Code128', o.restrict_lot_id.name, 510, 80)" style="width:510px;height:80px;margin-left:-110px;margin-top:10px;"/></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>  
+                </t>
+        </template>
+
+        <template id="report_picking_barcode">
+            <t t-foreach="docs" t-as="o">
+                    <div class="page" t-foreach="o.pack_operation_ids" t-as="move">
+                        <table>
+                            <tbody>
+                                <tr >
+                                    <td class="col-sx-6" style="width:80px;"><span style="font-size:16;">产品名: </span></td>
+                                    <td style="width:320px;"><span t-field="move.product_id" style="font-size:16;word-break: break-all;"/></td>
+                                </tr>
+                                <tr style="margin-top:10px;">
+                                    <td style="width:80px;"><span style="font-size:16;">序列号: </span></td>
+                                    <td><span t-field="move.lot_id" style="font-size:16;"/></td>
+                                </tr>
+                                <tr style="margin-top:10px;">
+                                    <td style="width:80px;"><span style="font-size:16;">厂商号: </span></td>
+                                    <td><span t-field="move.supplier_seiral_no" style="font-size:16;"/></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td><img t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('Code128', move.lot_id.name, 510, 80)" style="width:510px;height:80px;margin-left:-110px;margin-top:10px;"/></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>  
+                </t>
+        </template>
+
+<!-- LY -->
+        <template id="report_pack_barcode">
+            <t t-foreach="docs" t-as="o">
+                    <div class="page">
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td style="width:80px;"><span style="font-size:;">产品名: </span></td>
+                                    <td style="width:320px;"><span t-field="o.product_id" style="font-size:16;word-break: break-all;"/></td>
+                                </tr>
+                                <tr/>
+                                <tr style="margin-top:10px;">
+                                    <td style="width:80px;"><span style="font-size:16;">序列号: </span></td>
+                                    <td><span t-field="o.lot_id" style="font-size:16;"/></td>
+                                </tr>
+                                <tr/>
+                                <tr style="margin-top:10px;">
+                                    <td style="width:80px;"><span style="font-size:16;">厂商号: </span></td>
+                                    <td><span t-field="o.supplier_seiral_no" style="font-size:16;"/></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td><img t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('Code128', o.lot_id.name, 510, 80)" style="width:510px;height:80px;margin-left:-110px;margin-top:10px;"/></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>  
+                </t>
+        </template>
+        <!-- LY -->
+        
+    </data>
+</openerp>

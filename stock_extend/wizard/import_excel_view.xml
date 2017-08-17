@@ -1,0 +1,87 @@
+<?xml version="1.0"?>
+<!-- __author__ = lin.yu@elico-corp.com -->
+<openerp>
+    <data>
+        <record id="mass_email_supplier_form" model="ir.ui.view">
+            <field name="name">import.picking.from.excel.wizard.form</field>
+            <field name="model">import.picking.from.excel.wizard</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="原料入库导入" version="7.0">
+                    <group colspan="4" col="4">
+                        <field name="excel" colspan="4"/>
+                    </group>
+                    <h3 class="oe_grey">注意</h3>
+                    <ul class="oe_grey">
+                        <li>导入文件格式为Excel, 字段顺序为：供应商名称，产品名称，产品定义码，数量，单位，供应商序列号，序列号（厂商不填），产品有效期从，产品有效期截至，复验方式，生产日期，交验记录单编号，生产批次，结构级别，使用方式，让步/代用单号，物资计划状态，物资质量状态，质量信息单编号，特殊要求。</li>
+                        <li>供应商名称,产品名称,产品定义码,数量,数量单位和厂家序列号不能为空。</li>
+                        <li>excel中日期相关字段为靠左字符格式.</li>
+                        <li>文件第一行为字段名称，系统默认从第二行开始导入。</li>
+                        <li>导入时会自动创建本公司序列号。</li>
+                    </ul>
+                    <footer>
+                        <button name="import_picking_from_excel" class="oe_highlight" string="导入" type="object"/>
+                        <button special="cancel" string="取消"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <act_window name="原料入库导入" res_model="import.picking.from.excel.wizard" view_mode="form" target="new" id="action_import_picking_from_excel"/>
+        <menuitem name="原料入库导入" id="incoming_shipment_excel" parent="stock.menu_stock_warehouse_mgmt" action="action_import_picking_from_excel"/>
+
+        <record id="import_bom_from_excel_form" model="ir.ui.view">
+            <field name="name">import.bom.from.excel.wizard.form</field>
+            <field name="model">import.bom.from.excel.wizard</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="物料清单导入" version="7.0">
+                    <group colspan="4" col="4">
+                        <field name="excel" colspan="4"/>
+                    </group>
+                    <h3 class="oe_grey">注意</h3>
+                    <ul class="oe_grey">
+                        <li>导入文件格式为Excel, 字段顺序为：产品名称, 产品定义码, 物料名称，物料定义码, 数量。</li>
+                        <li>产品定义码, 物料定义码不能为空, 数量不能为字母，文字, 且必须大于0。</li>
+                        <li>文件第一行为字段名称，系统默认从第二行开始导入。</li>
+                    </ul>
+                    <footer>
+                        <button name="import_bom_from_excel" class="oe_highlight" string="导入" type="object"/>
+                        <button special="cancel" string="取消"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <act_window name="物料清单导入" res_model="import.bom.from.excel.wizard" view_mode="form" target="new" id="action_import_bom_from_excel"/>
+        <menuitem id="menu_bom_stock_form" action="mrp.mrp_bom_form_action" name="物料清单"
+            parent="stock.menu_stock_product" sequence="8"/>
+        <menuitem name="物料清单导入" id="menu_import_bom_from_excel" parent="stock.menu_stock_product" action="action_import_bom_from_excel" sequence="9"/>
+
+        <record id="import_product_from_excel_form" model="ir.ui.view">
+            <field name="name">import.product.from.excel.wizard.form</field>
+            <field name="model">import.product.from.excel.wizard</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="产品导入" version="7.0">
+                    <group colspan="4" col="4">
+                        <field name="excel" colspan="4"/>
+                    </group>
+                    <h3 class="oe_grey">注意</h3>
+                    <ul class="oe_grey">
+                        <li>导入文件格式为Excel, 字段顺序为：产品名称, 产品定义码,供应方法,产品类型,单位类型，型号规格,图号,备注,产品说明,项目代号,质量等级,标准号</li>
+                        <li>产品名称，产品定义码，供应方法和单位类型不能为空。</li>
+                        <li>文件第一行为字段名称，系统默认从第二行开始导入。</li>
+                        <li>已经存在的产品不会重复导入。</li>
+                    </ul>
+                    <footer>
+                        <button name="import_product_from_excel" class="oe_highlight" string="导入" type="object"/>
+                        <button special="cancel" string="取消"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+        <act_window name="产品导入" res_model="import.product.from.excel.wizard" view_mode="form" target="new" id="action_import_product_from_excel"/>
+        <menuitem name="产品导入" id="menu_import_product_from_excel" parent="stock.menu_stock_product" action="action_import_product_from_excel" sequence="7"/>
+    </data>
+</openerp>

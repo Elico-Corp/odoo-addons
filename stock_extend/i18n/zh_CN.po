@@ -1,0 +1,925 @@
+#. module: stock
+#: model:ir.ui.menu,name:stock.menu_stock_warehouse_mgmt
+#: view:stock.picking:stock.view_picking_form
+msgid "Operations"
+msgstr "操作"
+
+#. module: stock_extend
+#: field:stock.picking.type,scan_operation_type:0
+msgid "Type of Scan Operation"
+msgstr "扫描操作类型"
+
+#. module: stock_extend
+#: field:stock.picking.type,auto_create_lot:0
+msgid "Auto Create Lot No"
+msgstr "自动创建序列号"
+
+#. module: stock_extend
+#: model:ir.actions.act_window,name:stock.action_picking_type_list
+#: model:ir.ui.menu,name:stock.menu_pickingtype
+msgid "Types of Operation"
+msgstr "操作类型"
+
+#. module: stock
+#: field:stock.move,stock.restrict_lot_id:0
+#: field:stock.move.scrap,stock.restrict_lot_id:0
+#: view:stock.quant:stock.quant_search_view
+#: field:stock.quant,lot_id:0
+#: view:website:stock.report_lot_barcode
+#: view:website:stock.report_package_barcode
+msgid "Lot"
+msgstr "序列号"
+
+#. module: stock_extend
+#: field:stock.move,supplier_seiral_no:0
+#: field:stock.quant,supplier_seiral_no:0
+#: field:stock.production.lot,supplier_seiral_no:0
+#: field:stock.pack.operation,supplier_seiral_no:0
+msgid "Supplier Lot No"
+msgstr "供应商序列号"
+
+#. module: stock
+#: field:stock.pack.operation,lot_id:0
+#: field:stock.transfer_details_items,lot_id:0
+msgid "Lot/Serial Number"
+msgstr "序列号"
+
+#. module: stock
+#: field:stock.move,restrict_lot_id:0
+#: field:stock.move.scrap,restrict_lot_id:0
+#: view:stock.quant:stock.quant_search_view
+#: field:stock.quant,lot_id:0
+#: view:website:stock.report_lot_barcode
+#: view:website:stock.report_package_barcode
+msgid "Lot"
+msgstr "序列号"
+
+#. module: stock_extend
+#: model:ir.actions.report.xml,name:stock_extend.action_report_picking_barcode
+msgid "Stock Picking Barcode"
+msgstr "条码"
+
+#. module: stock_extend
+#: model:ir.actions.report.xml,name:stock_extend.action_report_move_barcode
+msgid "Stock Move Barcode"
+msgstr "条码"
+
+#. module: stock
+#: field:stock.config.settings,group_stock_production_lot:0
+msgid "Track lots or serial numbers"
+msgstr "追踪序列号"
+
+#. module: stock
+#: model:stock.location,name:stock.stock_location_locations_partner
+msgid "Partner Locations"
+msgstr "客户库位"
+
+#. module: stock
+#: model:stock.location,name:stock.stock_location_locations_virtual
+msgid "Virtual Locations"
+msgstr "虚拟库位"
+
+#. module: stock
+#: model:stock.location,name:stock.stock_location_scrapped
+msgid "Scrapped"
+msgstr "损耗"
+
+#. module: stock
+#: model:stock.location,name:stock.location_inventory
+msgid "Inventory loss"
+msgstr "盘亏"
+
+#. module: stock
+#: model:stock.location,name:stock.location_procurement
+msgid "Procurements"
+msgstr "需求"
+
+#. module: stock
+#: model:stock.location,name:stock.location_production
+msgid "Production"
+msgstr "生产"
+
+#. module: stock
+#: model:stock.location,name:stock.stock_location_suppliers
+msgid "Suppliers"
+msgstr "供应商"
+
+#. module: stock
+#: model:stock.location,name:stock.stock_location_customers
+msgid "Customers"
+msgstr "客户"
+
+#. module: stock
+#: model:stock.location,name:stock.stock_location_inter_wh
+msgid "Inter Company Transit"
+msgstr "公司间的运输"
+
+#. module: stock
+#: field:stock.picking,invoice_state:0
+msgid "Invoice Control"
+msgstr "发票控制"
+
+#. module: stock
+#: selection:stock.picking,invoice_state:0
+msgid "Invoiced"
+msgstr "已开发票"
+
+#. module: stock
+#: selection:stock.picking,invoice_state:0
+msgid "To Be Invoiced"
+msgstr "待开发票"
+
+#. module: stock
+#: selection:stock.picking,invoice_state:0
+msgid "Not Applicable"
+msgstr "不适用"
+
+#. module: stock
+#: selection:stock.move,priority:0
+#: selection:stock.picking,priority:0
+msgid "Normal"
+msgstr "普通"
+
+#. module: stock
+#: selection:stock.move,priority:0
+#: selection:stock.picking,priority:0
+msgid "Very Urgent"
+msgstr "非常紧急"
+
+#. module: stock
+#: field:stock.move,invoice_state:0
+msgid "Invoice Control"
+msgstr "发票控制"
+
+#. module: stock
+#: selection:stock.move,invoice_state:0
+msgid "Invoiced"
+msgstr "已开发票"
+
+#. module: stock
+#: selection:stock.move,invoice_state:0
+msgid "To Be Invoiced"
+msgstr "待开发票"
+
+#. module: stock
+#: selection:stock.move,invoice_state:0
+msgid "Not Applicable"
+msgstr "不适用"
+
+#. module: stock
+#: field:stock.quant,in_date:0
+msgid "Incoming Date"
+msgstr "入库日期"
+
+#. module: stock
+#: view:stock.picking:stock.view_picking_form
+msgid "Transfer"
+msgstr "转移"
+
+#. module: stock
+#: code:addons/stock/wizard/stock_transfer_details.py:115
+#, python-format
+msgid "Enter transfer details"
+msgstr "确认转移明细"
+
+#. module: stock
+#: view:stock.transfer_details:stock.view_stock_enter_transfer_details
+msgid "Products To Move"
+msgstr "要转移的产品"
+
+#. module: stock
+#: field:stock.quant,reservation_id:0
+msgid "Reserved for Move"
+msgstr "预留"
+
+#. module: stock
+#: field:stock.quant,propagated_from_id:0
+msgid "Linked Quant"
+msgstr "关联的份"
+
+#. module: stock
+#: view:stock.quant:stock.view_stock_quant_form
+msgid "Quant History"
+msgstr "历史记录"
+
+#. module: stock
+#: model:ir.ui.menu,name:stock.menu_stock_sched
+msgid "Schedulers"
+msgstr "计划"
+
+#. module: stock
+#: model:ir.ui.menu,name:stock.menu_stock_proc_schedulers
+msgid "Run Schedulers"
+msgstr "运行计划"
+
+#. module: stock
+#: code:addons/stock/wizard/stock_transfer_details.py:115
+#, python-format
+msgid "Enter transfer details"
+msgstr "确认转移明细"
+
+#. module: procurement
+#: view:procurement.order.compute.all:procurement.view_compute_schedulers_wizard
+msgid "Compute all procurements in the background."
+msgstr "在后台计算所有补货."
+
+#. module: stock
+#: model:ir.actions.act_window,name:stock.act_stock_warehouse_2_stock_warehouse_orderpoint
+#: model:ir.actions.act_window,name:stock.action_orderpoint_form
+#: model:ir.actions.act_window,name:stock.product_open_orderpoint
+#: model:ir.ui.menu,name:stock.menu_stock_order_points
+#: view:product.product:stock.product_form_view_procurement_button
+#: view:product.template:stock.product_template_form_view_procurement_button
+#: view:stock.warehouse.orderpoint:stock.view_warehouse_orderpoint_form
+#: view:stock.warehouse.orderpoint:stock.view_warehouse_orderpoint_tree
+#: view:stock.warehouse.orderpoint:stock.warehouse_orderpoint_search
+msgid "Reordering Rules"
+msgstr "再订购规则"
+
+#. module: stock
+#: model:ir.actions.act_window,name:stock.action_routes_form
+#: model:ir.ui.menu,name:stock.menu_stock_routes
+#: field:product.category,route_ids:0
+#: view:product.product:stock.product_form_view_procurement_button
+#: view:product.template:stock.product_template_form_view_procurement_button
+#: field:product.template,route_ids:0
+#: view:stock.location.route:stock.stock_location_route_tree
+#: view:stock.warehouse:stock.view_warehouse
+#: field:stock.warehouse,route_ids:0
+msgid "Routes"
+msgstr "路由"
+
+#. module: stock
+#: field:stock.inventory,period_id:0
+msgid "Force Valuation Period"
+msgstr "强制评估期"
+
+#. module: stock
+#: view:stock.inventory:stock.view_inventory_form
+msgid "Start Inventory"
+msgstr "开始盘点"
+
+#. module: stock
+#: field:stock.inventory,filter:0
+msgid "Inventory of"
+msgstr "盘点范围"
+
+#. module: stock
+#: code:addons/stock/stock.py:2542
+#, python-format
+msgid "Manual Selection of Products"
+msgstr "所选择的产品"
+
+#. module: stock
+#: code:addons/stock/stock.py:2542
+#, python-format
+msgid "One product only"
+msgstr "仅一个产品"
+
+#. module: stock
+#: field:product.product,qty_available:0
+#: field:product.template,qty_available:0
+msgid "Quantity On Hand"
+msgstr "当前库存"
+
+#. module: product
+#: field:product.product,standard_price:0
+#: field:product.template,standard_price:0
+msgid "Cost Price"
+msgstr "标准价格"
+
+#. module: stock
+#: view:product.template:stock.view_template_property_form
+msgid "Supply Chain Information"
+msgstr "供应链信息"
+
+#. module: stock_account
+#: model:ir.actions.act_window,name:stock_account.action_history_tree
+#: model:ir.ui.menu,name:stock_account.menu_action_history_tree
+msgid "Current Inventory Valuation"
+msgstr "当前库存评估"
+
+#. module: stock_account
+#: model:ir.model,name:stock_account.model_stock_move
+#: field:stock.history,move_id:0
+msgid "Stock Move"
+msgstr "移转"
+
+#. module: stock_account
+#: model:ir.model,name:stock_account.model_stock_move
+#: field:stock.history,move_id:0
+msgid "Stock Move"
+msgstr "移转"
+
+#. module: stock_account
+#: field:stock.history,source:0
+msgid "Source"
+msgstr "来源"
+
+#. module: stock_account
+#: field:stock.history,quantity:0
+msgid "Product Quantity"
+msgstr "产品数量"
+
+#. module: stock_account
+#: field:stock.history,date:0
+msgid "Operation Date"
+msgstr "操作日期"
+
+#. module: stock_account
+#: field:stock.history,inventory_value:0
+msgid "Inventory Value"
+msgstr "库存价值"
+
+#. module: product
+#: field:product.template,qty_available:0
+msgid "Quantity On Hand"
+msgstr "当前库存"
+
+#. module: product
+#: field:product.template,virtual_available:0
+msgid "Quantity Available"
+msgstr "可用数量"
+
+#. module: base
+#: view:ir.model:base.view_model_form
+#: view:workflow.activity:base.view_workflow_activity_form
+msgid "Properties"
+msgstr "属性"
+
+#. module: product
+#: field:product.attribute.line,value_ids:0
+#: field:product.attribute.price,value_id:0
+#: field:product.template,attribute_line_ids:0
+#: view:product.template,attribute_line_ids:0
+msgid "Product Attribute Value"
+msgstr "产品属性值"
+
+#. module: stock
+#. openerp-web
+#: code:addons/stock/static/src/xml/picking.xml:92
+#, python-format
+msgid "Operations ToDo"
+msgstr "待操作"
+
+#. module: stock
+#. openerp-web
+#: code:addons/stock/static/src/xml/picking.xml:93
+#, python-format
+msgid "Operations Processed"
+msgstr "完成"
+
+#. module: stock_extend
+#: help:mrp.bom.line2,product_efficiency:0
+msgid "A factor of 0.9 means a loss of 10% within the production process."
+msgstr "系数为0.9意味着生产过程中会损失10%."
+
+#. module: stock_extend
+#: sql_constraint:mrp.bom.line2:0
+msgid "All product quantities must be greater than 0.\n"
+"You should install the mrp_byproduct module if you want to manage extra products on BoMs !"
+msgstr "所有产品数量必须大于0.\n"
+"如果你要管理材料明细表中额外的产品，你应该安装MRP模块的副产品!"
+
+#. module: stock_extend
+#: field:stock.picking.type,auto_create_lot:0
+msgid "Auto Create Lot No"
+msgstr "自动创建序列号"
+
+#. module: stock_extend
+#: help:mrp.bom.line2,attribute_value_ids:0
+msgid "BOM Product Variants needed form apply this line."
+msgstr "BOM产品转变类型需要应用此行．"
+
+#. module: stock_extend
+#: field:mrp.bom.line2,child_line_ids:0
+msgid "BOM lines of the referred bom"
+msgstr "物料清单行指定的物料清单"
+
+#. module: stock_extend
+#: model:ir.model,name:stock_extend.model_mrp_bom
+msgid "Bill of Material"
+msgstr "物料清单"
+
+#. module: stock_extend
+#: field:mrp.bom.line2,type:0
+msgid "BoM Line Type"
+msgstr "物料清单行类型"
+
+#. module: stock_extend
+#: field:mrp.bom,bom_line2_ids:0
+msgid "BoM Lines"
+msgstr "物料清单行"
+
+#. module: stock_extend
+#: view:mrp.bom:stock_extend.mrp_bom_form_view_extend
+msgid "Components2"
+msgstr "辅料"
+
+#. module: stock_extend
+#: field:bom.converter,create_uid:0
+#: field:import.bom.from.excel.wizard,create_uid:0
+#: field:import.picking.from.excel.wizard,create_uid:0
+#: field:import.product.from.excel.wizard,create_uid:0
+#: field:incoming.shipment.converter,create_uid:0
+#: field:mrp.bom.line2,create_uid:0
+#: field:product.converter,create_uid:0
+msgid "Created by"
+msgstr "创建者"
+
+#. module: stock_extend
+#: field:bom.converter,create_date:0
+#: field:import.bom.from.excel.wizard,create_date:0
+#: field:import.picking.from.excel.wizard,create_date:0
+#: field:import.product.from.excel.wizard,create_date:0
+#: field:incoming.shipment.converter,create_date:0
+#: field:mrp.bom.line2,create_date:0
+#: field:product.converter,create_date:0
+#: field:print.product.barcode,create_date:0
+#: field:print.product.barcode.model,create_date:0
+msgid "Created on"
+msgstr "创建于"
+
+#. module: stock_extend
+#: code:addons/stock_extend/stock_picking.py:366
+#: code:addons/stock_extend/stock_picking.py:396
+#: code:addons/stock_extend/stock_picking.py:418
+#: code:addons/stock_extend/stock_picking.py:425
+#, python-format
+msgid "Error"
+msgstr "错误"
+
+#. module: stock_extend
+#: code:addons/stock_extend/stock_picking.py:345
+#, python-format
+msgid "Extra Move: "
+msgstr "Extra Move: "
+
+#. module: stock_extend
+#: help:mrp.bom.line2,sequence:0
+msgid "Gives the sequence order when displaying."
+msgstr "显示时按顺序排列．"
+
+#. module: stock_extend
+#: field:bom.converter,id:0
+#: field:import.bom.from.excel.wizard,id:0
+#: field:import.picking.from.excel.wizard,id:0
+#: field:import.product.from.excel.wizard,id:0
+#: field:incoming.shipment.converter,id:0
+#: field:mrp.bom.line2,id:0
+#: field:product.converter,id:0
+msgid "ID"
+msgstr "ID"
+
+#. module: stock_extend
+#: field:bom.converter,write_uid:0
+#: field:import.bom.from.excel.wizard,write_uid:0
+#: field:import.picking.from.excel.wizard,write_uid:0
+#: field:import.product.from.excel.wizard,write_uid:0
+#: field:incoming.shipment.converter,write_uid:0
+#: field:mrp.bom.line2,write_uid:0
+#: field:product.converter,write_uid:0
+msgid "Last Updated by"
+msgstr "最后更新人"
+
+#. module: stock_extend
+#: field:bom.converter,write_date:0
+#: field:import.bom.from.excel.wizard,write_date:0
+#: field:import.picking.from.excel.wizard,write_date:0
+#: field:import.product.from.excel.wizard,write_date:0
+#: field:incoming.shipment.converter,write_date:0
+#: field:mrp.bom.line2,write_date:0
+#: field:product.converter,write_date:0
+msgid "Last Updated on"
+msgstr "最后更新于"
+
+#. module: stock_extend
+#: model:ir.model,name:stock_extend.model_stock_production_lot
+msgid "Lot/Serial"
+msgstr "批次/序列号"
+
+#. module: stock_extend
+#: field:mrp.bom.line2,product_efficiency:0
+msgid "Manufacturing Efficiency"
+msgstr "生产效率"
+
+#. module: stock_extend
+#: selection:mrp.bom.line,type:0
+msgid "Normal"
+msgstr "正常"
+
+#. module: stock_extend
+#: selection:mrp.bom.line2,type:0
+msgid "Normal"
+msgstr "正常"
+
+#. module: stock_extend
+#: model:ir.model,name:stock_extend.model_stock_pack_operation
+msgid "Packing Operation"
+msgstr "装箱作业"
+
+#. module: stock_extend
+#: field:mrp.bom.line2,bom_id:0
+msgid "Parent BoM"
+msgstr "父物料清单"
+
+#. module: stock_extend
+#: selection:mrp.bom.line,type:0
+msgid "Phantom"
+msgstr "套件"
+
+#. module: stock_extend
+#: selection:mrp.bom.line2,type:0
+msgid "Phantom"
+msgstr "套件"
+
+#. module: stock_extend
+#: selection:mrp.bom,type:0
+msgid "Normal"
+msgstr "普通"
+
+#. module: stock_extend
+#: selection:mrp.bom,type:0
+msgid "Set"
+msgstr "套"
+
+#. module: stock_extend
+#: help:mrp.bom.line2,type:0
+msgid "Phantom: this product line will not appear in the raw materials of manufacturing orders,it will be directly replaced by the raw materials of its own BoM, without triggeringan extra manufacturing order."
+msgstr "Phantom: this product line will not appear in the raw materials of manufacturing orders,it will be directly replaced by the raw materials of its own BoM, without triggeringan extra manufacturing order."
+
+#. module: stock_extend
+#: model:ir.model,name:stock_extend.model_stock_picking
+msgid "Picking List"
+msgstr "分拣清单"
+
+#. module: stock_extend
+#: field:mrp.bom.line2,product_id:0
+msgid "Product"
+msgstr "产品"
+
+#. module: stock_extend
+#: field:mrp.bom.line2,product_qty:0
+msgid "Product Quantity"
+msgstr "产品数量 "
+
+#. module: stock_extend
+#: field:mrp.bom.line2,product_rounding:0
+msgid "Product Rounding"
+msgstr "产品舍入"
+
+#. module: stock_extend
+#: model:ir.model,name:stock_extend.model_product_template
+msgid "Product Template"
+msgstr "产品模板"
+
+#. module: stock_extend
+#: field:mrp.bom.line2,product_uos:0
+msgid "Product UOS"
+msgstr "Product UOS"
+
+#. module: stock_extend
+#: help:mrp.bom.line2,product_uos:0
+msgid "Product UOS (Unit of Sale) is the unit of measurement for the invoicing and promotion of stock."
+msgstr "Product UOS (Unit of Sale) is the unit of measurement for the invoicing and promotion of stock."
+
+#. module: stock_extend
+#: field:mrp.bom.line2,product_uos_qty:0
+msgid "Product UOS Qty"
+msgstr "Product UOS Qty"
+
+#. module: stock_extend
+#: field:mrp.bom.line2,product_uom:0
+msgid "Product Unit of Measure"
+msgstr "Product Unit of Measure"
+
+#. module: stock_extend
+#: field:mrp.bom.line2,property_ids:0
+msgid "Properties"
+msgstr "Properties"
+
+#. module: stock_extend
+#: model:ir.model,name:stock_extend.model_stock_quant
+msgid "Quants"
+msgstr "份"
+
+#. module: stock_extend
+#: help:mrp.bom.line2,product_rounding:0
+msgid "Rounding applied on the product quantity."
+msgstr "Rounding applied on the product quantity."
+
+#. module: stock_extend
+#: field:mrp.bom.line2,routing_id:0
+msgid "Routing"
+msgstr "Routing"
+
+#. module: stock_extend
+#: field:mrp.bom.line2,sequence:0
+msgid "Sequence"
+msgstr "Sequence"
+
+#. module: stock_extend
+#: model:ir.model,name:stock_extend.model_stock_move
+msgid "Stock Move"
+msgstr "库存调拨"
+
+#. module: stock_extend
+#: model:ir.actions.report.xml,name:stock_extend.action_report_move_barcode
+msgid "Stock Move Barcode"
+msgstr "条码"
+
+#. module: stock_extend
+#: model:ir.actions.report.xml,name:stock_extend.action_report_picking_barcode
+msgid "Stock Picking Barcode"
+msgstr "条码"
+
+#. module: stock_extend
+#: field:stock.move,supplier_seiral_no:0
+#: field:stock.pack.operation,supplier_seiral_no:0
+#: field:stock.production.lot,supplier_seiral_no:0
+#: field:stock.quant,supplier_seiral_no:0
+msgid "Supplier Lot No"
+msgstr "供应商序列号"
+
+#. module: stock_extend
+#: code:addons/stock_extend/stock_picking.py:668
+#, python-format
+msgid "The Product Unit of Measure you chose has a different category than in the product form."
+msgstr "The Product Unit of Measure you chose has a different category than in the product form."
+
+#. module: stock_extend
+#: help:mrp.bom.line2,routing_id:0
+msgid "The list of operations (list of work centers) to produce the finished product. The routing is mainly used to compute work center costs during operations and to plan future loads on work centers based on production planning."
+msgstr "The list of operations (list of work centers) to produce the finished product. The routing is mainly used to compute work center costs during operations and to plan future loads on work centers based on production planning."
+
+#. module: stock_extend
+#: model:ir.model,name:stock_extend.model_stock_picking_type
+msgid "The picking type determines the picking view"
+msgstr "分拣类型决定分拣视图"
+
+#. module: stock_extend
+#: field:stock.picking.type,scan_operation_type:0
+msgid "Type of Scan Operation"
+msgstr "扫描操作类型"
+
+#. module: stock_extend
+#: help:mrp.bom.line2,product_uom:0
+msgid "Unit of Measure (Unit of Measure) is the unit of measurement for the inventory control"
+msgstr "Unit of Measure (Unit of Measure) is the unit of measurement for the inventory control"
+
+#. module: stock_extend
+#: field:mrp.bom.line2,date_start:0
+msgid "Valid From"
+msgstr "有效期从"
+
+#. module: stock_extend
+#: field:mrp.bom.line2,date_stop:0
+msgid "Valid Until"
+msgstr "有效期到"
+
+#. module: stock_extend
+#: help:mrp.bom.line2,date_start:0
+#: help:mrp.bom.line2,date_stop:0
+msgid "Validity of component. Keep empty if it's always valid."
+msgstr "Validity of component. Keep empty if it's always valid."
+
+#. module: stock_extend
+#: field:mrp.bom.line2,attribute_value_ids:0
+msgid "Variants"
+msgstr "变量"
+
+#. module: stock_extend
+#: code:addons/stock_extend/stock_picking.py:668
+#, python-format
+msgid "Warning"
+msgstr "警告"
+
+#. module: stock_extend
+#: view:stock.picking:stock_extend.view_picking_form_extend
+msgid "{'invisible': [('pack_operation_ids','=',[])]}"
+msgstr "{'invisible': [('pack_operation_ids','=',[])]}"
+
+#. module: stock_extend
+#: view:stock.picking:stock_extend.view_picking_form_extend
+msgid "{'invisible':1}"
+msgstr "{'invisible':1}"
+
+#. module: stock_extend
+#: selection:stock.picking.type,scan_operation_type:0
+msgid "不用扫描"
+msgstr "不用扫描"
+
+#. module: stock_extend
+#: selection:stock.picking.type,scan_operation_type:0
+msgid "不需要在单据创建产品，扫描时自动新增"
+msgstr "不需要在单据创建产品，扫描时自动新增"
+
+#. module: stock_extend
+#: selection:product.template,uom_type:0
+msgid "个"
+msgstr "个"
+
+#. module: stock_extend
+#: field:import.product.from.excel.wizard,excel:0
+msgid "产品"
+msgstr "产品"
+
+#. module: stock_extend
+#: view:website:stock_extend.report_move_barcode
+#: view:website:stock_extend.report_pack_barcode
+#: view:website:stock_extend.report_picking_barcode
+msgid "产品名:"
+msgstr "产品名:"
+
+#. module: stock_extend
+#: view:import.product.from.excel.wizard:stock_extend.import_product_from_excel_form
+msgid "产品名称，产品定义码，单位类型不能为空。"
+msgstr "产品名称，产品定义码，单位类型不能为空。"
+
+#. module: stock_extend
+#: view:import.picking.from.excel.wizard:stock_extend.mass_email_supplier_form
+msgid "产品定义码, 供应商序列号不能为空。"
+msgstr "产品定义码, 供应商序列号不能为空。"
+
+#. module: stock_extend
+#: view:import.bom.from.excel.wizard:stock_extend.import_bom_from_excel_form
+msgid "产品定义码, 物料定义码不能为空, 数量不能为字母，文字, 且必须大于0。"
+msgstr "产品定义码, 物料定义码不能为空, 数量不能为字母，文字, 且必须大于0。"
+
+#. module: stock_extend
+#: view:import.product.from.excel.wizard:stock_extend.import_product_from_excel_form
+#: model:ir.actions.act_window,name:stock_extend.action_import_product_from_excel
+#: model:ir.ui.menu,name:stock_extend.menu_import_product_from_excel
+msgid "产品导入"
+msgstr "产品导入"
+
+#. module: stock_extend
+#: field:product.template,uom_description:0
+#: field:stock.move,uom_description:0
+#: field:stock.pack.operation,uom_description:0
+msgid "单位"
+msgstr "单位"
+
+#. module: stock_extend
+#: field:product.template,uom_type:0
+msgid "单位类型"
+msgstr "单位类型"
+
+#. module: stock_extend
+#: field:import.picking.from.excel.wizard,excel:0
+msgid "原料入库单"
+msgstr "原料入库单"
+
+#. module: stock_extend
+#: view:import.picking.from.excel.wizard:stock_extend.mass_email_supplier_form
+#: model:ir.actions.act_window,name:stock_extend.action_import_picking_from_excel
+#: model:ir.ui.menu,name:stock_extend.incoming_shipment_excel
+msgid "原料入库导入"
+msgstr "原料入库导入"
+
+#. module: stock_extend
+#: model:stock.picking.type,name:stock_extend.picking_type_material_out
+msgid "原料出库:原料仓->生产车间"
+msgstr "原料出库:原料仓->生产车间"
+
+#. module: stock_extend
+#: model:stock.picking.type,name:stock_extend.picking_type_material_waste
+msgid "原料报废:原料仓->废品仓"
+msgstr "原料报废:原料仓->废品仓"
+
+#. module: stock_extend
+#: view:import.product.from.excel.wizard:stock_extend.import_product_from_excel_form
+msgid "导入文件格式为Excel, 字段顺序为：产品名称, 产品定义码, 单位，单位类型，产品类型。"
+msgstr "导入文件格式为Excel, 字段顺序为：产品名称, 产品定义码, 单位，单位类型，产品类型。"
+
+#. module: stock_extend
+#: view:import.bom.from.excel.wizard:stock_extend.import_bom_from_excel_form
+msgid "导入文件格式为Excel, 字段顺序为：产品名称, 产品定义码, 物料名称，物料定义码, 数量。"
+msgstr "导入文件格式为Excel, 字段顺序为：产品名称, 产品定义码, 物料名称，物料定义码, 数量。"
+
+#. module: stock_extend
+#: view:import.picking.from.excel.wizard:stock_extend.mass_email_supplier_form
+msgid "导入文件格式为Excel, 字段顺序为：供应商名称，产品名称，产品定义码，数量，单位，供应商序列号。"
+msgstr "导入文件格式为Excel, 字段顺序为：供应商名称，产品名称，产品定义码，数量，单位，供应商序列号。"
+
+#. module: stock_extend
+#: view:import.picking.from.excel.wizard:stock_extend.mass_email_supplier_form
+msgid "导入时会自动创建本公司序列号。"
+msgstr "导入时会自动创建本公司序列号。"
+
+#. module: stock_extend
+#: view:import.product.from.excel.wizard:stock_extend.import_product_from_excel_form
+msgid "已经存在的产品不会重复导入。"
+msgstr "已经存在的产品不会重复导入。"
+
+#. module: stock_extend
+#: view:website:stock_extend.report_move_barcode
+#: view:website:stock_extend.report_pack_barcode
+#: view:website:stock_extend.report_picking_barcode
+msgid "序列号:"
+msgstr "序列号:"
+
+#. module: stock_extend
+#: model:stock.location,name:stock_extend.location_material_waste
+msgid "废品仓"
+msgstr "废品仓"
+
+#. module: stock_extend
+#: model:stock.location,name:stock_extend.location_product
+msgid "成品仓"
+msgstr "成品仓"
+
+#. module: stock_extend
+#: model:stock.picking.type,name:stock_extend.picking_type_product_in
+msgid "成品入库:生产车间->成品仓"
+msgstr "成品入库:生产车间->成品仓"
+
+#. module: stock_extend
+#: view:stock.move:stock_extend.view_move_picking_tree_extend
+msgid "打印条码"
+msgstr "打印条码"
+
+#. module: stock_extend
+#: selection:stock.picking.type,scan_operation_type:0
+msgid "扫描时核对产品序列号"
+msgstr "扫描时核对产品序列号"
+
+#. module: stock_extend
+#: selection:stock.picking.type,scan_operation_type:0
+msgid "扫描时自动拆分产品"
+msgstr "扫描时自动拆分产品"
+
+#. module: stock_extend
+#: selection:product.template,uom_type:0
+msgid "批"
+msgstr "批"
+
+#. module: stock_extend
+#: view:import.bom.from.excel.wizard:stock_extend.import_bom_from_excel_form
+#: view:import.picking.from.excel.wizard:stock_extend.mass_email_supplier_form
+#: view:import.product.from.excel.wizard:stock_extend.import_product_from_excel_form
+msgid "文件第一行为字段名称，系统默认从第二行开始导入。"
+msgstr "文件第一行为字段名称，系统默认从第二行开始导入。"
+
+#. module: stock_extend
+#: field:import.bom.from.excel.wizard,excel:0
+#: model:ir.ui.menu,name:stock_extend.menu_bom_stock_form
+msgid "物料清单"
+msgstr "物料清单"
+
+#. module: stock_extend
+#: view:import.bom.from.excel.wizard:stock_extend.import_bom_from_excel_form
+#: model:ir.actions.act_window,name:stock_extend.action_import_bom_from_excel
+#: model:ir.ui.menu,name:stock_extend.menu_import_bom_from_excel
+msgid "物料清单导入"
+msgstr "物料清单导入"
+
+#. module: mrp
+#: field:mrp.bom,product_id:0
+msgid "Product Variant"
+msgstr "产品变量"
+
+#. module: mrp
+#: field:mrp.bom.line,type:0
+msgid "BoM Line Type"
+msgstr "物料清单行类型"
+
+#. module: mrp
+#: field:mrp.bom.line,attribute_value_ids:0
+msgid "Variants"
+msgstr "变量"
+
+#. module: stock
+#: code:addons/stock/stock.py:4191
+#: view:stock.picking:stock.view_picking_internal_search
+#: view:stock.picking.type:stock.stock_picking_type_kanban
+#, python-format
+msgid "Late"
+msgstr "延迟"
+
+#. module: stock
+#: view:stock.picking.type:stock.stock_picking_type_kanban
+msgid "Late (%)"
+msgstr "延迟 (%)"
+
+#. module: product
+#: field:product.product,code:0
+#: field:product.product,default_code:0
+#: field:product.template,default_code:0
+msgid "Internal Reference"
+msgstr "产品定义码"
+
+#. module: stock_extend
+#: field:print.product.barcode.model,product_barcode:0
+msgid "print product barcode"
+msgstr "打印产品序列号"
+
+#. module: stock_extend
+#: field:print.product.barcode.model,product_id:0
+msgid "Chose product"
+msgstr "产品"
+
+#. module: stock
+#: model:stock.picking.type,name:stock.picking_type_in
+msgid "原料入库:供应商->原料仓"
+msgstr "原料入库:供应商->原料仓"

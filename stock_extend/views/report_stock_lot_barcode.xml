@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+<template   id="stock.report_lot_barcode">
+    <t t-call="report.html_container">
+        <t t-foreach="docs" t-as="o">
+                 <div class="page">
+                    <table>
+                        <tbody>
+                            <tr >
+                                <td style="width:80px;"><span style="font-size:16;">产品名: </span></td>
+                                <td style="width:320px;"><span t-field="o.product_id.name" style="font-size:16;word-break: break-all;"/></td>
+                            </tr>
+                            <tr/>
+                            <tr style="margin-top:10px;">
+                                <td style="width:80px;"><span style="font-size:16;">序列号: </span></td>
+                                <td><span t-field="o.name" style="font-size:16;"/></td>
+                            </tr>
+                            <tr/>
+                            <tr style="margin-top:10px;">
+                                <td style="width:80px;"><span style="font-size:16;">厂商号: </span></td>
+                                <td><span t-field="o.supplier_seiral_no" style="font-size:16;"/></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td><img t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('Code128', o.name, 510, 80)" style="width:510px;height:80px;margin-left:-93px;margin-top:10px;"/></td>
+                            </tr>
+                        </tbody>
+                    </table> 
+                </div>
+         </t>
+    </t>
+</template>
+    </data>
+</openerp>

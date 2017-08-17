@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="1">
+        <record id="stock.stock_location_stock" model="stock.location">
+            <field name="name">原料仓</field>
+            <field name="usage">internal</field>
+            <field name="company_id">1</field>
+        </record>
+        <record id="location_product" model="stock.location">
+            <field name="name">成品仓</field>
+            <field name="usage">internal</field>
+            <field name="company_id">1</field>
+        </record>
+        <record id="location_material_waste" model="stock.location">
+            <field name="name">废品仓</field>
+            <field name="usage">internal</field>
+            <field name="company_id">1</field>
+        </record>
+
+        <record id="seq_picking_in" model="ir.sequence">
+            <field name="name">入库单流水号</field>
+            <field name="prefix">WH/IN/</field>
+            <field name="padding">5</field>
+            <field name="company_id" eval="1"/>
+        </record>
+
+        <record id="seq_picking_out" model="ir.sequence">
+            <field name="name">出库单流水号</field>
+            <field name="prefix">WH/OUT/</field>
+            <field name="padding">5</field>
+            <field name="company_id" eval="1"/>
+        </record>
+
+        <record id="seq_picking_int" model="ir.sequence">
+            <field name="name">调拨单流水号</field>
+            <field name="prefix">WH/INT/</field>
+            <field name="padding">5</field>
+            <field name="company_id" eval="1"/>
+        </record>
+
+        <record id="stock.picking_type_in" model="stock.picking.type">
+            <field name="code">incoming</field>
+            <field name="name">原料入库:供应商->原料仓</field>
+            <field name="sequence">1</field>
+            <field name="sequence_id" ref="seq_picking_in"/>
+            <field name="color">3</field>
+            <field name="default_location_src_id" ref="stock.stock_location_suppliers"/>
+            <field name="default_location_dest_id" ref="stock.stock_location_stock"/>
+            <field name="scan_operation_type">1</field>
+            <field name="auto_create_lot" eval="True"/>
+        </record>
+        <record id="picking_type_material_out" model="stock.picking.type">
+            <field name="code">internal</field>
+            <field name="name">原料出库:原料仓->生产车间</field>
+            <field name="sequence">2</field>
+            <field name="sequence_id" ref="seq_picking_out"/>
+            <field name="color">3</field>
+            <field name="default_location_src_id" ref="stock.stock_location_stock"/>
+            <field name="default_location_dest_id" ref="stock.location_production"/>
+            <field name="scan_operation_type">2</field>
+            <field name="auto_create_lot" eval="False"/>
+        </record>
+        <record id="picking_type_material_waste" model="stock.picking.type">
+            <field name="code">internal</field>
+            <field name="name">原料报废:原料仓->废品仓</field>
+            <field name="sequence">3</field>
+            <field name="sequence_id" ref="seq_picking_int"/>
+            <field name="color">3</field>
+            <field name="default_location_src_id" ref="stock.stock_location_stock"/>
+            <field name="default_location_dest_id" ref="location_material_waste"/>
+            <field name="scan_operation_type">4</field>
+            <field name="auto_create_lot" eval="False"/>
+        </record>
+        <record id="picking_type_product_in" model="stock.picking.type">
+            <field name="code">internal</field>
+            <field name="name">成品入库:生产车间->成品仓</field>
+            <field name="sequence">4</field>
+            <field name="sequence_id" ref="seq_picking_in"/>
+            <field name="color">3</field>
+            <field name="default_location_src_id" ref="stock.location_production"/>
+            <field name="default_location_dest_id" ref="location_product"/>
+            <field name="scan_operation_type">4</field>
+            <field name="auto_create_lot" eval="False"/>
+        </record>
+        <record id="stock.picking_type_out" model="stock.picking.type">
+            <field name="code">outgoing</field>
+            <field name="name">成品出库:成品仓->客户</field>
+            <field name="sequence">5</field>
+            <field name="sequence_id" ref="seq_picking_out"/>
+            <field name="color">3</field>
+            <field name="default_location_src_id" ref="location_product"/>
+            <field name="default_location_dest_id" ref="stock.stock_location_customers"/>
+            <field name="scan_operation_type">3</field>
+            <field name="auto_create_lot" eval="False"/>
+        </record>
+
+        <record id="stock.picking_type_internal" model="stock.picking.type">
+            <field name="sequence">6</field>
+        </record>
+        
+        <record id="stock_onfig_settings_1" model="stock.config.settings">
+            <field name="group_stock_production_lot" eval="True"/>
+            <field name="group_stock_multiple_locations" eval="True"/>
+        </record>
+
+        <record id="stock.sequence_production_lots" model="ir.sequence">
+            <field name="name">Serial Numbers</field>
+            <field name="code">stock.lot.serial</field>
+            <field name="prefix"></field>
+            <field name="padding">13</field>
+            <field name="number_next">1</field>
+            <field name="number_increment">1</field>
+            <field name="company_id" eval="False"/>
+        </record>
+    </data>
+</openerp>
