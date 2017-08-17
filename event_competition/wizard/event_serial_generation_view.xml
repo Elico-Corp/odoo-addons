@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="view_event_serial_generation" model="ir.ui.view">
+            <field name="name">Event Serial Generation</field>
+            <field name="model">event.serial.generation</field>
+            <field name="arch" type="xml">
+              <form string="Event Serial Generation">
+                  <sheet>
+                    <group>
+                      <field name="event_id" />
+                      <field name="nb" />
+                    </group>
+                  </sheet>
+                  <footer>
+                      <button name="generate" string="Generate" type="object" class="oe_highlight"/>
+                      or
+                      <button string="Cancel" class="oe_link" special="cancel" />
+                  </footer>
+              </form>
+            </field>
+        </record>
+
+        <record id="action_serial_generation" model="ir.actions.act_window">
+            <field name="name">Event Serial Generation</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">event.serial.generation</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_event_serial_generation"/>
+            <field name="target">new</field>
+        </record>
+
+        <menuitem name="Generate Serial" parent="event.event_main_menu" id="serial_generation_menu" action="action_serial_generation" sequence="80" />
+    </data>
+</openerp>
