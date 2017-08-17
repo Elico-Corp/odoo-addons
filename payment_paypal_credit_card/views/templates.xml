@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <template id="paypal_credit_card_payment_template" inherit_id="website_sale.payment">
+            <xpath expr="//div[@id='payment_method']//ul/li//img" position="replace">
+                <img class="media-object" style="width: 60px; display: inline-block;"
+                    t-if="not acquirer.icon"
+                    t-att-title="acquirer.name"
+                    t-att-src="'/payment_%s/static/src/img/%s_icon.png' % (acquirer.provider, acquirer.provider)"/>
+                
+                <img class="media-object" style="width: 60px; display: inline-block;"
+                    t-if="acquirer.icon"
+                    t-att-title="acquirer.name"
+                    t-att-src="'/payment_%s/static/src/img/%s_icon.png' % (acquirer.icon, acquirer.icon)"/>
+            </xpath>
+        </template>
+    </data>
+</openerp>
