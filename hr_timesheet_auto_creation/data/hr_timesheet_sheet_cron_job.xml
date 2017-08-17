@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="timesheet_sheet_create_corn_job" model="ir.cron">
+            <field name="name">My current TMS</field>
+            <field name="interval_number">1</field>
+            <field name="interval_type">weeks</field>
+            <field name="nextcall" eval="(DateTime.now() +
+            timedelta(days= +(7-DateTime.now().weekday()))).
+            strftime('%Y-%m-%d 05:00:00')"/>
+            <field name="numbercall">-1</field>
+            <field name="active" eval="True"/>
+            <field name="doall" eval="True"/>
+            <field name="model">hr_timesheet_sheet.sheet</field>
+            <field name="function">create_employee_timesheet</field>
+            <field name="args">()</field>
+        </record>
+    </data>
+</openerp>
