@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record id="checkout" model="ir.ui.view">
+            <field name="name">Website Sale Checkout</field>
+            <field name="inherit_id" ref="website_sale.checkout" />
+            <field name="arch" type="xml" >
+                <xpath expr="//h3/small" position="replace" />
+                <xpath expr="//input[@name='street']/.." position="replace" />
+                <xpath expr="//input[@name='vat']/.." position="replace" />
+            </field>
+        </record>
+    </data>
+</openerp>
