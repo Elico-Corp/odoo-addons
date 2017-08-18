@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record model="ir.ui.view" id="task_id_display_form_inherit">
+            <field name="name">brdp_task_mandatory.form_view</field>
+            <field name="model">project.task</field>
+            <field name="inherit_id" ref="business_requirement_deliverable_project.view_task_form2"/>
+            <field name="arch" type="xml">
+                <field name="business_requirement_id" position="after">
+                    <field name="br_required" invisible="1"/>
+                </field>  
+            </field>
+        </record>
+    </data>
+</openerp>

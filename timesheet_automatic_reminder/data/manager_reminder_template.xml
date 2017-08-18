@@ -1,0 +1,41 @@
+<?xml version="1.0" ?>
+<openerp>
+    <data>
+        <record id="manager_reminder_email_template" model="email.template">
+            <field name="name">
+                Timesheet Reminder for Manager - Send by Email
+            </field>
+            <field name="email_from">
+                ${(ctx.manager.manager.company_id.email) | safe}
+            </field>
+            <field name="email_to">
+                ${(ctx.manager.manager.work_email or ctx.manager.manager.company_id.email) | safe}
+            </field>
+            <field name="subject">
+                ${ctx.manager.manager.company_id.name | safe} Timesheet Reminder
+                for your employees
+                (Ref ${ctx.manager.manager.user_id or 'n/a'})
+            </field>
+            <field name="model_id"
+                   ref="timesheet_automatic_reminder.model_timesheet_reminder"/>
+            <field name="auto_delete" eval="True"/>
+            <field name="lang">${ctx.manager.manager.user_id.partner_id
+            .lang}</field>
+            <field name="body_html">
+                <![CDATA[
+                <h1>Dear ${ctx.manager.manager.name}:</h1></br>
+                <ul>Following employees have not yet input their timesheets:
+                  % for k, v in ctx.manager.employee.items()
+                  <li>
+                    <span style="color:red">${k[1]}</span>:
+                    <ul>
+                        <li>${v}</li>
+                    </ul>
+                  </li>
+                  % endfor
+                </ul>
+                ]]>
+            </field>
+        </record>
+    </data>
+</openerp>
