@@ -3,8 +3,8 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 {
     "name": "Report Py3o Multisheet With Custome Lines",
-    "summary": """Modifies 
-    the py3o template to add multi-lines capabilities into it """,
+    "summary": """Modifies the py3o template to add
+        multi-lines capabilities into it""",
     "version": "10.0.1.0.0",
     "author": "Elico Corp",
     "support": "support@elico-corp.com",
