@@ -12,6 +12,7 @@ The body of base template is modified to allow several custom lines.
 Installation
 ============
 To install this module, you need to install ezodf python library:
+
 ..code-block::
 
   sudo pip install ezodf

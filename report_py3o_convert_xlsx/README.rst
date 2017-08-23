@@ -13,6 +13,7 @@ It should be considered a temporary solution until `current py3o.renderserver bu
 Installation
 ============
 To install this module, you need to install libreoffice in your server:
+
 .. code-block::
 
   apt-get -y -q install libreoffice /
