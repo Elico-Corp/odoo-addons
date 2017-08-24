@@ -4,7 +4,7 @@
 {
     'name': 'Authentication via LDAP with Self Signed Certificate',
     'summary': """Authentication via LDAP with Self Signed Certificate""",
-    'version': '10.0.1.0.1',
+    'version': '10.0.1.0.0',
     'author': 'Elico Corp',
     'website': 'https://www.elico-corp.com',
     'support': 'support@elico-corp.com',
