@@ -6,45 +6,49 @@
 LDAP Password
 =============
 
-This module extends the functionality of Odoo password and allow you to change the ldap password.
+This module extends the functionality of Odoo password and allow you to change
+the ldap password.
 
 Installation
 ============
 
 To install this module, you need to:
 
- * have basic modules installed (ldap)
-
-
-Known issues / Roadmap
-======================
+ * Have basic modules installed (ldap)
 
 Bug Tracker
 ===========
 
-Bugs are tracked on `GitHub Issues <https://github.com/Elico-Corp/odoo/issues>`_.
+Bugs are tracked on `GitHub Issues <https://github.com/Elico-Corp/odoo-addons/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us smashing it by providing a detailed and welcomed feedback
-`here <https://github.com/Elico-Corp/odoo/issues/new?body=module:%20ldap_password%0Aversion:%20{8.0}%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Credits
 =======
 
+Credits
+=======
+
+
 Contributors
 ------------
 
-* Augustin Cisterne-Kaas <augustin.cisterne-kaas@elico-corp.com>
-    
+* Augustin Cisterne-Kaas
+* Eric Caudal <eric.caudal@elico-corp.com>
 
 Maintainer
 ----------
 
 .. image:: https://www.elico-corp.com/logo.png
-:alt: Elico Corp
-:target: https://www.elico-corp.com
+   :alt: Elico Corp
+   :target: https://www.elico-corp.com
 
 This module is maintained by Elico Corporation.
 
-Elico Corporation offers consulting services to implement open source management software in SMEs, with a strong involvement in quality of service.
+Elico Corporation offers consulting services to implement open source management
+software in SMEs, with a strong involvement in quality of service.
 
-Our headquarters are located in Shanghai with branches in Hong Kong, ShenZhen and Singapore servicing customers from Greater China, Asia Pacific, Europe, Americas, etc...
+Our headquarters are located in Shanghai and Singapore servicing customers from
+Greater China and Asia Pacific.
+
+Contact information: `Sales <contact@elico-corp.com>`__
