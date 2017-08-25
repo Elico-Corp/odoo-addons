@@ -20,15 +20,15 @@
 #
 ##############################################################################
 {
-     'name': 'Add multiprice to product form view',
-     'version': '8.0.1.0.0',
-     'category': 'Sales',
-     'depends': ['product_multiprices'],
-     'author': 'Elico Corp',
-     'license': 'AGPL-3',
-     'website': 'https://www.elico-corp.com',
-     'support': 'support@elico-corp.com',
-     'data': ['views/product.xml'],
-     'installable': True,
-     'application': False
+    'name': 'Add multiprice to product form view',
+    'version': '8.0.1.0.0',
+    'category': 'Sales',
+    'depends': ['product_multiprices'],
+    'author': 'Elico Corp',
+    'license': 'AGPL-3',
+    'website': 'https://www.elico-corp.com',
+    'support': 'support@elico-corp.com',
+    'data': ['views/product.xml'],
+    'installable': True,
+    'application': False
 }
