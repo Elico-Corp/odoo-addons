@@ -18,6 +18,7 @@ from ..pycas import login
 
 from openerp import http
 from openerp.addons.web.controllers import main
+from openerp.http import request as _serialize_exception
 
 import werkzeug
 import logging
@@ -68,7 +69,6 @@ class Controller(http.Controller):
     def _get_cas_ticket(self, request):
         # get ticket from url
         url = request.httprequest.url
-        import urlparse
 
         def qs(url):
             query = urlparse.urlparse(url).query
@@ -194,7 +194,7 @@ class Home(main.Home):
     def _get_cas_ticket(self, request):
         # get ticket from url
         url = request.httprequest.url
- 
+
         def qs(url):
             query = urlparse.urlparse(url).query
             res = dict([

@@ -3,6 +3,7 @@
 # © 2016 Elico Corp (https://www.elico-corp.com).
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html)
 
-import auth_cas.controllers
-import auth_cas.res_config
-import auth_cas.res_users
+from . import controllers
+from . import res_config
+from . import res_users
+from . import pycas

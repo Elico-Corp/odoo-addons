@@ -139,9 +139,6 @@ CAS_MSG = (
 # ##Optional log file for debugging
 # ##LOG_FILE="/tmp/cas.log"
 
-
-
-
 # -----------------------------------------------------------------------
 #  Functions
 # -----------------------------------------------------------------------
@@ -209,16 +206,15 @@ def do_redirect(cas_host, service_url, opt, secure):
     if opt in ("renew", "gateway"):
         cas_url += "&%s=true" % opt
         #  Print redirect page to browser
-    #print "Refresh: 0; url=%s" % cas_url
-    #print "Content-type: text/html"
+    # print "Refresh: 0; url=%s" % cas_url
+    # print "Content-type: text/html"
     if opt == "gateway":
         domain, path = urlparse.urlparse(service_url)[1:3]
-        #print make_pycas_cookie("gateway", domain, path, secure)
-    #print """If your browser does not redirect you, \
-    then please follow <a href="%s">this link</a>.
-    """ % cas_url
+        # print make_pycas_cookie("gateway", domain, path, secure)
+    # print """If your browser does not redirect you, \
+    # then please follow <a href="%s">this link</a>.
+    # """ % cas_url
     # raise SystemExit
-
 
 def decode_cookie(cookie_vals, lifetime=None):
     """
