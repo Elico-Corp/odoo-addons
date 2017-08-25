@@ -21,9 +21,6 @@ To use this module, you need to:
    :alt: Try me on Runbot
    :target: https://runbot.odoo-community.org/runbot/{repo_id}/{branch}
 
-.. repo_id is available in https://github.com/OCA/maintainer-tools/blob/master/tools/repos_with_ids.txt
-.. branch is "8.0" for example
-
 Bug Tracker
 ===========
 
@@ -44,18 +41,22 @@ Contributors
 ------------
 
 * Sebastien Maillard <sebastien.maillard@elico-corp.com>
+* Eric Caudal <eric.caudal@elico-corp.com>
+
 
 Maintainer
 ----------
 
-.. image:: https://odoo-community.org/logo.png
-   :alt: Odoo Community Association
-   :target: https://odoo-community.org
+.. image:: https://www.elico-corp.com/logo.png
+   :alt: Elico Corp
+   :target: https://www.elico-corp.com
 
-This module is maintained by the OCA.
+This module is maintained by Elico Corporation.
 
-OCA, or the Odoo Community Association, is a nonprofit organization whose
-mission is to support the collaborative development of Odoo features and
-promote its widespread use.
+Elico Corporation offers consulting services to implement open source management
+software in SMEs, with a strong involvement in quality of service.
 
-To contribute to this module, please visit https://odoo-community.org.
+Our headquarters are located in Shanghai and Singapore servicing customers from
+Greater China and Asia Pacific.
+
+Contact information: `Sales <contact@elico-corp.com>`__
