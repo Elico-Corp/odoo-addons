@@ -18,7 +18,6 @@ from ..pycas import login
 
 from openerp import http
 from openerp.addons.web.controllers import main
-from openerp.http import request, serialize_exception as _serialize_exception
 
 import werkzeug
 import logging
@@ -138,8 +137,8 @@ class Controller(http.Controller):
             cas_server = cas_host
         else:
             url_server = urlparse(cas_host)
-            cas_server = url_server.scheme + '://' + url_server.netloc + ':' + \
-                str(cas_port) + url_server.path
+            cas_server = url_server.scheme + '://' + url_server.netloc + ':' \
+                + str(cas_port) + url_server.path
         service_url = urllib.quote(cur_url, safe='')
         # The login function, from pycas, check if the ticket given
         # by CAS is a real ticket. The login of the user
@@ -195,8 +194,7 @@ class Home(main.Home):
     def _get_cas_ticket(self, request):
         # get ticket from url
         url = request.httprequest.url
-        import urlparse
-
+ 
         def qs(url):
             query = urlparse.urlparse(url).query
             res = dict([

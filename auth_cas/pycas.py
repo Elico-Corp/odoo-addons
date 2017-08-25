@@ -87,6 +87,15 @@
 #
 #   Status Codes are listed below.
 #
+# -----------------------------------------------------------------------
+#  Imports
+# -----------------------------------------------------------------------
+import os
+import md5
+import time
+import urllib
+import urllib2
+import urlparse
 
 # -----------------------------------------------------------------------
 #  Constants
@@ -131,15 +140,6 @@ CAS_MSG = (
 # ##LOG_FILE="/tmp/cas.log"
 
 
-# -----------------------------------------------------------------------
-#  Imports
-# -----------------------------------------------------------------------
-import os
-import md5
-import time
-import urllib
-import urllib2
-import urlparse
 
 
 # -----------------------------------------------------------------------
@@ -209,12 +209,12 @@ def do_redirect(cas_host, service_url, opt, secure):
     if opt in ("renew", "gateway"):
         cas_url += "&%s=true" % opt
         #  Print redirect page to browser
-    print "Refresh: 0; url=%s" % cas_url
-    print "Content-type: text/html"
+    #print "Refresh: 0; url=%s" % cas_url
+    #print "Content-type: text/html"
     if opt == "gateway":
         domain, path = urlparse.urlparse(service_url)[1:3]
-        print make_pycas_cookie("gateway", domain, path, secure)
-    print """If your browser does not redirect you, \
+        #print make_pycas_cookie("gateway", domain, path, secure)
+    #print """If your browser does not redirect you, \
     then please follow <a href="%s">this link</a>.
     """ % cas_url
     # raise SystemExit
@@ -247,7 +247,7 @@ def decode_cookie(cookie_vals, lifetime=None):
             oldhash = cookie_val[0:8]
             timestr, id = split2(cookie_val[8:], ":")
             #  Verify hash
-            newhash = makehash(timestr + ":" + id)
+            #newhash = makehash(timestr + ":" + id)
             if oldhash == makehash(timestr + ":" + id):
                 #  Check lifetime
                 if lifetime:
@@ -358,7 +358,7 @@ def get_cookies():
     cookies = {}
     for cookie_pair in cookie_pairs:
         key, val = split2(cookie_pair.strip(), "=")
-        if cookies.has_key(key):
+        if key in cookies:
             cookies[key].append(val)
         else:
             cookies[key] = [val, ]
