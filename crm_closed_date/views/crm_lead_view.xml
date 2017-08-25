@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="crm_case_form_view_oppor" model="ir.ui.view">
+            <field name="name">Opportunities</field>
+            <field name="model">crm.lead</field>
+            <field name="inherit_id" ref="crm.crm_case_form_view_oppor"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='date_deadline']" position="after">
+                    <field name="date_closed"
+                           readonly="1"
+                           attrs="{'invisible':[('probability', '!=', 100.0)]}"/>
+                </xpath>
+            </field>
+        </record>
+        <record id="crm_case_form_view_oppor_for_sales_manager" model="ir.ui.view">
+            <field name="name">Sales Managers Opportunities</field>
+            <field name="model">crm.lead</field>
+            <field name="groups_id" eval="[(6, 0, [ref('base.group_sale_manager')])]"/>
+            <field name="inherit_id" ref="crm_closed_date.crm_case_form_view_oppor"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='date_closed']" position="attributes">
+                    <attribute name="readonly">0</attribute>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</openerp>

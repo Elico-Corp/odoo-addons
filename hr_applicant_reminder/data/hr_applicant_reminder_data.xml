@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <record id="mail_template_due_applicant" model="mail.template">
+            <field name="name">Notification of Applicant Due</field>
+            <field name="email_from"></field>
+            <field name="subject">Notification of Applicant Due</field>
+            <field name="model_id" ref="hr_recruitment.model_hr_applicant"/>
+            <field name="auto_delete" eval="True"/>
+            <field name="body_html"><![CDATA[
+                <p>Description: ${object.name}</p>
+                <p>Name of Applicant: ${object.partner_name}</p>
+                <p>Date of Reminder: ${object.date_action}</p>
+                <p>Action: ${object.title_action}</p>
+                <p>Thanks,</p>
+            ]]></field>
+        </record>
+
+        <record id="cron_remind_applicant_due" model="ir.cron">
+            <field name="name">Remind Applicant Due</field>
+            <field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+            <field name="numbercall">-1</field>
+            <field name="model" eval="'hr.applicant'"/>
+            <field name="function">_remind_applicant_due</field>
+            <field name="args" eval="'()'"/>
+        </record>
+
+    </data>
+</odoo>
