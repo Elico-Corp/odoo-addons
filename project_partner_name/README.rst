@@ -15,15 +15,14 @@ Installation
 ============
 
 To install this module, you need to:
-  * have basic modules installed (project)
+  * Have basic modules installed (project)
 
 Bug Tracker
 ===========
 
-Bugs are tracked on `GitHub Issues
-<https://github.com/OCA/infrastructure-dns/issues>`_. In case of trouble, please
-check there if your issue has already been reported. If you spotted it first,
-help us smashing it by providing a detailed and welcomed feedback.
+Bugs are tracked on `GitHub Issues <https://github.com/Elico-Corp/odoo-addons/issues>`_.
+In case of trouble, please check there if your issue has already been reported.
+If you spotted it first, help us smashing it by providing a detailed and welcomed feedback
 
 Credits
 =======
@@ -44,9 +43,10 @@ Maintainer
 
 This module is maintained by Elico Corporation.
 
-Elico Corporation offers consulting services to implement open source
-management software in SMEs, with a strong involvement in quality of service.
+Elico Corporation offers consulting services to implement open source management
+software in SMEs, with a strong involvement in quality of service.
 
-Our headquarters are located in Shanghai with branches in Hong Kong, ShenZhen
-and Singapore servicing customers from Greater China, Asia Pacific, Europe,
-Americas, etc...
+Our headquarters are located in Shanghai and Singapore servicing customers from
+Greater China and Asia Pacific.
+
+Contact information: `Sales <contact@elico-corp.com>`__
