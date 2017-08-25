@@ -19,7 +19,7 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-     {
+{
      'name': 'Add multiprice to product form view',
      'version': '8.0.1.0.0',
      'category': 'Sales',
@@ -31,4 +31,4 @@
      'data': ['views/product.xml'],
      'installable': True,
      'application': False
-     }
+}
