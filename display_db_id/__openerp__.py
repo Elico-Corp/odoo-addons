@@ -27,7 +27,7 @@
     'author': 'Elico-Corp',
     'license': 'AGPL-3',
     'website': 'https://www.elico-corp.com',
-    'support': 'support@elico-corp.com'
+    'support': 'support@elico-corp.com',
     'data': [
         'views/project_task_view.xml',
         'views/crm_lead_view.xml',

@@ -27,7 +27,7 @@
     'author': 'Elico Corp',
     'license': 'AGPL-3',
     'website': 'https://www.elico-corp.com',
-    'support': 'support@elico-corp.com'
+    'support': 'support@elico-corp.com',
     'description': """
     Give the ability to link purchases to a project.
     """,

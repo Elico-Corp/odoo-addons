@@ -26,7 +26,7 @@
     'license': 'AGPL-3',
     "author": "Mentis do.o.o.,Elico Corp",
     'website': 'https://www.elico-corp.com',
-    'support': 'support@elico-corp.com'
+    'support': 'support@elico-corp.com',
     "category": "Sales Management",
     "depends": ['product'],
     "data": [
