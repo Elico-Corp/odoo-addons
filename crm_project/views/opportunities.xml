@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record id="crm_case_form_view_oppor" model="ir.ui.view">
+            <field name="name">opportunities.form</field>
+            <field name="model">crm.lead</field>
+            <field name="inherit_id" ref="crm.crm_case_form_view_oppor"/>
+            <field name="arch" type="xml">
+                <xpath expr="//page[@string='Lead']" position="after">
+                    <page string="Projects" >					
+                        <field name="project_line_ids" nolabel="0" />					
+                    </page>
+                </xpath>
+            </field>
+        </record>
+        <record id="crm_case_kanban_view_leads" model="ir.ui.view">
+            <field name="name">opportunities.kanban</field>
+            <field name="model">crm.lead</field>
+            <field name="inherit_id" ref="crm.crm_case_kanban_view_leads"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='partner_id']/.." position="after">
+                    <div>
+                        <a t-if="record.project_count.raw_value" name="action_picking" type="object" style="margin-right: 10px">   
+                            <span t-if="record.project_count.raw_value gt 1"><field name="project_count"/> Projects</span>
+                            <span t-if="record.project_count.raw_value lt 2"><field name="project_count"/> Project</span>
+                        </a>
+                    </div>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</openerp>
