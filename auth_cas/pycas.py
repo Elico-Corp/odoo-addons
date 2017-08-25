@@ -216,6 +216,7 @@ def do_redirect(cas_host, service_url, opt, secure):
     # """ % cas_url
     # raise SystemExit
 
+
 def decode_cookie(cookie_vals, lifetime=None):
     """
     Retrieve id from pycas cookie and test data for validity
@@ -242,8 +243,8 @@ def decode_cookie(cookie_vals, lifetime=None):
             # Separate cookie parts
             oldhash = cookie_val[0:8]
             timestr, id = split2(cookie_val[8:], ":")
-            #  Verify hash
-            #newhash = makehash(timestr + ":" + id)
+            # Verify hash
+            # newhash = makehash(timestr + ":" + id)
             if oldhash == makehash(timestr + ":" + id):
                 #  Check lifetime
                 if lifetime:
@@ -423,8 +424,8 @@ def login(cas_host, service_url, ticket, lifetime=None, secure=1,
     ticket_status, id = get_ticket_status(
         cas_host, service_url, ticket, protocol, opt)
 
-    print "-------------"
-    print ticket_status
+    # print "-------------"
+    # print ticket_status
 
     if ticket_status == TICKET_OK:
         timestr = str(int(time.time()))

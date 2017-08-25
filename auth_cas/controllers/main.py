@@ -18,7 +18,7 @@ from ..pycas import login
 
 from openerp import http
 from openerp.addons.web.controllers import main
-from openerp.http import request as _serialize_exception
+from openerp.http import request
 
 import werkzeug
 import logging
