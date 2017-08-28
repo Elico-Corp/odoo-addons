@@ -6,23 +6,24 @@
 Project TimeSheet Task ID
 =========================
 
-This module extends the functionality of time sheet and modify the format of the description in details.
-When a user create a task, he/she can see the task ID and name before the name in timesheet's details.
+This module extends the functionality of time sheet and modify the format
+of the description in details.
+When a user create a task, he/she can see the task ID and name before the name
+in timesheet's details.
 
 Installation
 ============
 
 To install this module, you need to:
 
-#. have basic module installed (project_timesheet)
+#. Have basic module installed (project_timesheet)
 
 Bug Tracker
 ===========
 
-Bugs are tracked on `GitHub Issues
-<https://github.com/Elico-Corp/elico_odoo/issues>`_. In case of trouble, please
-check there if your issue has already been reported. If you spotted it first,
-help us smash it by providing detailed and welcomed feedback.
+Bugs are tracked on `GitHub Issues <https://github.com/Elico-Corp/odoo-addons/issues>`_.
+In case of trouble, please check there if your issue has already been reported.
+If you spotted it first, help us smashing it by providing a detailed and welcomed feedback
 
 Credits
 =======
@@ -31,6 +32,7 @@ Contributors
 ------------
 
 Kevin Dong <kevin.dong@elico-corp.com>
+* Eric Caudal <eric.caudal@elico-corp.com>
 
 Maintainer
 ----------
@@ -41,20 +43,10 @@ Maintainer
 
 This module is maintained by Elico Corporation.
 
-Elico Corp is an innovative actor in China, Hong-Kong and Singapore servicing
-well known international companies and as well as local mid-sized businesses.
-Since 2010, our seasoned Sino-European consultants have been providing full
-range Odoo services:
+Elico Corporation offers consulting services to implement open source management
+software in SMEs, with a strong involvement in quality of service.
 
-* Business consultancy for Gap analysis, BPM, operational work-flows review. 
-* Ready-to-use ERP packages aimed at starting businesses.
-* Odoo implementation for manufacturing, international trading, service industry
-  and e-commerce. 
-* Connectors and integration with 3rd party software (Magento, Taobao, Coswin,
-  Joomla, Prestashop, Tradevine etc...).
-* Odoo Support services such as developments, training, maintenance and hosting.
-
-Our headquarters are located in Shanghai with branch in Singapore servicing
-customers from all over Asia Pacific.
+Our headquarters are located in Shanghai and Singapore servicing customers from
+Greater China and Asia Pacific.
 
 Contact information: `Sales <contact@elico-corp.com>`__
