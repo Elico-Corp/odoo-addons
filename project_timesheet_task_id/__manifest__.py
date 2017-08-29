@@ -13,7 +13,7 @@ This module will change the description of task.
     'support': 'support@elico-corp.com',
     "license": "AGPL-3",
     "depends": [
-        "hr_timesheet",
+        "hr_timesheet_sheet",
     ],
     "data": [
         "views/project_timesheet_task_id_view.xml",
