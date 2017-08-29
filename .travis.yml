@@ -5,15 +5,14 @@ addons:
   apt:
     packages:
       - expect-dev  # provides unbuffer utility
+      - python-lxml # because pip installation is slow
       - python-simplejson
       - python-serial
       - python-yaml
-      - default-jre # provides base java runtime environment
-      - ure # provides base java runtime environment
-      - libreoffice # provides base libreoffice installation
-      - libreoffice-writer # provides base libreoffice writer
-      - libreoffice-core # provides base libreoffice core
-      - libreoffice-common # provides base libreoffice common font library
+      - wkhtmltopdf # for odoo pdf reports
+      - python-ldap # for auth_ldap
+      - nodejs
+      - npm
 
 language: python
 
@@ -32,8 +31,6 @@ env:
   - VERSION="10.0" TESTS="0" LINT_CHECK="0" TRANSIFEX="0"
 
 install:
-  - pip install ezodf==0.3.2
-  - pip install lxml # install lxml with pip to fix the error no module named lxml
   - git clone --depth=1 https://github.com/Elico-Corp/maintainer-quality-tools.git ${HOME}/maintainer-quality-tools
   - export PATH=${HOME}/maintainer-quality-tools/travis:${PATH}
   - travis_install_nightly
@@ -49,4 +46,3 @@ script:
 
 after_success:
   - travis_after_test_success
-
