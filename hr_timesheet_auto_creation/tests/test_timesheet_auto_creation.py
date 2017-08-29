@@ -11,6 +11,7 @@ class TestHrTimesheetSheet(common.TransactionCase):
 
     def setUp(self):
         super(TestHrTimesheetSheet, self).setUp()
+        self.env['hr.employee'].search([]).write({'user_id': False})
         self.tms_obj = self.env['hr_timesheet_sheet.sheet']
         today = datetime.now()
         self.monday = today + timedelta(days=-today.weekday())
