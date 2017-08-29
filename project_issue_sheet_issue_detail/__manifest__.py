@@ -6,7 +6,7 @@
     "summary": """This module extends the functionality when a user creates an
     issue, he/she can see the issue ID on the time sheet description in table
     details.""",
-    "version": "10.0.1.0.0",
+    'version': '10.0.1.0.0',
     "category": "project",
     "author": "Elico Corp",
     'website': 'https://www.elico-corp.com',

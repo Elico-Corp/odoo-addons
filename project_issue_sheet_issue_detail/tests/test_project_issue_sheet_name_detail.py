@@ -15,13 +15,13 @@ class TesttestProjectIssueSheetNameDetail(common.TransactionCase):
         task = project.task_ids.filtered(lambda t: t.name == '%s:%s' %
                                          (project.name, prod_task.name))
         self.line = self.env['account.analytic.line'].create({
-                    'name': 'Test Line',
-                    'project_id': project.id,
-                    'task_id': task.id,
-                    'unit_amount': 50,
-                    'user_id': 1,
-                    'issue_id': crm_bug_id
-                })
+            'name': 'Test Line',
+            'project_id': project.id,
+            'task_id': task.id,
+            'unit_amount': 50,
+            'user_id': 1,
+            'issue_id': crm_bug_id
+        })
 
     def test_name_get(self):
         "Test For name_get method"
