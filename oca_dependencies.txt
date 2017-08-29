@@ -1,1 +1,2 @@
 reporting-engine https://github.com/OCA/reporting-engine.git 10.0
+account-analytic https://github.com/OCA/account-analytic.git 10.0
