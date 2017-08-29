@@ -32,7 +32,8 @@ class ProjectProject(models.Model):
             projects = self.search(
                 ['|', ('partner_id.ref', operator, name),
                  ('partner_id.parent_id.ref', operator, name)] + args,
-                                   limit=limit)
+                limit=limit
+            )
         if not projects:
             projects = self.search([('name', operator, name)] + args,
                                    limit=limit)
