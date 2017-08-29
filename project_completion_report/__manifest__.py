@@ -11,7 +11,7 @@
     "author": "Elico Corp",
     "license": "AGPL-3",
     "depends": [
-        "project_timesheet",
+        "hr_timesheet",
         "project_issue_sheet",
         "project_project_category",
         "business_requirement_deliverable_project",
@@ -20,5 +20,5 @@
         "report/project_completion_report_view.xml",
         "security/ir.model.access.csv",
     ],
-    "installable": False,
+    "installable": True,
 }
