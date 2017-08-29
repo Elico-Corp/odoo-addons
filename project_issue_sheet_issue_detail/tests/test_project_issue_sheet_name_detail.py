@@ -20,7 +20,7 @@ class TesttestProjectIssueSheetNameDetail(common.TransactionCase):
             'task_id': task.id,
             'unit_amount': 50,
             'user_id': 1,
-            'issue_id': crm_bug_id
+            'issue_id': crm_bug_id,
         })
 
     def test_name_get(self):
