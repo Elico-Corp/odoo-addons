@@ -17,30 +17,35 @@ class ProjectCompletionReport(models.Model):
     _rec_name = 'activity_name'
 
     id = fields.Integer('Id', readonly=True)
+    partner_id = fields.Many2one(
+        'res.partner', 'Customer', readonly=True)
+    br_id = fields.Many2one(
+        'business.requirement', 'Bus. requ.',
+        readonly=True, help="Business requirement")
+    project_id = fields.Many2one(
+        'project.project', 'Project', readonly=True)
+    account_id = fields.Many2one(
+        'account.analytic.account', 'Analytic account', readonly=True)
+    project_state = fields.Char(
+        'State', readonly=True, help="Project State")
+    project_categ_id = fields.Many2one(
+        'project.project.category',
+        'Project Cat.', readonly=True, help="Project Category")
     activity_type = fields.Selection(
         [
             ('task', 'Task'),
             ('issue', 'Issue'),
         ], 'Type', readonly=True,
         help="Type is used to separate Tasks and Issues")
-    hours = fields.Float(
-        'Time spent', digits=(16, 2), readonly=True,
-        help="Time spent on timesheet")
-    user_id = fields.Many2one('res.users', 'User', readonly=True)
-    project_id = fields.Many2one(
-        'project.project', 'Project', readonly=True)
-    project_state = fields.Char(
-        'State', readonly=True, help="Project State")
-    activity_stage_id = fields.Many2one(
-        'project.task.type', 'Stage',
-        readonly=True, help="Activity Stage")
-    account_id = fields.Many2one(
-        'account.analytic.account', 'Analytic account', readonly=True)
     activity_id = fields.Char(
         'Activity id', readonly=True, help="Task id or Issue id")
     activity_name = fields.Char(
         'Activity name', readonly=True, help="Task name or Issue name")
-
+    user_id = fields.Many2one('res.users', 'Assignee', readonly=True,
+        help="Assignee is not necessarily the one who input the Timesheets")
+    activity_stage_id = fields.Many2one(
+        'project.task.type', 'Stage',
+        readonly=True, help="Activity Stage")
     # FIXME There should be a link between resource and task. If the link
     # existed, each task would have either:
     #  - 0 estimated hour (task created manually)
@@ -55,21 +60,17 @@ class ProjectCompletionReport(models.Model):
     estimated_hours = fields.Float(
         'Est. time', digits=(16, 2), readonly=True,
         help="Estimated time (from BR)")
-
     planned_hours = fields.Float(
         'Init. time', digits=(16, 2), readonly=True,
         help="Initial time (from Task)")
+    total_tms = fields.Float(
+        'Time spent', digits=(16, 2), readonly=True,
+        help="Time spent on timesheet")
     remaining_hours = fields.Float(
         'Remain. time', digits=(16, 2), readonly=True,
         help="Remaining time")
-    br_id = fields.Many2one(
-        'business.requirement', 'Bus. requ.',
-        readonly=True, help="Business requirement")
-    partner_id = fields.Many2one(
-        'res.partner', 'Customer', readonly=True)
-    project_categ_id = fields.Many2one(
-        'project.project.category',
-        'Project Cat.', readonly=True, help="Project Category")
+    total_time = fields.Float('Total time', digits=(16, 2), readonly=True)
+    extra_hours = fields.Float('Extra time', digits=(16, 2), readonly=True)
 
     def init(self, cr):
         """
@@ -87,21 +88,24 @@ class ProjectCompletionReport(models.Model):
                 (
                     (
                         SELECT
-                            'task' AS activity_type,
-                            SUM(al.unit_amount) AS hours,
-                            t.user_id,
+                            a.partner_id,
+                            b.id AS br_id,
                             p.id AS project_id,
-                            p.state AS project_state,
-                            t.stage_id AS activity_stage_id,
                             a.id AS account_id,
+                            p.project_categ_id,
+                            p.state AS project_state,
+                            'task' AS activity_type,
                             t.id AS activity_id,
                             t.name AS activity_name,
+                            t.user_id,
+                            t.stage_id AS activity_stage_id,
                             AVG(r.qty) AS estimated_hours,
                             t.planned_hours,
+                            SUM(al.unit_amount) AS total_tms,
                             t.remaining_hours,
-                            b.id AS br_id,
-                            a.partner_id,
-                            p.project_categ_id
+                            t.planned_hours + t.remaining_hours AS total_hours,
+                            t.planned_hours + t.remaining_hours
+                                - t.planned_hours AS extra_hours
                         FROM
                             project_project p
                             -- Link with the analytic account
@@ -128,21 +132,23 @@ class ProjectCompletionReport(models.Model):
                     UNION
                     (
                         SELECT
-                            'issue' AS activity_type,
-                            SUM(al.unit_amount) AS hours,
-                            i.user_id,
+                            a.partner_id,
+                            b.id AS br_id,
                             p.id AS project_id,
-                            p.state AS project_state,
-                            i.stage_id AS activity_stage_id,
                             a.id AS account_id,
+                            p.project_categ_id,
+                            p.state AS project_state,
+                            'issue' AS activity_type,
                             i.id AS activity_id,
                             i.name AS activity_name,
+                            i.user_id,
+                            i.stage_id AS activity_stage_id,
                             NULL AS estimated_hours,
+                            SUM(al.unit_amount) AS total_tms,
                             NULL AS planned_hours,
                             NULL AS remaining_hours,
-                            b.id AS br_id,
-                            a.partner_id,
-                            p.project_categ_id
+                            SUM(al.unit_amount) AS total_hours,
+                            SUM(al.unit_amount) AS extra_hours
                         FROM
                             project_project p
                             -- Link with the analytic account
