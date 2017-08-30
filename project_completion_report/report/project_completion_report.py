@@ -40,9 +40,22 @@ class ProjectCompletionReport(models.Model):
         'Activity id', readonly=True, help="Task id or Issue id")
     activity_name = fields.Char(
         'Activity name', readonly=True, help="Task name or Issue name")
+
+    # FIXME There should be a link between resource and task. If the link
+    # existed, each task would have either:
+    #  - 0 estimated hour (task created manually)
+    #  - estimated hours of the corresponding resource
+    # Since the link doesn't exist, the estimated hours of each task is
+    # currently the average of the estimated hours of all the resources.
+    # The other problem is that if there are tasks created manually, they will
+    # also have the same estimated hours, meaning the total estimated hours of
+    # a BR will be more than the total estimated hours of its resources. A
+    # workaround would be to divide by the number of tasks and multiply by the
+    # number of resources. All this wouldn't happen if there was the link.
     estimated_hours = fields.Float(
         'Est. time', digits=(16, 2), readonly=True,
         help="Estimated time (from BR)")
+
     planned_hours = fields.Float(
         'Init. time', digits=(16, 2), readonly=True,
         help="Initial time (from Task)")
@@ -83,10 +96,7 @@ class ProjectCompletionReport(models.Model):
                             a.id AS account_id,
                             t.id AS activity_id,
                             t.name AS activity_name,
-                            CASE count(al.id)
-                                WHEN 0 THEN SUM(r.qty)
-                                ELSE SUM(r.qty) / COUNT(al.id)
-                            END AS estimated_hours,
+                            AVG(r.qty) AS estimated_hours,
                             t.planned_hours,
                             t.remaining_hours,
                             b.id AS br_id,
@@ -110,20 +120,6 @@ class ProjectCompletionReport(models.Model):
                             LEFT OUTER JOIN business_requirement b
                                 ON b.id = p.business_requirement_id
                             -- Link with the BR resources
-                            -- FIXME Link should be between resource and task
-                            -- since task is the "deepest" level in the group
-                            -- by. Else, all the estimated time of the BR is
-                            -- summed for each task of the project (and
-                            -- multiplied by the number of TMS, hence the
-                            -- division in the SELECT). As a result, all this
-                            -- estimated time is summed at the BR level when
-                            -- it's not deployed. One workaround would be to
-                            -- divide by the number of tasks to get an average
-                            -- estimated time per task. If the link existed,
-                            -- each task would have either 0 estimated hours
-                            -- (task created manually) or the estimated hours
-                            -- of the corresponding resource. But this link
-                            -- doesn't exist in the data model...
                             LEFT OUTER JOIN business_requirement_resource r
                                 ON r.business_requirement_id = b.id
                         GROUP BY
