@@ -16,16 +16,16 @@ class ProjectCompletionReport(models.Model):
     # Field used for the Name
     _rec_name = 'activity_name'
 
-    id = fields.Integer('Id', readonly=True)
+    id = fields.Integer('ID', readonly=True)
     partner_id = fields.Many2one(
         'res.partner', 'Customer', readonly=True)
     br_id = fields.Many2one(
-        'business.requirement', 'Bus. requ.',
-        readonly=True, help="Business requirement")
+        'business.requirement', 'Bus. Req.',
+        readonly=True, help="Business Requirement")
     project_id = fields.Many2one(
         'project.project', 'Project', readonly=True)
     account_id = fields.Many2one(
-        'account.analytic.account', 'Analytic account', readonly=True)
+        'account.analytic.account', 'Analytic Account', readonly=True)
     project_state = fields.Char(
         'State', readonly=True, help="Project State")
     project_categ_id = fields.Many2one(
@@ -38,9 +38,9 @@ class ProjectCompletionReport(models.Model):
         ], 'Type', readonly=True,
         help="Type is used to separate Tasks and Issues")
     activity_id = fields.Char(
-        'Activity id', readonly=True, help="Task id or Issue id")
+        'Activity ID', readonly=True, help="Task ID or Issue ID")
     activity_name = fields.Char(
-        'Activity name', readonly=True, help="Task name or Issue name")
+        'Activity Name', readonly=True, help="Task name or Issue name")
     user_id = fields.Many2one('res.users', 'Assignee', readonly=True,
         help="Assignee is not necessarily the one who input the Timesheets")
     activity_stage_id = fields.Many2one(
@@ -69,7 +69,7 @@ class ProjectCompletionReport(models.Model):
     remaining_hours = fields.Float(
         'Remain. time', digits=(16, 2), readonly=True,
         help="Remaining time")
-    total_time = fields.Float('Total time', digits=(16, 2), readonly=True)
+    total_hours = fields.Float('Total time', digits=(16, 2), readonly=True)
     extra_hours = fields.Float('Extra time', digits=(16, 2), readonly=True)
 
     def init(self, cr):
@@ -99,12 +99,21 @@ class ProjectCompletionReport(models.Model):
                             t.name AS activity_name,
                             t.user_id,
                             t.stage_id AS activity_stage_id,
-                            AVG(r.qty) AS estimated_hours,
+                            (
+                                SELECT SUM(r.qty)
+                                FROM business_requirement_resource r
+                                WHERE business_requirement_id = b.id
+                            ) / (
+                                SELECT COUNT(*)
+                                FROM project_task pt
+                                WHERE pt.project_id = p.id
+                            ) AS estimated_hours,
                             t.planned_hours,
                             SUM(al.unit_amount) AS total_tms,
                             t.remaining_hours,
-                            t.planned_hours + t.remaining_hours AS total_hours,
-                            t.planned_hours + t.remaining_hours
+                            SUM(al.unit_amount) + t.remaining_hours
+                                AS total_hours,
+                            SUM(al.unit_amount) + t.remaining_hours
                                 - t.planned_hours AS extra_hours
                         FROM
                             project_project p
@@ -116,16 +125,13 @@ class ProjectCompletionReport(models.Model):
                             -- Link with the timesheet
                             LEFT OUTER JOIN project_task_work tw
                                 ON tw.task_id = t.id
-                            LEFT OUTER JOIN hr_analytic_timesheet ts
-                                ON ts.id = tw.hr_analytic_timesheet_id
+                            LEFT OUTER JOIN hr_analytic_timesheet tms
+                                ON tms.id = tw.hr_analytic_timesheet_id
                             LEFT OUTER JOIN account_analytic_line al
-                                ON al.id = ts.line_id
+                                ON al.id = tms.line_id
                             -- Link with the BR
                             LEFT OUTER JOIN business_requirement b
                                 ON b.id = p.business_requirement_id
-                            -- Link with the BR resources
-                            LEFT OUTER JOIN business_requirement_resource r
-                                ON r.business_requirement_id = b.id
                         GROUP BY
                             t.id, p.id, a.id, b.id
                     )
