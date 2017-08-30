@@ -17,7 +17,7 @@ class ProjectCompletionReport(models.Model):
     _rec_name = 'activity_name'
 
     id = fields.Integer('Id', readonly=True)
-    activity_type = fields.selection(
+    activity_type = fields.Selection(
         [
             ('task', 'Task'),
             ('issue', 'Issue'),
