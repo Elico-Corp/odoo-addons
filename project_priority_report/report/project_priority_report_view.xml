@@ -31,6 +31,8 @@
             <field name="model">project.priority.report</field>
             <field name="arch" type="xml">
                 <graph type="pivot">
+                    <field name="planned_hours" type="measure" />
+                    <field name="tms_total" type="measure" />
                     <field name="remaining_hours" type="measure" />
                 </graph>
             </field>
@@ -55,28 +57,28 @@
                     <field name="user_id" />
                     <field name="stage_id" />
                     <field name="name" />
-                    <separator/>
+                    <separator />
                     <filter string="Last Week" name="last_week" 
-                            domain="[('create_date', '&lt;=', (context_today() + relativedelta(weeks=-1, day=0, weekday=-1)).strftime('%Y-%m-%d')), ('create_date', '&gt;=', (context_today() - datetime.timedelta(days = (context_today().weekday()+7))).strftime('%Y-%m-%d'))]"/>
+                            domain="[('create_date', '&lt;=', (context_today() + relativedelta(weeks=-1, day=0, weekday=-1)).strftime('%Y-%m-%d')), ('create_date', '&gt;=', (context_today() - datetime.timedelta(days = (context_today().weekday()+7))).strftime('%Y-%m-%d'))]" />
                     <filter string="This Week" name="this_week" 
-                            domain="[('create_date', '&gt;=', (context_today() + relativedelta(weeks=-1,day=0, weekday=-1)).strftime('%Y-%m-%d')), ('create_date', '&lt;=', (context_today() - relativedelta(weeks=0, weekday=-1)).strftime('%Y-%m-%d'))]"/>
+                            domain="[('create_date', '&gt;=', (context_today() + relativedelta(weeks=-1,day=0, weekday=-1)).strftime('%Y-%m-%d')), ('create_date', '&lt;=', (context_today() - relativedelta(weeks=0, weekday=-1)).strftime('%Y-%m-%d'))]" />
                     <filter string="Last Month" name="last_month" 
-                            domain="[('create_date', 'ilike', (context_today() - relativedelta(months=1)).strftime('%Y-%m'))]"/>
+                            domain="[('create_date', 'ilike', (context_today() - relativedelta(months=1)).strftime('%Y-%m'))]" />
                     <filter string="This Month" name="this_month"
-                            domain="[('create_date', 'ilike', context_today().strftime('%Y-%m'))]"/>
+                            domain="[('create_date', 'ilike', context_today().strftime('%Y-%m'))]" />
                     <group expand="0" string="Group By">
                         <filter string="Due Week" domain="[]"
-                                context="{'group_by': 'create_date:week'}"/> 
+                                context="{'group_by': 'create_date:week'}" />
                         <filter string="Due Month" domain="[]"
-                                context="{'group_by': 'create_date:month'}"/> 
+                                context="{'group_by': 'create_date:month'}" />
                         <filter string="Project" domain="[]"
-                                context="{'group_by': 'project_id'}"/>
+                                context="{'group_by': 'project_id'}" />
                         <filter string="Stage" domain="[]"
-                                context="{'group_by': 'stage_id'}"/>
+                                context="{'group_by': 'stage_id'}" />
                         <filter string="User" domain="[]"
-                                context="{'group_by': 'user_id'}"/>
+                                context="{'group_by': 'user_id'}" />
                         <filter string="Type" domain="[]"
-                                context="{'group_by': 'activity_type'}"/>
+                                context="{'group_by': 'activity_type'}" />
                     </group>
                 </search>
             </field>
@@ -84,7 +86,7 @@
 
         <menuitem name="Priority List" id="menu_project_priority_report_tree"
                   parent="base.menu_project_report"
-                  action="action_project_priority_report" sequence="1"/>
+                  action="action_project_priority_report" sequence="1" />
 
     </data>
 </openerp>
