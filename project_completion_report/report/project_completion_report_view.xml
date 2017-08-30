@@ -67,8 +67,6 @@
                     <field name="activity_id" />
                     <field name="user_id" />
                     <field name="activity_stage_id" />
-                    <!--filter string="Current Month" domain="[('date', '&gt;=', datetime.datetime.now().strftime('%%Y-%%m-01'))]" />
-                    <filter string="Previous Month" name="previous_month" domain="[('date', '&gt;=', (context_today() - relativedelta(months=1)).strftime('%%Y-%%m-01')), ('date', '&lt;', time.strftime('%%Y-%%m-01'))]"/-->
                     <separator />
                     <group expand="0" string="Group By">
                         <filter string="Customer" domain="[]"
