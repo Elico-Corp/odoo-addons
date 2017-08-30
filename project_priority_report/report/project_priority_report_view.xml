@@ -5,20 +5,22 @@
             <field name="name">Priority List</field>
             <field name="model">project.priority.report</field>
             <field name="arch" type="xml">
-                <tree string="Project Priority Tree" default_order="priority desc, sequence, activity_id">
+                <tree string="Project Priority Tree"
+                      default_order="priority desc, sequence, activity_id">
                     <field name="project_id" />
                     <field name="activity_type" />
                     <field name="parent_id" string="Parent" widget="char" />
                     <field name="activity_id" string="Id" widget="char" />
                     <field name="name" />
-                    <field eval="time.strftime('%Y-%m-%d')" name="create_date"/>
+                    <field eval="time.strftime('%Y-%m-%d')"
+                           name="create_date"/>
                     <field name="tags" />
                     <field name="stage_id" />
                     <field name="user_id" />
                     <field name="priority" />
                     <field name="sequence" />
                     <field name="planned_hours" sum="Total" />
-                    <field name="ts_total" sum="Total" />
+                    <field name="tms_total" sum="Total" />
                     <field name="remaining_hours" sum="Total" />
                 </tree>
             </field>
@@ -29,14 +31,13 @@
             <field name="model">project.priority.report</field>
             <field name="arch" type="xml">
                 <graph type="pivot">
-                    <field name="project_id" />
-                    <field name="stage_id" type="col" />
                     <field name="remaining_hours" type="measure" />
                 </graph>
             </field>
         </record>
 
-        <record id="action_project_priority_report" model="ir.actions.act_window">
+        <record id="action_project_priority_report"
+                model="ir.actions.act_window">
             <field name="name">Priority List</field>
             <field name="res_model">project.priority.report</field>
             <field name="view_type">form</field>
@@ -56,26 +57,34 @@
                     <field name="name" />
                     <separator/>
                     <filter string="Last Week" name="last_week" 
-                        domain="[('create_date', '&lt;=', (context_today() + relativedelta(weeks=-1,day=0, weekday=-1)).strftime('%Y-%m-%d')),('create_date','&gt;=', (context_today() - datetime.timedelta(days = (context_today().weekday()+7))).strftime('%Y-%m-%d'))]"/>
+                            domain="[('create_date', '&lt;=', (context_today() + relativedelta(weeks=-1, day=0, weekday=-1)).strftime('%Y-%m-%d')), ('create_date', '&gt;=', (context_today() - datetime.timedelta(days = (context_today().weekday()+7))).strftime('%Y-%m-%d'))]"/>
                     <filter string="This Week" name="this_week" 
-                        domain="[('create_date','&gt;=', (context_today() + relativedelta(weeks=-1,day=0, weekday=-1)).strftime('%Y-%m-%d')),('create_date','&lt;=',(context_today() - relativedelta(weeks=0, weekday=-1)).strftime('%Y-%m-%d'))]"/>
+                            domain="[('create_date', '&gt;=', (context_today() + relativedelta(weeks=-1,day=0, weekday=-1)).strftime('%Y-%m-%d')), ('create_date', '&lt;=', (context_today() - relativedelta(weeks=0, weekday=-1)).strftime('%Y-%m-%d'))]"/>
                     <filter string="Last Month" name="last_month" 
-                        domain="[('create_date', 'ilike', (context_today() - relativedelta(months=1)).strftime('%Y-%m'))]"/>
-                    <filter string="This Month" name="this_month" domain="[('create_date', 'ilike', context_today().strftime('%Y-%m'))]"/>
+                            domain="[('create_date', 'ilike', (context_today() - relativedelta(months=1)).strftime('%Y-%m'))]"/>
+                    <filter string="This Month" name="this_month"
+                            domain="[('create_date', 'ilike', context_today().strftime('%Y-%m'))]"/>
                     <group expand="0" string="Group By">
-                        <filter string="Due Week" domain="[]" context="{'group_by':'create_date:week'}"/> 
-                        <filter string="Due Month" domain="[]" context="{'group_by':'create_date:month'}"/> 
-                        <filter string="Project" domain="[]" context="{'group_by':'project_id'}"/>
-                        <filter string="Stage" domain="[]" context="{'group_by':'stage_id'}"/>
-                        <filter string="User" domain="[]" context="{'group_by':'user_id'}"/>
-                        <filter string="Type" domain="[]" context="{'group_by':'activity_type'}"/>
+                        <filter string="Due Week" domain="[]"
+                                context="{'group_by': 'create_date:week'}"/> 
+                        <filter string="Due Month" domain="[]"
+                                context="{'group_by': 'create_date:month'}"/> 
+                        <filter string="Project" domain="[]"
+                                context="{'group_by': 'project_id'}"/>
+                        <filter string="Stage" domain="[]"
+                                context="{'group_by': 'stage_id'}"/>
+                        <filter string="User" domain="[]"
+                                context="{'group_by': 'user_id'}"/>
+                        <filter string="Type" domain="[]"
+                                context="{'group_by': 'activity_type'}"/>
                     </group>
                 </search>
             </field>
         </record>
 
         <menuitem name="Priority List" id="menu_project_priority_report_tree"
-            parent="base.menu_project_report" action="action_project_priority_report" sequence="1"/>
+                  parent="base.menu_project_report"
+                  action="action_project_priority_report" sequence="1"/>
 
     </data>
 </openerp>
