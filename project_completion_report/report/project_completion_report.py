@@ -2,65 +2,68 @@
 # © 2016 Elico Corp
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from openerp.osv import fields, osv
-from openerp import tools
+from openerp import models, fields, tools
 
 
-class ProjectCompletionReport(osv.Model):
-    """Project Completion Report"""
+class ProjectCompletionReport(models.Model):
+    """
+        Project Completion Report
+    """
     _name = "project.completion.report"
+    # Database table should not be created, use init() instead
     _auto = False
     _description = "Project Completion Report"
+    # Field used for the Name
     _rec_name = 'activity_name'
 
-    _columns = {
-        'id': fields.integer('Id', readonly=True),
-        'activity_type': fields.selection(
-            [
-                ('task', 'Task'),
-                ('issue', 'Issue'),
-            ], 'Type', readonly=True,
-            help="Type is used to separate Tasks and Issues"),
-        'hours': fields.float(
-            'Time spent', digits=(16, 2), readonly=True,
-            help="Time spent on timesheet"),
-        'user_id': fields.many2one('res.users', 'User', readonly=True),
-        'project_id': fields.many2one(
-            'project.project', 'Project', readonly=True),
-        'project_state': fields.char(
-            'State', readonly=True, help="Project State"),
-        'activity_stage_id': fields.many2one(
-            'project.task.type', 'Stage',
-            readonly=True, help="Activity Stage"),
-        'account_id': fields.many2one(
-            'account.analytic.account', 'Analytic account', readonly=True),
-        'activity_id': fields.char(
-            'Activity id', readonly=True, help="Task id or Issue id"),
-        'activity_name': fields.char(
-            'Activity name', readonly=True, help="Task name or Issue name"),
-        'planned_hours': fields.float(
-            'Init. time', digits=(16, 2), readonly=True, help="Initial time"),
-        'remaining_hours': fields.float(
-            'Remain. time', digits=(16, 2), readonly=True,
-            help="Remaining time"),
-        'br_id': fields.many2one(
-            'business.requirement', 'Bus. requ.',
-            readonly=True, help="Business requirement"),
-        'partner_id': fields.many2one(
-            'res.partner', 'Customer', readonly=True),
-        'project_categ_id': fields.many2one(
-            'project.project.category',
-            'Project Cat.', readonly=True, help="Project Category"),
-    }
+    id = fields.Integer('Id', readonly=True)
+    activity_type = fields.selection(
+        [
+            ('task', 'Task'),
+            ('issue', 'Issue'),
+        ], 'Type', readonly=True,
+        help="Type is used to separate Tasks and Issues")
+    hours = fields.Float(
+        'Time spent', digits=(16, 2), readonly=True,
+        help="Time spent on timesheet")
+    user_id = fields.Many2one('res.users', 'User', readonly=True)
+    project_id = fields.Many2one(
+        'project.project', 'Project', readonly=True)
+    project_state = fields.Char(
+        'State', readonly=True, help="Project State")
+    activity_stage_id = fields.Many2one(
+        'project.task.type', 'Stage',
+        readonly=True, help="Activity Stage")
+    account_id = fields.Many2one(
+        'account.analytic.account', 'Analytic account', readonly=True)
+    activity_id = fields.Char(
+        'Activity id', readonly=True, help="Task id or Issue id")
+    activity_name = fields.Char(
+        'Activity name', readonly=True, help="Task name or Issue name")
+    planned_hours = fields.Float(
+        'Init. time', digits=(16, 2), readonly=True, help="Initial time")
+    remaining_hours = fields.Float(
+        'Remain. time', digits=(16, 2), readonly=True,
+        help="Remaining time")
+    br_id = fields.Many2one(
+        'business.requirement', 'Bus. requ.',
+        readonly=True, help="Business requirement")
+    partner_id = fields.Many2one(
+        'res.partner', 'Customer', readonly=True)
+    project_categ_id = fields.Many2one(
+        'project.project.category',
+        'Project Cat.', readonly=True, help="Project Category")
 
     def init(self, cr):
-        """ Project Completion Report
-
-            @param cr: the current row, from the database cursor
+        """
+            Project Completion Report
         """
         tools.drop_view_if_exists(cr, 'project_completion_report')
         cr.execute("""
             CREATE OR REPLACE VIEW project_completion_report AS (
+                -- Since Odoo requires a unique ID for each line and since some
+                -- issues and tasks might share the same ID, use the row number
+                -- to ensure each row has a unique ID
                 SELECT
                     row_number() OVER (ORDER BY q.activity_id) AS id, q.*
                 FROM
@@ -97,7 +100,7 @@ class ProjectCompletionReport(osv.Model):
                                 ON al.id = ts.line_id
                             -- Link with the BR
                             LEFT OUTER JOIN business_requirement b
-                                ON b.linked_project = p.id
+                                ON b.id = p.business_requirement_id
                         GROUP BY
                             t.id, p.id, a.id, b.id
                     )
@@ -132,9 +135,9 @@ class ProjectCompletionReport(osv.Model):
                                 ON al.id = ts.line_id
                             -- Link with the BR
                             LEFT OUTER JOIN business_requirement b
-                                ON b.linked_project = p.id
+                                ON b.id = p.business_requirement_id
                         GROUP BY
                             i.id, p.id, a.id, b.id
                     )
-                ) AS q
-            )""")
+                ) AS q)""")
+
