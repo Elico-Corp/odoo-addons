@@ -12,6 +12,7 @@ class TestProjectPartnerName(common.TransactionCase):
         self.analytic_acc_obj = self.env['account.analytic.account']
         self.project1 = self.env.ref('project.project_project_3')
         self.partner1 = self.env.ref('base.res_partner_2')
+        self.project1.partner_id = self.partner1.id
         self.partner1.ref = 'ref1'
         self.project2 = self.env.ref('project.project_project_5')
         self.partner2 = self.env.ref('base.res_partner_address_13')
