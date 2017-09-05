@@ -1,5 +1,5 @@
-business-requirement https://github.com/OCA/business-requirement.git
-odoo-community-addons https://github.com/Elico-Corp/odoo-community-addons.git
-reporting-engine https://github.com/OCA/reporting-engine.git
-website https://github.com/OCA/website.git
-hr https://github.com/OCA/hr.git
+business-requirement https://github.com/OCA/business-requirement.git 8.0
+odoo-community-addons https://github.com/Elico-Corp/odoo-community-addons.git 8.0
+reporting-engine https://github.com/OCA/reporting-engine.git 8.0
+website https://github.com/OCA/website.git 8.0
+hr https://github.com/OCA/hr.git 8.0
