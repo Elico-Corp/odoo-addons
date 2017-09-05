@@ -3,6 +3,7 @@
 # © 2016 Elico Corp (https://www.elico-corp.com).
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html)
 
+import logging
 from openerp.osv import fields, osv
 from openerp.tools.safe_eval import safe_eval
 from openerp.tools.translate import _
