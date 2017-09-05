@@ -7,6 +7,9 @@ from openerp.osv import fields, osv
 from openerp.tools.safe_eval import safe_eval
 from openerp.tools.translate import _
 from urlparse import urlparse
+
+_logger = logging.getLogger(__name__)
+
 try:
     from auth_cas.pycas import login
 except (ImportError, IOError) as err:
