@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+        <record id="holiday_status_compensatory_leave" 
+                model="hr.holidays.status">
+            <field name="name" 
+                   eval="'Compensatory Legal Leaves Type Allow Request '+time.strftime('%Y')"/>
+            <field name="limit" 
+                   eval="False"/>
+            <field name="allow_modification" 
+                   eval="True"/>
+            <field name="color_name">black</field>
+        </record>
+
+        <record id="hr_holidays_employee1_alloc_cl" 
+                model="hr.holidays">
+            <field name="name">Allocate Compensatory Legal Leaves Type Allow Request</field>
+            <field name="holiday_status_id" ref="holiday_status_compensatory_leave"/>
+            <field name="type">add</field>
+            <field name="number_of_days_temp">0</field>
+            <field name="employee_id"
+                   ref="hr.employee_qdp"/>
+        </record>
+
+        <workflow action="confirm" model="hr.holidays" ref="hr_holidays_employee1_alloc_cl"/>
+
+        <record id="allocation_modification_request_1" 
+                model="allocation.modification.request">
+            <field name="leave_id" 
+                   ref="hr_holidays_employee1_alloc_cl"/>
+            <field name="date"
+                   eval="time.strftime('%Y-%m-15')"/>
+            <field name="number_of_days">2</field>
+            <field name="employee_id" 
+                   ref="hr.employee_qdp"/>
+        </record>
+
+</odoo>

@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+        <record id="filter_crm_lead_type_opportunity" model="ir.filters">
+            <field name="name">Opportunities</field>
+            <field name="model_id">crm.lead</field>
+            <field name="domain">[('type','=','opportunity')]</field>
+            <field name="user_id" eval="False"/>
+        </record>
+        <record id="email_template_opportunity_reminder_mail_due_next_action_date" model="mail.template">
+            <field name="name">Reminder to User and Team Manager</field>
+            <field name="model_id" ref="crm.model_crm_lead"/>
+            <field name="auto_delete" eval="True"/>
+            <field name="email_from"><![CDATA[${object.company_id.name} <${(object.company_id.email or user.email)|safe}>]]></field>
+            <field name="email_to"> ${(object.user_id != False and object.user_id.email)|safe}, ${(object.team_id != False and object.team_id.user_id != object.user_id and object.team_id.user_id.email)|safe}
+            </field>
+            <field name="subject">Reminder on Opportunity: ${object.id} from ${object.partner_id != False and object.partner_id.name or object.contact_name}</field>
+            <field name="body_html"><![CDATA[
+                <p>This opportunity has next activity date due today. Here are some details:</p>
+                    <ul>
+                        <li>Name: ${object.name}</li>
+                        <li>ID: ${object.id}</li>
+                        <li>Description: ${object.description}
+                        </li>
+                    </ul>]]>
+            </field>
+        </record>        
+        <record id="action_email_reminder_user_due_next_action_date" model="ir.actions.server">
+            <field name="name">Reminder to User due next action date</field>
+            <field name="model_id" ref="crm.model_crm_lead"/>
+            <field name="condition">True</field>
+            <field name="type">ir.actions.server</field>
+            <field name="state">code</field>
+            <field name="code">
+                self.message_post_with_template(
+                    cr,
+                    uid,
+                    context['active_id'],
+                    template_id=env.ref(
+                        'crm_next_activity_date_automated_action.email_template_opportunity_reminder_mail_due_next_action_date').id,
+                    context=context)
+            </field>
+        </record>
+        <record id="rule_crm_next_activity_date" model="base.action.rule">
+            <field name="name">Set Auto Reminder on Opportunity which next activity due today.</field>
+            <field name="model_id" ref="crm.model_crm_lead"/>
+            <field name="sequence">1</field>
+            <field name="kind">on_time</field>
+            <field name="filter_domain">[('type','=','opportunity')]</field>
+            <field name="trg_date_id" ref="crm.field_crm_lead_date_action"/>
+            <field name="trg_date_range">0</field>
+            <field name="trg_date_range_type">day</field>
+            <field name="server_action_ids" eval="[(6,0,[ref('crm_next_activity_date_automated_action.action_email_reminder_user_due_next_action_date')])]"/>
+        </record>
+    </data>
+</openerp>

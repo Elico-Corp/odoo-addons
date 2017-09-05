@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="emp_allocation_modification_request_rule" model="ir.rule">
+        <field name="name">Employee See Own Allocation Modification Request</field>
+        <field name="model_id" ref="leave_type_modification_request.model_allocation_modification_request"/>
+        <field name="domain_force">[('employee_id.user_id', '=', user.id)]</field>
+        <field name="groups" eval="[(4, ref('base.group_user'))]"/>
+    </record>
+    <record id="manager_allocation_modification_request_rule" model="ir.rule">
+        <field name="name">HR Manager Allocation Modification Request</field>
+        <field name="model_id" ref="leave_type_modification_request.model_allocation_modification_request"/>
+        <field name="domain_force">['|', ('employee_id.user_id', '=', user.id), ('employee_id.parent_id.user_id', '=', user.id)]</field>
+        <field name="groups" eval="[(4, ref('base.group_hr_manager'))]"/>
+    </record>
+    <record id="emp_allocation_request_own_type_request_rule" model="ir.rule">
+        <field name="name">Employee See Own Allocation Request Type Allow Request</field>
+        <field name="model_id" ref="leave_type_modification_request.model_hr_holidays"/>
+        <field name="domain_force">[('employee_id.user_id','=',user.id), ('allow_modification','=',True)]</field>
+        <field name="groups" eval="[(4, ref('base.group_user'))]"/>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_create" eval="1"/>
+        <field name="perm_write" eval="1"/>
+        <field name="perm_unlink" eval="0"/>
+    </record>
+
+</odoo>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <!-- CRM.SOURCE SEARCh VIEWS -->
+        <record id="crm_source_view_search" model="ir.ui.view">
+            <field name="name">utm.source.view.search</field>
+            <field name="model">utm.source</field>
+            <field name="arch" type="xml">
+                <search string="Search Source">
+                    <filter string="Source" name="source_id"/>
+                </search>
+            </field>
+        </record>
+        <menuitem action="utm.utm_source_action"
+                  id="menu_utm_source"
+                  parent="base.menu_crm_config_lead"
+                  sequence="7"
+                  groups="base.group_sale_manager"/>
+    </data>
+</openerp>

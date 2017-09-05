@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_allocation_modification_request_form" model="ir.ui.view">
+        <field name="name">allocation.modification.request.form</field>
+        <field name="model">allocation.modification.request</field>
+        <field name="arch" type="xml">
+            <form string="Allocation Modification Request">
+                <header>
+                    <button name="action_confirm"
+                            string="Confirm"
+                            type="object" states="draft" class="oe_highlight"/>
+                    <button name="action_approve"
+                            string="Approve"
+                            type="object"
+                            states="confirm"
+                            groups="base.group_hr_manager"
+                            class="oe_highlight"/>
+                    <button string="Cancel"
+                            name="action_cancel"
+                            type="object"
+                            states="confirm"/>
+                    <button string="Back to Draft"
+                            name="action_set_draft"
+                            type="object"
+                            states="cancel,approve"/>
+                    <field name="state"
+                           widget="statusbar"
+                           statusbar_visible="draft,confirm,approve"/>
+                </header>
+                <sheet>
+                    <group col="4">
+                        <field name="leave_id"
+                               options="{'no_create': True}"
+                               domain="[('employee_id.user_id','=',uid), ('allow_modification','=',True)]"
+                               attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                        <field name="employee_id"/>
+                        <field name="date"
+                               attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                        <field name="swap_day"
+                               attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                        <field name="number_of_days"
+                               attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                    </group>
+
+                    <notebook>
+                        <page string="Note">
+                            <field name="note"/>
+                        </page>
+                    </notebook>
+
+                </sheet>
+            </form>
+        </field >
+    </record>
+
+    <record id="view_allocation_modification_request_tree" model="ir.ui.view">
+        <field name="name">allocation.modification.request.tree</field>
+        <field name="model">allocation.modification.request</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree string="Allocation Modification Request">
+                <field name="employee_id"/>
+                <field name="leave_id"/>
+                <field name="date"/>
+                <field name="swap_day"/>
+                <field name="number_of_days"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_allocation_modification_request_search" model="ir.ui.view">
+        <field name="name">allocation.modification.request.search</field>
+        <field name="model">allocation.modification.request</field>
+        <field name="type">search</field>
+        <field name="arch" type="xml">
+            <search string="Allocation Modification Request">
+                <field name="employee_id"/>
+                <field name="leave_id"/>
+                <field name="state"/>
+                <group expand="0" string="Group By">
+                    <filter string="Applicant" name="grp_employee" context="{'group_by':'employee_id'}"/>
+                    <filter string="Allocation Request" name="allocation_request" context="{'group_by':'leave_id'}"/>
+                    <filter string="Date" name="grp_date" context="{'group_by':'date'}"/>
+                    <filter string="Swap Day" name="grp_swap_day" context="{'group_by':'swap_day'}"/>
+                    <filter string="Status" name="grp_state" context="{'group_by':'state'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_allocation_modification_request" model="ir.actions.act_window">
+        <field name="name">Allocation Modification Request</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">allocation.modification.request</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_allocation_leaves_modification_request"
+              name="Allocation Leaves Modification Request"
+              action="action_allocation_modification_request"
+              parent="hr_holidays.menu_hr_holidays_my_leaves"
+              groups="base.group_user"
+              sequence="50"
+              />
+
+</odoo>
