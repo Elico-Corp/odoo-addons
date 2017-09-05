@@ -7,8 +7,10 @@ from openerp.osv import fields, osv
 from openerp.tools.safe_eval import safe_eval
 from openerp.tools.translate import _
 from urlparse import urlparse
-from auth_cas.pycas import login
-
+try:
+    from auth_cas.pycas import login
+except (ImportError, IOError) as err:
+    _logger.debug(err)
 default_host = 'https://localhost'
 default_port = 8443
 
