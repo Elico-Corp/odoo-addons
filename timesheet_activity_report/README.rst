@@ -42,7 +42,14 @@ Contributors
 
 * Eric Caudal <eric.caudal@elico-corp.com>
 * Sébastien Maillard <sebastien.maillard@elico-corp.com>
-   
+
+
+Maintainer
+----------
+
+.. image:: https://www.elico-corp.com/logo.png
+   :alt: Elico Corp
+   :target: https://www.elico-corp.com
 
 This module is maintained by Elico Corporation.
 
