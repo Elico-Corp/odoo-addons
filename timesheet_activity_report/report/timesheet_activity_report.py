@@ -21,11 +21,10 @@ class TimesheetReport(models.Model):
         readonly=True
     )
     activity_type = fields.Selection(
-        [
-         ('task', 'Task'),
+        [('task', 'Task'),
          ('issue', 'Issue'),
          ('timesheet', 'Timesheet'),
-        ],
+         ],
         'Type',
         readonly=True,
         help="""Type is based on the origin of the input (Task, Issue or
