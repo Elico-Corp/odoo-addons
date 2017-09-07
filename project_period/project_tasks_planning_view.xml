@@ -73,7 +73,7 @@
             <field name="model">project.task</field>
             <field name="inherit_id" ref="project.view_task_search_form"/>
             <field name="arch" type="xml">
-                <filter string="My Tasks" position="replace">
+                <xpath expr="//search/field[@name='stage_id']" position="after">
                     <field name="id"/>
                     <field name="description"/>
                     <filter name ="filter_my_task" string="My Task"
@@ -95,7 +95,7 @@
                         <filter name="stage_id" string="Stage" context="{'group_by':'stage_id'}"/>
                         <filter name="categ_id" string="Category" context="{'group_by': 'categ_id'}"/>
                     </group>
-                </filter>
+                </xpath>
             </field>
         </record>
         <record id="action_view_task_planning" model="ir.actions.act_window">
