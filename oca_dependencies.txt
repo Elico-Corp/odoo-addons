@@ -1,5 +1,5 @@
-business-requirement https://github.com/noahzaozao/business-requirement.git 8.0-noah-merge-56-57-59-61
-odoo_community https://github.com/Elico-Corp/odoo_community.git 8.0
-reporting-engine https://github.com/OCA/reporting-engine 8.0
-website https://github.com/OCA/website 8.0
+business-requirement https://github.com/OCA/business-requirement.git 8.0
+odoo-community-addons https://github.com/Elico-Corp/odoo-community-addons.git 8.0
+reporting-engine https://github.com/OCA/reporting-engine.git 8.0
+website https://github.com/OCA/website.git 8.0
 hr https://github.com/OCA/hr.git 8.0

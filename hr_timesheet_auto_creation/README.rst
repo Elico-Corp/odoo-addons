@@ -2,47 +2,55 @@
    :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
    :alt: License: AGPL-3
 
-=========================
-Timesheet Activity Report
-=========================
+===========================
+HR TimeSheet Auto Creation
+===========================
 
-This module extends the functionality of project adding a timesheet report listed at timesheet completion analysis.
-You can use this report to communicate the timesheet analysis to the project members.
-
+This module extends the functionality of HR timesheet to automatically create the Timesheet
+Activity report via a cron job.
 
 Installation
 ============
 
-To install this module, you need to have basic modules installed:
+To install this module, you need to:
 
-* project_timesheet
-* project_issue_sheet
-* business_requirement_deliverable_project
-* project_task_category
+#. have basic modules installed (hr_timesheet_sheet)
+
+Configuration
+=============
+
+To configure this module, you need to:
+
+#. Set system's timezone correct(Administrator>Preferences>Timezone: You location timezone);
+#. Set the user access in read the employee and read/write on time sheet(default the user is Administrator, So you can skip this set).
+#. Set the time or frequency as you want in the cron job:
+    1). Settings>Users>Administrator>Usability>Technical Features: check;
+
+    2). Settings>Technical>Automation>Scheduled Actions>My current TMS:
+        modify the time(`Next Execution Date`) or frequency(`Interval Number` and `Interval Unit`).
 
 Bug Tracker
 ===========
 
 Bugs are tracked on `GitHub Issues
-<https://github.com/Elico-Corp/odoo-addons/issues>`_. In case of trouble, please
+<https://github.com/Elico-Corp/elico_odoo/issues>`_. In case of trouble, please
 check there if your issue has already been reported. If you spotted it first,
 help us smash it by providing detailed and welcomed feedback.
 
 Credits
 =======
 
-Images
-------
-
-* Odoo Community Association: `Icon <https://github.com/OCA/maintainer-tools/blob/master/template/module/static/description/icon.svg>`_.
-
-
 Contributors
 ------------
 
-* Eric Caudal <eric.caudal@elico-corp.com>
-* Sébastien Maillard <sebastien.maillard@elico-corp.com>
-   
+* Kevin Dong <kevin.dong@elico-corp.com>
+
+Maintainer
+----------
+
+.. image:: https://www.elico-corp.com/logo.png
+   :alt: Elico Corp
+   :target: https://www.elico-corp.com
 
 This module is maintained by Elico Corporation.
 

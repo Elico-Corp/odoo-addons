@@ -1,20 +1,18 @@
 # -*- coding: utf-8 -*-
-# © 2015-2017 Elico corp (https://www.elico-corp.com)
+# © 2017 Elico corp (https://www.elico-corp.com)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 {
-    'name': 'Project Planning',
+    'name': 'Hr Expense Access Control',
     'version': '8.0.1.0.0',
-    'category': 'Project',
+    'category': 'Human Resource',
     'depends': [
-        'project_task_category',
+        'hr_expense'
     ],
     'author': 'Elico Corp',
     'license': 'AGPL-3',
     'website': 'https://www.elico-corp.com',
     'data': [
-        'project_task_view.xml',
-        'project_tasks_planning_view.xml',
-        'wizard/reset_planning_wizard_view.xml',
+        'security/model_hr_expense_security.xml',
     ],
     'installable': True,
     'application': False,

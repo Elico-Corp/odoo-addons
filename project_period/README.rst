@@ -3,7 +3,7 @@
    :alt: License: AGPL-3
 
 ================
-Project Planning
+Project Period
 ================
 
 This module extends the functionality of Project to support planning information:
