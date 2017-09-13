@@ -59,11 +59,6 @@ class TimesheetReport(models.Model):
         'Project',
         readonly=True
     )
-#    project_state = fields.Char(
-#        'State',
-#        readonly=True,
-#        help="Project State"
-#    )
     activity_stage_id = fields.Many2one(
         'project.task.type',
         'Stage',

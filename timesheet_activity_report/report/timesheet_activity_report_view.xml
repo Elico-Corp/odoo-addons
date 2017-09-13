@@ -10,7 +10,6 @@
                 <field name="account_id"/>
                 <field name="project_categ_id"/>
                 <field name="project_id"/>
-                <!-- <field name="project_state"/> -->
                 <field name="br_id"/>
                 <field name="activity_id" string="ID"/>
                 <field name="activity_type"/>
@@ -53,7 +52,6 @@
                 <field name="activity_id"/>
                 <field name="account_id"/>
                 <field name="project_id"/>
-                <!-- <field name="project_state"/> -->
                 <field name="user_id"/>
                 <field name="br_id"/>
                 <field name="partner_id"/>
@@ -71,8 +69,6 @@
                             context="{'group_by': 'account_id'}"/>
                     <filter string="Project" domain="[]"
                             context="{'group_by': 'project_id'}"/>
-                    <!-- <filter string="State" domain="[]"
-                            context="{'group_by': 'project_state'}"/> -->
                     <filter string="User" domain="[]"
                             context="{'group_by': 'user_id'}"/>
                     <filter string="Business Requirement" domain="[]"
