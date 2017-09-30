@@ -46,17 +46,7 @@ class ProjectCompletionReport(models.Model):
     activity_stage_id = fields.Many2one(
         'project.task.type', 'Stage',
         readonly=True, help="Activity Stage")
-    # FIXME There should be a link between resource and task. If the link
-    # existed, each task would have either:
-    #  - 0 estimated hour (task created manually)
-    #  - estimated hours of the corresponding resource
-    # Since the link doesn't exist, the estimated hours of each task is
-    # currently the average of the estimated hours of all the resources.
-    # The other problem is that if there are tasks created manually, they will
-    # also have the same estimated hours, meaning the total estimated hours of
-    # a BR will be more than the total estimated hours of its resources. A
-    # workaround would be to divide by the number of tasks and multiply by the
-    # number of resources. All this wouldn't happen if there was the link.
+    # FIXME if BR resource UoM is not hours, `qty` needs to be converted
     estimated_hours = fields.Float(
         'Est. time', digits=(16, 2), readonly=True,
         help="Estimated time (from BR)")
@@ -99,22 +89,14 @@ class ProjectCompletionReport(models.Model):
                             t.name AS activity_name,
                             t.user_id,
                             t.stage_id AS activity_stage_id,
-                            (
-                                SELECT SUM(r.qty)
-                                FROM business_requirement_resource r
-                                WHERE business_requirement_id = b.id
-                            ) / (
-                                SELECT COUNT(*)
-                                FROM project_task pt
-                                WHERE pt.project_id = p.id
-                            ) AS estimated_hours,
+                            r.qty AS estimated_hours,
                             t.planned_hours,
                             SUM(al.unit_amount) AS total_tms,
                             t.remaining_hours,
                             SUM(al.unit_amount) + t.remaining_hours
                                 AS total_hours,
                             SUM(al.unit_amount) + t.remaining_hours
-                                - t.planned_hours AS extra_hours
+                                - r.qty AS extra_hours
                         FROM
                             project_project p
                             -- Link with the analytic account
@@ -132,8 +114,12 @@ class ProjectCompletionReport(models.Model):
                             -- Link with the BR
                             LEFT OUTER JOIN business_requirement b
                                 ON b.id = p.business_requirement_id
+                            -- Link with the BR resource
+                            LEFT OUTER JOIN business_requirement_resource r
+                                ON r.business_requirement_id = b.id
+                                AND r.id = t.br_resource_id
                         GROUP BY
-                            t.id, p.id, a.id, b.id
+                            t.id, p.id, a.id, b.id, r.id
                     )
                     UNION
                     (
