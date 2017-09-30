@@ -2,85 +2,101 @@
 # © 2016 Elico Corp
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from openerp.osv import fields, osv
-from openerp import tools
+from openerp import models, fields, tools
 
 
-class ProjectCompletionReport(osv.Model):
-    """Project Completion Report"""
+class ProjectCompletionReport(models.Model):
+    """
+        Project Completion Report
+    """
     _name = "project.completion.report"
+    # Database table should not be created, use init() instead
     _auto = False
     _description = "Project Completion Report"
+    # Field used for the Name
     _rec_name = 'activity_name'
 
-    _columns = {
-        'id': fields.integer('Id', readonly=True),
-        'activity_type': fields.selection(
-            [
-                ('task', 'Task'),
-                ('issue', 'Issue'),
-            ], 'Type', readonly=True,
-            help="Type is used to separate Tasks and Issues"),
-        'hours': fields.float(
-            'Time spent', digits=(16, 2), readonly=True,
-            help="Time spent on timesheet"),
-        'user_id': fields.many2one('res.users', 'User', readonly=True),
-        'project_id': fields.many2one(
-            'project.project', 'Project', readonly=True),
-        'project_state': fields.char(
-            'State', readonly=True, help="Project State"),
-        'activity_stage_id': fields.many2one(
-            'project.task.type', 'Stage',
-            readonly=True, help="Activity Stage"),
-        'account_id': fields.many2one(
-            'account.analytic.account', 'Analytic account', readonly=True),
-        'activity_id': fields.char(
-            'Activity id', readonly=True, help="Task id or Issue id"),
-        'activity_name': fields.char(
-            'Activity name', readonly=True, help="Task name or Issue name"),
-        'planned_hours': fields.float(
-            'Init. time', digits=(16, 2), readonly=True, help="Initial time"),
-        'remaining_hours': fields.float(
-            'Remain. time', digits=(16, 2), readonly=True,
-            help="Remaining time"),
-        'br_id': fields.many2one(
-            'business.requirement', 'Bus. requ.',
-            readonly=True, help="Business requirement"),
-        'partner_id': fields.many2one(
-            'res.partner', 'Customer', readonly=True),
-        'project_categ_id': fields.many2one(
-            'project.project.category',
-            'Project Cat.', readonly=True, help="Project Category"),
-    }
+    id = fields.Integer('ID', readonly=True)
+    partner_id = fields.Many2one(
+        'res.partner', 'Customer', readonly=True)
+    br_id = fields.Many2one(
+        'business.requirement', 'Bus. Req.',
+        readonly=True, help="Business Requirement")
+    project_id = fields.Many2one(
+        'project.project', 'Project', readonly=True)
+    account_id = fields.Many2one(
+        'account.analytic.account', 'Analytic Account', readonly=True)
+    project_state = fields.Char(
+        'State', readonly=True, help="Project State")
+    project_categ_id = fields.Many2one(
+        'project.project.category',
+        'Project Cat.', readonly=True, help="Project Category")
+    activity_type = fields.Selection(
+        [
+            ('task', 'Task'),
+            ('issue', 'Issue'),
+        ], 'Type', readonly=True,
+        help="Type is used to separate Tasks and Issues")
+    activity_id = fields.Char(
+        'Activity ID', readonly=True, help="Task ID or Issue ID")
+    activity_name = fields.Char(
+        'Activity Name', readonly=True, help="Task name or Issue name")
+    user_id = fields.Many2one('res.users', 'Assignee', readonly=True,
+        help="Assignee is not necessarily the one who input the Timesheets")
+    activity_stage_id = fields.Many2one(
+        'project.task.type', 'Stage',
+        readonly=True, help="Activity Stage")
+    # FIXME if BR resource UoM is not hours, `qty` needs to be converted
+    estimated_hours = fields.Float(
+        'Est. time', digits=(16, 2), readonly=True,
+        help="Estimated time (from BR)")
+    planned_hours = fields.Float(
+        'Init. time', digits=(16, 2), readonly=True,
+        help="Initial time (from Task)")
+    total_tms = fields.Float(
+        'Time spent', digits=(16, 2), readonly=True,
+        help="Time spent on timesheet")
+    remaining_hours = fields.Float(
+        'Remain. time', digits=(16, 2), readonly=True,
+        help="Remaining time")
+    total_hours = fields.Float('Total time', digits=(16, 2), readonly=True)
+    extra_hours = fields.Float('Extra time', digits=(16, 2), readonly=True)
 
     def init(self, cr):
-        """ Project Completion Report
-
-            @param cr: the current row, from the database cursor
+        """
+            Project Completion Report
         """
         tools.drop_view_if_exists(cr, 'project_completion_report')
         cr.execute("""
             CREATE OR REPLACE VIEW project_completion_report AS (
+                -- Since Odoo requires a unique ID for each line and since some
+                -- issues and tasks might share the same ID, use the row number
+                -- to ensure each row has a unique ID
                 SELECT
                     row_number() OVER (ORDER BY q.activity_id) AS id, q.*
                 FROM
                 (
                     (
                         SELECT
-                            'task' AS activity_type,
-                            SUM(al.unit_amount) AS hours,
-                            t.user_id,
+                            a.partner_id,
+                            b.id AS br_id,
                             p.id AS project_id,
-                            p.state AS project_state,
-                            t.stage_id AS activity_stage_id,
                             a.id AS account_id,
+                            p.project_categ_id,
+                            p.state AS project_state,
+                            'task' AS activity_type,
                             t.id AS activity_id,
                             t.name AS activity_name,
+                            t.user_id,
+                            t.stage_id AS activity_stage_id,
+                            r.qty AS estimated_hours,
                             t.planned_hours,
+                            SUM(al.unit_amount) AS total_tms,
                             t.remaining_hours,
-                            b.id AS br_id,
-                            a.partner_id,
-                            p.project_categ_id
+                            SUM(al.unit_amount) + t.remaining_hours
+                                AS total_hours,
+                            SUM(al.unit_amount) + t.remaining_hours
+                                - r.qty AS extra_hours
                         FROM
                             project_project p
                             -- Link with the analytic account
@@ -91,33 +107,40 @@ class ProjectCompletionReport(osv.Model):
                             -- Link with the timesheet
                             LEFT OUTER JOIN project_task_work tw
                                 ON tw.task_id = t.id
-                            LEFT OUTER JOIN hr_analytic_timesheet ts
-                                ON ts.id = tw.hr_analytic_timesheet_id
+                            LEFT OUTER JOIN hr_analytic_timesheet tms
+                                ON tms.id = tw.hr_analytic_timesheet_id
                             LEFT OUTER JOIN account_analytic_line al
-                                ON al.id = ts.line_id
+                                ON al.id = tms.line_id
                             -- Link with the BR
                             LEFT OUTER JOIN business_requirement b
-                                ON b.linked_project = p.id
+                                ON b.id = p.business_requirement_id
+                            -- Link with the BR resource
+                            LEFT OUTER JOIN business_requirement_resource r
+                                ON r.business_requirement_id = b.id
+                                AND r.id = t.br_resource_id
                         GROUP BY
-                            t.id, p.id, a.id, b.id
+                            t.id, p.id, a.id, b.id, r.id
                     )
                     UNION
                     (
                         SELECT
-                            'issue' AS activity_type,
-                            SUM(al.unit_amount) AS hours,
-                            i.user_id,
+                            a.partner_id,
+                            b.id AS br_id,
                             p.id AS project_id,
-                            p.state AS project_state,
-                            i.stage_id AS activity_stage_id,
                             a.id AS account_id,
+                            p.project_categ_id,
+                            p.state AS project_state,
+                            'issue' AS activity_type,
                             i.id AS activity_id,
                             i.name AS activity_name,
+                            i.user_id,
+                            i.stage_id AS activity_stage_id,
+                            NULL AS estimated_hours,
+                            SUM(al.unit_amount) AS total_tms,
                             NULL AS planned_hours,
                             NULL AS remaining_hours,
-                            b.id AS br_id,
-                            a.partner_id,
-                            p.project_categ_id
+                            SUM(al.unit_amount) AS total_hours,
+                            SUM(al.unit_amount) AS extra_hours
                         FROM
                             project_project p
                             -- Link with the analytic account
@@ -132,9 +155,9 @@ class ProjectCompletionReport(osv.Model):
                                 ON al.id = ts.line_id
                             -- Link with the BR
                             LEFT OUTER JOIN business_requirement b
-                                ON b.linked_project = p.id
+                                ON b.id = p.business_requirement_id
                         GROUP BY
                             i.id, p.id, a.id, b.id
                     )
-                ) AS q
-            )""")
+                ) AS q)""")
+

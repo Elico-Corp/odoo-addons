@@ -4,7 +4,7 @@
 {
     "name": "Project Completion Report",
     "summary": "Follow-up project completion (estimated / consumed)",
-    "version": "8.0.1.0.1",
+    "version": "8.0.2.0.0",
     "category": "Project",
     "website": "https://odoo-community.org/",
     "author": "Sebastien Maillard, Elico Corp",
@@ -22,3 +22,4 @@
         "security/ir.model.access.csv",
     ],
 }
+
