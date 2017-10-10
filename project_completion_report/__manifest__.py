@@ -11,9 +11,9 @@
     "author": "Elico Corp",
     "license": "AGPL-3",
     "application": False,
-    "installable": False,
+    "installable": True,
     "depends": [
-        "project_timesheet",
+        "hr_timesheet",
         "project_issue_sheet",
         "project_project_category",
         "business_requirement_deliverable_project",
