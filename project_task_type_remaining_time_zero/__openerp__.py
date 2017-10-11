@@ -7,6 +7,7 @@
     'category': 'Project',
     'depends': ['project'],
     'author': 'Elico Corp',
+    'support': 'support@elico-corp.com',
     'license': 'AGPL-3',
     'website': 'https://www.elico-corp.com',
     'data': [
