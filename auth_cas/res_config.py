@@ -3,12 +3,18 @@
 # © 2016 Elico Corp (https://www.elico-corp.com).
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html)
 
+import logging
+from openerp.exceptions import ValidationError
 from openerp import api, fields, models
 from openerp.tools.safe_eval import safe_eval
 from openerp.tools.translate import _
 from urlparse import urlparse
-from auth_cas.pycas import login
-from openerp.exceptions import ValidationError
+
+_logger = logging.getLogger(__name__)
+try:
+    from auth_cas.pycas import login
+except (ImportError, IOError) as err:
+    _logger.debug(err)
 
 
 default_host = 'https://localhost'

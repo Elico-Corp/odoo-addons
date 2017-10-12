@@ -107,7 +107,7 @@ class Controller(http.Controller):
                 cas_key = randomString(
                     16, '0123456789abcdefghijklmnopqrstuvwxyz')
                 users.write(cr, SUPERUSER_ID, ids, {'cas_key': cas_key})
-                cr.commit()
+                # cr.commit()
                 # set cookie for relogin
                 res = login_and_redirect(dbname, userName, cas_key)
                 return res
@@ -171,7 +171,7 @@ class Controller(http.Controller):
                     16, '0123456789abcdefghijklmnopqrstuvwxyz')
 
                 users.write(cr, SUPERUSER_ID, [user_id], {'cas_key': cas_key})
-                cr.commit()
+                # cr.commit()
 
                 login_and_redirect(dbname, idUser, cas_key)
 
@@ -240,7 +240,7 @@ class Home(main.Home):
                 cas_key = randomString(
                     16, '0123456789abcdefghijklmnopqrstuvwxyz')
                 users.write(cr, SUPERUSER_ID, ids, {'cas_key': cas_key})
-                cr.commit()
+                # cr.commit()
                 # set cookie for relogin
                 res = login_and_redirect(dbname, userName, cas_key)
                 return res

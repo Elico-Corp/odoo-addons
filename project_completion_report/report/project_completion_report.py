@@ -6,9 +6,8 @@ from openerp import models, fields, tools
 
 
 class ProjectCompletionReport(models.Model):
-    """
-        Project Completion Report
-    """
+    """Project Completion Report"""
+
     _name = "project.completion.report"
     # Database table should not be created, use init() instead
     _auto = False
@@ -41,7 +40,10 @@ class ProjectCompletionReport(models.Model):
         'Activity ID', readonly=True, help="Task ID or Issue ID")
     activity_name = fields.Char(
         'Activity Name', readonly=True, help="Task name or Issue name")
-    user_id = fields.Many2one('res.users', 'Assignee', readonly=True,
+    user_id = fields.Many2one(
+        'res.users',
+        'Assignee',
+        readonly=True,
         help="Assignee is not necessarily the one who input the Timesheets")
     activity_stage_id = fields.Many2one(
         'project.task.type', 'Stage',
@@ -63,9 +65,7 @@ class ProjectCompletionReport(models.Model):
     extra_hours = fields.Float('Extra time', digits=(16, 2), readonly=True)
 
     def init(self, cr):
-        """
-            Project Completion Report
-        """
+        """Project Completion Report"""
         tools.drop_view_if_exists(cr, 'project_completion_report')
         cr.execute("""
             CREATE OR REPLACE VIEW project_completion_report AS (
@@ -160,4 +160,3 @@ class ProjectCompletionReport(models.Model):
                             i.id, p.id, a.id, b.id
                     )
                 ) AS q)""")
-
