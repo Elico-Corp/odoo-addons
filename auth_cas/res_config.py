@@ -28,19 +28,17 @@ class CasBaseConfigSettings(models.TransientModel):
     """
 
     _inherit = 'base.config.settings'
-    _columns = {
-        'cas_activated': fields.boolean(
-            'CAS authentication activated',
-            help='The CAS authentication only works if you are in a single database mode. \
+    cas_activated = fields.Boolean(
+        'CAS authentication activated',
+        help='The CAS authentication only works if you are in a single database mode. \
 You can launch the Odoo Server with the option --db-filter=YOUR_DATABASE \
-to do so.'),
-        'cas_server': fields.char('CAS Server address', size=64),
-        'cas_server_port': fields.integer('CAS Server port'),
-        'cas_create_user': fields.boolean(
-            'Users created on the fly',
-            help='Automatically create local user accounts for new users authenticating \
-via CAS'),
-    }
+to do so.')
+    cas_server = fields.Char('CAS Server address', size=64)
+    cas_server_port = fields.Integer('CAS Server port')
+    cas_create_user = fields.Boolean(
+        'Users created on the fly',
+        help='Automatically create local user accounts for new users authenticating \
+via CAS')
 
     # Getter is required for fields stored in base.config.settings
     @api.v7
