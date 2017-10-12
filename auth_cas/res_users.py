@@ -19,7 +19,7 @@ class ResUsers(models.Model):
 
     _inherit = 'res.users'
 
-    cas_key = fields.Char('CAS Key', size=16, readonly=True),
+    cas_key = fields.Char('CAS Key', size=16, readonly=True)
 
     @api.v7
     def check_credentials(self, cr, uid, password):
