@@ -3,36 +3,45 @@
 # © 2016 Elico Corp (https://www.elico-corp.com).
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html)
 
-from openerp.osv import fields, osv
+import logging
+from openerp.exceptions import ValidationError
+from openerp import api, fields, models
 from openerp.tools.safe_eval import safe_eval
 from openerp.tools.translate import _
 from urlparse import urlparse
-from pycas import login
+
+_logger = logging.getLogger(__name__)
+try:
+    from auth_cas.pycas import login
+except (ImportError, IOError) as err:
+    _logger.debug(err)
+
 
 default_host = 'https://localhost'
 default_port = 8443
 
 
-class cas_base_config_settings(osv.TransientModel):
+class CasBaseConfigSettings(models.TransientModel):
     """
-    The fields declared here are used to manage settings of the CAS server.
+    The fields declared here are used
+    to manage settings of the CAS server.
     """
+
     _inherit = 'base.config.settings'
-    _columns = {
-        'cas_activated': fields.boolean(
-            'CAS authentication activated',
-            help='The CAS authentication only works if you are in a single database mode. \
+    cas_activated = fields.Boolean(
+        'CAS authentication activated',
+        help='The CAS authentication only works if you are in a single database mode. \
 You can launch the Odoo Server with the option --db-filter=YOUR_DATABASE \
-to do so.'),
-        'cas_server': fields.char('CAS Server address', size=64),
-        'cas_server_port': fields.integer('CAS Server port'),
-        'cas_create_user': fields.boolean(
-            'Users created on the fly',
-            help='Automatically create local user accounts for new users authenticating \
-via CAS'),
-    }
+to do so.')
+    cas_server = fields.Char('CAS Server address', size=64)
+    cas_server_port = fields.Integer('CAS Server port')
+    cas_create_user = fields.Boolean(
+        'Users created on the fly',
+        help='Automatically create local user accounts for new users authenticating \
+via CAS')
 
     # Getter is required for fields stored in base.config.settings
+    @api.v7
     def get_default_cas_values(self, cr, uid, fields, context=None):
         icp = self.pool.get('ir.config_parameter')
         return {
@@ -47,6 +56,7 @@ via CAS'),
         }
 
     # Setter is required too
+    @api.v7
     def set_cas_values(self, cr, uid, ids, context=None):
         config = self.browse(cr, uid, ids[0], context=context)
         icp = self.pool.get('ir.config_parameter')
@@ -102,8 +112,9 @@ via CAS'),
         icp.set_param(
             cr, uid, 'cas_auth.cas_create_user', str(config.cas_create_user))
 
+    @api.v7
     def check_cas_server(self, cr, uid, ids, context=None):
-        """ Check if CAS paramaters (host and port) are valids """
+        """Check if CAS paramaters (host and port) are valids"""
         title = 'cas_check_fail'
         message = 'Parameters are incorrect\nThere seems to be an \
 error in the configuration.'
@@ -129,4 +140,4 @@ configured !'
 
         # At the moment, I only found this method
         # in order to show a message after a request
-        raise osv.except_osv(_(title), _(message))
+        raise ValidationError(_(title), _(message))
