@@ -5,10 +5,11 @@
 
 {
     'name': 'CAS Authentication',
-    'version': '1.0',
+    'version': '8.0.1.0.0',
     'category': 'Authentication',
-    'description': """""",
     'author': 'Elico Corp',
+    'license': 'AGPL-3',
+    'support': 'support@elico-corp.com',
     'website': 'https://www.elico-corp.com/',
     'depends': ['base', 'base_setup', 'web'],
     'data': ['res_config_view.xml', 'views/auth_cas_view.xml'],

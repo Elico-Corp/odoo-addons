@@ -3,20 +3,24 @@
 # © 2016 Elico Corp (https://www.elico-corp.com).
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html)
 
-from openerp.osv import fields, osv
+from openerp import api, fields, models
 from openerp.tools.safe_eval import safe_eval
 from openerp.tools.translate import _
 from urlparse import urlparse
-from pycas import login
+from auth_cas.pycas import login
+from openerp.exceptions import ValidationError
+
 
 default_host = 'https://localhost'
 default_port = 8443
 
 
-class cas_base_config_settings(osv.TransientModel):
+class CasBaseConfigSettings(models.TransientModel):
     """
-    The fields declared here are used to manage settings of the CAS server.
+    The fields declared here are used
+    to manage settings of the CAS server.
     """
+
     _inherit = 'base.config.settings'
     _columns = {
         'cas_activated': fields.boolean(
@@ -33,6 +37,7 @@ via CAS'),
     }
 
     # Getter is required for fields stored in base.config.settings
+    @api.v7
     def get_default_cas_values(self, cr, uid, fields, context=None):
         icp = self.pool.get('ir.config_parameter')
         return {
@@ -47,6 +52,7 @@ via CAS'),
         }
 
     # Setter is required too
+    @api.v7
     def set_cas_values(self, cr, uid, ids, context=None):
         config = self.browse(cr, uid, ids[0], context=context)
         icp = self.pool.get('ir.config_parameter')
@@ -102,8 +108,9 @@ via CAS'),
         icp.set_param(
             cr, uid, 'cas_auth.cas_create_user', str(config.cas_create_user))
 
+    @api.v7
     def check_cas_server(self, cr, uid, ids, context=None):
-        """ Check if CAS paramaters (host and port) are valids """
+        """Check if CAS paramaters (host and port) are valids"""
         title = 'cas_check_fail'
         message = 'Parameters are incorrect\nThere seems to be an \
 error in the configuration.'
@@ -129,4 +136,4 @@ configured !'
 
         # At the moment, I only found this method
         # in order to show a message after a request
-        raise osv.except_osv(_(title), _(message))
+        raise ValidationError(_(title), _(message))
