@@ -2,12 +2,13 @@
    :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
    :alt: License: AGPL-3
 
-=====================================
-Project Task Type Remaining Time Zero
-=====================================
+======================================
+Project Task Stage Remaining Time Zero
+======================================
 
-This module extends the functionality of project task type to configure
-stages that should set reamining time to zero.
+This module extends the functionality of project task type (stages) 
+to add configuration about the ones once reached the reamining
+time would be zero.
 
 Bug Tracker
 ===========
