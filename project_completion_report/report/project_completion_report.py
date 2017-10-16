@@ -92,12 +92,14 @@ class ProjectCompletionReport(models.Model):
                             t.stage_id AS activity_stage_id,
                             COALESCE(r.qty, 0) AS estimated_hours,
                             t.planned_hours,
-                            SUM(al.unit_amount) AS total_tms,
+                            COALESCE(SUM(al.unit_amount), 0) AS total_tms,
                             t.remaining_hours,
-                            SUM(al.unit_amount) + t.remaining_hours
+                            COALESCE(SUM(al.unit_amount), 0) 
+                                + t.remaining_hours
                                 AS total_hours,
-                            SUM(al.unit_amount) + t.remaining_hours
-                                - COALESCE(r.qty, 0) AS extra_hours
+                            COALESCE(SUM(al.unit_amount), 0) 
+                                + t.remaining_hours - COALESCE(r.qty, 0)
+                                AS extra_hours
                         FROM
                             project_project p
                             -- Link with the analytic account
