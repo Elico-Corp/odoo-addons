@@ -94,10 +94,10 @@ class ProjectCompletionReport(models.Model):
                             t.planned_hours,
                             COALESCE(SUM(al.unit_amount), 0) AS total_tms,
                             t.remaining_hours,
-                            COALESCE(SUM(al.unit_amount), 0) 
+                            COALESCE(SUM(al.unit_amount), 0)
                                 + t.remaining_hours
                                 AS total_hours,
-                            COALESCE(SUM(al.unit_amount), 0) 
+                            COALESCE(SUM(al.unit_amount), 0)
                                 + t.remaining_hours - COALESCE(r.qty, 0)
                                 AS extra_hours
                         FROM
