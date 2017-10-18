@@ -4,9 +4,9 @@
 from odoo.tests import common
 
 
-class TestSaleService(common.TransactionCase):
+class TestReportService(common.TransactionCase):
     def setUp(self):
-        super(TestSaleService, self).setUp()
+        super(TestReportService, self).setUp()
 
     def test_report(self):
         project_id = self.env.ref('project.project_project_1')
