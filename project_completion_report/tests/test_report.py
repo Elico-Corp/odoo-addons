@@ -147,4 +147,3 @@ class TestSaleService(common.TransactionCase):
         extra_hours = rl_hours - remaining_hours
         self.assertEqual(extra_hours, 105.0)
         self.assertEqual(planned_hours, 40.0)
-
