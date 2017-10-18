@@ -46,23 +46,27 @@ class TestSaleService(common.TransactionCase):
             'rounding': 0.000001})
 
         self.ProductObj = self.env['product.product']
-        self.productA = self.ProductObj.create(
-            {'name': 'Product A', 'uom_id': self.uom_hours.id,
+        self.productA = self.ProductObj.create({
+            'name': 'Product A', 'uom_id': self.uom_hours.id,
             'uom_po_id': self.uom_hours.id,
             'standard_price': 450
-             })
-        self.productB = self.ProductObj.\
-            create({'name': 'Product B', 'uom_id': self.uom_hours.id,
-                    'uom_po_id': self.uom_hours.id,
-                    'standard_price': 550})
-        self.productC = self.ProductObj.\
-            create({'name': 'Product C', 'uom_id': self.uom_days.id,
-                    'uom_po_id': self.uom_days.id,
-                    'standard_price': 650})
-        self.productD = self.ProductObj.\
-            create({'name': 'Product D', 'uom_id': self.uom_kg.id,
-                    'uom_po_id': self.uom_kg.id,
-                    'standard_price': 750})
+        })
+        self.productB = self.ProductObj.create({
+            'name': 'Product B', 'uom_id': self.uom_hours.id,
+            'uom_po_id': self.uom_hours.id,
+            'standard_price': 550
+        })
+        self.productC = self.ProductObj.create({
+            'name': 'Product C',
+            'uom_id': self.uom_days.id,
+            'uom_po_id': self.uom_days.id,
+            'standard_price': 650
+        })
+        self.productD = self.ProductObj.create({
+            'name': 'Product D', 'uom_id': self.uom_kg.id,
+            'uom_po_id': self.uom_kg.id,
+            'standard_price': 750
+        })
 
         vals = {
             'description': 'test',
