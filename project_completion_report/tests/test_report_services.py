@@ -101,6 +101,7 @@ class TestReportService(common.TransactionCase):
             'unit_amount': 25,
         })
 
+        # Create Business Requirement
         self.brA = self.env['business.requirement'].create(vals)
         self.brA.write({
             'deliverable_lines': [
