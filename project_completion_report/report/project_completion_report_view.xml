@@ -23,7 +23,7 @@
                     <field name="total_tms" />
                     <field name="remaining_hours" />
                     <field name="total_hours" />
-                    <field name="extra_hours" />
+                    <field name="deviation" />
                 </tree>
             </field>
         </record>
@@ -38,7 +38,7 @@
                     <field name="total_tms" type="measure" />
                     <field name="remaining_hours" type="measure" />
                     <field name="total_hours" type="measure" />
-                    <field name="extra_hours" type="measure" />
+                    <field name="deviation" type="measure" />
                 </graph>
             </field>
         </record>
