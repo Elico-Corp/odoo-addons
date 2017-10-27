@@ -8,6 +8,7 @@
             <field name="arch" type="xml">
                 <tree string="Project Completion Tree">
                     <field name="partner_id" />
+                    <field name="master_project_id" />
                     <field name="br_id" />
                     <field name="project_id" />
                     <field name="account_id" />
@@ -59,6 +60,7 @@
             <field name="arch" type="xml">
                 <search string="Project Completion search">
                     <field name="partner_id" />
+                    <field name="master_project_id" />
                     <field name="br_id" />
                     <field name="project_id" />
                     <field name="account_id" />
@@ -71,6 +73,8 @@
                     <group expand="0" string="Group By">
                         <filter string="Customer" domain="[]"
                                 context="{'group_by': 'partner_id'}" />
+                        <filter string="Master Project" domain="[]"
+                                context="{'group_by': 'master_project_id'}" />
                         <filter string="Business Requirement" domain="[]"
                                 context="{'group_by': 'br_id'}" />
                         <filter string="Project" domain="[]"

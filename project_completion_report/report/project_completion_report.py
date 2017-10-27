@@ -18,6 +18,9 @@ class ProjectCompletionReport(models.Model):
     id = fields.Integer('ID', readonly=True)
     partner_id = fields.Many2one(
         'res.partner', 'Customer', readonly=True)
+    master_project_id = fields.Many2one(
+        'project.project', 'Master Project', readonly=True,
+        help="Master Project of the Business Requirement")
     br_id = fields.Many2one(
         'business.requirement', 'Bus. Req.',
         readonly=True, help="Business Requirement")
@@ -79,6 +82,8 @@ class ProjectCompletionReport(models.Model):
                     (
                         SELECT
                             a.partner_id,
+                            b.project_id AS master_project_id,
+                            b.id AS br_id,
                             b.id AS br_id,
                             p.id AS project_id,
                             a.id AS account_id,
@@ -126,6 +131,7 @@ class ProjectCompletionReport(models.Model):
                     (
                         SELECT
                             a.partner_id,
+                            b.project_id AS master_project_id,
                             b.id AS br_id,
                             p.id AS project_id,
                             a.id AS account_id,
