@@ -136,10 +136,10 @@ class ProjectCompletionReport(models.Model):
                             i.name AS activity_name,
                             i.user_id,
                             i.stage_id AS activity_stage_id,
-                            NULL AS estimated_hours,
+                            0 AS estimated_hours,
+                            0 AS planned_hours,
                             SUM(al.unit_amount) AS total_tms,
-                            NULL AS planned_hours,
-                            NULL AS remaining_hours,
+                            0 AS remaining_hours,
                             SUM(al.unit_amount) AS total_hours,
                             SUM(al.unit_amount) AS extra_hours
                         FROM
