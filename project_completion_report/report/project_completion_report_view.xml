@@ -8,6 +8,7 @@
             <tree string="Project Completion Tree">
                 <field name="partner_id" />
                 <field name="br_id" />
+                <field name="master_project_id" />
                 <field name="project_id" />
                 <field name="account_id" />
                 <field name="project_categ_id" />
@@ -21,7 +22,7 @@
                 <field name="total_tms" />
                 <field name="remaining_hours" />
                 <field name="total_hours" />
-                <field name="extra_hours" />
+                <field name="variance" />
             </tree>
         </field>
     </record>
@@ -36,7 +37,7 @@
                 <field name="total_tms" type="measure" />
                 <field name="remaining_hours" type="measure" />
                 <field name="total_hours" type="measure" />
-                <field name="extra_hours" type="measure" />
+                <field name="variance" type="measure" />
             </graph>
         </field>
     </record>
@@ -57,6 +58,7 @@
             <search string="Project Completion search">
                 <field name="partner_id" />
                 <field name="br_id" />
+                <field name="master_project_id" />
                 <field name="project_id" />
                 <field name="account_id" />
                 <field name="project_categ_id" />
@@ -67,6 +69,8 @@
                 <group expand="0" string="Group By">
                     <filter string="Customer" domain="[]"
                             context="{'group_by': 'partner_id'}" />
+                    <filter string="Master Project" domain="[]"
+                             context="{'group_by': 'master_project_id'}"/>
                     <filter string="Business Requirement" domain="[]"
                             context="{'group_by': 'br_id'}" />
                     <filter string="Project" domain="[]"
