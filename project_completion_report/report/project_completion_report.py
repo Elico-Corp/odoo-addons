@@ -65,7 +65,8 @@ class ProjectCompletionReport(models.Model):
         'Remain. time', digits=(16, 2), readonly=True,
         help="Remaining time")
     total_hours = fields.Float('Total time', digits=(16, 2), readonly=True)
-    deviation = fields.Float('Deviation', digits=(16, 2), readonly=True)
+    variance = fields.Float('Variance', digits=(16, 2), readonly=True,
+        help="Variance between Estimated time (from BR) and Total time")
 
     def init(self, cr):
         """Project Completion Report"""
@@ -101,7 +102,7 @@ class ProjectCompletionReport(models.Model):
                                 + t.remaining_hours AS total_hours,
                             COALESCE(SUM(al.unit_amount), 0)
                                 + t.remaining_hours - COALESCE(r.qty, 0)
-                                AS deviation
+                                AS variance
                         FROM
                             project_project p
                             -- Link with the analytic account
@@ -146,7 +147,7 @@ class ProjectCompletionReport(models.Model):
                             SUM(al.unit_amount) AS total_tms,
                             0 AS remaining_hours,
                             SUM(al.unit_amount) AS total_hours,
-                            SUM(al.unit_amount) AS deviation
+                            SUM(al.unit_amount) AS variance
                         FROM
                             project_project p
                             -- Link with the analytic account
