@@ -18,6 +18,9 @@ class ProjectCompletionReport(models.Model):
     id = fields.Integer('ID', readonly=True)
     partner_id = fields.Many2one(
         'res.partner', 'Customer', readonly=True)
+    master_project_id = fields.Many2one(
+        'project.project', 'Master Project', readonly=True,
+        help="Master Project of the Business Requirement")
     br_id = fields.Many2one(
         'business.requirement', 'Bus. Req.',
         readonly=True, help="Business Requirement")
@@ -62,7 +65,7 @@ class ProjectCompletionReport(models.Model):
         'Remain. time', digits=(16, 2), readonly=True,
         help="Remaining time")
     total_hours = fields.Float('Total time', digits=(16, 2), readonly=True)
-    extra_hours = fields.Float('Extra time', digits=(16, 2), readonly=True)
+    deviation = fields.Float('Deviation', digits=(16, 2), readonly=True)
 
     def init(self, cr):
         """Project Completion Report"""
@@ -79,6 +82,7 @@ class ProjectCompletionReport(models.Model):
                     (
                         SELECT
                             a.partner_id,
+                            b.project_id AS master_project_id,
                             b.id AS br_id,
                             p.id AS project_id,
                             a.id AS account_id,
@@ -97,7 +101,7 @@ class ProjectCompletionReport(models.Model):
                                 + t.remaining_hours AS total_hours,
                             COALESCE(SUM(al.unit_amount), 0)
                                 + t.remaining_hours - COALESCE(r.qty, 0)
-                                AS extra_hours
+                                AS deviation
                         FROM
                             project_project p
                             -- Link with the analytic account
@@ -126,6 +130,7 @@ class ProjectCompletionReport(models.Model):
                     (
                         SELECT
                             a.partner_id,
+                            b.project_id AS master_project_id,
                             b.id AS br_id,
                             p.id AS project_id,
                             a.id AS account_id,
@@ -141,7 +146,7 @@ class ProjectCompletionReport(models.Model):
                             SUM(al.unit_amount) AS total_tms,
                             0 AS remaining_hours,
                             SUM(al.unit_amount) AS total_hours,
-                            SUM(al.unit_amount) AS extra_hours
+                            SUM(al.unit_amount) AS deviation
                         FROM
                             project_project p
                             -- Link with the analytic account
