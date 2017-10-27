@@ -84,7 +84,6 @@ class ProjectCompletionReport(models.Model):
                             a.partner_id,
                             b.project_id AS master_project_id,
                             b.id AS br_id,
-                            b.id AS br_id,
                             p.id AS project_id,
                             a.id AS account_id,
                             p.project_categ_id,
