@@ -87,8 +87,8 @@ class ProjectCompletionReport(models.Model):
                     (
                         SELECT
                             a.partner_id,
-                            b.id AS br_id,
                             b.project_id AS master_project_id,
+                            b.id AS br_id,
                             p.id AS project_id,
                             a.id AS account_id,
                             p.project_categ_id,
@@ -102,8 +102,7 @@ class ProjectCompletionReport(models.Model):
                             COALESCE(SUM(al.unit_amount), 0) AS total_tms,
                             t.remaining_hours,
                             COALESCE(SUM(al.unit_amount), 0)
-                                + t.remaining_hours
-                                AS total_hours,
+                                + t.remaining_hours AS total_hours,
                             COALESCE(SUM(al.unit_amount), 0)
                                 + t.remaining_hours - COALESCE(r.qty, 0)
                                 AS variance
@@ -135,8 +134,8 @@ class ProjectCompletionReport(models.Model):
                     (
                         SELECT
                             a.partner_id,
-                            b.id AS br_id,
                             b.project_id AS master_project_id,
+                            b.id AS br_id,
                             p.id AS project_id,
                             a.id AS account_id,
                             p.project_categ_id,
@@ -148,9 +147,7 @@ class ProjectCompletionReport(models.Model):
                             0 AS estimated_hours,
                             0 AS planned_hours,
                             SUM(al.unit_amount) AS total_tms,
-                            0 AS planned_hours,
                             0 AS remaining_hours,
-                            NULL AS remaining_hours,
                             SUM(al.unit_amount) AS total_hours,
                             SUM(al.unit_amount) AS variance
                         FROM
