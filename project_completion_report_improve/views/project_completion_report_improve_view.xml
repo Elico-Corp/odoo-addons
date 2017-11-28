@@ -1,0 +1,20 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<odoo>
+    <record id = "action_project_completion_tree_inherit" model = "ir.ui.view">
+        <field name = "name">project.completion.report.tree</field>
+        <field name="model">project.completion.report</field>
+        <field name="inherit_id"
+               ref="project_completion_report.action_project_completion_tree"/>
+        <field name = "arch" type = "xml">
+            <xpath expr="//field[@name='br_id']" position = 'after'>
+                <field name="br_status" />
+            </xpath>
+            <xpath expr="//field[@name='activity_name']" position = 'after'>
+                <field name="task_category" />
+            </xpath>
+            <xpath expr="//field[@name='account_id']" position = 'after'>
+                <field name="project_state" />
+            </xpath>
+        </field>
+    </record>
+</odoo>
