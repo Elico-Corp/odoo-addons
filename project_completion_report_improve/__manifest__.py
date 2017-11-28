@@ -15,7 +15,7 @@
     "depends": [
         'project_completion_report',
     ],
-    "data":[
+    "data": [
         'views/project_completion_report_improve_view.xml',
         'views/button_view.xml',
     ]

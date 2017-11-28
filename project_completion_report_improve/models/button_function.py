@@ -2,7 +2,7 @@
 # © 2016 Elico Corp
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import models, fields, api, tools, _
+from odoo import models, api, _
 
 
 class BRButtonFunction(models.Model):

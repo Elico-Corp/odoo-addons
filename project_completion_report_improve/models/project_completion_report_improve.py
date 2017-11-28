@@ -48,7 +48,7 @@ class ProjectCompletionReportImprove(models.Model):
                             b.state AS br_status,
                             t.categ_id AS task_category,
                             CASE WHEN p.active = True THEN 'Active'
-                            WHEN p.active=False THEN 'Archived' 
+                            WHEN p.active = False THEN 'Archived' 
                             END AS project_state,
                             p.id AS project_id,
                             a.id AS account_id,
@@ -100,7 +100,7 @@ class ProjectCompletionReportImprove(models.Model):
                             b.state AS br_status,
                             null as task_category,
                             CASE WHEN p.active = True THEN 'Active'
-                            WHEN p.active=False THEN 'Archived' 
+                            WHEN p.active = False THEN 'Archived' 
                             END AS project_state,
                             p.id AS project_id,
                             a.id AS account_id,
