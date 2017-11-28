@@ -2,9 +2,9 @@
    :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
    :alt: License: AGPL-3
 
-=========================
-Timesheet Activity Report
-=========================
+=================================
+Timesheet Activity Report Improve
+=================================
 
 This module extends the functionality of project adding a timesheet report listed at timesheet completion analysis.
 You can use this report to communicate the timesheet analysis to the project members.
@@ -15,10 +15,7 @@ Installation
 
 To install this module, you need to have basic modules installed:
 
-* project_timesheet
-* project_issue_sheet
-* business_requirement_deliverable_project
-* project_task_category
+* timesheet_activity_report
 
 Bug Tracker
 ===========
@@ -42,6 +39,7 @@ Contributors
 
 * Eric Caudal <eric.caudal@elico-corp.com>
 * Sébastien Maillard <sebastien.maillard@elico-corp.com>
+* Miya Xing <miya.xing@elico-corp.com>
 
 
 Maintainer

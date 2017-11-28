@@ -6,19 +6,15 @@
     'version': '10.0.1.1.0',
     'category': 'Human Resources',
     'depends': [
-        'hr_timesheet',
-        'project_issue_sheet',
-        'business_requirement_deliverable_project',
-        'project_project_category',
-        'project_task_category',
+        'timesheet_activity_report',
     ],
     'author': 'Elico Corp',
     'support': 'support@elico-corp.com',
     'license': 'AGPL-3',
     'website': 'https://www.elico-corp.com',
     'data': [
-        'security/ir.model.access.csv',
-        'report/timesheet_activity_report_view.xml',
+        'views/timesheet_report_improve.xml',
+        'views/button_view.xml',
     ],
     'installable': True,
     'application': True
