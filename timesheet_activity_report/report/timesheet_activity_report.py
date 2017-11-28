@@ -61,7 +61,7 @@ class TimesheetReport(models.Model):
     )
     activity_stage_id = fields.Many2one(
         'project.task.type',
-        'Stage',
+        'Activity stage',
         readonly=True,
         help="Activity Stage"
     )
@@ -94,7 +94,7 @@ class TimesheetReport(models.Model):
     )
     partner_id = fields.Many2one(
         'res.partner',
-        'Customer',
+        'Stakeholder',
         readonly=True
     )
     project_categ_id = fields.Many2one(
