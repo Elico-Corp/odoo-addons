@@ -23,8 +23,6 @@ class TimesheetReportImprove(models.Model):
         string='BR status',
     )
     department_id = fields.Many2one('hr.department', string='Department')
-    project_state = fields.Char(
-        'Project state', readonly=True, help="Project State")
 
     def _select(self):
         select_str = """

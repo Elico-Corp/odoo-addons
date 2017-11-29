@@ -33,9 +33,9 @@ class TimesheetReport(models.Model):
     product_id = fields.Many2one('product.product', 'Product', readonly=True)
     date = fields.Date('Date', readonly=True)
     project_id = fields.Many2one('project.project', 'Project', readonly=True)
-    project_state = fields.Char('State', readonly=True, help="Project State")
+    project_state = fields.Char('Project state', readonly=True, help="Project State")
     activity_stage_id = fields.Many2one(
-        'project.task.type', 'Stage',
+        'project.task.type', 'Activity stage',
         readonly=True, help="Activity Stage")
     account_id = fields.Many2one(
         'account.analytic.account', 'Analytic account', readonly=True)
@@ -50,7 +50,7 @@ class TimesheetReport(models.Model):
         'business.requirement', 'Bus. requ.',
         readonly=True, help="Business requirement")
     partner_id = fields.Many2one(
-        'res.partner', 'Customer', readonly=True)
+        'res.partner', 'Stakeholder', readonly=True)
     project_categ_id = fields.Many2one(
         'project.project.category',
         'Project Cat.', readonly=True, help="Project Category")
