@@ -28,9 +28,9 @@ class ProjectCompletionReport(osv.Model):
         'project_id': fields.many2one(
             'project.project', 'Project', readonly=True),
         'project_state': fields.char(
-            'State', readonly=True, help="Project State"),
+            'Project state', readonly=True, help="Project State"),
         'activity_stage_id': fields.many2one(
-            'project.task.type', 'Stage',
+            'project.task.type', 'Activity stage',
             readonly=True, help="Activity Stage"),
         'account_id': fields.many2one(
             'account.analytic.account', 'Analytic account', readonly=True),
@@ -47,7 +47,7 @@ class ProjectCompletionReport(osv.Model):
             'business.requirement', 'Bus. requ.',
             readonly=True, help="Business requirement"),
         'partner_id': fields.many2one(
-            'res.partner', 'Customer', readonly=True),
+            'res.partner', 'Stakeholder', readonly=True),
         'project_categ_id': fields.many2one(
             'project.project.category',
             'Project Cat.', readonly=True, help="Project Category"),
