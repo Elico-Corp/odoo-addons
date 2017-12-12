@@ -1,0 +1,3 @@
+"id","name","model_id:id","group_id:id","perm_read","perm_write","perm_create","perm_unlink"
+access_project_task_manager,project_task_manager,project.model_project_task,extra_time_application.group_project_task_manager,1,1,1,1
+

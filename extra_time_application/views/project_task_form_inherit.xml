@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="project_task_form_inherit_view" model="ir.ui.view">
+        <field name="name">project.task.form</field>
+        <field name="model">project.task</field>
+        <field name="inherit_id" ref="project.view_task_form2"/>
+        <field name="arch" type="xml">
+            <xpath expr="//header/field[@name='stage_id']" position="before">
+                <button name="%(action_time_prompt)d" string="Apply Extra Time"
+                        type="action" class="oe_highlight"/>
+            </xpath>
+            <xpath expr='//div[@name="button_box"]/button[1]' position='before'>
+                <button class="oe_inline oe_stat_button"
+                    type="object" name="open_extra_time_line"
+                        icon="fa-tasks" string="Extra Time">
+                    <field name="sub_extra_time" widget="float_time"/>
+                </button>
+            </xpath>
+        </field>
+    </record>
+</odoo>

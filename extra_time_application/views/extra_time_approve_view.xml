@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_extra_time_approve_form" model="ir.ui.view">
+        <field name="name">extra.time.approve.form</field>
+        <field name="model">extra.time.application</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <header>
+                <button name="approve_function" string="Approve"
+                    type="object" class="oe_highlight o_expense_submit"/>
+                <button name="refuse_function" string="Refuse"
+                    type="object" class="oe_highlight o_expense_submit"/>
+                <field name="state" widget="statusbar" clickable="True"/>
+            </header>
+            <form>
+                <sheet>
+
+                    <group>
+                        <group colspan="2" col="2">
+                            <field name="submit_user_id" required="1"/>
+                        </group>
+                        <group colspan="2" col="2">
+                            <field name="task_no" required="1"/>
+                        </group>
+                        <group colspan="2" col="2">
+                            <field name="apply_hours" widget="float_time"/>
+                        </group>
+                        <group colspan="2" col="2">
+                            <field name="reason"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+            <div class="oe_chatter">
+              <field name="message_follower_ids" widget="mail_followers"/>
+              <field name="message_ids" widget="mail_thread"/>
+            </div>
+        </field>
+    </record>
+
+    <record id="view_extra_time_approve_tree" model="ir.ui.view">
+        <field name="name">extra.time.approve.tree</field>
+        <field name="model">extra.time.application</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="submit_user_id"/>
+                <field name="task_no"/>
+                <field name="apply_hours"/>
+                <field name="reason"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_extra_time_approve" model="ir.actions.act_window">
+        <field name="name">Extra Time Approve</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">extra.time.application</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form,tree</field>
+        <field name="view_id" ref="view_extra_time_approve_tree"/>
+    </record>
+
+    <menuitem id="menu_extra_time_approve"
+              action="action_extra_time_approve"
+              parent="project.menu_project_report"
+              sequence="14"/>
+
+</odoo>
