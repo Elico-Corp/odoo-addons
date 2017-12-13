@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <record id="view_extra_time_approve_form" model="ir.ui.view">
+    <record id="view_extra_time_approve_form" model="ir.ui.view" >
         <field name="name">extra.time.approve.form</field>
         <field name="model">extra.time.application</field>
         <field name="type">form</field>
@@ -12,7 +12,7 @@
                     type="object" class="oe_highlight o_expense_submit"/>
                 <field name="state" widget="statusbar" clickable="True"/>
             </header>
-            <form>
+            <form create="false">
                 <sheet>
 
                     <group>
@@ -38,11 +38,11 @@
         </field>
     </record>
 
-    <record id="view_extra_time_approve_tree" model="ir.ui.view">
+    <record id="view_extra_time_approve_tree" model="ir.ui.view" >
         <field name="name">extra.time.approve.tree</field>
         <field name="model">extra.time.application</field>
         <field name="arch" type="xml">
-            <tree>
+            <tree create="false">
                 <field name="submit_user_id"/>
                 <field name="task_no"/>
                 <field name="apply_hours"/>
