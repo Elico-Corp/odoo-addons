@@ -42,11 +42,11 @@ class TestProjectTaskSave(common.TransactionCase):
         self.view_id = self.env.ref('project_task_form_inherit_view').id
 
     def test_save(self):
-        vals_1 = {'remaining_hours':23}
+        vals_1 = {'remaining_hours': 23}
         self.task_1.write(vals_1)
-        vals_2 = {'timesheet_ids':[[4,20,False],[0,False,{
+        vals_2 = {'timesheet_ids': [[4, 20, False], [0, False, {
             'date_time': '2017-12-13 10:26:54',
-            'user_id':  1,
+            'user_id': 1,
             'name': self.name,
             'unit_amount': 2,
             'date': '2017-12-13',
@@ -61,7 +61,4 @@ class TestProjectTaskSave(common.TransactionCase):
         return res
 
     def test_fields_view_get(self):
-        self.task_1.fields_view_get(view_id=self.view_id,
-                                           view_type='form')
-
-
+        self.task_1.fields_view_get(view_id=self.view_id, view_type='form')

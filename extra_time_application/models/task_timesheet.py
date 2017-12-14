@@ -18,15 +18,16 @@ class TaskTimeSheet(models.Model):
         ('to_approve', 'To Approve'),
         ('approve', 'Approved'),
         ('refused', 'Refused'),
-    ],track_visibility='onchange',defaule='to_approve')
+    ], track_visibility='onchange', defaule='to_approve')
 
     @api.one
     def approve_function(self):
         if self.state == 'to_approve':
-            self.with_context(flag='True').task_no.remaining_hours += self.apply_hours
+            self.with_context(flag='True').\
+                task_no.remaining_hours += self.apply_hours
             self.task_no.sub_extra_time += self.apply_hours
             self.state = 'approve'
-            self.message_post(body=('    Approved:%s'%self.env.user.name))
+            self.message_post(body=('    Approved:%s' % self.env.user.name))
 
     @api.one
     def refuse_function(self):
@@ -35,20 +36,22 @@ class TaskTimeSheet(models.Model):
     @api.model
     def create(self, vals):
         msg_followers = []
-        for user in self.env.ref('extra_time_application.group_extra_time_manager').users:
-            if user != self.env['project.task'].browse(vals.get('task_no')).user_id:
+        for user in self.env.ref(
+                'extra_time_application.group_extra_time_manager').users:
+            if user != self.env['project.task'].browse(
+                    vals.get('task_no')).user_id:
                 msg_vals = {
                     'partner_id': user.partner_id.id,
                     'res_model': self._name,
                 }
                 msg_followers.append((0, 0, msg_vals))
 
-
         task_id = self.env['project.task']. \
-                    browse(vals.get('task_no'))
+            browse(vals.get('task_no'))
         task_manager = task_id.project_id.user_id
-        if task_manager not in self.env.ref('extra_time_application.group_extra_time_manager').users and \
-            task_manager != task_id.user_id:
+        if task_manager not in self.env.ref(
+                'extra_time_application.group_extra_time_manager').\
+                users and task_manager != task_id.user_id:
             msg_vals = {
                 'partner_id': task_manager.partner_id.id,
                 'res_model': self._name,
@@ -57,4 +60,3 @@ class TaskTimeSheet(models.Model):
         if msg_followers:
             vals['message_follower_ids'] = msg_followers
         return super(TaskTimeSheet, self).create(vals)
-

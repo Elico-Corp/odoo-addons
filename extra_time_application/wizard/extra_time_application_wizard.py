@@ -15,10 +15,10 @@ class TimePromptBox(models.TransientModel):
 
     submit_user_id = fields.Many2one(
         'res.users', 'Applicant', help='Applicant',
-        default=lambda self: self.env.user,readonly="True"
+        default=lambda self: self.env.user, readonly="True"
     )
     task_no = fields.Many2one('project.task', 'Task No', help='Task No',
-                              default=_get_task_no,readonly="True"
+                              default=_get_task_no, readonly="True"
                               )
     reason = fields.Text('Reason', help='the reason of apply')
     apply_hours = fields.Float('Apply Hours', help='the length of apply time')
@@ -42,9 +42,9 @@ class TimePromptBox(models.TransientModel):
         else:
             mail = self.env['mail.mail'].create({
                 'body_html': 'apply time:' + str(
-                    self.apply_hours) + '<br>reason:'
-                + str(self.reason) + '<br>Task:'
-                + str(self.task_no.code),
+                    self.apply_hours) + '<br>reason:' +
+                str(self.reason) + '<br>Task:' +
+                str(self.task_no.code),
                 'email_to': self.task_no.project_id.user_id.login,
                 'subject': 'Apply Time',
             })

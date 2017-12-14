@@ -26,7 +26,8 @@ class ProjectTaskInherit(models.Model):
                     'submit_user_id': user.id,
                     'task_no': self.id,
                     'reason': 'Automaticity create From PM or Reviewer',
-                    'apply_hours': vals.get('remaining_hours') - self.remaining_hours,
+                    'apply_hours': vals.get('remaining_hours') - \
+                                   self.remaining_hours,
                     'state': 'approve',
                 })
                 self.sub_extra_time += \
