@@ -15,19 +15,15 @@ class TimePromptBox(models.TransientModel):
 
     submit_user_id = fields.Many2one(
         'res.users', 'Applicant', help='Applicant',
-        default=lambda self: self.env.user
+        default=lambda self: self.env.user,readonly="True"
     )
     task_no = fields.Many2one('project.task', 'Task No', help='Task No',
-                              default=_get_task_no
+                              default=_get_task_no,readonly="True"
                               )
     reason = fields.Text('Reason', help='the reason of apply')
     apply_hours = fields.Float('Apply Hours', help='the length of apply time')
-    state = fields.Selection([
-        ('to_approve', 'To Approve'),
-        ('approve', 'Approved'),
-        ('refused', 'Refused'),
-    ])
 
+    @api.multi
     def subscribe(self):
         user = self.env.user
         is_exist = user.has_group(

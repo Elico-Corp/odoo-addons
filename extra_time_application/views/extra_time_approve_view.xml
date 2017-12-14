@@ -12,9 +12,8 @@
                     type="object" class="oe_highlight o_expense_submit"/>
                 <field name="state" widget="statusbar" clickable="True"/>
             </header>
-            <form create="false">
+            <form create="false" edit="false">
                 <sheet>
-
                     <group>
                         <group colspan="2" col="2">
                             <field name="submit_user_id" required="1"/>
