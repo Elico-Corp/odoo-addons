@@ -4,4 +4,4 @@
 
 from . import models
 from . import wizard
-from . import test
+from . import tests
