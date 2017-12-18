@@ -55,4 +55,3 @@ Our headquarters are located in Shanghai with branch in Singapore servicing
 customers from all over Asia Pacific.
 
 Contact information: `Sales <contact@elico-corp.com>`__
-

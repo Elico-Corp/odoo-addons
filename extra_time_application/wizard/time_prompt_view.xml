@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-
     <record id="view_time_prompt_form" model="ir.ui.view">
         <field name="name">view.time.prompt.form</field>
         <field name="model">extra.time.application.wizard</field>
@@ -31,7 +30,6 @@
             </form>
         </field>
     </record>
-
     <record id="action_time_prompt" model="ir.actions.act_window">
         <field name="name">Time Application</field>
         <field name="type">ir.actions.act_window</field>
@@ -41,6 +39,4 @@
         <field name="target">new</field>
         <field name="view_id" ref="view_time_prompt_form"/>
     </record>
-
-
 </odoo>

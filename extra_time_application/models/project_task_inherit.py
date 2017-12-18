@@ -21,7 +21,8 @@ class ProjectTaskInherit(models.Model):
             remaining = log.remaining_hours
             if not log.env.context.get('flag') and \
                     not log.env.context.get('flag_remaine'):
-                if vals.get('remaining_hours') and not vals.get('timesheet_ids'):
+                if vals.get('remaining_hours') and \
+                        not vals.get('timesheet_ids'):
                     log.env['extra.time.application'].create({
                         'submit_user_id': user.id,
                         'task_id': log.id,
