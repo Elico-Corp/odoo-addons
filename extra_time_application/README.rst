@@ -4,7 +4,8 @@
 ======================
 Extra Time Application
 ======================
-
+This module adds functionality to the application time and
+will not allow to add new items if the task time is less than 0
 
 Bug Tracker
 ===========

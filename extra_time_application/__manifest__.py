@@ -5,7 +5,7 @@
 
 {
     'name': 'Extra Time Application',
-    'version': '10.0.1.0.0',
+    'version': '10.0.0.0.0',
     'author': "Elico Corp",
     'website': 'https://www.elico-corp.com',
     'license': 'Other proprietary',

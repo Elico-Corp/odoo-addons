@@ -4,16 +4,17 @@
 # See LICENSE file for full copyright and licensing details.
 from odoo.tests import common
 
+
 class TestExtraTime(common.TransactionCase):
 
     def setUp(self):
         super(TestExtraTime, self).setUp()
-        self.submit_user_id = self.env.ref("base.partner_root")
-        self.task_no = self.env.ref('project.project_task_9')
+        self.submit_user_id = self.env.ref("base.user_demo")
+        self.task_id = self.env.ref('project.project_task_9')
 
         self.extra_time_record = self.env['extra.time.application'].create({
-            'submit_user_id': self.submit_user_id,
-            'task_no': self.task_no,
+            'submit_user_id': self.submit_user_id.id,
+            'task_id': self.task_id.id,
             'reason': 'Automaticity create From PM or Reviewer',
             'apply_hours': 2,
             'state': 'to_approve'

@@ -9,21 +9,21 @@ class TestExtraTimeWizard(common.TransactionCase):
 
     def setUp(self):
         super(TestExtraTimeWizard, self).setUp()
-        self.task_no = self.env.ref('project_task_1')
+        self.task_id = self.env.ref('project.project_task_9')
         self.submit_user_id = self.env.ref('base.user_demo')
         self.extra_time_1 = self.env['extra.time.application'].create({
-            'submit_user_id': self.submit_user_id,
-            'task_no': self.task_no,
+            'submit_user_id': self.submit_user_id.id,
+            'task_id': self.task_id.id,
             'reason': 'system test',
             'apply_hours': 3
         })
         self.extra_time_2 = self.env['extra.time.application'].create({
-            'submit_user_id': self.env.ref('base.res.partner'),
-            'task_no': self.task_no,
+            'submit_user_id': self.submit_user_id.id,
+            'task_id': self.task_id.id,
             'reason': 'system test',
             'apply_hours': 3
         })
 
-        def test_subscribe():
-            self.extra_time_1.subscribe()
-            self.extra_time_2.subscribe()
+    def test_subscribe(self):
+        self.extra_time_1.subscribe()
+        self.extra_time_2.subscribe()
