@@ -17,16 +17,16 @@ class ProjectTaskInherit(models.Model):
     @api.multi
     def write(self, vals):
         for log in self:
-            user = log.env.user
+            current_user = log.env.user
             remaining = log.remaining_hours
             if not log.env.context.get('flag') and \
                     not log.env.context.get('flag_remaine'):
                 if vals.get('remaining_hours') and \
                         not vals.get('timesheet_ids'):
                     log.env['extra.time.application'].create({
-                        'submit_user_id': user.id,
+                        'submit_user_id': current_user.id,
                         'task_id': log.id,
-                        'reason': 'Automaticity create From PM or Reviewer',
+                        'reason': 'Automatically create From PM or Reviewer',
                         'apply_hours':
                             vals.get('remaining_hours') - log.remaining_hours,
                         'state': 'approve',
@@ -44,21 +44,22 @@ class ProjectTaskInherit(models.Model):
                 if remaining < 0:
                     raise UserError(
                         _(
-                            'The task have no enough time, '
-                            'please Apply for more extra time'
+                            'The task has no enough time left, '
+                            'please apply for more extra time.'
                         ))
         res = super(ProjectTaskInherit, self).write(vals)
         return res
 
     @api.model
     def create(self, vals):
-        user = self.env.user
-        is_exist = user.has_group(
+        current_user = self.env.user
+        is_exist = current_user.has_group(
             'extra_time_application.group_project_task_manager')
         if not vals.get('project_id.is_modified'):
-            if not is_exist and self.project_id.user_id != user:
+            if not is_exist and self.project_id.user_id != current_user:
                 raise UserError(
-                    _('You do not have permission'))
+                    _('You do not have permission to '
+                      'create task belong to this project.'))
         return super(ProjectTaskInherit, self).create(vals)
 
     @api.multi
@@ -66,7 +67,7 @@ class ProjectTaskInherit(models.Model):
         for record in self:
             domain = [('task_id', '=', record.name)]
             return {
-                'name': _('Extra Time Approve'),
+                'name': _('Extra Time Approval'),
                 'type': 'ir.actions.act_window',
                 'view_type': 'form',
                 'view_mode': 'tree,form',
@@ -83,8 +84,8 @@ class ProjectTaskInherit(models.Model):
             submenu=submenu)
         dom = etree.XML(res['arch'])
         if view_type == 'form':
-            user = self.env.user
-            is_exist = user.has_group(
+            current_user = self.env.user
+            is_exist = current_user.has_group(
                 'extra_time_application.group_project_task_manager')
             if is_exist or self.project_id.is_modified:
                 for node in dom.xpath("//field[@name='remaining_hours']"):

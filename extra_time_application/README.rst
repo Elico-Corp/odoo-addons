@@ -27,6 +27,9 @@ Contributors
 ------------
 
 * Miya Xing <miya.xing@elico-corp.com>
+* Eric Caudal <eric.caudal@elico-corp.com>
+* Sébastien Maillard <sebastien.maillard@elico-corp.com>
+* Hulk Liu <hulk.liu@elico-corp.com>
 
 
 Maintainer

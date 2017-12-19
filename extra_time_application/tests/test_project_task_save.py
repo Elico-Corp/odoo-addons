@@ -1,8 +1,10 @@
 # -*- coding: utf-8 -*-
 # © 2017 Elico Corp (www.elico-corp.com)
-# Elico Proprietary License v1.0.
-# See LICENSE file for full copyright and licensing details.
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 from odoo.tests import common
+from datetime import datetime
+from odoo.tools import DEFAULT_SERVER_DATETIME_FORMAT
+from odoo.exceptions import UserError
 
 
 class TestProjectTaskSave(common.TransactionCase):
@@ -16,7 +18,8 @@ class TestProjectTaskSave(common.TransactionCase):
         self.sub_extra_time = 0
         self.timesheet_ids = self.env['account.analytic.line'].write([[
             0, False, {
-                'date_time': '2017-12-15',
+                'date_time': datetime.today().
+                    strftime(DEFAULT_SERVER_DATETIME_FORMAT),
                 'user_id': self.user_id.id,
                 'name': 'test',
                 'unit_amount': 1,
@@ -47,7 +50,8 @@ class TestProjectTaskSave(common.TransactionCase):
         vals_1 = {'remaining_hours': 23}
         self.task_1.write(vals_1)
         vals_2 = {'timesheet_ids': [[4, 20, False], [0, False, {
-            'date_time': '2017-12-13 10:26:54',
+            'date_time': datetime.today().
+                    strftime(DEFAULT_SERVER_DATETIME_FORMAT),
             'user_id': 1,
             'name': self.name_2,
             'unit_amount': 2,
@@ -57,7 +61,7 @@ class TestProjectTaskSave(common.TransactionCase):
         self.task_1.write(vals_2)
         try:
             self.task_2.write(vals_2)
-        except Exception:
+        except UserError:
             pass
 
     def test_open_extra_time_line(self):

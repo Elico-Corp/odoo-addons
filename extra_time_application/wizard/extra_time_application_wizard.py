@@ -25,14 +25,14 @@ class TimePromptBox(models.TransientModel):
 
     @api.multi
     def subscribe(self):
-        user = self.env.user
-        is_exist = user.has_group(
+        current_user = self.env.user
+        is_exist = current_user.has_group(
             'extra_time_application.group_project_task_manager')
         if is_exist:
             self.env['extra.time.application'].create({
                 'submit_user_id': self.submit_user_id.id,
                 'task_id': self.task_id.id,
-                'reason': 'Automaticity create From PM or Reviewer',
+                'reason': 'Automatically created From PM or Reviewer',
                 'apply_hours': self.apply_hours,
                 'state': 'approve',
             })

@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 # © 2017 Elico Corp (www.elico-corp.com).
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
-from openerp import api, fields, models
+from openerp import api, fields, models,_
+from odoo.exceptions import UserError
 
 
 class TaskTimeSheet(models.Model):
@@ -22,16 +23,36 @@ class TaskTimeSheet(models.Model):
 
     @api.one
     def approve_function(self):
-        if self.state == 'to_approve':
+        task_id = self.task_id
+        task_manager = task_id.project_id.user_id
+        if (self.env.user in self.env.ref(
+                'extra_time_application.group_extra_time_manager').users) or (
+                    self.env.user == task_manager.user_id) or \
+                task_id.project_id.is_modified:
             self.with_context(flag='True'). \
                 task_id.remaining_hours += self.apply_hours
             self.task_id.sub_extra_time += self.apply_hours
             self.state = 'approve'
-            self.message_post(body=('Approved:%s' % self.env.user.name))
+        else:
+            raise UserError(
+                _(
+                    'You do not have permission to approve it.'
+                ))
 
     @api.one
     def refuse_function(self):
-        self.state = 'refused'
+        task_id = self.task_id
+        task_manager = task_id.project_id.user_id
+        if (self.env.user in self.env.ref(
+                'extra_time_application.group_extra_time_manager').users) or (
+                    self.env.user == task_manager.user_id) or \
+                task_id.project_id.is_modified:
+            self.state = 'refused'
+        else:
+            raise UserError(
+                _(
+                    'You do not have permission to refuse it.'
+                ))
 
     @api.model
     def create(self, vals):
