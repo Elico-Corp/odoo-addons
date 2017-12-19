@@ -7,4 +7,8 @@ from openerp import fields, models
 class ProjectProjectInherit(models.Model):
     _inherit = 'project.project'
 
-    is_modified = fields.Boolean()
+    is_modified = fields.Boolean(
+        string='Is modified',
+        help='If this field is true,everyone can create the corresponding '
+             'task,and if it is false, only the person in the manager group '
+             'can create the corresponding task')
