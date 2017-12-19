@@ -26,10 +26,8 @@ class TestExtraTime(common.TransactionCase):
         except UserError:
             pass
 
-
     def test_refuse_function(self):
         try:
             self.extra_time_record.refuse_function()
         except UserError:
             pass
-

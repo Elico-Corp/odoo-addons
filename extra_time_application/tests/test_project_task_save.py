@@ -51,7 +51,7 @@ class TestProjectTaskSave(common.TransactionCase):
         self.task_1.write(vals_1)
         vals_2 = {'timesheet_ids': [[4, 20, False], [0, False, {
             'date_time': datetime.today().
-                    strftime(DEFAULT_SERVER_DATETIME_FORMAT),
+                strftime(DEFAULT_SERVER_DATETIME_FORMAT),
             'user_id': 1,
             'name': self.name_2,
             'unit_amount': 2,
