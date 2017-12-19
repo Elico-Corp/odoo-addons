@@ -18,8 +18,8 @@ class TestProjectTaskSave(common.TransactionCase):
         self.sub_extra_time = 0
         self.timesheet_ids = self.env['account.analytic.line'].write([[
             0, False, {
-                'date_time': datetime.today().
-                    strftime(DEFAULT_SERVER_DATETIME_FORMAT),
+                'date_time': datetime.today().strftime(
+                    DEFAULT_SERVER_DATETIME_FORMAT),
                 'user_id': self.user_id.id,
                 'name': 'test',
                 'unit_amount': 1,
@@ -50,8 +50,8 @@ class TestProjectTaskSave(common.TransactionCase):
         vals_1 = {'remaining_hours': 23}
         self.task_1.write(vals_1)
         vals_2 = {'timesheet_ids': [[4, 20, False], [0, False, {
-            'date_time': datetime.today().
-                strftime(DEFAULT_SERVER_DATETIME_FORMAT),
+            'date_time': datetime.today().strftime(
+                DEFAULT_SERVER_DATETIME_FORMAT),
             'user_id': 1,
             'name': self.name_2,
             'unit_amount': 2,
