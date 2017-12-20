@@ -66,7 +66,7 @@ class TaskTimeSheet(models.Model):
             if user != self.env['project.task'].browse(
                     vals.get('task_id')).user_id:
                 msg_vals = {
-                    'partner_id': user.id,
+                    'partner_id': user.partner_id.id,
                     'res_model': self._name,
                 }
                 msg_followers.append((0, 0, msg_vals))
@@ -77,7 +77,7 @@ class TaskTimeSheet(models.Model):
                 'extra_time_application.group_extra_time_manager').users) and (
                     task_manager != task_id.user_id):
             msg_vals = {
-                'partner_id': task_manager.id,
+                'partner_id': task_manager.partner_id.id,
                 'res_model': self._name,
             }
             msg_followers.append((0, 0, msg_vals))
