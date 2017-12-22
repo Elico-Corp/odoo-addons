@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_time_prompt_form" model="ir.ui.view">
+        <field name="name">view.time.prompt.form</field>
+        <field name="model">extra.time.application.wizard</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group colspan="2" col="2">
+                            <field name="submit_user_id" required="1" readonly="1"/>
+                        </group>
+                        <group colspan="2" col="2">
+                            <field name="task_id" required="1" readonly="1"/>
+                        </group>
+                        <group colspan="2" col="2">
+                            <field name="apply_hours" widget="float_time"/>
+                        </group>
+                        <group colspan="2" col="2">
+                            <field name="reason"/>
+                        </group>
+                    </group>
+                </sheet>
+                <footer>
+                    <button name="subscribe" string="Subscribe"
+                        type="object" class="oe_highlight o_expense_submit"/>
+                    <button special="cancel" string="Cancel" class="btn_default"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+    <record id="action_time_prompt" model="ir.actions.act_window">
+        <field name="name">Time Application</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">extra.time.application.wizard</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="view_id" ref="view_time_prompt_form"/>
+    </record>
+</odoo>
