@@ -19,28 +19,33 @@ class ProjectTaskInherit(models.Model):
         for log in self:
             current_user = log.env.user
             remaining = log.remaining_hours
+            spending_hours = 0
             if not log.env.context.get('flag') and \
                     not log.env.context.get('flag_remaine'):
-                if vals.get('remaining_hours') and \
-                        not vals.get('timesheet_ids'):
-                    log.env['extra.time.application'].create({
-                        'submit_user_id': current_user.id,
-                        'task_id': log.id,
-                        'reason': 'Automatically create From PM or Reviewer',
-                        'apply_hours':
-                            vals.get('remaining_hours') - log.remaining_hours,
-                        'state': 'approve',
-                    })
-                    log.sub_extra_time += \
-                        (vals.get('remaining_hours') - log.remaining_hours)
                 for record in vals.get('timesheet_ids', []):
                     if record[0] == 0:
                         remaining -= record[2]['unit_amount']
+                        spending_hours += record[2]['unit_amount']
                     elif record[0] == 2:
                         item = log.timesheet_ids.search([
                             ('id', '=', record[1])
                         ])
                         remaining += item['unit_amount']
+                        spending_hours -= item['unit_amount']
+                if vals.get('remaining_hours') and \
+                        (vals.get('remaining_hours') != remaining):
+                    log.env['extra.time.application'].create({
+                        'submit_user_id': current_user.id,
+                        'task_id': log.id,
+                        'reason': 'Automatically create From PM or Reviewer',
+                        'apply_hours':
+                            vals.get('remaining_hours') -
+                            log.remaining_hours + spending_hours,
+                        'state': 'approve',
+                    })
+                    log.sub_extra_time += \
+                        (vals.get('remaining_hours') -
+                         log.remaining_hours + spending_hours)
                 if remaining < 0:
                     raise UserError(
                         _(
