@@ -1,0 +1,4 @@
+"id","name","model_id:id","group_id:id","perm_read","perm_write","perm_create","perm_unlink"
+access_check_timesheet_manager,check_timesheet_manager,model_account_analytic_line,group_timesheet_manager,1,1,1,1
+access_timesheet_project_manager,timesheet_project_manager,model_account_analytic_line,group_timesheet_project_manager,1,1,1,1
+access_group_timesheet_employee,group_timesheet_employee,model_account_analytic_line,base.group_user,1,1,1,0
