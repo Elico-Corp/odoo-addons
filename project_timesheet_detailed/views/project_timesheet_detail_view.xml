@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="timesheet_detail_view_employee_tree" model="ir.ui.view">
+        <field name="model">account.analytic.line</field>
+        <field name="name">timesheet.detail.view.employee.tree</field>
+        <field name="arch" type="xml">
+            <tree editable="bottom" string="Timesheet Activities" create="0">
+                <field name="date" attrs="{'readonly':[('stage','=','approved')]}"/>
+                <field name="user_id" required="1" options='{"no_open": True}' readonly="1"/>
+                <field name="name" attrs="{'readonly':[('stage','=','approved')]}"/>
+                <field name="project_id" required="1" readonly="1"/>
+                <field name="task_id" attrs="{'readonly':[('stage','=','approved')]}"/>
+                <field name="issue_id" attrs="{'readonly':[('stage','=','approved')]}"/>
+                <field name="unit_amount" string="Duration" sum="Total time" widget="float_time"/>
+                <field name="stage" readonly="1"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="timesheet_detail_line_search" model="ir.ui.view">
+        <field name="name">timesheet.detail.line.search</field>
+        <field name="model">account.analytic.line</field>
+        <field name="arch" type="xml">
+            <search string="Timesheet">
+                <field name="date"/>
+                <field name="user_id"/>
+                <field name="project_id"/>
+                <field name="task_id"/>
+                <field name="issue_id"/>
+                <field name="name"/>
+                <field name="stage"/>
+                <group expand="0" string="Group By">
+                    <filter string="Users" domain="[]" context="{'group_by':'user_id'}"/>
+                    <filter string="Project" domain="[]" context="{'group_by':'project_id'}"/>
+                    <filter string="Task" domain="[]" context="{'group_by':'task_id'}"/>
+                    <filter string="Issue" domain="[]" context="{'group_by':'issue_id'}"/>
+                    <filter string="Timesheet Month" domain="[]" context="{'group_by':'date'}" help="Timesheet by Month"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="timesheet_detail_view_manager_tree" model="ir.ui.view">
+        <field name="model">account.analytic.line</field>
+        <field name="name">timesheet.detail.view.manager.tree</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree editable="top" string="Timesheet Activities" create="0">
+                <field name="date" attrs="{'readonly':[('stage','=','approved')]}"/>
+                <field name="user_id" required="1" options='{"no_open": True}' readonly="1"/>
+                <field name="name" attrs="{'readonly':[('stage','=','approved')]}"/>
+                <field name="project_id" required="1" readonly="1"/>
+                <field name="task_id" attrs="{'readonly':[('stage','=','approved')]}"/>
+                <field name="issue_id" attrs="{'readonly':[('stage','=','approved')]}"/>
+                <field name="approved_time" string="Approved time" widget="float_time"/>
+                <field name="unit_amount" string="Duration" sum="Total time" widget="float_time"/>
+                <field name="stage" readonly="1"/>
+                <button name="set_approved" type="object" string="Approve" attrs="{'invisible':[('stage','!=','to review')]}"/>
+                <button name="set_rejected" type="object" string="Reject" attrs="{'invisible':[('stage','!=','to review')]}"/>
+                <button name="set_draft" type="object" string="Set draft" attrs="{'invisible':[('stage','in',['approved','draft'])]}"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="timesheet_detail_view_pm_tree" model="ir.ui.view">
+        <field name="model">account.analytic.line</field>
+        <field name="name">timesheet.detail.view.pm.tree</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree editable="top" string="Timesheet Activities" create="0">
+                <field name="date" attrs="{'readonly':[('stage','=','approved')]}"/>
+                <field name="user_id" required="1" options='{"no_open": True}' readonly="1"/>
+                <field name="name" attrs="{'readonly':[('stage','=','approved')]}"/>
+                <field name="project_id" required="1" readonly="1"/>
+                <field name="task_id" attrs="{'readonly':[('stage','=','approved')]}"/>
+                <field name="issue_id" attrs="{'readonly':[('stage','=','approved')]}"/>
+                <field name="estimated_time" string="Estimated time" widget="float_time"/>
+                <field name="approved_time" string="Approved time" widget="float_time"/>
+                <field name="unit_amount" string="Duration" sum="Total time" widget="float_time"/>
+                <field name="stage" readonly="1"/>
+                <button name="set_approved" type="object" string="Approve" attrs="{'invisible':[('stage','!=','to review')]}"/>
+                <button name="set_rejected" type="object" string="Reject" attrs="{'invisible':[('stage','!=','to review')]}"/>
+                <button name="set_draft" type="object" string="Set draft" attrs="{'invisible':[('stage','in',['approved','draft'])]}"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="act_timesheet_detail_employee" model="ir.actions.act_window">
+        <field name="name">My Timesheet</field>
+        <field name="res_model">account.analytic.line</field>
+        <field name="domain">[('user_id.id','=',uid)]</field>
+        <field name="search_view_id" ref="timesheet_detail_line_search"/>
+    </record>
+
+    <record id="act_timesheet_detail_employee_tree" model="ir.actions.act_window.view">
+        <field name="view_mode">tree</field>
+        <field name="sequence">1</field>
+        <field name="view_id" ref="timesheet_detail_view_employee_tree"/>
+        <field name="act_window_id" ref="act_timesheet_detail_employee"/>
+    </record>
+
+    <record id="act_timesheet_detail_manager" model="ir.actions.act_window">
+        <field name="name">My Team Timesheet</field>
+        <field name="res_model">account.analytic.line</field>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="timesheet_detail_view_manager_tree"/>
+        <field name="domain">[('project_id.check_timesheet','=',True),('user_id.employee_ids.parent_id.user_id.id','=',uid)]</field>
+        <field name="search_view_id" ref="timesheet_detail_line_search"/>
+    </record>
+
+    <record id="act_timesheet_detail_pm" model="ir.actions.act_window">
+        <field name="name">My Project Timesheet</field>
+        <field name="res_model">account.analytic.line</field>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="timesheet_detail_view_pm_tree"/>
+        <field name="domain">[('project_id.check_timesheet','=',False),('project_id.user_id.id','=',uid)]</field>
+        <field name="search_view_id" ref="timesheet_detail_line_search"/>
+    </record>
+
+    <menuitem id="menu_timesheet_detailed" name="Detailed Timesheet" parent="hr_timesheet.timesheet_menu_root" sequence="10" />
+    <menuitem id="menu_timesheet_detailed_employee" parent="menu_timesheet_detailed" action="act_timesheet_detail_employee"
+            name="My Detailed Timesheet" sequence="1"/>
+    <menuitem id="menu_timesheet_detailed_manager" parent="menu_timesheet_detailed" action="act_timesheet_detail_manager"
+            name="My Team Timesheet" sequence="2" groups="group_timesheet_manager"/>
+    <menuitem id="menu_timesheet_detailed_pm" parent="menu_timesheet_detailed" action="act_timesheet_detail_pm"
+            name="My Project Timesheet" sequence="3" groups="group_timesheet_project_manager"/>
+</odoo>
