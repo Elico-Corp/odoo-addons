@@ -55,9 +55,9 @@
                 <field name="approved_time" string="Approved time" widget="float_time"/>
                 <field name="unit_amount" string="Duration" sum="Total time" widget="float_time"/>
                 <field name="stage" readonly="1"/>
-                <!--<button name="set_approved" string="Approve" type="object" attrs="{'invisible':[('stage','!=','to review')]}"/>-->
-                <!--<button name="set_rejected" string="Reject" type="object" attrs="{'invisible':[('stage','!=','to review')]}"/>-->
-                <!--<button name="set_draft" string="Set draft" type="object" attrs="{'invisible':[('stage','in',['approved','draft'])]}"/>-->
+                <button name="set_approved" type="object" string="Approve" attrs="{'invisible':[('stage','!=','to review')]}"/>
+                <button name="set_rejected" type="object" string="Reject" attrs="{'invisible':[('stage','!=','to review')]}"/>
+                <button name="set_draft" type="object" string="Set draft" attrs="{'invisible':[('stage','in',['approved','draft'])]}"/>
             </tree>
         </field>
     </record>
