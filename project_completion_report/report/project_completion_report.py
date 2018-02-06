@@ -77,7 +77,14 @@ class ProjectCompletionReport(models.Model):
                 -- issues and tasks might share the same ID, use the row number
                 -- to ensure each row has a unique ID
                 SELECT
-                    row_number() OVER (ORDER BY q.activity_id) AS id, q.*
+                    row_number() OVER
+                    (
+                        -- Tasks first, then issues
+                        -- Warning: without the sort over the activity type,
+                        -- Odoo is confusing some task IDs as if they were
+                        -- issue IDs
+                        ORDER BY q.activity_type DESC, q.activity_id ASC
+                    ) AS id, q.*
                 FROM
                 (
                     (
