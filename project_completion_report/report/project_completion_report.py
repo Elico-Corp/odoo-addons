@@ -144,10 +144,10 @@ class ProjectCompletionReport(models.Model):
                             i.stage_id AS activity_stage_id,
                             0 AS estimated_hours,
                             0 AS planned_hours,
-                            SUM(al.unit_amount) AS total_tms,
+                            COALESCE(SUM(al.unit_amount), 0) AS total_tms,
                             0 AS remaining_hours,
-                            SUM(al.unit_amount) AS total_hours,
-                            SUM(al.unit_amount) AS variance
+                            COALESCE(SUM(al.unit_amount), 0) AS total_hours,
+                            COALESCE(SUM(al.unit_amount), 0) AS variance
                         FROM
                             project_project p
                             -- Link with the analytic account
