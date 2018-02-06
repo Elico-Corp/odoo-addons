@@ -156,10 +156,10 @@ class ProjectCompletionReport(models.Model):
                             -- Link with the issue
                             INNER JOIN project_issue i ON i.project_id = p.id
                             -- Link with the timesheet
-                            LEFT OUTER JOIN hr_analytic_timesheet ts
-                                ON ts.issue_id = i.id
+                            LEFT OUTER JOIN hr_analytic_timesheet tms
+                                ON tms.issue_id = i.id
                             LEFT OUTER JOIN account_analytic_line al
-                                ON al.id = ts.line_id
+                                ON al.id = tms.line_id
                             -- Link with the BR
                             LEFT OUTER JOIN business_requirement b
                                 ON b.id = p.business_requirement_id
