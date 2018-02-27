@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_message_unread_message_search_inherit" model="ir.ui.view">
+            <field name="name">business.requirement.unread.message.search</field>
+            <field name="model">business.requirement</field>
+            <field name="inherit_id" ref="business_requirement.view_business_requirement_search"/>
+            <field name="arch" type="xml">
+                <field name="origin" position="after">
+                    <filter 
+                        string="Unread Messages" 
+                        name="message_needaction" 
+                        domain="[('message_needaction', '=', True)]"/>
+                </field>
+            </field>
+        </record>
+    </data>
+</odoo>
