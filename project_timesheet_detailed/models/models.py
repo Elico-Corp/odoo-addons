@@ -53,7 +53,7 @@ class AccountAnalyticLine(models.Model):
                 rec.stage = 'approved'
             else:
                 raise UserError(
-                    'Sorry,you do not have permission to approve it')
+                    'You do not have permission to approve it')
 
     @api.multi
     def set_rejected(self):
@@ -71,7 +71,7 @@ class AccountAnalyticLine(models.Model):
                 mail.send()
             else:
                 raise UserError(
-                    'Sorry,you do not have permission to reject it')
+                    'You do not have permission to reject it')
 
     @api.multi
     def set_review(self):
@@ -83,7 +83,7 @@ class AccountAnalyticLine(models.Model):
                 rec.stage = 'to review'
             else:
                 raise UserError(
-                    'Sorry,you do not have permission to change the state')
+                    'You do not have permission to change the state')
 
     @api.onchange('project_id')
     def onchange_project_id(self):

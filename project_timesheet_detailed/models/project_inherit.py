@@ -11,5 +11,5 @@ class ProjectInherit(models.Model):
         string="Check TMS",
         default=True,
         help='If true, the TMS will be assigned to the manager of the'
-             ' employee,if false, the TMS will be assigned to the manager '
+             ' employee, if false, the TMS will be assigned to the manager '
              'of the project.')

@@ -6,8 +6,8 @@
 Project TimeSheet Detail
 ========================
 
-This module extends the function of project timesheet,allows the manager to
-review, approve or reject the timesheet by every single record.
+This module extends the function of project timesheet, allows the manager to
+review, runbot, approve or reject the timesheet one by one.
 
 Installation
 ============
