@@ -11,7 +11,7 @@
     "license": "AGPL-3",
     'website': "https://www.elico-corp.com",
     'category': 'Project Management',
-    'version': '10.0.0.1.0',
+    'version': '10.0.1.0.0',
     'depends': ['project_issue_sheet'],
     'data': [
         'security/project_timesheet_detail.xml',
