@@ -6,23 +6,24 @@
 Project TimeSheet Task ID
 =========================
 
-This module extends the functionality of time sheet and modify the format of the description in details.
-When a user create a task, he/she can see the task ID and name before the name in timesheet's details.
+This module extends the functionality of time sheet and modify the format
+of the description in details.
+When a user create a task, he/she can see the task ID and name before the name
+in timesheet's details.
 
 Installation
 ============
 
 To install this module, you need to:
 
-#. have basic module installed (project_timesheet)
+#. Have basic module installed (project_timesheet)
 
 Bug Tracker
 ===========
 
-Bugs are tracked on `GitHub Issues
-<https://github.com/Elico-Corp/elico_odoo/issues>`_. In case of trouble, please
-check there if your issue has already been reported. If you spotted it first,
-help us smash it by providing detailed and welcomed feedback.
+Bugs are tracked on `GitHub Issues <https://github.com/Elico-Corp/odoo-addons/issues>`_.
+In case of trouble, please check there if your issue has already been reported.
+If you spotted it first, help us smashing it by providing a detailed and welcomed feedback
 
 Credits
 =======
@@ -30,7 +31,8 @@ Credits
 Contributors
 ------------
 
-Kevin Dong <kevin.dong@elico-corp.com>
+* Kevin Dong <kevin.dong@elico-corp.com>
+* Eric Caudal <eric.caudal@elico-corp.com>
 
 Maintainer
 ----------
