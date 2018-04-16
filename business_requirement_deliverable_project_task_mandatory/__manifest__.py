@@ -8,8 +8,8 @@
     'support': 'support@elico-corp.com',
     "author": "Elico Corp",
     "license": "AGPL-3",
-    "application": False,
-    "installable": False,
+    "application": True,
+    "installable": True,
     "depends": [
         "project_project_category",
         "business_requirement_deliverable_project",

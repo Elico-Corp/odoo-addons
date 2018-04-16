@@ -32,10 +32,11 @@
             <field name="arch" type="xml">
                 <field name="partner_id" position="after">
                     <field name="project_categ_id"/>
+                    <group expand="0" string="Group By">
+                    <filter string="Project category" domain="[]" context="
+                    {'group_by': 'project_categ_id'}"/>
+                    </group>
                 </field>
-                <group expand="0" string="Group By">
-                    <filter string="Project category" domain="[]" context="{'group_by': 'project_categ_id'}"/>
-                </group>
             </field>
         </record>
     </data>
