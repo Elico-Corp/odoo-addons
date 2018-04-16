@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# © 2016-2017 Elico Corp (https://www.elico-corp.com).
+# © 2016-2017 Elico Corp (https://www.elico-corp.com)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 {
     "name": "Project Timesheet Task Detail",
@@ -12,12 +12,11 @@ This module will change the description of task.
     'website': 'https://www.elico-corp.com',
     'support': 'support@elico-corp.com',
     "license": "AGPL-3",
-    "application": False,
-    "installable": False,
     "depends": [
-        "project_timesheet",
+        "hr_timesheet_sheet",
     ],
     "data": [
-        "project_timesheet_task_id_view.xml",
+        "views/project_timesheet_task_id_view.xml",
     ],
+    "installable": True,
 }

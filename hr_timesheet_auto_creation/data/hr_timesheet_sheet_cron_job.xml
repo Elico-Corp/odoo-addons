@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<openerp>
-    <data>
+<odoo>
+    <data noupdate="1">
+
         <record id="timesheet_sheet_create_corn_job" model="ir.cron">
             <field name="name">My current TMS</field>
             <field name="interval_number">1</field>
@@ -15,5 +16,6 @@
             <field name="function">create_employee_timesheet</field>
             <field name="args">()</field>
         </record>
+
     </data>
-</openerp>
+</odoo>

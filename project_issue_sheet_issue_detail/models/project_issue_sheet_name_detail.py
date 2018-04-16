@@ -5,13 +5,13 @@
 from openerp import models, api
 
 
-class HrAnalyticIssue(models.Model):
-    _inherit = 'hr.analytic.timesheet'
+class AccountAnalyticLine(models.Model):
+    _inherit = 'account.analytic.line'
 
     @api.multi
     def name_get(self):
         result = []
-        values = super(HrAnalyticIssue, self).name_get()
+        values = super(AccountAnalyticLine, self).name_get()
         id_name_dict = {}
         for record in self:
             if record.issue_id:
