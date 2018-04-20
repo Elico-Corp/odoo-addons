@@ -40,28 +40,29 @@ class ReportDocx(report_sxw.rml_parse):
 
     @api.multi
     def create_source_docx(self, dict):
-        data = self.generate_docx_data(dict)
+        for record in self:
+            data = record.generate_docx_data(dict)
 
-        tmp_folder_name = '/tmp/docx_to_pdf/' +\
-                          str(int(time.time())) +\
-                          str(int(1000 + random.random() * 1000)) + '/'
+            tmp_folder_name = '/tmp/docx_to_pdf/' +\
+                              str(int(time.time())) +\
+                              str(int(1000 + random.random() * 1000)) + '/'
 
-        output_type = self._get_output_type(dict)
-        output_report = {
-            'pdf': 'report.pdf',
-            'docx': 'report.docx'
-        }
+            output_type = record._get_output_type(dict)
+            output_report = {
+                'pdf': 'report.pdf',
+                'docx': 'report.docx'
+            }
 
-        self._delete_temp_folder(tmp_folder_name)
-        self._create_temp_folder(tmp_folder_name)
+            record._delete_temp_folder(tmp_folder_name)
+            record._create_temp_folder(tmp_folder_name)
 
-        self._generate_reports(tmp_folder_name, data, output_type, output_report, dict)
+            record._generate_reports(tmp_folder_name, data, output_type, output_report, dict)
 
-        report = self._get_convert_file(tmp_folder_name, output_report[output_type])
+            report = record._get_convert_file(tmp_folder_name, output_report[output_type])
 
-        self._delete_temp_folder(tmp_folder_name)
+            record._delete_temp_folder(tmp_folder_name)
 
-        return (report, output_type)
+            return (report, output_type)
 
     def generate_docx_data(self, data):
         """
