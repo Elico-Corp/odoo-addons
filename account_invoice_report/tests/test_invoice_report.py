@@ -14,7 +14,8 @@ class TestInvoiceReport(common.TransactionCase):
             'partner_id': self.partner_id.id,
             'account_id': 1,
             'invoice_line_ids': [
-                (0, 0, {'name': 'test report', 'account_id': 1, 'price_unit': 10.00, 'quantity': 1000.00, 'discount': 100.00})],
+                (0, 0, {'name': 'test report', 'account_id': 1,
+                        'price_unit': 10.00, 'quantity': 1000.00, 'discount': 100.00})],
         })
 
     def test_compute_discount_amount(self):
