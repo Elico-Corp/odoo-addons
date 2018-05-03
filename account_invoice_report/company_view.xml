@@ -24,7 +24,7 @@
 							<field name="invoice_tc" widget="html"/>
 						</page>
 					</xpath>
-					<xpath expr="//page[@string='General Information']/group/group/field[@name='company_registry']" position="after">
+					<xpath expr="//notebook/page/group/group/field[@name='company_registry']" position="after">
 						<field name="limit_discount" />
 					</xpath>
 				</data>
