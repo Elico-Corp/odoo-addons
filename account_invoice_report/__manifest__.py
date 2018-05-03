@@ -3,7 +3,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 {
     'name': 'Invoice Report',
-    'version': '10.0.1.0.0',
+    'version': '10.0.1.0.1',
     'category': '',
     'depends': ['stock', 'sale'],
     'author': 'Elico Corp',
@@ -11,15 +11,14 @@
     'website': 'https://www.elico-corp.com',
     'support': 'support@elico-corp.com',
     'data': [
-        'invoice_report.xml',
+        # 'invoice_report.xml',
         'views/report_saleorder_extend.xml',
         'views/report_invoice_extend.xml',
         'views/report_stockpicking_extend.xml',
         'views/report_stockpicking_extend_full.xml',
         'views/invoice_report.xml',
         'views/report_draft_order_invoice.xml',
-        'company_view.xml'
+        # 'company_view.xml'
     ],
-    'installable': False,
-    'application': False,
+    'installable': True,
 }
