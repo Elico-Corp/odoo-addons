@@ -27,6 +27,7 @@ Contributors
 ------------
 
 * Liping Wang <wang.liping@elico-corp.com>
+* Barry Mu <barry.mu@elico-corp.com>
 
 Maintainer
 ----------
