@@ -13,7 +13,7 @@ class AccountInvoice(models.Model):
     original_amount = fields.Float(
         string='Original Amount', compute='_compute_original_amount')
 
-    @api.one
+    @api.multi
     @api.depends('invoice_line')
     def _compute_discount_amount(self):
         discount_amount = 0.0
@@ -22,7 +22,7 @@ class AccountInvoice(models.Model):
                 * line.quantity
         self.discount_amount = discount_amount
 
-    @api.one
+    @api.multi
     @api.depends('invoice_line')
     def _compute_original_amount(self):
         original_amount = 0.0

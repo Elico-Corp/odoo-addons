@@ -5,7 +5,7 @@
 from openerp import fields, models
 
 
-class company(models.Model):
+class Company(models.Model):
     _inherit = 'res.company'
 
     delivery_detail = fields.Text(string='Delivery Detail')
