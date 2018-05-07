@@ -3,12 +3,12 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 {
     'name': 'Timesheet Automatic Reminder',
-    'version': '10.0.1.0.0',
+    'version': '10.0.1.1.0',
     'category': 'Human Resources',
     'depends': [
         'hr_timesheet_sheet',
         'project',
-        'hr_holidays_compute_days'
+        'hr_holidays'
     ],
     'author': 'Elico Corp',
     'license': 'AGPL-3',
@@ -19,6 +19,5 @@
         'data/employee_reminder_template.xml',
         'data/manager_reminder_template.xml'
     ],
-    'installable': False,
-    'application': False
+    'installable': True,
 }

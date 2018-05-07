@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 <openerp>
     <data>
-        <record id="manager_reminder_email_template" model="email.template">
+        <record id="manager_reminder_email_template" model="mail.template">
             <field name="name">
                 Timesheet Reminder for Manager - Send by Email
             </field>

@@ -98,7 +98,7 @@ class RemindDateLine(models.TransientModel):
         Search the time sheet records to find out the employee TMS hours
         :return:
         """
-        tms_obj = self.env['hr.analytic.timesheet']
+        tms_obj = self.env['account.analytic.line']
         for record in self:
             tms_records = tms_obj.search([
                 ('user_id', '=', record.reminder_id.employee_id.user_id.id),
