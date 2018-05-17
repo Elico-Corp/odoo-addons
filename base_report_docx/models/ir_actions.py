@@ -16,7 +16,9 @@ class IrActionsReportXml(models.Model):
     )
 
     report_type = fields.Selection(
-        selection_add=[(('docx', 'Docx'))]
+        selection_add=[
+            ('docx', 'Docx')
+        ]
     )
 
     template_file = fields.Many2one(
@@ -48,7 +50,7 @@ class IrActionsReportXml(models.Model):
         """ Create a contextual action for each of the report."""
 
         for ir_actions_report_xml in self:
-            ir_values_id = self.env['ir.values'].sudo().create( {
+            ir_values_id = self.env['ir.values'].create({
                 'name': ir_actions_report_xml.name,
                 'model': ir_actions_report_xml.model,
                 'key2': 'client_print_multi',
@@ -65,10 +67,11 @@ class IrActionsReportXml(models.Model):
         """ Remove the contextual actions created for the reports."""
         self.check_access_rights('write', raise_exception=True)
         for ir_actions_report_xml in self:
-            if ir_actions_report_xml.ir_values_id.id:
+            if ir_actions_report_xml.ir_values_id:
                 try:
                     self.env['ir.values'].sudo().browse(
-                        ir_actions_report_xml.ir_values_id.id).unlink()
+                        ir_actions_report_xml.ir_values_id.id
+                    ).unlink()
                 except Exception:
                     raise Exception(
                         _('Deletion of the action record failed.')
