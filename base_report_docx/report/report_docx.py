@@ -43,8 +43,8 @@ class ReportDocx(report_sxw):
         data = self.generate_docx_data(cr, uid, ids, dict, context)
         original_folder_name = '/tmp/docx_to_pdf/'
         tmp_folder_name = original_folder_name + \
-                          str(int(time.time())) + \
-                          str(int(1000 + random.random() * 1000)) + '/'
+            str(int(time.time())) + \
+            str(int(1000 + random.random() * 1000)) + '/'
 
         output_type = self._get_output_type(cr, uid, context, dict)
         output_report = {
@@ -230,7 +230,7 @@ class ReportDocx(report_sxw):
             convert_docx_file_name
     ):
         docx_path = tmp_folder_name + \
-                    convert_docx_file_name
+            convert_docx_file_name
         output_path = tmp_folder_name
 
         cmd = "soffice --headless --convert-to pdf --outdir " + output_path \
@@ -273,11 +273,11 @@ class ReportDocx(report_sxw):
             convert_pdf_file, pdf_file_with_watermark
     ):
         watermark_path = tmp_folder_name + \
-                         watermark_file
+            watermark_file
         pdf_path = tmp_folder_name + \
-                   convert_pdf_file
+            convert_pdf_file
         output_path = tmp_folder_name + \
-                      pdf_file_with_watermark
+            pdf_file_with_watermark
 
         output = PdfFileWriter()
         input_pdf = PdfFileReader(file(pdf_path, 'rb'))
@@ -300,7 +300,7 @@ class ReportDocx(report_sxw):
             self, tmp_folder_name, convert_file_name
     ):
         path = tmp_folder_name + \
-               convert_file_name
+            convert_file_name
 
         input_stream = open(path, 'r')
         try:
