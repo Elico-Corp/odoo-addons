@@ -1,4 +1,4 @@
-.. image:: https://img.shields.io/badge/licence-AGPL--3-blue.svg
+.. image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
    :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
    :alt: License: AGPL-3
 
@@ -15,8 +15,8 @@ Installation
 ============
 To install this module, you need to:
 
+* install the pypdf : Terminal order ("pip install pypdf")
 * install the python lib: docxtpl (http://docxtpl.readthedocs.org/en/latest/)
-
 * install the libreoffice (https://wiki.ubuntu.com/LibreOffice)
 
 Configuration
@@ -25,9 +25,7 @@ Configuration
 To configure this module, you need to:
 
 * Inherit the function generate_docx_data in the report/report_docx.py
-
 * Pass the list of the dictionary to the engine. (etc [{data1}, {data2}, .....])
-
 * Each dictionary will generate a report base on the docx template.
 
 
@@ -36,10 +34,10 @@ Usage
 
 To use this module, you need to:
 
-1. Go to System/Technical/Reports/Report
-2. Create a new report
-3. Change the report type to docx
-4. upload the template file.
+* Go to System/Technical/Reports/Report
+* Create a new report
+* Change the report type to docx
+* upload the template file.
 
 
 Bug Tracker
@@ -66,10 +64,10 @@ Images
 
 Contributors
 ------------
-
-* Siyuan Gu: gu.siyuan@elico-corp.com
-* Alex Duan: alex.duan@elico-corp.com
-* Xie Xiao Peng <xie.xiaopeng@elico-corp.com>
+* Eric Caudal <eric.caudal@elico-corp.com>
+* Victor M. Martin <victor.martin@elico-corp.com>
+* Hulk Liu: <hulk.liu@elico-corp.com>
+* Kevin Wei: <kevin.wei@elico-corp.com>
 
 Maintainer
 ----------
