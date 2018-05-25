@@ -29,8 +29,6 @@ env:
   global:
   - VERSION="10.0" TESTS="0" LINT_CHECK="0" TRANSIFEX="0"
 
-before_install: if [[ `npm -v` != 6* ]]; then npm i -g npm@6; fi
-
 install:
   - git clone --depth=1 https://github.com/Elico-Corp/maintainer-quality-tools.git ${HOME}/maintainer-quality-tools
   - export PATH=${HOME}/maintainer-quality-tools/travis:${PATH}
@@ -38,7 +36,7 @@ install:
   - pip install ezodf==0.3.2
   - pip install --upgrade pycrypto
   - pip install docxtpl erppeek captcha simple-crypt python-ldap Pillow
-  - npm install -g less less-plugin-clean-css
+  - npm install -g less@2.7.3 less-plugin-clean-css@1.5.1 && ln -s /usr/bin/nodejs /usr/bin/node
 
 services:
   - postgresql
