@@ -29,7 +29,7 @@ env:
   global:
   - VERSION="10.0" TESTS="0" LINT_CHECK="0" TRANSIFEX="0"
 
-before_install: if [[ `npm -v` != 8.9.1* ]]; then npm i -g npm@8.9.1; fi
+before_install: if [[ `npm -v` != 6* ]]; then npm i -g npm@6; fi
 
 install:
   - git clone --depth=1 https://github.com/Elico-Corp/maintainer-quality-tools.git ${HOME}/maintainer-quality-tools
