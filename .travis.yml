@@ -37,6 +37,7 @@ install:
   - pip install ezodf==0.3.2
   - pip install --upgrade pycrypto
   - pip install docxtpl erppeek captcha simple-crypt python-ldap Pillow
+  - npm install -g npm@latest
   - npm install -g less-plugin-clean-css
 
 services:
