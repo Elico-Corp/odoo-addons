@@ -11,9 +11,9 @@ addons:
       - python-yaml
       - wkhtmltopdf # for odoo pdf reports
       - python-ldap # for auth_ldap
+      - npm=5.6.0
+      - nodejs=10.2.1
       - node-less
-      - nodejs
-      - npm
 
 language: python
 
