@@ -15,6 +15,8 @@ Installation
 ============
 To install this module, you need to:
 
+* install the docxtpl : Terminal order ("pip install docxtpl")
+* install the reportlab : Terminal order ("pip install reportlab")
 * install the pypdf : Terminal order ("pip install pypdf")
 * install the python lib: docxtpl (http://docxtpl.readthedocs.org/en/latest/)
 * install the libreoffice (https://wiki.ubuntu.com/LibreOffice)

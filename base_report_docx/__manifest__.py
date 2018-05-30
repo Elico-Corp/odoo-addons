@@ -9,6 +9,13 @@
     'depends': [
         'base'
     ],
+    'external_dependencies': {
+        'python': [
+            'docxtpl',
+            'reportlab',
+            'pyPdf',
+        ]
+    }
     'author': 'Elico Corp',
     'support': 'support@elico-corp.com',
     'license': 'AGPL-3',
