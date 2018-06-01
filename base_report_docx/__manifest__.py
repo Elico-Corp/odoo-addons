@@ -15,7 +15,7 @@
             'reportlab',
             'pyPdf',
         ]
-    }
+    },
     'author': 'Elico Corp',
     'support': 'support@elico-corp.com',
     'license': 'AGPL-3',
