@@ -1,0 +1,123 @@
+# French translation for openerp-web
+# Copyright (c) 2011 Rosetta Contributors and Canonical Ltd 2011
+# This file is distributed under the same license as the openerp-web package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2011.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: openerp-web\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2013-04-15 12:46+0000\n"
+"PO-Revision-Date: 2013-04-15 12:46+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2013-04-15 12:46+0000\n"
+"X-Generator: Launchpad (build 16412)\n"
+
+#. module: auth_cas
+#: model:ir.model,name:auth_cas.model_res_users
+msgid "Users"
+msgstr "Utilisateurs"
+
+#. module: auth_cas
+#: field:base.config.settings,cas_server_port:0
+msgid "CAS Server port"
+msgstr "Port du serveur CAS"
+
+#. module: auth_cas
+#: field:base.config.settings,cas_activated:0
+msgid "CAS authentication activated"
+msgstr "Authentification CAS activée"
+
+#. module: auth_cas
+#: field:res.users,cas_key:0
+msgid "CAS Key"
+msgstr "Clé CAS"
+
+#. module: auth_cas
+#: model:ir.model,name:auth_cas.model_base_config_settings
+msgid "base.config.settings"
+msgstr "base.config.settings"
+
+#. module: auth_cas
+#: view:base.config.settings:0
+msgid "CAS authentication"
+msgstr "Authentification CAS"
+
+#. module: auth_cas
+#: view:base.config.settings:0
+msgid "Check settings of CAS server"
+msgstr "Vérifier les paramètres du serveur CAS"
+
+#. module: auth_cas
+#: field:base.config.settings,cas_server:0
+msgid "CAS Server address"
+msgstr "Adresse du serveur CAS"
+
+#. module: auth_cas
+#: help:base.config.settings,cas_create_user:0
+msgid "Automatically create local user accounts for new users authenticating via CAS"
+msgstr "Créé automatiquement un compte local pour les nouveaux utilisateurs authentifiés par CAS"
+
+#. module: auth_cas
+#: help:base.config.settings,cas_activated:0
+msgid "The CAS authentication only works if you are in a single database mode. You can launch the OpenERP Server with"
+"the option --db-filter=YOUR_DATABASE to do so."
+msgstr "L'authentification CAS fonctionne seulement si vous êtes en mode base de données unique. Pour cela, "
+"vous pouvez lancer le serveur OpenERP avec l'option suivante: --db-filter=VOTRE_BASE"
+
+#. module: auth_cas
+#: field:base.config.settings,cas_create_user:0
+msgid "Users created on the fly"
+msgstr "Utilisateurs créés à la volée"
+
+#. module: project
+#: code:addons/auth_cas/res_config.py:0
+#, python-format
+msgid "Parameters are incorrect\nThere seems to be an error in the configuration."
+msgstr "Paramètres incorrects\nIl semble qu'il y ait une erreur dans la configuration."
+
+#. module: project
+#: code:addons/auth_cas/res_config.py:0
+#, python-format
+msgid "Parameters are correct\nThe CAS server is well configured !"
+msgstr "Paramètres valides\nLe serveur CAS est bien configuré !"
+
+#. module: auth_cas
+#. openerp-web
+#: code:addons/auth_cas/static/src/js/auth_cas.js:0
+msgid "CAS authentication in progress"
+msgstr "Authentification CAS en cours"
+
+#. module: auth_cas
+#. openerp-web
+#: code:addons/auth_cas/static/src/js/auth_cas.js:0
+msgid "Invalid ticket, you will be redirected in a few seconds."
+msgstr "Ticket invalide, vous allez être redirigé dans quelques secondes."
+
+#. module: auth_cas
+#. openerp-web
+#: code:addons/auth_cas/static/src/js/auth_cas.js:0
+msgid "Invalid ticket"
+msgstr "Ticket invalide"
+
+#. module: auth_cas
+#. openerp-web
+#: code:addons/auth_cas/static/src/js/auth_cas.js:0
+msgid "The ticket is not valid, this page will be redirected in a few seconds. If the problem persist, please contact your administrator."
+msgstr "Le ticket n'est pas valide, cette page sera redirigée dans quelques secondes. Si le problème persiste, contactez votre administrateur."
+
+#. module: auth_cas
+#. openerp-web
+#: code:addons/auth_cas/static/src/js/auth_cas.js:0
+msgid "Wrong login"
+msgstr "Identifiant erroné"
+
+#. module: auth_cas
+#. openerp-web
+#: code:addons/auth_cas/static/src/js/auth_cas.js:0
+msgid "You must have an account on OpenERP in order to authenticate. Please contact your administrator."
+msgstr "Vous devez avoir un compte sur OpenERP pour vous connecter. Contactez votre administrateur."

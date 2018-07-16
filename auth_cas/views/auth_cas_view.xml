@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <template id="assets_backend" name="auth_cas assets" inherit_id="web.assets_backend">
+            <xpath expr="." position="inside">
+                <link rel="stylesheet" href="/auth_cas/static/src/css/auth_cas.css"/>
+                <script type="text/javascript" src="/auth_cas/static/src/js/auth_cas.js"></script>
+            </xpath>
+        </template>
+
+        <template id="auth_cas.cas_auth_form" name="OAuth Providers">
+            <a t-att-href="/auth_cas/cas_authenticate" class="btn btn-link"/>
+        </template>
+
+        <template id="auth_cas.web_login_cas_auth" inherit_id="web.login" name="Cas Login Buttons">
+            <xpath expr="//button[@type='submit']" position="before">
+                <a name="login" class="btn btn-link" href='/auth_cas/cas_authenticate'>
+                    CAS Login
+                </a>
+            </xpath>
+        </template>
+
+    </data>
+</openerp>
