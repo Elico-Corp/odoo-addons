@@ -5,6 +5,7 @@
     'name': 'Website Certificate',
     'version': '10.0.1.0.1',
     'category': 'website',
+    'support': 'support@elico-corp.com',
     'depends': [
         'website',
         'base',
