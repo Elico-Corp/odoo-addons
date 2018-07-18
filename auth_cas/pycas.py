@@ -120,9 +120,8 @@ CAS_TICKET_INVALID = 3  # CAS server ticket invalid.
 CAS_GATEWAY = 4  # CAS server returned without ticket while in gateway mode.
 NOT_CAS_SEVER = 5  # The host is not a CAS server
 
-
 #  Status codes returned internally by function get_cookie_status().
-COOKIE_AUTH = 0   # PYCAS cookie is valid.
+COOKIE_AUTH = 0  # PYCAS cookie is valid.
 COOKIE_NONE = 1  # No PYCAS cookie found.
 COOKIE_GATEWAY = 2  # PYCAS gateway cookie found.
 COOKIE_INVALID = 3  # Invalid PYCAS cookie found.
@@ -276,8 +275,8 @@ def decode_cookie(cookie_vals, lifetime=None):
 def validate_cas_1(cas_host, service_url, ticket):
     """ Validate ticket using cas 1.0 protocol """
     #  Second Call to CAS server: Ticket found, verify it.
-    cas_validate = cas_host + "/validate?ticket=" + ticket + \
-        "&service=" + service_url
+    cas_validate = \
+        cas_host + "/validate?ticket=" + ticket + "&service=" + service_url
     f_validate = urllib.urlopen(cas_validate)
     #  Get first line - should be yes or no
     response = f_validate.readline()
@@ -301,8 +300,9 @@ def validate_cas_2(cas_host, service_url, ticket, opt):
     exclusive "renew" and "gateway" options.
     """
     #  Second Call to CAS server: Ticket found, verify it.
-    cas_validate = cas_host + "/serviceValidate?ticket=" + ticket + \
-        "&service=" + service_url
+    cas_validate = \
+        cas_host + "/serviceValidate?ticket=" + ticket + "&service=" +\
+        service_url
     if opt:
         cas_validate += "&%s=true" % opt
     f_validate = urllib.urlopen(cas_validate)
@@ -327,8 +327,9 @@ def validate_cas_3(cas_host, service_url, ticket, opt):
     """
     #  Second Call to CAS server: Ticket found, verify it.
     # service_url = "http://localhost:1111/web"
-    cas_validate = cas_host + "/cas/serviceValidate?service=" + \
-                   service_url+ "&ticket="+  ticket
+    cas_validate = \
+        cas_host + "/cas/serviceValidate?service=" + \
+        service_url + "&ticket=" + ticket
     if opt:
         cas_validate += "&%s=true" % opt
     f_validate = urllib.urlopen(cas_validate)

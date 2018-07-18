@@ -29,15 +29,15 @@ class CasBaseConfigSettings(models.TransientModel):
     _inherit = 'base.config.settings'
     cas_activated = fields.Boolean(
         'CAS authentication activated',
-        help='The CAS authentication only works if you are in a single database mode. \
-        You can launch the Odoo Server with the option --db-filter=YOUR_DATABASE \
-        to do so.')
+        help='The CAS authentication only works if you are in a single'
+             ' database mode. You can launch the Odoo Server with the'
+             ' option --db-filter=YOUR_DATABASE to do so.')
     cas_server = fields.Char('CAS Server address', size=64)
     cas_server_port = fields.Integer('CAS Server port')
     cas_create_user = fields.Boolean(
         'Users created on the fly',
-        help='Automatically create local user accounts for new users authenticating \
-        via CAS', default=True)
+        help='Automatically create local user accounts for'
+             ' new users authenticating via CAS', default=True)
 
     # Getter is required for fields stored in base.config.settings
     @api.model
@@ -112,8 +112,9 @@ class CasBaseConfigSettings(models.TransientModel):
             cas_server = self.cas_server
         else:
             url_server = urlparse(self.cas_server)
-            cas_server = url_server.scheme + '://' + url_server.netloc + ':' \
-                         + str(self.cas_server_port) + url_server.path
+            cas_server = \
+                url_server.scheme + '://' + url_server.netloc + \
+                ':' + str(self.cas_server_port) + url_server.path
         try:
             # The login function, from pycas,returns 3 if the host is
             # a CAS host and if parameters given are bad
@@ -124,8 +125,8 @@ class CasBaseConfigSettings(models.TransientModel):
                 title = 'cas_check_success'
                 message = 'Parameters are correct\nThe CAS server is well ' \
                           'configured !'
-        except:
-            pass
+        except Exception, e:
+            _logger.debug(e)
         # At the moment, I only found this method
         # in order to show a message after a request
         raise ValidationError(_(title) + '\n' + _(message))
