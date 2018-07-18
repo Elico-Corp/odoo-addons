@@ -14,8 +14,10 @@ In Order to use it, you must have a functional CAS server already installed.
 Installation
 ============
 
-No specific steps required
-
+* Add CAS server address under Settings/General Settings
+* Activate Cas Activate
+* Add cas_server
+* Add cas_server_port
 
 Configuration
 =============
