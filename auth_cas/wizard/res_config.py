@@ -103,8 +103,10 @@ class CasBaseConfigSettings(models.TransientModel):
 
     @api.multi
     def check_cas_server(self):
-        self.ensure_one()
+
         """Check if CAS paramaters (host and port) are valids"""
+
+        self.ensure_one()
         title = 'cas_check_fail'
         message = 'Parameters are incorrect\nThere seems to be an ' \
                   'error in the configuration.'
