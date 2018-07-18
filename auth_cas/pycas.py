@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 # © 2016 Roméo Guillot Roméo Guillot (http://www.opensource-elanz.fr).
-# © 2018 Elico Corp (https://www.elico-corp.com).
+# © 2016-2018 Elico Corp (https://www.elico-corp.com).
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html)
 
 # !/usr/bin/python
@@ -13,10 +13,6 @@
 #
 # /!\/!\/!\/!\/!\/!\/!\/!\/!\/!\/!\/!\/!\/!\/!\/!\/!\/!\/!\/!\/!\/!\
 
-#  Debug
-# # import os
-# # print "Content-type: text/html\n"#!/usr/bin/python
-
 # /!\/!\/!\/!\/!\/!\/!\/!\/!\/!\/!\/!\/!\/!\/!\/!\/!\/!\/!\/!\/!\/!\
 #
 # DO NOT REPLACE THIS FILE !!
@@ -25,12 +21,6 @@
 # It should not be replaced by another version of pycas !
 #
 # /!\/!\/!\/!\/!\/!\/!\/!\/!\/!\/!\/!\/!\/!\/!\/!\/!\/!\/!\/!\/!\/!\
-
-#  Debug
-# # import os
-# # print "Content-type: text/html\n"
-# # import sys
-# # sys.stderr = sys.stdout
 
 #  Copyright 2011 Jon Rifkin
 #
@@ -139,9 +129,6 @@ CAS_MSG = (
     "CAS server returned without ticket while in gateway mode.",
 )
 
-# ##Optional log file for debugging
-# ##LOG_FILE="/tmp/cas.log"
-
 # -----------------------------------------------------------------------
 #  Functions
 # -----------------------------------------------------------------------
@@ -210,9 +197,6 @@ def do_redirect(cas_host, service_url, opt, secure):
         cas_url += "&%s=true" % opt
     if opt == "gateway":
         domain, path = urlparse.urlparse(service_url)[1:3]
-    # then please follow <a href="%s">this link</a>.
-    # """ % cas_url
-    # raise SystemExit
 
 
 def decode_cookie(cookie_vals, lifetime=None):
