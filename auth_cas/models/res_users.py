@@ -36,6 +36,6 @@ class ResUsers(models.Model):
                                 FROM res_users
                                WHERE id=%s
                                  AND cas_key=%s""",
-                       (int(self._uid), password))
+                             (int(self._uid), password))
             if not self._cr.fetchone()[0]:
                 raise AccessDenied()

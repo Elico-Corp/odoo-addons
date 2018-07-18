@@ -72,13 +72,15 @@ class Controller(http.Controller):
     def cas_authenticate(self):
         config = Controller.get_config_static()
         service_url = request.httprequest.url_root
-        cas_login = config.get('host')+ ':' + config.get('port') + '/cas/login?service=' + service_url
+        cas_login = \
+            config.get('host') + ':' + config.get('port') + \
+            '/cas/login?service=' + service_url
         # response
         return werkzeug.utils.redirect(cas_login)
 
     @staticmethod
-    def cas_authenticate_user(req, dbname, cur_url, cas_host, cas_port,
-            auto_create, ticket):
+    def cas_authenticate_user(
+            req, dbname, cur_url, cas_host, cas_port, auto_create, ticket):
         """
         Checks if the user attempts to authenticate is authorized
         to do it and, if it is, authenticate him.
@@ -87,8 +89,9 @@ class Controller(http.Controller):
             cas_server = cas_host
         else:
             url_server = urlparse.urlparse(cas_host)
-            cas_server = url_server.scheme + '://' + url_server.netloc + ':' \
-                         + str(cas_port) + url_server.path
+            cas_server = \
+                url_server.scheme + '://' + url_server.netloc + \
+                ':' + str(cas_port) + url_server.path
         service_url = urllib.quote(cur_url, safe='')
         # The login function, from pycas, check if the ticket given
         # by CAS is a real ticket. The login of the user
@@ -113,7 +116,7 @@ class Controller(http.Controller):
                 # try to authenticate by any other way
                 cas_key = randomString(
                     16, '0123456789abcdefghijklmnopqrstuvwxyz')
-                user_id.write({'cas_key': cas_key,'password': cas_key})
+                user_id.write({'cas_key': cas_key, 'password': cas_key})
                 request.cr.commit()
                 try:
                     login_and_redirect(dbname, idUser, cas_key)
@@ -140,7 +143,7 @@ class Home(main.Home):
         ticket = self._get_cas_ticket(request)
         if ticket:
             config = Controller.get_config_static()
-            
+
             cas_url, service_url, dbname = self._get_config_url()
             Controller.cas_authenticate_user(
                 request, dbname, service_url, config.get('host'),
