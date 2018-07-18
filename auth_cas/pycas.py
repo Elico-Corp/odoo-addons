@@ -209,13 +209,8 @@ def do_redirect(cas_host, service_url, opt, secure):
     urllib2.urlopen(cas_url)
     if opt in ("renew", "gateway"):
         cas_url += "&%s=true" % opt
-        #  Print redirect page to browser
-    # print "Refresh: 0; url=%s" % cas_url
-    # print "Content-type: text/html"
     if opt == "gateway":
         domain, path = urlparse.urlparse(service_url)[1:3]
-        # print make_pycas_cookie("gateway", domain, path, secure)
-    # print """If your browser does not redirect you, \
     # then please follow <a href="%s">this link</a>.
     # """ % cas_url
     # raise SystemExit
@@ -331,8 +326,9 @@ def validate_cas_3(cas_host, service_url, ticket, opt):
     exclusive "renew" and "gateway" options.
     """
     #  Second Call to CAS server: Ticket found, verify it.
-    cas_validate = cas_host + "/p3/serviceValidate?ticket=" + ticket + \
-        "&service=" + service_url
+    # service_url = "http://localhost:1111/web"
+    cas_validate = cas_host + "/cas/serviceValidate?service=" + \
+                   service_url+ "&ticket="+  ticket
     if opt:
         cas_validate += "&%s=true" % opt
     f_validate = urllib.urlopen(cas_validate)
@@ -427,9 +423,6 @@ def login(cas_host, service_url, ticket, lifetime=None, secure=1,
     #  a pycas cookie for calling program to send to web browser.
     ticket_status, id = get_ticket_status(
         cas_host, service_url, ticket, protocol, opt)
-
-    # print "-------------"
-    # print ticket_status
 
     if ticket_status == TICKET_OK:
         timestr = str(int(time.time()))
