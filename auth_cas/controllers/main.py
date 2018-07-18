@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 # © 2016 Roméo Guillot Roméo Guillot (http://www.opensource-elanz.fr).
-# © 2018 Elico Corp (https://www.elico-corp.com).
+# © 2016-2018 Elico Corp (https://www.elico-corp.com).
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html)
 
 import urllib
@@ -100,7 +100,6 @@ class Controller(http.Controller):
         result = False
         if idUser and status == 0:
             users = request.env['res.users'].sudo()
-            # users = registry.get('res.users')
             user_id = users.search([('login', '=', idUser)])
             assert len(user_id) < 2
 
@@ -162,8 +161,6 @@ class Home(main.Home):
             if res.get('redirect', {}):
                 res1 = qs(res.get('redirect', {}))
             res.update(res1)
-            # todo if one ticket in redirect and one ticket
-            # in normal path, deal ticket
             return res
 
         return qs(url).get('ticket', '')
