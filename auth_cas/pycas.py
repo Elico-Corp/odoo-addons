@@ -326,7 +326,6 @@ def validate_cas_3(cas_host, service_url, ticket, opt):
     exclusive "renew" and "gateway" options.
     """
     #  Second Call to CAS server: Ticket found, verify it.
-    # service_url = "http://localhost:1111/web"
     cas_validate = \
         cas_host + "/cas/serviceValidate?service=" + \
         service_url + "&ticket=" + ticket
