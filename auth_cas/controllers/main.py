@@ -37,19 +37,6 @@ class Controller(http.Controller):
 
         return config
 
-    @http.route('/auth_cas/get_config', type='json')
-    def get_config(self):
-        """ Retrieves the module config for the CAS authentication. """
-        icp = request.env['ir.config_parameter'].sudo()
-        config = {
-            'login_cas': icp.get_param('cas_auth.cas_activated'),
-            'host': icp.get_param('cas_auth.cas_server'),
-            'port': icp.get_param('cas_auth.cas_server_port'),
-            'auto_create': icp.get_param('cas_auth.cas_create_user'),
-        }
-
-        return config
-
     def _get_cas_ticket(self, request):
         # get ticket from url
         url = request.httprequest.url
