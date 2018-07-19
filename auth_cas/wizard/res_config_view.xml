@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+© 2016-2018 Elico Corp (https://www.elico-corp.com).
+License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html)
+-->
 <odoo>
-
-    <!--
-    © 2016-2018 Elico Corp (https://www.elico-corp.com).
-    License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html)
-    -->
 
     <record model="ir.ui.view" id="view_general_settings_auth_cas_form">
         <field name="name">base.config.settings.auth_cas</field>
