@@ -10,13 +10,13 @@ from ..controllers.main import Controller
 class TestAuthCas(common.TransactionCase):
 
     def setUp(self):
-        """Create a packaging and wac."""
+        """Test Auth CAS Server"""
         super(TestAuthCas, self).setUp()
 
     @patch('odoo.addons.auth_cas.controllers.main.request')
     @patch('odoo.http.request')
     def test_auth_cas(self, request, request2):
-        """Move stages for Tasks and Issues."""
+        """CAS Server controller call"""
         controller_ref = Controller()
 
         controller_ref.cas_authenticate()
