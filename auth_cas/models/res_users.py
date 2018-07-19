@@ -23,7 +23,7 @@ class ResUsers(models.Model):
 
     @api.model
     def check_credentials(self, password):
-        """Check autenticity of logins"""
+        """Check Authenticy of logins"""
         # We try to connect the user with his password by the standard way
         try:
             return super(ResUsers, self).check_credentials(password)

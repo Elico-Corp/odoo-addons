@@ -27,7 +27,7 @@ Configuration
 #############
 
 * After installing this module, you need to configure the CAS parameters in the default settings.
-* The CAS authentication only works if you are in a single database mode.
+* The AS authentication only works if you are in a single database mode.
 * You can launch the Odoo Server with the option --db-filter=YOUR_DATABASE to do so.
 
 .. image:: images/auth_cas_login.gif
