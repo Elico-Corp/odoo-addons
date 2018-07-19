@@ -20,10 +20,6 @@
         'wizard/res_config_view.xml',
         'views/auth_cas_view.xml'
     ],
-    'images': [
-        'images/cas_auth_settings.jpeg',
-        'images/cas_auth_example_login_page.jpeg'
-    ],
     'installable': True,
     'application': True,
 }

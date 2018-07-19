@@ -30,13 +30,10 @@ Configuration
 * The CAS authentication only works if you are in a single database mode.
 * You can launch the Odoo Server with the option --db-filter=YOUR_DATABASE to do so.
 
-.. image:: images/cas_auth_example_login_page.jpeg
+.. image:: images/auth_cas_login.gif
    :width: 50 px
    :alt: Odoo CAS Login Page
 
-.. image:: images/cas_auth_settings.jpeg
-   :width: 50 px
-   :alt: Successful Configuration
 
 Security Considerations
 #######################
