@@ -24,7 +24,6 @@
         'images/cas_auth_settings.jpeg',
         'images/cas_auth_example_login_page.jpeg'
     ],
-    'auto_install': False,
     'installable': True,
     'application': True,
 }

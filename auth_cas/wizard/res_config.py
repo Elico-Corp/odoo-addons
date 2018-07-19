@@ -61,30 +61,28 @@ class CasBaseConfigSettings(models.TransientModel):
 
         error = True
 
-        # If the host OR the port is valid
-        if self.cas_server or self.cas_server_port:
-            # If the host AND the port are valid,
-            # we can activate CAS authentication and save all values
-            if self.cas_server and self.cas_server_port:
-                if self.cas_activated:
-                    icp.set_param('cas_auth.cas_activated',
-                                  str(self.cas_activated))
-                    # There is no error
-                    error = False
-                icp.set_param('cas_auth.cas_server', self.cas_server)
-                icp.set_param('cas_auth.cas_server_port',
-                              self.cas_server_port)
-            # Else, there is one error
-            # If the host field is valid, we save it and the default port value
-            elif self.cas_server:
-                icp.set_param('cas_auth.cas_server', self.cas_server)
-                icp.set_param('cas_auth.cas_server_port', default_port)
-            # Else, the host field is empty,
-            # but not the port field: we save it and the default host value
-            else:
-                icp.set_param('cas_auth.cas_server_port',
-                              self.cas_server_port)
-                icp.set_param('cas_auth.cas_server', default_host)
+        # If the host AND the port are valid,
+        # we can activate CAS authentication and save all values
+        if self.cas_server and self.cas_server_port:
+            if self.cas_activated:
+                icp.set_param('cas_auth.cas_activated',
+                              str(self.cas_activated))
+                # There is no error
+                error = False
+            icp.set_param('cas_auth.cas_server', self.cas_server)
+            icp.set_param('cas_auth.cas_server_port',
+                          self.cas_server_port)
+        # Else, there is one error
+        # If the host field is valid, we save it and the default port value
+        elif self.cas_server:
+            icp.set_param('cas_auth.cas_server', self.cas_server)
+            icp.set_param('cas_auth.cas_server_port', default_port)
+        # Else, the host field is empty,
+        # but not the port field: we save it and the default host value
+        else:
+            icp.set_param('cas_auth.cas_server_port',
+                          self.cas_server_port)
+            icp.set_param('cas_auth.cas_server', default_host)
         # If error is True, there is at least one error,
         # so we deactivate CAS authentication
         if error:
@@ -104,12 +102,13 @@ class CasBaseConfigSettings(models.TransientModel):
     @api.multi
     def check_cas_server(self):
 
-        """Check if CAS paramaters (host and port) are valids"""
+        """Check whether CAS paramaters (host and port) are valid"""
 
         self.ensure_one()
         title = 'cas_check_fail'
         message = 'Parameters are incorrect\nThere seems to be an ' \
                   'error in the configuration.'
+        error_message = ''
         if self.cas_server_port == -1:
             cas_server = self.cas_server
         else:
@@ -126,9 +125,11 @@ class CasBaseConfigSettings(models.TransientModel):
             if res[0] == 3:
                 title = 'cas_check_success'
                 message = 'Parameters are correct\nThe CAS server is well ' \
-                          'configured !'
+                          'configured'
         except Exception, e:
             _logger.debug(e)
+            error_message = e
         # At the moment, I only found this method
         # in order to show a message after a request
-        raise ValidationError(_(title) + '\n' + _(message))
+        raise ValidationError(_(title) + '\n' + _(message) + '\n' + _(
+            error_message))

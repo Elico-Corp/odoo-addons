@@ -22,7 +22,6 @@ _logger = logging.getLogger(__name__)
 
 
 class Controller(http.Controller):
-    _cp_path = '/auth_cas'
 
     @staticmethod
     def get_config_static():
@@ -49,7 +48,7 @@ class Controller(http.Controller):
             if res.get('redirect', {}):
                 res1 = qs(res.get('redirect', {}))
             res.update(res1)
-            # todo if one ticket in redirect
+            # TODO if one ticket in redirect
             # and one ticket in normal path, deal ticket
             return res
 

@@ -12,23 +12,34 @@ In Order to use it, you must have a functional CAS server already installed.
 
 
 Installation
-============
+############
 
 * Add CAS server address under Settings/General Settings
-* Activate Cas Activate
-* Add cas_server
-* Add cas_server_port
+
+* Activate the boolean field 'CAS Activate'
+
+* Add URL Address in cas_server
+
+* Add URL port in cas_server_port
+
 
 Configuration
-=============
+#############
 
 * After installing this module, you need to configure the CAS parameters in the default settings.
 * The CAS authentication only works if you are in a single database mode.
 * You can launch the Odoo Server with the option --db-filter=YOUR_DATABASE to do so.
 
+.. image:: images/cas_auth_example_login_page.jpeg
+   :width: 50 px
+   :alt: Odoo CAS Login Page
+
+.. image:: images/cas_auth_settings.jpeg
+   :width: 50 px
+   :alt: Successful Configuration
 
 Security Considerations
-=======================
+#######################
 
 Users' CAS passwords are never stored in the Odoo database, the CAS server
 is queried whenever a user needs to be authenticated.
@@ -36,7 +47,7 @@ Odoo does not manage password changes in the CAS, so any change of password
 should be conducted by other means.
 
 Bug Tracker
-===========
+###########
 
 Bugs are tracked on `GitHub Issues <https://github.com/Elico-Corp/odoo-addons/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
@@ -44,7 +55,7 @@ If you spotted it first, help us smashing it by providing a detailed and welcome
 
 
 Credits
-=======
+#######
 
 Contributors
 ------------
