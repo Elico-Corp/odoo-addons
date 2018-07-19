@@ -18,47 +18,47 @@ msgstr ""
 #. module: auth_cas
 #: model:ir.model.fields,help:auth_cas.field_base_config_settings_cas_create_user
 msgid "Automatically create local user accounts for new users authenticating via CAS"
-msgstr "Automatically create local user accounts for new users authenticating via CAS"
+msgstr "自動為通過CAS進行身份驗證的新用戶創建本地用戶帳戶"
 
 #. module: auth_cas
 #: model:ir.model.fields,field_description:auth_cas.field_res_users_cas_key
 msgid "CAS Key"
-msgstr "CAS Key"
+msgstr "CAS鑰匙"
 
 #. module: auth_cas
 #: model:ir.ui.view,arch_db:auth_cas.web_login_cas_auth
 msgid "CAS Login"
-msgstr "CAS Login"
+msgstr "CAS 登錄"
 
 #. module: auth_cas
 #: model:ir.model.fields,field_description:auth_cas.field_base_config_settings_cas_server
 msgid "CAS Server address"
-msgstr "CAS Server address"
+msgstr "CAS 服務器地址"
 
 #. module: auth_cas
 #: model:ir.model.fields,field_description:auth_cas.field_base_config_settings_cas_server_port
 msgid "CAS Server port"
-msgstr "CAS Server port"
+msgstr "CAS 服務器端口"
 
 #. module: auth_cas
 #: model:ir.ui.view,arch_db:auth_cas.view_general_settings_auth_cas_form
 msgid "CAS authentication"
-msgstr "CAS authentication"
+msgstr "CAS 認證"
 
 #. module: auth_cas
 #: model:ir.model.fields,field_description:auth_cas.field_base_config_settings_cas_activated
 msgid "CAS authentication activated"
-msgstr "CAS authentication activated"
+msgstr "CAS 驗證激活"
 
 #. module: auth_cas
 #: model:ir.ui.view,arch_db:auth_cas.view_general_settings_auth_cas_form
 msgid "Check settings of CAS server"
-msgstr "Check settings of CAS server"
+msgstr "檢查CAS服務器的設置"
 
 #. module: auth_cas
 #: model:ir.model.fields,help:auth_cas.field_base_config_settings_cas_activated
 msgid "The CAS authentication only works if you are in a single database mode. You can launch the Odoo Server with the option --db-filter=YOUR_DATABASE to do so."
-msgstr "The CAS authentication only works if you are in a single database mode. You can launch the Odoo Server with the option --db-filter=YOUR_DATABASE to do so."
+msgstr "CAS身份驗證僅在您處於單一數據庫模式時才有效。您可以使用選項--db-filter = YOUR_DATABASE啟動Odoo Server來執行此操作。"
 
 #. module: auth_cas
 #: model:ir.model,name:auth_cas.model_res_users
@@ -68,7 +68,7 @@ msgstr "用户"
 #. module: auth_cas
 #: model:ir.model.fields,field_description:auth_cas.field_base_config_settings_cas_create_user
 msgid "Users created on the fly"
-msgstr "Users created on the fly"
+msgstr "用戶即時創建"
 
 #. module: auth_cas
 #: model:ir.model,name:auth_cas.model_base_config_settings
