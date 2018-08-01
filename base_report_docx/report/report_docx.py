@@ -11,6 +11,7 @@ import base64
 from lxml import etree
 import time
 import random
+import odoo
 
 try:
     from docxtpl import DocxTemplate
@@ -29,29 +30,31 @@ class ReportDocx(report_sxw):
     def create(self, cr, uid, ids, data, context=None):
         self.cr = cr
         self.uid = uid
-        report_obj = self.env['ir.actions.report.xml']
+        env = odoo.api.Environment(cr, uid, context or {})
+        report_obj = env['ir.actions.report.xml']
         report_id_list = report_obj.search([
             ('report_name', '=', self.name[7:])])
         if report_id_list:
-            report_xml = report_id_list.browse([0])
+            report_xml = report_id_list[0]
             self.title = report_xml.name
+            if context['params']:
+                context['params']['template_id'] = report_xml.id
             if report_xml.report_type == 'docx':
-                return self.create_source_docx(cr, uid, ids, data, context)
+                return self.create_source_docx(cr, uid, ids, context)
         return super(ReportDocx, self).create(cr, uid, ids, data, context)
 
-    def create_source_docx(self, cr, uid, ids, dict, context=None):
-        data = self.generate_docx_data(cr, uid, ids, dict, context)
+    def create_source_docx(self, cr, uid, ids, context=None):
+        data = self.generate_docx_data(cr, uid, ids, context)
         original_folder_name = '/tmp/docx_to_pdf/'
         tmp_folder_name = original_folder_name + \
             str(int(time.time())) + \
             str(int(1000 + random.random() * 1000)) + '/'
 
-        output_type = self._get_output_type(cr, uid, context, dict)
+        output_type = self._get_output_type(cr, uid, context)
         output_report = {
             'pdf': 'report.pdf',
             'docx': 'report.docx'
         }
-
         self._delete_temp_folder(tmp_folder_name)
         self._create_temp_folder(tmp_folder_name)
 
@@ -66,7 +69,7 @@ class ReportDocx(report_sxw):
 
         return (report, output_type)
 
-    def generate_docx_data(self, cr, uid, ids, data, context):
+    def generate_docx_data(self, cr, uid, ids, context):
         """
             Override this method to pass your own data to the engine.
             The return value of this module should be a list with
@@ -185,7 +188,7 @@ class ReportDocx(report_sxw):
         self._convert_docx_from_template(
             cr, uid, data, context,
             tmp_folder_name,
-            docx_template_name, convert_docx_file_name, dict)
+            docx_template_name, convert_docx_file_name)
 
         if output_type == 'pdf':
             self._convert_docx_to_pdf(
@@ -195,7 +198,7 @@ class ReportDocx(report_sxw):
 
             self._create_watermark_pdf(
                 cr, uid, context,
-                tmp_folder_name, watermark_file, dict)
+                tmp_folder_name, watermark_file)
 
             self._add_watermark_to_pdf(
                 tmp_folder_name, watermark_file,
@@ -209,11 +212,12 @@ class ReportDocx(report_sxw):
     def _convert_docx_from_template(
             self, cr, uid, data, context,
             tmp_folder_name,
-            docx_template_name, convert_docx_file_name, dict
+            docx_template_name, convert_docx_file_name
     ):
-        action_id = dict['template_id']
-        action = self.env['ir.actions.report.xml'].browse(
-            cr, uid, action_id, context)
+        action_id = context['params']['template_id']
+        env = odoo.api.Environment(cr, uid, context or {})
+        action = env['ir.actions.report.xml'].browse(
+            [action_id])
 
         template_path = tmp_folder_name + docx_template_name
         convert_path = tmp_folder_name + convert_docx_file_name
@@ -232,19 +236,18 @@ class ReportDocx(report_sxw):
         docx_path = tmp_folder_name + \
             convert_docx_file_name
         output_path = tmp_folder_name
-
         cmd = "soffice --headless --convert-to pdf --outdir " + output_path \
               + " " + docx_path
         os.system(cmd)
 
     def _create_watermark_pdf(
             self, cr, uid, context,
-            tmp_folder_name, watermark_file, dict
+            tmp_folder_name, watermark_file
     ):
         watermark_path = tmp_folder_name + watermark_file
-        watermark_string = self._get_watermark_string(cr, uid, context, dict)
+        watermark_string = self._get_watermark_string(cr, uid, context)
         watermark_template = self._get_watermark_template(
-            cr, uid, context, dict)
+            cr, uid, context)
 
         if watermark_template:
             self._save_file(
@@ -310,28 +313,30 @@ class ReportDocx(report_sxw):
 
         return report
 
-    def _get_watermark_string(self, cr, uid, context, dict):
-        action_id = dict['template_id']
-        action = self.env['ir.actions.report.xml'].browse(
-            cr, uid, action_id, context)
+    def _get_watermark_string(self, cr, uid, context):
+        action_id = context['params']['template_id']
+        env = odoo.api.Environment(cr, uid, context or {})
+        action = env['ir.actions.report.xml'].browse(
+            [action_id])
 
         if action.watermark_string:
             return action.watermark_string
 
         return ""
 
-    def _get_watermark_template(self, cr, uid, context, dict):
-        action_id = dict['template_id']
-        action = self.env['ir.actions.report.xml'].browse(
-            cr, uid, action_id, context)
+    def _get_watermark_template(self, cr, uid, context):
+        action_id = context['params']['template_id']
+        env = odoo.api.Environment(cr, uid, context or {})
+        action = env['ir.actions.report.xml'].browse(
+            [action_id])
 
         return action.watermark_template.datas
 
-    def _get_output_type(self, cr, uid, context, dict):
-        action_id = dict['template_id']
-        action = self.env['ir.actions.report.xml'].browse(
-            cr, uid, action_id, context)
-
+    def _get_output_type(self, cr, uid, context):
+        action_id = context['params']['template_id']
+        env = odoo.api.Environment(cr, uid, context or {})
+        action = env['ir.actions.report.xml'].browse(
+            [action_id])
         return action.output_type
 
     def _create_temp_folder(self, tmp_folder_name):
