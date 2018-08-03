@@ -60,7 +60,7 @@ class ReportDocx(report_sxw):
 
         self._generate_reports(
             cr, uid, context, tmp_folder_name, data,
-            output_type, output_report, dict)
+            output_type, output_report)
 
         report = self._get_convert_file(
             tmp_folder_name, output_report[output_type])
@@ -79,27 +79,27 @@ class ReportDocx(report_sxw):
 
     def _generate_reports(
             self, cr, uid, context, tmp_folder_name,
-            datas, output_type, output_report, dict
+            datas, output_type, output_report
     ):
         if "pdf" == output_type:
             self._generate_pdf_reports(
                 cr, uid, context, tmp_folder_name, datas,
-                output_type, output_report, dict)
+                output_type, output_report)
             return
 
         self._generate_doc_reports(
             cr, uid, context, tmp_folder_name, datas,
-            output_type, output_report, dict)
+            output_type, output_report)
 
     def _generate_pdf_reports(
             self, cr, uid, context, tmp_folder_name,
-            datas, output_type, output_report, dict
+            datas, output_type, output_report
     ):
         count = 0
         for data in datas:
             self._convert_single_report(
                 cr, uid, context, tmp_folder_name,
-                count, data, output_type, dict)
+                count, data, output_type)
             count = count + 1
 
         self._combine_pdf_files(
@@ -107,14 +107,14 @@ class ReportDocx(report_sxw):
 
     def _generate_doc_reports(
             self, cr, uid, context, tmp_folder_name,
-            datas, output_type, output_report, dict
+            datas, output_type, output_report
     ):
         temp_docxs = []
         count = 0
         for data in datas:
             report = self._convert_single_report(
                 cr, uid, context, tmp_folder_name,
-                count, data, output_type, dict)
+                count, data, output_type)
             temp_docxs.append(report)
             count = count + 1
 
@@ -177,7 +177,7 @@ class ReportDocx(report_sxw):
 
     def _convert_single_report(
             self, cr, uid, context, tmp_folder_name,
-            count, data, output_type, dict
+            count, data, output_type
     ):
         docx_template_name = 'template_%s.docx' % count
         convert_docx_file_name = 'convert_%s.docx' % count
