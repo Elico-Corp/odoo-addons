@@ -340,7 +340,7 @@ class ReportDocx(report_sxw):
         return action.output_type
 
     def _create_temp_folder(self, tmp_folder_name):
-        cmd = 'mkdir ' + tmp_folder_name
+        cmd = 'mkdir -p ' + tmp_folder_name
         os.system(cmd)
 
     def _delete_temp_folder(self, tmp_folder_name):
