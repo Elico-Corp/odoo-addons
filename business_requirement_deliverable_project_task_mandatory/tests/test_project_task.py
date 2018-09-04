@@ -20,4 +20,3 @@ class TestProjectTask(common.TransactionCase):
 
     def test_check_br_required(self):
         self.project_line._check_br_required()
-
