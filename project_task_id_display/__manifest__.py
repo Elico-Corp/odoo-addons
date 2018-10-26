@@ -8,6 +8,7 @@
     'depends': ['project'],
     'author': 'Elico Corp',
     'license': 'LGPL-3',
+    'support': 'support@elico-corp.com',
     'website': 'https://www.elico-corp.com',
     'data': [
         'views/project_task_view.xml'
