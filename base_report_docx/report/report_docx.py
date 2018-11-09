@@ -64,10 +64,18 @@ class ReportDocx(report_sxw):
 
         report = self._get_convert_file(
             tmp_folder_name, output_report[output_type])
-
+        # Put the pdf to sharefolder before delete the temp folder
+        self.save_pdf_to_share(cr, uid, ids, tmp_folder_name, context)
         self._delete_temp_folder(tmp_folder_name)
 
         return (report, output_type)
+
+    def save_pdf_to_share(cr, uid, ids, tmp_folder_name, context):
+        """
+            Override this method to save the pdf on your own server
+            path. The files created before will be deleted.
+        """
+        pass
 
     def generate_docx_data(self, cr, uid, ids, context):
         """
@@ -226,8 +234,16 @@ class ReportDocx(report_sxw):
             template_path, base64.b64decode(action.template_file.datas))
 
         doc = DocxTemplate(template_path)
+        self.add_barcode_for_doc(doc, context, data)
         doc.render(data)
         doc.save(convert_path)
+
+    def add_barcode_for_doc(doc, context, data):
+        """
+            Override this function to do additions thing on the Docx file that
+            have render the value.
+        """
+        pass
 
     def _convert_docx_to_pdf(
             self, tmp_folder_name,
