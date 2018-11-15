@@ -73,8 +73,9 @@ class ReportDocx(report_sxw):
 
     def on_delete_output_file(cr, uid, ids, file, context):
         """
-            Override this method to save the pdf on your own server
-            path. The files created before will be deleted.
+            Override this method to perform operations on the output file
+            before it gets deleted. For instance, you can copy it to another
+            location in the file system.
         """
         pass
 
@@ -243,8 +244,8 @@ class ReportDocx(report_sxw):
 
     def on_doc_render(doc, data, context):
         """
-            Override this function to do additions thing on the Docx file that
-            have to render the value.
+            Override this function to perform additional operations on the
+            DOC file before it's rendered.
         """
         pass
 
