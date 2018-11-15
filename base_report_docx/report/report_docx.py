@@ -55,6 +55,7 @@ class ReportDocx(report_sxw):
             'pdf': 'report.pdf',
             'docx': 'report.docx'
         }
+        file = tmp_folder_name + output_report[output_type]
         self._delete_temp_folder(tmp_folder_name)
         self._create_temp_folder(tmp_folder_name)
 
@@ -62,12 +63,21 @@ class ReportDocx(report_sxw):
             cr, uid, context, tmp_folder_name, data,
             output_type, output_report)
 
-        report = self._get_convert_file(
-            tmp_folder_name, output_report[output_type])
-
+        report = self._get_convert_file(file)
+        # this is a hook to perform additional operations on the file
+        # before it's deleted
+        self.on_delete_output_file(cr, uid, ids, file, context)
         self._delete_temp_folder(tmp_folder_name)
 
         return (report, output_type)
+
+    def on_delete_output_file(cr, uid, ids, file, context):
+        """
+            Override this method to perform operations on the output file
+            before it gets deleted. For instance, you can copy it to another
+            location in the file system.
+        """
+        pass
 
     def generate_docx_data(self, cr, uid, ids, context):
         """
@@ -226,8 +236,18 @@ class ReportDocx(report_sxw):
             template_path, base64.b64decode(action.template_file.datas))
 
         doc = DocxTemplate(template_path)
+        # this is a hook to perform additional operations on the DOC file
+        # before it's rendered
+        self.on_doc_render(doc, data, context)
         doc.render(data)
         doc.save(convert_path)
+
+    def on_doc_render(doc, data, context):
+        """
+            Override this function to perform additional operations on the
+            DOC file before it's rendered.
+        """
+        pass
 
     def _convert_docx_to_pdf(
             self, tmp_folder_name,
@@ -299,13 +319,8 @@ class ReportDocx(report_sxw):
         finally:
             out_stream.close()
 
-    def _get_convert_file(
-            self, tmp_folder_name, convert_file_name
-    ):
-        path = tmp_folder_name + \
-            convert_file_name
-
-        input_stream = open(path, 'r')
+    def _get_convert_file(self, file):
+        input_stream = open(file, 'r')
         try:
             report = input_stream.read()
         finally:
