@@ -11,6 +11,10 @@
                     <div class="oe_inline">
                         <field name="certificate_number1" placeholder="沪ICP备12005091号"/>
                     </div>
+                    <label for="certificate_number1_url"/>
+                    <div class="oe_inline">
+                        <field name="certificate_number1_url" placeholder="http://www.miitbeian.gov.cn"/>
+                    </div>
                     <label for="certificate_url1"/>
                     <div class="oe_inline">
                         <field name="certificate_url1" placeholder="http://www.sgs.gov.cn/lz/licenseLink.do"/>
@@ -44,7 +48,9 @@
                         <span t-field="website.certificate_logo1"
                               t-field-options='{"widget": "image", "style": "display: inline; vertical-align: baseline;"}'/>
                     </a>
-                    <span t-field="website.certificate_number1"/>
+                    <a t-attf-href="#{website.certificate_number1_url}" target="_BLANK">
+                        <span t-field="website.certificate_number1"/>
+                    </a>
                 </span>
                 <span>-
                     <a t-attf-href="#{website.certificate_url2}" target="_BLANK">

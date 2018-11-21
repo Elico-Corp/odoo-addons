@@ -3,7 +3,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 {
     'name': 'Website Certificate',
-    'version': '8.0.0.0.3',
+    'version': '8.0.0.1.3',
     'category': 'website',
     'depends': ['base', 'website'],
     'author': 'Elico-Corp,Odoo Community Association (OCA)',
