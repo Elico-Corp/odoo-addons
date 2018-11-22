@@ -48,7 +48,7 @@
                         <span t-field="website.certificate_logo1"
                               t-field-options='{"widget": "image", "style": "display: inline; vertical-align: baseline;"}'/>
                     </a>
-                    <a t-attf-href="#{website.certificate_number1_url}" target="_BLANK">
+                    <a t-attf-href="#{website.certificate_number1_url}" target="_blank">
                         <span t-field="website.certificate_number1"/>
                     </a>
                 </span>
