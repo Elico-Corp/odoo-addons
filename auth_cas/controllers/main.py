@@ -10,7 +10,7 @@ from openerp.exceptions import AccessDenied
 import urlparse
 
 from ..pycas import login
-
+# FIXME: remove pycas as dependency and add it as external one
 from openerp import http
 from openerp.addons.web.controllers import main
 from openerp.http import request
