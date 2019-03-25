@@ -17,7 +17,7 @@ class ContactUs(main.contactus):
         if not kw or not crypt_challenge or not response:
             pass
         elif request.website.is_captcha_valid(crypt_challenge, response):
-            return super(contactus, self).contactus(*args, **kw)
+            return super(ContactUs, self).contactus(*args, **kw)
         values = dict(kw, error=['captcha_response_field'], kwargs=kw.items())
         return request.website.render(
             kw.get("view_from", "website.contactus"), values)
