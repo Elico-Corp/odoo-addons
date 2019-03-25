@@ -72,7 +72,7 @@ class Symptom(http.Controller):
 
     @http.route(
         ['/forum/<model("forum.forum"):forum>/symptom',
-        '/forum/<model("forum.forum"):forum>/symptom/page/<int:page>'],
+         '/forum/<model("forum.forum"):forum>/symptom/page/<int:page>'],
         type='http', auth="public", website=True)
     def symptom(self, forum, page=1, **searches):
         cr, context = request.cr, request.context
