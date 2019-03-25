@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
-# © 2015 Elico corp (www.elico-corp.com)
+# © 2015-2017 Elico Corp (https://www.elico-corp.com)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 import ldap
-from openerp.osv import orm
+from odoo import models
 
 
-class CompanyLdap(orm.Model):
+class CompanyLdap(models.Model):
     _inherit = 'res.company.ldap'
 
     def connect(self, conf):
