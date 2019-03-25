@@ -15,7 +15,7 @@ addons:
 language: python
 
 python:
-  - '2.7'
+  - '3.5'
 
 virtualenv:
   system_site_packages: true
@@ -23,18 +23,16 @@ virtualenv:
 env:
   matrix:
   - LINT_CHECK="1"
-  - EXCLUDE="excel_report_for_stock_valuation,pos_membership" TESTS="1" ODOO_REPO="odoo/odoo"
+  - TESTS="1" ODOO_REPO="odoo/odoo"
   global:
-  - VERSION="10.0" TESTS="0" LINT_CHECK="0" TRANSIFEX="0"
+  - VERSION="12.0" TESTS="0" LINT_CHECK="0" TRANSIFEX="0"
 
 install:
   - git clone --depth=1 https://github.com/Elico-Corp/maintainer-quality-tools.git ${HOME}/maintainer-quality-tools
   - export PATH=${HOME}/maintainer-quality-tools/travis:${PATH}
   - travis_install_nightly
-  - pip install ezodf==0.3.2
-  - pip install --upgrade pycrypto
+  - pip install --upgrade pycrypto xlrd
   - pip install docxtpl erppeek captcha simple-crypt python-ldap Pillow
-  - pip install reportlab pyPdf
 
 services:
   - postgresql
