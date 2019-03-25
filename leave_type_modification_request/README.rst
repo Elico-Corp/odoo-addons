@@ -16,55 +16,55 @@ manager or HR officer can approve.
 Usage
 =====
 
-1. HR Manager needs first to create a leave type and click on the checkbox "Allow Modification via Request"
+#. HR Manager needs first to create a leave type and click on the checkbox "Allow Modification via Request"
 
-.. figure:: static/img/step1.png
-   :width: 600 px
-   :alt: Leave type
-
-2. The employee or HR officer can create a new Allocation Request
-
-.. figure:: static/img/step2.png
-   :width: 600 px
-   :alt: New allocation request
-
-NB:
-
-* the number of days is now read only as it depends on the validated modifications
-  requests
-* A new smart button (top right of the form) allows to see and modify the modification
-  requests
-* note in the screenshot above the number of days is 0.
-
-3. Clicking on the smart button the employee or HR officer can view the list of modification requests and their status, per employee
-
-.. figure:: static/img/step3.png
-   :width: 600 px
-   :alt: Allocation Modification request list
-  
-4. Employee can create a new modification request, specifying the date of creation, related swap days or notes.
+   .. figure:: static/img/step1.png
+      :width: 600 px
+      :alt: Leave type
    
-.. figure:: static/img/step4.png
-   :width: 600 px
-   :alt: Creating Allocation Modification request
+#. The employee or HR officer can create a new Allocation Request
 
-5. Once prepared it can be confirmed by the employee (it becomes read only)
+   .. figure:: static/img/step2.png
+      :width: 600 px
+      :alt: New allocation request
 
-.. figure:: static/img/step5.png
-   :width: 600 px
-   :alt: Confirming Allocation Modification request
+   NB:
+   
+   * the number of days is now read only as it depends on the validated modifications
+     requests
+   * A new smart button (top right of the form) allows to see and modify the modification
+     requests
+   * note in the screenshot above the number of days is 0.
+   
+#. Clicking on the smart button the employee or HR officer can view the list of modification requests and their status, per employee
 
-6. The HR officer can now approve the Allocation Modification request
+   .. figure:: static/img/step3.png
+      :width: 600 px
+      :alt: Allocation Modification request list
+  
+#. Employee can create a new modification request, specifying the date of creation, related swap days or notes.
+   
+   .. figure:: static/img/step4.png
+      :width: 600 px
+      :alt: Creating Allocation Modification request
 
-.. figure:: static/img/step6.png
-   :width: 600 px
-   :alt: Confirming Allocation Modification request
+#. Once prepared it can be confirmed by the employee (it becomes read only)
 
-7. The employee can now use the allocation request (number of days is now 2 in the example)
+   .. figure:: static/img/step5.png
+      :width: 600 px
+      :alt: Confirming Allocation Modification request
 
-.. figure:: static/img/step7.png
-   :width: 600 px
-   :alt: Allocation request with approved modification request
+#. The HR officer can now approve the Allocation Modification request
+
+   .. figure:: static/img/step6.png
+      :width: 600 px
+      :alt: Confirming Allocation Modification request
+
+#. The employee can now use the allocation request (number of days is now 2 in the example)
+
+   .. figure:: static/img/step7.png
+      :width: 600 px
+      :alt: Allocation request with approved modification request
 
 
 Bug Tracker
