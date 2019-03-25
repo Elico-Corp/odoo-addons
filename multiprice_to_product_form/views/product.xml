@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="product_template_form_view" model="ir.ui.view">
+            <field name="name">multiprice_display</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_form_view"/>
+            <field name="arch" type="xml">
+                <field name="list_price" position="replace"/>
+
+                <xpath expr='//page[position()=1]/group' position="after">
+                    <separator colspan="4" string="Prices"/>
+                    <group col="12">
+                        <label for="list_price" class="oe_inline" colspan="1" string="1" style="min-width:0px"/>
+                        <field nolabel="1" name="list_price" colspan="1" />
+                        <label for="list_price2" class="oe_inline" colspan="1" string="2" style="min-width:0px"/>
+                        <field nolabel="1" name="list_price2" colspan="1" />
+                        <label for="list_price3" class="oe_inline" colspan="1" string="3" style="min-width:0px"/>
+                        <field nolabel="1" name="list_price3" colspan="1" />
+                        <label for="list_price4" class="oe_inline" colspan="1" string="4" style="min-width:0px"/>
+                        <field nolabel="1" name="list_price4" colspan="1" />
+                        <label for="list_price5" class="oe_inline" colspan="1" string="5" style="min-width:0px"/>
+                        <field nolabel="1" name="list_price5" colspan="1" />
+                        <label for="list_price6" class="oe_inline" colspan="1" string="6" style="min-width:0px"/>
+                        <field nolabel="1" name="list_price6" colspan="1" />
+                        <label for="list_price7" class="oe_inline" colspan="1" string="7" style="min-width:0px"/>
+                        <field nolabel="1" name="list_price7" colspan="1" />
+                        <label for="list_price8" class="oe_inline" colspan="1" string="8" style="min-width:0px"/>
+                        <field nolabel="1" name="list_price8" colspan="1" />
+                        <label for="list_price9" class="oe_inline" colspan="1" string="9" style="min-width:0px"/>
+                        <field nolabel="1" name="list_price9" colspan="1" />
+                        <label for="list_price10" class="oe_inline" colspan="1" string="10" style="min-width:0px"/>
+                        <field nolabel="1" name="list_price10" colspan="1"/>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</openerp>

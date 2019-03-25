@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <!-- PRODUCT PRICES TREE -->
+        <record id="product_template_view_tree" model="ir.ui.view">
+            <field name="name">product.product.tree.prices</field>
+            <field name="model">product.template</field>
+            <field name="priority" eval="17"/>
+            <field name="arch" type="xml">
+                <tree string="Products" editable="bottom">
+                    <field name="name" readonly="1"/>
+                    <field name="list_price"/>
+                    <field name="list_price2"/>
+                    <field name="list_price3"/>
+                    <field name="list_price4"/>
+                    <field name="list_price5"/>
+                    <field name="list_price6"/>
+                    <field name="list_price7"/>
+                    <field name="list_price8"/>
+                    <field name="list_price9"/>
+                    <field name="list_price10"/>
+                </tree>
+            </field>
+        </record>
+        
+        <record id="product_template_view_form" model="ir.ui.view">
+                <field name="name">multiprice.search.form</field>
+                <field name="model">product.template</field>
+                <field name="arch" type="xml">
+                    <search string="Product">
+                       <field name="name" string="Product" filter_domain="['|',('name','ilike',self),('default_code','ilike',self)]"/>
+                       <filter string="Services" icon="terp-accessories-archiver" domain="[('type','=','service')]"/>
+                       <filter string="Consumable" name="consumable" icon="terp-accessories-archiver" domain="[('type','=','consu')]" help="Consumable products"/>
+                       <separator/>
+                       <filter string="Can be Sold" name="filter_to_sell" icon="terp-accessories-archiver-minus" domain="[('sale_ok','=',1)]"/>
+                       <filter string="Can be Purchased" name="filter_to_purchase" icon="terp-accessories-archiver-minus" domain="[('purchase_ok','=',1)]"/>
+                       <field name="categ_id"/>
+                       <group expand="0" string="Context...">
+                           <field name="company_id" groups="base.group_multi_company"/>
+                       </group>
+                       <group  expand='0' string='Group by...'>
+                           <filter string='Category' icon="terp-stock_symbol-selection" domain="[]" context="{'group_by' : 'categ_id'}"/>
+                           <filter string='Default Unit of Measure' icon="terp-mrp" domain="[]" context="{'group_by' : 'uom_id'}"/>
+                           <filter string='Type' icon="terp-stock_symbol-selection" domain="[]" context="{'group_by' : 'type'}"/>
+                           <filter string='Company' icon="terp-go-home" domain="[]" context="{'group_by' : 'company_id'}" groups="base.group_multi_company"/>
+                       </group>
+                    </search>
+                </field>
+            </record>
+        
+        
+        <!-- PRODUCT PRICES ACTION, MENU -->
+        <record id="product_template_action" model="ir.actions.act_window">
+            <field name="name">Products Pricelist</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">product.template</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="product_template_view_tree"/>
+            <field name="search_view_id" ref="product_template_view_form"/>
+        </record>
+        
+        <menuitem id="menu_product_product_prices" action="product_template_action" parent="base.menu_product" />
+    </data>
+    
+</openerp>

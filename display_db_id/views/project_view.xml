@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record id="view_project" model="ir.ui.view">
+            <field name="name">project_id_display_tree_view</field>
+            <field name="model">project.project</field>
+            <field name="inherit_id" ref="project.view_project"/>
+            <field name="arch" type="xml">
+                <field name="name" position="before">
+                    <field name="id" />
+                </field>  
+            </field>
+        </record>
+        <record id="edit_project" model="ir.ui.view">
+            <field name="name">project_id_display_form_view</field>
+            <field name="model">project.project</field>
+            <field name="inherit_id" ref="project.edit_project"/>
+            <field name="arch" type="xml">
+                <field name="name" position="before">
+                    <field name="id" />
+                </field>  
+            </field>
+        </record>
+        <record id="view_project_kanban" model="ir.ui.view">
+            <field name="name">project_id_display_kanban_view</field>
+            <field name="model">project.project</field>
+            <field name="inherit_id" ref="project.view_project_kanban"/>
+            <field name="arch" type="xml">
+                <xpath expr='//div[@class="oe_kanban_content"]/h4' position="before">
+                    <field name="id" />
+                </xpath>
+            </field>
+        </record>
+        <record id="view_project_project_filter" model="ir.ui.view">
+            <field name="name">project_id_display_search_view</field>
+            <field name="model">project.project</field>
+            <field name="inherit_id" ref="project.view_project_project_filter"/>
+            <field name="arch" type="xml">
+                <field name="name" position="before">
+                    <field name="id" />
+                </field>  
+            </field>
+        </record>
+    </data>
+</openerp>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record id="view_project" model="ir.ui.view">
+            <field name="name">project.tree</field>
+            <field name="model">project.project</field>
+            <field name="inherit_id" ref="project.view_project" />
+            <field name="arch" type="xml">
+                <field name="state" position="after">
+                    <field name="opportunity_id" invisible="1"/>
+                </field>
+            </field>
+        </record>
+        <record id="edit_project" model="ir.ui.view">
+            <field name="name">project.form</field>
+            <field name="model">project.project</field>
+            <field name="inherit_id" ref="project.edit_project"/>
+            <field name="arch" type="xml">
+            <field name="user_id" position="after">
+                <field name="opportunity_id" />
+                </field>
+
+                <xpath expr="//page[@string='Project Stages']" position="after">
+                    <page string="Quotations" >						
+                        <field name="order_ids" nolabel="0" context="{'default_crm_project_id': active_id}" />		
+                    </page>
+                </xpath>	
+            </field>
+        </record>
+        <record id="view_project_kanban" model="ir.ui.view">
+            <field name="name">projects.kanban</field>
+            <field name="model">project.project</field>
+            <field name="inherit_id" ref="project.view_project_kanban"/>
+            <field name="arch" type="xml">
+                <field name="use_tasks" position="after">
+                    <field name="order_count" invisible="1"/>
+                </field>
+                <xpath expr="//div[contains(@class, 'oe_kanban_project_list')]" position="inside">
+                    <a t-if="record.order_count.raw_value" name="action_picking_order" type="object" style="margin-right: 10px">                          
+                        <span t-if="record.order_count.raw_value gt 1"><field name="order_count"/> Orders</span>
+                        <span t-if="record.order_count.raw_value lt 2"><field name="order_count"/> Order</span>
+                    </a>
+                </xpath>
+            </field>
+        </record>
+        <record id="view_project_project_filter" model="ir.ui.view">
+            <field name="name">project.search</field>
+            <field name="model">project.project</field>
+            <field name="inherit_id" ref="project.view_project_project_filter"/>
+            <field name="arch" type="xml">
+                <xpath expr="//group/filter[@string='Parent']" position="after">
+                    <filter string="Opportunity" name="Opportunity" help="Opportunity" icon="terp-folder-blue" domain="[]" context="{'group_by':'opportunity_id'}"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</openerp>

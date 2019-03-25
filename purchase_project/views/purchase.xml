@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record id="purchase_order_form" model="ir.ui.view">
+            <field name="name">purchase.form.inherit</field>
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="purchase.purchase_order_form"/>
+            <field name="arch" type="xml">
+                <field name="partner_ref" position="after">
+                    <field name="project_id" />
+                </field>   
+            </field>
+        </record>
+        <record id="purchase_order_tree" model="ir.ui.view">
+            <field name="name">purchase.tree.inherit</field>
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="purchase.purchase_order_tree"/>
+            <field name="arch" type="xml">
+                <field name="state" position="after" >
+                    <field name="project_id" invisible="1"/>
+                </field>   
+            </field>
+        </record>
+        <record id="view_purchase_order_filter" model="ir.ui.view">
+            <field name="name">purchase.search.inherit</field>
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="purchase.view_purchase_order_filter"/>
+            <field name="arch" type="xml">
+                <xpath expr="//group/filter[@string='Order Month']" position="after">
+                     <filter string="Projects" icon="terp-go-month" domain="[]" context="{'group_by':'project_id'}"/>
+                </xpath>   
+            </field>
+        </record>
+    </data>
+</openerp>

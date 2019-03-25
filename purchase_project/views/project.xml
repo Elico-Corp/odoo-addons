@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record id="edit_project" model="ir.ui.view">
+            <field name="name">project.purchase.form</field>
+            <field name="model">project.project</field>
+            <field name="inherit_id" ref="project.edit_project"/>
+            <field name="arch" type="xml">
+                <xpath expr="//page[@string='Project Stages']" position="after">
+                    <page string="Purchases" >                     
+                        <field name="purchase_ids" nolabel="0" context="{'default_project_id': active_id}"/>                      
+                    </page>
+                </xpath>    
+            </field>
+        </record>
+        <record id="projects_purchase_kanban" model="ir.ui.view">
+            <field name="name">projects.purchase.kanban</field>
+            <field name="model">project.project</field>
+            <field name="inherit_id" ref="project.view_project_kanban"/>
+            <field name="arch" type="xml">
+                <field name="use_tasks" position="after">
+                    <field name="purchase_count" invisible="1"/>
+                </field>
+                <xpath expr="//div[contains(@class, 'oe_kanban_project_list')]" position="inside">
+                    <a t-if="record.purchase_count.raw_value" name="action_picking_purchase" type="object" style="margin-right: 10px">                          
+                      <span t-if="record.purchase_count.raw_value gt 1"><field name="purchase_count"/> Purchases</span>
+                      <span t-if="record.purchase_count.raw_value lt 2"><field name="purchase_count"/> Purchase</span>
+                    </a>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</openerp>
