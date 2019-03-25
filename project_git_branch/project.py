@@ -5,7 +5,7 @@
 from openerp.osv import fields, orm
 
 
-class project_project(orm.Model):
+class ProjectProject(orm.Model):
     _inherit = 'project.project'
 
     def _get_git_environment(self, cr, uid, context=None):

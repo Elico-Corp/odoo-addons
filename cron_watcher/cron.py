@@ -7,7 +7,7 @@ from datetime import datetime
 from openerp.tools.translate import _
 
 
-class ir_cron(orm.Model):
+class IrCron(orm.Model):
     _name = 'ir.cron'
     _inherit = ['ir.cron', 'mail.thread']
 

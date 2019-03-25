@@ -26,16 +26,6 @@
  'author': 'Elico Corp',
  'license': 'AGPL-3',
  'website': 'https://www.elico-corp.com',
- 'description': """
-OpenERP reCAPTCHA
-=================
-This modules allows you to integrate Google reCAPTCHA to your website forms.
-You can configure your Google reCAPTCHA private and public keys
-in "Settings" -> "Website Settings"
-
-You will need to install the "Website CRM reCAPTCHA module"
-to use it in your "contact us" page
-""",
  'data': [
      'views/website_templates.xml',
      'views/website_view.xml',

@@ -23,7 +23,7 @@
 from openerp.osv import fields, osv
 
 
-class website_config_settings(osv.osv_memory):
+class websiteConfigSettings(osv.osv_memory):
     _inherit = 'website.config.settings'
 
     # makes it overridable for custom theme

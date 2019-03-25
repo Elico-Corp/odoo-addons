@@ -26,12 +26,6 @@
  'author': 'Elico Corp',
  'license': 'AGPL-3',
  'website': 'https://www.elico-corp.com',
- 'description': """
-OpenERP Contact Form reCAPTCHA
-==============================
-You can configure your Google reCAPTCHA private and public keys
-in "Settings" -> "Website Settings"
-""",
  'data': [
      'views/website_crm.xml'
  ],

@@ -14,7 +14,7 @@ Installation
 
 To install this module, you need to:
 
- * have basic modules installed (hr_expense)
+* have basic modules installed (hr_expense)
 
 Bug Tracker
 ===========

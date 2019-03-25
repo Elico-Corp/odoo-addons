@@ -13,7 +13,7 @@ Installation
 
 To install this module, you need to:
 
- * have basic modules installed (theme_loftspace,website_sale,website_sale_collapse_categories)
+* have basic modules installed (theme_loftspace,website_sale,website_sale_collapse_categories)
 
 
 Usage
@@ -21,14 +21,14 @@ Usage
 
 This model does the below updates for websit_sale:
 
- * remove the string "Taxes" in shopping cart and payment
- * Disable the "Add to cart" button and show button "Order"
-    when product quantity isn't available.
- * add the description and inventory status in shopping cart page
- * add the add the description and inventory status in payment page
- * delete the product description in the shopping cart.
- * only search the product name in the search function
- * remove the odoo information in the footer
+* remove the string "Taxes" in shopping cart and payment
+* Disable the "Add to cart" button and show button "Order"
+when product quantity isn't available.
+* add the description and inventory status in shopping cart page
+* add the add the description and inventory status in payment page
+* delete the product description in the shopping cart.
+* only search the product name in the search function
+* remove the odoo information in the footer
 
 Technical Notes
 ===============
@@ -65,8 +65,8 @@ Maintainer
 ----------
 
 .. image:: https://www.elico-corp.com/logo.png
-:alt: Elico Corp
-:target: https://www.elico-corp.com
+    :alt: Elico Corp
+    :target: https://www.elico-corp.com
 
 This module is maintained by Elico Corporation.
 

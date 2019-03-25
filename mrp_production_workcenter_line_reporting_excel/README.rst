@@ -6,8 +6,7 @@
 Excel report for MRP Production
 ===============================
 
-This module extends the functionality of mrp and allows you to export excel report for Mrp Production
-with speific category during one specific period.
+This module extends the functionality of mrp and allows you to export excel report for Mrp Production with specific category during one specific period.
 
 
 Installation

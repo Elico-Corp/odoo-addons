@@ -5,7 +5,7 @@ from openerp.osv import osv, fields
 from openerp.tools.translate import _
 
 
-class account_voucher(osv.osv):
+class AccountVoucher(osv.osv):
     _inherit = "account.voucher"
 
     _columns = {
@@ -117,5 +117,3 @@ class account_voucher(osv.osv):
 
 
 account_voucher()
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

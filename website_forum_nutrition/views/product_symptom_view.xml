@@ -56,3 +56,4 @@
         <menuitem id="menu_product_symptom" action='actions_product_symptom' name="Symptom" parent="product.prod_config_main" />
     </data>
 </openerp>
+

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <openerp>
-	<data>
-	<record id="project_project_git_form" model="ir.ui.view">
+    <data>
+    <record id="project_project_git_form" model="ir.ui.view">
         <field name="name">project.project.git.form</field>
         <field name="model">project.project</field>
         <field name="inherit_id" ref="project.edit_project"/>
@@ -18,5 +18,5 @@
             </notebook>
         </field>
     </record>
-   	</data>
+    </data>
 </openerp>

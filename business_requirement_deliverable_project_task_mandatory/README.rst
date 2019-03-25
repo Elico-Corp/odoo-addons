@@ -49,7 +49,7 @@ well known international companies and as well as local mid-sized businesses.
 Since 2010, our seasoned Sino-European consultants have been providing full
 range Odoo services:
 
-* Business consultancy for Gap analysis, BPM, operational work-flows review. 
+* Business consultancy for Gap analysis, BPM, operational work-flows review. \
 * Ready-to-use ERP packages aimed at starting businesses.
 * Odoo implementation for manufacturing, international trading, service industry
   and e-commerce. 

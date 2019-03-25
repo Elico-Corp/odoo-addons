@@ -8,12 +8,12 @@ Website Forum Nutrition
 
 This module extends the functionality of website,and add the following features:
 
- * adds a new model: `product.symptom`, which is secondary product
-category.
- * adds a new field: symptom_ids on model: `product_template`
- * add a new menu under `forum`: Healthy Menu
- * add new page to display all the symptoms.
- * add a new page to display all the products.
+* adds a new model: `product.symptom`, which is secondary product
+  category.
+* adds a new field: symptom_ids on model: `product_template`
+* add a new menu under `forum`: Healthy Menu
+* add new page to display all the symptoms.
+* add a new page to display all the products.
 
 Installation
 ============
@@ -52,8 +52,8 @@ Maintainer
 ----------
 
 .. image:: https://www.elico-corp.com/logo.png
-:alt: Elico Corp
-:target: https://www.elico-corp.com
+   :alt: Elico Corp
+   :target: https://www.elico-corp.com
 
 This module is maintained by Elico Corporation.
 

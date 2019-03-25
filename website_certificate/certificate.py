@@ -22,7 +22,8 @@ class CompanyFilingSetting(models.TransientModel):
     certificate_number1 = fields.Char(
         string='Certificate Number1', related='website_id.certificate_number1')
     certificate_number1_url = fields.Char(
-        string='Certificate Number1 URL', related='website_id.certificate_number1_url')
+        string='Certificate Number1 URL',
+        related='website_id.certificate_number1_url')
     certificate_url1 = fields.Char(
         string='Certificate URL1', related='website_id.certificate_url1')
     certificate_logo1 = fields.Binary(

@@ -30,3 +30,4 @@
         <menuitem action="mrp_scraped_reason_action" id="menu_mrp_scraped_reason_action" parent="mrp.menu_mrp_bom" sequence="16"/>
     </data>
 </openerp>
+

@@ -30,3 +30,4 @@
         <menuitem id="menu_action_stock_report" action="action_stock_report" parent="stock.next_id_61" sequence="3"/>
     </data>
 </openerp>
+

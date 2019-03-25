@@ -7,7 +7,7 @@ from openerp.addons.web.http import request
 import openerp.addons.website_crm.controllers.main as main
 
 
-class contactus(main.contactus):
+class ContactUs(main.contactus):
 
     @http.route(['/crm/contactus'], type='http', auth="public",
                 website=True, multilang=True)
