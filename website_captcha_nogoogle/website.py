@@ -18,7 +18,7 @@ except ImportError:
     pass
 
 
-class website(models.Model):
+class Website(models.Model):
     _inherit = 'website'
 
     captcha = fields.Text('Captcha', compute="_captcha", store=False)
