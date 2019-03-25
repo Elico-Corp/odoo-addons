@@ -1,3 +1,7 @@
+<!-- -*- coding: utf-8 -*- -->
+<!-- © 2016-2019 Elico Corp (https://www.elico-corp.com) -->
+<!-- License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html). -->
+
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
 
@@ -33,7 +37,8 @@
                     <field name="project_categ_id"/>
                 </field>
                 <group expand="0" string="Group By">
-                    <filter name ="project_category" string="Project category" domain="[]" context="{'group_by': 'project_categ_id'}"/>
+                    <filter name ="project_category" string="Project category"
+                        domain="[]" context="{'group_by': 'project_categ_id'}"/>
                 </group>
             </field>
         </record>
