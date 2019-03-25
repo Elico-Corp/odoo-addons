@@ -29,7 +29,8 @@ Credits
 Contributors
 ------------
 
-Kevin Dong <kevin.dong@elico-corp.com>
+* Kevin Dong <kevin.dong@elico-corp.com>
+* Eric Caudal <eric.caudal@elico-corp.com>
 
 Maintainer
 ----------
