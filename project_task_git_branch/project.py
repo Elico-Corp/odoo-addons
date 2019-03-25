@@ -5,7 +5,7 @@
 from openerp.osv import fields, orm
 
 
-class project_task(orm.Model):
+class ProjectTask(orm.Model):
     _inherit = 'project.task'
 
     def _get_git_branch(self, cr, uid, ids, name, arg, context=None):
@@ -40,7 +40,7 @@ class project_task(orm.Model):
         return {}
 
     def onchange_project(self, cr, uid, ids, project_id, ):
-        res = super(project_task, self).onchange_project(
+        res = super(ProjectTask, self).onchange_project(
             cr, uid, ids, project_id)
         if 'value' not in res:
             res['value'] = {}

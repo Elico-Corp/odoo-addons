@@ -31,46 +31,6 @@ Contributors
 ------------
 
 * Jon Chow <jon.chow@elico-corp.com>
-.. image:: https://img.shields.io/badge/licence-AGPL--3-blue.svg
-   :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
-   :alt: License: AGPL-3
-
-=============
-List Sequence
-=============
-
-This module extends the functionality of List View to support display the sequence in all the List view.
-
-Installation
-============
-
-To install this module, you need to:
-
- * have basic modules installed (web)
-
-
-Usage
-=====
-
- * A new column is created in the ListView.
- * It displays the index of each row.
-
-
-Bug Tracker
-===========
-
-Bugs are tracked on `GitHub Issues <https://github.com/Elico-Corp/odoo/issues>`_.
-In case of trouble, please check there if your issue has already been reported.
-If you spotted it first, help us smashing it by providing a detailed and welcomed feedback
-`here <https://github.com/Elico-Corp/odoo/issues/new?body=module:%20web_list_view_sequence%0Aversion:%20{8.0}%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
-
-Credits
-=======
-
-Contributors
-------------
-
-* Siyuan Gu: gu.siyuan@elico-corp.com
 
 Maintainer
 ----------

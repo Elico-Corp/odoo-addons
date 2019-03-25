@@ -23,7 +23,7 @@ This model does the below updates for websit_sale:
 
 * remove the string "Taxes" in shopping cart and payment
 * Disable the "Add to cart" button and show button "Order"
-when product quantity isn't available.
+  when product quantity isn't available.
 * add the description and inventory status in shopping cart page
 * add the add the description and inventory status in payment page
 * delete the product description in the shopping cart.
@@ -35,15 +35,16 @@ Technical Notes
 
 Inherit below template of website_forum:
 
- * total
- * checkout
- * product
- * cart
- * payment
+* total
+* checkout
+* product
+* cart
+* payment
 
 In the controller/main.py, rewrite and add the below functions:
- * check_stock_inventory: check wether the product is available to sale
- * shop: rewrite the domain for the search. only keep the product name.
+
+* check_stock_inventory: check wether the product is available to sale
+* shop: rewrite the domain for the search. only keep the product name.
 
 
 Bug Tracker

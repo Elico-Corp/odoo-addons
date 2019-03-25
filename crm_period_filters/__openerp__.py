@@ -7,16 +7,13 @@
     'author': 'Elico Corp',
     'website': 'https://www.elico-corp.com',
     'summary': '',
-    'description': """
-         access rule: case
-    """,
     'depends': ['base', 'crm'],
     'category': '',
     'sequence': 10,
     'data': [
         'crm_view.xml',
         'security/ir.model.access.csv',
-        ],
+    ],
     'installable': True,
     'application': False,
     'auto_install': False,

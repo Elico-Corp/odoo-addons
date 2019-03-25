@@ -13,7 +13,7 @@ except ImportError:
     _logger.debug('Can not `import ldap`.')
 
 
-class res_users(orm.Model):
+class ResUsers(orm.Model):
     _inherit = 'res.users'
 
     def change_password(self, cr, uid, old_passwd, new_passwd, context=None):
@@ -26,7 +26,7 @@ class res_users(orm.Model):
         :raise: openerp.exceptions.AccessDenied when old password is wrong
         :raise: except_osv when new password is not set or empty
         """
-        res = super(res_users, self).change_password(
+        res = super(ResUsers, self).change_password(
             cr, uid, old_passwd, new_passwd, context=context)
         if res:
             user = self.browse(cr, uid, uid, context=context)

@@ -7,7 +7,7 @@ from urllib import urlencode
 from openerp.osv import fields, osv
 
 
-class account_account(osv.osv):
+class AccountAccount(osv.osv):
     _inherit = 'account.invoice'
 
     def _edi_paypal_url(self, cr, uid, ids, field, arg, context=None):

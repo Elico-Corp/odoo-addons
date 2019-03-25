@@ -8,7 +8,7 @@ import logging
 _logger = logging.getLogger(__name__)
 
 
-class check_product_qty_wizard(models.TransientModel):
+class CheckProductQtyWizard(models.TransientModel):
     _name = "check.product.qty.wizard"
     _descript = "Check Product Qty With Mateial"
 

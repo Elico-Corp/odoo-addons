@@ -5,7 +5,7 @@
 from openerp import fields, models
 
 
-class website_config_settings(models.TransientModel):
+class WebsiteConfigSettings(models.TransientModel):
     _inherit = 'website.config.settings'
 
     captcha_crypt_password = fields.Char(

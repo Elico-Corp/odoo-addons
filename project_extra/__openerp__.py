@@ -14,7 +14,7 @@
     'update_xml': [
             'project_data.xml',
             'security/ir.model.access.csv',
-        ],
+    ],
     'installable': True,
     'certificate': '',
 }

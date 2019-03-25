@@ -19,7 +19,7 @@ default_host = 'https://localhost'
 default_port = 8443
 
 
-class cas_base_config_settings(osv.TransientModel):
+class CasBaseConfigSettings(osv.TransientModel):
     """
     The fields declared here are used to manage settings of the CAS server.
     """

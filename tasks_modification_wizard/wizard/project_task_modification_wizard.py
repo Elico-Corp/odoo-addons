@@ -5,7 +5,7 @@
 from openerp.osv import osv, fields
 
 
-class project_task_modification_wizard(osv.osv_memory):
+class ProjectTaskModificationWizard(osv.osv_memory):
     _name = "project.task.modification.wizard"
     _description = "Project task modification wizard"
 
