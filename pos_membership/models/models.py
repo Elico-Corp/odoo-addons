@@ -4,8 +4,6 @@
 
 from openerp import api, fields, models, _
 from openerp.osv import fields as old_fields
-from openerp.exceptions import Warning as UserError
-
 import openerp.addons.decimal_precision as dp
 
 

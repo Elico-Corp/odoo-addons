@@ -77,7 +77,7 @@ class AccountVoucher(osv.osv):
                                company_currency,
                                current_currency,
                                context=None):
-        line_vals = super(account_voucher, self).writeoff_move_line_get(
+        line_vals = super(AccountVoucher, self).writeoff_move_line_get(
             cr,
             uid,
             voucher_id,
@@ -116,4 +116,4 @@ class AccountVoucher(osv.osv):
         return line_vals
 
 
-account_voucher()
+AccountVoucher()

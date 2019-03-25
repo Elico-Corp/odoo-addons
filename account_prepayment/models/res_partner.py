@@ -23,4 +23,4 @@ class ResPartner(osv.osv):
     }
 
 
-res_partner()
+ResPartner()

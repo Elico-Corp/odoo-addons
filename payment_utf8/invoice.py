@@ -40,4 +40,4 @@ class AccountAccount(osv.osv):
     }
 
 
-account_account()
+AccountAccount()

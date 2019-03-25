@@ -70,9 +70,10 @@ class Symptom(http.Controller):
         return website_obj._image(
             cr, SUPERUSER_ID, 'product.symptom', symptom.id, 'image', response)
 
-    @http.route(['/forum/<model("forum.forum"):forum>/symptom',
-                 '/forum/<model("forum.forum"):forum>/symptom/page/<int:page>'],
-                type='http', auth="public", website=True)
+    @http.route(
+        ['/forum/<model("forum.forum"):forum>/symptom',
+        '/forum/<model("forum.forum"):forum>/symptom/page/<int:page>'],
+        type='http', auth="public", website=True)
     def symptom(self, forum, page=1, **searches):
         cr, context = request.cr, request.context
         symptom_obj = request.registry['product.symptom']
