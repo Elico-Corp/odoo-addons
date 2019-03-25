@@ -36,4 +36,5 @@ class TestTimesheetReminder(common.TransactionCase):
         self.timesheet_line._start_reminder(5, '08:00:00', '18:00:00', 1)
 
     def test_start_reminder_2(self):
-        self.timesheet_line._start_reminder(5, '08:00:00', '18:00:00', 1, reminder_type=2)
+        self.timesheet_line._start_reminder(5, '08:00:00', '18:00:00', 1,
+                                            reminder_type=2)
