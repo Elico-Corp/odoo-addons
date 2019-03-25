@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
-# © 2016-2017 Elico Corp (https://www.elico-corp.com).
+# © 2016-2017 Elico Corp (https://www.elico-corp.com)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 {
-    "name": "HR TimeSheet auto creation",
+    "name": "HR TimeSheet Auto Creation",
     "summary": """
 Automatic Timesheet will add a cron job for create the time sheet.
     """,
@@ -12,12 +12,12 @@ Automatic Timesheet will add a cron job for create the time sheet.
     "license": "AGPL-3",
     'website': 'https://www.elico-corp.com',
     'support': 'support@elico-corp.com',
-    "application": True,
-    "installable": False,
     "depends": [
         "hr_timesheet_sheet",
     ],
     "data": [
         "data/hr_timesheet_sheet_cron_job.xml",
-    ]
+    ],
+    "application": True,
+    "installable": True,
 }

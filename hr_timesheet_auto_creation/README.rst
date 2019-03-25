@@ -6,23 +6,25 @@
 HR TimeSheet Auto Creation
 ===========================
 
-This module extends the functionality of HR timesheet to automatically create the Timesheet
-Activity report via a cron job.
+This module extends the functionality of HR timesheet to automatically
+create the Timesheet Activity report via a cron job.
 
 Installation
 ============
 
 To install this module, you need to:
 
-#. have basic modules installed (hr_timesheet_sheet)
+#. Have basic modules installed (hr_timesheet_sheet)
 
 Configuration
 =============
 
 To configure this module, you need to:
 
-#. Set system's timezone correct(Administrator>Preferences>Timezone: You location timezone);
-#. Set the user access in read the employee and read/write on time sheet(default the user is Administrator, So you can skip this set).
+#. Set system's timezone correct(Administrator>Preferences>Timezone:
+Your location timezone).
+#. Set the user access in read the employee and read/write on
+time sheet(default the user is Administrator, So you can skip this set).
 #. Set the time or frequency as you want in the cron job:
     1). Settings>Users>Administrator>Usability>Technical Features: check;
 
@@ -32,10 +34,9 @@ To configure this module, you need to:
 Bug Tracker
 ===========
 
-Bugs are tracked on `GitHub Issues
-<https://github.com/Elico-Corp/elico_odoo/issues>`_. In case of trouble, please
-check there if your issue has already been reported. If you spotted it first,
-help us smash it by providing detailed and welcomed feedback.
+Bugs are tracked on `GitHub Issues <https://github.com/Elico-Corp/odoo-addons/issues>`_.
+In case of trouble, please check there if your issue has already been reported.
+If you spotted it first, help us smashing it by providing a detailed and welcomed feedback
 
 Credits
 =======
@@ -44,6 +45,7 @@ Contributors
 ------------
 
 * Kevin Dong <kevin.dong@elico-corp.com>
+* Eric Caudal <eric.caudal@elico-corp.com>
 
 Maintainer
 ----------
