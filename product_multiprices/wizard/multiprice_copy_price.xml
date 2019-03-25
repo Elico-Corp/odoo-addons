@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="mutlprice_copy_price_view_form" model="ir.ui.view">
+            <field name="name">Copy price to another price column </field>
+            <field name="model">multiprice.copy.price</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+               <form string="Copy values from one to another price column" version="7.0">
+                    <group>
+                        <separator string="Please select columns" colspan="4"/>
+                        <field name="copy_from" colspan="2"/>
+                        <field name="copy_to" colspan="2"/>                       
+                        <separator string="" colspan="4" />
+                    </group>
+                    <footer>
+                        <button name="action_copy_price" string="Copy" type="object" class="oe_highlight"/>
+                        or
+                        <button special="cancel" string="Cancel" class="oe_link"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <act_window name="Copy values from one to another price column"
+            context="{'search_default_draft': 1, 'search_default_approved': False}"
+            res_model="multiprice.copy.price"
+            src_model="product.template"
+            view_mode="form"
+            target="new"
+            multi="True"
+            key2="client_action_multi"
+            id="multiprice_copy_price_action"/>    
+                        
+    </data>
+</openerp>
