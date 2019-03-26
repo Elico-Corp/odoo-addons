@@ -12,12 +12,12 @@
     ],
     'author': 'Elico Corp',
     'support': 'support@elico-corp.com',
-    'license': 'AGPL-3',
+    'license': 'LGPL-3',
     'website': 'https://www.elico-corp.com',
     'data': [
         'report/timesheet_activity_report_view.xml',
         'security/ir.model.access.csv',
     ],
-    'installable': False,
+    'installable': True,
     'application': False
 }
