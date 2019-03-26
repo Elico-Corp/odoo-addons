@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- © 2016-2019 Elico Corp (https://www.elico-corp.com) -->
-<!-- License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html). -->
+<!-- # © 2016-2019 Elico Corp (https://www.elico-corp.com)
+# License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html). -->
 <odoo>
 
         <record id="edit_project" model="ir.ui.view">
