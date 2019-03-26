@@ -101,7 +101,8 @@ class TimesheetReport(models.Model):
                 FROM
                     account_analytic_line al
                     -- Link with the issue
-                    LEFT OUTER JOIN helpdesk_ticket h ON h.id = al.helpdesk_ticket_id
+                    LEFT OUTER JOIN helpdesk_ticket h
+                        ON h.id = al.helpdesk_ticket_id
                     -- Link with the project
                     LEFT OUTER JOIN project_project p
                         ON p.id = COALESCE(t.project_id, i.project_id)
