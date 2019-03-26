@@ -64,7 +64,8 @@ class ProjectCompletionReport(models.Model):
         'Remain. time', digits=(16, 2), readonly=True,
         help="Remaining time")
     total_hours = fields.Float('Total time', digits=(16, 2), readonly=True)
-    variance = fields.Float('Variance', digits=(16, 2), readonly=True,
+    variance = fields.Float(
+        'Variance', digits=(16, 2), readonly=True,
         help="Variance between Estimated time (from BR) and Total time")
 
     def init(self, cr):
