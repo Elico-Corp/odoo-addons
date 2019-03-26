@@ -1,10 +1,9 @@
-# -*- coding: utf-8 -*-
-# © 2016 - Elico Corp
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+# © 2016-2019 Elico Corp (https://www.elico-corp.com)
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 {
     "name": "Project Completion Report",
     "summary": "Follow-up project completion (estimated / consumed)",
-    "version": "10.0.1.0.0",
+    "version": "12.0.1.0.0",
     "category": "Project",
     'website': 'https://www.elico-corp.com',
     'support': 'support@elico-corp.com',

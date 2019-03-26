@@ -1,0 +1,2 @@
+business-requirement https://github.com/OCA/business-requirement.git 12.0
+odoo_enterprise git@github.com:Elico-Corp/odoo_enterprise.git 12.0

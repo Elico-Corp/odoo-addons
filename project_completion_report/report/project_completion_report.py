@@ -1,8 +1,7 @@
-# -*- coding: utf-8 -*-
-# © 2016 Elico Corp
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+# © 2016-2019 Elico Corp (https://www.elico-corp.com)
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from openerp import models, fields, tools
+from odoo import models, fields, tools
 
 
 class ProjectCompletionReport(models.Model):
@@ -118,12 +117,8 @@ class ProjectCompletionReport(models.Model):
                             -- Link with the task
                             INNER JOIN project_task t ON t.project_id = p.id
                             -- Link with the timesheet
-                            LEFT OUTER JOIN project_task_work tw
-                                ON tw.task_id = t.id
-                            LEFT OUTER JOIN hr_analytic_timesheet tms
-                                ON tms.id = tw.hr_analytic_timesheet_id
                             LEFT OUTER JOIN account_analytic_line al
-                                ON al.id = tms.line_id
+                                ON al.task_id = t.id
                             -- Link with the BR
                             LEFT OUTER JOIN business_requirement b
                                 ON b.id = p.business_requirement_id
@@ -161,10 +156,8 @@ class ProjectCompletionReport(models.Model):
                             INNER JOIN account_analytic_account a
                                 ON a.id = p.analytic_account_id
                             -- Link with the issue
-                            INNER JOIN project_issue i ON i.project_id = p.id
-                            -- Link with the timesheet
-                            LEFT OUTER JOIN hr_analytic_timesheet tms
-                                ON tms.issue_id = i.id
+                            INNER JOIN helpdesk_ticket h
+                                ON h.project_id = p.id
                             LEFT OUTER JOIN account_analytic_line al
                                 ON al.id = tms.line_id
                             -- Link with the BR
