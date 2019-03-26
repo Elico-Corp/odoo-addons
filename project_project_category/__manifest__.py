@@ -7,7 +7,7 @@
     'category': 'Project Management',
     'website': 'https://www.elico-corp.com',
     'support': 'support@elico-corp.com',
-    "author": "Elico corp",
+    "author": "Elico Corp",
     "license": "LGPL-3",
     "depends": [
         "project",
