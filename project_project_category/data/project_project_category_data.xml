@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- © 2016-2019 Elico Corp (https://www.elico-corp.com) -->
+<!-- License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html). -->
+<odoo noupdate="1">
+
+    <record id="project_project_category_1" model="project.project.category">
+        <field name="name">Support Projects</field>
+        <field name="description">Support</field>
+    </record>
+
+    <record id="project_project_category_2" model="project.project.category">
+        <field name="name">Migration Projects</field>
+        <field name="description">Migration</field>
+    </record>
+
+    <record id="project_project_category_3" model="project.project.category">
+        <field name="name">Development Projects</field>
+        <field name="description">Development</field>
+    </record>
+
+</odoo>

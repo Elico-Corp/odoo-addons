@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- # © 2016-2019 Elico Corp (https://www.elico-corp.com)
+# License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html). -->
+<odoo>
+    <record id="view_project_project_category_form" model="ir.ui.view">
+        <field name="name">project.project.category.form</field>
+        <field name="model">project.project.category</field>
+        <field eval="1" name="priority"/>
+        <field name="arch" type="xml">
+            <form >
+                <group>
+                    <group>
+                        <field name="name"/>
+                        <field name="active"/>
+                    </group>
+                    <group>
+                        <field name="description"/>
+                    </group>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_project_project_category_search_form" model="ir.ui.view">
+        <field name="name">project.project.category.form</field>
+        <field name="model">project.project.category</field>
+        <field name="arch" type="xml">
+            <search string="Project category">
+                <field name="name"/>
+                <field name="description"/>
+                <group expand="0" string="Group By">
+                    <filter name="category" string="Category" context="{'group_by': 'name'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_type_category_project" model="ir.actions.act_window">
+        <field name="name">Project category</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">project.project.category</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_category_project"
+        name="Project Category"
+        sequence="20"
+        parent="project.menu_project_config"
+        action="action_type_category_project"/>
+
+</odoo>
