@@ -72,23 +72,23 @@
                 <field name="activity_stage_id" />
                 <separator />
                 <group expand="0" string="Group By">
-                    <filter string="Customer" domain="[]"
+                    <filter name="customer" string="Customer" domain="[]"
                             context="{'group_by': 'partner_id'}" />
-                    <filter string="Master Project" domain="[]"
+                    <filter name="master_project" string="Master Project" domain="[]"
                             context="{'group_by': 'master_project_id'}" />
-                    <filter string="Business Requirement" domain="[]"
+                    <filter name="business_requirement" string="Business Requirement" domain="[]"
                             context="{'group_by': 'br_id'}" />
-                    <filter string="Project" domain="[]"
+                    <filter name="project" string="Project" domain="[]"
                             context="{'group_by': 'project_id'}" />
-                    <filter string="Analytic Account" domain="[]"
+                    <filter name="analytic_account" string="Analytic Account" domain="[]"
                             context="{'group_by': 'account_id'}" />
-                    <filter string="Project State" domain="[]"
+                    <filter name="project_state" string="Project State" domain="[]"
                             context="{'group_by': 'project_state'}" />
-                    <filter string="Project Category" domain="[]"
+                    <filter name="project_category" string="Project Category" domain="[]"
                             context="{'group_by': 'project_categ_id'}" />
-                    <filter string="Assignee" domain="[]"
+                    <filter name="assignee" string="Assignee" domain="[]"
                             context="{'group_by': 'user_id'}" />
-                    <filter string="Activity Stage" domain="[]"
+                    <filter name="activity_stage" string="Activity Stage" domain="[]"
                             context="{'group_by': 'activity_stage_id'}" />
                 </group>
             </search>
