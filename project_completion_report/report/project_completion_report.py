@@ -160,11 +160,11 @@ class ProjectCompletionReport(models.Model):
                             INNER JOIN helpdesk_ticket h
                                 ON h.project_id = p.id
                             LEFT OUTER JOIN account_analytic_line al
-                                ON al.id = tms.line_id
+                                ON al.helpdesk_ticket_id = h.id
                             -- Link with the BR
                             LEFT OUTER JOIN business_requirement b
                                 ON b.id = p.business_requirement_id
                         GROUP BY
-                            i.id, p.id, a.id, b.id
+                            h.id, p.id, a.id, b.id
                     )
                 ) AS q)""")
