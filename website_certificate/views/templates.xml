@@ -6,7 +6,7 @@
             <span>-
                 <a t-attf-href="#{website.certificate_url1}" target="_blank">
                     <span t-field="website.certificate_logo1"
-                          t-field-options='{"widget": "image", "style": "display: inline; vertical-align: baseline;"}'/>
+                          t-options='{"widget": "image", "style": "display: inline; vertical-align: baseline;"}'/>
                 </a>
                 <a t-attf-href="#{website.certificate_number1_url}" target="_blank">
                     <span t-field="website.certificate_number1"/>
@@ -15,7 +15,7 @@
             <span>-
                 <a t-attf-href="#{website.certificate_url2}" target="_blank">
                     <span t-field="website.certificate_logo2"
-                          t-field-options='{"widget": "image", "style": "display: inline; vertical-align: baseline;"}'/>
+                          t-options='{"widget": "image", "style": "display: inline; vertical-align: baseline;"}'/>
                 </a>
                 <span t-field="website.certificate_number2"/>
             </span>
