@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.website.cert
+        </field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@id='social_default_image_setting']" position="after">
+                <div class="col-12 col-lg-6 o_setting_box"
+                     id="website_certificate_settings">
+                    <div class="o_setting_right_pane">
+                        <label for="website_" string="Website Title"/>
+                        <span class="fa fa-lg fa-globe"
+                              title="Display the certificates on your website footer"/>
+                        <div class="text-muted">
+                            Certificates of your website
+                        </div>
+                        <div class="content-group">
+                            <div class="row mt16">
+                                <label class="col-lg-3 o_light_label"
+                                       string="Certificate Number1"
+                                       for="certificate_number1"/>
+                                <field name="certificate_number1"
+                                       placeholder="沪ICP备12005091号"/>
+                            </div>
+                            <div class="row">
+                                <label class="col-lg-3 o_light_label"
+                                       string="Certificate Number1 URL"
+                                       for="certificate_number1_url"/>
+                                <field name="certificate_number1_url"
+                                       placeholder="http://www.miitbeian.gov.cn"/>
+                            </div>
+                            <div class="row">
+                                <label class="col-lg-3 o_light_label"
+                                       string="Certificate URL1"
+                                       for="certificate_url1"/>
+                                <field name="certificate_url1"
+                                       placeholder="http://www.sgs.gov.cn/lz/licenseLink.do"/>
+                            </div>
+                            <div class="row">
+                                <label class="col-lg-3 o_light_label"
+                                       string="Certificate Logo1"
+                                       for="certificate_logo1"/>
+                                <field name="certificate_logo1" widget="image"
+                                       class="float-left oe_avatar"/>
+                            </div>
+                            <div class="row">
+                                <label class="col-lg-3 o_light_label"
+                                       string="Certificate Number2"
+                                       for="certificate_number2"/>
+                                <field name="certificate_number2"
+                                       placeholder="沪ICP备12005091号"/>
+                            </div>
+                            <div class="row">
+                                <label class="col-lg-3 o_light_label"
+                                       string="Certificate URL2"
+                                       for="certificate_url2"/>
+                                <field name="certificate_url2"
+                                       placeholder="http://www.example.com/certificate"/>
+                            </div>
+                            <div class="row">
+                                <label class="col-lg-3 o_light_label"
+                                       string="Certificate Logo2"
+                                       for="certificate_logo2"/>
+                                <field name="certificate_logo2" widget="image"
+                                       class="float-left oe_avatar"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>

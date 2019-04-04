@@ -1,7 +1,6 @@
-# -*- coding: utf-8 -*-
-# © 2015 Elico corp (www.elico-corp.com)
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
-from openerp import models, fields
+# © 2015-2019 Elico corp (www.elico-corp.com)
+# License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
+from odoo import models, fields
 
 
 class CompanyFiling(models.Model):
@@ -17,7 +16,7 @@ class CompanyFiling(models.Model):
 
 
 class CompanyFilingSetting(models.TransientModel):
-    _inherit = 'website.config.settings'
+    _inherit = 'res.config.settings'
 
     certificate_number1 = fields.Char(
         string='Certificate Number1', related='website_id.certificate_number1')
