@@ -10,7 +10,6 @@ class CompanyLdap(models.Model):
     def _connect(self, conf):
         connection = super(CompanyLdap, self)._connect(conf)
         # authorize self signed certificate
-        import pdb; pdb.set_trace()
         if conf['ldap_tls']:
             connection.set_option(
                 ldap.OPT_X_TLS_REQUIRE_CERT, ldap.OPT_X_TLS_ALLOW)
