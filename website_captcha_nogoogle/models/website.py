@@ -1,12 +1,12 @@
-# -*- coding: utf-8 -*-
-# © 2015 Elico corp (www.elico-corp.com)
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+# © 2015-2019 Elico corp (www.elico-corp.com)
+# License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
 
 import base64
 import random
 import string
 from binascii import hexlify, unhexlify
-from openerp import api, fields, models
+
+from odoo import api, fields, models
 
 try:
     from captcha.image import ImageCaptcha
@@ -43,8 +43,9 @@ class Website(models.Model):
         return False
 
     @api.depends('captcha_length', 'captcha_chars')
-    @api.one
+    @api.multi
     def _captcha(self):
+        self.ensure_one()
         captcha = ImageCaptcha()
         captcha_challenge = self._generate_random_str(
             self._get_captcha_chars(), int(self.captcha_length))

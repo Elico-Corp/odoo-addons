@@ -1,8 +1,7 @@
-# -*- coding: utf-8 -*-
-# © 2015 Elico corp (www.elico-corp.com)
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+# © 2015-2019 Elico corp (www.elico-corp.com)
+# License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
 
-import openerp.tests.common as common
+import odoo.tests.common as common
 import string
 import re
 from binascii import unhexlify

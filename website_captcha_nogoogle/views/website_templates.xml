@@ -1,16 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<openerp>
-    <data>
-        <template id="website_captcha_nogoogle.captcha" name="captcha">
-            <div t-attf-class="form-group #{error and 'captcha_response_field' in error and 'has-error' or ''}">
-                <label class="col-md-3 col-sm-4 control-label" for="description">Captcha</label>
-                <div class="col-md-7 col-sm-8">
-                    <img t-att-src="'data:image/png;base64,%s' % website.captcha" />
-                    <input name="captcha_response_field" />
-                    <input name="captcha_challenge_field" t-att-value="website.captcha_crypt_challenge" type="hidden" />
-                </div>
+<odoo>
+    <template id="website_captcha_nogoogle.captcha" name="captcha">
+        <div t-attf-class="form-group #{error and 'captcha_response_field' in error and 'has-error' or ''}">
+            <label class="col-md-3 col-sm-4 control-label" for="description">Captcha</label>
+            <div class="col-md-7 col-sm-8">
+                <img t-att-src="'data:image/png;base64,%s' % website.captcha" />
+                <input name="captcha_response_field" />
+                <input name="captcha_challenge_field" t-att-value="website.captcha_crypt_challenge" type="hidden" />
             </div>
-        </template>
-    </data>
-</openerp>
-
+        </div>
+    </template>
+</odoo>
