@@ -9,7 +9,7 @@
                 <div class="col-12 col-lg-6 o_setting_box"
                      id="website_certificate_settings">
                     <div class="o_setting_right_pane">
-                        <label for="website_" string="Website Certificates"/>
+                        <label for="certificate_number1" string="Website Certificates"/>
                         <span class="fa fa-lg fa-globe"
                               title="Display the certificates on your website footer"/>
                         <div class="text-muted">
