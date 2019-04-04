@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
-    <template id="company_description_inherited" name="Company Description" inherit_id="website.company_description">
+    <template id="company_description_inherited" name="Company Description"
+              inherit_id="website.company_description">
         <xpath expr="//a" position="replace">
             <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
             <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
@@ -34,7 +35,8 @@
 
     <template id="website_baidu_map" inherit_id="website.snippets" name="Company Description">
         <xpath expr="//div[@id='snippet_feature']//t[@t-snippet][last()]" position="after">
-            <t t-snippet="website_baidu_map.s_company_description" t-thumbnail="/website/static/src/img/snippets_thumbs/s_picture.png"/>
+            <t t-snippet="website_baidu_map.s_company_description"
+               t-thumbnail="/website/static/src/img/snippets_thumbs/s_picture.png"/>
         </xpath>
     </template>
 </odoo>

@@ -1,37 +1,19 @@
-.. image:: https://img.shields.io/badge/licence-AGPL--3-blue.svg
+.. image:: https://img.shields.io/badge/licence-LGPL--3-blue.svg
     :alt: License
 
 =================
 Website Baidu Map
 =================
 
-This module replace google map with baidu map in the contact us page.
-
-Installation
-============
-
-To install this module, you need to:
-
- * have basic modules installed (website, base)
+This module replaces google map with Baidu map in the `Contact us` page.
 
 Configuration
 =============
 
 To configure this module, you need to:
 
- * No specific configuration needed.
-
-Usage
-=====
-
-
-For further information, please visit:
-
- * https://www.odoo.com/forum/help-1
-
-Known issues / Roadmap
-======================
-
+ * Follow the `instruction <http://lbsyun.baidu.com/index.php?title=jspopular3.0/guide/getkey>`_ to get an API Key
+ * Open Settings/Technical/System Parameters and find `website_baidu_map.api_key`, then replace the value as your API Key
 
 Credits
 =======
@@ -41,6 +23,7 @@ Contributors
 ------------
 
 * Liu Lixia <liu.lixia@elico-corp.com>
+* Ruter Lv <ruter.lv@elico-corp.com>
 
 Maintainer
 ----------

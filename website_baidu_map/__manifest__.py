@@ -9,6 +9,7 @@
     'license': 'LGPL-3',
     'website': 'https://www.elico-corp.com',
     'data': [
+        'data/res_config_settings_data.xml',
         'views/templates.xml',
         'views/snippets.xml'
     ],
