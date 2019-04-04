@@ -7,10 +7,10 @@
         <field name="inherit_id" ref="base.view_company_form"/>
         <field name="arch" type="xml">
             <data>
-                <xpath expr="//group[@string='Bank Accounts']" position="after">
-                    <group string="Shops">
-                        <field name="shop_ids" nolabel="1"/>
-                    </group>
+                <xpath expr="//page[last()]" position="after">
+                    <page string="Shops">
+                        <field name="shop_ids"/>
+                    </page>
                 </xpath>
             </data>
         </field>
