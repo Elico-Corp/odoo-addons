@@ -1,66 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<openerp>
-    <data>
-        
-        <record id="view_company_form" model="ir.ui.view">
-          <field name="name">company shop</field>
-          <field name="model">res.company</field>
-          <field name="type">form</field>
-          <field name="inherit_id" ref="base.view_company_form"/>
-          <field name="arch" type="xml">
+<odoo>
+    <record id="view_company_form" model="ir.ui.view">
+        <field name="name">company shop</field>
+        <field name="model">res.company</field>
+        <field name="type">form</field>
+        <field name="inherit_id" ref="base.view_company_form"/>
+        <field name="arch" type="xml">
             <data>
-              <xpath expr="//group[@string='Bank Accounts']" position="after">
-                <group string="Shops">
-                    <field name="shop_ids" nolabel="1"/>
-                </group>
-              </xpath>
+                <xpath expr="//group[@string='Bank Accounts']" position="after">
+                    <group string="Shops">
+                        <field name="shop_ids" nolabel="1"/>
+                    </group>
+                </xpath>
             </data>
-          </field>
-        </record>
+        </field>
+    </record>
 
-        <record id="company_shop_action" model="ir.actions.act_window">
-            <field name="name">Company Shop</field>
-            <field name="res_model">company.shop</field>
-            <field name="view_type">form</field>
-            <field name="view_mode">tree</field>
-        </record>
+    <record id="company_shop_action" model="ir.actions.act_window">
+        <field name="name">Company Shop</field>
+        <field name="res_model">company.shop</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree</field>
+    </record>
 
-        <record id="company_shop_view_tree" model="ir.ui.view">
-            <field name="name">Company Shop Tree</field>
-            <field name="model">company.shop</field>
-            <field name="arch" type="xml" >
-                <tree editable="top">
-                    <field name="name" />
-                    <field name="city" />
-                    <field name="address" />
-                    <field name="company_id" invisible="1"/>
-                </tree>
-            </field>
-        </record>
+    <record id="company_shop_view_tree" model="ir.ui.view">
+        <field name="name">Company Shop Tree</field>
+        <field name="model">company.shop</field>
+        <field name="arch" type="xml">
+            <tree editable="top">
+                <field name="name"/>
+                <field name="city"/>
+                <field name="address"/>
+                <field name="company_id" invisible="1"/>
+            </tree>
+        </field>
+    </record>
 
-      <template id="baidu_map_muti" name="map_multi" inherit_id="website.company_description" customize_show="True">
-          <xpath expr="//div[@id='allmap']" position="replace">
-            <div id="allmap">
-                <script type="text/javascript">
-                    var map = new BMap.Map("allmap");
-                    var citys = [];
-                    var myKeys = [];
-                    <t t-foreach="res_company.shop_ids" t-as="shops">
-                      citys.push('<t t-esc="shops.city"/>');
-                      myKeys.push('<t t-esc="shops.address"/>');
-                    </t>
-                    for(var i=0;i&lt;myKeys.length;i++){
-                      map.centerAndZoom(citys[i],11);
-                      map.enableScrollWheelZoom();
-                      var local = new BMap.LocalSearch(map, {
-                          renderOptions:{map: map}
-                      });
-                      local.search(myKeys[i]);
-                      }
-                </script>
-            </div>
-          </xpath>
-      </template>
-
-    </data>
-</openerp>
+</odoo>
