@@ -1,10 +1,9 @@
-# -*- coding: utf-8 -*-
-# © 2015 Elico corp (www.elico-corp.com)
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+# © 2015-2018 Elico corp (www.elico-corp.com)
+# License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
 
-from openerp.addons.web import http
-from openerp.addons.web.http import request
-import openerp.addons.website_crm.controllers.main as main
+from odoo import http
+from odoo.http import request
+import odoo.addons.website_crm.controllers.main as main
 
 
 class ContactUs(main.contactus):
