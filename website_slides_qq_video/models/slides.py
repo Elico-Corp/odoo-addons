@@ -1,12 +1,14 @@
-# -*- coding: utf-8 -*-
-# © 2015 Elico corp (www.elico-corp.com)
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+# © 2015-2019 Elico corp (www.elico-corp.com)
+# License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
 
 import re
-from urllib import urlencode
-import urllib2
+import base64
+import json
+from urllib.parse import urlencode
+from urllib.request import urlopen, Request
+from urllib.error import HTTPError, URLError
 
-from openerp import models
+from odoo import models
 
 
 class Slide(models.Model):
@@ -25,29 +27,28 @@ class Slide(models.Model):
                     """ % (record.document_id)
 
     # for qq vedio
-    def _fetch_qq_data(self, base_url, data, content_type=False):
+    def _fetch_qq_video_data(self, base_url, data, content_type=False):
         result = {'values': dict()}
         try:
             if content_type == 'json':
                 if data:
                     base_url = base_url + '%s&otype=json' % urlencode(data)
-                req = urllib2.Request(base_url)
-                content = urllib2.urlopen(
-                    req).read().split("=")[1].split(';')[0]
-                result['values'] = eval(content)
+                req = Request(base_url)
+                rsp_data = urlopen(req).read()
+                content = rsp_data.decode('utf-8').split('=')[1].rstrip(';')
+                result['values'] = json.loads(content)
 
                 if result['values'].get('msg'):
                     result['error'] = result['values'].get('msg')
             elif content_type == 'image':
-                req = urllib2.Request(base_url)
-                content = urllib2.urlopen(req).read()
-                result['values'] = content.encode('base64')
+                content = base64.b64encode(urlopen(base_url).read())
+                result['values'] = content
             else:
                 result['values'] = ""
-        except urllib2.HTTPError as e:
+        except HTTPError as e:
             result['error'] = e.read()
             e.close()
-        except urllib2.URLError as e:
+        except URLError as e:
             result['error'] = e.reason
         return result
 
@@ -57,13 +58,11 @@ class Slide(models.Model):
         arg = expr.match(url)
         document_id = arg and arg.group(3) or False
         if document_id:
-            return ('qq', document_id)
+            return ('qq_video', document_id)
 
         return super(Slide, self)._find_document_data_from_url()
 
     def _parse_qq_video_title(self, res):
-        title = ""
-
         try:
             title = res['values']['vl']['vi'][0]['ti']
         except:
@@ -72,8 +71,6 @@ class Slide(models.Model):
         return title
 
     def _parse_qq_video_thumbnails(self, res, document_id):
-        img_url = ""
-
         try:
             head = "http://vpic.video.qq.com/"
             link = res['values']['vl']['vi'][0]['ul']['ui'][3]['url'].split(
@@ -85,8 +82,8 @@ class Slide(models.Model):
 
         return img_url
 
-    def _parse_qq_document(self, document_id, only_preview_fields):
-        fetch_res = self._fetch_qq_data(
+    def _parse_qq_video_document(self, document_id, only_preview_fields):
+        fetch_res = self._fetch_qq_video_data(
             'http://vv.video.qq.com/getinfo?', {'vid': document_id}, 'json'
         )
 
@@ -108,7 +105,7 @@ class Slide(models.Model):
 
         values.update({
             'name': title,
-            'image': self._fetch_qq_data(img_url, {}, 'image')['values'],
+            'image': self._fetch_qq_video_data(img_url, {}, 'image')['values'],
             'mime_type': "qq"
         })
         return {'values': values}
