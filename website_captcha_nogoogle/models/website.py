@@ -38,7 +38,7 @@ class Website(models.Model):
     def is_captcha_valid(self, crypt_challenge, response):
         challenge = decrypt(
             self.captcha_crypt_password, unhexlify(crypt_challenge))
-        if response.upper() == challenge:
+        if response.upper() == challenge.decode('utf-8'):
             return True
         return False
 
@@ -59,7 +59,7 @@ class Website(models.Model):
 
     def _default_salt(self):
         return self._generate_random_str(
-            string.digits + string.letters + string.punctuation, 100)
+            string.digits + string.ascii_letters + string.punctuation, 100)
         # generate a random salt
 
     def _captcha_length(self):
