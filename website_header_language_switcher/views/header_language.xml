@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <template id="language_switch_in_website_header" inherit_id="website.layout" name="Main layout">
+        <xpath expr="//header//ul[@id='top_menu']/li[hasclass('divider') and last()]" position="before">
+            <li class="nav-item divider" t-ignore="true"
+                t-if="(request and request.is_frontend_multilang and len(languages) &gt; 1) or (website and (editable or translatable))"/>
+            <li class="nav-item dropdown" t-ignore="true"
+                t-if="(request and request.is_frontend_multilang and len(languages) &gt; 1) or (website and (editable or translatable))">
+                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
+                    <span t-esc="list(filter(lambda lg : lg[0] == lang, languages))[0][1].split('/').pop()"/>
+                </a>
+                <ul class="dropdown-menu" role="menu">
+                    <t t-foreach="languages" t-as="lg">
+                        <a t-att-href="url_for(request.httprequest.path + '?' + keep_query(), lang=lg[0])"
+                           class="dropdown-item js_change_lang"
+                           t-att-data-default-lang="(editable or translatable) and 'true' if website and lg[0] == website.default_lang_code else None"
+                           t-att-data-lang="lg[0]">
+                            <t t-esc="lg[1].split('/').pop()"/>
+                        </a>
+                    </t>
+                    <t t-set="url_return" t-value="url_for('', '[lang]') + '?' + keep_query()"/>
+                    <a class="dropdown-item nav-link"
+                       t-attf-href="/web#action=base.action_view_base_language_install&amp;website_id=#{website.id if website else ''}&amp;url_return=#{url_return}">
+                        <i class="fa fa-plus-circle"/>
+                        Add a language...
+                    </a>
+                </ul>
+            </li>
+        </xpath>
+    </template>
+</odoo>
