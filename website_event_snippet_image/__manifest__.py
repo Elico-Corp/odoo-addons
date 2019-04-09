@@ -1,15 +1,14 @@
-# -*- coding: utf-8 -*-
-# © 2015 Elico corp (www.elico-corp.com)
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+# © 2015-2019 Elico corp (www.elico-corp.com)
+# License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
 {
     'name': 'Website Event Snippet Image',
-    'version': '8.0.1.0.1',
+    'version': '12.0.1.0.0',
     'category': 'website',
     'depends': [
         'website_event',
     ],
     'author': 'Elico Corp',
-    'license': 'AGPL-3',
+    'license': 'LGPL-3',
     'website': 'https://www.elico-corp.com',
     'data': [
         'views/snippets.xml',
