@@ -5,7 +5,7 @@ License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
 -->
 <odoo>
     <template id="event_description_full_inherited" name="map" inherit_id="website_event.event_description_full">
-        <xpath expr="//div[hasclass('card-body')]/a" position="replace">
+        <xpath expr="//div[hasclass('card-body')]/t/a" position="replace">
             <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
             <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
             <style type="text/css">
