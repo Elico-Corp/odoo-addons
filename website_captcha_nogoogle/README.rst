@@ -1,4 +1,4 @@
-.. image:: https://img.shields.io/badge/licence-AGPL--3-blue.svg
+.. image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
    :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
    :alt: License: AGPL-3
 
@@ -12,21 +12,58 @@ You can configure your CAPTCHA in "Settings" -> "Website Settings"
 You will need to install and purchase the "website_captcha_nogoogle_crm"
 to use it in your "contact us" page
 
-Installation
+Usage
 ============
 
-To install this module, you need to:
+Python external dependencies
+-----------------------------
 
- * have basic modules installed (website)
+To use this module you need to install the following python libraries:
+
+* `captcha <https://pypi.python.org/pypi/captcha>`_
+
+* `simplecrypt <https://pypi.python.org/pypi/simple-crypt>`_
+
+
+Integrate the captcha in any of your web pages
+----------------------------------------------
+
+.. code-block:: xml
+
+  <t t-call="website_captcha_nogoogle.captcha"/>
+
+Feel free to extend or create a new template to adapt it to your design.
+
+Get captcha in binary format
+----------------------------
+
+.. code-block:: python
+
+  print website.captcha
+
+It will simply output the captcha as a binary.
+
+You can display it in HTML as follow:
+
+.. code-block:: html
+
+  <img t-att-src="'data:image/png;base64,%s' % website.captcha" />
+
+Check if the captcha is valid
+-----------------------------
+
+Call the website's 'is_captcha_valid' method.
+
+.. code-block:: python
+
+  website.is_captcha_valid(crypt_challenge, response)
 
 
 Bug Tracker
 ===========
 
-Bugs are tracked on `GitHub Issues <https://github.com/Elico-Corp/odoo/issues>`_.
+Bugs are tracked on `GitHub Issues <https://github.com/Elico-Corp/odoo-addons/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
-If you spotted it first, help us smashing it by providing a detailed and welcomed feedback
-`here <https://github.com/Elico-Corp/odoo/issues/new?body=module:%20website_captcha_nogoogle%0Aversion:%20{8.0}%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Credits
 =======
@@ -35,6 +72,7 @@ Contributors
 ------------
 
 * Augustin Cisterne-Kaas <augustin.cisterne-kaas@elico-corp.com>
+* Ruter Lyu <ruter.lv@elico-corp.com>
 
 Maintainer
 ----------

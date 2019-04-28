@@ -21,9 +21,8 @@ except ImportError:
 class Website(models.Model):
     _inherit = 'website'
 
-    captcha = fields.Text('Captcha', compute="_captcha", store=False)
-    captcha_crypt_challenge = fields.Char(
-        'Crypt', compute="_captcha", store=False)
+    captcha = fields.Text('Captcha', compute="_captcha")
+    captcha_crypt_challenge = fields.Char('Crypt', compute="_captcha")
     captcha_crypt_password = fields.Char(
         default=lambda self: self._default_salt(),
         required=True, help='''

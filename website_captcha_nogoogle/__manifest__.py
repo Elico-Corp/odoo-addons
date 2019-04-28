@@ -8,6 +8,7 @@
         'website',
     ],
     'author': 'Elico Corp',
+    'support': 'Elico Corp',
     'license': 'LGPL-3',
     'website': 'https://www.elico-corp.com',
     'data': [
@@ -15,7 +16,7 @@
         'views/res_config_settings_views.xml',
     ],
     'external_dependencies': {
-        'python': ['captcha', 'simplecrypt'],
+        'python': ['captcha', 'simple-crypt'],
     },
     'installable': True,
     'auto_install': False
