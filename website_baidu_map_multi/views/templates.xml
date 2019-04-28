@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+© 2018-2019 Shanghai Elico Limited.
+License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
+-->
+<odoo>
+
+    <template id="baidu_map_muti" name="map_multi"
+              inherit_id="website.company_description">
+        <xpath expr="//div[@id='baidu_map']" position="replace">
+            <div id="baidu_map">
+                <script type="text/javascript">
+                    var map = new BMap.Map("baidu_map");
+                    var citys = [];
+                    var myKeys = [];
+                    <t t-foreach="res_company.shop_ids" t-as="shops">
+                        citys.push('<t t-esc="shops.city"/>');
+                        myKeys.push('<t t-esc="shops.address"/>');
+                    </t>
+                    for(var i=0; i&lt;myKeys.length; i++){
+                        map.centerAndZoom(citys[i],11);
+                        map.enableScrollWheelZoom();
+                        var local = new BMap.LocalSearch(map, {
+                            renderOptions:{map: map}
+                        });
+                        local.search(myKeys[i]);
+                    }
+                </script>
+            </div>
+        </xpath>
+    </template>
+
+</odoo>

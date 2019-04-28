@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+© 2018-2019 Shanghai Elico Limited.
+License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
+-->
+<odoo>
+    <record id="view_company_form" model="ir.ui.view">
+        <field name="name">Company Shop</field>
+        <field name="model">res.company</field>
+        <field name="type">form</field>
+        <field name="inherit_id" ref="base.view_company_form"/>
+        <field name="arch" type="xml">
+            <data>
+                <xpath expr="//page[last()]" position="after">
+                    <page string="Shops">
+                        <field name="shop_ids"/>
+                    </page>
+                </xpath>
+            </data>
+        </field>
+    </record>
+
+    <record id="company_shop_action" model="ir.actions.act_window">
+        <field name="name">Company Shop</field>
+        <field name="res_model">company.shop</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree</field>
+    </record>
+
+    <record id="company_shop_view_tree" model="ir.ui.view">
+        <field name="name">Company Shop Tree</field>
+        <field name="model">company.shop</field>
+        <field name="arch" type="xml">
+            <tree editable="top">
+                <field name="name"/>
+                <field name="city"/>
+                <field name="address"/>
+                <field name="company_id" invisible="1"/>
+            </tree>
+        </field>
+    </record>
+
+</odoo>
