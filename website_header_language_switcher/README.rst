@@ -1,4 +1,4 @@
-.. image:: https://img.shields.io/badge/licence-AGPL--3-blue.svg
+.. image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
    :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
    :alt: License: AGPL-3
 
@@ -6,13 +6,14 @@
 Website Header Language Switcher
 ================================
 
-This module add a language switch in the header of the website.
+This module moves the language switch to the header of the website.
 
 
 Contributors
 ------------
 
 * Rona Lin <lin.rona@elico-corp.com>
+* Ruter Lyu <ruter.lv@elico-corp.com>
 
 Maintainer
 ----------

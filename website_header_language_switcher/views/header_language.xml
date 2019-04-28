@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+© 2019 Shanghai Elico Limited.
+License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
+-->
 <odoo>
-    <template id="language_switch_in_website_header" inherit_id="website.layout" name="Main layout">
-        <xpath expr="//header//ul[@id='top_menu']/li[hasclass('divider') and last()]" position="before">
+    <template id="language_switch_in_website_header" 
+              inherit_id="website.layout" name="Main layout">
+        <xpath expr="//header//ul[@id='top_menu']/li[hasclass('divider') and last()]" 
+               position="before">
             <li class="nav-item divider" t-ignore="true"
                 t-if="(request and request.is_frontend_multilang and len(languages) &gt; 1) or (website and (editable or translatable))"/>
             <li class="nav-item dropdown" t-ignore="true"
