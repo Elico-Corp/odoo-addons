@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+© 2019 Shanghai Elico Limited.
+License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
+-->
+<odoo>
+    <template id="contactus_form_captcha" name="CAPTCHA" 
+              inherit_id="website_crm.contactus_form">
+        <xpath expr="//a[hasclass('o_website_form_send')]/../.." 
+               position="before">
+            <t t-call="website_captcha_nogoogle.captcha"/>
+        </xpath>
+    </template>
+</odoo>
