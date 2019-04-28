@@ -8,6 +8,7 @@
         'website_event',
     ],
     'author': 'Elico Corp',
+    'support': 'Elico Corp'
     'license': 'LGPL-3',
     'website': 'https://www.elico-corp.com',
     'data': [

@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
-    <template id="website_event_snippet_image" name="Website event snippet image" inherit_id="website_event.country_events_list">
+    <template id="website_event_snippet_image" 
+              name="Website event snippet image" 
+              inherit_id="website_event.country_events_list">
         <xpath expr="//div[@class='country_events_list']" position="attributes">
             <attribute name="class"></attribute>
         </xpath>
