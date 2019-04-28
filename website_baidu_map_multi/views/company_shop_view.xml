@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+© 2018-2019 Shanghai Elico Limited.
+License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
+-->
 <odoo>
     <record id="view_company_form" model="ir.ui.view">
-        <field name="name">company shop</field>
+        <field name="name">Company Shop</field>
         <field name="model">res.company</field>
         <field name="type">form</field>
         <field name="inherit_id" ref="base.view_company_form"/>

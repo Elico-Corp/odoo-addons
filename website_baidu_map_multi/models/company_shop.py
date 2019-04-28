@@ -1,14 +1,14 @@
 # 2016-2019 Elico Corp (https://www.elico-corp.com).
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
-from openerp import fields, models
+from odoo import fields, models
 
 
 class CompanyShop(models.Model):
     _name = 'company.shop'
 
-    name = fields.Char(string='Name', required=True)
-    city = fields.Char(string='City', required=True)
-    address = fields.Char(string='Address', required=True)
+    name = fields.Char('Name', required=True)
+    city = fields.Char('City', required=True)
+    address = fields.Char('Address', required=True)
     company_id = fields.Many2one(comodel_name='res.company', string='Company')
 
 

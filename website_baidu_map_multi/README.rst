@@ -1,4 +1,4 @@
-.. image:: https://img.shields.io/badge/licence-AGPL--3-blue.svg
+.. image:: https://img.shields.io/badge/licence-LGPL--3-blue.png
     :alt: License
 
 ==================================
@@ -7,25 +7,12 @@ Website Baidu Map (Multi location)
 
 This module inherits from the website_baidu_map module. It allows you to display multiple addresses on the map.
 
-Installation
-============
-
-To install this module, you need to:
-
- * Have the website_baidu_map module in your addons path.
-
-Configuration
-=============
-
-To configure this module, you need to:
-
- * No specific configuration needed.
-
 
 Contributors
 ------------
 
 * Liu Lixia <liu.lixia@elico-corp.com>
+* Ruter Lyu <ruter.lv@elico-corp.com>
 
 
 Maintainer

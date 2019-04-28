@@ -4,8 +4,9 @@
     'name': 'Website Baidu Map Multi',
     'version': '12.0.1.0.0',
     'category': 'Hidden',
-    'depends': ['website', 'base', 'website_baidu_map'],
-    'author': 'Elico-Corp,Odoo Community Association (OCA)',
+    'depends': ['website_baidu_map'],
+    'author': 'Elico-Corp',
+    'support': 'Elico-Corp',
     'license': 'LGPL-3',
     'website': 'https://www.elico-corp.com',
     'data': [

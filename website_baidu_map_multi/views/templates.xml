@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+© 2018-2019 Shanghai Elico Limited.
+License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
+-->
 <odoo>
 
     <template id="baidu_map_muti" name="map_multi"
