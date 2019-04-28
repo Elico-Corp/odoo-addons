@@ -1,20 +1,13 @@
-.. image:: https://img.shields.io/badge/licence-AGPL--3-blue.svg
+.. image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
    :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
    :alt: License: AGPL-3
 
 ==============================
 Website Slides upload QQ video
 ==============================
+
 This model  extends the functionality of website_slides and allows to publish the QQ video
 in the channel
-
-Installation
-============
-
-To install this module, you need to:
-
- * have basic modules installed (website_slides)
-
 
 Usage
 =====
@@ -35,15 +28,11 @@ Click the share button under the video and find the iframe code for the video li
 
 Just copy and paster the url in the src: http://v.qq.com/iframe/player.html?vid=n0163mjor1o
 
-
-
 Bug Tracker
 ===========
 
-Bugs are tracked on `GitHub Issues <https://github.com/Elico-Corp/odoo/issues>`_.
+Bugs are tracked on `GitHub Issues <https://github.com/Elico-Corp/odoo-addons/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
-If you spotted it first, help us smashing it by providing a detailed and welcomed feedback
-`here <https://github.com/Elico-Corp/odoo/issues/new?body=module:%20website_slides_qq_video%0Aversion:%208.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Credits
 =======
@@ -51,7 +40,8 @@ Credits
 Contributors
 ------------
 
-* Siyuan Gu: gu.siyuan@elico-corp.com
+* Siyuan Gu <gu.siyuan@elico-corp.com>
+* Ruter Lyu <ruter.lv@elico-corp.com>
 
 Maintainer
 ----------

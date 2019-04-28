@@ -7,6 +7,7 @@
         'website_slides',
     ],
     'author': 'Elico Corp',
+    'support': 'Elico Corp',
     'license': 'LGPL-3',
     'website': 'https://www.elico-corp.com',
     'installable': True,
