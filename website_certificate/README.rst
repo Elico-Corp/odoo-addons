@@ -1,4 +1,4 @@
-.. image:: https://img.shields.io/badge/licence-AGPL--3-blue.svg
+.. image:: https://img.shields.io/badge/licence-LGPL--3-blue.png
     :alt: License
 
 ===================
@@ -14,35 +14,23 @@ To install this module, you need to:
 
  * have basic modules installed (website, base)
 
-Configuration
-=============
-
-To configure this module, you need to:
-
- * No specific configuration needed.
-
 Usage
 =====
 
-Configure the company Certificate information in website setting, then you can see the Certificate information display at the bottom right of website.
+Configure the company Certificate information:
 
-
-For further information, please visit:
-
- * https://www.odoo.com/forum/help-1
-
-Known issues / Roadmap
-======================
-
+#. Go To website setting, 
+#. Set up the information related to the certificates.
+#. you can see the Certificate information display at the bottom right of the website.
 
 Credits
 =======
-
 
 Contributors
 ------------
 
 * Liu Lixia <liu.lixia@elico-corp.com>
+* Ruter Lyu <ruter.lv@elico-corp.com>
 
 Maintainer
 ----------
