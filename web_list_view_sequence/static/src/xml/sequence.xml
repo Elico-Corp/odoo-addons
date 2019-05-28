@@ -14,14 +14,14 @@
         <t t-jquery="t:first" t-operation="replace">
             <t t-call="ListView.row">
                 <t t-set="record" t-value="records.at(index)"/>
-                <t t-set="sequence" t-value="records.indexOf(record) + 1"/>
+                <t t-if="records" t-set="record.attributes.row_n" t-value="records.indexOf(record) + 1"/>
             </t>
         </t>
     </t>
 
     <t t-extend="ListView.row">
         <t t-jquery=".oe_list_record_selector" t-operation="after">
-            <td><t t-esc="sequence"/></td>
+            <td><t t-esc="record.attributes.row_n"/></td>
         </t>
     </t>
 
