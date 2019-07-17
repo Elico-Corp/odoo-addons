@@ -1,0 +1,23 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<odoo>
+    <record id="action_timesheet_activity_tree_inherit" model="ir.ui.view">
+        <field name="name">timesheet.activity.report.tree</field>
+        <field name="model">timesheet.activity.report</field>
+        <field name="inherit_id"
+               ref="timesheet_activity_report.action_timesheet_activity_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='br_id']" position='after'>
+                <field name="br_status" />
+            </xpath>
+            <xpath expr="//field[@name='user_id']" position='after'>
+                <field name="department_id" />
+            </xpath>
+            <xpath expr="//field[@name='activity_id']" position='before'>
+                <field name="br_master_project" />
+            </xpath>
+            <xpath expr="//field[@name='account_id']" position = 'after'>
+                <field name="project_state" />
+            </xpath>
+        </field>
+    </record>
+</odoo>
