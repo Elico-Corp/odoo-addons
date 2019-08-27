@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2019 Elico Corp
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="stock_move_lots_filter_form" model="ir.ui.view">
+        <field name="name">Add filter to stock move lots form</field>
+        <field name="model">stock.move</field>
+        <field name="inherit_id" ref="mrp.view_stock_move_lots"/>
+        <field name="arch" type="xml">
+            <field name="active_move_lot_ids" position="before">
+                <field name="filter_location_id" invisible="context.get('only_create', False)"/>
+            </field>
+            <field name="active_move_lot_ids" position="attributes">
+                <attribute name="colspan">2</attribute>
+                <attribute name="attrs">{'readonly': ['|', ('state', '=', 'done'), ('filter_location_id', '=', False)]}</attribute>
+            </field>
+            <field name="lot_id" position="attributes">
+                <attribute name="domain">[('product_id','=', parent.product_id),('location_ids', 'child_of', parent.filter_location_id)]</attribute>
+            </field>
+        </field>
+    </record>
+</odoo>
