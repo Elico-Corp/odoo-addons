@@ -31,8 +31,15 @@ class CasBaseConfigSettings(models.TransientModel):
         help='The CAS authentication only works if you are in a single'
              ' database mode. You can launch the Odoo Server with the'
              ' option --db-filter=YOUR_DATABASE to do so.')
-    cas_server = fields.Char('CAS Server address', size=64)
-    cas_server_port = fields.Integer('CAS Server port')
+    cas_server = fields.Char(
+        string='CAS Server address',
+        size=64,
+        related="company_id.cas_server",
+        readonly=False)
+    cas_server_port = fields.Integer(
+        string='CAS Server port',
+        related="company_id.cas_server_port",
+        readonly=False)
     cas_create_user = fields.Boolean(
         'Users created on the fly',
         help='Automatically create local user accounts for'
