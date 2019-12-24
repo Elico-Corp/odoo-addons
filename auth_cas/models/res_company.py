@@ -9,5 +9,7 @@ from odoo import fields, models
 class ResCompany(models.Model):
     _inherit = 'res.company'
 
+    cas_activated = fields.Boolean('CAS authentication activated', size=64)
     cas_server = fields.Char('CAS Server address', size=64)
     cas_server_port = fields.Integer('CAS Server port')
+    cas_create_user = fields.Boolean('Users created on the fly')

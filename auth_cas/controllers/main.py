@@ -26,12 +26,11 @@ class Controller(http.Controller):
     @staticmethod
     def get_config_static():
         """ Retrieves the module config for the CAS authentication. """
-        icp = request.env['ir.config_parameter'].sudo()
         config = {
-            'login_cas': icp.get_param('cas_auth.cas_activated'),
-            'host': icp.get_param('cas_auth.cas_server'),
-            'port': icp.get_param('cas_auth.cas_server_port'),
-            'auto_create': icp.get_param('cas_auth.cas_create_user'),
+            'login_cas': request.env.user.company_id.cas_activated,
+            'host': request.env.user.company_id.cas_server,
+            'port': request.env.user.company_id.cas_server_port,
+            'auto_create': request.env.user.company_id.cas_create_user,
         }
 
         return config
@@ -43,7 +42,7 @@ class Controller(http.Controller):
         def qs(url):
             query = urllib.parse.urlparse(url).query
             res = dict(
-                [(k, v[0]) for k, v in urllib.parse.parse_qs(query).items()])
+                [(k, v[0]) for k, v in list(urllib.parse.parse_qs(query).items())])
             res1 = {}
             if res.get('redirect', {}):
                 res1 = qs(res.get('redirect', {}))
@@ -78,7 +77,7 @@ class Controller(http.Controller):
             cas_server = \
                 url_server.scheme + '://' + url_server.netloc + \
                 ':' + str(cas_port) + url_server.path
-        service_url = urllib.quote(cur_url, safe='')
+        service_url = urllib.parse.quote(cur_url, safe='')
         # The login function, from pycas, check if the ticket given
         # by CAS is a real ticket. The login of the user
         # connected by CAS is returned.
@@ -142,7 +141,7 @@ class Home(main.Home):
         def qs(url):
             query = urllib.parse.urlparse(url).query
             res = dict([
-                (k, v[0]) for k, v in urllib.parse.parse_qs(query).items()])
+                (k, v[0]) for k, v in list(urllib.parse.parse_qs(query).items())])
             res1 = {}
             if res.get('redirect', {}):
                 res1 = qs(res.get('redirect', {}))
@@ -176,7 +175,7 @@ class Session(main.Session):
     def logout(self, redirect='/web'):
         request.session.logout(keep_db=True)
         config = Controller.get_config_static()
-        if config.get('login_cas', False) == u'True':
+        if config.get('login_cas', False) == 'True':
             return self.cas_logout()
         else:
             return werkzeug.utils.redirect(redirect, 303)

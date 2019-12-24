@@ -148,17 +148,18 @@ def parse_tag(str, tag):
     trailing whitespace) between tags.  Return "" if tag not
     found.
     """
-    tag1_pos1 = str.find("<" + tag)
+    str2 = str.decode("utf-8")
+    tag1_pos1 = str2.find("<" + tag)
     #  No tag found, return empty string.
     if tag1_pos1 == -1:
         return ""
-    tag1_pos2 = str.find(">", tag1_pos1)
+    tag1_pos2 = str2.find(">", tag1_pos1)
     if tag1_pos2 == -1:
         return ""
-    tag2_pos1 = str.find("</" + tag, tag1_pos2)
+    tag2_pos1 = str2.find("</" + tag, tag1_pos2)
     if tag2_pos1 == -1:
         return ""
-    return str[tag1_pos2 + 1:tag2_pos1].strip()
+    return str2[tag1_pos2 + 1:tag2_pos1].strip()
 
 
 def split2(str, sep):
@@ -190,7 +191,7 @@ def do_redirect(cas_host, service_url, opt, secure):
     """ Send redirect to client.  This function does not return,\
     i.e. it teminates this script. """
     cas_url = cas_host + "/login?service=" + service_url
-    urllib.request.urlopen(cas_url)
+    urllib.request.request.urlopen(cas_url)
     if opt in ("renew", "gateway"):
         cas_url += "&%s=true" % opt
     if opt == "gateway":
@@ -259,7 +260,7 @@ def validate_cas_1(cas_host, service_url, ticket):
     #  Second Call to CAS server: Ticket found, verify it.
     cas_validate = \
         cas_host + "/validate?ticket=" + ticket + "&service=" + service_url
-    f_validate = urllib.urlopen(cas_validate)
+    f_validate = urllib.request.urlopen(cas_validate)
     #  Get first line - should be yes or no
     response = f_validate.readline()
     #  Ticket does not validate, return error
@@ -287,7 +288,7 @@ def validate_cas_2(cas_host, service_url, ticket, opt):
         service_url
     if opt:
         cas_validate += "&%s=true" % opt
-    f_validate = urllib.urlopen(cas_validate)
+    f_validate = urllib.request.urlopen(cas_validate)
     #  Get first line - should be yes or no
     response = f_validate.read()
     id = parse_tag(response, "cas:user")
@@ -313,13 +314,13 @@ def validate_cas_3(cas_host, service_url, ticket, opt):
         service_url + "&ticket=" + ticket
     if opt:
         cas_validate += "&%s=true" % opt
-    f_validate = urllib.urlopen(cas_validate)
+    f_validate = urllib.request.urlopen(cas_validate)
     #  Get first line - should be yes or no
     response = f_validate.read()
     id = parse_tag(response, "cas:user")
     #  Ticket does not validate, return error
     if id == "":
-        if response.find('cas:authenticationFailure') == -1:
+        if response.decode('utf-8').find('cas:authenticationFailure') == -1:
             return NOT_CAS_SEVER, ""
         return TICKET_INVALID, ""
     #  Ticket validates
