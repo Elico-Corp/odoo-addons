@@ -26,11 +26,12 @@ class Controller(http.Controller):
     @staticmethod
     def get_config_static():
         """ Retrieves the module config for the CAS authentication. """
+        company_id = request.env.user.company_id.browse(1)
         config = {
-            'login_cas': request.env.user.company_id.cas_activated,
-            'host': request.env.user.company_id.cas_server,
-            'port': request.env.user.company_id.cas_server_port,
-            'auto_create': request.env.user.company_id.cas_create_user,
+            'login_cas': company_id.cas_activated,
+            'host': company_id.cas_server,
+            'port': str(company_id.cas_server_port),
+            'auto_create': company_id.cas_create_user,
         }
 
         return config
