@@ -171,8 +171,8 @@ def split2(str, sep):
 def makehash(str, secret=SECRET):
     """ Use hash and secret to encrypt string. """
     m = hashlib.md5()
-    m.update(str)
-    m.update(SECRET)
+    m.update(str.encode())
+    m.update(SECRET.encode())
     return m.hexdigest()[0:8]
 
 
