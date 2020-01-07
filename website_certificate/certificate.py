@@ -12,6 +12,7 @@ class CompanyFiling(models.Model):
     certificate_url1 = fields.Char(string='Certificate URL1')
     certificate_logo1 = fields.Binary(string='Certificate Logo1')
     certificate_number2 = fields.Char(string='Certificate Number2')
+    certificate_number2_url = fields.Char(string='Certificate Number2 URL')
     certificate_url2 = fields.Char(string='Certificate URL2')
     certificate_logo2 = fields.Binary(string='Certificate Logo2')
 
@@ -30,6 +31,9 @@ class CompanyFilingSetting(models.TransientModel):
         string='Certificate Logo1', related='website_id.certificate_logo1')
     certificate_number2 = fields.Char(
         string='Certificate Number2', related='website_id.certificate_number2')
+    certificate_number2_url = fields.Char(
+        string='Certificate Number2 URL',
+        related='website_id.certificate_number2_url')
     certificate_url2 = fields.Char(
         string='Certificate URL2', related='website_id.certificate_url2')
     certificate_logo2 = fields.Binary(
