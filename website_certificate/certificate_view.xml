@@ -28,6 +28,10 @@
                     <div class="oe_inline">
                         <field name="certificate_number2" placeholder="OCA沪ICP备12005091号"/>
                     </div>
+                    <label for="certificate_number2_url"/>
+                    <div class="oe_inline">
+                        <field name="certificate_number2_url" placeholder="http://www.miitbeian.gov.cn"/>
+                    </div>
                     <label for="certificate_url2"/>
                     <div class="oe_inline">
                         <field name="certificate_url2" placeholder="http://www.example.com/certificate"/>
@@ -57,7 +61,9 @@
                         <span t-field="website.certificate_logo2"
                               t-field-options='{"widget": "image", "style": "display: inline; vertical-align: baseline;"}'/>
                     </a>
-                    <span t-field="website.certificate_number2"/>
+                    <a t-attf-href="#{website.certificate_number2_url}" target="_BLANK">
+                        <span t-field="website.certificate_number2"/>
+                    </a>
                 </span>
             </xpath>
         </template>
