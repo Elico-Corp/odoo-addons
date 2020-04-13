@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+© 2018-2019 Shanghai Elico Limited.
+License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
+-->
+<odoo>
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.website.cert</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="website.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@id='social_default_image_setting']" position="after">
+                <div class="col-12 col-lg-6 o_setting_box"
+                     id="website_captcha_settings">
+                    <div class="o_setting_right_pane">
+                        <label for="captcha_length" string="Website Captcha"/>
+                        <span class="fa fa-lg fa-globe"
+                              title="Add captcha on your website"/>
+                        <div class="text-muted">
+                            Captcha settings for your website
+                        </div>
+                        <div class="content-group">
+                            <div class="row mt16">
+                                <label class="col-lg-3 o_light_label"
+                                       string="Captcha Length"
+                                       for="captcha_length"/>
+                                <field name="captcha_length"/>
+                            </div>
+                            <div class="row">
+                                <label class="col-lg-3 o_light_label"
+                                       string="Captcha Chars"
+                                       for="captcha_chars"/>
+                                <field name="captcha_chars"/>
+                            </div>
+                            <div class="row">
+                                <label class="col-lg-3 o_light_label"
+                                       string="Captcha Crypt Password"
+                                       for="captcha_crypt_password"/>
+                                <field name="captcha_crypt_password"
+                                       placeholder="The secret value used as the basis for a key"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>
