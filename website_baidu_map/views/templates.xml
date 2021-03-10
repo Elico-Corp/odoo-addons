@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+<template id="assets_frontend" inherit_id="website.assets_frontend" name="Baidu Map Front-end assets">
+    <xpath expr="." position="inside">
+        <script type="text/javascript"
+                t-attf-src="//api.map.baidu.com/api?v=3.0&amp;ak=#{request.env['ir.config_parameter'].sudo().get_param('website_baidu_map.api_key')}"></script>
+    </xpath>
+</template>
+
+</odoo>

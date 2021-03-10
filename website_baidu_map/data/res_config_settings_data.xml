@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <record id="default_baidu_map_ak" model="ir.config_parameter">
+        <field name="key">website_baidu_map.api_key</field>
+        <field name="value">E4805d16520de693a3fe707cdc962045</field>
+    </record>
+</odoo>
