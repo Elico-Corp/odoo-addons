@@ -1,0 +1,147 @@
+.qq_row_margin{
+    margin-left: 0;
+    margin-right: 0;
+}
+.qq_products_area{       
+    display: flex;
+    flex-flow: row wrap;
+    text-align: left;
+    padding: 10px;
+    overflow: auto;
+    max-height: 93vh;
+    min-height: 100%;
+    align-content: flex-start;
+    -webkit-flex-flow: row wrap;
+    -webkit-box-pack: start;
+    justify-content: space-evenly;
+}
+.qq_products_line_area{    
+    min-height: 89vh;
+    max-height: 93vh;    
+    padding-left: 0;
+    padding-right: 0;
+    overflow: auto;
+    background-color: #32383e;
+}
+.qq_products_line_area table{
+    color: white;   
+}
+.qq_products_line_area .table th{
+    border-top: none;
+}
+.qq_products_line_area .table td{
+    vertical-align: middle;
+}
+.qq_input_field{
+    width: 40px;
+    height: 30px;
+    border: 1px solid transparent;
+    background-color: #ddd;
+    padding: 0px 0px;    
+    text-align: center;
+    color: black;
+    border-radius: 2px;
+}
+.qq_o_kanban_record {
+    width: 122px;
+    height: 115px;
+    position: relative;
+    vertical-align: top;
+    display: inline-block;
+    line-height: 100px;
+    font-size: 11px;
+    margin: 8px !important;
+    background: #fff;    
+    overflow: hidden;
+    cursor: pointer;
+    border: 1px solid #e2e2e2;
+    border-radius: 3px;
+    border-bottom-width: 3px;
+}
+.qq_o_kanban_ghost{
+    height: 0;
+    min-height: 0!important;
+    visibility: hidden;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding: 0;
+}
+.qq_record_selected{
+    box-shadow: 0px -2px 0px rgba(124 , 123, 173, 1);
+    -webkit-box-shadow: 0px -2px 0px #7c7bad;
+    -moz-box-shadow: 0px -2px 0px rgba(124 , 123, 173, 1);
+}
+.qq_o_kanban_image {    
+    width: 120px;
+    height: 100px;
+    position: relative;
+    background: white;
+    text-align: center;
+}
+.qq_o_kanban_image img{
+    max-height: 100px;
+    max-width: 120px;
+    vertical-align: middle;
+}
+.qq_shopping_cart{
+    line-height: 13px;
+    top: 2px;
+    right: 2px;
+    position: absolute;    
+    vertical-align: top;
+    color: white;    
+    background: #00A09D;
+    padding: 2px 5px;
+    border-radius: 2px;
+    z-index: 1;
+}
+.qq_price_tag{
+    position: absolute;    
+    vertical-align: top;
+    color: white;
+    line-height: 13px;
+    background: #7f82ac;
+    padding: 2px 5px;
+    border-radius: 2px;
+    top: 2px;
+    left: 2px;
+}
+.qq_product_name{
+    width: 100%;
+    line-height: 14px;
+    position: absolute;    
+    box-sizing: border-box;
+    bottom: 0;
+    top: auto;
+    overflow: hidden;
+    text-overflow: ellipsis;    
+    padding: 3px;
+    padding-top: 15px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    background: -webkit-linear-gradient(-90deg,rgba(255,255,255,0),rgba(255,255,255,1), rgba(255,255,255,1));
+    background: -moz-linear-gradient(-90deg,rgba(255,255,255,0),rgba(255,255,255,1), rgba(255,255,255,1));
+    background: -ms-linear-gradient(-90deg,rgba(255,255,255,0),rgba(255,255,255,1), rgba(255,255,255,1));
+}
+.qq_dropdown{    
+    padding: 0.375rem 0.75rem;
+    display: inline-block;
+}
+.qq_customers{    
+    border-radius: 3px;
+    background-color: white;
+    margin-right: 10px;
+}
+table.linecounted
+{
+    counter-reset:paragraph;
+}
+table.linecounted span:after,
+table.linecounted span::after
+{
+    counter-increment:paragraph;
+    content: counter(paragraph);
+}
+
+
